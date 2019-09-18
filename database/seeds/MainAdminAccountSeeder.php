@@ -18,7 +18,6 @@ class MainAdminAccountSeeder extends Seeder
             'name' => 'MainAdmin',
             'email' => 'mainadmin@reps.com',
             'password' => Hash::make('Reps!18092019!'),
-            'settings' => '{"locale":"en"}',
         ]);
     }
 }
