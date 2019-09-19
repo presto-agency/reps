@@ -1,0 +1,5 @@
+deploy:
+  script:
+    - ssh root@194.9.70.47 "cd /var/www/dev/reps/ && ./install.sh"
+  only:
+    - development
