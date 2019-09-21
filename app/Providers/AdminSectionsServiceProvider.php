@@ -2,28 +2,46 @@
 
 namespace App\Providers;
 
+use AdminNavigation;
+use AdminSection;
+
 use SleepingOwl\Admin\Providers\AdminSectionsServiceProvider as ServiceProvider;
 
 class AdminSectionsServiceProvider extends ServiceProvider
 {
 
+
+
     /**
      * @var array
      */
     protected $sections = [
-        //\App\User::class => 'App\Http\Sections\Users',
+        \App\Models\Country::class => 'App\Http\Sections\Country',
     ];
 
+
     /**
-     * Register sections.
-     *
      * @param \SleepingOwl\Admin\Admin $admin
-     * @return void
      */
     public function boot(\SleepingOwl\Admin\Admin $admin)
     {
-    	//
+
+        $this->registerNavigation();
 
         parent::boot($admin);
+
+
+    }
+
+    private function registerNavigation()
+    {
+
+
+        AdminNavigation::addPage('General')
+            ->setPriority(1000)
+            ->setIcon('fa fa-code')
+            ->setId('parent-general');
+
+
     }
 }

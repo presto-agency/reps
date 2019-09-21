@@ -1,11 +1,11 @@
 <?php
 
 Route::get('', ['as' => 'admin.dashboard', function () {
-	$content = 'Define your dashboard here.';
-	return AdminSection::view($content, 'Dashboard');
-}]);
 
-Route::get('information', ['as' => 'admin.information', function () {
-	$content = 'Define your information here.';
-	return AdminSection::view($content, 'Information');
+    return AdminSection::view("123", 'Dashboard');
+}]);
+//Route::get('', '\App\Http\Controllers\MyController@index');
+Route::get('information', ['as' => 'information', function () {
+    $content = 'Define your information here.';
+    return AdminSection::view($content, 'Information');
 }]);
