@@ -10,13 +10,13 @@ class Role extends Model
         'title', 'name'
     ];
 
-    public function userWithThisRole()
+    public function roleToUser()
     {
-        return $this->belongsTo('App\User')->first();
+        return $this->belongsTo('App\User');
     }
 
-    public function usersWithThisRole()
+    public function roleToUsers()
     {
-        return $this->hasMany('App\User')->get();
+        return $this->hasMany('App\User');
     }
 }

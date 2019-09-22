@@ -3,15 +3,16 @@
 namespace App\Providers;
 
 
+
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
+use App\Observers\UserObserver;
+use App\User;
+use App\Observers\PollObserver;
+use App\Models\Poll;
 
 class AppServiceProvider extends ServiceProvider
 {
-
-    protected $widgets = [
-        \App\Widgets\DashboardMap::class
-    ];
-
 
     /**
      * Register any application services.
@@ -23,19 +24,33 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+    private $views;
+
     /**
      * Bootstrap any application services.
      *
      * @return void
      */
+//Factory $viewFactory
     public function boot()
     {
-        // Регистрация виджетов в реестре
-        /** @var WidgetsRegistryInterface $widgetsRegistry */
-        $widgetsRegistry = $this->app[\SleepingOwl\Admin\Contracts\Widgets\WidgetsRegistryInterface::class];
 
-        foreach ($this->widgets as $widget) {
-            $widgetsRegistry->registerWidget($widget);
-        }
+        $userObserve = User::observe(UserObserver::class);
+        $pollObserve = Poll::observe(PollObserver::class);
+
+
+
+
+//        $this->views = $viewFactory;
+//        dd($viewFactory);
+//        $this->compose('*', Poll::class);
+//        $this->compose('admin.quick_form', UserComposer::class);
+//        $this->compose('admin.quick_refund', UserComposer::class);
+    }
+
+    private function compose($views, string $viewComposer)
+    {
+        $this->app->singleton($viewComposer);
+        $this->views->composer($views, $viewComposer);
     }
 }

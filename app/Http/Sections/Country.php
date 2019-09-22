@@ -62,7 +62,11 @@ class Country extends Section implements Initializable
     public function onDisplay()
     {
 
-        $display = AdminDisplay::datatablesAsync()->setDatatableAttributes(['bInfo' => false])->setDisplaySearch(true)->paginate(50);
+        $display = AdminDisplay::datatablesAsync()
+            ->setDatatableAttributes(['bInfo' => false])
+            ->setDisplaySearch(true)
+            ->paginate(50)
+        ;
         $display->setHtmlAttribute('class', 'table-info table-hover');
         $display->setFilters(
             AdminDisplayFilter::related('name')->setModel(Country::class)
@@ -71,21 +75,15 @@ class Country extends Section implements Initializable
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'Id')
-                ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md'),
+                ->setHtmlAttribute('class', 'hidden-sm '),
             $name = AdminColumn::text('name', 'Name')
-                ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md'),
+                ->setHtmlAttribute('class', 'hidden-sm '),
             $code = AdminColumn::text('code', 'Code')
-                ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md'),
+                ->setHtmlAttribute('class', 'hidden-sm '),
             $flag = AdminColumn::image('flag', 'Flag')
-                ->setHtmlAttribute('class', 'hidden-sm hidden-xs foobar')
+                ->setHtmlAttribute('class', 'hidden-sm')
                 ->setWidth('100px'),
         ]);
-
-        $id->getHeader()->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md');
-        $name->getHeader()->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md');
-        $code->getHeader()->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md');
-        $flag->getHeader()->setHtmlAttribute('class', 'hidden-sm hidden-xs');
-
 
         return $display;
 
