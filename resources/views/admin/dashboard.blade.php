@@ -1,17 +1,20 @@
-{{--    @parent--}}
 <div class="row">
-    <!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+    <div class="col-lg-3 col-6">
+        <!-- small card -->
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>{{$user ?? ''}}</h3>
 
-            <div class="info-box-content">
-                <span class="info-box-text">New Members</span>
-                <span class="info-box-number"></span>
+                <p>User Registrations</p>
             </div>
-            <!-- /.info-box-content -->
+            <div class="icon">
+                <i class="fas fa-user-plus"></i>
+            </div>
+
+            <a href="{{url('admin\users')}}" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
         </div>
-        <!-- /.info-box -->
     </div>
-    <!-- /.col -->
+    <!-- ./col -->
 </div>

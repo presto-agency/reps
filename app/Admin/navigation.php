@@ -34,16 +34,12 @@ return [
 //        ]
 //    ],
 
+
 //    [
-//        'title' => 'Dashboard',
+//        'title' => 'Information',
 //        'icon' => 'fa fa-exclamation-circle',
 //        'url' => route('admin.dashboard'),
 //    ],
-    [
-        'title' => 'Information',
-        'icon' => 'fa fa-exclamation-circle',
-        'url' => route('information'),
-    ],
 
     // Examples
     // [

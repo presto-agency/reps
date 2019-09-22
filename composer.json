@@ -9,10 +9,11 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "barryvdh/laravel-debugbar": "^3.2",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
-        "laravelrus/sleepingowl": "dev-development",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "laravelrus/sleepingowl": "dev-bs4"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
