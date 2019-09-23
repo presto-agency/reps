@@ -2,17 +2,14 @@
 
 namespace App\Observers;
 
-use App\Models\Poll;
-
-class PollObserver
+class UserGallery
 {
-
+    private static $data;
 
     /**
-     * То что поступает в модель ещё не созданно
-     * @param Poll $poll
+     * @param UserGallery $poll
      */
-    public function creating(Poll $poll)
+    public function creating(UserGallery $poll)
     {
 
     }
@@ -20,10 +17,10 @@ class PollObserver
     /**
      * Handle the poll "created" event.
      * То что уже созданно в базе данных
-     * @param \App\Poll $poll
+     * @param \App\UserGalleryl $poll
      * @return void
      */
-    public function created(Poll $poll)
+    public function created(UserGallery $poll)
     {
 
     }
@@ -32,10 +29,10 @@ class PollObserver
     /**
      * Handle the poll "updated" event.
      *
-     * @param \App\Poll $poll
+     * @param \App\UserGalleryl $poll
      * @return void
      */
-    public function updated(Poll $poll)
+    public function updated(UserGallery $poll)
     {
         //
     }
@@ -43,10 +40,10 @@ class PollObserver
     /**
      * Handle the poll "deleted" event.
      *
-     * @param \App\Poll $poll
+     * @param \App\UserGalleryl $poll
      * @return void
      */
-    public function deleted(Poll $poll)
+    public function deleted(UserGallery $poll)
     {
         //
     }
@@ -54,10 +51,10 @@ class PollObserver
     /**
      * Handle the poll "restored" event.
      *
-     * @param \App\Poll $poll
+     * @param \App\UserGalleryl $poll
      * @return void
      */
-    public function restored(Poll $poll)
+    public function restored(UserGallery $poll)
     {
         //
     }
@@ -65,10 +62,10 @@ class PollObserver
     /**
      * Handle the poll "force deleted" event.
      *
-     * @param \App\Poll $poll
+     * @param \App\UserGalleryl $poll
      * @return void
      */
-    public function forceDeleted(Poll $poll)
+    public function forceDeleted(UserGallery $poll)
     {
         //
     }

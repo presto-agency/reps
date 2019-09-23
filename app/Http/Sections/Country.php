@@ -65,8 +65,7 @@ class Country extends Section implements Initializable
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
             ->setDisplaySearch(true)
-            ->paginate(50)
-        ;
+            ->paginate(50);
         $display->setHtmlAttribute('class', 'table-info table-hover');
         $display->setFilters(
             AdminDisplayFilter::related('name')->setModel(Country::class)

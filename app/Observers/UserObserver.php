@@ -6,6 +6,13 @@ use App\User;
 
 class UserObserver
 {
+
+
+
+    public function creating(User $poll)
+    {
+
+    }
     /**
      * Handle the user "created" event.
      *

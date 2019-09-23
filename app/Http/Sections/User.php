@@ -81,7 +81,7 @@ class User extends Section implements Initializable
                 ->setWidth('50px'),
             $name = AdminColumn::text('name', 'Name')->setWidth('50px'),
             $email = AdminColumn::text('email', 'Email')->setWidth('50px'),
-            $role_id = AdminColumn::relatedLink('roles.name', 'Role')
+            $role_id = AdminColumn::relatedLink('roles.title', 'Role')
                 ->append(AdminColumn::filter('role_id'))
                 ->setWidth('50px'),
             $country_id = AdminColumn::relatedLink('countries.name', 'Country')
@@ -96,6 +96,8 @@ class User extends Section implements Initializable
                 return $instance->active ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
             })->setWidth('10px'),
             $ban = AdminColumnEditable::checkbox('ban', 'Ban')
+                ->setWidth('10px'),
+            $activity_at = AdminColumnEditable::datetime('activity_at', 'Last activity')
                 ->setWidth('50px'),
         ]);
 
