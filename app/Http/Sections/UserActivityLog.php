@@ -7,6 +7,7 @@ use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 use AdminDisplay;
 use AdminColumn;
+use AdminColumnFilter;
 
 /**
  * Class UserActivityLog
@@ -54,11 +55,24 @@ class UserActivityLog extends Section
         $display->setColumns([
             $type = AdminColumn::text('type', 'Type'),
             $user_id = AdminColumn::relatedLink('users.name', 'Name'),
-            $time = AdminColumn::datetime('time', 'time')->setFormat('d.m.Y H:i:s'),
+            $time = AdminColumn::datetime('time', 'time')->setFormat('d-m-Y'),
             $ip = AdminColumn::text('ip', 'Ip'),
             $parameters = AdminColumn::text('parameters', 'Parameters'),
         ]);
 
+        $display->setColumnFilters([
+            $type = null, // Не ищем по первому столбцу
+            $user_id = null,
+            $time = AdminColumnFilter::range()->setFrom(
+                AdminColumnFilter::date()->setPlaceholder('From Date')->setFormat('d-m-Y')
+            )->setTo(
+                AdminColumnFilter::date()->setPlaceholder('To Date')->setFormat('d-m-Y')
+            ),
+            $ip = AdminColumnFilter::text()->setPlaceholder('Ip'),
+            $parameters = null,
+
+
+        ]);
 
         return $display;
     }

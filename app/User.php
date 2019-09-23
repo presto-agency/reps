@@ -2,18 +2,15 @@
 
 namespace App;
 
-use App\Models\Country;
-use App\Models\Race;
-use App\Models\Role;
-use App\Models\UserGallery;
-use App\Models\UserActivityLog;
+
+use App\Traits\ModelRelations\UserRelation;
 use App\Traits\GravatarTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, GravatarTrait;
+    use Notifiable, GravatarTrait, UserRelation;
 
     /**
      * The attributes that are mass assignable.
@@ -49,36 +46,8 @@ class User extends Authenticatable
     ];
 
 
-    // Relations
-    public function roles()
-    {
-        return $this->belongsTo(Role::class, 'role_id', 'id');
-    }
-
-    public function countries()
-    {
-        return $this->belongsTo(Country::class, 'country_id', 'id');
-    }
-
-    public function races()
-    {
-        return $this->belongsTo(Race::class, 'race_id', 'id');
-    }
-
-    public function galleries()
-    {
-        return $this->hasMany(UserGallery::class, 'user_id', 'id');
-    }
-
-    public function logs()
-    {
-        return $this->hasMany(UserActivityLog::class, 'user_id', 'id');
-    }
-
     public function isAdmin()
     {
-//        $roleSA = Role::where('name', 'super-admin')->select('id')->first();
-//        $roleA = Role::where('name', 'admin')->select('id')->first();
         return $this->role_id == 1 || $this->role_id == 2;
     }
 

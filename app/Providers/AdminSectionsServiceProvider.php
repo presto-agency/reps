@@ -27,6 +27,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\User::class => 'App\Http\Sections\User',
         \App\Models\UserGallery::class => 'App\Http\Sections\UserGallery',
         \App\Models\UserActivityLog::class => 'App\Http\Sections\UserActivityLog',
+
+        \App\Models\Stream::class => 'App\Http\Sections\Stream',
     ];
 
 
@@ -73,6 +75,14 @@ class AdminSectionsServiceProvider extends ServiceProvider
                     (new Page(\App\Models\UserGallery::class))->setPriority(2),
                     (new Page(\App\Models\UserActivityLog::class))->setPriority(3),
                 ]
+            ]
+        ]);
+        AdminNavigation::setFromArray([
+            [
+                'title' => 'Stream',
+                'icon' => 'fas fa-user',
+                'priority' => 1,
+                (new Page(\App\Models\Stream::class))->setPriority(1),
             ]
         ]);
 
