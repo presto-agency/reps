@@ -3,14 +3,12 @@
 namespace App\Http\Sections;
 
 use AdminColumn;
+use AdminColumnEditable;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
-use AdminNavigation;
-use AdminColumnEditable;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
-use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -20,7 +18,7 @@ use SleepingOwl\Admin\Section;
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class InterviewQuestion extends Section implements Initializable
+class InterviewQuestion extends Section
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -29,27 +27,16 @@ class InterviewQuestion extends Section implements Initializable
      */
     protected $checkAccess = false;
 
-    /**
-     * @var string
-     */
-    protected $title;
+    protected $alias = false;
 
-    /**
-     * @var string
-     */
-    protected $alias;
-
-
-    /**
-     *
-     */
-    public function initialize()
+    public function getIcon()
     {
+        return parent::getIcon();
+    }
 
-        $page = AdminNavigation::getPages()->findById('parent-general');
-        $page->addPage(
-            $this->makePage(200)->setIcon('fa fa-lightbulb-o')
-        );
+    public function getTitle()
+    {
+        return parent::getTitle();
     }
 
     /**
@@ -61,7 +48,7 @@ class InterviewQuestion extends Section implements Initializable
         $display->setDatatableAttributes(['bInfo' => false]);
         $display->setHtmlAttribute('class', 'table-info table-hover text-center');
         $display->setDisplaySearch(true);
-        $display->paginate(5);
+        $display->paginate(50);
         $display->setApply(function ($query) {
             $query->orderBy('created_at', 'desc');
         });
@@ -73,7 +60,7 @@ class InterviewQuestion extends Section implements Initializable
             })->setWidth('100px'),
             $count_answer = AdminColumn::text('count_answer', 'Answers')->setWidth('100px'),
             $for_login = AdminColumnEditable::checkbox('for_login', 'For login only')
-               ->setWidth('100px'),
+                ->setWidth('100px'),
         ]);
 
         return $display;
@@ -125,9 +112,10 @@ class InterviewQuestion extends Section implements Initializable
     {
         // remove if unused
     }
+
     public function store($id)
     {
-        dd($id,request());
+        dd($id, request());
         parent::updating($id);
         // remove if unused
     }

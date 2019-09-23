@@ -6,10 +6,8 @@ use AdminColumn;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
-use AdminNavigation;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
-use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -19,7 +17,7 @@ use SleepingOwl\Admin\Section;
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class Headline extends Section implements Initializable
+class Headline extends Section
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -28,23 +26,16 @@ class Headline extends Section implements Initializable
      */
     protected $checkAccess = false;
 
-    /**
-     * @var string
-     */
-    protected $title;
+    protected $alias = false;
 
-    /**
-     * @var string
-     */
-    protected $alias;
-
-    public function initialize()
+    public function getIcon()
     {
+        return parent::getIcon();
+    }
 
-        $page = AdminNavigation::getPages()->findById('parent-general');
-        $page->addPage(
-            $this->makePage(300)
-        );
+    public function getTitle()
+    {
+        return parent::getTitle();
     }
 
     /**
@@ -55,7 +46,7 @@ class Headline extends Section implements Initializable
         $display = AdminDisplay::datatablesAsync();
         $display->setDatatableAttributes(['bInfo' => false]);
         $display->setHtmlAttribute('class', 'table-info table-hover text-center');
-        $display->paginate(10);
+        $display->paginate(50);
         $display->setApply(function ($query) {
             $query->orderBy('created_at', 'desc');
         });

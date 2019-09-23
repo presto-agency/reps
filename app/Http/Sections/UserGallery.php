@@ -7,12 +7,10 @@ use AdminColumnEditable;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
-use AdminNavigation;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
-use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -22,7 +20,7 @@ use SleepingOwl\Admin\Section;
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class UserGallery extends Section implements Initializable
+class UserGallery extends Section
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -31,26 +29,18 @@ class UserGallery extends Section implements Initializable
      */
     protected $checkAccess = false;
 
-    /**
-     * @var string
-     */
-    protected $title;
+    protected $alias = false;
 
-    /**
-     * @var string
-     */
-    protected $alias;
-
-    public function initialize()
+    public function getIcon()
     {
-
-        $page = AdminNavigation::getPages()->findById('parent-users');
-
-        $page->addPage(
-            $this->makePage(300)
-        );
-
+        return parent::getIcon();
     }
+
+    public function getTitle()
+    {
+        return parent::getTitle();
+    }
+
 
     /**
      * @return DisplayInterface
@@ -62,7 +52,9 @@ class UserGallery extends Section implements Initializable
             ->setDisplaySearch(false)
             ->setHtmlAttribute('class', 'table-info table-hover text-center')
             ->paginate(50);
-
+        $display->setApply(function ($query) {
+            $query->orderBy('created_at', 'desc');
+        });
         $display->setColumns([
             $id = AdminColumn::text('id', 'Id')
                 ->setWidth('15px'),

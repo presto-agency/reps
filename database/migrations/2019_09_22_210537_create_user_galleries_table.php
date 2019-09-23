@@ -17,7 +17,7 @@ class CreateUserGalleriesTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('picture');
-            $table->unsignedBigInteger('user_id')->default(1);
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('sign')->nullable();
             $table->boolean('for_adults')->default(false);

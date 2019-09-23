@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-
 use AdminNavigation;
-use SleepingOwl\Admin\Navigation\Page;
 use SleepingOwl\Admin\Contracts\Widgets\WidgetsRegistryInterface;
+use SleepingOwl\Admin\Navigation\Page;
 use SleepingOwl\Admin\Providers\AdminSectionsServiceProvider as ServiceProvider;
 
 class AdminSectionsServiceProvider extends ServiceProvider
@@ -20,12 +19,14 @@ class AdminSectionsServiceProvider extends ServiceProvider
      * @var array
      */
     protected $sections = [
-        \App\User::class => 'App\Http\Sections\User',
 
         \App\Models\Country::class => 'App\Http\Sections\Country',
         \App\Models\InterviewQuestion::class => 'App\Http\Sections\InterviewQuestion',
         \App\Models\Headline::class => 'App\Http\Sections\Headline',
+
+        \App\User::class => 'App\Http\Sections\User',
         \App\Models\UserGallery::class => 'App\Http\Sections\UserGallery',
+        \App\Models\UserActivityLog::class => 'App\Http\Sections\UserActivityLog',
     ];
 
 
@@ -49,19 +50,31 @@ class AdminSectionsServiceProvider extends ServiceProvider
 
     private function registerNavigation()
     {
+        AdminNavigation::setFromArray([
+            [
+                'title' => 'General',
+                'icon' => 'fa fa-code',
+                'priority' => 1,
+                'pages' => [
+                    (new Page(\App\Models\Country::class))->setPriority(1),
+                    (new Page(\App\Models\InterviewQuestion::class))->setPriority(2),
+                    (new Page(\App\Models\Headline::class))->setPriority(3),
+                ]
+            ]
+        ]);
 
-
-
-        AdminNavigation::addPage('General')
-            ->setPriority(0)
-            ->setIcon('fa fa-code')
-            ->setId('parent-general');
-
-        AdminNavigation::addPage('Users')
-            ->setPriority(100)
-            ->setIcon('fas fa-user')
-            ->setId('parent-users');
-
+        AdminNavigation::setFromArray([
+            [
+                'title' => 'Users',
+                'icon' => 'fas fa-user',
+                'priority' => 1,
+                'pages' => [
+                    (new Page(\App\User::class))->setPriority(1),
+                    (new Page(\App\Models\UserGallery::class))->setPriority(2),
+                    (new Page(\App\Models\UserActivityLog::class))->setPriority(3),
+                ]
+            ]
+        ]);
 
     }
 

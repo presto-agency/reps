@@ -23,6 +23,7 @@ class InterviewQuestionObserver
      */
     public function created(InterviewQuestion $poll)
     {
+
 //        dd($poll->id, InterviewQuestionObserver::$data);
     }
 

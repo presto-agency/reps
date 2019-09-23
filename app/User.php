@@ -6,6 +6,7 @@ use App\Models\Country;
 use App\Models\Race;
 use App\Models\Role;
 use App\Models\UserGallery;
+use App\Models\UserActivityLog;
 use App\Traits\GravatarTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -63,15 +64,22 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Race::class, 'race_id', 'id');
     }
-    public function userToGallery()
+
+    public function galleries()
     {
-        return $this->belongsTo(UserGallery::class, 'user_id', 'id');
+        return $this->hasMany(UserGallery::class, 'user_id', 'id');
     }
+
+    public function logs()
+    {
+        return $this->hasMany(UserActivityLog::class, 'user_id', 'id');
+    }
+
     public function isAdmin()
     {
-        $roleSA = Role::where('name', 'super-admin')->select('id')->first();
-        $roleA = Role::where('name', 'admin')->select('id')->first();
-        return $this->role_id == $roleSA->id || $this->role_id == $roleA->id;
+//        $roleSA = Role::where('name', 'super-admin')->select('id')->first();
+//        $roleA = Role::where('name', 'admin')->select('id')->first();
+        return $this->role_id == 1 || $this->role_id == 2;
     }
 
 
