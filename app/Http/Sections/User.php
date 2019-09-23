@@ -156,10 +156,8 @@ class User extends Section
                 }),
 
             $password = AdminFormElement::password('password', 'Password')
-                ->setValidationRules(['nullable', 'string', 'min:8', 'max:255'])
-                ->setValueSkipped(function () {
-                    return is_null(request('password'));
-                })
+                ->allowEmptyValue()
+                ->setValidationRules(['nullable', 'between:8,50'])
                 ->hashWithBcrypt(),
             $passwordConfirm = AdminFormElement::password('password_confirm', 'Password Confirm')
                 ->addValidationRule('same:password')
