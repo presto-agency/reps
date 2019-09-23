@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePollAnswersTable extends Migration
+class CreateInterviewUserAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePollAnswersTable extends Migration
      */
     public function up()
     {
-        Schema::create('poll_answers', function (Blueprint $table) {
+        Schema::create('interview_user_answers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('poll_id');
-            $table->foreign('poll_id')->references('id')->on('polls')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('question_id');
-            $table->foreign('question_id')->references('id')->on('poll_questions')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('question_id')->references('id')->on('interview_questions')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('answer_id');
+            $table->foreign('answer_id')->references('id')->on('interview_variant_answers')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
@@ -32,6 +32,6 @@ class CreatePollAnswersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('poll_answers');
+        Schema::dropIfExists('interview_user_answers');
     }
 }

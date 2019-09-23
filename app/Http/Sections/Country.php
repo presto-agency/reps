@@ -7,57 +7,36 @@ use AdminDisplay;
 use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
-use AdminNavigation;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
-use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
 
 
 /**
  * Class Country
- *
- * @property \App\Models\Country $model
- *
- * @see https://sleepingowladmin.ru/#/ru/model_configuration_section
+ * @package App\Http\Sections
  */
-class Country extends Section implements Initializable
+class Country extends Section
 {
-    /**
-     * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
-     *
-     * @var bool
-     */
+
     protected $checkAccess = false;
 
-    /**
-     * @var string
-     */
-    protected $title;
+    protected $alias = false;
 
-    /**
-     * @var string
-     */
-    protected $alias;
-
-    /**
-     * Initialize class.
-     */
-    public function initialize()
+    public function getIcon()
     {
-
-        $page = AdminNavigation::getPages()->findById('parent-general');
-
-        $page->addPage(
-            $this->makePage(100)->setIcon('fa fa-lightbulb-o')
-        );
+        return parent::getIcon();
     }
 
+    public function getTitle()
+    {
+        return parent::getTitle();
+    }
 
     /**
-     * @param $id
-     * @return mixed
+     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
+     * @throws \Exception
      */
     public function onDisplay()
     {
@@ -65,12 +44,8 @@ class Country extends Section implements Initializable
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
             ->setDisplaySearch(true)
-            ->paginate(50)
-        ;
+            ->paginate(50);
         $display->setHtmlAttribute('class', 'table-info table-hover');
-        $display->setFilters(
-            AdminDisplayFilter::related('name')->setModel(Country::class)
-        );
 
 
         $display->setColumns([
@@ -89,16 +64,11 @@ class Country extends Section implements Initializable
 
     }
 
-    protected $id;
-
     /**
-     * @param int|null $id
-     * @param array $payload
-     *
-     * @return FormInterface
+     * @param $id
+     * @return \SleepingOwl\Admin\Form\FormPanel
+     * @throws \Exception
      */
-
-
     public function onEdit($id)
     {
 
@@ -128,7 +98,8 @@ class Country extends Section implements Initializable
     }
 
     /**
-     * @return FormInterface
+     * @return \SleepingOwl\Admin\Form\FormPanel
+     * @throws \Exception
      */
     public function onCreate()
     {

@@ -9,15 +9,12 @@ use AdminDisplay;
 use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
-use AdminNavigation;
 use App\Models\Country;
 use App\Models\Race;
 use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
-use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -27,7 +24,7 @@ use SleepingOwl\Admin\Section;
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class User extends Section implements Initializable
+class User extends Section
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -36,30 +33,21 @@ class User extends Section implements Initializable
      */
     protected $checkAccess = false;
 
-    /**
-     * @var string
-     */
-    protected $title;
+    protected $alias = false;
 
-    /**
-     * @var string
-     */
-    protected $alias;
-
-
-    public function initialize()
+    public function getIcon()
     {
+        return parent::getIcon();
+    }
 
-        $page = AdminNavigation::getPages()->findById('parent-users');
-
-        $page->addPage(
-            $this->makePage(100)
-        );
-
+    public function getTitle()
+    {
+        return parent::getTitle();
     }
 
     /**
-     * @return DisplayInterface
+     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
+     * @throws \Exception
      */
     public function onDisplay()
     {
@@ -69,11 +57,9 @@ class User extends Section implements Initializable
             ->setDisplaySearch(true)
             ->setHtmlAttribute('class', 'table-info table-hover text-center')
             ->paginate(50);
-        $display->setFilters(
-            AdminDisplayFilter::related('role_id')->setModel(Role::class),
-            AdminDisplayFilter::related('country_id')->setModel(Country::class)
-        );
-
+        $display->setApply(function ($query) {
+            $query->orderBy('created_at', 'desc');
+        });
         $display->setColumns([
             $id = AdminColumn::text('id', 'Id')
                 ->setWidth('15px'),
@@ -81,7 +67,7 @@ class User extends Section implements Initializable
                 ->setWidth('50px'),
             $name = AdminColumn::text('name', 'Name')->setWidth('50px'),
             $email = AdminColumn::text('email', 'Email')->setWidth('50px'),
-            $role_id = AdminColumn::relatedLink('roles.name', 'Role')
+            $role_id = AdminColumn::relatedLink('roles.title', 'Role')
                 ->append(AdminColumn::filter('role_id'))
                 ->setWidth('50px'),
             $country_id = AdminColumn::relatedLink('countries.name', 'Country')
@@ -96,6 +82,8 @@ class User extends Section implements Initializable
                 return $instance->active ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
             })->setWidth('10px'),
             $ban = AdminColumnEditable::checkbox('ban', 'Ban')
+                ->setWidth('10px'),
+            $activity_at = AdminColumnEditable::datetime('activity_at', 'Last activity')
                 ->setWidth('50px'),
         ]);
 

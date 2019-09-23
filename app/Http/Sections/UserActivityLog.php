@@ -2,22 +2,21 @@
 
 namespace App\Http\Sections;
 
-use AdminColumn;
-use AdminDisplay;
-use AdminForm;
-use AdminFormElement;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
+use AdminDisplay;
+use AdminColumn;
+use AdminColumnFilter;
 
 /**
- * Class Headline
+ * Class UserActivityLog
  *
- * @property \App\Models\Headline $model
+ * @property \App\Models\UserActivityLog $model
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class Headline extends Section
+class UserActivityLog extends Section
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -43,25 +42,38 @@ class Headline extends Section
      */
     public function onDisplay()
     {
-        $display = AdminDisplay::datatablesAsync();
-        $display->setDatatableAttributes(['bInfo' => false]);
-        $display->setHtmlAttribute('class', 'table-info table-hover text-center');
-        $display->paginate(50);
+        $display = AdminDisplay::datatablesAsync()
+            ->setDatatableAttributes(['bInfo' => false])
+            ->setDisplaySearch(true)
+            ->setHtmlAttribute('class', 'table-info table-hover text-center')
+            ->paginate(50);
+
         $display->setApply(function ($query) {
             $query->orderBy('created_at', 'desc');
         });
+
         $display->setColumns([
-            $id = AdminColumn::text('id', 'Id')->setWidth('50px'),
-            $title = AdminColumn::text('title', 'Title')
-                ->setHtmlAttribute('class', 'text-left')
-                ->setWidth('300px'),
-            $url = AdminColumn::text('url', 'Url')
-                ->setHtmlAttribute('class', 'text-left')
-                ->setWidth('200px'),
-            $created_at = AdminColumn::datetime('created_at', 'Created at')->setWidth('70px'),
-            $updated_at = AdminColumn::datetime('updated_at', 'Updated at')->setWidth('70px'),
+            $type = AdminColumn::text('type', 'Type'),
+            $user_id = AdminColumn::relatedLink('users.name', 'Name'),
+            $time = AdminColumn::datetime('time', 'time')->setFormat('d-m-Y'),
+            $ip = AdminColumn::text('ip', 'Ip'),
+            $parameters = AdminColumn::text('parameters', 'Parameters'),
+        ]);
+
+        $display->setColumnFilters([
+            $type = null, // Не ищем по первому столбцу
+            $user_id = null,
+            $time = AdminColumnFilter::range()->setFrom(
+                AdminColumnFilter::date()->setPlaceholder('From Date')->setFormat('d-m-Y')
+            )->setTo(
+                AdminColumnFilter::date()->setPlaceholder('To Date')->setFormat('d-m-Y')
+            ),
+            $ip = AdminColumnFilter::text()->setPlaceholder('Ip'),
+            $parameters = null,
+
 
         ]);
+
         return $display;
     }
 
@@ -72,16 +84,7 @@ class Headline extends Section
      */
     public function onEdit($id)
     {
-        $display = AdminForm::panel();
-
-        $display->setItems([
-            $title = AdminFormElement::text('title', 'Title')
-                ->setValidationRules(['required', 'string', 'max:255']),
-            $url = AdminFormElement::text('url', 'Url')
-                ->setValidationRules(['required', 'nullable', 'string', 'max:255']),
-        ]);
-
-        return $display;
+        // remove if unused
     }
 
     /**

@@ -6,10 +6,14 @@ namespace App\Providers;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
-use App\Observers\UserObserver;
+
 use App\User;
-use App\Observers\PollObserver;
-use App\Models\Poll;
+use App\Models\InterviewQuestion;
+
+use App\Observers\UserObserver;
+use App\Observers\InterviewQuestionObserver;
+
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,15 +39,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        $userObserve = User::observe(UserObserver::class);
-        $pollObserve = Poll::observe(PollObserver::class);
+//        $userObserve = User::observe(UserObserver::class);
+        $interviewQuestion = InterviewQuestion::observe(InterviewQuestionObserver::class);
 
 
 
 
 //        $this->views = $viewFactory;
 //        dd($viewFactory);
-//        $this->compose('*', Poll::class);
+//        $this->compose('*', InterviewQuestionObserver::class);
 //        $this->compose('admin.quick_form', UserComposer::class);
 //        $this->compose('admin.quick_refund', UserComposer::class);
     }

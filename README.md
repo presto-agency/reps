@@ -1,5 +1,16 @@
-1)composer install
-2)cp .env.example .env
-3)php artisan key:generate
-4)php artisan migrate
-5)composer dump-autoload
+Deploy:
+
+```$xslt
+composer install
+```
+Update data in .env file
+
+Run:
+```
+php artisan migrate
+php artisan storage:link
+php artisan config:cache
+
+npm run dev
+composer dump-autoload
+```
