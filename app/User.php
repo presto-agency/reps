@@ -56,7 +56,7 @@ class User extends Authenticatable
     public function setNewPasswordAttribute($value)
     {
         if ($value) {
-            $this->attributes['password'] = bcrypt($value);
+            $this->attributes['password'] = \Hash::make($value);
         }
     }
 
