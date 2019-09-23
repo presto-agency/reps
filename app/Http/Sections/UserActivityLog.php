@@ -63,11 +63,12 @@ class UserActivityLog extends Section
         $display->setColumnFilters([
             $type = null,
             $user_id = null,
-            $time = AdminColumnFilter::range()->setFrom(
-                AdminColumnFilter::date()->setPlaceholder('From Date')->setFormat('d-m-Y')
-            )->setTo(
-                AdminColumnFilter::date()->setPlaceholder('To Date')->setFormat('d-m-Y')
-            ),
+            $time = null,
+//            $time = AdminColumnFilter::range()->setFrom(
+//                AdminColumnFilter::date()->setPlaceholder('From Date')->setFormat('d-m-Y')
+//            )->setTo(
+//                AdminColumnFilter::date()->setPlaceholder('To Date')->setFormat('d-m-Y')
+//            ),
             $ip = AdminColumnFilter::text()->setPlaceholder('Ip'),
             $parameters = null,
 
