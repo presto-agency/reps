@@ -208,7 +208,7 @@ class User extends Section
     public function onCreate()
     {
 
-        return $this->onEdit('');
+        return $this->onEdit(null);
     }
 
     /**
