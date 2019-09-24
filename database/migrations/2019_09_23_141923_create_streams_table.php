@@ -24,12 +24,12 @@ class CreateStreamsTable extends Migration
             $table->unsignedBigInteger('race_id')->default(1);
             $table->foreign('race_id')->references('id')->on('races')->onDelete('cascade')->onUpdate('cascade');
 
-            $table->longText('content');
+            $table->longText('content')->nullable();
 
             $table->unsignedBigInteger('country_id')->default(1);
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade')->onUpdate('cascade');
 
-            $table->text('stream_url');
+            $table->text('stream_url')->nullable();
             $table->boolean('active')->default(true);
             $table->boolean('approved')->default(false);
 

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class InterviewUserAnswers extends Model
@@ -13,21 +12,18 @@ class InterviewUserAnswers extends Model
     ];
 
     // Relations
-    public function question()
+    public function questions()
     {
-        return $this->belongsTo(InterviewQuestion::class, 'question_id', 'id');
-    }
-    public function answer()
-    {
-        return $this->belongsTo(InterviewVariantAnswer::class, 'answer_id', 'id');
-    }
-    public function users()
-    {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(\App\Models\InterviewQuestion::class, 'question_id', 'id');
     }
 
-    public function user()
+    public function variantAnswers()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(\App\Models\InterviewVariantAnswer::class, 'answer_id', 'id');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(\App\User::class, 'user_id', 'id');
     }
 }

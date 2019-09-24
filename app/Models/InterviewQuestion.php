@@ -11,15 +11,19 @@ class InterviewQuestion extends Model
     ];
 
 
-    // Relations
-    public function usersAnswers()
+    public function users()
     {
 
-        return $this->hasMany(InterviewUserAnswers::class, 'question_id');
+        return $this->hasMany(\App\Models\InterviewUserAnswers::class, 'user_id', 'id');
     }
 
-    public function variantAnswers()
+    public function answers()
     {
-        return $this->hasMany(InterviewVariantAnswer::class, 'question_id');
+        return $this->hasMany(\App\Models\InterviewVariantAnswer::class, 'answer_id', 'id');
+    }
+
+    public function questions()
+    {
+        return $this->belongsTo(\App\Models\InterviewVariantAnswer::class, 'question_id', 'id');
     }
 }

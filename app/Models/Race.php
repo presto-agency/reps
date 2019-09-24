@@ -10,12 +10,12 @@ class Race extends Model
         'title', 'code',
     ];
 
-    public function raceToUser()
+    public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->hasMany(\App\User::class, 'race_id', 'id');
     }
-    public function raceToUsers()
+    public function streams()
     {
-        return $this->hasMany('App\User');
+        return $this->hasMany(\App\Models\Stream::class, 'race_id', 'id');
     }
 }

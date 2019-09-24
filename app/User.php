@@ -3,6 +3,8 @@
 namespace App;
 
 
+use App\Models\Race;
+use App\Models\Role;
 use App\Traits\ModelRelations\UserRelation;
 use App\Traits\GravatarTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -48,7 +50,9 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role_id == 1 || $this->role_id == 2;
+        $superAdminId = Role::where('name', 'super-admin')->select('id')->first()->id;
+        $adminId = Role::where('name', 'admin')->select('id')->first()->id;
+        return $this->role_id == $superAdminId || $this->role_id == $adminId;
     }
 
 

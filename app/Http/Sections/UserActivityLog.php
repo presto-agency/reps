@@ -2,6 +2,8 @@
 
 namespace App\Http\Sections;
 
+use App\Models\UserActivityType;
+use App\User;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
@@ -53,7 +55,7 @@ class UserActivityLog extends Section
         });
 
         $display->setColumns([
-            $type = AdminColumn::text('type', 'Type'),
+            $type = AdminColumn::relatedLink('types.name', 'Type'),
             $user_id = AdminColumn::relatedLink('users.name', 'Name'),
             $time = AdminColumn::datetime('time', 'time')->setFormat('d-m-Y'),
             $ip = AdminColumn::text('ip', 'Ip'),
@@ -61,9 +63,17 @@ class UserActivityLog extends Section
         ]);
 
         $display->setColumnFilters([
-            $type = null,
-            $user_id = null,
+            $type = AdminColumnFilter::select(UserActivityType::class)
+                ->setColumnName('type_id')
+                ->setDisplay('name')
+                ->setPlaceholder('Select role'),
+            $user_id = AdminColumnFilter::select(User::class)
+                ->setColumnName('user_id')
+                ->setDisplay('name')
+                ->setPlaceholder('Select name')
+            ,
             $time = null,
+//              TODO:: Фильтры  на дату с/по, в админке поломаны 23.09.2019
 //            $time = AdminColumnFilter::range()->setFrom(
 //                AdminColumnFilter::date()->setPlaceholder('From Date')->setFormat('d-m-Y')
 //            )->setTo(
@@ -109,6 +119,8 @@ class UserActivityLog extends Section
      */
     public function onRestore($id)
     {
+
+
         // remove if unused
     }
 }

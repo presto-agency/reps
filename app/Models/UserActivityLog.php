@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
+
+use App\Traits\ModelRelations\UserActivityLogRelationTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class UserActivityLog extends Model
 {
+    use UserActivityLogRelationTrait;
+
     protected $fillable = [
-        'type', 'user_id', 'time', 'ip', 'parameters'
+        'type_id', 'user_id', 'time', 'ip', 'parameters'
     ];
 
-    public function users()
-    {
-        return $this->belongsTo(\App\User::class, 'user_id', 'id');
-    }
+
 }
