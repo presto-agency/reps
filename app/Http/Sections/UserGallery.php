@@ -113,10 +113,13 @@ class UserGallery extends Section
                     return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
                 })
                 ->setValidationRules(['required']),
+
             $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id)
                 ->setValidationRules(['required', 'min:1']),
+
             $sign = AdminFormElement::text('sign', 'Sign')
                 ->setValidationRules(['nullable', 'string', 'max:255']),
+
             $for_adults = AdminFormElement::checkbox('for_adults', 'For adults(18+)'),
         ]);
         return $display;
