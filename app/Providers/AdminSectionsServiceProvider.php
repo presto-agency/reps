@@ -29,6 +29,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\Models\UserActivityLog::class => 'App\Http\Sections\UserActivityLog',
 
         \App\Models\Stream::class => 'App\Http\Sections\Stream',
+        \App\Models\ForumSection::class => 'App\Http\Sections\ForumSections',
     ];
 
 
@@ -83,6 +84,16 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'icon' => 'fas fa-user',
                 'priority' => 1,
                 (new Page(\App\Models\Stream::class))->setPriority(1),
+            ]
+        ]);
+        AdminNavigation::setFromArray([
+            [
+                'title' => 'ФОРУМ',
+                'icon' => 'fas fa-user',
+                'priority' => 1,
+                'pages' => [
+                    (new Page(\App\Models\ForumSection::class))->setPriority(1),
+                ]
             ]
         ]);
 
