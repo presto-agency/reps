@@ -82,6 +82,16 @@ class AdminSectionsServiceProvider extends ServiceProvider
 
         /*Insert Section Stream from Section */
 
+        AdminNavigation::setFromArray([
+            [
+                'title' => 'ФОРУМ',
+                'icon' => 'fas fa-user',
+                'priority' => 1,
+                'pages' => [
+                    (new Page(\App\Models\ForumSection::class))->setPriority(1),
+                ]
+            ]
+        ]);
 
         AdminNavigation::setFromArray([
             [
