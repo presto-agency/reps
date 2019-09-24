@@ -10,13 +10,8 @@ class Country extends Model
         'name', 'code', 'flag'
     ];
 
-    public function countryToUser()
+    public function countries()
     {
-        return $this->belongsTo('App\User');
-    }
-
-    public function countryToUsers()
-    {
-        return $this->hasMany('App\User');
+        return $this->hasMany(\App\User::class, 'country_id', 'id');
     }
 }

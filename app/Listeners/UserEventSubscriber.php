@@ -5,33 +5,38 @@ namespace App\Listeners;
 
 
 use App\Models\UserActivityLog;
+use App\Models\UserActivityType;
 use Carbon\Carbon;
 
 class UserEventSubscriber
 {
     /**
-     * Handling a user login event.
+     * @param $event
      */
     public function onUserLogin($event)
     {
-
-        $this->saveLog($event, 'Login');
+        $typeId = UserActivityType::where('name', 'Login')->select('id')->first()->id;
+        $this->saveLog($event, $typeId);
 
     }
 
     /**
-     * Handling a user logout event.
+     * @param $event
      */
     public function onUserLogout($event)
     {
+        $typeId = UserActivityType::where('name', 'Logout')->select('id')->first()->id;
+        $this->saveLog($event, $typeId);
+    }
 
-        $this->saveLog($event, 'Logout');
+    public function onUserRegistered($event)
+    {
+        $typeId = UserActivityType::where('name', 'Register')->select('id')->first()->id;
+        $this->saveLog($event, $typeId);
     }
 
     /**
-     * Register listeners for subscription.
-     *
-     * @param Illuminate\Events\Dispatcher $events
+     * @param $events
      */
     public function subscribe($events)
     {
@@ -44,12 +49,20 @@ class UserEventSubscriber
             'Illuminate\Auth\Events\Logout',
             'App\Listeners\UserEventSubscriber@onUserLogout'
         );
+        $events->listen(
+            'Illuminate\Auth\Events\Registered',
+            'App\Listeners\UserEventSubscriber@onUserRegistered'
+        );
     }
 
-    private function saveLog($event, $type)
+    /**
+     * @param $event
+     * @param $typeId
+     */
+    private function saveLog($event, $typeId)
     {
         $log = new UserActivityLog;
-        $log->type = $type;
+        $log->type_id = $typeId;
         $log->user_id = $event->user->id;
         $log->time = Carbon::now();
         $log->ip = \Request::getClientIp();

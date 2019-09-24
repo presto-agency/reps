@@ -15,7 +15,8 @@ class CreateUserActivityLogsTable extends Migration
     {
         Schema::create('user_activity_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('type');
+            $table->unsignedBigInteger('type_id');
+            $table->foreign('type_id')->references('id')->on('user_activity_types')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamp('time');
