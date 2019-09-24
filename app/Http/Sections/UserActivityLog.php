@@ -31,7 +31,7 @@ class UserActivityLog extends Section
 
     public function getIcon()
     {
-        return parent::getIcon();
+        return 'fas fa-use';
     }
 
     public function getTitle()

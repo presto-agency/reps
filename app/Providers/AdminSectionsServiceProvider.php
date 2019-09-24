@@ -29,6 +29,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\Models\UserActivityLog::class => 'App\Http\Sections\UserActivityLog',
 
         \App\Models\Stream::class => 'App\Http\Sections\Stream',
+
+        \App\Models\ReplayMap::class => 'App\Http\Sections\ReplayMap',
     ];
 
 
@@ -55,7 +57,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         AdminNavigation::setFromArray([
             [
                 'title' => 'General',
-                'icon' => 'fa fa-code',
+                'icon' => 'fas fa-fish',
                 'priority' => 1,
                 'pages' => [
                     (new Page(\App\Models\Country::class))->setPriority(1),
@@ -68,7 +70,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         AdminNavigation::setFromArray([
             [
                 'title' => 'Users',
-                'icon' => 'fas fa-user',
+                'icon' => 'fas fa-users',
                 'priority' => 2,
                 'pages' => [
                     (new Page(\App\User::class))->setPriority(1),
@@ -80,6 +82,18 @@ class AdminSectionsServiceProvider extends ServiceProvider
 
         /*Insert Section Stream from Section */
 
+
+        AdminNavigation::setFromArray([
+            [
+                'title' => 'Replays',
+                'icon' => 'fab fa-replyd',
+                'priority' => 5,
+                'pages' => [
+                    (new Page(\App\Models\ReplayMap::class))->setPriority(1),
+//                    (new Page(\App\Models\UserActivityLog::class))->setPriority(2),
+                ]
+            ]
+        ]);
 
     }
 

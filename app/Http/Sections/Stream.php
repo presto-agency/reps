@@ -101,11 +101,11 @@ class Stream extends Section implements Initializable
                 ->setValidationRules(['required']),
 
             $content = AdminFormElement::wysiwyg('content', 'Content')
-                ->setValidationRules(['required']),
+                ->setValidationRules(['nullable']),
 
             $country_id = AdminFormElement::select('country_id', 'Country', Country::class)
                 ->setDisplay('name')
-                ->setValidationRules(['nullable']),
+                ->setValidationRules(['required']),
 
             $stream_url = AdminFormElement::text('stream_url', 'Stream url')
                 ->setValidationRules(['nullable', 'max:255', 'string']),

@@ -2,7 +2,7 @@
 /public/hot
 /public/ccs
 /public/js
-
+/public/images
 /public/storage
 /storage/*.key
 /vendor
