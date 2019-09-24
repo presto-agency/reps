@@ -3,7 +3,7 @@
 use App\Models\Race;
 use Illuminate\Database\Seeder;
 
-class RaceSeed extends Seeder
+class RaceSeeder extends Seeder
 {
     /**
      * Run the database seeds.

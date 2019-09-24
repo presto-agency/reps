@@ -2,8 +2,10 @@
 
 namespace App\Http\Sections;
 
+use AdminDisplay;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -13,7 +15,7 @@ use SleepingOwl\Admin\Section;
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class Stream extends Section
+class Stream extends Section implements Initializable
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -26,12 +28,17 @@ class Stream extends Section
 
     public function getIcon()
     {
-        return parent::getIcon();
+        return 'fa fa-globe';
     }
 
     public function getTitle()
     {
-        return parent::getTitle();
+        return 'Stream';
+    }
+
+    public function initialize()
+    {
+        $this->addToNavigation(3);
     }
 
     /**
@@ -39,7 +46,16 @@ class Stream extends Section
      */
     public function onDisplay()
     {
-        // remove if unused
+        $display = AdminDisplay::datatablesAsync()
+            ->setDatatableAttributes(['bInfo' => false])
+            ->setDisplaySearch(true)
+            ->setHtmlAttribute('class', 'table-info table-hover text-center')
+            ->paginate(50);
+
+        $display->setApply(function ($query) {
+            $query->orderBy('created_at', 'desc');
+        });
+        return $display;
     }
 
     /**

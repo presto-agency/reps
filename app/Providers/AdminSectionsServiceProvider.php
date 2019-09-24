@@ -69,7 +69,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
             [
                 'title' => 'Users',
                 'icon' => 'fas fa-user',
-                'priority' => 1,
+                'priority' => 2,
                 'pages' => [
                     (new Page(\App\User::class))->setPriority(1),
                     (new Page(\App\Models\UserGallery::class))->setPriority(2),
@@ -77,14 +77,9 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 ]
             ]
         ]);
-        AdminNavigation::setFromArray([
-            [
-                'title' => 'Stream',
-                'icon' => 'fas fa-user',
-                'priority' => 1,
-                (new Page(\App\Models\Stream::class))->setPriority(1),
-            ]
-        ]);
+
+        /*Insert Section Stream from Section */
+
 
     }
 

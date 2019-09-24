@@ -10,13 +10,8 @@ class Role extends Model
         'title', 'name'
     ];
 
-    public function roleToUser()
+    public function users()
     {
-        return $this->belongsTo('App\User');
-    }
-
-    public function roleToUsers()
-    {
-        return $this->hasMany('App\User');
+        return $this->hasMany(\App\User::class, 'role_id', 'id');
     }
 }

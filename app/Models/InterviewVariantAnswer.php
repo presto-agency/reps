@@ -10,9 +10,19 @@ class InterviewVariantAnswer extends Model
         'question_id', 'answer',
     ];
 
-    // Relations
-    public function question()
+
+    public function questions()
     {
-        return $this->belongsTo(InterviewQuestion::class, 'question_id', 'id');
+        return $this->belongsTo(\App\Models\InterviewQuestion::class, 'question_id', 'id');
+    }
+
+    public function userAnswers()
+    {
+        return $this->belongsTo(\App\Models\InterviewQuestion::class, 'answer_id', 'id');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(\App\Models\InterviewQuestion::class, 'user_id', 'id');
     }
 }
