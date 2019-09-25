@@ -51,7 +51,7 @@ class UserGallery extends Section
             ->setDatatableAttributes(['bInfo' => false])
             ->setDisplaySearch(false)
             ->setHtmlAttribute('class', 'table-info table-hover text-center')
-            ->paginate(50);
+            ->paginate(10);
         $display->setApply(function ($query) {
             $query->orderBy('created_at', 'desc');
         });

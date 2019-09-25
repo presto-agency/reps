@@ -11,15 +11,12 @@ use SleepingOwl\Admin\Widgets\Widget;
 class DashboardMap extends Widget
 {
     /**
-     * Get content as a string of HTML.
-     *
-     * @return string
+     * @return array|string
+     * @throws \Throwable
      */
     public function toHtml()
     {
-        return view('admin.dashboard', [
-            'UsersCount' => User::count(),
-        ]);
+        return view('admin.dashboard')->render();
     }
 
     /**

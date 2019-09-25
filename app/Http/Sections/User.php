@@ -56,7 +56,7 @@ class User extends Section
             ->setDatatableAttributes(['bInfo' => false])
             ->setDisplaySearch(true)
             ->setHtmlAttribute('class', 'table-info table-hover text-center')
-            ->paginate(50);
+            ->paginate(10);
 
         $display->setColumns([
 
@@ -110,12 +110,12 @@ class User extends Section
             $avatar = null,
             $name = null,
             $email = null,
-            $role = AdminColumnFilter::select(Role::class, 'Title')
+            $role = AdminColumnFilter::select(Role::class)
                 ->setDisplay('title')
                 ->setColumnName('role_id')
                 ->setPlaceholder('Select role'),
 
-            $Country = AdminColumnFilter::select(Country::class, 'Name')
+            $Country = AdminColumnFilter::select(Country::class)
                 ->setDisplay('name')
                 ->setColumnName('country_id')
                 ->setPlaceholder('Select country'),

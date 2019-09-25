@@ -98,7 +98,7 @@ class ReplayMap extends Section
 
             $picture = AdminFormElement::image('url', 'Url')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage/gallery/map/';
+                    return 'storage/gallery/map';
                 })
                 ->setUploadFileName(function (UploadedFile $file) {
                     return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
