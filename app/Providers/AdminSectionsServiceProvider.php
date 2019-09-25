@@ -31,6 +31,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\Models\Stream::class => 'App\Http\Sections\Stream',
 
         \App\Models\ReplayMap::class => 'App\Http\Sections\ReplayMap',
+        \App\Models\ForumSection::class => 'App\Http\Sections\ForumSections',
     ];
 
 
