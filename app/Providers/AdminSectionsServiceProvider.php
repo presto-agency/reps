@@ -29,6 +29,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\Models\UserActivityLog::class => 'App\Http\Sections\UserActivityLog',
 
         \App\Models\Stream::class => 'App\Http\Sections\Stream',
+        \App\Models\ForumSection::class => 'App\Http\Sections\ForumSections',
     ];
 
 
