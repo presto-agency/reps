@@ -31,6 +31,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\Models\Stream::class => 'App\Http\Sections\Stream',
 
         \App\Models\ReplayMap::class => 'App\Http\Sections\ReplayMap',
+        \App\Models\ForumTopic::class => 'App\Http\Sections\ForumTopics',
     ];
 
 
@@ -89,6 +90,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'priority' => 1,
                 'pages' => [
                     (new Page(\App\Models\ForumSection::class))->setPriority(1),
+                    (new Page(\App\Models\ForumTopic::class))->setPriority(2),
                 ]
             ]
         ]);
