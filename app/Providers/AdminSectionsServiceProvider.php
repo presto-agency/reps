@@ -91,8 +91,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'icon' => 'fas fa-user',
                 'priority' => 1,
                 'pages' => [
-                    (new Page(\App\Models\Replay::class))->setPriority(1),
-                    (new Page(\App\Models\ForumSection::class))->setPriority(2),
+                    (new Page(\App\Models\ForumSection::class))->setPriority(1),
                 ]
             ]
         ]);
