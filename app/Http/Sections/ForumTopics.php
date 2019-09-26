@@ -139,7 +139,7 @@ class ForumTopics extends Section
             $preview_img = AdminFormElement::image('preview_img', 'Preview images'),
             $preview_content = AdminFormElement::wysiwyg('preview_content', 'Preview', 'simplemde')->disableFilter(),
             $content = AdminFormElement::wysiwyg('content', 'Content', 'simplemde')->disableFilter(),
-            $start_on = AdminFormElement::date('start_on', 'Publish from')->setFormat('d.m.Y')->required(),
+            $start_on = AdminFormElement::date('start_on', 'Publish from')->setFormat('Y-m-d')->required(),
             $news = AdminFormElement::checkbox('news', 'Display in the news'),
             $author = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
 
