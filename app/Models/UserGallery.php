@@ -20,6 +20,9 @@ class UserGallery extends Model
             if (auth()->user()->id == $value) {
                 $this->attributes['user_id'] = $value;
             }
+            if (auth()->user()->id != $value) {
+                die;
+            }
         }
     }
 }

@@ -6,16 +6,16 @@ use App\Models\Replay;
 
 class ReplayObserver
 {
+    /**
+     * @param Replay $replay
+     */
     public function creating(Replay $replay)
     {
 
     }
 
     /**
-     * Handle the replay "created" event.
-     *
-     * @param  \App\Models\Replay  $replay
-     * @return void
+     * @param Replay $replay
      */
     public function created(Replay $replay)
     {
@@ -30,7 +30,7 @@ class ReplayObserver
      */
     public function updated(Replay $replay)
     {
-        //
+
     }
 
     /**

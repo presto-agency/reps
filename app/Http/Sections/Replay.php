@@ -218,20 +218,14 @@ class Replay extends Section
                 })->setUploadFileName(function (UploadedFile $file) {
                     return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
                 }),
-            $date = AdminFormElement::date('start_date', 'Date start')->setFormat('d-m-Y'),
 
+            $date = AdminFormElement::date('start_date', 'Date start')->setFormat('Y-m-d'),
 
             $content = AdminFormElement::wysiwyg('content', 'Content')
                 ->setValidationRules(['nullable', 'string', 'between:1,1000']),
 
         ]);
-//        $display = AdminForm::panel();
-//
-//        $display->setItems([
-//            /*Init FormElement*/
-//            $name = AdminFormElement::text('user_id','user_id'),
-//            $name = AdminFormElement::text('user_replay', 'user_replay'),
-//        ]);
+
         return $form;
     }
 
