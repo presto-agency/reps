@@ -92,7 +92,7 @@ class ChatPicture extends Section
             null,
             null,
             null,
-            AdminColumnFilter::text()->setPlaceholder('Charactor')->setColumnName('charactor'),
+            AdminColumnFilter::text()->setOperator('contains')->setPlaceholder('Charactor'),
 //            AdminColumnFilter::text()->setPlaceholder('News')->setColumnName('news'),
             /*AdminColumnFilter::range()->setFrom(
                 AdminColumnFilter::text()->setPlaceholder('From')
