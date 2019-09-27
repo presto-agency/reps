@@ -33,6 +33,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\Models\ReplayMap::class => 'App\Http\Sections\ReplayMap',
         \App\Models\ForumTopic::class => 'App\Http\Sections\ForumTopics',
         \App\Models\ForumSection::class => 'App\Http\Sections\ForumSections',
+        \App\Models\ChatPicture::class => 'App\Http\Sections\ChatPicture',
     ];
 
 
@@ -104,6 +105,17 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'pages' => [
                     (new Page(\App\Models\ReplayMap::class))->setPriority(1),
 //                    (new Page(\App\Models\UserActivityLog::class))->setPriority(2),
+                ]
+            ]
+        ]);
+
+        AdminNavigation::setFromArray([
+            [
+                'title' => 'Болтаем',
+                'icon' => 'fas fa-user',
+                'priority' => 6,
+                'pages' => [
+                    (new Page(\App\Models\ChatPicture::class))->setPriority(2),
                 ]
             ]
         ]);
