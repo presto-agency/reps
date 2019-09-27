@@ -36,6 +36,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\Models\ForumSection::class => 'App\Http\Sections\ForumSections',
         \App\Models\ChatSmile::class => 'App\Http\Sections\ChatSmile',
         \App\Models\ChatPicture::class => 'App\Http\Sections\ChatPicture',
+        \App\Models\Banner::class => 'App\Http\Sections\Banner',
 
         \App\Models\Footer::class => 'App\Http\Sections\Footer',
     ];
