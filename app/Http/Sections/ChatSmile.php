@@ -83,6 +83,8 @@ class ChatSmile extends Section
             $position = AdminColumn::text('charactor', 'Charactor')
                 ->setWidth('50px'),
 
+            $date = AdminColumn::datetime('created_at', 'Date')->setFormat('Y-m-d')->setWidth('20px'),
+
         ]);
 
         return $display;
