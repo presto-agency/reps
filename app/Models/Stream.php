@@ -14,4 +14,12 @@ class Stream extends Model
         'stream_url', 'approved'];
 
 
+    public function setUserIdAttribute($value)
+    {
+        if ($value) {
+            if (auth()->user()->id == $value) {
+                $this->attributes['user_id'] = $value;
+            }
+        }
+    }
 }

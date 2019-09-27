@@ -14,5 +14,12 @@ class UserGallery extends Model
         'positive_count', 'comment', 'rating', 'comments_count', 'reviews',
     ];
 
-
+    public function setUserIdAttribute($value)
+    {
+        if ($value) {
+            if (auth()->user()->id == $value) {
+                $this->attributes['user_id'] = $value;
+            }
+        }
+    }
 }
