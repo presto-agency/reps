@@ -5,6 +5,7 @@ namespace App\Http\Sections;
 use AdminColumn;
 use AdminColumnEditable;
 use AdminDisplay;
+use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
@@ -45,22 +46,29 @@ class InterviewQuestion extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync();
-        $display->setDatatableAttributes(['bInfo' => false]);
-        $display->setHtmlAttribute('class', 'table-info table-hover text-center');
-        $display->setDisplaySearch(true);
-        $display->paginate(50);
+        $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
+        $display->paginate(10);
+
+        $display->setFilters([
+            AdminDisplayFilter::related('approved')->setModel(\App\Models\InterviewQuestion::class),
+            AdminDisplayFilter::related('active')->setModel(\App\Models\InterviewQuestion::class),
+        ]);
+
         $display->setApply(function ($query) {
-            $query->orderBy('created_at', 'desc');
+            $query->orderBy('id', 'desc');
         });
+
         $display->setColumns([
             $id = AdminColumn::text('id', 'Id')->setWidth('100px'),
             $question = AdminColumn::text('question', 'Title')->setWidth('100px'),
-            $active = AdminColumn::custom('Active<br/>', function ($active) {
-                return $active->active ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
-            })->setWidth('100px'),
+            $active = AdminColumnEditable::checkbox('active')->setLabel('Active')
+                ->append(AdminColumn::filter('Active'))
+                ->setWidth(100),
             $count_answer = AdminColumn::text('count_answer', 'Answers')->setWidth('100px'),
-            $for_login = AdminColumnEditable::checkbox('for_login', 'For login only')
-                ->setWidth('100px'),
+
+            $for_login = AdminColumnEditable::checkbox('for_login')->setLabel('For login only')
+                ->append(AdminColumn::filter('approved'))
+                ->setWidth(100),
         ]);
 
         return $display;
@@ -76,11 +84,13 @@ class InterviewQuestion extends Section
         $display = AdminForm::panel();
 
         $display->setItems([
+
             $question = AdminFormElement::text('question', 'Question')
                 ->setValidationRules(['required', 'string', 'max:255']),
+
             $active = AdminFormElement::checkbox('active', 'Active'),
-            $forLogin = AdminFormElement::radio('for_login', 'Who can see')
-                ->setOptions(['0' => 'For login only', '1' => 'For all']),
+
+            $active = AdminFormElement::checkbox('for_login', 'For login only'),
 
         ]);
 

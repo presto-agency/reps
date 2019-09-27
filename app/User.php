@@ -2,11 +2,10 @@
 
 namespace App;
 
-
-use App\Models\Race;
 use App\Models\Role;
 use App\Traits\ModelRelations\UserRelation;
 use App\Traits\GravatarTrait;
+use Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -20,8 +19,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'avatar', 'role_id', 'name', 'email', 'country_id', 'race_id',
-        'rating', 'count_topic', 'count_replay', 'count_picture', 'count_comment',
+        'avatar', 'role_id', 'name', 'email', 'country_id', 'race_id', 'rating',
+        'count_topic', 'count_replay', 'count_picture', 'count_comment',
         'email_verified_at',
         'ban', 'activity_at', 'birthday', 'count_negative', 'count_positive',
         'password', 'remember_token',
@@ -56,11 +55,11 @@ class User extends Authenticatable
     }
 
 
-    //admin password
-    public function setNewPasswordAttribute($value)
+    //admin password Mutator
+    public function setPasswordAttribute($value)
     {
         if ($value) {
-            $this->attributes['password'] = \Hash::make($value);
+            $this->attributes['password'] = Hash::make($value);
         }
     }
 

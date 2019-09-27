@@ -3,7 +3,6 @@
 
 namespace App\Http\ViewComposers;
 
-use App\User;
 use Illuminate\View\View;
 
 class UserComposer
@@ -15,7 +14,7 @@ class UserComposer
     {
         $this->category = collect();
 
-        $data = User::count();
+        $data = \DB::table('users')->select('id')->count();
 
         $this->category = $data;
 
@@ -24,6 +23,6 @@ class UserComposer
     public function compose(View $view)
     {
 
-        $view->with('user',$this->category);
+        $view->with('user', $this->category);
     }
 }

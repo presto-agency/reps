@@ -16,7 +16,7 @@ class PollMod extends Widget
      */
     public function toHtml()
     {
-        return view('admin::polls');
+        return view('admin::polls')->render();
     }
 
     /**

@@ -42,22 +42,28 @@ class Country extends Section
     {
 
         $display = AdminDisplay::datatablesAsync()
-            ->setDatatableAttributes(['bInfo' => false])
-            ->setDisplaySearch(true)
-            ->paginate(50);
-        $display->setHtmlAttribute('class', 'table-info table-hover');
+            ->paginate(10);
 
+        $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
+
+        $display->setApply(function ($query) {
+            $query->orderBy('id', 'desc');
+        });
 
         $display->setColumns([
+
             $id = AdminColumn::text('id', 'Id')
                 ->setHtmlAttribute('class', 'hidden-sm '),
+
             $name = AdminColumn::text('name', 'Name')
                 ->setHtmlAttribute('class', 'hidden-sm '),
+
             $code = AdminColumn::text('code', 'Code')
                 ->setHtmlAttribute('class', 'hidden-sm '),
+
             $flag = AdminColumn::image('flag', 'Flag')
                 ->setHtmlAttribute('class', 'hidden-sm')
-                ->setWidth('100px'),
+                ->setWidth(100),
         ]);
 
         return $display;

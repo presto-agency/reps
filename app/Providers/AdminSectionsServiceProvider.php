@@ -30,6 +30,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
 
         \App\Models\Stream::class => 'App\Http\Sections\Stream',
 
+        \App\Models\Replay::class => 'App\Http\Sections\Replay',
         \App\Models\ReplayMap::class => 'App\Http\Sections\ReplayMap',
         \App\Models\ForumTopic::class => 'App\Http\Sections\ForumTopics',
         \App\Models\ForumSection::class => 'App\Http\Sections\ForumSections',
@@ -104,8 +105,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'icon' => 'fab fa-replyd',
                 'priority' => 5,
                 'pages' => [
-                    (new Page(\App\Models\ReplayMap::class))->setPriority(1),
-//                    (new Page(\App\Models\UserActivityLog::class))->setPriority(2),
+                    (new Page(\App\Models\Replay::class))->setPriority(1),
+                    (new Page(\App\Models\ReplayMap::class))->setPriority(2),
                 ]
             ]
         ]);

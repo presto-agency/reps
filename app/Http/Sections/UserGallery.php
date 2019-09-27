@@ -7,6 +7,7 @@ use AdminColumnEditable;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
+use AdminDisplayFilter;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
@@ -48,34 +49,43 @@ class UserGallery extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
-            ->setDatatableAttributes(['bInfo' => false])
             ->setDisplaySearch(false)
-            ->setHtmlAttribute('class', 'table-info table-hover text-center')
-            ->paginate(50);
+            ->setHtmlAttribute('class', 'table-info table-sm text-center')
+            ->paginate(10);
+
+        $display->setFilters([
+            AdminDisplayFilter::related('for_adults')->setModel(\App\Models\UserGallery::class),
+        ]);
+
         $display->setApply(function ($query) {
-            $query->orderBy('created_at', 'desc');
+            $query->orderBy('id', 'desc');
         });
+
+        $display->with('users');
+
         $display->setColumns([
+
             $id = AdminColumn::text('id', 'Id')
-                ->setWidth('15px'),
-            $picture = AdminColumn::image('picture', 'Picture')
-                ->setHtmlAttribute('class', 'hidden-sm'),
-            $user_id = AdminColumn::relatedLink('users.name', 'User name')
-                ->setHtmlAttribute('class', 'text-left')
-                ->setWidth('100px'),
-            $sign = AdminColumn::text('sign', 'Sign')
-                ->setHtmlAttribute('class', 'text-left')
-                ->setWidth('200px'),
-            $for_adults = AdminColumnEditable::checkbox('for_adults', '18+')
-                ->setWidth('10px'),
-            $negative_count = AdminColumn::text('negative_count', 'Negative Rating')
-                ->setWidth('10px'),
-            $positive_count = AdminColumn::text('positive_count', 'Positive Rating')
-                ->setWidth('10px'),
+                ->setWidth(50),
+
+            $picture = AdminColumn::image('picture', 'Picture'),
+
+            $user_id = AdminColumn::relatedLink('users.name', 'User name'),
+
+            $sign = AdminColumn::text('sign', 'Sign'),
+
+            $for_adults = AdminColumnEditable::checkbox('for_adults')->setLabel('18+')
+                ->setWidth(50)
+                ->append(AdminColumn::filter('for_adults')),
+
+            $negative_count = AdminColumn::text('negative_count', 'Rating<br/><small>(negative)</small>')
+                ->setWidth(74),
+            $positive_count = AdminColumn::text('positive_count', 'Rating<br/><small>(positive)</small>')
+                ->setWidth(70),
             $rating = AdminColumn::text('rating', 'Rating')
-                ->setWidth('10px'),
-            $comments_count = AdminColumn::text('comments_count', 'Comments')
-                ->setWidth('10px'),
+                ->setWidth(70),
+            $comments_count = AdminColumn::text('comments_count', 'Count<br/><small>(comments)</small>')
+                ->setWidth(90),
 
         ]);
         return $display;

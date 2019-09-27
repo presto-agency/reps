@@ -9,9 +9,7 @@ use AdminDisplay;
 use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
-use App\Models\Country;
-use App\Models\Race;
-use App\Models\Role;
+
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
@@ -45,6 +43,7 @@ class User extends Section
         return parent::getTitle();
     }
 
+
     /**
      * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
      * @throws \Exception
@@ -53,76 +52,81 @@ class User extends Section
     {
 
         $display = AdminDisplay::datatablesAsync()
-            ->setDatatableAttributes(['bInfo' => false])
-            ->setDisplaySearch(true)
-            ->setHtmlAttribute('class', 'table-info table-hover text-center')
-            ->paginate(50);
+            ->setHtmlAttribute('class', 'table-info table-sm text-center small')
+            ->setModelClass(\App\User::class)
+            ->paginate(10);
+        $display->setApply(function ($query) {
+            $query->orderBy('id', 'desc');
+        });
+        $display->setFilters([
+            AdminDisplayFilter::related('role_id')->setModel(\App\Models\Role::class),
+            AdminDisplayFilter::related('ban')->setModel(\App\User::class),
+        ]);
+
+        $display->with('roles', 'countries');
 
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')
-                ->setWidth('15px'),
+                ->setWidth(50),
 
-            $avatar = AdminColumn::image('avatar', 'Avatar')
-                ->setWidth('50px'),
-
-            $name = AdminColumn::text('name', 'Name')
-                ->setWidth('50px'),
-
-            $email = AdminColumn::text('email', 'Email')
-                ->setWidth('50px'),
+            $avatar = AdminColumn::image('avatar', 'Avatar'),
 
             $role_id = AdminColumn::text('roles.title', 'Role')
-                ->setWidth('50px'),
+                ->setHtmlAttribute('class', 'small')
+                ->setWidth(110)
+                ->append(AdminColumn::filter('role_id')),
 
-            $country_id = AdminColumn::relatedLink('countries.name', 'Country')
-                ->setWidth('50px'),
+            $name = AdminColumn::text('name', 'Name'),
 
-            $rating = AdminColumn::text('rating', 'Rating')
-                ->setWidth('50px'),
+            $email = AdminColumn::text('email', 'Email'),
 
-            $count_topic = AdminColumn::text('count_topic', 'Topic')
-                ->setWidth('50px'),
+            $country_id = AdminColumn::relatedLink('countries.name', 'Country'),
 
-            $count_replay = AdminColumn::text('count_replay', 'Replay')
-                ->setWidth('50px'),
+            $rating = AdminColumn::text('rating', 'Count<br/><small>(rating)</small>')
+                ->setWidth(60),
 
-            $count_picture = AdminColumn::text('count_picture', 'Picture')
-                ->setWidth('50px'),
+            $count_topic = AdminColumn::text('count_topic', 'Count<br/><small>(topic)</small>')
+                ->setWidth(60),
 
-            $count_comment = AdminColumn::text('count_comment', 'Comment')
-                ->setWidth('50px'),
+            $count_replay = AdminColumn::text('count_replay', 'Count<br/><small>(replay)</small>')
+                ->setWidth(60),
 
-            $email_check = AdminColumn::custom('Email check<br/>', function ($instance) {
-                return $instance->active ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
-            })->setWidth('10px'),
+            $count_picture = AdminColumn::text('count_picture', 'Count<br/><small>(picture)</small>')
+                ->setWidth(60),
 
-            $ban = AdminColumnEditable::checkbox('ban', 'Ban')
-                ->setWidth('10px'),
+            $count_comment = AdminColumn::text('count_comment', 'Count<br/><small>(comment)</small>')
+                ->setWidth(65),
 
-            $activity_at = AdminColumn::datetime('activity_at', 'Last activity')
-                ->setFormat('d-m-Y')
-                ->setWidth('50px'),
+            $email_check = AdminColumn::custom('Email<br/><small>(check)</small>', function (\App\User $user) {
+                return !empty($user->email_verified_at) ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
+            })->setWidth(40),
+
+            $ban = AdminColumnEditable::checkbox('ban')->setLabel('Ban')
+                ->append(AdminColumn::filter('ban'))
+                ->setWidth(45),
+
+            $activity_at = AdminColumn::datetime('activity_at', 'Last<br/><small>(activity)</small>')
+                ->setFormat('d-m-Y H:i:s')
+                ->setWidth(60),
         ]);
 
         $display->setColumnFilters([
             $id = null,
             $avatar = null,
+            $role_id = null,
             $name = null,
             $email = null,
-            $role = AdminColumnFilter::select(Role::class, 'Title')
-                ->setDisplay('title')
-                ->setColumnName('role_id')
-                ->setPlaceholder('Select role'),
-
-            $Country = AdminColumnFilter::select(Country::class, 'Name')
-                ->setDisplay('name')
+            $country = AdminColumnFilter::select($this->country())
                 ->setColumnName('country_id')
-                ->setPlaceholder('Select country'),
-
-
+                ->setPlaceholder('Select'),
+            $rating = null,
+            $count_topic = null,
+            $count_replay = null,
+            $count_picture = null,
+            $count_comment = null,
         ]);
-
+        $display->getColumnFilters()->setPlacement('table.header');
         return $display;
     }
 
@@ -147,6 +151,8 @@ class User extends Section
                 }),
 
             $email = AdminFormElement::text('email', 'Email')
+                ->setHtmlAttribute('autocomplete', 'off')
+                ->setHtmlAttribute('type', 'email')
                 ->setValidationRules(['required', 'email', 'max:30', 'unique:users,email,' . $id]),
 
             $name = AdminFormElement::text('name', 'Name')
@@ -170,31 +176,32 @@ class User extends Section
             $fb_link = AdminFormElement::text('fb_link', 'Facebook')
                 ->setValidationRules(['nullable', 'string', 'max:255', 'url']),
 
-            $role_id = AdminFormElement::select('role_id', 'Role', Role::class)
+            $role_id = AdminFormElement::select('role_id', 'Role', $this->role())
                 ->setDisplay('title')
                 ->setValidationRules(['required']),
 
-            $country_id = AdminFormElement::select('country_id', 'Country', Country::class)
-                ->setDisplay('name')
+            $country_id = AdminFormElement::select('country_id', 'Country', $this->country())
                 ->setValidationRules(['nullable'])
                 ->setValueSkipped(function () {
                     return is_null(request('country_id'));
                 }),
-            $race_id = AdminFormElement::select('race_id', 'Race', Race::class)
+            $race_id = AdminFormElement::select('race_id', 'Race', $this->race())
                 ->setDisplay('title')
                 ->setValidationRules(['nullable'])
                 ->setValueSkipped(function () {
                     return is_null(request('race_id'));
                 }),
             $password = AdminFormElement::password('password', 'Password')
+                ->setHtmlAttribute('autocomplete', 'off')
                 ->setValidationRules(['between:8,50', empty($id) ? 'required' : 'nullable'])
-                ->setValueSkipped(function () {
-                    return is_null(request('password'));
-                }),
+                ->allowEmptyValue(),
 
             $passwordConfirm = AdminFormElement::password('password_confirmation', 'Password Confirm')
+                ->setHtmlAttribute('autocomplete', 'off')
                 ->setValueSkipped(true)
                 ->setValidationRules('same:password'),
+
+            $ban = AdminFormElement::checkbox('ban', 'Ban'),
         ]);
 
 
@@ -208,7 +215,7 @@ class User extends Section
     public function onCreate()
     {
 
-        return $this->onEdit(null);
+        return $this->onEdit('');
     }
 
     /**
@@ -226,4 +233,39 @@ class User extends Section
     {
         // remove if unused
     }
+
+    private $country, $role, $race, $emailCheck;
+
+    public function country()
+    {
+        foreach (\App\Models\Country::select('id', 'name')->get() as $key => $item) {
+            $this->country[$item->id] = $item->name;
+        }
+        return $this->country;
+    }
+
+    public function role()
+    {
+        foreach (\App\Models\Role::select('id', 'title')->get() as $key => $item) {
+            $this->role[$item->id] = $item->title;
+        }
+        return $this->role;
+    }
+
+    public function race()
+    {
+        foreach (\App\Models\Race::select('id', 'title')->get() as $key => $item) {
+            $this->race[$item->id] = $item->title;
+        }
+        return $this->race;
+    }
+
+    public function emailCheck()
+    {
+        foreach (\App\User::select('id', 'email_verified_at')->get() as $key => $item) {
+            $this->emailCheck[$item->id] = $item->email_verified_at;
+        }
+        return $this->emailCheck;
+    }
+
 }

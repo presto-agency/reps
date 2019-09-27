@@ -96,7 +96,7 @@ class ForumSections extends Section
             $position = AdminFormElement::number('position', 'Position')
                 ->setValidationRules(['required', 'min:0']),
             $description = AdminFormElement::textarea('description', 'Description')
-                ->setValidationRules(['required']),
+                ->setValidationRules(['required', 'max:255']),
             $isActive = AdminFormElement::checkbox('is_active', 'Active'),
             $isGeneral = AdminFormElement::checkbox('is_general', 'General'),
             $userCanAddTopics = AdminFormElement::checkbox('user_can_add_topics', 'User Can Add Topics'),

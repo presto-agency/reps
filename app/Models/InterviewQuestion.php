@@ -11,19 +11,19 @@ class InterviewQuestion extends Model
     ];
 
 
-    public function users()
-    {
-
-        return $this->hasMany(\App\Models\InterviewUserAnswers::class, 'user_id', 'id');
-    }
-
-    public function answers()
-    {
-        return $this->hasMany(\App\Models\InterviewVariantAnswer::class, 'answer_id', 'id');
-    }
-
-    public function questions()
-    {
-        return $this->belongsTo(\App\Models\InterviewVariantAnswer::class, 'question_id', 'id');
-    }
+//    public function users()
+//    {
+//
+//        return $this->hasMany(\App\Models\InterviewUserAnswers::class, 'user_id', 'id');
+//    }
+//
+//    public function answers()
+//    {
+//        return $this->hasMany(\App\Models\InterviewVariantAnswer::class, 'answer_id', 'id');
+//    }
+//
+//    public function questions()
+//    {
+//        return $this->belongsTo(\App\Models\InterviewVariantAnswer::class, 'question_id', 'id');
+//    }
 }

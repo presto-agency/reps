@@ -35,11 +35,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-//Factory $viewFactory
+    //Factory private  $viewFactory
     public function boot()
     {
 
-//        $userObserve = User::observe(UserObserver::class);
+            //        $userObserve = User::observe(UserObserver::class);
         $interviewQuestion = InterviewQuestion::observe(InterviewQuestionObserver::class);
 
 
