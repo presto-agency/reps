@@ -6,7 +6,7 @@
 /public/storage
 /storage/*.key
 /vendor
-.idea
+/.idea
 .env
 .env.backup
 .phpunit.result.cache
