@@ -6,6 +6,7 @@ namespace App\Listeners;
 
 use App\Models\UserActivityLog;
 use App\Models\UserActivityType;
+use App\User;
 use Carbon\Carbon;
 
 class UserEventSubscriber
@@ -61,12 +62,21 @@ class UserEventSubscriber
      */
     private function saveLog($event, $typeId)
     {
+
+        $userId = $event->user->id;
+
         $log = new UserActivityLog;
         $log->type_id = $typeId;
-        $log->user_id = $event->user->id;
+        $log->user_id = $userId;
         $log->time = Carbon::now();
         $log->ip = \Request::getClientIp();
         $log->parameters = null;
         $log->save();
+
+        User::where('id', $userId)->select('activity_at')->update([
+            'activity_at' => Carbon::now()
+        ]);
+
+
     }
 }

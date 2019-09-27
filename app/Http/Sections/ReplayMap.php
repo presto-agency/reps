@@ -53,21 +53,18 @@ class ReplayMap extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
-            ->setDatatableAttributes(['bInfo' => false])
+            ->setHtmlAttribute('class', 'table-info text-center')
             ->setDisplaySearch(true)
-            ->setHtmlAttribute('class', 'table-info table-hover text-center')
-            ->paginate(50);
+            ->paginate(10);
 
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')
-                ->setWidth('20px'),
+                ->setWidth(50),
 
-            $url = AdminColumn::image('url', 'url')
-                ->setWidth('50px'),
+            $url = AdminColumn::image('url', 'Image'),
 
-            $name = AdminColumn::text('name', 'Name')
-                ->setWidth('50px'),
+            $name = AdminColumn::text('name', 'Map name'),
 
         ]);
         $display->setColumnFilters([
@@ -76,12 +73,11 @@ class ReplayMap extends Section
 
             $url = null,
 
-            $name = AdminColumnFilter::select(User::class, 'Title')
-                ->setDisplay('title')
-                ->setColumnName('role_id')
-                ->setPlaceholder('Select role'),
-
+            $name= AdminColumnFilter::select($this->map())
+                ->setColumnName('name')
+                ->setPlaceholder('Select map name'),
         ]);
+        $display->getColumnFilters()->setPlacement('table.header');
 
         return $display;
     }
@@ -98,7 +94,7 @@ class ReplayMap extends Section
 
             $picture = AdminFormElement::image('url', 'Url')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage/gallery/map';
+                    return 'storage/replay/map';
                 })
                 ->setUploadFileName(function (UploadedFile $file) {
                     return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
@@ -133,5 +129,16 @@ class ReplayMap extends Section
     public function onRestore($id)
     {
         // remove if unused
+    }
+
+    private $map;
+
+    public function map()
+    {
+        $countries = \App\Models\ReplayMap::select('id', 'name')->get();
+        foreach ($countries as $key => $item) {
+            $this->map[$item->id] = $item->name;
+        }
+        return $this->map;
     }
 }

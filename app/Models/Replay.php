@@ -40,19 +40,20 @@ class Replay extends Model
         'second_name',
         'second_apm',
         //'approved',
-        'content',//Комментарий: + Вставить HTML код с Youtube с видео реплеем:
+        'content',//Комментарий: + Подключить плагин для всех видео
+        'downloaded',
+
+        'start_date',// дата начала ?? чего?
+        'file',//нужно пут к сохраненному файлу
 
 
-//        'start_date',//???
-//        'first_matchup',//???
 //        'second_matchup',//???
-//        'video_iframe',//???
+//        'video_iframe',//ненужно
 
     ];
 
     protected $hidden = [
 //        /*Hidden*/
-        'downloaded',//Количество загрузок Replay:
 
 ////        'length',
 ////        'game_version_id',

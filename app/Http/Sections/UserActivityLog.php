@@ -45,10 +45,10 @@ class UserActivityLog extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
-            ->setDatatableAttributes(['bInfo' => false])
             ->setDisplaySearch(true)
-            ->setHtmlAttribute('class', 'table-info table-hover text-center')
-            ->paginate(50);
+            ->setHtmlAttribute('class', 'table-info text-center')
+            ->paginate(10);
+        $display->with('users', 'types');
 
         $display->setApply(function ($query) {
             $query->orderBy('created_at', 'desc');
@@ -56,17 +56,22 @@ class UserActivityLog extends Section
 
         $display->setColumns([
             $type = AdminColumn::relatedLink('types.name', 'Type'),
+
             $user_id = AdminColumn::relatedLink('users.name', 'Name'),
-            $time = AdminColumn::datetime('time', 'time')->setFormat('d-m-Y'),
+
+            $time = AdminColumn::datetime('time', 'time')->setFormat('d-m-Y')
+                ->setWidth(85),
+
             $ip = AdminColumn::text('ip', 'Ip'),
-            $parameters = AdminColumn::text('parameters', 'Parameters'),
+
+            $parameters = AdminColumn::text('parameters', 'Parameters')
+                ->setWidth(500),
         ]);
 
         $display->setColumnFilters([
-            $type = AdminColumnFilter::select(UserActivityType::class)
+            $type = AdminColumnFilter::select($this->type())
                 ->setColumnName('type_id')
-                ->setDisplay('name')
-                ->setPlaceholder('Select role'),
+                ->setPlaceholder('Select type'),
             $user_id = AdminColumnFilter::select(User::class)
                 ->setColumnName('user_id')
                 ->setDisplay('name')
@@ -74,16 +79,12 @@ class UserActivityLog extends Section
             ,
             $time = null,
 //              TODO:: Фильтры  на дату с/по, в админке поломаны 23.09.2019
-//            $time = AdminColumnFilter::range()->setFrom(
-//                AdminColumnFilter::date()->setPlaceholder('From Date')->setFormat('d-m-Y')
-//            )->setTo(
-//                AdminColumnFilter::date()->setPlaceholder('To Date')->setFormat('d-m-Y')
-//            ),
             $ip = AdminColumnFilter::text()->setPlaceholder('Ip'),
             $parameters = null,
 
 
         ]);
+        $display->getColumnFilters()->setPlacement('table.header');
 
         return $display;
     }
@@ -122,5 +123,16 @@ class UserActivityLog extends Section
 
 
         // remove if unused
+    }
+
+    private $type;
+
+    public function type()
+    {
+        $countries = UserActivityType::select('id', 'name')->get();
+        foreach ($countries as $key => $item) {
+            $this->type[$item->id] = $item->name;
+        }
+        return $this->type;
     }
 }

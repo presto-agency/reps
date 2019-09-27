@@ -37,6 +37,7 @@ class CreateReplaysTable extends Migration
             $table->integer('rating')->default(0);
             $table->integer('positive_count')->default(0);
             $table->boolean('approved')->default(true);
+
             $table->integer('first_location')->nullable();
             $table->string('first_name')->nullable();
             $table->integer('first_apm')->nullable();

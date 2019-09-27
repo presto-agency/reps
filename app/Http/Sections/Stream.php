@@ -6,6 +6,7 @@ use AdminDisplay;
 use AdminColumn;
 use AdminForm;
 use AdminFormElement;
+use AdminDisplayFilter;
 use App\Models\Country;
 use App\Models\Race;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
@@ -47,33 +48,33 @@ class Stream extends Section implements Initializable
     }
 
     /**
-     * @return DisplayInterface
+     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
+     * @throws \Exception
      */
     public function onDisplay()
     {
 
         $display = AdminDisplay::datatablesAsync()
-            ->setDatatableAttributes(['bInfo' => false])
-            ->setDisplaySearch(true)
-            ->setHtmlAttribute('class', 'table-info table-hover text-center')
-            ->paginate(50);
-
+//            ->setDisplaySearch(true)
+            ->setHtmlAttribute('class', 'table-info text-center')
+            ->paginate(10);
+        $display->setFilters([
+            AdminDisplayFilter::related('approved')->setModel(\App\Models\Stream::class),
+        ]);
+        $display->with('users');
         $display->setApply(function ($query) {
             $query->orderBy('created_at', 'desc');
         });
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'Id')
-                ->setWidth('15px'),
-            $user_id = AdminColumn::relatedLink('users.name', 'User name')
-                ->setHtmlAttribute('class', 'text-left')
-                ->setWidth('100px'),
-            $title = AdminColumn::text('title', 'Title')
-                ->setHtmlAttribute('class', 'text-left')
-                ->setWidth('50px'),
-            $approved = AdminColumn::custom('Approved<br/>', function ($instance) {
-                return $instance->active ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
-            })->setWidth('10px'),
+                ->setWidth(50),
+            $user_id = AdminColumn::relatedLink('users.name', 'User'),
+            $title = AdminColumn::text('title', 'Title'),
+
+            $approved = AdminColumn::custom('Approved<br/>', function (\App\Models\Stream $model) {
+                return $model->approved ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
+            })->append(AdminColumn::filter('approved'))->setWidth(50),
         ]);
 
 

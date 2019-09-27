@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ReplayType extends Model
 {
     protected $fillable = [
-        'title',
+        'title'
     ];
 }
