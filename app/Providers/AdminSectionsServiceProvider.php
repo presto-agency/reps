@@ -28,13 +28,14 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\Models\UserGallery::class => 'App\Http\Sections\UserGallery',
         \App\Models\UserActivityLog::class => 'App\Http\Sections\UserActivityLog',
 
-        \App\Models\ForumSection::class => 'App\Http\Sections\ForumSection',
-
         \App\Models\Stream::class => 'App\Http\Sections\Stream',
 
         \App\Models\Replay::class => 'App\Http\Sections\Replay',
         \App\Models\ReplayMap::class => 'App\Http\Sections\ReplayMap',
         \App\Models\ForumTopic::class => 'App\Http\Sections\ForumTopics',
+        \App\Models\ForumSection::class => 'App\Http\Sections\ForumSections',
+        \App\Models\ChatSmile::class => 'App\Http\Sections\ChatSmile',
+        \App\Models\ChatPicture::class => 'App\Http\Sections\ChatPicture',
     ];
 
 
@@ -106,6 +107,18 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'pages' => [
                     (new Page(\App\Models\Replay::class))->setPriority(1),
                     (new Page(\App\Models\ReplayMap::class))->setPriority(2),
+                ]
+            ]
+        ]);
+
+        AdminNavigation::setFromArray([
+            [
+                'title' => 'Болтаем',
+                'icon' => 'fas fa-user',
+                'priority' => 6,
+                'pages' => [
+                    (new Page(\App\Models\ChatSmile::class))->setPriority(1),
+                    (new Page(\App\Models\ChatPicture::class))->setPriority(2),
                 ]
             ]
         ]);
