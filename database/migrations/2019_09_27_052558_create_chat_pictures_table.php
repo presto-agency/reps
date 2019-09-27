@@ -25,6 +25,7 @@ class CreateChatPicturesTable extends Migration
             $table->string('image');
             $table->longText('comment')->nullable();
             $table->string('charactor');
+            $table->string('tag');
             $table->timestamps();
 
             $table->index('user_id');
