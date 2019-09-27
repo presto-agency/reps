@@ -53,9 +53,12 @@ class ReplayMap extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
-            ->setHtmlAttribute('class', 'table-info text-center')
-            ->setDisplaySearch(true)
+            ->setHtmlAttribute('class', 'table-info table-sm text-center ')
             ->paginate(10);
+
+        $display->setApply(function ($query) {
+            $query->orderBy('id', 'desc');
+        });
 
         $display->setColumns([
 

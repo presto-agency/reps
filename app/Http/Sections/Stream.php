@@ -2,6 +2,7 @@
 
 namespace App\Http\Sections;
 
+use AdminColumnEditable;
 use AdminDisplay;
 use AdminColumn;
 use AdminForm;
@@ -56,25 +57,28 @@ class Stream extends Section implements Initializable
 
         $display = AdminDisplay::datatablesAsync()
 //            ->setDisplaySearch(true)
-            ->setHtmlAttribute('class', 'table-info text-center')
+            ->setHtmlAttribute('class', 'table-info table-sm text-center ')
             ->paginate(10);
         $display->setFilters([
             AdminDisplayFilter::related('approved')->setModel(\App\Models\Stream::class),
         ]);
         $display->with('users');
+
         $display->setApply(function ($query) {
-            $query->orderBy('created_at', 'desc');
+            $query->orderBy('id', 'desc');
         });
 
         $display->setColumns([
+
             $id = AdminColumn::text('id', 'Id')
                 ->setWidth(50),
             $user_id = AdminColumn::relatedLink('users.name', 'User'),
+
             $title = AdminColumn::text('title', 'Title'),
 
-            $approved = AdminColumn::custom('Approved<br/>', function (\App\Models\Stream $model) {
-                return $model->approved ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
-            })->append(AdminColumn::filter('approved'))->setWidth(50),
+            $approved = AdminColumnEditable::checkbox('approved')->setLabel('Approved')
+                ->append(AdminColumn::filter('approved'))
+                ->setWidth(100),
         ]);
 
 

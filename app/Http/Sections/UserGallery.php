@@ -52,13 +52,17 @@ class UserGallery extends Section
             ->setDisplaySearch(false)
             ->setHtmlAttribute('class', 'table-info table-sm text-center')
             ->paginate(10);
+
         $display->setFilters([
             AdminDisplayFilter::related('for_adults')->setModel(\App\Models\UserGallery::class),
         ]);
+
         $display->setApply(function ($query) {
-            $query->orderBy('created_at', 'desc');
+            $query->orderBy('id', 'desc');
         });
+
         $display->with('users');
+
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')

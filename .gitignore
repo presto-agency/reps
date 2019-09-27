@@ -3,6 +3,7 @@
 /public/ccs
 /public/js
 /public/images
+/public/files
 /public/storage
 /storage/*.key
 /vendor

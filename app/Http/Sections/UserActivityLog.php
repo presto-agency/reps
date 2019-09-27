@@ -46,12 +46,13 @@ class UserActivityLog extends Section
     {
         $display = AdminDisplay::datatablesAsync()
             ->setDisplaySearch(true)
-            ->setHtmlAttribute('class', 'table-info text-center')
+            ->setHtmlAttribute('class', 'table-info table-sm text-center ')
             ->paginate(10);
+
         $display->with('users', 'types');
 
         $display->setApply(function ($query) {
-            $query->orderBy('created_at', 'desc');
+            $query->orderBy('id', 'desc');
         });
 
         $display->setColumns([

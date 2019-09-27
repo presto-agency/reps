@@ -44,22 +44,24 @@ class Headline extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync();
-        $display->setDatatableAttributes(['bInfo' => false]);
-        $display->setHtmlAttribute('class', 'table-info table-hover text-center');
-        $display->paginate(50);
+        $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
+        $display->paginate(10);
+
         $display->setApply(function ($query) {
-            $query->orderBy('created_at', 'desc');
+            $query->orderBy('id', 'desc');
         });
+
         $display->setColumns([
+
             $id = AdminColumn::text('id', 'Id')->setWidth('50px'),
+
             $title = AdminColumn::text('title', 'Title')
                 ->setHtmlAttribute('class', 'text-left')
-                ->setWidth('300px'),
+                ->setWidth(300),
+
             $url = AdminColumn::text('url', 'Url')
                 ->setHtmlAttribute('class', 'text-left')
-                ->setWidth('200px'),
-            $created_at = AdminColumn::datetime('created_at', 'Created at')->setWidth('70px'),
-            $updated_at = AdminColumn::datetime('updated_at', 'Updated at')->setWidth('70px'),
+                ->setWidth(200),
 
         ]);
         return $display;

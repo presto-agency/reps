@@ -54,10 +54,18 @@ class Replay extends Section
         $display = AdminDisplay::datatablesAsync()
             ->setHtmlAttribute('class', 'table-info table-sm text-center small')
             ->paginate(10);
+
         $display->setFilters([
             AdminDisplayFilter::related('approved')->setModel(\App\Models\Replay::class),
             AdminDisplayFilter::related('type_id')->setModel(\App\Models\Replay::class),
         ]);
+
+        $display->setApply(function ($query) {
+            $query->orderBy('id', 'desc');
+        });
+
+        $display->with('users','maps','types');
+
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')

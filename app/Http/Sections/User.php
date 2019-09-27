@@ -56,13 +56,14 @@ class User extends Section
             ->setModelClass(\App\User::class)
             ->paginate(10);
         $display->setApply(function ($query) {
-            $query->orderBy('created_at', 'desc');
+            $query->orderBy('id', 'desc');
         });
         $display->setFilters([
             AdminDisplayFilter::related('role_id')->setModel(\App\Models\Role::class),
             AdminDisplayFilter::related('ban')->setModel(\App\User::class),
         ]);
 
+        $display->with('roles', 'countries');
 
         $display->setColumns([
 
@@ -199,6 +200,8 @@ class User extends Section
                 ->setHtmlAttribute('autocomplete', 'off')
                 ->setValueSkipped(true)
                 ->setValidationRules('same:password'),
+
+            $ban = AdminFormElement::checkbox('ban', 'Ban'),
         ]);
 
 
