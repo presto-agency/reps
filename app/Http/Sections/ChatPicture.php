@@ -5,6 +5,7 @@ namespace App\Http\Sections;
 use AdminFormElement;
 use AdminForm;
 use AdminColumnEditable;
+use AdminDisplayFilter;
 use AdminDisplay;
 use AdminColumn;
 use AdminColumnFilter;
@@ -55,9 +56,9 @@ class ChatPicture extends Section
             $query->orderBy('created_at', 'asc');
         });
 
-        /*$display->setFilters([
-            AdminDisplayFilter::string('tag'),
-        ]);*/
+        $display->setFilters([
+            AdminDisplayFilter::field('tag')
+        ]);
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
