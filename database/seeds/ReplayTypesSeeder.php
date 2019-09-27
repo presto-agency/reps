@@ -12,15 +12,15 @@ class ReplayTypesSeeder extends Seeder
      */
     public function run()
     {
-        $role = ReplayType::query()->firstOrNew(['title' => 'Gosu']);
-        if (!$role->exists) {
-            $role->fill([
+        $replayType = ReplayType::query()->firstOrNew(['title' => 'Gosu']);
+        if (!$replayType->exists) {
+            $replayType->fill([
                 'title' => 'Gosu',
             ])->save();
         }
-        $role = ReplayType::query()->firstOrNew(['title' => 'Пользовательский']);
-        if (!$role->exists) {
-            $role->fill([
+        $replayType = ReplayType::query()->firstOrNew(['title' => 'Пользовательский']);
+        if (!$replayType->exists) {
+            $replayType->fill([
                 'title' => 'Пользовательский',
             ])->save();
         }

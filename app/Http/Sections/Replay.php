@@ -147,6 +147,10 @@ class Replay extends Section
         $form->addHeader([
             AdminFormElement::columns()
                 ->addColumn([
+
+                    $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id)
+                        ->setValidationRules(['required', 'min:1']),
+
                     $user_replay = AdminFormElement::text('user_replay', 'Replay title')
                         ->setValidationRules(['required', 'string',  'between:4,255'])
                 ], 3)->addColumn([
@@ -216,11 +220,18 @@ class Replay extends Section
                 }),
             $date = AdminFormElement::date('start_date', 'Date start')->setFormat('d-m-Y'),
 
+
             $content = AdminFormElement::wysiwyg('content', 'Content')
                 ->setValidationRules(['nullable', 'string', 'between:1,1000']),
 
         ]);
-
+//        $display = AdminForm::panel();
+//
+//        $display->setItems([
+//            /*Init FormElement*/
+//            $name = AdminFormElement::text('user_id','user_id'),
+//            $name = AdminFormElement::text('user_replay', 'user_replay'),
+//        ]);
         return $form;
     }
 
@@ -229,7 +240,7 @@ class Replay extends Section
      */
     public function onCreate()
     {
-        return $this->onEdit(null);
+        return $this->onEdit('');
     }
 
     /**

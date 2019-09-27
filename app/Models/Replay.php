@@ -12,17 +12,16 @@ class Replay extends Model
     protected $fillable = [
 
         /*Show In Table*/
-
-        'user_id',//Пользователь REPS.RU|StArSO
-        'user_replay',//Название Shine_SouL 3 game
-        'map_id',//Карта various
-        'first_country_id', 'second_country_id',//Страны Korea (South) vs Korea (South)
-        'first_race', 'second_race',//Расы T vs Z
-        'type_id',// Gosu/Пользоватлеьский
-        'comments_count', // Коментарии 11
-        'user_rating', //Оценка пользователей
-        'negative_count', 'rating', 'positive_count', //Рейтинг
-        'approved',//Подтвержден
+        'user_id',
+        'user_replay',
+        'map_id',
+        'first_country_id', 'second_country_id',
+        'first_race', 'second_race',
+        'type_id',
+        'comments_count',
+        'user_rating',
+        'negative_count', 'rating', 'positive_count',
+        'approved',
 
         /*Show In Edit/Create - Input*/
 
@@ -40,25 +39,22 @@ class Replay extends Model
         'second_name',
         'second_apm',
         //'approved',
-        'content',//Комментарий: + Подключить плагин для всех видео
+        'content',
         'downloaded',
 
-        'start_date',// дата начала ?? чего?
-        'file',//нужно пут к сохраненному файлу
-
-
-//        'second_matchup',//???
-//        'video_iframe',//ненужно
+        'start_date',
+        'file',
 
     ];
 
-    protected $hidden = [
-//        /*Hidden*/
 
-////        'length',
-////        'game_version_id',
-////        'creating_rate',
-////        'championship',
-    ];
+    public function setUserIdAttribute($value)
+    {
+        if ($value) {
+            if (auth()->user()->id == $value) {
+                $this->attributes['user_id'] = $value;
+            }
+        }
+    }
 
 }

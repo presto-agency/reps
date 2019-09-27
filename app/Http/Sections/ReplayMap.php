@@ -138,9 +138,9 @@ class ReplayMap extends Section
 
     public function map()
     {
-        $countries = \App\Models\ReplayMap::select('id', 'name')->get();
+        $countries = \App\Models\ReplayMap::select('name')->get();
         foreach ($countries as $key => $item) {
-            $this->map[$item->id] = $item->name;
+            $this->map[$item->name] = $item->name;
         }
         return $this->map;
     }
