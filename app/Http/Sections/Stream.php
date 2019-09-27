@@ -10,7 +10,6 @@ use AdminFormElement;
 use AdminDisplayFilter;
 use App\Models\Country;
 use App\Models\Race;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
@@ -56,7 +55,6 @@ class Stream extends Section implements Initializable
     {
 
         $display = AdminDisplay::datatablesAsync()
-//            ->setDisplaySearch(true)
             ->setHtmlAttribute('class', 'table-info table-sm text-center ')
             ->paginate(10);
         $display->setFilters([
@@ -95,20 +93,19 @@ class Stream extends Section implements Initializable
         $display = AdminForm::panel();
         $display->setItems([
 
-            $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id)
-                ->setValidationRules(['required', 'min:1']),
+            $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
 
             $title = AdminFormElement::text('title', 'Title')
                 ->setValidationRules(['required', 'max:255', 'string']),
 
-            $race_id = AdminFormElement::select('race_id', 'Race', Race::class)
+            $race_id = AdminFormElement::select('race_id', 'Race', $this->race())
                 ->setDisplay('title')
                 ->setValidationRules(['required']),
 
             $content = AdminFormElement::wysiwyg('content', 'Content')
                 ->setValidationRules(['nullable']),
 
-            $country_id = AdminFormElement::select('country_id', 'Country', Country::class)
+            $country_id = AdminFormElement::select('country_id', 'Country', $this->country())
                 ->setDisplay('name')
                 ->setValidationRules(['required']),
 
@@ -128,8 +125,7 @@ class Stream extends Section implements Initializable
      */
     public function onCreate()
     {
-
-        return $this->onEdit(null);
+        return $this->onEdit('');
     }
 
     /**
@@ -147,4 +143,22 @@ class Stream extends Section implements Initializable
     {
         // remove if unused
     }
+
+    private function country()
+    {
+        foreach (\App\Models\Country::select('id', 'name')->get() as $key => $item) {
+            $this->country[$item->id] = $item->name;
+        }
+        return $this->country;
+    }
+
+
+    private function race()
+    {
+        foreach (\App\Models\Race::select('id', 'title')->get() as $key => $item) {
+            $this->race[$item->id] = $item->title;
+        }
+        return $this->race;
+    }
+
 }

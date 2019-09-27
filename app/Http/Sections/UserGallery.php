@@ -115,6 +115,8 @@ class UserGallery extends Section
         $display = AdminForm::panel();
         $display->setItems([
 
+            $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
+
             $picture = AdminFormElement::image('picture', 'Picture')
                 ->setUploadPath(function (UploadedFile $file) {
                     return 'storage/gallery';
@@ -123,9 +125,6 @@ class UserGallery extends Section
                     return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
                 })
                 ->setValidationRules(['required']),
-
-            $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id)
-                ->setValidationRules(['required', 'min:1']),
 
             $sign = AdminFormElement::text('sign', 'Sign')
                 ->setValidationRules(['nullable', 'string', 'max:255']),

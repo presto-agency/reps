@@ -81,20 +81,43 @@ class InterviewQuestion extends Section
      */
     public function onEdit($id)
     {
-        $display = AdminForm::panel();
+        $form = AdminForm::panel();
 
-        $display->setItems([
 
-            $question = AdminFormElement::text('question', 'Question')
-                ->setValidationRules(['required', 'string', 'max:255']),
+        $form->setItems(
+            AdminFormElement::columns()
+                ->addColumn(function () {
+                    return [
 
-            $active = AdminFormElement::checkbox('active', 'Active'),
+                        $question = AdminFormElement::text('question', 'Question')
+                            ->setValidationRules(['required', 'string', 'max:255']),
 
-            $active = AdminFormElement::checkbox('for_login', 'For login only'),
+                    ];
+                })->addColumn(function () {
+                    return [
+
+                        $active = AdminFormElement::checkbox('active', 'Active'),
+
+                        $active = AdminFormElement::checkbox('for_login', 'For login only'),
+                    ];
+                })
+        );
+
+        $form->addBody([
+
+            view('admin.InterviewQuestion.questionClone'),
 
         ]);
 
-        return $display;
+
+//        $display = AdminForm::panel();
+//
+//        $display->setItems([
+//
+//
+//        ]);
+
+        return $form;
     }
 
     /**

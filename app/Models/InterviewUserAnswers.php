@@ -11,6 +11,13 @@ class InterviewUserAnswers extends Model
         'question_id', 'answer_id', 'user_id'
     ];
 
+    public function setUserIdAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['user_id'] = auth()->user()->id;
+        }
+    }
+
 //    // Relations
 //    public function questions()
 //    {
