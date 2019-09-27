@@ -30,6 +30,3 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
-const app2 = new Vue({
-    el: '#app2'
-});

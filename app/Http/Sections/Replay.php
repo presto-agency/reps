@@ -45,7 +45,8 @@ class Replay extends Section
     }
 
     /**
-     * @return DisplayInterface
+     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
+     * @throws \SleepingOwl\Admin\Exceptions\FilterOperatorException
      */
     public function onDisplay()
     {
@@ -148,8 +149,7 @@ class Replay extends Section
             AdminFormElement::columns()
                 ->addColumn([
 
-                    $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id)
-                        ->setValidationRules(['required', 'min:1']),
+                    $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
 
                     $user_replay = AdminFormElement::text('user_replay', 'Replay title')
                         ->setValidationRules(['required', 'string',  'between:4,255'])

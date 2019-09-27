@@ -37,6 +37,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\Models\ChatSmile::class => 'App\Http\Sections\ChatSmile',
         \App\Models\ChatPicture::class => 'App\Http\Sections\ChatPicture',
         \App\Models\Banner::class => 'App\Http\Sections\Banner',
+
+        \App\Models\Footer::class => 'App\Http\Sections\Footer',
     ];
 
 
@@ -120,6 +122,18 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'pages' => [
                     (new Page(\App\Models\ChatSmile::class))->setPriority(1),
                     (new Page(\App\Models\ChatPicture::class))->setPriority(2),
+                ]
+            ]
+        ]);
+
+        AdminNavigation::setFromArray([
+            [
+                'title' => 'Footer',
+                'icon' => 'fas fa-user',
+                'priority' => 7,
+                'pages' => [
+                    (new Page(\App\Models\Footer::class))->setPriority(1),
+//                    (new Page(\App\Models\ChatPicture::class))->setPriority(2),
                 ]
             ]
         ]);

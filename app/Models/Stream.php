@@ -17,12 +17,7 @@ class Stream extends Model
     public function setUserIdAttribute($value)
     {
         if ($value) {
-            if (auth()->user()->id == $value) {
-                $this->attributes['user_id'] = $value;
-            }
-            if (auth()->user()->id != $value) {
-                die;
-            }
+            $this->attributes['user_id'] = auth()->user()->id;
         }
     }
 }
