@@ -2,19 +2,27 @@
 
 namespace App\Observers;
 
+use App\Http\Controllers\Admin\InterviewVariantAnswerController;
 use App\Models\InterviewQuestion;
 
 class InterviewQuestionObserver
 {
 
-    private static $data;
+    public static $answer;
 
     /**
      * @param InterviewQuestion $poll
      */
+
     public function creating(InterviewQuestion $poll)
     {
-        InterviewQuestionObserver::$data = $poll->getAttributes();
+        $data = $poll->getAttributes();
+        if (array_key_exists('answer', $data)) {
+
+            InterviewQuestionObserver::$answer = $data['answer'];
+            unset($poll['answer']);
+
+        }
 
     }
 
@@ -23,8 +31,15 @@ class InterviewQuestionObserver
      */
     public function created(InterviewQuestion $poll)
     {
+        $answers = InterviewQuestionObserver::$answer;
+        $questionId = $poll->id;
 
-//        dd($poll->id, InterviewQuestionObserver::$data);
+        if (!empty($questionId)) {
+            foreach ($answers as $key => $answer) {
+                $addAnswers = new InterviewVariantAnswerController;
+                $addAnswers->store($questionId, $answer);
+            };
+        }
     }
 
 

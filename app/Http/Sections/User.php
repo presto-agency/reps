@@ -67,15 +67,13 @@ class User extends Section
 
         $display->setColumns([
 
-            $id = AdminColumn::text('id', 'Id')
+            $id = AdminColumn::text('id', '<small>ID</small>')
+                ->setHtmlAttribute('class', 'small')
                 ->setWidth(50),
 
             $avatar = AdminColumn::image('avatar', 'Avatar'),
 
-            $role_id = AdminColumn::text('roles.title', 'Role')
-                ->setHtmlAttribute('class', 'small')
-                ->setWidth(110)
-                ->append(AdminColumn::filter('role_id')),
+            $role_id = AdminColumn::text('roles.title', 'Role'),
 
             $name = AdminColumn::text('name', 'Name'),
 
@@ -83,40 +81,45 @@ class User extends Section
 
             $country_id = AdminColumn::relatedLink('countries.name', 'Country'),
 
-            $rating = AdminColumn::text('rating', 'Count<br/><small>(rating)</small>')
-                ->setWidth(60),
+            $rating = AdminColumn::text('rating', '<small>Rating</small>')
+                ->setWidth(100),
 
-            $count_topic = AdminColumn::text('count_topic', 'Count<br/><small>(topic)</small>')
-                ->setWidth(60),
+            $count_topic = AdminColumn::text('count_topic', '<small>Topic</small>')
+                ->setWidth(100),
 
-            $count_replay = AdminColumn::text('count_replay', 'Count<br/><small>(replay)</small>')
-                ->setWidth(60),
+            $count_replay = AdminColumn::text('count_replay', '<small>Replay</small>')
+                ->setWidth(100),
 
-            $count_picture = AdminColumn::text('count_picture', 'Count<br/><small>(picture)</small>')
-                ->setWidth(60),
+            $count_picture = AdminColumn::text('count_picture', '<small>Picture</small>')
+                ->setWidth(100),
 
-            $count_comment = AdminColumn::text('count_comment', 'Count<br/><small>(comment)</small>')
-                ->setWidth(65),
+            $count_comment = AdminColumn::text('count_comment', '<small>Comment</small>')
+                ->setWidth(100),
 
-            $email_check = AdminColumn::custom('Email<br/><small>(check)</small>', function (\App\User $user) {
+            $email_check = AdminColumn::custom('<small>Email<br/>check</small>', function (\App\User $user) {
                 return !empty($user->email_verified_at) ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
-            })->setWidth(40),
+            })->setWidth(100),
 
-            $ban = AdminColumnEditable::checkbox('ban')->setLabel('Ban')
+            $ban = AdminColumnEditable::checkbox('ban')->setLabel('<small>Ban</small>')
                 ->append(AdminColumn::filter('ban'))
-                ->setWidth(45),
+                ->setWidth(100),
 
-            $activity_at = AdminColumn::datetime('activity_at', 'Last<br/><small>(activity)</small>')
+            $activity_at = AdminColumn::datetime('activity_at', '<small>Last<br/>activity</small>')
+                ->setHtmlAttribute('class', 'small')
                 ->setFormat('d-m-Y H:i:s')
-                ->setWidth(60),
+                ->setWidth(100),
         ]);
 
         $display->setColumnFilters([
             $id = null,
             $avatar = null,
-            $role_id = null,
-            $name = null,
-            $email = null,
+            $role_id = AdminColumnFilter::select($this->role())
+                ->setColumnName('role_id')
+                ->setPlaceholder('Select'),
+            $name = $user_id = AdminColumnFilter::text()->setOperator('contains')
+                ->setPlaceholder('Name'),
+            $email = $user_id = AdminColumnFilter::text()->setOperator('contains')
+                ->setPlaceholder('Email'),
             $country = AdminColumnFilter::select($this->country())
                 ->setColumnName('country_id')
                 ->setPlaceholder('Select'),

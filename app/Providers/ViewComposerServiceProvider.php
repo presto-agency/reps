@@ -3,12 +3,10 @@
 namespace App\Providers;
 
 
+use App\Http\ViewComposers\InterviewVariantAnswerComposer;
 use App\Http\ViewComposers\UserComposer;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
-
-//use App\Http\ViewComposers\SettingComposer;
-
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -23,6 +21,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 //    $this->compose('*', SettingComposer::class);
 
         $this->compose('admin.dashboard', UserComposer::class);
+        $this->compose('admin.InterviewQuestion.questionClone', InterviewVariantAnswerComposer::class);
 
 
     }

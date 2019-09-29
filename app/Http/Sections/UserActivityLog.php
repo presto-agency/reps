@@ -45,7 +45,6 @@ class UserActivityLog extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
-            ->setDisplaySearch(true)
             ->setHtmlAttribute('class', 'table-info table-sm text-center ')
             ->paginate(10);
 

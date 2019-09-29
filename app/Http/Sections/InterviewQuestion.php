@@ -92,30 +92,21 @@ class InterviewQuestion extends Section
                         $question = AdminFormElement::text('question', 'Question')
                             ->setValidationRules(['required', 'string', 'max:255']),
 
-                    ];
-                })->addColumn(function () {
-                    return [
-
                         $active = AdminFormElement::checkbox('active', 'Active'),
 
                         $active = AdminFormElement::checkbox('for_login', 'For login only'),
                     ];
+                })->addColumn(function () {
+                    return [
+                        /*Костыль с инпутом..:(*/
+
+                        $answer = AdminFormElement::hidden('answer'),
+                        view('admin.InterviewQuestion.questionClone'),
+
+                    ];
                 })
         );
 
-        $form->addBody([
-
-            view('admin.InterviewQuestion.questionClone'),
-
-        ]);
-
-
-//        $display = AdminForm::panel();
-//
-//        $display->setItems([
-//
-//
-//        ]);
 
         return $form;
     }
