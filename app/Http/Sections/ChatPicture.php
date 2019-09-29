@@ -9,6 +9,7 @@ use AdminDisplayFilter;
 use AdminDisplay;
 use AdminColumn;
 use AdminColumnFilter;
+use App\Models\Tag;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
@@ -56,9 +57,9 @@ class ChatPicture extends Section
             $query->orderBy('created_at', 'asc');
         });
 
-        $display->setFilters([
+        /*$display->setFilters([
             AdminDisplayFilter::field('tag')
-        ]);
+        ]);*/
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
@@ -78,12 +79,13 @@ class ChatPicture extends Section
             $charactor = AdminColumn::text('charactor', 'Charactor')
                 ->setWidth('50px'),
 
-            $tag = AdminColumn::text('tag', 'Tag')
+            $tags = AdminColumn::lists('tags.display_name', 'Tags'),
+            /*$tag = AdminColumn::text('tag', 'Tag')
                 ->setWidth('50px')
                 ->append(
                     AdminColumn::filter('tag')
-                ),
-            $date = AdminColumn::datetime('created_at', 'Date')->setFormat('Y-m-d')->setWidth('20px'),
+                ),*/
+            $date = AdminColumn::datetime('created_at', 'Date')->setFormat('Y-m-d')->setWidth('100px'),
 
         ]);
 
@@ -127,7 +129,8 @@ class ChatPicture extends Section
             $image = AdminFormElement::image('image', 'Image')->required(),
             $comment = AdminFormElement::text('comment', 'Comment'),
             $charactor = AdminFormElement::text('charactor', 'Charactor')->required(),
-            $tag = AdminFormElement::text('tag', 'Tag')->required(),
+            $tag = AdminFormElement::multiselect('tags', 'Tags', Tag::class)->setDisplay('display_name')->required(),
+//            $tag = AdminFormElement::text('tag', 'Tag')->required(),
             $user = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
 
         ]);
