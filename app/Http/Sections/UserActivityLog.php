@@ -89,42 +89,6 @@ class UserActivityLog extends Section
         return $display;
     }
 
-    /**
-     * @param int $id
-     *
-     * @return FormInterface
-     */
-    public function onEdit($id)
-    {
-        // remove if unused
-    }
-
-    /**
-     * @return FormInterface
-     */
-    public function onCreate()
-    {
-        return $this->onEdit(null);
-    }
-
-    /**
-     * @return void
-     */
-    public function onDelete($id)
-    {
-        // remove if unused
-    }
-
-    /**
-     * @return void
-     */
-    public function onRestore($id)
-    {
-
-
-        // remove if unused
-    }
-
     private $type;
 
     public function type()

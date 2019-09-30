@@ -36,8 +36,10 @@ class InterviewQuestionObserver
 
         if (!empty($questionId)) {
             foreach ($answers as $key => $answer) {
-                $addAnswers = new InterviewVariantAnswerController;
-                $addAnswers->store($questionId, $answer);
+                if (!empty($answer)) {
+                    $addAnswers = new InterviewVariantAnswerController;
+                    $addAnswers->store($questionId, $answer);
+                }
             };
         }
     }
