@@ -40,6 +40,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
 
         \App\Models\Footer::class => 'App\Http\Sections\Footer',
         \App\Models\Tag::class => 'App\Http\Sections\Tag',
+        \App\Models\FooterUrl::class => 'App\Http\Sections\FooterUrl',
     ];
 
 
@@ -135,7 +136,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'priority' => 7,
                 'pages' => [
                     (new Page(\App\Models\Footer::class))->setPriority(1),
-//                    (new Page(\App\Models\ChatPicture::class))->setPriority(2),
+                    (new Page(\App\Models\FooterUrl::class))->setPriority(2),
                 ]
             ]
         ]);
