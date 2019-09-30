@@ -9,4 +9,8 @@ class ForumSection extends Model
     protected $fillable = [
         'position', 'name', 'display_name', 'description', 'is_active', 'is_general', 'user_can_add_topics',
     ];
+    public function topics()
+    {
+        return $this->hasMany('App\Models\ForumTopic');
+    }
 }
