@@ -1,0 +1,49 @@
+.mob_menu{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    transition: 1.5s;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    right: -581px;
+    background: #ecf0f1;
+    padding: 20px;
+    & .menu_off{
+        font-size: 30px;
+        color: black;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    & .mob_punkt{
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+
+        li{
+            padding-bottom: 20px;
+            color:black;
+            font-size:22px;
+        }
+        a{
+            color: black;
+        }
+    }
+    & .mob_lang{
+        padding: 0;
+        display: flex;
+        list-style: none;
+        position: absolute;
+        bottom: 20px;
+        a{
+            color: black;
+        }
+        li{
+            padding-right: 20px;
+        }
+
+    }
+}
