@@ -11,9 +11,9 @@ function get_string_between($string, $start, $end){
     $len = strpos($string, $end, $ini) - $ini;
     return substr($string, $ini, $len);
 }
-    $i = 0;
-    $fullstring = "$getUrl";
-    $getId = get_string_between($fullstring, '/admin/interview_questions/', "/$getMethod");
+    $getId = get_string_between($getUrl, '/admin/interview_questions/', "/$getMethod");
+
+
 @endphp
 <div class="form-group" name="add_name" id="add_name">
     <div class="alert alert-danger print-error-msg" style="display:none">
@@ -36,25 +36,28 @@ function get_string_between($string, $start, $end){
             @endif
             @if($getMethod == 'edit')
                 @foreach($answers as $key => $answer)
-                    @if($getId == $answer->question_id)
-                        <tr id="row" class="dynamic-added">
+                    <tr id="row" class="dynamic-added">
+                        @if($getId == $answer->question_id)
                             <td>
-                                <input id='dynamicInput' type="text" name="answer[{{$answer->id}}]" placeholder="Enter your Answer"
+                                <input id='{{$answer->id}}' type="text" name="answer[{{$answer->id}}]"
+                                       placeholder="Enter your Answer"
                                        class="form-control name_list" value="{{$answer->answer}}"/>
                             </td>
                             <td>
-                                <button class="deleteRecord" data-id="{{ $answer->id }}"
-                                        data-token="{{ csrf_token() }}">Delete Task
-                                </button>
+                                @if(count($answers) > 1)
+                                    {{ Form::open(['method' => 'DELETE', 'route' => ['admin.answers.delete', 'id' => $answer->id], 'name' => 'delete']) }}
+                                    <button class="btn btn-danger">Delete Task</button>
+                                @endif
+                                {{ Form::close() }}
                             </td>
-                        </tr>
 
-                    @endif
+                        @endif
+                    </tr>
                 @endforeach
-
+                <td>
+                    <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
+                </td>
             @endif
-
-
         </table>
     </div>
 </div>
@@ -72,24 +75,6 @@ function get_string_between($string, $start, $end){
         $(document).on('click', '.btn_remove', function () {
             var button_id = $(this).attr("id");
             $('#row' + button_id + '').remove();
-        });
-        $(".deleteRecord").click(function () {
-            var id = $(this).data("id");
-            var token = $(this).data("token");
-            var url = "{{url("admin/interviewvariantanswers/destroy/")}}";
-            $('#dynamicInput').val('DELETE');
-            $.ajax(
-                {
-                    url: url+"/" + id,
-                    type: 'DELETE',
-                    data: {
-                        "id": id,
-                        "_token": token,
-                    },
-                    success: function () {
-                        console.log("it Works");
-                    }
-                });
         });
     });
 </script>

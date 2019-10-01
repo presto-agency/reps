@@ -19,12 +19,16 @@ class InterviewVariantAnswerController extends Controller
 
     }
 
-    public function update($id, $answer)
+    public function update($id, $answer, $questionId)
     {
-        dd($id,$answer);
         $update = InterviewVariantAnswer::where('id', $id)->first();
-        $update->answer = $answer;
-        $update->save();
+        if (!$update) {
+            $this->store($questionId, $answer);
+        }
+        if (!empty($update)) {
+            $update->answer = $answer;
+            $update->save();
+        }
 
     }
 
@@ -33,10 +37,10 @@ class InterviewVariantAnswerController extends Controller
         InterviewVariantAnswer::where('question_id', $id)->delete();
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-
-        InterviewVariantAnswer::destroy($id);
-        return redirect()->to("http://reps.loc/admin/interview_questions/10/edit");
+        $item = InterviewVariantAnswer::findOrFail($id);
+        $item->delete();
+        return redirect()->back();
     }
 }

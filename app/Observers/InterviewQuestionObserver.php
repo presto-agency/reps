@@ -66,12 +66,12 @@ class InterviewQuestionObserver
         $questionId = $poll->id;
 
         if (!empty($questionId)) {
-                foreach ($answersEdit as $key => $answerEdit) {
-                    if (!empty($answerEdit)) {
-                        $addAnswers = new InterviewVariantAnswerController;
-                        $addAnswers->update($key, $answerEdit);
-                    }
-                };
+            foreach ($answersEdit as $key => $answerEdit) {
+                if (!empty($answerEdit)) {
+                    $addAnswers = new InterviewVariantAnswerController;
+                    $addAnswers->update($key, $answerEdit,$questionId);
+                }
+            };
         }
 
     }
