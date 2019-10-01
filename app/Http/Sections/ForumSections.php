@@ -68,9 +68,11 @@ class ForumSections extends Section
                 ->setWidth('50px'),
             $description = AdminColumn::text('description', 'Description')
                 ->setWidth('50px'),
-            $quantity = AdminColumn::custom('Quantity topics', function(\Illuminate\Database\Eloquent\Model $model) {
+            $quantity = AdminColumn::count('topics', 'Quantity topics')
+                ->setWidth('50px'),
+            /*$quantity = AdminColumn::custom('Quantity topics', function(\Illuminate\Database\Eloquent\Model $model) {
                 return $model->topics()->count();
-            })->setWidth('50px'),
+            })->setWidth('50px'),*/
             $isActive = AdminColumnEditable::checkbox('is_active','Yes', 'No')
                 ->setLabel('Active'),
             $isGeneral = AdminColumnEditable::checkbox('is_general','Yes', 'No')
