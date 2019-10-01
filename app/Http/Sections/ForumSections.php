@@ -80,6 +80,20 @@ class ForumSections extends Section
 
         ]);
 
+        $control = $display->getColumns()->getControlColumn();
+
+        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
+            $url = url('admin/forum_topics');
+            return $url.'?forum_section_id='.$model->getKey(); // Генерация ссылки
+        }, function (\Illuminate\Database\Eloquent\Model $model) {
+            return $model->title . ' (' . $model->topics()->count() . ')'; // Генерация текста на кнопке
+        }, 50);
+        $link->hideText();
+        $link->setIcon('fa fa-eye');
+        $link->setHtmlAttribute('class', 'btn-info');
+
+        $control->addButton($link);
+
         return $display;
     }
 
