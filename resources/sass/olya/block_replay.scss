@@ -28,6 +28,9 @@
             font-size: 14px;
             color: $blue;
             font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .content_game{
             display: flex;

@@ -9,7 +9,7 @@ $gray:rgb(191,195,206);
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
+@import "media";
 @import "vova/main_vova";
 @import "olya/main_olya";
 @import "global-styles/main-global";

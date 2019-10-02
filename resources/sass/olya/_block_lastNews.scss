@@ -2,7 +2,7 @@
     .wrapper{
         -webkit-box-shadow: 0px 2px 10px #cccccc;
     }
-    margin: 50px 0 0 0;
+    margin: 30px 0 0 0;
     & .title_block{
         display: flex;
         justify-content: space-around;
@@ -19,6 +19,17 @@
             font-size: 16px;
             color: white;
             margin: 0;
+        }
+    }
+    & .block_futureTournament{
+        padding: 25px 15px 0;
+        & .href_tournament{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: $blue;
+            padding-bottom: 25px;
         }
     }
 }
