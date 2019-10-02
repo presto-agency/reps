@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                             <div class="game_oneSection">
-                                <p class="name_game">Busi v Last</p>
+                                <p class="name_game">BW Jeel weekly</p>
                                 <div class="content_game">
                                     <p class="text">Матчап:</p>
                                     <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
@@ -151,7 +151,7 @@
                         </div>
                     </div>
                     <div class="container_btn">
-                        <button class="btn_tournament">ВСЕ ТУРНИРЫ</button>
+                        <button class="button">ВСЕ ТУРНИРЫ</button>
                     </div>
                     <div class="row row_game">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-12">
@@ -226,7 +226,7 @@
                         </div>
                     </div>
                     <div class="container_btn">
-                        <button class="btn_tournament">ВСЕ ТУРНИРЫ</button>
+                        <button class="button">ВСЕ ТУРНИРЫ</button>
                     </div>
                 </div>
             </div>

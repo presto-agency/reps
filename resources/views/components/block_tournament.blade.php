@@ -9,7 +9,7 @@
                     </div>
                     <div class="block_futureTournament">
                         <p class="information_text">Нет предстоящих турниров</p>
-                        <button class="btn_tournament">ВСЕ ТУРНИРЫ</button>
+                        <button class="button">ВСЕ ТУРНИРЫ</button>
                     </div>
                 </div>
             </div>
