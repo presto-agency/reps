@@ -63,15 +63,15 @@ class InterviewQuestionObserver
     public function updated(InterviewQuestion $poll)
     {
         $answersEdit = InterviewQuestionObserver::$answersEdit;
-        $questionId = $poll->id;
 
-        if (!empty($questionId)) {
+        if (!empty($answersEdit)) {
             foreach ($answersEdit as $key => $answerEdit) {
                 if (!empty($answerEdit)) {
                     $addAnswers = new InterviewVariantAnswerController;
-                    $addAnswers->update($key, $answerEdit,$questionId);
+                    $addAnswers->update($key, $answerEdit,$poll->id);
                 }
             };
+
         }
 
     }

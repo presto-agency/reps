@@ -53,7 +53,6 @@ class User extends Section
 
         $display = AdminDisplay::datatablesAsync()
             ->setHtmlAttribute('class', 'table-info table-sm text-center small')
-            ->setModelClass(\App\User::class)
             ->paginate(10);
         $display->setApply(function ($query) {
             $query->orderBy('id', 'desc');
@@ -237,7 +236,7 @@ class User extends Section
         // remove if unused
     }
 
-    private $country, $role, $race, $emailCheck;
+    private $country, $role, $race;
 
     public function country()
     {
@@ -261,14 +260,6 @@ class User extends Section
             $this->race[$item->id] = $item->title;
         }
         return $this->race;
-    }
-
-    public function emailCheck()
-    {
-        foreach (\App\User::select('id', 'email_verified_at')->get() as $key => $item) {
-            $this->emailCheck[$item->id] = $item->email_verified_at;
-        }
-        return $this->emailCheck;
     }
 
 }

@@ -78,7 +78,6 @@ class UserActivityLog extends Section
                 ->setPlaceholder('Select name')
             ,
             $time = null,
-//              TODO:: Фильтры  на дату с/по, в админке поломаны 23.09.2019
             $ip = AdminColumnFilter::text()->setPlaceholder('Ip'),
             $parameters = null,
 
