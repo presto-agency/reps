@@ -73,12 +73,9 @@ class ReplayMap extends Section
         $display->setColumnFilters([
 
             $id = null,
-
             $url = null,
-
-            $name= AdminColumnFilter::select($this->map())
-                ->setColumnName('name')
-                ->setPlaceholder('Select map name'),
+            $name = AdminColumnFilter::text()->setOperator('contains')
+                ->setPlaceholder('Map name'),
         ]);
         $display->getColumnFilters()->setPlacement('table.header');
 
@@ -134,14 +131,4 @@ class ReplayMap extends Section
         // remove if unused
     }
 
-    private $map;
-
-    public function map()
-    {
-        $countries = \App\Models\ReplayMap::select('name')->get();
-        foreach ($countries as $key => $item) {
-            $this->map[$item->name] = $item->name;
-        }
-        return $this->map;
-    }
 }

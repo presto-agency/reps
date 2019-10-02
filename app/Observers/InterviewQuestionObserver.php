@@ -8,7 +8,8 @@ use App\Models\InterviewQuestion;
 class InterviewQuestionObserver
 {
 
-    public static $answer;
+    public static $answers;
+    public static $answersEdit;
 
     /**
      * @param InterviewQuestion $poll
@@ -18,10 +19,8 @@ class InterviewQuestionObserver
     {
         $data = $poll->getAttributes();
         if (array_key_exists('answer', $data)) {
-
-            InterviewQuestionObserver::$answer = $data['answer'];
+            InterviewQuestionObserver::$answers = $data['answer'];
             unset($poll['answer']);
-
         }
 
     }
@@ -31,7 +30,7 @@ class InterviewQuestionObserver
      */
     public function created(InterviewQuestion $poll)
     {
-        $answers = InterviewQuestionObserver::$answer;
+        $answers = InterviewQuestionObserver::$answers;
         $questionId = $poll->id;
 
         if (!empty($questionId)) {
@@ -44,13 +43,37 @@ class InterviewQuestionObserver
         }
     }
 
+    /**
+     * @param InterviewQuestion $poll
+     */
+    public function updating(InterviewQuestion $poll)
+    {
+
+        $data = $poll->getAttributes();
+        if (array_key_exists('answer', $data)) {
+            InterviewQuestionObserver::$answersEdit = $data['answer'];
+            unset($poll['answer']);
+        }
+
+    }
 
     /**
      * @param InterviewQuestion $poll
      */
     public function updated(InterviewQuestion $poll)
     {
-        //
+        $answersEdit = InterviewQuestionObserver::$answersEdit;
+
+        if (!empty($answersEdit)) {
+            foreach ($answersEdit as $key => $answerEdit) {
+                if (!empty($answerEdit)) {
+                    $addAnswers = new InterviewVariantAnswerController;
+                    $addAnswers->update($key, $answerEdit,$poll->id);
+                }
+            };
+
+        }
+
     }
 
     /**
@@ -58,7 +81,11 @@ class InterviewQuestionObserver
      */
     public function deleted(InterviewQuestion $poll)
     {
-        //
+        $questionId = $poll->id;
+        if (!empty($questionId)) {
+            $addAnswers = new InterviewVariantAnswerController;
+            $addAnswers->deletedAll($questionId);
+        }
     }
 
     /**

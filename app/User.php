@@ -5,13 +5,13 @@ namespace App;
 use App\Models\Role;
 use App\Traits\ModelRelations\UserRelation;
 use App\Traits\GravatarTrait;
-use Hash;
+use App\Traits\ModelSetAttributes\UserSetAttribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, GravatarTrait, UserRelation;
+    use Notifiable, GravatarTrait, UserRelation, UserSetAttribute;
 
     /**
      * The attributes that are mass assignable.
@@ -52,15 +52,6 @@ class User extends Authenticatable
         $superAdminId = Role::where('name', 'super-admin')->select('id')->first()->id;
         $adminId = Role::where('name', 'admin')->select('id')->first()->id;
         return $this->role_id == $superAdminId || $this->role_id == $adminId;
-    }
-
-
-    //admin password Mutator
-    public function setPasswordAttribute($value)
-    {
-        if ($value) {
-            $this->attributes['password'] = Hash::make($value);
-        }
     }
 
 

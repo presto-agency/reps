@@ -53,7 +53,6 @@ class User extends Section
 
         $display = AdminDisplay::datatablesAsync()
             ->setHtmlAttribute('class', 'table-info table-sm text-center small')
-            ->setModelClass(\App\User::class)
             ->paginate(10);
         $display->setApply(function ($query) {
             $query->orderBy('id', 'desc');
@@ -61,15 +60,14 @@ class User extends Section
         $display->setFilters([
             AdminDisplayFilter::related('role_id')->setModel(\App\Models\Role::class),
             AdminDisplayFilter::related('ban')->setModel(\App\User::class),
+            AdminDisplayFilter::related('email_verified_at')->setModel(\App\User::class),
         ]);
 
         $display->with('roles', 'countries');
 
         $display->setColumns([
 
-            $id = AdminColumn::text('id', '<small>ID</small>')
-                ->setHtmlAttribute('class', 'small')
-                ->setWidth(50),
+            $id = AdminColumn::text('id', 'Id'),
 
             $avatar = AdminColumn::image('avatar', 'Avatar'),
 
@@ -96,13 +94,14 @@ class User extends Section
             $count_comment = AdminColumn::text('count_comment', '<small>Comment</small>')
                 ->setWidth(100),
 
-            $email_check = AdminColumn::custom('<small>Email<br/>check</small>', function (\App\User $user) {
+            $email_verified_at = AdminColumn::custom('<small>Email<br/>check</small>', function (\App\User $user) {
                 return !empty($user->email_verified_at) ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
-            })->setWidth(100),
+            })->append(AdminColumn::filter('email_verified_at'))
+                ->setWidth(70),
 
             $ban = AdminColumnEditable::checkbox('ban')->setLabel('<small>Ban</small>')
                 ->append(AdminColumn::filter('ban'))
-                ->setWidth(100),
+                ->setWidth(70),
 
             $activity_at = AdminColumn::datetime('activity_at', '<small>Last<br/>activity</small>')
                 ->setHtmlAttribute('class', 'small')
@@ -111,14 +110,14 @@ class User extends Section
         ]);
 
         $display->setColumnFilters([
-            $id = null,
+            $id = AdminColumnFilter::text()->setOperator('contains'),
             $avatar = null,
             $role_id = AdminColumnFilter::select($this->role())
                 ->setColumnName('role_id')
                 ->setPlaceholder('Select'),
-            $name = $user_id = AdminColumnFilter::text()->setOperator('contains')
+            $name = AdminColumnFilter::text()->setOperator('contains')
                 ->setPlaceholder('Name'),
-            $email = $user_id = AdminColumnFilter::text()->setOperator('contains')
+            $email = AdminColumnFilter::text()->setOperator('contains')
                 ->setPlaceholder('Email'),
             $country = AdminColumnFilter::select($this->country())
                 ->setColumnName('country_id')
@@ -237,7 +236,7 @@ class User extends Section
         // remove if unused
     }
 
-    private $country, $role, $race, $emailCheck;
+    private $country, $role, $race;
 
     public function country()
     {
@@ -261,14 +260,6 @@ class User extends Section
             $this->race[$item->id] = $item->title;
         }
         return $this->race;
-    }
-
-    public function emailCheck()
-    {
-        foreach (\App\User::select('id', 'email_verified_at')->get() as $key => $item) {
-            $this->emailCheck[$item->id] = $item->email_verified_at;
-        }
-        return $this->emailCheck;
     }
 
 }
