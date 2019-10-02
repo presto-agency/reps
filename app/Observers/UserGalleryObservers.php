@@ -1,48 +1,48 @@
 <?php
 
 namespace App\Observers;
+
+use App\Events\UserUploadImage;
 use App\Models\UserGallery;
 
 class UserGalleryObservers
 
 {
-    private static $data;
+
+    public function creating(UserGallery $userGallery)
+    {
+
+    }
 
     /**
-     * @param UserGallery $poll
+     * @param UserGallery $userGallery
      */
-    public function creating(UserGallery $poll)
+    public function created(UserGallery $userGallery)
     {
 
+        event(new UserUploadImage($userGallery));
     }
 
 
-    public function created(UserGallery $poll)
-    {
-
-    }
-
-
-
-    public function updated(UserGallery $poll)
+    public function updated(UserGallery $userGallery)
     {
         //
     }
 
 
-    public function deleted(UserGallery $poll)
+    public function deleted(UserGallery $userGallery)
     {
         //
     }
 
 
-    public function restored(UserGallery $poll)
+    public function restored(UserGallery $userGallery)
     {
         //
     }
 
 
-    public function forceDeleted(UserGallery $poll)
+    public function forceDeleted(UserGallery $userGallery)
     {
         //
     }

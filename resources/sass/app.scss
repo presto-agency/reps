@@ -6,10 +6,18 @@ $gray:rgb(191,195,206);
 
 // Variables
 @import 'variables';
-@import "Olga/main";
-@import "media";
-@import "mobMenu";
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@import "vova/main_vova";
+@import "olya/main_olya";
+@import "global-styles/main-global";
+
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1440px;
+    }
+}
+
 

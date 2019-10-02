@@ -48,27 +48,27 @@ class InterviewQuestion extends Section
         $display = AdminDisplay::datatablesAsync();
         $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
         $display->paginate(10);
-
-        $display->setFilters([
-            AdminDisplayFilter::related('approved')->setModel(\App\Models\InterviewQuestion::class),
-            AdminDisplayFilter::related('active')->setModel(\App\Models\InterviewQuestion::class),
-        ]);
+        $display->with('answers');
 
         $display->setApply(function ($query) {
             $query->orderBy('id', 'desc');
         });
 
         $display->setColumns([
+
             $id = AdminColumn::text('id', 'Id')->setWidth('100px'),
+
             $question = AdminColumn::text('question', 'Title')->setWidth('100px'),
+
             $active = AdminColumnEditable::checkbox('active')->setLabel('Active')
-                ->append(AdminColumn::filter('Active'))
                 ->setWidth(100),
-            $count_answer = AdminColumn::text('count_answer', 'Answers')->setWidth('100px'),
 
             $for_login = AdminColumnEditable::checkbox('for_login')->setLabel('For login only')
-                ->append(AdminColumn::filter('approved'))
                 ->setWidth(100),
+
+            $count_answer = AdminColumn::count('answers', 'Answers<br/><small>(count)</small>')
+                ->setWidth(100),
+
         ]);
 
         return $display;
@@ -92,30 +92,21 @@ class InterviewQuestion extends Section
                         $question = AdminFormElement::text('question', 'Question')
                             ->setValidationRules(['required', 'string', 'max:255']),
 
-                    ];
-                })->addColumn(function () {
-                    return [
-
                         $active = AdminFormElement::checkbox('active', 'Active'),
 
                         $active = AdminFormElement::checkbox('for_login', 'For login only'),
                     ];
+                })->addColumn(function () {
+                    return [
+                        /*Костыль с инпутом..:(*/
+
+                        $answer = AdminFormElement::hidden('answer'),
+                        view('admin.InterviewQuestion.questionClone'),
+
+                    ];
                 })
         );
 
-        $form->addBody([
-
-            view('admin.InterviewQuestion.questionClone'),
-
-        ]);
-
-
-//        $display = AdminForm::panel();
-//
-//        $display->setItems([
-//
-//
-//        ]);
 
         return $form;
     }

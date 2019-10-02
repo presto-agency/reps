@@ -3,16 +3,15 @@
 namespace App\Providers;
 
 
-
-use Illuminate\Contracts\View\Factory;
+use App\Models\ForumTopic;
+use App\Models\Replay;
+use App\Models\UserGallery;
+use App\Observers\ForumTopicObserver;
+use App\Observers\ReplayObserver;
+use App\Observers\UserGalleryObservers;
 use Illuminate\Support\ServiceProvider;
-
-use App\User;
 use App\Models\InterviewQuestion;
-
-use App\Observers\UserObserver;
 use App\Observers\InterviewQuestionObserver;
-
 
 
 class AppServiceProvider extends ServiceProvider
@@ -28,33 +27,31 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    private $views;
+//    private $views;
 
     /**
      * Bootstrap any application services.
      *
      * @return void
      */
-    //Factory private  $viewFactory
+//    Factory private  $viewFactory;
     public function boot()
     {
-
-            //        $userObserve = User::observe(UserObserver::class);
-        $interviewQuestion = InterviewQuestion::observe(InterviewQuestionObserver::class);
-
-
+        InterviewQuestion::observe(InterviewQuestionObserver::class);
+        UserGallery::observe(UserGalleryObservers::class);
+        Replay::observe(ReplayObserver::class);
+        ForumTopic::observe(ForumTopicObserver::class);
 
 
 //        $this->views = $viewFactory;
-//        dd($viewFactory);
 //        $this->compose('*', InterviewQuestionObserver::class);
 //        $this->compose('admin.quick_form', UserComposer::class);
 //        $this->compose('admin.quick_refund', UserComposer::class);
     }
 
-    private function compose($views, string $viewComposer)
-    {
-        $this->app->singleton($viewComposer);
-        $this->views->composer($views, $viewComposer);
-    }
+//    private function compose($views, string $viewComposer)
+//    {
+//        $this->app->singleton($viewComposer);
+//        $this->views->composer($views, $viewComposer);
+//    }
 }

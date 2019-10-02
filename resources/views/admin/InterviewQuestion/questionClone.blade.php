@@ -1,31 +1,80 @@
-{{--<div class="row" id="app2">--}}
-{{--    <example-component></example-component>--}}
-{{--</div>--}}
-<form>
+@php
+    $getUrl = parse_url(Request::url(), PHP_URL_PATH);
+    $urlFrag = explode('/', $getUrl);
+    $getMethod = end($urlFrag);
 
-    <div id="sections">
-        <div class="section">
-            <fieldset>
-                <legend>User</legend>
+function get_string_between($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
+}
+    $getId = get_string_between($getUrl, '/admin/interview_questions/', "/$getMethod");
 
-                <p>
-                    <label for="firstName">First Name:</label>
-                    <input name="firstName[]" id="firstName" value="" type="text" />
-                </p>
 
-                <p>
-                    <label for="lastName">Last Name:</label>
-                    <input name="lastName[]" id="lastName" value="" type="text" />
-                </p>
-
-                <p><a href="#" class='remove'>Remove Section</a></p>
-
-            </fieldset>
-        </div>
+@endphp
+<div class="form-group" name="add_name" id="add_name">
+    <div class="alert alert-danger print-error-msg" style="display:none">
+        <ul></ul>
     </div>
 
-    <p><a href="#" class='addsection'>Add Section</a></p>
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dynamic_field">
 
-</form>
+            @if($getMethod == 'create')
+                <tr>
+                    <td>
+                        <input type="text" name="answer[]" placeholder="Enter your Answer"
+                               class="form-control name_list"/>
+                    </td>
+                    <td>
+                        <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
+                    </td>
+                </tr>
+            @endif
+            @if($getMethod == 'edit')
+                @foreach($answers as $key => $answer)
+                    <tr id="row" class="dynamic-added">
+                        @if($getId == $answer->question_id)
+                            <td>
+                                <input id='{{$answer->id}}' type="text" name="answer[{{$answer->id}}]"
+                                       placeholder="Enter your Answer"
+                                       class="form-control name_list" value="{{$answer->answer}}"/>
+                            </td>
+                            <td>
+                                @if(count($answers) > 1)
+                                    {{ Form::open(['method' => 'DELETE', 'route' => ['admin.answers.delete', 'id' => $answer->id], 'name' => 'delete']) }}
+                                    <button class="btn btn-danger">Delete Task</button>
+                                @endif
+                                {{ Form::close() }}
+                            </td>
 
+                        @endif
+                    </tr>
+                @endforeach
+                <td>
+                    <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
+                </td>
+            @endif
+        </table>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postURL = "<?php echo url('addmore'); ?>";
+        var i = 1;
 
+        $('#add').click(function () {
+            i++;
+            $('#dynamic_field').append('<tr id="row' + i + '" class="dynamic-added"><td><input type="text" name="answer[]" placeholder="Enter your Answer" class="form-control name_list" /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+        });
+
+        $(document).on('click', '.btn_remove', function () {
+            var button_id = $(this).attr("id");
+            $('#row' + button_id + '').remove();
+        });
+    });
+</script>

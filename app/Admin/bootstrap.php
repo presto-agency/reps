@@ -6,4 +6,4 @@
 //Meta::addJs('dashboard',(mix('js/admin.js')),['admin-default']);
 //Meta::addJs('dashboard',(mix('js/app.js')),['admin-default']);
 
-Meta::addJs('custom',    asset('js/test.js'),'admin-default');
+//Meta::addJs('InterviewQuestion.questionClone.blade',    asset('js/test.js'),'admin-default');

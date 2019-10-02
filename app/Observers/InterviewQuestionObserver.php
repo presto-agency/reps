@@ -2,19 +2,26 @@
 
 namespace App\Observers;
 
+use App\Http\Controllers\Admin\InterviewVariantAnswerController;
 use App\Models\InterviewQuestion;
 
 class InterviewQuestionObserver
 {
 
-    private static $data;
+    public static $answers;
+    public static $answersEdit;
 
     /**
      * @param InterviewQuestion $poll
      */
+
     public function creating(InterviewQuestion $poll)
     {
-        InterviewQuestionObserver::$data = $poll->getAttributes();
+        $data = $poll->getAttributes();
+        if (array_key_exists('answer', $data)) {
+            InterviewQuestionObserver::$answers = $data['answer'];
+            unset($poll['answer']);
+        }
 
     }
 
@@ -23,17 +30,50 @@ class InterviewQuestionObserver
      */
     public function created(InterviewQuestion $poll)
     {
+        $answers = InterviewQuestionObserver::$answers;
+        $questionId = $poll->id;
 
-//        dd($poll->id, InterviewQuestionObserver::$data);
+        if (!empty($questionId)) {
+            foreach ($answers as $key => $answer) {
+                if (!empty($answer)) {
+                    $addAnswers = new InterviewVariantAnswerController;
+                    $addAnswers->store($questionId, $answer);
+                }
+            };
+        }
     }
 
+    /**
+     * @param InterviewQuestion $poll
+     */
+    public function updating(InterviewQuestion $poll)
+    {
+
+        $data = $poll->getAttributes();
+        if (array_key_exists('answer', $data)) {
+            InterviewQuestionObserver::$answersEdit = $data['answer'];
+            unset($poll['answer']);
+        }
+
+    }
 
     /**
      * @param InterviewQuestion $poll
      */
     public function updated(InterviewQuestion $poll)
     {
-        //
+        $answersEdit = InterviewQuestionObserver::$answersEdit;
+
+        if (!empty($answersEdit)) {
+            foreach ($answersEdit as $key => $answerEdit) {
+                if (!empty($answerEdit)) {
+                    $addAnswers = new InterviewVariantAnswerController;
+                    $addAnswers->update($key, $answerEdit,$poll->id);
+                }
+            };
+
+        }
+
     }
 
     /**
@@ -41,7 +81,11 @@ class InterviewQuestionObserver
      */
     public function deleted(InterviewQuestion $poll)
     {
-        //
+        $questionId = $poll->id;
+        if (!empty($questionId)) {
+            $addAnswers = new InterviewVariantAnswerController;
+            $addAnswers->deletedAll($questionId);
+        }
     }
 
     /**

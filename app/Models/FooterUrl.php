@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class InterviewVariantAnswer extends Model
+class FooterUrl extends Model
 {
     protected $fillable = [
-        'question_id', 'answer',
+        'title',
+        'url',
+        'approved'
     ];
 }

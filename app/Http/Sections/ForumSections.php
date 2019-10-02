@@ -49,9 +49,9 @@ class ForumSections extends Section
             ->setDatatableAttributes(['bInfo' => false])
 //            ->setDisplaySearch(true)
             ->setHtmlAttribute('class', 'table-info table-hover text-center')
-            /*->setActions([
+            ->setActions([
                 AdminColumn::action('export', 'Export')->setIcon('fa fa-share')->setAction('#'),
-            ])*/
+            ])
             ->paginate(50);
         $display->setApply(function ($query) {
             $query->orderBy('created_at', 'asc');
@@ -68,6 +68,11 @@ class ForumSections extends Section
                 ->setWidth('50px'),
             $description = AdminColumn::text('description', 'Description')
                 ->setWidth('50px'),
+            $quantity = AdminColumn::count('topics', 'Quantity topics')
+                ->setWidth('50px'),
+            /*$quantity = AdminColumn::custom('Quantity topics', function(\Illuminate\Database\Eloquent\Model $model) {
+                return $model->topics()->count();
+            })->setWidth('50px'),*/
             $isActive = AdminColumnEditable::checkbox('is_active','Yes', 'No')
                 ->setLabel('Active'),
             $isGeneral = AdminColumnEditable::checkbox('is_general','Yes', 'No')
@@ -76,6 +81,20 @@ class ForumSections extends Section
                 ->setLabel('User can add'),
 
         ]);
+
+        $control = $display->getColumns()->getControlColumn();
+
+        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
+            $url = url('admin/forum_topics');
+            return $url.'?forum_section_id='.$model->getKey(); // Генерация ссылки
+        }, function (\Illuminate\Database\Eloquent\Model $model) {
+            return $model->title . ' (' . $model->topics()->count() . ')'; // Генерация текста на кнопке
+        }, 50);
+        $link->hideText();
+        $link->setIcon('fa fa-eye');
+        $link->setHtmlAttribute('class', 'btn-info');
+
+        $control->addButton($link);
 
         return $display;
     }

@@ -45,7 +45,6 @@ class UserActivityLog extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
-            ->setDisplaySearch(true)
             ->setHtmlAttribute('class', 'table-info table-sm text-center ')
             ->paginate(10);
 
@@ -79,7 +78,6 @@ class UserActivityLog extends Section
                 ->setPlaceholder('Select name')
             ,
             $time = null,
-//              TODO:: Фильтры  на дату с/по, в админке поломаны 23.09.2019
             $ip = AdminColumnFilter::text()->setPlaceholder('Ip'),
             $parameters = null,
 
@@ -88,42 +86,6 @@ class UserActivityLog extends Section
         $display->getColumnFilters()->setPlacement('table.header');
 
         return $display;
-    }
-
-    /**
-     * @param int $id
-     *
-     * @return FormInterface
-     */
-    public function onEdit($id)
-    {
-        // remove if unused
-    }
-
-    /**
-     * @return FormInterface
-     */
-    public function onCreate()
-    {
-        return $this->onEdit(null);
-    }
-
-    /**
-     * @return void
-     */
-    public function onDelete($id)
-    {
-        // remove if unused
-    }
-
-    /**
-     * @return void
-     */
-    public function onRestore($id)
-    {
-
-
-        // remove if unused
     }
 
     private $type;
