@@ -26,6 +26,7 @@
     @include('components.homePage')
     @include('components.block_tournament')
     @include('components.block_replay')
+    @include('components.block_lastNews')
     <main class="py-4">
         @yield('content')
     </main>

@@ -241,19 +241,20 @@
   margin: 0;
 }
 
-.block_tournament .block_futureTournament button {
-  margin: 40px 0;
-  background: #3490dc;
-  border: 0;
-  border-radius: 5px;
-  width: 90%;
-  padding: 5px;
-  color: white;
-  font-size: 16px;
+.block_tournament .block_futureTournament .btn_tournament {
+  margin: 40px auto;
 }
 
 .block_replay .wrapper {
   -webkit-box-shadow: 0px 2px 10px #cccccc;
+}
+
+.block_replay .container_btn {
+  display: flex;
+}
+
+.block_replay .container_btn .btn_tournament {
+  margin: 5px auto 50px;
 }
 
 .block_replay .title_replay {
@@ -261,6 +262,7 @@
   align-items: center;
   background: #f0f4f8;
   height: 60px;
+  margin-bottom: 45px;
 }
 
 .block_replay .title_replay .title_replayText {
@@ -271,13 +273,73 @@
 }
 
 .block_replay .row_game {
-  padding: 45px 10px;
+  padding: 0 10px 25px;
 }
 
 .block_replay .row_game .name_game {
   font-size: 14px;
   color: #3490dc;
   font-weight: bold;
+}
+
+.block_replay .row_game .content_game {
+  display: flex;
+  justify-content: space-around;
+}
+
+.block_replay .row_game .content_game img {
+  width: 10px;
+  height: 10px;
+  margin: 5px 5px;
+}
+
+.block_replay .row_game .content_game .text_matchap {
+  font-size: 14px;
+  padding: 0 5px;
+}
+
+.block_replay .row_game .content_game .text {
+  font-size: 12px;
+  color: #bfc3ce;
+}
+
+.btn_tournament {
+  background: #3490dc;
+  border: 0;
+  border-radius: 5px;
+  width: 90%;
+  padding: 5px;
+  color: white;
+  font-size: 16px;
+}
+
+.block_lastNews {
+  margin: 50px 0 0 0;
+}
+
+.block_lastNews .wrapper {
+  -webkit-box-shadow: 0px 2px 10px #cccccc;
+}
+
+.block_lastNews .title_block {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #3490dc;
+  height: 60px;
+  border: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.block_lastNews .title_block img {
+  width: 20px;
+}
+
+.block_lastNews .title_block .title_text {
+  font-size: 16px;
+  color: white;
+  margin: 0;
 }
 
 @media (max-width: 992px) {

@@ -1,0 +1,14 @@
+<section class="block_lastNews">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3">
+                <div class="wrapper">
+                    <div class=" title_block">
+                        <img  src="{{url('images\svg\check-circle-regular.svg')}}"/>
+                        <p class="title_text">Предстоящие турниры</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

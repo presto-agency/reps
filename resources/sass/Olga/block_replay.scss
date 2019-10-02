@@ -2,11 +2,19 @@
     .wrapper{
         -webkit-box-shadow: 0px 2px 10px #cccccc;
     }
+    & .container_btn{
+        display: flex;
+        & .btn_tournament{
+            margin: 5px auto 50px;
+        }
+    }
+
     & .title_replay{
         display: flex;
         align-items: center;
         background: $light-gray;
         height: 60px;
+        margin-bottom: 45px;
         & .title_replayText{
             font-size: 16px;
             color: $gray;
@@ -15,11 +23,30 @@
         }
     }
     & .row_game{
-        padding: 45px 10px;
+        padding: 0 10px 25px;
         & .name_game{
             font-size: 14px;
             color: $blue;
             font-weight: bold;
+        }
+        .content_game{
+            display: flex;
+            justify-content: space-around;
+            & img{
+                width: 10px;
+                height: 10px;
+                margin: 5px 5px;
+            }
+
+            & .text_matchap{
+                font-size:14px;
+                padding:0 5px;
+            }
+            & .text{
+                font-size: 12px;
+                color:$gray;
+
+            }
         }
     }
 }
