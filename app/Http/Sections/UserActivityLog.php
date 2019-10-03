@@ -36,7 +36,7 @@ class UserActivityLog extends Section
 
     public function getTitle()
     {
-        return parent::getTitle();
+        return 'Лог активности';
     }
 
     /**

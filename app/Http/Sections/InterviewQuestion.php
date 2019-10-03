@@ -37,7 +37,7 @@ class InterviewQuestion extends Section
 
     public function getTitle()
     {
-        return parent::getTitle();
+        return 'Опросы';
     }
 
     /**
