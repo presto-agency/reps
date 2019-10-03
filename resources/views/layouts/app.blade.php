@@ -21,41 +21,42 @@
 </head>
 <body>
 {{--    <div id="app">--}}
-@include('components.header')
-@include('components.Chat')
-@include('components.block-tournament')
-@include('components.block-replay')
-@include('components.block-news')
-@include('components.block-top')
-        <header>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        {{--include header--}}
 
-                    </div>
-                </div>
-            </div>
+{{--@include('components.Chat')--}}
+{{--@include('components.block-tournament')--}}
+{{--@include('components.block-replay')--}}
+{{--@include('components.block-lastNews')--}}
+
+
+        <header>
+                {{--include header--}}
+                @include('components.header')
         </header>
 
         <section class="container">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                {{--include breadcrumbs--}}
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    @include('components.Chat')
+                </div>
             </div>
         </section>
 
         <section class="container">
             <div class="row">
-                <div class="col-3">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-12">
                     {{--include left-side--}}
+                    @include('components.block-tournament')
+                    @include('components.block-replay')
+                    @include('components.block-lastNews')
                 </div>
                 <div class="col-6">
                     @yield('content')
 
                     {{--include content--}}
                 </div>
-                <div class="col-3">
+                <div class="col-xl-3 col-3 col-md-6 col-12">
                     {{--include right-side--}}
+                    @include('components.block-top')
                 </div>
             </div>
         </section>
