@@ -10895,10 +10895,26 @@ a.text-dark:focus {
   background-color: #ffffff;
 }
 
+.footer {
+  background-color: #01093b;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.footer .footer__logo {
+  align-self: center;
+}
+
 .footer .footer__logo .logo__text {
   color: #ffffff;
   font-size: 12px;
   font-weight: 300;
+  margin-top: 19px;
+}
+
+.footer .footer__link {
+  display: flex;
+  flex-direction: column;
 }
 
 .footer .footer__link .link-list__item {
@@ -10921,6 +10937,7 @@ a.text-dark:focus {
   font-weight: 400;
   letter-spacing: 1.2px;
   text-transform: uppercase;
+  margin-bottom: 12px;
 }
 
 .footer .footer__info .footer__text {
@@ -10930,6 +10947,7 @@ a.text-dark:focus {
 }
 
 .footer .footer__info .footer__mail {
+  color: #ffffff;
   text-decoration: none;
   font-size: 14px;
   font-weight: 300;
@@ -10937,13 +10955,57 @@ a.text-dark:focus {
 }
 
 .footer .footer__info .footer__mail svg {
+  margin-right: 15px;
   width: 16px;
   height: 12px;
   fill: #0567cc;
 }
 
-.block_chat-twitch .wrapper {
-  -webkit-box-shadow: 0px 2px 10px #cccccc;
+.footer .footer__our-birthday .footer__title {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.footer .footer__our-birthday .our-birthday__nickname {
+  color: #0567cc;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.footer .footer__useful {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer .footer__useful .footer__title {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.footer .footer__useful .useful__link {
+  color: #0567cc;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: underline;
+  margin-bottom: 20px;
+}
+
+.footer__copyright {
+  text-align: center;
+  background-color: #0567cc;
+}
+
+.footer__copyright .copyright__text {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 32px;
+  margin-bottom: 0;
 }
 
 .block_chat-twitch .text_support {
@@ -11022,8 +11084,7 @@ a.text-dark:focus {
   justify-content: center;
 }
 
-.header .header_container .header_row .logo img,
-.header .header_container .header_row .logo svg {
+.header .header_container .header_row .logo img {
   width: 80%;
 }
 
@@ -11147,7 +11208,7 @@ a.text-dark:focus {
 }
 
 .block_tournament {
-  margin: 40px 0 0 0;
+  margin: 50px 0 0 0;
 }
 
 .block_tournament .wrapper {
@@ -11165,8 +11226,7 @@ a.text-dark:focus {
   border-top-right-radius: 5px;
 }
 
-.block_tournament .title_block img,
-.block_tournament .title_block svg {
+.block_tournament .title_block img {
   width: 20px;
 }
 
@@ -11286,8 +11346,7 @@ a.text-dark:focus {
   border-top-right-radius: 5px;
 }
 
-.block_lastNews .title_block img,
-.block_lastNews .title_block svg {
+.block_lastNews .title_block img {
   width: 20px;
 }
 
@@ -11311,7 +11370,7 @@ a.text-dark:focus {
 }
 
 .block_top {
-  margin: 40px 0 0 0;
+  margin: 50px 0 0 0;
 }
 
 .block_top .wrapper {
@@ -11354,8 +11413,7 @@ a.text-dark:focus {
   border-top-right-radius: 5px;
 }
 
-.block_top .title_block img,
-.block_top .title_block svg {
+.block_top .title_block img {
   width: 20px;
 }
 
@@ -11378,8 +11436,7 @@ a.text-dark:focus {
   align-items: baseline;
 }
 
-.block_top .block_topUsers .content_img img,
-.block_top .block_topUsers .content_img svg {
+.block_top .block_topUsers .content_img img {
   padding-right: 5px;
 }
 
