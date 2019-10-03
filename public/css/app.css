@@ -11008,8 +11008,16 @@ a.text-dark:focus {
   margin-bottom: 0;
 }
 
+.block_chat-twitch {
+  padding-bottom: 40px;
+}
+
 .block_chat-twitch .wrapper {
   -webkit-box-shadow: 0px 2px 10px #cccccc;
+}
+
+.block_chat-twitch .block_chat {
+  padding-bottom: 20px;
 }
 
 .block_chat-twitch .title_Text {
@@ -11045,7 +11053,7 @@ a.text-dark:focus {
 }
 
 .block_chat-twitch .row_contentChat {
-  padding: 30px 10px;
+  padding: 30px 10px 0;
 }
 
 .block_chat-twitch .row_contentChat svg {
@@ -11064,6 +11072,10 @@ a.text-dark:focus {
   color: #3490dc;
   font-size: 14px;
   font-weight: bold;
+}
+
+.block_chat-twitch .row_contentChat .block_user_akk .user {
+  min-width: 160px;
 }
 
 .block_chat-twitch .row_contentChat .block_close {
@@ -11090,6 +11102,11 @@ a.text-dark:focus {
 .block_chat-twitch .row_contentChat .block_userMessage .user_nick {
   font-size: 14px;
   color: #ff8400;
+}
+
+.block_chat-twitch .row_contentChat .block_userMessage img {
+  max-width: 40%;
+  display: block;
 }
 
 .block_chat-twitch .title_video {
