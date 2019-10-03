@@ -11138,6 +11138,7 @@ a.text-dark:focus {
 
 .block_tournament .block_futureTournament .button {
   margin: 40px auto;
+  padding: 5px;
 }
 
 .block_replay .wrapper {
@@ -11150,6 +11151,7 @@ a.text-dark:focus {
 
 .block_replay .container_btn .button {
   margin: 5px auto 50px;
+  padding: 5px;
 }
 
 .block_replay .title_replay {
@@ -11390,6 +11392,75 @@ a.text-dark:focus {
 .button__download-more:hover {
   color: #ffffff;
   background-image: linear-gradient(to bottom, #249bf4 0%, #0567cc 100%);
+}
+
+@media (max-width: 992px) {
+  .header {
+    position: relative;
+  }
+
+  .header .icon_bars {
+    display: block !important;
+    width: 50px;
+  }
+
+  .header .menu_navigation {
+    display: none !important;
+  }
+
+  .header .autorization {
+    display: none !important;
+  }
+
+  .header .main_menu {
+    position: absolute;
+    right: 0;
+    bottom: 30%;
+  }
+
+  .header .search {
+    justify-content: flex-start;
+  }
+
+  .header .button_input {
+    width: 100% !important;
+  }
+
+  .header .button_input .search_input {
+    min-width: 48vw !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .header_row {
+    flex-direction: row-reverse;
+  }
+
+  .header_row .main_menu {
+    position: inherit !important;
+  }
+
+  .header_row .icon_bars {
+    display: block !important;
+    width: 30px !important;
+  }
+
+  .header_row .cabinet {
+    display: flex !important;
+  }
+
+  .header_row .cabinet .icon_cabinet {
+    width: 30px !important;
+  }
+
+  .header_row .button_input {
+    margin-left: 20px;
+  }
+
+  .header_row .button_input .search_input {
+    margin-left: 0 !important;
+    min-width: 77vw !important;
+  }
 }
 
 @media (min-width: 1920px) {

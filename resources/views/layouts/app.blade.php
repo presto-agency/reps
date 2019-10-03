@@ -15,7 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+//hhu
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -23,10 +23,12 @@
     <div id="app">
         @include('components.header')
         @include('components.Chat')
+        @include('components.block-tournament')
+        @include('components.block-replay')
         @include('components.block-news')
         @include('components.block-top')
-        @include('components.block-replay')
-        @include('components.block-turnament')
+
+
 {{--        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">--}}
 {{--            <div class="container">--}}
 {{--                <a class="navbar-brand" href="{{ url('/') }}">--}}
