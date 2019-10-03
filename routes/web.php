@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('content.last_news');
+    return view('layouts.app');
 });
 
 Auth::routes();

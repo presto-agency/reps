@@ -1,3 +1,6 @@
+$blue: rgb(5,103,204);
+$light-gray: rgb(240,244,248);
+$gray:rgb(191,195,206);
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
@@ -6,7 +9,7 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
+@import "media";
 @import "vova/main_vova";
 @import "olya/main_olya";
 @import "global-styles/main-global";
@@ -16,4 +19,5 @@
         max-width: 1440px;
     }
 }
+
 
