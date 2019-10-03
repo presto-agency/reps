@@ -39,7 +39,7 @@ class ReplayMap extends Section
 
     public function getTitle()
     {
-        return 'ReplayMap';
+        return 'Карты';
     }
 
     public function initialize()

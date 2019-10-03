@@ -40,7 +40,7 @@ class User extends Section
 
     public function getTitle()
     {
-        return parent::getTitle();
+        return 'Список';
     }
 
 

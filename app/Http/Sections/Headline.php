@@ -35,7 +35,7 @@ class Headline extends Section
 
     public function getTitle()
     {
-        return parent::getTitle();
+        return 'Новостной заголовок';
     }
 
     /**
