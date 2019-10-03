@@ -36,6 +36,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\Models\ForumSection::class => 'App\Http\Sections\ForumSections',
         \App\Models\ChatSmile::class => 'App\Http\Sections\ChatSmile',
         \App\Models\ChatPicture::class => 'App\Http\Sections\ChatPicture',
+        \App\Models\PublicChat::class => 'App\Http\Sections\PublicChat',
         \App\Models\Banner::class => 'App\Http\Sections\Banner',
 
         \App\Models\Footer::class => 'App\Http\Sections\Footer',
@@ -122,9 +123,10 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'icon' => 'fas fa-user',
                 'priority' => 6,
                 'pages' => [
-                    (new Page(\App\Models\ChatSmile::class))->setPriority(1),
-                    (new Page(\App\Models\ChatPicture::class))->setPriority(2),
-                    (new Page(\App\Models\Tag::class))->setPriority(3),
+                    (new Page(\App\Models\PublicChat::class))->setPriority(1),
+                    (new Page(\App\Models\ChatSmile::class))->setPriority(2),
+                    (new Page(\App\Models\ChatPicture::class))->setPriority(3),
+                    (new Page(\App\Models\Tag::class))->setPriority(4),
                 ]
             ]
         ]);
