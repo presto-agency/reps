@@ -151,7 +151,7 @@
                         </div>
                     </div>
                     <div class="container_btn">
-                        <button class="button">ВСЕ ТУРНИРЫ</button>
+                        <button class="button button__download-more">ВСЕ ТУРНИРЫ</button>
                     </div>
                     <div class="row row_game">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-12">
@@ -226,7 +226,7 @@
                         </div>
                     </div>
                     <div class="container_btn">
-                        <button class="button">ВСЕ ТУРНИРЫ</button>
+                        <button class="button button__download-more">ВСЕ ТУРНИРЫ</button>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ $gray:rgb(191,195,206);
 @import "vova/main_vova";
 @import "olya/main_olya";
 @import "global-styles/main-global";
-
+@import "media";
 @media (min-width: 1920px) {
     .container {
         max-width: 1440px;
