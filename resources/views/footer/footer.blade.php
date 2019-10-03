@@ -1,18 +1,18 @@
 <div class="footer">
     <div class="container">
         <div class="row">
-            <div class="footer__logo col-3">
+            <div class="footer__logo col-xl-3 col-lg-3 col-md-6 col-sm-12">
                 <img src="{{ url('/images/logo.png') }}" class="logo__img img-fluid" alt="logo">
                 <p class="logo__text">Everything about StarCraft®: Remastered</p>
             </div>
-            <div class="footer__link col-2 offset-1">
+            <div class="footer__link col-xl-2 offset-xl-1 col-lg-2 mt-lg-0 offset-lg-1 col-md-6 col-sm-12 mt-4">
                 <a class="link-list__item" href="#">Главная</a>
                 <a class="link-list__item" href="#">Форум</a>
                 <a class="link-list__item" href="#">Госу реплеи</a>
                 <a class="link-list__item" href="#">Реплеи</a>
                 <a class="link-list__item" href="#">Новости</a>
             </div>
-            <div class="footer__info col-2">
+            <div class="footer__info col-xl-2 col-lg-2  mt-lg-0 col-md-6 col-sm-12 mt-4">
                 <h2 class="info__title footer__title">Disclaimer</h2>
                 <p class="footer__text">Этот сайт предназначен для посетителей старше 21 года.</p>
                 <h2 class="info__title footer__title">По всем вопросам:</h2>
@@ -42,7 +42,7 @@
                     treasury@reps.ru</a>
                 <a class="footer__mail" href="mailto:Rus_Brain#6290">Rus_Brain#6290</a>
             </div>
-            <div class="footer__our-birthday col-2">
+            <div class="footer__our-birthday col-xl-2 col-lg-2 mt-lg-0 col-md-6 col-sm-12 mt-4">
                 <h2 class="info__title footer__title">Наши именинники</h2>
                 <div class="row">
                     <div class="col-6">
@@ -59,18 +59,23 @@
                 </div>
 
             </div>
-            <div class="col-2 footer__useful">
-                <h2 class="info__title footer__title">Полезное</h2>
+            <div class="footer__useful col-xl-2 col-lg-2 mt-lg-0 col-md-6 col-sm-12 mt-4">
+                <h2 class="info__title footer__title">Полезное:</h2>
                 <a href="#" class="useful__link">Github code</a>
                 <a href="#" class="useful__link">Top-100</a>
                 <a href="#" class="useful__link">Турниры</a>
                 <a href="#" class="useful__link">Файловый архив</a>
             </div>
         </div>
+    </div>
+</div>
 
-
+<div class="footer__copyright">
+    <div class="container">
         <div class="row">
-
+            <div class="col-12">
+                <p class="copyright__text">2002-2019 Replay Cafe | 2018-2019 Reps2 | 1998-2019 StarCraft: Brood War by Blizzard Entertainment</p>
+            </div>
         </div>
     </div>
 </div>

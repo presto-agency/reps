@@ -1,12 +1,19 @@
 .footer {
+    background-color: #01093b;
+    padding-top: 60px;
+    padding-bottom: 60px;
     .footer__logo {
+        align-self: center;
         .logo__text {
             color: #ffffff;
             font-size: 12px;
             font-weight: 300;
+            margin-top: 19px;
         }
     }
     .footer__link {
+        display: flex;
+        flex-direction: column;
         .link-list__item {
             color: #ffffff;
             font-size: 12px;
@@ -27,6 +34,7 @@
             font-weight: 400;
             letter-spacing: 1.2px;
             text-transform: uppercase;
+            margin-bottom: 12px;
         }
         .footer__text {
             color: #ffffff;
@@ -34,15 +42,60 @@
             font-weight: 300;
         }
         .footer__mail {
+            color: #ffffff;
             text-decoration: none;
             font-size: 14px;
             font-weight: 300;
             line-height: 27px;
             svg {
+                margin-right: 15px;
                 width: 16px;
                 height: 12px;
                 fill: #0567cc;
             }
         }
+    }
+    .footer__our-birthday {
+        .footer__title {
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        .our-birthday__nickname {
+            color: #0567cc;
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+    }
+    .footer__useful {
+        display: flex;
+        flex-direction: column;
+        .footer__title {
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        .useful__link {
+            color: #0567cc;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: underline;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.footer__copyright {
+    text-align: center;
+    background-color: #0567cc;
+    .copyright__text {
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 32px;
+        margin-bottom: 0;
     }
 }
