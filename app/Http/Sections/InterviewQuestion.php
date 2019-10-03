@@ -48,7 +48,7 @@ class InterviewQuestion extends Section
         $display = AdminDisplay::datatablesAsync();
         $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
         $display->paginate(10);
-        $display->with('answers');
+        $display->with('answers', 'userAnswers');
 
         $display->setApply(function ($query) {
             $query->orderBy('id', 'desc');
@@ -66,18 +66,24 @@ class InterviewQuestion extends Section
             $for_login = AdminColumnEditable::checkbox('for_login')->setLabel('For login only')
                 ->setWidth(100),
 
-            $count_answer = AdminColumn::count('answers', 'Answers<br/><small>(count)</small>')
+            $count_answer = AdminColumn::count('answers', 'Количество вариатов')
                 ->setWidth(100),
 
-        ]);
+            $count_answerUsers = AdminColumn::count('userAnswers', 'Количество ответов')
+                ->setWidth(100),
 
+
+        ]);
+        $control = $display->getColumns()->getControlColumn();
+        $buttonShow = $this->show($display);
+        $control->addButton($buttonShow);
         return $display;
     }
 
     /**
-     * @param int $id
-     *
-     * @return FormInterface
+     * @param $id
+     * @return \SleepingOwl\Admin\Form\FormPanel
+     * @throws \Exception
      */
     public function onEdit($id)
     {
@@ -95,10 +101,10 @@ class InterviewQuestion extends Section
                         $active = AdminFormElement::checkbox('active', 'Active'),
 
                         $active = AdminFormElement::checkbox('for_login', 'For login only'),
+
                     ];
                 })->addColumn(function () {
                     return [
-                        /*Костыль с инпутом..:(*/
 
                         $answer = AdminFormElement::hidden('answer'),
                         view('admin.InterviewQuestion.questionClone'),
@@ -112,7 +118,8 @@ class InterviewQuestion extends Section
     }
 
     /**
-     * @return FormInterface
+     * @return \SleepingOwl\Admin\Form\FormPanel
+     * @throws \Exception
      */
     public function onCreate()
     {
@@ -137,10 +144,23 @@ class InterviewQuestion extends Section
         // remove if unused
     }
 
-    public function store($id)
+    /**
+     * @param $display
+     * @return \SleepingOwl\Admin\Display\ControlLink
+     */
+    public function show($display)
     {
-        dd($id, request());
-        parent::updating($id);
-        // remove if unused
+
+        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
+            $url = url('admin/interview_questions/show');
+            return $url . '/' . $model->getKey();
+        }, function (\Illuminate\Database\Eloquent\Model $model) {
+            return 'Show';
+        }, 50);
+        $link->hideText();
+        $link->setIcon('fa fa-eye');
+        $link->setHtmlAttribute('class', 'btn-info');
+
+        return $link;
     }
 }

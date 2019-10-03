@@ -1,0 +1,57 @@
+.button {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 15px 84px 13px;
+    margin-bottom: 0;
+
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: .2s;
+}
+
+.button:focus,
+.button:active:focus {
+    outline: none;
+}
+
+.button:hover,
+.button:focus {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none;
+}
+
+.button:active {
+    background-image: none;
+    outline: 0;
+}
+
+.button__download-more {
+    color: #ffffff;
+    background-image: linear-gradient(to bottom, #249bf4 0%, #0567cc 100%);
+}
+
+.button__download-more:focus {
+    color: #ffffff;
+    background-image: linear-gradient(to bottom, #249bf4 0%, #0567cc 100%);
+}
+
+.button__download-more:hover {
+    color: #ffffff;
+    background-image: linear-gradient(to bottom, #249bf4 0%, #0567cc 100%);
+}

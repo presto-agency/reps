@@ -2,10 +2,7 @@
 
 namespace App\Traits\ModelRelations;
 
-/**
- * Trait UserRelation
- * @package App\Traits\ModelRelations
- */
+
 trait ReplayRelationTrait
 {
 
