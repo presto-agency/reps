@@ -98,6 +98,20 @@ class ForumTopics extends Section
                 ->setWidth('50px'),*/
         ]);
 
+        $control = $display->getColumns()->getControlColumn();
+
+        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
+            $url = url('admin/forum_topics/show');
+            return $url.'/'.$model->getKey(); // Генерация ссылки
+        }, function (\Illuminate\Database\Eloquent\Model $model) {
+            return $model->title; // Генерация текста на кнопке
+        }, 50);
+        $link->hideText();
+        $link->setIcon('fa fa-eye');
+        $link->setHtmlAttribute('class', 'btn-info');
+
+        $control->addButton($link);
+
         $display->setColumnFilters([
             null,
             AdminColumnFilter::text()->setPlaceholder('Title')->setColumnName('title'),

@@ -50,7 +50,7 @@ class Footer extends Section
 
     public function getTitle()
     {
-        return parent::getTitle();
+        return 'Disclaimer';
     }
 
     /**

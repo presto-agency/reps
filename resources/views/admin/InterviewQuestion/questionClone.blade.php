@@ -30,7 +30,7 @@ function get_string_between($string, $start, $end){
                                class="form-control name_list"/>
                     </td>
                     <td>
-                        <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
+                        <button type="button" name="add" id="add" class="btn btn-success">+</button>
                     </td>
                 </tr>
             @endif
@@ -55,7 +55,7 @@ function get_string_between($string, $start, $end){
                     </tr>
                 @endforeach
                 <td>
-                    <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
+                    <button type="button" name="add" id="add" class="btn btn-success">+</button>
                 </td>
             @endif
         </table>

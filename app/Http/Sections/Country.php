@@ -29,9 +29,10 @@ class Country extends Section
         return parent::getIcon();
     }
 
+
     public function getTitle()
     {
-        return parent::getTitle();
+        return 'Страны';
     }
 
     /**
