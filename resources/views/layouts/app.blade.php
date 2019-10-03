@@ -21,6 +21,12 @@
 </head>
 <body>
 {{--    <div id="app">--}}
+@include('components.header')
+@include('components.Chat')
+@include('components.block-tournament')
+@include('components.block-replay')
+@include('components.block-news')
+@include('components.block-top')
         <header>
             <div class="container">
                 <div class="row">
