@@ -11008,6 +11008,249 @@ a.text-dark:focus {
   margin-bottom: 0;
 }
 
+.detailed-news {
+  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+}
+
+.detailed-news .detailed-news__title {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  padding: 20px;
+}
+
+.detailed-news .detailed-news__title .title__wrap {
+  display: flex;
+  align-items: center;
+}
+
+.detailed-news .detailed-news__title .title__wrap .title__icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.detailed-news .detailed-news__title .title__wrap .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 20px;
+  margin-bottom: 0;
+}
+
+.detailed-news .detailed-news__title .title__wrap .title__avatar {
+  width: 28px;
+  height: 28px;
+}
+
+.detailed-news .detailed-news__title .title__wrap .title__nickname {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 13px;
+  margin-bottom: 0;
+}
+
+.detailed-news .detailed-news__title .title__wrap .title__flag {
+  width: 20px;
+  height: 20px;
+  margin-left: 13px;
+}
+
+.detailed-news .detailed-news__title .title__wrap .title__cube {
+  width: 16px;
+  height: 16px;
+  margin-left: 11px;
+}
+
+.detailed-news .detailed-news__title .title__wrap .title__text {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 12px;
+  margin-bottom: 0;
+}
+
+.detailed-news .detailed-news__info {
+  background-color: #ffffff;
+  padding-top: 18px;
+  padding-bottom: 17px;
+  padding-left: 21px;
+  padding-right: 22px;
+}
+
+.detailed-news .detailed-news__info .info__items {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detailed-news .detailed-news__info .info__items .items__watch,
+.detailed-news .detailed-news__info .info__items .items__comment {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.detailed-news .detailed-news__info .info__items .items__watch svg,
+.detailed-news .detailed-news__info .info__items .items__comment svg {
+  width: 15px;
+  height: 13px;
+  fill: #9ca0b6;
+}
+
+.detailed-news .detailed-news__info .info__items .items__watch span,
+.detailed-news .detailed-news__info .info__items .items__comment span {
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-left: 10px;
+}
+
+.detailed-news .detailed-news__info .info__items .items__watch:hover svg,
+.detailed-news .detailed-news__info .info__items .items__comment:hover svg {
+  fill: #0567cc;
+}
+
+.detailed-news .detailed-news__info .info__items .items__comment {
+  margin-left: 32px;
+}
+
+.detailed-news .detailed-news__info .info__items .items__date {
+  margin-left: auto;
+  margin-bottom: 0;
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+}
+
+.detailed-news hr {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.detailed-news .detailed-news__card {
+  border: 0px;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__title {
+  color: #010b4a;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  text-transform: uppercase;
+  margin-top: 36px;
+  margin-bottom: 27px;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__text {
+  color: #010b4a;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  margin-bottom: 28px;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__text span {
+  color: #0567cc;
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__banner {
+  margin-bottom: 39px;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 17px;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__quote {
+  text-decoration: none;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__quote svg {
+  width: 20px;
+  height: 20px;
+  fill: #c7c9d7;
+  transition: 0.3s;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__quote:hover svg {
+  fill: #0567cc;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__share {
+  text-decoration: none;
+  margin-left: 21px;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__share svg {
+  width: 18px;
+  height: 20px;
+  fill: #c7c9d7;
+  transition: 0.3s;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__share:hover svg {
+  fill: #0567cc;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__like {
+  text-decoration: none;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__like svg {
+  width: 20px;
+  height: 18px;
+  fill: #c7c9d7;
+  transition: 0.3s;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__like span {
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-left: 7px;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__like:hover svg {
+  fill: #0567cc;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__dislike {
+  text-decoration: none;
+  margin-left: 17px;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__dislike svg {
+  width: 20px;
+  height: 18px;
+  fill: #c7c9d7;
+  transition: 0.3s;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__dislike span {
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-left: 7px;
+}
+
+.detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__dislike:hover svg {
+  fill: #0567cc;
+}
+
 .block_chat-twitch .text_support {
   font-size: 18px;
   padding: 30px 0;

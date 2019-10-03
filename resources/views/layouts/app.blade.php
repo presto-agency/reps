@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-6">
                     @yield('content')
-
+                    @include('content.detailed-news')
                     {{--include content--}}
                 </div>
                 <div class="col-3">
