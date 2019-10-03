@@ -23,7 +23,7 @@
 <body>
 <div id="app">
     @include('components.header')
-    @include('components.homePage')
+    @include('components.Chat-twitch')
     @include('components.block_tournament')
     @include('components.block_replay')
     @include('components.block_lastNews')
