@@ -6,7 +6,8 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+require('./main');
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -30,3 +31,6 @@ window.Vue = require('vue');
 // const app = new Vue({
 //     el: '#app',
 // });
+
+
+

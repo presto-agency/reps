@@ -10895,6 +10895,53 @@ a.text-dark:focus {
   background-color: #ffffff;
 }
 
+.footer .footer__logo .logo__text {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.footer .footer__link .link-list__item {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 32px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer .footer__link .link-list__item:hover {
+  color: #0567cc;
+}
+
+.footer .footer__info .footer__title {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.footer .footer__info .footer__text {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.footer .footer__info .footer__mail {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 27px;
+}
+
+.footer .footer__info .footer__mail svg {
+  width: 16px;
+  height: 12px;
+  fill: #0567cc;
+}
+
 .block_chat-twitch .text_support {
   font-size: 18px;
   padding: 30px 0;
