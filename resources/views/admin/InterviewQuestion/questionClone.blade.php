@@ -44,7 +44,7 @@ function get_string_between($string, $start, $end){
                                        class="form-control name_list" value="{{$answer->answer}}"/>
                             </td>
                             <td>
-                                @if(count($answers) > 1)
+                                @if(count($answers->where('question_id',$getId)) > 1)
                                     {{ Form::open(['method' => 'DELETE', 'route' => ['admin.answers.delete', 'id' => $answer->id], 'name' => 'delete']) }}
                                     <button class="btn btn-danger">Delete Task</button>
                                 @endif
