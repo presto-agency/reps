@@ -1,4 +1,7 @@
 .block_chat-twitch{
+    & .wrapper{
+        -webkit-box-shadow: 0px 2px 10px #cccccc;
+    }
     & .text_support{
         font-size: 18px;
         padding: 30px 0;
