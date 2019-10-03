@@ -66,8 +66,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
     {
         AdminNavigation::setFromArray([
             [
-                'title' => 'General',
-                'icon' => 'fas fa-fish',
+                'title' => 'Общие',
+                'icon' => 'fas fa-crow',
                 'priority' => 1,
                 'pages' => [
                     (new Page(\App\Models\Country::class))->setPriority(1),
@@ -79,7 +79,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
 
         AdminNavigation::setFromArray([
             [
-                'title' => 'Users',
+                'title' => 'Пользователи',
                 'icon' => 'fas fa-users',
                 'priority' => 2,
                 'pages' => [
@@ -107,7 +107,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         AdminNavigation::setFromArray([
             [
                 'title' => 'Replays',
-                'icon' => 'fab fa-replyd',
+                'icon' => 'fas fa-play-circle',
                 'priority' => 5,
                 'pages' => [
                     (new Page(\App\Models\Replay::class))->setPriority(1),
@@ -119,7 +119,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         AdminNavigation::setFromArray([
             [
                 'title' => 'Болтаем',
-                'icon' => 'fas fa-user',
+                'icon' => 'fas fa-comments',
                 'priority' => 6,
                 'pages' => [
                     (new Page(\App\Models\ChatSmile::class))->setPriority(1),
@@ -132,7 +132,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         AdminNavigation::setFromArray([
             [
                 'title' => 'Footer',
-                'icon' => 'fas fa-user',
+                'icon' => 'fas fa-window-minimize',
                 'priority' => 7,
                 'pages' => [
                     (new Page(\App\Models\Footer::class))->setPriority(1),
