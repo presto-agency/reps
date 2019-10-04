@@ -20,7 +20,9 @@ body {
     //font-family: 'Montserrat', sans-serif !important;
     background-color: #ffffff;
 }
-button:focus {
+button:focus,
+input:focus,
+select:focus {
     outline: none !important;
 }
 

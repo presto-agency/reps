@@ -10654,7 +10654,9 @@ body {
   background-color: #ffffff;
 }
 
-button:focus {
+button:focus,
+input:focus,
+select:focus {
   outline: none !important;
 }
 
@@ -11452,6 +11454,80 @@ button:focus {
 
 .replays .replays__accordion .accordion__topic:hover .fas {
   color: #0567cc;
+}
+
+.search {
+  box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.search .search__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 19px;
+}
+
+.search .search__title .title__icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.search .search__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.search .search__body {
+  padding: 20px;
+}
+
+.search .search__body label {
+  width: 100%;
+  margin-bottom: 25px;
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.search .search__body label input {
+  width: 100%;
+  height: 44px;
+  border-radius: 5px;
+  padding-left: 20px;
+  background-color: #f0f4f8;
+  border: 0;
+}
+
+.search .search__body label select {
+  width: 100%;
+  height: 44px;
+  border-radius: 5px;
+  padding-left: 20px;
+  background-color: #f0f4f8;
+  border: 0;
+  margin-top: 10px;
+  -webkit-appearance: none;
+  background-image: url("/images/arrow-down.png");
+  background-repeat: no-repeat;
+  background-position: center right 20px;
+}
+
+.search .search__body .body__button-search {
+  margin-top: 20px;
+  margin-bottom: 14px;
+}
+
+.search .search__body .body__button-search .button {
+  padding: 15px 120px;
+  width: 100%;
 }
 
 .block_chat-twitch .wrapper {
