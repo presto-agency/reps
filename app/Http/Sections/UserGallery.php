@@ -34,12 +34,12 @@ class UserGallery extends Section
 
     public function getIcon()
     {
-        return 'fas fa-user';
+        return  parent::getIcon();
     }
 
     public function getTitle()
     {
-        return parent::getTitle();
+        return 'Галерея';
     }
 
 

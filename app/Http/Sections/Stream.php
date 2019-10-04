@@ -34,7 +34,7 @@ class Stream extends Section implements Initializable
 
     public function getIcon()
     {
-        return 'fa fa-globe';
+        return 'fa fa-video';
     }
 
     public function getTitle()
