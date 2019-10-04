@@ -52,10 +52,16 @@
                     @include('left-side.replays')
                     @include('left-side.search')
                 </div>
+
                 <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                     {{--include content--}}
                     @yield('content')
                     @include('content.detailed-news')
+                    @include('content.forum-allSections')
+                    @include('content.forum-article')
+
+
+                    {{--include content--}}
                 </div>
                 <div class="col-xl-3 col-3 col-md-6 col-12">
                     {{--include right-side--}}

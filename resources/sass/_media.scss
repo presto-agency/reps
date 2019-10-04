@@ -6,6 +6,11 @@
             display: block!important;
             width: 50px;
         }
+        & .logo{
+            & img{
+                width: 70% !important;
+            }
+        }
         & .menu_navigation{
             display: none!important;
         }
@@ -23,7 +28,7 @@
         & .button_input{
             width: 100% !important;
             & .search_input{
-                min-width: 48vw !important;
+                min-width: 40vw !important;
             }
         }
 
@@ -33,6 +38,14 @@
 @media (max-width: 576px) {
     .header_row{
         flex-direction: row-reverse;
+        & .mode{
+            position: absolute;
+            right: 10%;
+            bottom: 65%;
+        }
+        & .logo{
+            justify-content: center;
+        }
         & .main_menu{
             position:inherit!important;
         }

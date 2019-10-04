@@ -63,18 +63,18 @@ class ChatPicture extends Section
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
-                ->setWidth('15px'),
+                ->setWidth('50px'),
 
             $user = AdminColumn::text('user.name', 'User')
                 ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md')
-                ->setWidth('50px'),
+                ->setWidth('100px'),
 
             $image = AdminColumn::image('image', 'Image')
                 ->setHtmlAttribute('class', 'hidden-sm hidden-xs foobar')
                 ->setWidth('100px'),
 
             $comment = AdminColumn::text('comment', 'Comment')
-                ->setWidth('60px'),
+                ->setWidth('150px'),
 
             $charactor = AdminColumn::text('charactor', 'Charactor')
                 ->setWidth('50px'),
@@ -95,19 +95,7 @@ class ChatPicture extends Section
             null,
             null,
             AdminColumnFilter::text()->setOperator('contains')->setPlaceholder('Charactor'),
-//            AdminColumnFilter::text()->setPlaceholder('News')->setColumnName('news'),
-            /*AdminColumnFilter::range()->setFrom(
-                AdminColumnFilter::text()->setPlaceholder('From')
-            )->setTo(
-                AdminColumnFilter::text()->setPlaceholder('To')
-            ),
-            AdminColumnFilter::range()->setFrom(
-                AdminColumnFilter::date()->setPlaceholder('From Date')->setFormat('d.m.Y')
-            )->setTo(
-                AdminColumnFilter::date()->setPlaceholder('To Date')->setFormat('d.m.Y')
-            ),*/
-//            AdminColumnFilter::select(ForumTopic::class, 'news')->setPlaceholder('News')->setColumnName('news'),
-            null,
+            AdminColumnFilter::text()->setOperator('equal')->setPlaceholder('Tag'),
             null,
         ]);
 
