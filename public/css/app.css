@@ -10644,6 +10644,20 @@ a.text-dark:focus {
   }
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+button:focus {
+  outline: none !important;
+}
+
 .breaking-news {
   box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
   border-radius: 5px;
@@ -10995,6 +11009,91 @@ a.text-dark:focus {
   margin-bottom: 20px;
 }
 
+.footer .produced {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+.footer .produced p {
+  color: #999999;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 24px;
+}
+
+.footer .produced a {
+  color: #999999;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 24px;
+  transition: 0.3s;
+  margin-left: 5px;
+}
+
+.footer .produced a:hover {
+  color: #2980b9;
+}
+
+.footer .produced .devloop__link .small-logo {
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+          animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  -webkit-animation-name: swim;
+          animation-name: swim;
+}
+
+.footer .produced .devloop__link:hover {
+  color: #2980b9;
+}
+
+@-webkit-keyframes swim {
+  0% {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, 0deg) translateY(0px);
+  }
+
+  36% {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, 4deg) translateY(3px);
+  }
+
+  66% {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, -4deg) translateY(1px);
+  }
+
+  100% {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, 0deg) translateY(0px);
+  }
+}
+
+@keyframes swim {
+  0% {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, 0deg) translateY(0px);
+  }
+
+  36% {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, 4deg) translateY(3px);
+  }
+
+  66% {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, -4deg) translateY(1px);
+  }
+
+  100% {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, 0deg) translateY(0px);
+  }
+}
+
 .footer__copyright {
   text-align: center;
   background-color: #0567cc;
@@ -11251,6 +11350,114 @@ a.text-dark:focus {
   fill: #0567cc;
 }
 
+.replays {
+  box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.replays .replays__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 19px;
+}
+
+.replays .replays__title .title__icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.replays .replays__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.replays .replays__accordion {
+  transition: 0.3s;
+}
+
+.replays .replays__accordion .accordion__topic {
+  border-radius: 1px;
+  border: 0px;
+}
+
+.replays .replays__accordion .accordion__topic .topic__header {
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0px;
+}
+
+.replays .replays__accordion .accordion__topic .topic__header .header__title {
+  color: #010b4a;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  transition: 0.3s;
+}
+
+.replays .replays__accordion .accordion__topic .topic__header .header__title-active {
+  color: #7880a1;
+}
+
+.replays .replays__accordion .accordion__topic .topic__header .fa-chevron-down,
+.replays .replays__accordion .accordion__topic .topic__header .fa-ellipsis-h {
+  color: #a9afc4;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.replays .replays__accordion .accordion__topic .topic__body .card-body {
+  padding-bottom: 0;
+}
+
+.replays .replays__accordion .accordion__topic .topic__body .card-body .body__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 25px;
+}
+
+.replays .replays__accordion .accordion__topic .topic__body .card-body .body__wrap .body__title {
+  color: #141d53;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  width: 90%;
+}
+
+.replays .replays__accordion .accordion__topic .topic__body .card-body .body__wrap .body__numb {
+  color: #0567cc;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.replays .replays__accordion .accordion__topic:hover {
+  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+}
+
+.replays .replays__accordion .accordion__topic:hover .header__title {
+  color: #0567cc;
+}
+
+.replays .replays__accordion .accordion__topic:hover .fas {
+  color: #0567cc;
+}
+
+.block_chat-twitch .wrapper {
+  -webkit-box-shadow: 0px 2px 10px #cccccc;
+}
+
 .block_chat-twitch .text_support {
   font-size: 18px;
   padding: 30px 0;
@@ -11327,7 +11534,8 @@ a.text-dark:focus {
   justify-content: center;
 }
 
-.header .header_container .header_row .logo img {
+.header .header_container .header_row .logo img,
+.header .header_container .header_row .logo svg {
   width: 80%;
 }
 
@@ -11451,7 +11659,7 @@ a.text-dark:focus {
 }
 
 .block_tournament {
-  margin: 50px 0 0 0;
+  margin: 40px 0 0 0;
 }
 
 .block_tournament .wrapper {
@@ -11469,7 +11677,8 @@ a.text-dark:focus {
   border-top-right-radius: 5px;
 }
 
-.block_tournament .title_block img {
+.block_tournament .title_block img,
+.block_tournament .title_block svg {
   width: 20px;
 }
 
@@ -11589,7 +11798,8 @@ a.text-dark:focus {
   border-top-right-radius: 5px;
 }
 
-.block_lastNews .title_block img {
+.block_lastNews .title_block img,
+.block_lastNews .title_block svg {
   width: 20px;
 }
 
@@ -11613,7 +11823,7 @@ a.text-dark:focus {
 }
 
 .block_top {
-  margin: 50px 0 0 0;
+  margin: 40px 0 0 0;
 }
 
 .block_top .wrapper {
@@ -11656,7 +11866,8 @@ a.text-dark:focus {
   border-top-right-radius: 5px;
 }
 
-.block_top .title_block img {
+.block_top .title_block img,
+.block_top .title_block svg {
   width: 20px;
 }
 
@@ -11679,7 +11890,8 @@ a.text-dark:focus {
   align-items: baseline;
 }
 
-.block_top .block_topUsers .content_img img {
+.block_top .block_topUsers .content_img img,
+.block_top .block_topUsers .content_img svg {
   padding-right: 5px;
 }
 
