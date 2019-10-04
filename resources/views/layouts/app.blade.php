@@ -50,8 +50,10 @@
                     @include('components.block-lastNews')
                 </div>
                 <div class="col-6">
+                    @include('content.Forum-article')
                     @yield('content')
                     @include('content.detailed-news')
+
                     {{--include content--}}
                 </div>
                 <div class="col-xl-3 col-3 col-md-6 col-12">

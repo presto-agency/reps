@@ -142,33 +142,9 @@
                 <div class="row video_twitch">
                     <iframe style="width: 99%; height: 510px;" allowfullscreen="true" scrolling="no" frameborder="0" src="https://player.twitch.tv/?volume=0.5&amp;!muted&amp;channel=grimeboss_tv"></iframe>
                 </div>
-
             </div>
         </div>
     </div>
 </section>
-{{--    <div class="container">--}}
-{{--        <p class="text_support">Не можешь восстановить старую учетку? Збыл емейл? Пиши Русбрейну, востаановим!Идёт работа по слиянию <a href="#">reps.ru</a> и <a href="#">defiler.ru</a></p>--}}
-{{--        <div class="row">--}}
-{{--            <div class="col-xl-3 col-lg-3 col-md-3 block_chat">--}}
-{{--                <div class="row row_titleChat">--}}
-{{--                    <div class="col-xl-6 col-lg-6 col-md-6 content_left">--}}
-{{--                        <img id="img_menuMob" class="icon_bars" src="{{url('images\speech-bubble.png')}}"/>--}}
-{{--                        <p class="titleGuest">Guest</p>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-xl-6 col-lg-6 col-md-6 content_right">--}}
-{{--                        <img class="icon_bars" src="{{url('images\arrow-point-to-right.png')}}"/>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div >5454</div>--}}
-{{--            </div>--}}
-{{--            <div class="col-xl-9 col-lg-9 col-md-9 title_video">--}}
-{{--                <div class="video_header">--}}
-{{--                    <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>--}}
-{{--                    <img class="icon_bars" src="{{url('images\ava.png')}}"/>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
 
-{{--    </div>--}}
 
