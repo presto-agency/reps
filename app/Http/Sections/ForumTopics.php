@@ -144,14 +144,11 @@ class ForumTopics extends Section
             $title = AdminFormElement::text('title', 'Title')
                 ->setValidationRules(['required', 'max:255']),
             $preview_img = AdminFormElement::image('preview_img', 'Preview images'),
-            $preview_content = AdminFormElement::wysiwyg('preview_content', 'Preview', 'simplemde')->disableFilter(),
-            $content = AdminFormElement::wysiwyg('content', 'Content', 'simplemde')->disableFilter(),
+            $preview_content = AdminFormElement::wysiwyg('preview_content', 'Preview')->disableFilter(),
+            $content = AdminFormElement::wysiwyg('content', 'Content')->disableFilter(),
             $start_on = AdminFormElement::date('start_on', 'Publish from')->setFormat('Y-m-d')->required(),
             $news = AdminFormElement::checkbox('news', 'Display in the news'),
             $author = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
-
-            $rating = AdminFormElement::hidden('rating')->setDefaultValue(0),
-
         ]);
         return $form;
     }
