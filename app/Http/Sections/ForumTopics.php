@@ -114,22 +114,15 @@ class ForumTopics extends Section
 
         $display->setColumnFilters([
             null,
-            AdminColumnFilter::text()->setPlaceholder('Title')->setColumnName('title'),
-//            AdminColumnFilter::text()->setPlaceholder('News')->setColumnName('news'),
-            /*AdminColumnFilter::range()->setFrom(
-                AdminColumnFilter::text()->setPlaceholder('From')
-            )->setTo(
-                AdminColumnFilter::text()->setPlaceholder('To')
-            ),
-            AdminColumnFilter::range()->setFrom(
-                AdminColumnFilter::date()->setPlaceholder('From Date')->setFormat('d.m.Y')
-            )->setTo(
-                AdminColumnFilter::date()->setPlaceholder('To Date')->setFormat('d.m.Y')
-            ),*/
-//            AdminColumnFilter::select(ForumTopic::class, 'news')->setPlaceholder('News')->setColumnName('news'),
+            AdminColumnFilter::text()->setOperator('contains')->setPlaceholder('Title'),
             AdminColumnFilter::select(ForumSection::class, 'title')->setPlaceholder('Section')->setColumnName('forum_section_id'),
             null,
+            null,
+            null,
+            null,
+            null,
         ]);
+        $display->getColumnFilters()->setPlacement('table.header');
 
         return $display;
     }
@@ -157,7 +150,7 @@ class ForumTopics extends Section
             $news = AdminFormElement::checkbox('news', 'Display in the news'),
             $author = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
 
-            $rating = AdminFormElement::hidden('rating')->setDefaultValue(999),
+            $rating = AdminFormElement::hidden('rating')->setDefaultValue(0),
 
         ]);
         return $form;
