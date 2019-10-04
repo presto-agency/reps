@@ -155,7 +155,7 @@ class InterviewQuestion extends Section
             $url = url('admin/interview_questions/show');
             return $url . '/' . $model->getKey();
         }, function (\Illuminate\Database\Eloquent\Model $model) {
-            return 'Show';
+            return 'Просмотреть';
         }, 50);
         $link->hideText();
         $link->setIcon('fa fa-eye');

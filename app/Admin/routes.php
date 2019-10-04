@@ -10,7 +10,7 @@ Route::delete('interview_variant_answers/delete/{id}', '\App\Http\Controllers\Ad
 
 Route::get('interview_questions/show/{id}', '\App\Http\Controllers\Admin\InterviewQuestionsController@show');
 
-
+Route::get('replays/show/{id}', '\App\Http\Controllers\Admin\ReplayController@show');
 
 
 

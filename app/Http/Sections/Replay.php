@@ -23,22 +23,29 @@ use SleepingOwl\Admin\Section;
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
+
 class Replay extends Section
 {
     /**
-     * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
-     *
      * @var bool
      */
     protected $checkAccess = false;
-
+    /**
+     * @var bool
+     */
     protected $alias = false;
 
+    /**
+     * @return string
+     */
     public function getIcon()
     {
         return 'fas fa-reply';
     }
 
+    /**
+     * @return string
+     */
     public function getTitle()
     {
         return 'Список';
@@ -65,38 +72,38 @@ class Replay extends Section
             $query->orderBy('id', 'desc');
         });
 
-        $display->with('users','maps','types');
+        $display->with('users', 'maps', 'types');
 
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')
                 ->setWidth(50),
 
-            $user_id = AdminColumn::relatedLink('users.name', 'User'),
+            $user_id = AdminColumn::relatedLink('users.name', 'Пользователь'),
 
-            $user_replay = AdminColumn::text('user_replay', 'Replay<br/><small>(title)</small>'),
+            $user_replay = AdminColumn::text('user_replay', 'Название'),
 
-            $map_id = AdminColumn::relatedLink('maps.name', 'Map'),
+            $map_id = AdminColumn::relatedLink('maps.name', 'Карта'),
 
-            $country = AdminColumn::custom('Country', function ($replay) {
+            $country = AdminColumn::custom('Страны', function ($replay) {
                 return "{$replay->firstCountries->name}" . '<br/><small>vs</small><br/>' . "{$replay->secondCountries->name}";
             }),
 
-            $race = AdminColumn::custom('Race', function ($replay) {
+            $race = AdminColumn::custom('Расы', function ($replay) {
                 return "{$replay->firstRaces->title}" . '<br/><small>vs</small><br/>' . "{$replay->secondRaces->title}";
             }),
 
-            $type_id = AdminColumn::text('types.title', 'Type')
+            $type_id = AdminColumn::text('types.title', 'Тип')
                 ->append(AdminColumn::filter('type_id'))
-                ->setWidth(100),
+                ->setWidth(50),
 
-            $comments_count = AdminColumn::text('comments_count', 'Comment')
+            $comments_count = AdminColumn::text('comments_count', 'Коментарии')
                 ->setWidth(105),
 
-            $user_rating = AdminColumn::relatedLink('user_rating', 'User<br/><small>(rating)</small>')
-                ->setWidth(65),
+            $user_rating = AdminColumn::relatedLink('user_rating', 'Оценка <br/><small>(пользователей)</small>')
+                ->setWidth(125),
 
-            $rating = AdminColumn::custom('Raiting', function ($replay) {
+            $rating = AdminColumn::custom('Рейтинг', function ($replay) {
                 $positive = $replay->negative_count;
                 $negative = $replay->positive_count;
                 $result = $positive - $negative;
@@ -107,9 +114,9 @@ class Replay extends Section
                 return "{$thumbsUp}" . "({$positive})" . '<br/>' . "{$equals}" . "({$result})" . '<br/>' . "{$thumbsDown}" . "({$negative})";
             })->setWidth(10),
 
-            $approved = AdminColumnEditable::checkbox('approved')->setLabel('Approved')
+            $approved = AdminColumnEditable::checkbox('approved')->setLabel('Подтвержден')
                 ->append(AdminColumn::filter('approved'))
-                ->setWidth(100),
+                ->setWidth(200),
 
         ]);
 
@@ -132,14 +139,19 @@ class Replay extends Section
                 ->setPlaceholder('Select'),
 
         ]);
+        $control = $display->getColumns()->getControlColumn();
+        $buttonShow = $this->show();
+        $control->addButton($buttonShow);
+
+
         $display->getColumnFilters()->setPlacement('table.header');
         return $display;
     }
 
     /**
-     * @param int $id
-     *
-     * @return FormInterface
+     * @param $id
+     * @return \SleepingOwl\Admin\Form\FormPanel
+     * @throws \Exception
      */
     public function onEdit($id)
     {
@@ -152,7 +164,7 @@ class Replay extends Section
                     $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
 
                     $user_replay = AdminFormElement::text('user_replay', 'Replay title')
-                        ->setValidationRules(['required', 'string',  'between:4,255'])
+                        ->setValidationRules(['required', 'string', 'between:4,255'])
                 ], 3)->addColumn([
                     $type_id = AdminFormElement::select('type_id', 'Type', $this->type())
                         ->setValidationRules(['required', 'string'])
@@ -211,18 +223,29 @@ class Replay extends Section
 
         $form->addBody([
 
-            $file = AdminFormElement::file('file', 'File')
-                ->setValidationRules(['required', 'file', 'max:10000'])
-                ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage/replay/file';
-                })->setUploadFileName(function (UploadedFile $file) {
-                    return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
-                }),
-
-            $date = AdminFormElement::date('start_date', 'Date start')->setFormat('Y-m-d'),
-
             $content = AdminFormElement::wysiwyg('content', 'Content')
                 ->setValidationRules(['nullable', 'string', 'between:1,1000']),
+            AdminFormElement::columns()
+                ->addColumn(function () {
+                    return [
+                        $file = AdminFormElement::file('file', 'File')
+                            ->setValidationRules(['required', 'file', 'max:10000'])
+                            ->setUploadPath(function (UploadedFile $file) {
+                                return 'storage/file/replay';
+                            })->setUploadFileName(function (UploadedFile $file) {
+                                return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
+                            }),
+                    ];
+                })
+                ->addColumn(function () {
+                    return [
+                        $date = AdminFormElement::date('start_date', 'Date start')->setFormat('Y-m-d'),
+
+                        $approved = AdminFormElement::checkbox('approved', 'Approved')
+
+                    ];
+                })
+
 
         ]);
 
@@ -252,6 +275,28 @@ class Replay extends Section
     {
         // remove if unused
     }
+
+    /**
+     * @return \SleepingOwl\Admin\Display\ControlLink
+     */
+    public function show()
+    {
+
+        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
+            $url = url('admin/replays/show');
+            return $url . '/' . $model->getKey();
+        }, function (\Illuminate\Database\Eloquent\Model $model) {
+            return 'Просмотреть';
+        }, 50);
+        $link->hideText();
+        $link->setIcon('fa fa-eye');
+        $link->setHtmlAttribute('class', 'btn-info');
+
+        return $link;
+    }
+
+
+
 
     private $user, $map, $country, $race, $type;
 

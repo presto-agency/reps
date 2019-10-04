@@ -23,20 +23,27 @@ use SleepingOwl\Admin\Section;
  */
 class UserGallery extends Section
 {
+
     /**
-     * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
-     *
      * @var bool
      */
     protected $checkAccess = false;
-
+    /**
+     * @var bool
+     */
     protected $alias = false;
 
+    /**
+     * @return string
+     */
     public function getIcon()
     {
         return  parent::getIcon();
     }
 
+    /**
+     * @return string
+     */
     public function getTitle()
     {
         return 'Галерея';
@@ -44,7 +51,8 @@ class UserGallery extends Section
 
 
     /**
-     * @return DisplayInterface
+     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
+     * @throws \Exception
      */
     public function onDisplay()
     {
@@ -119,7 +127,7 @@ class UserGallery extends Section
 
             $picture = AdminFormElement::image('picture', 'Picture')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage/gallery';
+                    return 'storage/image/user/gallery';
                 })
                 ->setUploadFileName(function (UploadedFile $file) {
                     return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
