@@ -1,7 +1,7 @@
 .block_chat-twitch{
     padding-bottom: 40px;
     & .wrapper{
-        -webkit-box-shadow: 0px 2px 10px #cccccc;
+        box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     }
     & .block_chat{
         padding-bottom: 20px;
@@ -36,12 +36,33 @@
         }
 
     }
+    & .messanger{
+        max-height:620px;
+        overflow:scroll;
+
+    }
+
+
+    & .login_block{
+        padding: 40px 0;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        & a{
+            font-size: 14px;
+            & span{
+                border-bottom: 1px solid;
+                font-weight: bold;
+            }
+        }
+    }
     .row_contentChat{
         padding: 30px 10px 0;
         & svg{
             height: 15px;
             width: 15px;
         }
+
         & .block_user_akk{
             display: flex;
             align-items: center;
@@ -98,10 +119,35 @@
         & .video_header{
             display: flex;
             align-items: center;
-
             & img{
                 padding-right: 20px;
             }
         }
     }
+    & .video_twitch{
+        padding: 40px 0;
+        background: black;
+        justify-content: center;
+        align-items: center;
+        height: 770px;
+
+    }
+
+    & .pl-controls-bottom pl-flex qa-controls-bottom{
+        display: none;
+    }
+}
+ .player-streaminfo{
+    background: red;
+}
+.messanger::-webkit-scrollbar {
+        width: 10px;
+  //  height: 227px;
+
+}
+.messanger::-webkit-scrollbar-thumb {
+    background-color: #e2e5e9;
+    opacity: 0.8;
+    border-radius: 4px;
+    height: 227px;
 }
