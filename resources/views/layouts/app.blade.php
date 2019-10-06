@@ -16,6 +16,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -48,12 +49,16 @@
                     @include('components.block-tournament')
                     @include('components.block-replay')
                     @include('components.block-lastNews')
+                    @include('left-side.replays')
+                    @include('left-side.search')
                 </div>
-                <div class="col-6">
-                    @include('content.forum-allSections')
-                    @include('content.forum-article')
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                    {{--include content--}}
                     @yield('content')
                     @include('content.detailed-news')
+                    @include('content.forum-allSections')
+                    @include('content.forum-article')
 
 
                     {{--include content--}}
@@ -68,6 +73,8 @@
         <footer>
             @include('footer.footer')
         </footer>
+
+<script src="https://kit.fontawesome.com/75f3a42e45.js"></script>
 
 {{--    </div>--}}
 
