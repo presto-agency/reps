@@ -59,6 +59,7 @@
                     @include('content.detailed-news')
                     @include('content.forum-allSections')
                     @include('content.forum-article')
+                    @include('content.gocu-replays')
 
 
                     {{--include content--}}
