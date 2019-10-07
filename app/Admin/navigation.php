@@ -41,6 +41,12 @@ return [
 //        'url' => route('admin.dashboard'),
 //    ],
 
+    [
+        'title' => 'Translation Manager',
+        'icon' => 'fa fa-language',
+        'url' => url('admin/translations'),
+    ],
+
     // Examples
     // [
     //    'title' => 'Content',

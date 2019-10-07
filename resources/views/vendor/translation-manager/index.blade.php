@@ -108,6 +108,9 @@
             <a href="<?php echo action('\Barryvdh\TranslationManager\Controller@getIndex') ?>" class="navbar-brand">
                 Translation Manager
             </a>
+            <a href="<?php echo route('admin.dashboard') ?>" class="navbar-brand">
+                Back to Admin Panel
+            </a>
         </div>
     </div>
 </header>
