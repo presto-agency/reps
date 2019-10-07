@@ -12505,6 +12505,134 @@ select:focus {
   padding: 16px 20px 0;
 }
 
+.Page_tournament-content {
+  margin: 40px 0 0 0;
+}
+
+.Page_tournament-content .wrapper {
+  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+}
+
+.Page_tournament-content .title_block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0567cc;
+  height: 60px;
+  border: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 20px;
+}
+
+.Page_tournament-content .title_block .right_content {
+  display: flex;
+}
+
+.Page_tournament-content .title_block .right_content svg {
+  margin-right: 10px;
+}
+
+.Page_tournament-content .title_block .left_content {
+  display: flex;
+  align-items: center;
+}
+
+.Page_tournament-content .title_block .left_content svg {
+  margin-left: 10px;
+}
+
+.Page_tournament-content .title_block .left_content .title_text {
+  font-size: 14px;
+  color: white;
+  margin: 0;
+}
+
+.Page_tournament-content .title_block img,
+.Page_tournament-content .title_block svg {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.Page_tournament-content .title_block .title_text {
+  font-size: 16px;
+  color: white;
+  margin: 0;
+}
+
+.Page_tournament-content .block_navigationTournament {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f0f4f8;
+  height: 60px;
+  border: 0;
+  padding: 20px;
+}
+
+.Page_tournament-content .block_navigationTournament a {
+  color: #bfc3ce;
+  font-size: 16px;
+}
+
+.Page_tournament-content .tournament_info {
+  padding: 25px 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Page_tournament-content .tournament_info svg {
+  fill: #bfc3ce;
+  width: 10px;
+  margin-right: 10px;
+}
+
+.Page_tournament-content .tournament_info .place {
+  display: flex;
+  align-items: center;
+}
+
+.Page_tournament-content .tournament_info .place span {
+  font-size: 14px;
+  color: #3490dc;
+}
+
+.Page_tournament-content .tournament_info .time {
+  display: flex;
+  align-items: center;
+}
+
+.Page_tournament-content .tournament_info .time span {
+  font-size: 14px;
+}
+
+.Page_tournament-content .tournament_info .status span {
+  font-size: 12px;
+  border-radius: 15px;
+  text-transform: uppercase;
+  padding: 5px 30px;
+}
+
+.Page_tournament-content .tournament_info .status .upcoming {
+  color: #ffda60;
+  background-color: #fff4c7;
+}
+
+.Page_tournament-content .tournament_info .status .open {
+  color: #55bf63;
+  background-color: #c3e9c8;
+}
+
+.Page_tournament-content .tournament_info .status .finished {
+  color: #ccced8;
+  background-color: #e5e6ed;
+}
+
+.Page_tournament-content .tournament_info .players {
+  font-size: 12px;
+}
+
 .button {
   font-size: 12px;
   font-weight: 400;
