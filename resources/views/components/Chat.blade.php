@@ -18,8 +18,10 @@
                             <div class="user">
                                 <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
                                 <img class="icon_bars" src="{{url('images\ava.png')}}"/>
-                                <span class="blue_text">Rus_Brain</span>
-                                <span>#3797</span>
+                                <a href="#">
+                                    <span class="blue_text">Rus_Brain</span>
+                                    <span class="number_mess">#3797</span>
+                                </a>
                             </div>
                             <div class=" block_close">
                                 <button>
@@ -41,8 +43,10 @@
                             <div class="user">
                                 <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
                                 <img class="icon_bars" src="{{url('images\ava.png')}}"/>
-                                <span class="blue_text">Rus_Brain</span>
-                                <span>#3797</span>
+                                <a href="#">
+                                    <span class="blue_text">Rus_Brain</span>
+                                    <span class="number_mess">#3797</span>
+                                </a>
                             </div>
                             <div class=" block_close">
                                 <button>
@@ -63,8 +67,10 @@
                             <div class="user">
                                 <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
                                 <img class="icon_bars" src="{{url('images\ava.png')}}"/>
-                                <span class="blue_text">Rus_Brain</span>
-                                <span>#3797</span>
+                                <a href="#">
+                                    <span class="blue_text">Rus_Brain</span>
+                                    <span class="number_mess">#3797</span>
+                                </a>
                             </div>
                             <div class=" block_close">
                                 <button>
@@ -85,8 +91,10 @@
                             <div class="user">
                                 <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
                                 <img class="icon_bars" src="{{url('images\ava.png')}}"/>
-                                <span class="blue_text">Rus_Brain</span>
-                                <span>#3797</span>
+                                <a href="#">
+                                    <span class="blue_text">Rus_Brain</span>
+                                    <span class="number_mess">#3797</span>
+                                </a>
                             </div>
                             <div class=" block_close">
                                 <button>
@@ -107,8 +115,10 @@
                             <div class="user">
                                 <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
                                 <img class="icon_bars" src="{{url('images\ava.png')}}"/>
-                                <span class="blue_text">Rus_Brain</span>
-                                <span>#3797</span>
+                                <a href="#">
+                                    <span class="blue_text">Rus_Brain</span>
+                                    <span class="number_mess">#3797</span>
+                                </a>
                             </div>
                             <div class=" block_close">
                                 <button>

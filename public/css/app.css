@@ -11621,6 +11621,10 @@ select:focus {
   min-width: 160px;
 }
 
+.block_chat-twitch .row_contentChat .block_user_akk .user .number_mess {
+  color: black;
+}
+
 .block_chat-twitch .row_contentChat .block_close {
   display: flex;
   justify-content: center;
@@ -11768,36 +11772,36 @@ select:focus {
   font-size: 12px;
 }
 
-.header .header_container .header_row .search {
+.header .header_container .header_row .header_search {
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
 
-.header .header_container .header_row .search button {
+.header .header_container .header_row .header_search button {
   background: none;
   border: 0;
 }
 
-.header .header_container .header_row .search .button_input {
+.header .header_container .header_row .header_search .button_input {
   display: flex;
-  width: 40px;
+  width: 24px;
   transition: 1.5s;
 }
 
-.header .header_container .header_row .search .active_button_input {
+.header .header_container .header_row .header_search .active_button_input {
   width: 170px;
 }
 
-.header .header_container .header_row .search .active_button_input .search_input {
+.header .header_container .header_row .header_search .active_button_input .search_input {
   margin-left: 5px;
 }
 
-.header .header_container .header_row .search .disactive_input {
+.header .header_container .header_row .header_search .disactive_input {
   background: white;
 }
 
-.header .header_container .header_row .search .search_input {
+.header .header_container .header_row .header_search .search_input {
   height: 30px;
   background: none;
   border: 0;
@@ -11809,31 +11813,31 @@ select:focus {
   font-style: italic;
 }
 
-.header .header_container .header_row .search ::-webkit-input-placeholder {
+.header .header_container .header_row .header_search ::-webkit-input-placeholder {
   color: white;
   font-style: italic;
   opacity: 2;
 }
 
-.header .header_container .header_row .search ::-moz-placeholder {
+.header .header_container .header_row .header_search ::-moz-placeholder {
   color: white;
   font-style: italic;
   opacity: 2;
 }
 
-.header .header_container .header_row .search :-ms-input-placeholder {
+.header .header_container .header_row .header_search :-ms-input-placeholder {
   color: white;
   font-style: italic;
   opacity: 2;
 }
 
-.header .header_container .header_row .search ::-ms-input-placeholder {
+.header .header_container .header_row .header_search ::-ms-input-placeholder {
   color: white;
   font-style: italic;
   opacity: 2;
 }
 
-.header .header_container .header_row .search ::placeholder {
+.header .header_container .header_row .header_search ::placeholder {
   color: white;
   font-style: italic;
   opacity: 2;
