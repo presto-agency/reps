@@ -123,8 +123,6 @@ class UserGallery extends Section
         $display = AdminForm::panel();
         $display->setItems([
 
-            $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
-
             $picture = AdminFormElement::image('picture', 'Picture')
                 ->setUploadPath(function (UploadedFile $file) {
                     return 'storage/image/user/gallery';

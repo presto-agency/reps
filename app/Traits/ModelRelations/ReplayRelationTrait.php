@@ -41,4 +41,12 @@ trait ReplayRelationTrait
         return $this->belongsTo(\App\Models\Race::class, 'second_race', 'id');
     }
 
+    /**
+     * Get all of the topic comments.
+     */
+    public function comments()
+    {
+        return $this->morphMany('App\Models\Comment', 'commentable');
+    }
+
 }

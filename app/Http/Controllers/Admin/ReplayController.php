@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use AdminSection;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Replay;
+use Illuminate\Http\Request;
 
 
 class ReplayController extends Controller
@@ -36,6 +38,7 @@ class ReplayController extends Controller
             'secondCountries',
             'firstRaces',
             'secondRaces',
+            'comments'
         ];
         $replay = Replay::select($columns)->with($relations)->findOrFail($id);
 
@@ -54,4 +57,25 @@ class ReplayController extends Controller
         return response()->download($filePath);
 
     }
+
+    public function comment(Request $request, $id)
+    {
+
+        $topic = Replay::find($id);
+        $comment = new Comment([
+            'user_id' => auth()->user()->id,
+            'content' => $request->input('content'),
+        ]);
+        $topic->comments()->save($comment);
+
+        return back();
+    }
+
+    public function deleteComment($id)
+    {
+        Comment::find($id)->delete();
+
+        return back();
+    }
+
 }

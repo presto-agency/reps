@@ -71,6 +71,39 @@
                     {!! $replay->content !!}
                 </div>
             </div>
+            <div class="box-body chat" id="chat-box">
+                <div class="box-footer">
+                    {{ Form::open(['method' => 'POST', 'route' => ['admin.replays.comment_send', 'id' => $replay->id]]) }}
+                    <div class="input-group">
+                        <input class="form-control" placeholder="Коментарий" type="text" name="content">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    {{ Form::close() }}
+                </div>
+                <div class="table-content">
+                    @foreach($replay->comments as $comment)
+                        <div class="item row">
+                            <img src="{{$comment->user->avatar ?? $comment->user->avatar_url_or_blank }}"
+                                 class="img-circle img-bordered-sm" alt="User avatar"/>
+                            <p class="message">
+                                <a href="#" class="name">
+                                    <small class="text-muted pull-right"><i
+                                            class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d-m-Y')}}
+                                    </small>
+                                    {{$comment->user->name}}
+                                </a>
+                                {{ Form::open(['method' => 'DELETE', 'route' => ['admin.replays.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
+                                <button class="btn btn-default text-red" title="Удалить запись"><i
+                                        class="fa fa-trash"></i></button>
+                                {{ Form::close() }}
+                                {!! $comment->content !!}
+                            </p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 </div>
