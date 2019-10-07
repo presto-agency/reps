@@ -5,19 +5,19 @@
             <div class="col-xl-3 col-lg-3 col-md-6 wrapper block_chat">
                 <div class="row container_titleChat ">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_left">
-                        <img id="img_menuMob" class="icon_bars" src="{{url('images\speech-bubble.png')}}"/>
+                        <img id="img_menuMob" class="icon_bars" src="{{url('/images\speech-bubble.png')}}"/>
                         <p class="title_Text">Guest</p>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_right">
-                        <img class="icon_bars" src="{{url('images\arrow-point-to-right.png')}}"/>
+                        <img class="icon_bars" src="{{url('/images\arrow-point-to-right.png')}}"/>
                     </div>
                 </div>
                 <div class="row messanger">
                     <div class="row_contentChat">
                         <div class=" block_user_akk">
                             <div class="user">
-                                <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
-                                <img class="icon_bars" src="{{url('images\ava.png')}}"/>
+                                <img class="icon_bars" src="{{url('/images\country_flag.png')}}"/>
+                                <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
                                     <span class="number_mess">#3797</span>
@@ -41,8 +41,8 @@
                     <div class="row_contentChat">
                         <div class=" block_user_akk">
                             <div class="user">
-                                <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
-                                <img class="icon_bars" src="{{url('images\ava.png')}}"/>
+                                <img class="icon_bars" src="{{url('/images\country_flag.png')}}"/>
+                                <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
                                     <span class="number_mess">#3797</span>
@@ -65,8 +65,8 @@
                     <div class="row_contentChat">
                         <div class=" block_user_akk">
                             <div class="user">
-                                <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
-                                <img class="icon_bars" src="{{url('images\ava.png')}}"/>
+                                <img class="icon_bars" src="{{url('/images\country_flag.png')}}"/>
+                                <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
                                     <span class="number_mess">#3797</span>
@@ -89,8 +89,8 @@
                     <div class="row_contentChat">
                         <div class=" block_user_akk">
                             <div class="user">
-                                <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
-                                <img class="icon_bars" src="{{url('images\ava.png')}}"/>
+                                <img class="icon_bars" src="{{url('/images\country_flag.png')}}"/>
+                                <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
                                     <span class="number_mess">#3797</span>
@@ -107,14 +107,14 @@
                         </div>
                         <div class=" block_userMessage">
                             <span class="user_nick">@45554</span>
-                            <span class="user_text">      <img class="icon_bars" src="{{url('images\Layer_6.png')}}"/></span>
+                            <span class="user_text">      <img class="icon_bars" src="{{url('/images\Layer_6.png')}}"/></span>
                         </div>
                     </div>
                     <div class="row_contentChat">
                         <div class=" block_user_akk">
                             <div class="user">
-                                <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
-                                <img class="icon_bars" src="{{url('images\ava.png')}}"/>
+                                <img class="icon_bars" src="{{url('/images\country_flag.png')}}"/>
+                                <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
                                     <span class="number_mess">#3797</span>
@@ -144,8 +144,8 @@
             <div class="col-xl-9 col-lg-9 col-md-6 ">
                 <div class="row title_video">
                     <div class="video_header">
-                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
-                        <img class="icon_bars" src="{{url('images\ava.png')}}"/>
+                        <img class="icon_bars" src="{{url('/images\country_flag.png')}}"/>
+                        <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                         <p class="title_Text">Guest</p>
                     </div>
                 </div>
