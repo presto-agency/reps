@@ -167,6 +167,7 @@ return [
          */
 
         SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
+        Barryvdh\TranslationManager\ManagerServiceProvider::class,
 
         /*
          * Application Service Providers...
