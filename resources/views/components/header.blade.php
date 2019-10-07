@@ -52,7 +52,6 @@
                     <button><img class="search_img" src="{{ url('/images/search.png') }}"></button>
                     <input id="inp"class="search_input " placeholder="поиск">
                 </div>
-
                 <div class="autorization">
                     <button>Вход</button>
                     <a class="registration" href="#">Регистрация</a>
