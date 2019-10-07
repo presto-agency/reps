@@ -1,0 +1,123 @@
+.forum_acticle{
+    .wrapper{
+        box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+    }
+    margin: 40px 0 0 0;
+    & .title_block{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #3490dc;
+        height: 60px;
+        border: 0;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        padding: 0 20px;
+        & svg{
+            width: 40px;
+            padding-right: 15px;
+            fill: white;
+        }
+        & .title_text{
+            font-size: 16px;
+            color: white;
+            margin: 0;
+        }
+        & .left_section{
+            display: flex;
+            & button{
+                background: none;
+                border: 0;
+                display: flex;
+                align-items: center;
+            }
+        }
+        & .right_section{
+            & button{
+                background: none;
+                border: 0;
+                color: white;
+                display: flex;
+                align-items: center;
+                & svg{
+                    width: 30px;
+                }
+                & span{
+                    padding-right: 5px;
+                }
+            }
+        }
+    }
+   & .content_article{
+       width: 100%;
+       border: 0;
+       padding: 20px 20px 0;
+       align-items: baseline;
+       background: white;
+       & .block_nameArticle{
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           & .name{
+               margin: 5px 0;
+               font-size: 16px;
+               font-weight: bold;
+            }
+           & .date{
+               margin-left: auto;
+               color: $gray;
+               font-size: 12px;
+            }
+       }
+   }
+    .detailed-news__info {
+        background-color: #ffffff;
+        padding-bottom: 17px;
+        border-bottom: 1px solid #efefef;
+
+        .info__items {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            & .block_account{
+                & img{
+                    max-width: 30px;
+                    max-height: 30px;
+                    border-radius: 20px;
+                    padding-right: 10px;
+                }
+                & span{
+                    color:#0567cc;
+                    font-size: 14px;
+                }
+
+            }
+            .items__watch,
+            .items__comment {
+                text-decoration: none;
+                transition: .3s;
+                svg {
+                    width: 15px;
+                    height: 13px;
+                    fill: #9ca0b6;
+                }
+                span {
+                    color: #9ca0b6;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 19px;
+                    margin-left: 10px;
+                }
+                &:hover {
+                    & svg {
+                        fill: #0567cc;
+                    }
+                }
+            }
+            .items__comment {
+                margin-left: 32px;
+            }
+        }
+    }
+}

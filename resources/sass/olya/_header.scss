@@ -1,5 +1,5 @@
 .header{
-    background: $blue;
+    background: #0567cc;
     & .header_container{
         overflow: hidden;
         padding: 10px 0;
@@ -8,13 +8,28 @@
             & .cabinet{
                 display: none;
             }
+            & .mode{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                & button{
+                    display: flex;
+                    background: none;
+                    border: 0;
+                    & svg{
+                        width: 30px;
+                        padding: 0 5px;
+                    }
+                }
+
+            }
             & .logo{
                 display: flex;
                 align-items: center;
+                justify-content: flex-end;
                 & img,svg{
-                    width: 80%;
+                    width: 65%;
                 }
-                justify-content: center;
             }
             & .icon_bars{
                 display: none;
@@ -23,6 +38,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                padding: 0;
                 & .menu_navigation{
                     width: 100%;
                     display: flex;
@@ -35,7 +51,7 @@
                     }
                 }
             }
-            & .search{
+            & .header_search{
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
@@ -45,7 +61,7 @@
                 }
                 .button_input{
                     display: flex;
-                    width: 40px;
+                    width: 24px;
                     transition: 1.5s;
                 }
                 & .active_button_input{
