@@ -75,6 +75,9 @@
             }
             & .user{
                 min-width: 160px;
+                & .number_mess{
+                    color:black;
+                }
             }
         }
         & .block_close{

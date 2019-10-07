@@ -51,7 +51,7 @@
                     }
                 }
             }
-            & .search{
+            & .header_search{
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
@@ -61,7 +61,7 @@
                 }
                 .button_input{
                     display: flex;
-                    width: 40px;
+                    width: 24px;
                     transition: 1.5s;
                 }
                 & .active_button_input{
