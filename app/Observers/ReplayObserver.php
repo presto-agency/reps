@@ -12,6 +12,8 @@ class ReplayObserver
     public function creating(Replay $replay)
     {
 
+        $this->setUserIdAttribute($replay);
+
     }
 
     /**
@@ -23,8 +25,15 @@ class ReplayObserver
     }
 
 
+    public function updating(Replay $replay)
+    {
+
+    }
+
     public function updated(Replay $replay)
     {
+
+        $this->setUserIdAttribute($replay);
 
     }
 
@@ -44,5 +53,11 @@ class ReplayObserver
     public function forceDeleted(Replay $replay)
     {
         //
+    }
+
+    private function setUserIdAttribute($data)
+    {
+        return $data['user_id'] = auth()->user()->id;
+
     }
 }

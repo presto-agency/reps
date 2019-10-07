@@ -52,6 +52,7 @@
                     @include('components.block-lastNews')
                     @include('left-side.replays')
                     @include('left-side.search')
+                    @include('left-side.forum-topics')
                 </div>
 
                 <div class="col-xl-6 col-lg-6 col-md-6 col-12">
@@ -63,6 +64,7 @@
                     @include('content.forum-allSections')
                     @include('content.forum-article')
                     @include('content.gocu-replays')
+                    @include('content.comments')
 
 
                     {{--include content--}}
