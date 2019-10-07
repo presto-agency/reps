@@ -66,6 +66,21 @@
                 <a href="#" class="useful__link">Турниры</a>
                 <a href="#" class="useful__link">Файловый архив</a>
             </div>
+            <div class="produced col-12">
+                <p>produced by:</p>
+                <a class="devloop__link" href="https://devloop.pro">DevLoop
+                    <svg fill="#DDDDDD" class="small-logo" width="40px" height="20px" viewBox="0 0 1023 837" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <polygon class="st0" points="126,293.8 711.2,483.5 317.2,633.1 "></polygon>
+                        <polygon class="st1" points="667.7,609.8 711.2,483.5 317.2,633.1 "></polygon>
+                        <polygon class="st2" points="776,560.7 711.2,483.5 667.7,609.8 "></polygon>
+                        <polygon class="st3" points="888.2,226.9 711.2,483.5 776,560.7 "></polygon>
+                        <polygon class="st4" points="553.8,84.1 731,454.8 711.2,483.5 553.8,432.5 "></polygon>
+                        <polygon class="st5" points="549.9,84.9 411.5,386.3 549.9,431.2 "></polygon>
+                        <polygon class="st6" points="888.2,226.9 664.2,315.3 731,454.8 "></polygon>
+                        <polygon class="st7" points="549.9,84.9 553.8,84.1 553.8,432.5 549.9,431.2 "></polygon>
+                    </svg>
+                </a>
+            </div>
         </div>
     </div>
 </div>

@@ -6,7 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+`
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -45,13 +46,25 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-6 col-12">
                     {{--include left-side--}}
+
                     @include('components.block-tournament')
                     @include('components.block-replay')
                     @include('components.block-lastNews')
+                    @include('left-side.replays')
+                    @include('left-side.search')
+                    @include('left-side.forum-topics')
                 </div>
-                <div class="col-6">
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                    {{--include content--}}
+                    @include('content.Page_tournament-content')
                     @yield('content')
                     @include('content.detailed-news')
+                    @include('content.forum-allSections')
+                    @include('content.forum-article')
+                    @include('content.gocu-replays')
+
+
                     {{--include content--}}
                 </div>
                 <div class="col-xl-3 col-3 col-md-6 col-12">
@@ -64,6 +77,8 @@
         <footer>
             @include('footer.footer')
         </footer>
+
+<script src="https://kit.fontawesome.com/75f3a42e45.js"></script>
 
 {{--    </div>--}}
 

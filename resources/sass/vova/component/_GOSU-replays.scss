@@ -1,0 +1,182 @@
+.gocu-replays {
+    box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+    border-radius: 5px;
+
+    .gocu-replays__title {
+        border-radius: 5px 5px 0 0;
+        background-color: #0567cc;
+        display: flex;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 19px;
+
+        .title__icon {
+            width: 20px;
+            height: 20px;
+            fill: #ffffff;
+        }
+
+        .title__text {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 0; //отмена стандартного margin
+            margin-left: 17px;
+        }
+
+        .title__game-period {
+            margin-left: auto;
+            margin-right: 20px;
+
+
+            select {
+                height: 20px;
+                background-color: transparent;
+                border: 0;
+                padding-right: 14px;
+
+                color: #ffffff;
+                font-size: 12px;
+                font-weight: 500;
+                text-transform: uppercase;
+
+                -webkit-appearance: none;
+                background-image: url("/images/arrow-down-sign-to-navigate.png");
+                background-repeat: no-repeat;
+                background-position: center right 0px;
+            }
+        }
+    }
+
+    .gocu-replays__match {
+        .match__author {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+
+            .comment-author__nickname {
+                color: #0567cc;
+                font-size: 14px;
+                font-weight: 400;
+                margin-bottom: 0; //отмена стандартного margin
+                margin-left: 13px;
+            }
+
+            .comment-author__replay-item {
+                color: #9ca0b6;
+                font-size: 12px;
+                font-weight: 300;
+                line-height: 30px;
+                margin-bottom: 0; //отмена стандартного margin
+                margin-left: 12px;
+            }
+
+            .comment-author__date {
+                color: #9ca0b6;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 19px;
+                margin-bottom: 0; //отмена стандартного margin
+                margin-left: auto;
+            }
+        }
+
+        .match__comment {
+            color: #010b4a;
+            font-size: 16px;
+            font-weight: 400;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-bottom: 0; //отмена стандартного margin
+        }
+
+        .match__info {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+
+            .info__country {
+                .country-first {
+                    margin-left: 6px;
+                }
+            }
+
+            .info__match-up {
+                .match-up__versus {
+                    margin-left: 5px;
+                    margin-right: 5px;
+                }
+
+                .match-up__name {
+                    color: #010b4a;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 19px;
+                    text-transform: uppercase;
+                }
+
+                .name__first {
+                    margin-left: 14px;
+                }
+            }
+
+            .info__maps {
+                .maps__name {
+                    color: #0567cc;
+                    font-size: 14px;
+                    font-weight: 400;
+                    margin-left: 12px;
+                }
+            }
+
+            .info__wins {
+                svg {
+                    width: 25px;
+                    height: 25px;
+                    fill: #0567cc;
+                }
+
+                .wins__text {
+                    margin-left: 10px;
+                }
+            }
+
+            .country__text,
+            .match-up__text,
+            .maps__text,
+            .wins__text {
+                color: #9ca0b6;
+                font-size: 12px;
+                font-weight: 300;
+                line-height: 30px;
+            }
+        }
+    }
+
+    hr {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+
+.gocu-replays__numb-pages {
+    text-align: right; //выравнивает по левому краю
+    margin-top: 25px;
+    margin-bottom: 8px;
+
+    .numb-pages {
+        color: #9ca0b6;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 19px;
+        margin-bottom: 0; //отменяет стандартный margin
+    }
+}
+
+.gocu-replays__button {
+    text-align: center; //выравнивает кнопку по центру
+    background-color: #ffffff;
+}
