@@ -91,7 +91,7 @@ class Country extends Section
                     return [
                         AdminFormElement::image('flag', 'Flag')
                             ->setUploadPath(function (UploadedFile $file) {
-                                return 'storage/flags';
+                                return 'storage/image/county/flag';
                             })
                             ->setUploadFileName(function (UploadedFile $file) {
                                 return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();

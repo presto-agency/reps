@@ -10,8 +10,11 @@ Route::delete('interview_variant_answers/delete/{id}', '\App\Http\Controllers\Ad
 
 Route::get('interview_questions/show/{id}', '\App\Http\Controllers\Admin\InterviewQuestionsController@show');
 
-
-
+Route::get('replays/show/{id}', '\App\Http\Controllers\Admin\ReplayController@show');
+Route::post('replays/show/{id}/send_comment', '\App\Http\Controllers\Admin\ReplayController@comment')
+    ->name('admin.replays.comment_send');
+Route::delete('replays/show/{id}/delete_comment', '\App\Http\Controllers\Admin\ReplayController@deleteComment')
+    ->name('admin.replays.comment_delete');
 
 
 //Route::get('', '\App\Http\Controllers\MyController@index');

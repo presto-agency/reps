@@ -146,7 +146,7 @@ class User extends Section
 
             $avatar = AdminFormElement::image('avatar', 'Avatar')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage/avatars';
+                    return 'storage/image/user/avatar';
                 })
                 ->setUploadFileName(function (UploadedFile $file) {
                     return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();

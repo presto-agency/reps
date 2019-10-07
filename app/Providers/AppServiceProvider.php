@@ -27,14 +27,13 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-//    private $views;
 
     /**
      * Bootstrap any application services.
      *
      * @return void
      */
-//    Factory private  $viewFactory;
+
     public function boot()
     {
         InterviewQuestion::observe(InterviewQuestionObserver::class);
@@ -48,10 +47,4 @@ class AppServiceProvider extends ServiceProvider
 //        $this->compose('admin.quick_form', UserComposer::class);
 //        $this->compose('admin.quick_refund', UserComposer::class);
     }
-
-//    private function compose($views, string $viewComposer)
-//    {
-//        $this->app->singleton($viewComposer);
-//        $this->views->composer($views, $viewComposer);
-//    }
 }
