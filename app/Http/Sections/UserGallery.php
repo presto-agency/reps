@@ -119,7 +119,7 @@ class UserGallery extends Section
         $display = AdminForm::panel();
 
         $display->setItems([
-            $sign = AdminFormElement::text('sign', 'Sign')
+            $sign = AdminFormElement::text('sign', 'Подпись')
                 ->setValidationRules(['nullable', 'string', 'max:255']),
         ]);
         return $display;
@@ -133,7 +133,7 @@ class UserGallery extends Section
         $display = AdminForm::panel();
         $display->setItems([
 
-            $picture = AdminFormElement::image('picture', 'Picture')
+            $picture = AdminFormElement::image('picture', 'Картинка')
                 ->setUploadPath(function (UploadedFile $file) {
                     return 'storage/image/user/gallery';
                 })
@@ -142,10 +142,10 @@ class UserGallery extends Section
                 })
                 ->setValidationRules(['required']),
 
-            $sign = AdminFormElement::text('sign', 'Sign')
+            $sign = AdminFormElement::text('sign', 'Подпись')
                 ->setValidationRules(['nullable', 'string', 'max:255']),
 
-            $for_adults = AdminFormElement::checkbox('for_adults', 'For adults(18+)'),
+            $for_adults = AdminFormElement::checkbox('for_adults', '18+'),
         ]);
         return $display;
     }
