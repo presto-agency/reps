@@ -13467,6 +13467,11 @@ select:focus {
   margin: 0;
 }
 
+.Page_tournamentDetail-content .block_replay_content .block_right .container_block .left {
+  text-decoration: underline;
+  color: #3490dc;
+}
+
 .Page_tournamentDetail-content .block_replay_content .block_right .container_block .right p {
   font-size: 14px;
 }
@@ -13483,6 +13488,158 @@ select:focus {
 
 .Page_tournamentDetail-content .block_replay_content .block_right .container_block .right .svg_gray {
   fill: #bfc3ce;
+}
+
+.Page_tournamentDetail-content .title_players {
+  display: flex;
+  align-items: center;
+  background: #efefef;
+  height: 60px;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.Page_tournamentDetail-content .title_players .title_playersText {
+  font-size: 16px;
+  color: #bfc3ce;
+  margin: 0;
+}
+
+.Page_tournamentDetail-content .title_players a {
+  font-size: 12px;
+  color: #bfc3ce;
+  text-decoration: underline;
+}
+
+.Page_tournamentDetail-content .container_players {
+  max-height: 220px;
+  overflow: scroll;
+  padding: 20px 0;
+}
+
+.Page_tournamentDetail-content .container_players .pl-controls-bottom pl-flex qa-controls-bottom {
+  display: none;
+}
+
+.Page_tournamentDetail-content .container_players .players_content {
+  padding: 10px 45px 5px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Page_tournamentDetail-content .container_players .players_content .left_block {
+  display: flex;
+}
+
+.Page_tournamentDetail-content .container_players .players_content .left_block span {
+  font-size: 14px;
+}
+
+.Page_tournamentDetail-content .container_players .players_content .left_block img {
+  margin: 0 10px 0 15px;
+}
+
+.Page_tournamentDetail-content .container_players .players_content .left_block a {
+  width: 170px;
+  display: block;
+  height: 28px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Page_tournamentDetail-content .container_players .players_content .left_block a .name_player {
+  font-size: 14px;
+  color: #3490dc;
+  font-weight: bold;
+}
+
+.Page_tournamentDetail-content .container_players .players_content .center_block img {
+  margin: 0 5px;
+}
+
+.Page_tournamentDetail-content .container_players .players_content .right_block svg {
+  width: 20px;
+}
+
+.Page_tournamentDetail-content .container_round {
+  padding: 20px 20px 10px;
+}
+
+.Page_tournamentDetail-content .container_round .winner_round {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.Page_tournamentDetail-content .container_round .winner_round .left_block {
+  display: flex;
+}
+
+.Page_tournamentDetail-content .container_round .winner_round .left_block span {
+  font-size: 14px;
+}
+
+.Page_tournamentDetail-content .container_round .winner_round .left_block img {
+  margin: 0 10px 0 15px;
+}
+
+.Page_tournamentDetail-content .container_round .winner_round .left_block a {
+  text-decoration: underline;
+}
+
+.Page_tournamentDetail-content .container_round .winner_round .left_block a .name_player {
+  font-size: 14px;
+  color: #3490dc;
+  font-weight: bold;
+}
+
+.Page_tournamentDetail-content .container_round .winner_round .center_block {
+  display: flex;
+  justify-content: center;
+}
+
+.Page_tournamentDetail-content .container_round .winner_round .center_block .one_player {
+  width: 110px;
+  display: block;
+  height: 28px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Page_tournamentDetail-content .container_round .winner_round .center_block img {
+  margin: 0 5px;
+}
+
+.Page_tournamentDetail-content .container_round .winner_round .center_block .blue_span {
+  color: #3490dc;
+  margin: 0 25px 0 20px;
+}
+
+.Page_tournamentDetail-content .container_round .winner_round .right_block {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Page_tournamentDetail-content .container_round .winner_round .right_block a {
+  margin-right: 10px;
+  text-decoration: underline;
+}
+
+.Page_tournamentDetail-content .container_round .winner_round .right_block svg {
+  width: 20px;
+}
+
+.Page_tournamentDetail-content .container_players::-webkit-scrollbar {
+  width: 10px;
+}
+
+.Page_tournamentDetail-content .container_players::-webkit-scrollbar-thumb {
+  background-color: #e2e5e9;
+  opacity: 0.8;
+  border-radius: 4px;
+  height: 25px;
 }
 
 .button {

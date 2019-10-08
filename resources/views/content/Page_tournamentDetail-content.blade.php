@@ -93,5 +93,188 @@
                 </div>
             </div>
         </div>
+        <div class="title_players">
+            <p class="title_playersText">Players</p>
+        </div>
+        <div class="container_players">
+            <div class="players_content">
+                <div class="left_block">
+                    <span>#1</span>
+                    <a href="#">
+                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
+                        <span class="name_player">Rus Brain</span>
+                    </a>
+                </div>
+                <div class="center_block">
+                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
+                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
+                </div>
+                <div class="right_block">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medal" class="svg-inline--fa fa-medal fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm92.52 157.26l-37.93 36.96 8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64 23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39 4.11 0 8.22 2.14 10.33 6.39l23.43 47.52 52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"></path></svg>
+                </div>
+            </div>
+            <div class="players_content">
+                <div class="left_block">
+                    <span>#1</span>
+                    <a href="#">
+                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
+                        <span class="name_player">Rus Brain</span>
+                    </a>
+                </div>
+                <div class="center_block">
+                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
+                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
+                </div>
+                <div class="right_block">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medal" class="svg-inline--fa fa-medal fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm92.52 157.26l-37.93 36.96 8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64 23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39 4.11 0 8.22 2.14 10.33 6.39l23.43 47.52 52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"></path></svg>
+                </div>
+            </div>
+            <div class="players_content">
+                <div class="left_block">
+                    <span>#1</span>
+                    <a href="#">
+                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
+                        <span class="name_player">Rus Brain</span>
+                    </a>
+                </div>
+                <div class="center_block">
+                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
+                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
+                </div>
+                <div class="right_block">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medal" class="svg-inline--fa fa-medal fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm92.52 157.26l-37.93 36.96 8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64 23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39 4.11 0 8.22 2.14 10.33 6.39l23.43 47.52 52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"></path></svg>
+                </div>
+            </div>
+            <div class="players_content">
+                <div class="left_block">
+                    <span>#1</span>
+                    <a href="#">
+                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
+                        <span class="name_player">Rus Brain</span>
+                    </a>
+                </div>
+                <div class="center_block">
+                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
+                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
+                </div>
+                <div class="right_block">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medal" class="svg-inline--fa fa-medal fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm92.52 157.26l-37.93 36.96 8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64 23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39 4.11 0 8.22 2.14 10.33 6.39l23.43 47.52 52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"></path></svg>
+                </div>
+            </div>
+            <div class="players_content">
+                <div class="left_block">
+                    <span>#1</span>
+                    <a href="#">
+                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
+                        <span class="name_player">Rus Brain</span>
+                    </a>
+                </div>
+                <div class="center_block">
+                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
+                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
+                </div>
+                <div class="right_block">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medal" class="svg-inline--fa fa-medal fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm92.52 157.26l-37.93 36.96 8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64 23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39 4.11 0 8.22 2.14 10.33 6.39l23.43 47.52 52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"></path></svg>
+                </div>
+            </div>
+            <div class="players_content">
+                <div class="left_block">
+                    <span>#1</span>
+                    <a href="#">
+                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
+                        <span class="name_player">Rus Brain</span>
+                    </a>
+                </div>
+                <div class="center_block">
+                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
+                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
+                </div>
+                <div class="right_block">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medal" class="svg-inline--fa fa-medal fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm92.52 157.26l-37.93 36.96 8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64 23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39 4.11 0 8.22 2.14 10.33 6.39l23.43 47.52 52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"></path></svg>
+                </div>
+            </div>
+            <div class="players_content">
+                <div class="left_block">
+                    <span>#1</span>
+                    <a href="#">
+                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
+                        <span class="name_player">Rus Brain</span>
+                    </a>
+                </div>
+                <div class="center_block">
+                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
+                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
+                </div>
+                <div class="right_block">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medal" class="svg-inline--fa fa-medal fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm92.52 157.26l-37.93 36.96 8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64 23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39 4.11 0 8.22 2.14 10.33 6.39l23.43 47.52 52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"></path></svg>
+                </div>
+            </div>
+        </div>
+        <div class="title_players">
+            <p class="title_playersText">Winners Round 1 (of 8) Fighting Spirit </p>
+            <a href="#">Fighting Spirit 1.3</a>
+        </div>
+        <div class="container_round">
+            <div class="row winner_round">
+                <div class="col-xl-1 col-lg-1 col-md-1 col-1  left_block">
+                    <span>#1</span>
+                </div>
+                <div class="col-xl-8 col-lg-10 col-md-10 col-sm-8 col-8 center_block">
+                    <div class="one_player">
+                        <img class="icon_bars" src="http://reps.loc/images\ava.png">
+                        <span> [fr]phobo</span>
+                    </div>
+                    <span class="blue_span">2>6</span>
+                    <div class="one_player">
+                        <img class="icon_bars" src="http://reps.loc/images\ava.png">
+                        <span>psyduck</span>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-3 right_block">
+                    <a href="#">reps1</a>
+                </div>
+            </div>
+            <div class="row winner_round">
+                <div class="col-xl-1 col-lg-1 col-md-1 col-1 left_block">
+                    <span>#1</span>
+                </div>
+                <div class="col-xl-8 col-lg-10 col-md-10 col-sm-8 col-8 center_block">
+                    <div class="one_player">
+                        <img class="icon_bars" src="http://reps.loc/images\ava.png">
+                        <span> [fr]phobo</span>
+                    </div>
+                    <span class="blue_span">2>6</span>
+                    <div class="one_player">
+                        <img class="icon_bars" src="http://reps.loc/images\ava.png">
+                        <span>psyduck</span>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-3 right_block">
+                    <a href="#">reps1</a>
+                    <a href="#">reps1</a>
+                </div>
+            </div>
+            <div class="row winner_round">
+                <div class="col-xl-1 col-lg-1 col-md-1 col-1 left_block">
+                    <span>#1</span>
+                </div>
+                <div class="col-xl-8 col-lg-10 col-md-10 col-sm-8 col-8  center_block">
+                    <div class="one_player">
+                        <img class="icon_bars" src="http://reps.loc/images\ava.png">
+                        <span> [fr]phobo</span>
+                    </div>
+                    <span class="blue_span">2>6</span>
+                    <div class="one_player">
+                        <img class="icon_bars" src="http://reps.loc/images\ava.png">
+                        <span>psyduck</span>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-3 right_block">
+                    <a href="#">reps1</a>
+                    <a href="#">reps1</a>
+                    <a href="#">reps1</a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
