@@ -32,6 +32,7 @@
         <header>
                 {{--include header--}}
                 @include('components.header')
+                @include('modal.authorization')
         </header>
 
         <section class="container">
