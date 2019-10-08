@@ -1,0 +1,25 @@
+.breadcrumb {
+    background-color: transparent;
+    .breadcrumb-item {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 19px;
+        a {
+            color: #9ca0b6;
+            text-decoration: none;
+        }
+    }
+    .breadcrumb-item + .breadcrumb-item::before {
+        display: inline-block;
+        padding-right: 0.5rem;
+        color: #c3c3c3;
+        content: ">";
+    }
+
+    .breadcrumb-item.active {
+        color: #010b4a;
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 19px;
+    }
+}
