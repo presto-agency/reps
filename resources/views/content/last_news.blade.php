@@ -73,10 +73,29 @@
 
                 <form class="card-body__comment-form">
                     <div class="comment-form__group form-group">
-                        <label for="comments-news">
-                            <input type="text" class="group__input form-control" id="comments-news"
+                        <label class="comment" for="comment">
+                            <input type="text" class="comment__input form-control" id="comment"
                                    placeholder="Написать комментарий...">
                         </label>
+
+                        <div class="buttons-upload">
+                            <label class="custom-img-upload">
+                                <input type="file" accept="image/*"/>
+                                <i class="fas fa-camera"></i>
+                            </label>
+
+                            <label class="custom-file-upload">
+                                <input type="file"/>
+                                <i class="fas fa-paperclip"></i>
+                            </label>
+
+                            <button class="smile-upload">
+                                <i class="far fa-smile"></i>
+                            </button>
+                        </div>
+
+
+
                     </div>
                     <button type="submit" class="comment-form__button">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -156,10 +175,29 @@
 
                 <form class="card-body__comment-form">
                     <div class="comment-form__group form-group">
-                        <label for="comments-news">
-                            <input type="text" class="group__input form-control" id="comments-news"
+                        <label class="comment" for="comment">
+                            <input type="text" class="comment__input form-control" id="comment"
                                    placeholder="Написать комментарий...">
                         </label>
+
+                        <div class="buttons-upload">
+                            <label class="custom-img-upload">
+                                <input type="file" accept="image/*"/>
+                                <i class="fas fa-camera"></i>
+                            </label>
+
+                            <label class="custom-file-upload">
+                                <input type="file"/>
+                                <i class="fas fa-paperclip"></i>
+                            </label>
+
+                            <button class="smile-upload">
+                                <i class="far fa-smile"></i>
+                            </button>
+                        </div>
+
+
+
                     </div>
                     <button type="submit" class="comment-form__button">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -240,10 +278,29 @@
 
                 <form class="card-body__comment-form">
                     <div class="comment-form__group form-group">
-                        <label for="comments-news">
-                            <input type="text" class="group__input form-control" id="comments-news"
+                        <label class="comment" for="comment">
+                            <input type="text" class="comment__input form-control" id="comment"
                                    placeholder="Написать комментарий...">
                         </label>
+
+                        <div class="buttons-upload">
+                            <label class="custom-img-upload">
+                                <input type="file" accept="image/*"/>
+                                <i class="fas fa-camera"></i>
+                            </label>
+
+                            <label class="custom-file-upload">
+                                <input type="file"/>
+                                <i class="fas fa-paperclip"></i>
+                            </label>
+
+                            <button class="smile-upload">
+                                <i class="far fa-smile"></i>
+                            </button>
+                        </div>
+
+
+
                     </div>
                     <button type="submit" class="comment-form__button">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"

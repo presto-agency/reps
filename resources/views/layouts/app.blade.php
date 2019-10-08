@@ -6,7 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-`
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -65,6 +65,8 @@
                     @include('content.forum-article')
                     @include('content.gocu-replays')
                     @include('content.comments')
+                    @include('content.add-comment')
+                    @include('content.detailed-forum')
 
 
                     {{--include content--}}
