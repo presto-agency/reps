@@ -12456,6 +12456,73 @@ select:focus {
   line-height: 19px;
 }
 
+#authorizationModal .modal-header .modal-title {
+  margin: 0 auto;
+  color: dodgerblue;
+}
+
+#authorizationModal .modal-header .modal-header__close {
+  position: absolute;
+  right: -9px;
+  top: -9px;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  background-color: dodgerblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#authorizationModal .modal-header .modal-header__close svg {
+  width: 13px;
+  height: 13px;
+  fill: #ffffff;
+  transition: 0.3s;
+}
+
+#authorizationModal .modal-header .modal-header__close:hover svg {
+  fill: #0b0b0b;
+}
+
+#authorizationModal .modal-body .modal-body__title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#authorizationModal .modal-body .form-group {
+  margin-bottom: 0;
+}
+
+#authorizationModal .modal-body .form-group input {
+  margin-bottom: 15px;
+}
+
+#authorizationModal .modal-body .modal-body__enter-btn {
+  margin-bottom: 30px;
+}
+
+#authorizationModal .modal-body .modal-body__enter-btn .button {
+  width: 100%;
+}
+
+#authorizationModal .modal-body .modal-body__forgot-password {
+  text-align: center;
+  text-decoration: none;
+  color: darkgray;
+  margin-bottom: 15px;
+  display: block;
+}
+
+#authorizationModal .modal-body .modal-body__restore-password {
+  text-align: center;
+  text-decoration: none;
+  color: darkgray;
+  margin-bottom: 15px;
+  display: block;
+}
+
 .block_chat-twitch {
   padding-bottom: 40px;
 }
