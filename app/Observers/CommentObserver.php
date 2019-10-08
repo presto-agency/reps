@@ -15,7 +15,7 @@ class CommentObserver
      */
     public function created(Comment $comment)
     {
-        event(new UserComment($comment,$comment->id));
+        event(new UserComment($comment));
     }
 
     /**
