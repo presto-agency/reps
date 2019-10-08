@@ -6,6 +6,13 @@ use App\Models\Stream;
 
 class StreamObserver
 {
+
+    public function creating(Stream $stream)
+    {
+
+        $this->setUserIdAttribute($stream);
+
+    }
     /**
      * Handle the stream "created" event.
      *
@@ -15,6 +22,11 @@ class StreamObserver
     public function created(Stream $stream)
     {
 
+    }
+
+    public function updating(Stream $stream)
+    {
+        $this->setUserIdAttribute($stream);
     }
 
     /**
@@ -59,5 +71,11 @@ class StreamObserver
     public function forceDeleted(Stream $stream)
     {
         //
+    }
+
+    private function setUserIdAttribute($data)
+    {
+        return $data['user_id'] = auth()->user()->id;
+
     }
 }

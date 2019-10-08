@@ -41,10 +41,5 @@ class AppServiceProvider extends ServiceProvider
         Replay::observe(ReplayObserver::class);
         ForumTopic::observe(ForumTopicObserver::class);
 
-
-//        $this->views = $viewFactory;
-//        $this->compose('*', InterviewQuestionObserver::class);
-//        $this->compose('admin.quick_form', UserComposer::class);
-//        $this->compose('admin.quick_refund', UserComposer::class);
     }
 }

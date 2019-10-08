@@ -27,13 +27,13 @@ class ReplayObserver
 
     public function updating(Replay $replay)
     {
-
+        $this->setUserIdAttribute($replay);
     }
 
     public function updated(Replay $replay)
     {
 
-        $this->setUserIdAttribute($replay);
+      //
 
     }
 
