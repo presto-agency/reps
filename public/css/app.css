@@ -12500,6 +12500,15 @@ select:focus {
   align-items: center;
 }
 
+.block_chat-twitch .container_titleChat .content_right button {
+  background: none;
+  border: 0;
+}
+
+.block_chat-twitch .container_titleChat .content_right button svg {
+  width: 50px;
+}
+
 .block_chat-twitch .messanger {
   max-height: 620px;
   overflow: scroll;
@@ -12597,10 +12606,36 @@ select:focus {
 .block_chat-twitch .title_video .video_header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .block_chat-twitch .title_video .video_header img {
   padding-right: 20px;
+}
+
+.block_chat-twitch .title_video .video_header .left_block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block_chat-twitch .title_video .video_header .left_block svg {
+  width: 40px;
+}
+
+.block_chat-twitch .title_video .video_header .right_block {
+  display: flex;
+}
+
+.block_chat-twitch .title_video .video_header .right_block button {
+  background: none;
+  border: 0;
+}
+
+.block_chat-twitch .title_video .video_header .right_block svg {
+  width: 50px;
+  margin-right: 10px;
 }
 
 .block_chat-twitch .video_twitch {
@@ -13283,24 +13318,25 @@ select:focus {
   padding: 20px;
 }
 
-.Page_tournament-content .title_block .right_content {
+.Page_tournament-content .title_block .left_content {
   display: flex;
+  align-items: end;
 }
 
-.Page_tournament-content .title_block .right_content svg {
+.Page_tournament-content .title_block .left_content svg {
   margin-right: 10px;
 }
 
-.Page_tournament-content .title_block .left_content {
+.Page_tournament-content .title_block .right_content {
   display: flex;
   align-items: center;
 }
 
-.Page_tournament-content .title_block .left_content svg {
+.Page_tournament-content .title_block .right_content svg {
   margin-left: 10px;
 }
 
-.Page_tournament-content .title_block .left_content .title_text {
+.Page_tournament-content .title_block .right_content .title_text {
   font-size: 14px;
   color: white;
   margin: 0;
@@ -13665,6 +13701,166 @@ select:focus {
 }
 
 .Page_tournamentDetail-content .container_players::-webkit-scrollbar-thumb {
+  background-color: #e2e5e9;
+  opacity: 0.8;
+  border-radius: 4px;
+  height: 25px;
+}
+
+.Page_gameBest {
+  margin: 40px 0 0 0;
+}
+
+.Page_gameBest .wrapper {
+  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+}
+
+.Page_gameBest .title_block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0567cc;
+  height: 60px;
+  border: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 20px;
+}
+
+.Page_gameBest .title_block .left_content {
+  display: flex;
+  align-items: end;
+}
+
+.Page_gameBest .title_block .left_content svg {
+  margin-right: 10px;
+  fill: white;
+}
+
+.Page_gameBest .title_block .right_content {
+  display: flex;
+  align-items: center;
+}
+
+.Page_gameBest .title_block .right_content svg {
+  margin-left: 10px;
+}
+
+.Page_gameBest .title_block .right_content .title_text {
+  font-size: 14px;
+  color: white;
+  margin: 0;
+}
+
+.Page_gameBest .title_block img,
+.Page_gameBest .title_block svg {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.Page_gameBest .title_block .title_text {
+  font-size: 16px;
+  color: white;
+  margin: 0;
+}
+
+.Page_gameBest .title_players {
+  display: flex;
+  align-items: center;
+  background: #efefef;
+  height: 60px;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.Page_gameBest .title_players .title_playersText {
+  font-size: 16px;
+  color: #bfc3ce;
+  margin: 0;
+}
+
+.Page_gameBest .title_players a {
+  font-size: 12px;
+  color: #bfc3ce;
+  text-decoration: underline;
+}
+
+.Page_gameBest .container_players {
+  max-height: 220px;
+  overflow: scroll;
+  padding: 20px 0;
+}
+
+.Page_gameBest .container_players .pl-controls-bottom pl-flex qa-controls-bottom {
+  display: none;
+}
+
+.Page_gameBest .container_players .players_content {
+  padding: 10px 45px 5px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Page_gameBest .container_players .players_content .left_block {
+  display: flex;
+}
+
+.Page_gameBest .container_players .players_content .left_block .number {
+  width: 40px;
+  display: block;
+  height: 28px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Page_gameBest .container_players .players_content .left_block span {
+  font-size: 14px;
+}
+
+.Page_gameBest .container_players .players_content .left_block img {
+  margin: 0 10px 0 15px;
+}
+
+.Page_gameBest .container_players .players_content .left_block a {
+  width: 140px;
+  display: block;
+  height: 28px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Page_gameBest .container_players .players_content .left_block a .name_player {
+  font-size: 14px;
+  color: #3490dc;
+  font-weight: bold;
+}
+
+.Page_gameBest .container_players .players_content .center_block img {
+  margin: 0 5px;
+}
+
+.Page_gameBest .container_players .players_content .right_block svg {
+  width: 20px;
+}
+
+.Page_gameBest .container_players .players_content .right_block p {
+  font-size: 14px;
+  width: 70px;
+  display: block;
+  height: 28px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.Page_gameBest .container_players::-webkit-scrollbar {
+  width: 10px;
+}
+
+.Page_gameBest .container_players::-webkit-scrollbar-thumb {
   background-color: #e2e5e9;
   opacity: 0.8;
   border-radius: 4px;
