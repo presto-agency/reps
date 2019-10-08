@@ -12427,6 +12427,35 @@ select:focus {
   fill: #0567cc;
 }
 
+.breadcrumb {
+  background-color: transparent;
+}
+
+.breadcrumb .breadcrumb-item {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 19px;
+}
+
+.breadcrumb .breadcrumb-item a {
+  color: #9ca0b6;
+  text-decoration: none;
+}
+
+.breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  display: inline-block;
+  padding-right: 0.5rem;
+  color: #c3c3c3;
+  content: ">";
+}
+
+.breadcrumb .breadcrumb-item.active {
+  color: #010b4a;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 19px;
+}
+
 .block_chat-twitch {
   padding-bottom: 40px;
 }
