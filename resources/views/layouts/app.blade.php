@@ -65,6 +65,7 @@
                     @include('content.gocu-replays')
                     @include('content.comments')
                     @include('content.add-comment')
+                    @include('content.detailed-forum')
 
 
                     {{--include content--}}
