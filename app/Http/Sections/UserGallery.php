@@ -96,6 +96,11 @@ class UserGallery extends Section
                 ->setWidth(90),
 
         ]);
+
+        $control = $display->getColumns()->getControlColumn();
+        $buttonShow = $this->show();
+        $control->addButton($buttonShow);
+
         return $display;
     }
 
@@ -154,5 +159,24 @@ class UserGallery extends Section
     public function onRestore($id)
     {
         // remove if unused
+    }
+
+    /**
+     * @return \SleepingOwl\Admin\Display\ControlLink
+     */
+    public function show()
+    {
+
+        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
+            $url = url('admin/usergallery/show');
+            return $url . '/' . $model->getKey();
+        }, function (\Illuminate\Database\Eloquent\Model $model) {
+            return 'Просмотреть';
+        }, 50);
+        $link->hideText();
+        $link->setIcon('fa fa-eye');
+        $link->setHtmlAttribute('class', 'btn-info');
+
+        return $link;
     }
 }

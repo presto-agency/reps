@@ -71,8 +71,8 @@
                     {!! $replay->content !!}
                 </div>
             </div>
-            <div class="box-body chat" id="chat-box">
-                <div class="box-footer">
+            <div class="box-container">
+                <div class="box-header">
                     {{ Form::open(['method' => 'POST', 'route' => ['admin.replays.comment_send', 'id' => $replay->id]]) }}
                     <div class="input-group">
                         <input class="form-control" placeholder="Коментарий" type="text" name="content">
@@ -82,7 +82,7 @@
                     </div>
                     {{ Form::close() }}
                 </div>
-                <div class="table-content">
+                <div class="box-body">
                     @foreach($replay->comments as $comment)
                         <div class="item row">
                             <img src="{{$comment->user->avatar ?? $comment->user->avatar_url_or_blank }}"

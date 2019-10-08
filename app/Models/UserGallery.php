@@ -13,11 +13,4 @@ class UserGallery extends Model
         'picture', 'user_id', 'sign', 'for_adults', 'negative_count',
         'positive_count', 'comment', 'rating', 'comments_count', 'reviews',
     ];
-
-    public function setUserIdAttribute($value)
-    {
-        if ($value) {
-                $this->attributes['user_id'] = auth()->user()->id;
-        }
-    }
 }
