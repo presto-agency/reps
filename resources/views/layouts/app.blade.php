@@ -36,6 +36,14 @@
 
         <section class="container">
             <div class="row">
+                <div class="col-12">
+                    @include('breadcrumbs.breadcrumbs')
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     @include('components.Chat')
                 </div>
