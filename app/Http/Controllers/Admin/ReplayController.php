@@ -55,12 +55,10 @@ class ReplayController extends Controller
         $filePath = Replay::findOrFail($id)->value('file');
 
         return response()->download($filePath);
-
     }
 
     public function comment(Request $request, $id)
     {
-
         $topic = Replay::find($id);
         $comment = new Comment([
             'user_id' => auth()->user()->id,

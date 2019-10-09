@@ -2,7 +2,9 @@
 
 namespace App\Http\Sections;
 
+use App\Models\Comment;
 use App\Models\UserActivityType;
+use App\Models\UserGallery;
 use App\User;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
@@ -48,7 +50,7 @@ class UserActivityLog extends Section
             ->setHtmlAttribute('class', 'table-info table-sm text-center ')
             ->paginate(10);
 
-        $display->with('users', 'types');
+        $display->with('types', 'users');
 
         $display->setApply(function ($query) {
             $query->orderBy('id', 'desc');
@@ -64,8 +66,10 @@ class UserActivityLog extends Section
 
             $ip = AdminColumn::text('ip', 'Ip'),
 
-            $parameters = AdminColumn::text('parameters', 'Parameters')
-                ->setWidth(500),
+
+            $parameters = AdminColumn::custom('Описание', function ($model) {
+                return $this->getEventTitle($model);
+            })->setWidth(500),
         ]);
 
         $display->setColumnFilters([
@@ -97,5 +101,48 @@ class UserActivityLog extends Section
             $this->type[$item->id] = $item->name;
         }
         return $this->type;
+    }
+
+    public function getEventTitle($model)
+    {
+
+        if ($model->type_id == $this->getTypeId('Like')) {
+            /*Если лайк темы*/
+            return 'Лайк ' . ' Ник ' . 'для ' . 'Тайл темы';
+            /*Если лайк кментария*/
+//            return 'Лайк коментария' . ' Ник ' . 'для ' . 'Тайл темы';
+        }
+        if ($model->type_id == $this->getTypeId('Comment')) {
+//            $data = Comment::find($model->parameters);
+//            if (empty($data)) {
+//                return null;
+//            } else {
+//                $commentable = $data->commentable;
+//                return $commentable->sign;
+//            }
+            return 'Comment';
+        }
+        if ($model->type_id == $this->getTypeId('Create Post')) {
+            return 'Пост ';
+        }
+        if ($model->type_id == $this->getTypeId('Upload Replay')) {
+            return 'Replay ';
+        }
+        if ($model->type_id == $this->getTypeId('Upload Image')) {
+            $data = UserGallery::where('id', $model->parameters)->value('sign');
+            if (empty($data)) {
+                return null;
+            } else {
+                return 'Изображение ' . $data;
+            }
+        }
+
+        return null;
+
+    }
+
+    public function getTypeId($name)
+    {
+        return UserActivityType::where('name', $name)->value('id');
     }
 }
