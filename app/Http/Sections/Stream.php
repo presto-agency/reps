@@ -79,6 +79,9 @@ class Stream extends Section implements Initializable
                 ->setWidth(100),
         ]);
 
+        $control = $display->getColumns()->getControlColumn();
+        $buttonShow = $this->show($display);
+        $control->addButton($buttonShow);
 
         return $display;
     }
@@ -93,19 +96,18 @@ class Stream extends Section implements Initializable
         $display = AdminForm::panel();
         $display->setItems([
 
-            $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
-
             $title = AdminFormElement::text('title', 'Title')
                 ->setValidationRules(['required', 'max:255', 'string']),
 
-            $race_id = AdminFormElement::select('race_id', 'Race', $this->race())
+            $race_id = AdminFormElement::select('race_id', 'Race')
+                ->setOptions((new Race())->pluck('title', 'id')->toArray())
                 ->setDisplay('title')
                 ->setValidationRules(['required']),
 
             $content = AdminFormElement::wysiwyg('content', 'Content')
                 ->setValidationRules(['nullable']),
-
-            $country_id = AdminFormElement::select('country_id', 'Country', $this->country())
+            $country_id = AdminFormElement::select('country_id', 'Country')
+                ->setOptions((new Country())->pluck('name', 'id')->toArray())
                 ->setDisplay('name')
                 ->setValidationRules(['required']),
 
@@ -144,21 +146,24 @@ class Stream extends Section implements Initializable
         // remove if unused
     }
 
-    private function country()
+    /**
+     * @param $display
+     * @return \SleepingOwl\Admin\Display\ControlLink
+     */
+    public function show($display)
     {
-        foreach (\App\Models\Country::select('id', 'name')->get() as $key => $item) {
-            $this->country[$item->id] = $item->name;
-        }
-        return $this->country;
-    }
 
+        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
+            $url = url('admin/streams/show');
+            return $url . '/' . $model->getKey();
+        }, function (\Illuminate\Database\Eloquent\Model $model) {
+            return 'Просмотреть';
+        }, 50);
+        $link->hideText();
+        $link->setIcon('fa fa-eye');
+        $link->setHtmlAttribute('class', 'btn-info');
 
-    private function race()
-    {
-        foreach (\App\Models\Race::select('id', 'title')->get() as $key => $item) {
-            $this->race[$item->id] = $item->title;
-        }
-        return $this->race;
+        return $link;
     }
 
 }

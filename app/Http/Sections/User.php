@@ -189,55 +189,71 @@ class User extends Section
                 }),
 
             $email = AdminFormElement::text('email', 'Email')
+                ->setHtmlAttribute('placeholder' , 'Email')
                 ->setHtmlAttribute('autocomplete', 'off')
                 ->setHtmlAttribute('type', 'email')
                 ->setValidationRules(['required', 'email', 'max:255', 'unique:users,email,' . $id]),
 
             $name = AdminFormElement::text('name', 'Name')
+                ->setHtmlAttribute('placeholder' , 'Name')
+                ->setHtmlAttribute('autocomplete', 'off')
                 ->setValidationRules(['required', 'max:255', 'alpha_dash', 'unique:users,name,' . $id]),
 
-            $birthday = AdminFormElement::date('birthday', 'Birthday')
+            $birthday = AdminFormElement::date('birthday', 'День рождения')
+                ->setHtmlAttribute('placeholder' , Carbon::now()->format('Y-m-d'))
                 ->setValidationRules(['nullable', 'date_format:d-m-Y']),
 
             $homepage = AdminFormElement::text('homepage', 'Homepage')
+                ->setHtmlAttribute('placeholder' , 'Homepage')
                 ->setValidationRules(['nullable', 'string', 'max:255']),
 
             $discord = AdminFormElement::text('isq', 'Discord')
+                ->setHtmlAttribute('placeholder' , 'Discord')
                 ->setValidationRules(['nullable', 'string', 'max:255']),
 
             $skype = AdminFormElement::text('skype', 'Skype')
+                ->setHtmlAttribute('placeholder' , 'Skype')
                 ->setValidationRules(['nullable', 'string', 'max:255']),
 
             $vk_link = AdminFormElement::text('vk_link', 'Vkontakte')
+                ->setHtmlAttribute('placeholder' , 'Vkontakte')
                 ->setValidationRules(['nullable', 'string', 'max:255', 'url']),
 
             $fb_link = AdminFormElement::text('fb_link', 'Facebook')
+                ->setHtmlAttribute('placeholder' , 'Facebook')
                 ->setValidationRules(['nullable', 'string', 'max:255', 'url']),
 
-            $role_id = AdminFormElement::select('role_id', 'Role', $this->role())
+            $role_id = AdminFormElement::select('role_id', 'Роль')
+                ->setOptions((new Role())->pluck('title', 'id')->toArray())
                 ->setDisplay('title')
                 ->setValidationRules(['required']),
 
-            $country_id = AdminFormElement::select('country_id', 'Country', $this->country())
+            $country_id = AdminFormElement::select('country_id', 'Страна')
+                ->setOptions((new Country())->pluck('name', 'id')->toArray())
+                ->setDisplay('name')
                 ->setValidationRules(['nullable'])
                 ->setValueSkipped(function () {
-                    return is_null(request('country_id'));
+                    return is_null(request('race_id'));
                 }),
-            $race_id = AdminFormElement::select('race_id', 'Race', $this->race())
+
+            $race_id = AdminFormElement::select('race_id', 'Раса')
+                ->setOptions((new Race())->pluck('title', 'id')->toArray())
                 ->setDisplay('title')
                 ->setValidationRules(['nullable'])
                 ->setValueSkipped(function () {
                     return is_null(request('race_id'));
                 }),
             $password = AdminFormElement::password('password', 'Password')
+                ->setHtmlAttribute('placeholder' , 'Password')
                 ->setHtmlAttribute('autocomplete', 'off')
                 ->setValidationRules(['between:8,50', empty($id) ? 'required' : 'nullable'])
                 ->allowEmptyValue(),
 
-            $passwordConfirm = AdminFormElement::password('password_confirmation', 'Password Confirm')
+            $passwordConfirm = AdminFormElement::password('password_confirmation', 'Password confirm')
+                ->setHtmlAttribute('placeholder' , 'Password confirm')
                 ->setHtmlAttribute('autocomplete', 'off')
                 ->setValueSkipped(true)
-                ->setValidationRules('same:password'),
+                ->setValidationRules(['same:password','required']),
 
             $ban = AdminFormElement::checkbox('ban', 'Ban'),
         ]);
@@ -272,31 +288,7 @@ class User extends Section
         // remove if unused
     }
 
-    private $role, $country, $race, $emailVr;
-
-    public function role()
-    {
-        foreach (Role::get(['id', 'title']) as $item) {
-            $this->role[$item->id] = $item->title;
-        }
-        return $this->role;
-    }
-
-    public function country()
-    {
-        foreach (Country::get(['id', 'name']) as $item) {
-            $this->country[$item->id] = $item->name;
-        }
-        return $this->country;
-    }
-
-    public function race()
-    {
-        foreach (Race::get(['id', 'title']) as $item) {
-            $this->race[$item->id] = $item->title;
-        }
-        return $this->race;
-    }
+    private $emailVr;
 
     public function emailVr()
     {
