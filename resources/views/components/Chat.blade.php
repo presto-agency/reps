@@ -9,7 +9,11 @@
                         <p class="title_Text">Guest</p>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_right">
-                        <img class="icon_bars" src="{{url('/images\arrow-point-to-right.png')}}"/>
+                        <button>
+                            <svg  viewBox="0 0 59 55" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11 8C10.4477 8 10 8.44772 10 9V44.2641L27.4258 28H15.9999V26H28.9999H29.9999V27V40H27.9999V30.2L11.0713 46H47C47.5523 46 48 45.5523 48 45V9C48 8.44772 47.5523 8 47 8H11Z" fill="white"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 <div class="row messanger">
@@ -144,9 +148,27 @@
             <div class="col-xl-9 col-lg-9 col-md-6 ">
                 <div class="row title_video">
                     <div class="video_header">
-                        <img class="icon_bars" src="{{url('/images\country_flag.png')}}"/>
-                        <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
-                        <p class="title_Text">Guest</p>
+                        <div class="left_block">
+                            <img class="icon_bars" src="{{url('/images\arrow-point-to-right.png')}}"/>
+                            <img class="icon_bars" src="{{url('/images\country_flag.png')}}"/>
+                            <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
+                            <p class="title_Text">Guest</p>
+                        </div>
+                        <div class="right_block">
+                            <button>
+                                <svg  viewBox="0 0 59 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="8" y="12" width="42" height="31" stroke="white" stroke-width="2"/>
+                                    <line x1="37" y1="43" x2="37" y2="11" stroke="white" stroke-width="2"/>
+                                </svg>
+                            </button>
+                            <button>
+                              <svg  viewBox="0 0 59 55" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                  <line x1="12" y1="16" x2="47" y2="16" stroke="white" stroke-width="2"/>
+                                  <line x1="12" y1="27" x2="47" y2="27" stroke="white" stroke-width="2"/>
+                                  <line x1="12" y1="38" x2="47" y2="38" stroke="white" stroke-width="2"/>
+                              </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="row video_twitch">

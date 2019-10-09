@@ -18,7 +18,10 @@ class ViewComposerServiceProvider extends ServiceProvider
 
         $this->views = $viewFactory;
 
-//    $this->compose('*', SettingComposer::class);
+//        $this->views = $viewFactory;
+//        $this->compose('*', InterviewQuestionObserver::class);
+//        $this->compose('admin.quick_form', UserComposer::class);
+//        $this->compose('admin.quick_refund', UserComposer::class);
 
         $this->compose('admin.dashboard', DashboardCountComposer::class);
         $this->compose('admin.InterviewQuestion.questionClone', InterviewVariantAnswerComposer::class);

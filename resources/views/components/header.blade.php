@@ -53,7 +53,7 @@
                     <input id="inp"class="search_input " placeholder="поиск">
                 </div>
                 <div class="autorization">
-                    <button>Вход</button>
+                    <button type="button" data-toggle="modal" data-target="#authorizationModal">Вход</button>
                     <a class="registration" href="#">Регистрация</a>
                 </div>
             </div>

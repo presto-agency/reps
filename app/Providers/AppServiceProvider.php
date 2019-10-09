@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 
+use App\Models\Comment;
 use App\Models\ForumTopic;
 use App\Models\Replay;
 use App\Models\UserGallery;
+use App\Observers\CommentObserver;
 use App\Observers\ForumTopicObserver;
 use App\Observers\ReplayObserver;
 use App\Observers\UserGalleryObservers;
@@ -40,11 +42,7 @@ class AppServiceProvider extends ServiceProvider
         UserGallery::observe(UserGalleryObservers::class);
         Replay::observe(ReplayObserver::class);
         ForumTopic::observe(ForumTopicObserver::class);
+        Comment::observe(CommentObserver::class);
 
-
-//        $this->views = $viewFactory;
-//        $this->compose('*', InterviewQuestionObserver::class);
-//        $this->compose('admin.quick_form', UserComposer::class);
-//        $this->compose('admin.quick_refund', UserComposer::class);
     }
 }

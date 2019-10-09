@@ -6,7 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-`
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -28,13 +28,21 @@
 {{--@include('components.block-replay')--}}
 {{--@include('components.block-lastNews')--}}
 
-
 <!--SECTION HEADER-->
-    <header>
-            @include('components.header')
-    </header>
+        <header>
+                {{--include header--}}
+                @include('components.header')
+                @include('modal.authorization')
+        </header>
 <!--END SECTION HEADER-->
 
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    @include('breadcrumbs.breadcrumbs')
+                </div>
+            </div>
+        </section>
 <!--Stream Section-->
     @yield('stream')
 <!--END Stream Section-->
@@ -57,6 +65,8 @@
 
             <!--CONTENT-->
             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                @include('content.Page_gameBest')
+                @include('content.Page_tournamentDetail-content')
                 {{--@include('content.Page_tournament-content')--}}
                 @yield('content')
                 {{--@include('content.detailed-news')--}}
@@ -64,6 +74,8 @@
                 {{--@include('content.forum-article')--}}
                 {{--@include('content.gocu-replays')--}}
                 {{--@include('content.comments')--}}
+                @include('content.add-comment')
+                @include('content.detailed-forum')
             </div>
             <!--END CONTENT-->
 

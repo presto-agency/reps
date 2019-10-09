@@ -61,7 +61,6 @@ class Replay extends Section
      */
     public function onDisplay()
     {
-        $replay = \App\Models\Replay::class;
 
         $display = AdminDisplay::datatablesAsync()
             ->setHtmlAttribute('class', 'table-info table-sm text-center')
@@ -81,7 +80,7 @@ class Replay extends Section
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')
-                ->setWidth(50),
+                ->setWidth(70),
 
             $user_id = AdminColumn::relatedLink('users.name', 'Пользователь'),
 
@@ -102,8 +101,8 @@ class Replay extends Section
                 }
             })->setWidth(120),
 
-            $race = AdminColumn::custom('Расы', function ($replay) {
-                return "{$replay->firstRaces->title}" . '<br/><small>vs</small><br/>' . "{$replay->secondRaces->title}";
+            $race = AdminColumn::custom('Расы', function ($model) {
+                return "{$model->firstRaces->title}" . '<br/><small>vs</small><br/>' . "{$model->secondRaces->title}";
             })->setFilterCallback(function ($column, $query, $search) {
                 $searchId = Race::where('title', $search)->value('id');
                 if (!empty($searchId)) {
@@ -125,9 +124,9 @@ class Replay extends Section
             $user_rating = AdminColumn::relatedLink('user_rating', 'Оценка <br/><small>(пользователей)</small>')
                 ->setWidth(125),
 
-            $rating = AdminColumn::custom('Рейтинг', function ($replay) {
-                $positive = $replay->negative_count;
-                $negative = $replay->positive_count;
+            $rating = AdminColumn::custom('Рейтинг', function ($model) {
+                $positive = $model->negative_count;
+                $negative = $model->positive_count;
                 $result = $positive - $negative;
                 $thumbsUp = '<span style="font-size: 1em; color: green;"><i class="far fa-thumbs-up"></i></span>';
                 $equals = '<i class="fas fa-equals"></i>';
@@ -144,7 +143,7 @@ class Replay extends Section
         $display->setColumnFilters([
             $id = AdminColumnFilter::text()
                 ->setOperator(FilterInterface::CONTAINS)
-                ->setPlaceholder('Id')
+                ->setPlaceholder('ID')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
             $user_id = AdminColumnFilter::text()
                 ->setOperator('contains')
