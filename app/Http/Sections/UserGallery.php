@@ -38,7 +38,7 @@ class UserGallery extends Section
      */
     public function getIcon()
     {
-        return  parent::getIcon();
+        return parent::getIcon();
     }
 
     /**
@@ -69,31 +69,36 @@ class UserGallery extends Section
             $query->orderBy('id', 'desc');
         });
 
-        $display->with('users');
+        $display->with('users','comments');
 
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')
                 ->setWidth(50),
 
-            $picture = AdminColumn::image('picture', 'Picture'),
+            $picture = AdminColumn::image('picture', 'Изображение'),
 
-            $user_id = AdminColumn::relatedLink('users.name', 'User name'),
+            $user_id = AdminColumn::relatedLink('users.name', 'Пользователь'),
 
-            $sign = AdminColumn::text('sign', 'Sign'),
+            $sign = AdminColumn::text('sign', 'Подпись'),
 
             $for_adults = AdminColumnEditable::checkbox('for_adults')->setLabel('18+')
                 ->setWidth(50)
                 ->append(AdminColumn::filter('for_adults')),
 
-            $negative_count = AdminColumn::text('negative_count', 'Rating<br/><small>(negative)</small>')
-                ->setWidth(74),
-            $positive_count = AdminColumn::text('positive_count', 'Rating<br/><small>(positive)</small>')
-                ->setWidth(70),
-            $rating = AdminColumn::text('rating', 'Rating')
-                ->setWidth(70),
-            $comments_count = AdminColumn::text('comments_count', 'Count<br/><small>(comments)</small>')
-                ->setWidth(90),
+            $rating = AdminColumn::custom('Рейтинг', function ($model) {
+                $positive = $model->negative_count;
+                $negative = $model->positive_count;
+                $result = $positive - $negative;
+                $thumbsUp = '<span style="font-size: 1em; color: green;"><i class="far fa-thumbs-up"></i></span>';
+                $equals = '<i class="fas fa-equals"></i>';
+                $thumbsDown = '<span style="font-size: 1em; color: red;"><i class="far fa-thumbs-down"></i></span>';
+                return "{$thumbsUp}" . "({$positive})" . '<br/>' . "{$equals}" . "({$result})" . '<br/>' . "{$thumbsDown}" . "({$negative})";
+            })->setWidth(10),
+
+            $comments_count = AdminColumn::custom('Комментариев', function ($model) {
+                return "{$model->comments->count()}";
+            })->setWidth(100),
 
         ]);
 
@@ -114,7 +119,7 @@ class UserGallery extends Section
         $display = AdminForm::panel();
 
         $display->setItems([
-            $sign = AdminFormElement::text('sign', 'Sign')
+            $sign = AdminFormElement::text('sign', 'Подпись')
                 ->setValidationRules(['nullable', 'string', 'max:255']),
         ]);
         return $display;
@@ -128,7 +133,7 @@ class UserGallery extends Section
         $display = AdminForm::panel();
         $display->setItems([
 
-            $picture = AdminFormElement::image('picture', 'Picture')
+            $picture = AdminFormElement::image('picture', 'Картинка')
                 ->setUploadPath(function (UploadedFile $file) {
                     return 'storage/image/user/gallery';
                 })
@@ -137,10 +142,10 @@ class UserGallery extends Section
                 })
                 ->setValidationRules(['required']),
 
-            $sign = AdminFormElement::text('sign', 'Sign')
+            $sign = AdminFormElement::text('sign', 'Подпись')
                 ->setValidationRules(['nullable', 'string', 'max:255']),
 
-            $for_adults = AdminFormElement::checkbox('for_adults', 'For adults(18+)'),
+            $for_adults = AdminFormElement::checkbox('for_adults', '18+'),
         ]);
         return $display;
     }
