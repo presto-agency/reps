@@ -66,6 +66,7 @@
 
                 <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                     {{--include content--}}
+                    @include('content.Page_gameBest')
                     @include('content.Page_tournamentDetail-content')
                     @include('content.Page_tournament-content')
                     @yield('content')

@@ -33,6 +33,13 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
+            & button{
+                background: none;
+                border:0;
+                & svg{
+                    width: 50px;
+                }
+            }
         }
 
     }
@@ -122,8 +129,29 @@
         & .video_header{
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            width: 100%;
             & img{
                 padding-right: 20px;
+            }
+            & .left_block{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                & svg{
+                    width: 40px;
+                }
+            }
+            & .right_block{
+                display: flex;
+                & button{
+                    background: none;
+                    border: 0;
+                }
+                & svg{
+                    width: 50px;
+                    margin-right: 10px;
+                }
             }
         }
     }
