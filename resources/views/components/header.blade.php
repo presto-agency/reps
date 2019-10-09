@@ -38,11 +38,12 @@
             </div>
             <div class="col-xl-4  col-lg-4 col-md-2 col-sm-2 col-3 main_menu">
                 <nav class="menu_navigation">
-                    <a href="#">ГЛАВНАЯ</a>
-                    <a href="#">ФОРУМ</a>
-                    <a href="#">РУПЛЕИ</a>
-                    <a href="#">НОВОСТИ</a>
-                    <a href="#">ЛУЧШИЕ</a>
+                    <a href="/">ГЛАВНАЯ</a>
+                    <a href="/forum">ФОРУМ</a>
+                    <a href="/replay">РУПЛЕИ</a>
+                    <a href="/news">НОВОСТИ</a>
+                    <a href="/tournament">ТУРНИРЫ</a>
+                    <a href="/best">ЛУЧШИЕ</a>
                     <a href="#">ФАЙЛЫ</a>
                 </nav>
                 <img class="icon_bars" src="{{url('images\svg\bars.svg')}}"/>
