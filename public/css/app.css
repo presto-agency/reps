@@ -13099,6 +13099,110 @@ select:focus {
   display: block;
 }
 
+.vote {
+  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+}
+
+.vote .vote__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 19px;
+}
+
+.vote .vote__title .title__icon {
+  width: 21px;
+  height: 21px;
+  fill: #ffffff;
+}
+
+.vote .vote__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.vote .vote__content .content__header {
+  background-color: #f0f4f8;
+  padding-top: 16px;
+  padding-bottom: 17px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.vote .vote__content .content__header .header__title {
+  color: #8f95b1;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.vote .vote__content .content__body {
+  padding-top: 16px;
+  padding-bottom: 17px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.vote .vote__content .content__body .vote-form .form-check {
+  margin-bottom: 15px;
+}
+
+.vote .vote__content .content__body .vote-form .form-check label {
+  margin-left: 10px;
+}
+
+.vote .vote__content .content__body .vote-form .body__button-vote {
+  margin-bottom: 15px;
+}
+
+.vote .vote__content .content__body .vote-form .body__button-vote .button {
+  width: 100%;
+}
+
+.vote .vote__content .content__body .view-results {
+  display: none;
+}
+
+.vote .vote__content .content__body .view-results .results {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.vote .vote__content .content__body .view-results .results span {
+  color: #141d53;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.vote .vote__content .content__body .view-results .result__total {
+  margin-bottom: 15px;
+}
+
+.vote .vote__content .content__body .view-results .result__total span {
+  color: #141d53;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.vote .vote__content .content__body .body__view-results {
+  text-align: center;
+}
+
+.vote .vote__content .content__body .body__view-results .view-results__button {
+  border: 0px;
+  background-color: transparent;
+  color: #0567cc;
+  font-size: 14px;
+  font-weight: 500;
+}
+
 .block_chat-twitch {
   padding-bottom: 40px;
 }

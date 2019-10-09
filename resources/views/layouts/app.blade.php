@@ -85,6 +85,7 @@
                 <div class="col-xl-3 col-3 col-md-6 col-12">
                     {{--include right-side--}}
                     @include('components.block-top')
+                    @include('user cabinet.vote')
                 </div>
             </div>
         </section>
