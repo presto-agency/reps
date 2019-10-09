@@ -73,3 +73,9 @@ $('.js-accordion-title').click(function(event) {
     element.children("i").toggleClass('fa-ellipsis-h');
 });
 /*=======accordion replays    end=======*/
+
+/*=======select2 script   start=======*/
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+/*=======select2 script    end=======*/

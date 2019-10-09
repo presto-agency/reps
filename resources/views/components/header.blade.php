@@ -54,7 +54,7 @@
                 </div>
                 <div class="autorization">
                     <button type="button" data-toggle="modal" data-target="#authorizationModal">Вход</button>
-                    <a class="registration" href="#">Регистрация</a>
+                    <button class="registration"  type="button" data-toggle="modal" data-target="#registrationModal">Регистрация</button>
                 </div>
             </div>
             <div class="col-1"></div>
