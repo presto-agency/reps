@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    @include('content.detailed-forum')
+    @include('content.Page_gameBest')
 @endsection

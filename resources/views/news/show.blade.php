@@ -7,4 +7,5 @@
 @section('content')
     @include('content.detailed-news')
     @include('content.comments')
+    @include('content.add-comment')
 @endsection

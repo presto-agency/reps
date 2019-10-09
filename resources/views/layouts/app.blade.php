@@ -65,8 +65,8 @@
 
             <!--CONTENT-->
             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                @include('content.Page_gameBest')
-                @include('content.Page_tournamentDetail-content')
+                {{--@include('content.Page_gameBest')--}}
+                {{--@include('content.Page_tournamentDetail-content')--}}
                 {{--@include('content.Page_tournament-content')--}}
                 @yield('content')
                 {{--@include('content.detailed-news')--}}
@@ -74,8 +74,8 @@
                 {{--@include('content.forum-article')--}}
                 {{--@include('content.gocu-replays')--}}
                 {{--@include('content.comments')--}}
-                @include('content.add-comment')
-                @include('content.detailed-forum')
+                {{--@include('content.add-comment')--}}
+                {{--@include('content.detailed-forum')--}}
             </div>
             <!--END CONTENT-->
 

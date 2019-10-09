@@ -6,7 +6,7 @@ return [
     'vote'                          => 'Vote',
     'see_results'                   => 'View results',
     'more'                          => 'More',
-    'all_tournaments'               => 'All tournaments',
+    'all_tournaments'               => 'All tournament',
     'search'                        => 'Search',
     'load_more'                     => 'Load more',
     'other_gosu_replays'            => 'Other Gosu Replays',
