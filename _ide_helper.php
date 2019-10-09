@@ -7310,7 +7310,7 @@ namespace Illuminate\Support\Facades {
     class Redirect {
         
         /**
-         * Create a new redirect response to the "home" route.
+         * Create a new redirect response to the "news" route.
          *
          * @param int $status
          * @return \Illuminate\Http\RedirectResponse 
