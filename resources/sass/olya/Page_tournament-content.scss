@@ -13,13 +13,14 @@
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         padding: 20px;
-        & .right_content{
+        & .left_content{
             display: flex;
+            align-items: end;
             & svg{
                 margin-right: 10px;
             }
         }
-        & .left_content{
+        & .right_content{
             display: flex;
             align-items: center;
             & svg{
