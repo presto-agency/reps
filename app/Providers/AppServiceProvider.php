@@ -3,12 +3,16 @@
 namespace App\Providers;
 
 
+use App\Models\Comment;
 use App\Models\ForumTopic;
 use App\Models\Replay;
 use App\Models\UserGallery;
+use App\Observers\CommentObserver;
 use App\Observers\ForumTopicObserver;
 use App\Observers\ReplayObserver;
 use App\Observers\UserGalleryObservers;
+use App\Observers\UserObserver;
+use App\User;
 use Illuminate\Support\ServiceProvider;
 use App\Models\InterviewQuestion;
 use App\Observers\InterviewQuestionObserver;
@@ -40,6 +44,8 @@ class AppServiceProvider extends ServiceProvider
         UserGallery::observe(UserGalleryObservers::class);
         Replay::observe(ReplayObserver::class);
         ForumTopic::observe(ForumTopicObserver::class);
+        Comment::observe(CommentObserver::class);
+        User::observe(UserObserver::class);
 
     }
 }

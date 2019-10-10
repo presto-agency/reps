@@ -11,11 +11,10 @@ class InterviewQuestionsController extends Controller
 {
     public function show($id)
     {
-
         $interviewQuestion = InterviewQuestion::select('question')->findOrFail($id);
 
-        $interviewVariantAnswers = InterviewVariantAnswer::select('id', 'answer')
-            ->with('userAnswers')->where('question_id', $id)->get();
+        $interviewVariantAnswers = InterviewVariantAnswer::where('question_id', $id)
+            ->with('userAnswers')->get(['id', 'answer']);
 
         $content = view('admin.InterviewQuestion.show',
             compact('interviewQuestion', 'interviewVariantAnswers')

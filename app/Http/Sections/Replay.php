@@ -61,7 +61,6 @@ class Replay extends Section
      */
     public function onDisplay()
     {
-        $replay = \App\Models\Replay::class;
 
         $display = AdminDisplay::datatablesAsync()
             ->setHtmlAttribute('class', 'table-info table-sm text-center')
@@ -81,7 +80,7 @@ class Replay extends Section
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')
-                ->setWidth(50),
+                ->setWidth(70),
 
             $user_id = AdminColumn::relatedLink('users.name', 'Пользователь'),
 
@@ -102,8 +101,8 @@ class Replay extends Section
                 }
             })->setWidth(120),
 
-            $race = AdminColumn::custom('Расы', function ($replay) {
-                return "{$replay->firstRaces->title}" . '<br/><small>vs</small><br/>' . "{$replay->secondRaces->title}";
+            $race = AdminColumn::custom('Расы', function ($model) {
+                return "{$model->firstRaces->title}" . '<br/><small>vs</small><br/>' . "{$model->secondRaces->title}";
             })->setFilterCallback(function ($column, $query, $search) {
                 $searchId = Race::where('title', $search)->value('id');
                 if (!empty($searchId)) {
@@ -125,9 +124,9 @@ class Replay extends Section
             $user_rating = AdminColumn::relatedLink('user_rating', 'Оценка <br/><small>(пользователей)</small>')
                 ->setWidth(125),
 
-            $rating = AdminColumn::custom('Рейтинг', function ($replay) {
-                $positive = $replay->negative_count;
-                $negative = $replay->positive_count;
+            $rating = AdminColumn::custom('Рейтинг', function ($model) {
+                $positive = $model->negative_count;
+                $negative = $model->positive_count;
                 $result = $positive - $negative;
                 $thumbsUp = '<span style="font-size: 1em; color: green;"><i class="far fa-thumbs-up"></i></span>';
                 $equals = '<i class="fas fa-equals"></i>';
@@ -144,7 +143,7 @@ class Replay extends Section
         $display->setColumnFilters([
             $id = AdminColumnFilter::text()
                 ->setOperator(FilterInterface::CONTAINS)
-                ->setPlaceholder('Id')
+                ->setPlaceholder('ID')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
             $user_id = AdminColumnFilter::text()
                 ->setOperator('contains')
@@ -198,11 +197,15 @@ class Replay extends Section
                         ->setValidationRules(['required', 'string', 'between:4,255'])
                 ], 3)
                 ->addColumn([
-                    $type_id = AdminFormElement::select('type_id', 'Тип', $this->type())
+                    $type_id = AdminFormElement::select('type_id', 'Тип')
+                        ->setOptions((new ReplayType())->pluck('title', 'id')->toArray())
+                        ->setDisplay('title')
                         ->setValidationRules(['required', 'string'])
                 ], 3)
                 ->addColumn([
-                    $map_id = AdminFormElement::select('map_id', 'Карта', $this->map())
+                    $map_id = AdminFormElement::select('map_id', 'Карта')
+                        ->setOptions((new ReplayMap())->pluck('name', 'id')->toArray())
+                        ->setDisplay('name')
                         ->setValidationRules(['required', 'string'])
                 ])
         ]);
@@ -211,10 +214,14 @@ class Replay extends Section
                 ->addColumn(function () {
                     return [
 
-                        $first_race = AdminFormElement::select('first_race', 'Перва раса', $this->race())
+                        $first_race = AdminFormElement::select('first_race', 'Перва раса')
+                            ->setOptions((new Race())->pluck('title', 'id')->toArray())
+                            ->setDisplay('name')
                             ->setValidationRules(['required', 'string']),
 
-                        $first_country_id = AdminFormElement::select('first_country_id', 'Первая страна', $this->country())
+                        $first_country_id = AdminFormElement::select('first_country_id', 'Первая страна')
+                            ->setOptions((new Country())->pluck('name', 'id')->toArray())
+                            ->setDisplay('name')
                             ->setValidationRules(['required', 'string']),
 
                         $first_location = AdminFormElement::text('first_location', 'Первая локация')
@@ -235,10 +242,14 @@ class Replay extends Section
                 })->addColumn(function () {
                     return [
 
-                        $first_race = AdminFormElement::select('second_race', 'Вторая раса', $this->race())
+                        $first_race = AdminFormElement::select('second_race', 'Вторая раса')
+                            ->setOptions((new Race())->pluck('title', 'id')->toArray())
+                            ->setDisplay('name')
                             ->setValidationRules(['required', 'string']),
 
-                        $first_country_id = AdminFormElement::select('second_country_id', 'Вторая страна', $this->country())
+                        $first_country_id = AdminFormElement::select('second_country_id', 'Вторая страна')
+                            ->setOptions((new Country())->pluck('name', 'id')->toArray())
+                            ->setDisplay('name')
                             ->setValidationRules(['required', 'string']),
 
                         $first_location = AdminFormElement::text('second_location', 'Вторая локация')
@@ -279,7 +290,9 @@ class Replay extends Section
                 })
                 ->addColumn(function () {
                     return [
-                        $date = AdminFormElement::date('start_date', 'Дата начала')->setFormat('Y-m-d'),
+                        $date = AdminFormElement::date('start_date', 'Дата начала')
+                            ->setHtmlAttributes(['placeholder' => Carbon::now()->format('Y-m-d')])
+                            ->setFormat('Y-m-d'),
 
                         $approved = AdminFormElement::checkbox('approved', 'Подтвержден')
 
@@ -324,8 +337,8 @@ class Replay extends Section
     {
 
         $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $url = url('admin/replays/show');
-            return $url . '/' . $model->getKey();
+            $url = url('admin/replays/show/'. $model->getKey());
+            return $url;
         }, function (\Illuminate\Database\Eloquent\Model $model) {
             return 'Просмотреть';
         }, 50);
@@ -334,43 +347,6 @@ class Replay extends Section
         $link->setHtmlAttribute('class', 'btn-info');
 
         return $link;
-    }
-
-    private $map, $country, $race, $type;
-
-
-    private function map()
-    {
-        foreach (ReplayMap::get(['id', 'name']) as $item) {
-            $this->map[$item->id] = $item->name;
-        }
-        return $this->map;
-    }
-
-    private function country()
-    {
-        foreach (Country::get(['id', 'name']) as $item) {
-            $this->country[$item->id] = $item->name;
-        }
-
-        return $this->country;
-    }
-
-    private function race()
-    {
-        foreach (Race::get(['id', 'title']) as $item) {
-            $this->race[$item->id] = $item->title;
-        }
-        return $this->race;
-    }
-
-    private function type()
-    {
-
-        foreach (ReplayType::get(['id', 'title']) as $item) {
-            $this->type[$item->id] = $item->title;
-        }
-        return $this->type;
     }
 
 }

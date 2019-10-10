@@ -11,13 +11,31 @@
 |
 */
 
-Route::get('/', function () {
-    return view('content.last_news');
+Route::get('/', 'HomeController@index')->name('home.index');
+
+Route::resource('news', 'NewsController');
+Route::resource('forum', 'ForumController');
+
+Route::get('forum/topic/{id}', function (){
+    return view('forum.topic');
+});
+
+Route::get('replay', function (){
+    return view('replay.index');
+});
+
+Route::get('best', function (){
+    return view('best.index');
+});
+
+Route::get('tournament', function (){
+    return view('tournament.index');
+});
+
+Route::get('tournament/{id}', function (){
+    return view('tournament.show');
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::get('replays/download/{id}', '\App\Http\Controllers\Admin\ReplayController@download')->name('replay.download');

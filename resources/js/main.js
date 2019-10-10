@@ -73,3 +73,21 @@ $('.js-accordion-title').click(function(event) {
     element.children("i").toggleClass('fa-ellipsis-h');
 });
 /*=======accordion replays    end=======*/
+
+/*=======select2 script   start=======*/
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+/*=======select2 script    end=======*/
+
+
+/*=======show/hide vote result in user cabinet page  start=======*/
+$(document).ready(function(){
+    $(".js-body__view-results").click(function(event){
+        const element = $(event.target).closest('.content__body');
+        event.preventDefault();
+        element.children(".vote-form").hide();
+        element.children(".view-results").show();
+    });
+});
+/*=======show/hide vote result in user cabinet page  end=======*/
