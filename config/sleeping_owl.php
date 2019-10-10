@@ -172,7 +172,6 @@ return [
 //            'filebrowserUploadUrl' => '/path/stream/file',
         ],
 
-
         /*
          * See https://www.tinymce.com/docs/
          */

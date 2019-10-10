@@ -31,7 +31,6 @@ class Banner extends Section implements Initializable
     /**
      * @var string
      */
-//    protected $title;
 
     /**
      * @var string
@@ -60,7 +59,6 @@ class Banner extends Section implements Initializable
     {
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
-//            ->setDisplaySearch(true)
             ->setHtmlAttribute('class', 'table-info table-hover text-center')
             ->paginate(10);
         $display->setApply(function ($query) {
@@ -98,8 +96,6 @@ class Banner extends Section implements Initializable
     {
         $form = AdminForm::panel();
         $form->setItems([
-            /*Init FormElement*/
-
             $image = AdminFormElement::image('image', 'Image')->required(),
             $title = AdminFormElement::text('title', 'Title')->required(),
             $url = AdminFormElement::text('url_redirect', 'URL')->required(),

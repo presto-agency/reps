@@ -173,8 +173,8 @@ class UserGallery extends Section
     {
 
         $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $url = url('admin/usergallery/show');
-            return $url . '/' . $model->getKey();
+            $url = url('admin/user_galleries/show/'. $model->getKey());
+            return $url;
         }, function (\Illuminate\Database\Eloquent\Model $model) {
             return 'Просмотреть';
         }, 50);
