@@ -33,6 +33,7 @@
                 {{--include header--}}
                 @include('components.header')
                 @include('modal.authorization')
+                @include('modal.registration')
         </header>
 <!--END SECTION HEADER-->
 
