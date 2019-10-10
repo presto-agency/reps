@@ -63,8 +63,7 @@ class Country extends Section
                 ->setHtmlAttribute('class', 'hidden-sm '),
 
             $flag = AdminColumn::image('flag', 'Flag')
-                ->setHtmlAttribute('class', 'hidden-sm')
-                ->setWidth(100),
+                ->setHtmlAttribute('class', 'hidden-sm'),
         ]);
 
         return $display;

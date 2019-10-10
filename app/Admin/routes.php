@@ -18,9 +18,12 @@ Route::get('replays/show/{id}', '\App\Http\Controllers\Admin\ReplayController@sh
 Route::post('replays/show/{id}/send_comment', '\App\Http\Controllers\Admin\ReplayController@comment')->name('admin.replays.comment_send');
 Route::delete('replays/show/{id}/delete_comment', '\App\Http\Controllers\Admin\ReplayController@deleteComment')->name('admin.replays.comment_delete');
 
-Route::get('usergallery/show/{id}', '\App\Http\Controllers\Admin\UserGalleryController@show');
-Route::post('usergallery/show/{id}/send_comment', '\App\Http\Controllers\Admin\UserGalleryController@comment')->name('admin.usergallery.comment_send');
-Route::delete('usergallery/show/{id}/delete_comment', '\App\Http\Controllers\Admin\UserGalleryController@deleteComment')->name('admin.usergallery.comment_delete');
+Route::get('user_galleries/show/{id}', '\App\Http\Controllers\Admin\UserGalleryController@show');
+Route::post('user_galleries/show/{id}/send_comment', '\App\Http\Controllers\Admin\UserGalleryController@comment')->name('admin.usergallery.comment_send');
+Route::delete('user_galleries/show/{id}/delete_comment', '\App\Http\Controllers\Admin\UserGalleryController@deleteComment')->name('admin.usergallery.comment_delete');
+
+Route::get('streams/show/{id}', '\App\Http\Controllers\Admin\StreamController@show');
+
 
 
 

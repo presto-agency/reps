@@ -124,7 +124,7 @@ class InterviewQuestion extends Section
     public function onCreate()
     {
 
-        return $this->onEdit(null);
+        return $this->onEdit('');
 
     }
 

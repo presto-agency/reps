@@ -40,7 +40,7 @@
                         @if(isset($topic->author->avatar))
                             <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatar)}}" alt="User img">
                         @else
-                            <img class="img-circle img-bordered-sm" src="{{route('home').'/dist/img/avatar.png'}}" alt="User img">
+                            <img class="img-circle img-bordered-sm" src="{{route('news').'/dist/img/avatar.png'}}" alt="User img">
                         @endif
                         <span class="username">
                             <a href="#{{--{{route('admin.user.profile', ['id' => $topic->user->id])}}--}}">{{$topic->author->name}}</a>
@@ -80,7 +80,7 @@
                                             @if(isset($comment->user->avatar))
                                                 <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatar)}}" alt="User img">
                                             @else
-                                                <img class="img-circle img-bordered-sm" src="{{route('home').'/dist/img/avatar.png'}}" alt="User img">
+                                                <img class="img-circle img-bordered-sm" src="{{route('news').'/dist/img/avatar.png'}}" alt="User img">
                                             @endif
 
                                             <p class="message">

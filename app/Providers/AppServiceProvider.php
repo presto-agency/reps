@@ -11,6 +11,8 @@ use App\Observers\CommentObserver;
 use App\Observers\ForumTopicObserver;
 use App\Observers\ReplayObserver;
 use App\Observers\UserGalleryObservers;
+use App\Observers\UserObserver;
+use App\User;
 use Illuminate\Support\ServiceProvider;
 use App\Models\InterviewQuestion;
 use App\Observers\InterviewQuestionObserver;
@@ -43,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
         Replay::observe(ReplayObserver::class);
         ForumTopic::observe(ForumTopicObserver::class);
         Comment::observe(CommentObserver::class);
+        User::observe(UserObserver::class);
 
     }
 }
