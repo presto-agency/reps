@@ -6,8 +6,7 @@
         </svg>
         <p class="title__text">Последние новости</p>
     </div>
-
-    @if($news)
+    @if(!$news->isEmpty())
         @foreach($news as $single_news)
         <div class="breaking-news__news-card card">
             @if($single_news->preview_img)
