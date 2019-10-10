@@ -96,25 +96,30 @@ class Stream extends Section implements Initializable
         $display = AdminForm::panel();
         $display->setItems([
 
-            $title = AdminFormElement::text('title', 'Title')
+            $title = AdminFormElement::text('title', 'Название')
                 ->setValidationRules(['required', 'max:255', 'string']),
 
-            $race_id = AdminFormElement::select('race_id', 'Race')
+            $race_id = AdminFormElement::select('race_id', 'Первая раса')
                 ->setOptions((new Race())->pluck('title', 'id')->toArray())
                 ->setDisplay('title')
                 ->setValidationRules(['required']),
 
-            $content = AdminFormElement::wysiwyg('content', 'Content')
-                ->setValidationRules(['nullable']),
-            $country_id = AdminFormElement::select('country_id', 'Country')
+            $country_id = AdminFormElement::select('country_id', 'Первая страна')
                 ->setOptions((new Country())->pluck('name', 'id')->toArray())
                 ->setDisplay('name')
                 ->setValidationRules(['required']),
 
-            $stream_url = AdminFormElement::text('stream_url', 'Stream url')
-                ->setValidationRules(['nullable', 'max:255', 'string']),
+            $content = AdminFormElement::textarea('content', 'Комментарий')
+                ->setValidationRules(['nullable']),
 
-            $approved = AdminFormElement::checkbox('approved', 'Approved'),
+            $approved = AdminFormElement::checkbox('approved', 'Подтвердить'),
+
+            $stream_url = AdminFormElement::hidden('stream_url')
+            ->setValidationRules(['nullable', 'max:255', 'string']),
+            view('admin.stream.iframe'),
+
+
+
 
 
         ]);
