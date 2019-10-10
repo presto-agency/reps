@@ -81,7 +81,7 @@ $(document).ready(function() {
 /*=======select2 script    end=======*/
 
 
-/*=======show/hide vote result in user cabinet page  start=======*/
+/*=======show/hide vote result in user page  start=======*/
 $(document).ready(function(){
     $(".js-body__view-results").click(function(event){
         const element = $(event.target).closest('.content__body');
@@ -90,4 +90,4 @@ $(document).ready(function(){
         element.children(".view-results").show();
     });
 });
-/*=======show/hide vote result in user cabinet page  end=======*/
+/*=======show/hide vote result in user page  end=======*/
