@@ -104,12 +104,12 @@
                     border-radius: 3px;
                     border: 0;
                     margin-left: 15px;
-                    color: #3490dc;
+                    color: $blue;
                 }
                 & .registration{
                     color: white;
-                    bottom: -30px;
-                    right: 0;
+                    bottom: -35px;
+                    background: none;
                     position: absolute;
                 }
             }

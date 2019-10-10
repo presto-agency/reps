@@ -37,7 +37,7 @@
                 background: none;
                 border:0;
                 & svg{
-                    width: 50px;
+                    width: 35px;
                 }
             }
         }
@@ -62,6 +62,7 @@
     }
     .row_contentChat{
         padding: 30px 10px 0;
+        width: 100%;
         & svg{
             height: 15px;
             width: 15px;
@@ -146,7 +147,7 @@
                     border: 0;
                 }
                 & svg{
-                    width: 50px;
+                    width: 35px;
                     margin-right: 10px;
                 }
             }
