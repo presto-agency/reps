@@ -11130,6 +11130,7 @@ a.text-dark:focus {
 }
 
 body {
+  font-family: "Montserrat", sans-serif !important;
   background-color: #ffffff;
 }
 
@@ -11882,6 +11883,7 @@ select:focus {
   box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
   border-radius: 5px;
   background-color: #ffffff;
+  margin-bottom: 34px;
 }
 
 .replays .replays__title {
@@ -12908,6 +12910,11 @@ select:focus {
 
 .breadcrumb {
   background-color: transparent;
+  margin-bottom: 0;
+  padding-top: 26px;
+  padding-bottom: 25px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .breadcrumb .breadcrumb-item {
@@ -13201,6 +13208,113 @@ select:focus {
   color: #0567cc;
   font-size: 14px;
   font-weight: 500;
+}
+
+.user-settings {
+  box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.user-settings .user-settings__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 19px;
+}
+
+.user-settings .user-settings__title .title__icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.user-settings .user-settings__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.user-settings .user-settings__form {
+  padding: 25px;
+}
+
+.user-settings .user-settings__form .upload-avatar {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.user-settings .user-settings__form .upload-avatar .avatar__input-upload {
+  flex-grow: 1;
+}
+
+.user-settings .user-settings__form .upload-avatar .avatar__button-upload {
+  margin-left: 5px;
+}
+
+.user-settings .user-settings__form .upload-avatar .avatar__button-upload label {
+  border: 1px solid #0567cc;
+  display: inline-block;
+  cursor: pointer;
+  background-color: #0567cc;
+  margin-bottom: 0;
+  height: 37px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.user-settings .user-settings__form .upload-avatar .avatar__button-upload input[type=file] {
+  display: none;
+}
+
+.user-settings .user-settings__form .form-group label {
+  width: 100%;
+}
+
+.user-settings .user-settings__form .form-group .select2 {
+  width: 100% !important;
+  height: 37px;
+}
+
+.user-settings .user-settings__form .form-group .select2 .select2-selection {
+  height: 37px;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+}
+
+.user-settings .user-settings__form .form-group .select2 .select2-selection .select2-selection__rendered {
+  padding-top: 4px;
+}
+
+.user-settings .user-settings__form .form-group .select2 .select2-selection .select2-selection__arrow {
+  top: 5px;
+}
+
+.user-settings .user-settings__form .form-group #user-settings__race {
+  width: 100%;
+  height: 37px;
+  background-color: #fff;
+  color: #495057;
+  border: 1px solid #ced4da;
+}
+
+.user-settings .user-settings__form .form-check {
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.user-settings .user-settings__form .form-check .form-check-input {
+  margin-left: 10px;
 }
 
 .block_chat-twitch {
@@ -14491,6 +14605,198 @@ select:focus {
 }
 
 .Page_gameBest .container_players::-webkit-scrollbar-thumb {
+  background-color: #e2e5e9;
+  opacity: 0.8;
+  border-radius: 4px;
+  height: 25px;
+}
+
+.user_profile .wrapper {
+  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+  margin-bottom: 70px;
+}
+
+.user_profile .title_top_userProfile {
+  background: #efefef;
+  height: 60px;
+  padding: 20px;
+}
+
+.user_profile .title_top_userProfile .title_Text {
+  font-size: 16px;
+  color: #9ca0b6;
+  margin: 0;
+  font-weight: 600;
+}
+
+.user_profile .title_top_userProfile .more {
+  background: none;
+  border: 0;
+}
+
+.user_profile .title_top_userProfile .more p {
+  font-size: 40px;
+  color: #9ca0b6;
+}
+
+.user_profile .userInfo_block {
+  padding: 30px 20px;
+}
+
+.user_profile .userInfo_block .button {
+  margin: 35px auto 0;
+  padding: 10px;
+  width: 30%;
+}
+
+.user_profile .userInfo_block .container_information .userText_block {
+  margin-bottom: 15px;
+}
+
+.user_profile .userInfo_block .container_information .userText_block .title {
+  font-size: 18px;
+  padding-right: 40px;
+  font-weight: 600;
+}
+
+.user_profile .userInfo_block .container_information .userText_block .date {
+  font-size: 12px;
+  color: #9ca0b6;
+  font-weight: lighter;
+}
+
+.user_profile .userInfo_block .container_information .information_block {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.user_profile .userInfo_block .container_information .information_block .left_block {
+  width: 50%;
+}
+
+.user_profile .userInfo_block .container_information .information_block .left_block span {
+  font-size: 12px;
+  color: #9ca0b6;
+  font-weight: lighter;
+}
+
+.user_profile .userInfo_block .container_information .information_block .right_block {
+  width: 50%;
+}
+
+.user_profile .userInfo_block .container_information .information_block .right_block span {
+  font-size: 14px;
+}
+
+.user_profile .userInfo_block .container_information .information_block .right_block .blue {
+  color: #0567cc;
+  font-weight: 600;
+}
+
+.user_profile .block_userInformation .container_left {
+  padding-right: 0;
+}
+
+.user_profile .block_userInformation .container_right {
+  padding-left: 0;
+  border-left: 2px solid #efefef;
+}
+
+.user_profile .block_userInformation .container_right .wrapper_information,
+.user_profile .block_userInformation .container_right .wrapper_contacts {
+  padding: 20px 20px 10px;
+}
+
+.user_profile .block_userInformation .container_right .wrapper_information .block_inform,
+.user_profile .block_userInformation .container_right .wrapper_information .block_contact,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_inform,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_contact {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.user_profile .block_userInformation .container_right .wrapper_information .block_inform .left_block span,
+.user_profile .block_userInformation .container_right .wrapper_information .block_contact .left_block span,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .left_block span,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .left_block span {
+  font-size: 12px;
+  color: #9ca0b6;
+  font-weight: lighter;
+}
+
+.user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block span,
+.user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block span,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block span,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block span {
+  font-size: 14px;
+}
+
+.user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block .small,
+.user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block .small,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block .small,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block .small {
+  font-size: 12px;
+  color: #0567cc;
+}
+
+.user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block .blue,
+.user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block .blue,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block .blue,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block .blue {
+  color: #0567cc;
+  font-weight: 600;
+}
+
+.user_profile .block_userInformation .container_right .block_armor {
+  padding: 20px 20px 10px;
+}
+
+.user_profile .block_userInformation .container_right .block_armor .armor_info {
+  padding-bottom: 10px;
+}
+
+.user_profile .block_userInformation .container_right .block_armor svg {
+  fill: #0567cc;
+  width: 17px;
+  margin-right: 10px;
+}
+
+.user_profile .block_userInformation .friends_block {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  padding-bottom: 0;
+  max-height: 300px;
+  overflow: scroll;
+  margin-right: 5px;
+}
+
+.user_profile .block_userInformation .friends_block .friends {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.user_profile .block_userInformation .friends_block .friends .left_block {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user_profile .block_userInformation .friends_block .friends .left_block .name_player {
+  margin-left: 10px;
+  font-weight: 600;
+  max-width: 100px;
+  display: inline-block;
+}
+
+.user_profile .friends_block::-webkit-scrollbar {
+  width: 7px;
+}
+
+.user_profile .friends_block::-webkit-scrollbar-thumb {
   background-color: #e2e5e9;
   opacity: 0.8;
   border-radius: 4px;

@@ -40,7 +40,7 @@
                 <nav class="menu_navigation">
                     <a href="/">ГЛАВНАЯ</a>
                     <a href="/forum">ФОРУМ</a>
-                    <a href="/replay">РУПЛЕИ</a>
+                    <a href="/replay">РЕПЛЕИ</a>
                     <a href="/news">НОВОСТИ</a>
                     <a href="/tournament">ТУРНИРЫ</a>
                     <a href="/best">ЛУЧШИЕ</a>
