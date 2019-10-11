@@ -1,0 +1,61 @@
+$yellow: #ffba18;
+$blue: #0567cc;
+$btnWidth: 45px;
+$switchWidth: 120px;
+$switchHeight: 50px;
+$padding: 2px;
+
+.checkbox {
+    display: none;
+}
+
+.checkbox + label {
+    display: inline-block;
+    position: relative;
+    width: $switchWidth;
+    height: $switchHeight;
+    background: linear-gradient(to right, $yellow 0, #fc8b34 25%, $blue 100%) 0 0;
+    background-size: (($switchWidth * 2) + 50) 100%;
+    border-radius: 20px;
+    padding: $padding;
+    cursor: pointer;
+    transition: all 500ms ease;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2) inset;
+    &:before {
+        content: 'DAY';
+        width: $btnWidth;
+        height: $btnWidth;
+        position: absolute;
+        left: $padding;
+        top: $padding;
+        border-radius: 100%;
+        background: #fff;
+        text-align: center;
+        line-height: ($switchHeight - ($padding * 2));
+        font-family: 'Cabin', sans-serif;
+        font-size: 8px;
+        font-weight: bold;
+        color: $yellow;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        transition: left 500ms ease, color 500ms ease, transform 150ms ease;
+    }
+    &:active {
+        &:before {
+            transform: scale(0.95);
+        }
+    }
+}
+.checkbox:checked + label {
+    background-position-x: -($switchWidth + 50);
+    &:before {
+        content: 'NIGHT';
+        color: $blue;
+        left: ($switchWidth - $btnWidth - $padding);
+    }
+
+}
+
+
+
+
