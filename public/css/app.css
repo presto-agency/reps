@@ -13326,6 +13326,10 @@ select:focus {
   margin-left: 10px;
 }
 
+.user-settings .user-settings__form .modal-body__enter-btn .button {
+  width: 100%;
+}
+
 .checkbox {
   display: none;
 }
@@ -13376,6 +13380,278 @@ select:focus {
   content: "NIGHT";
   color: #0567cc;
   left: 73px;
+}
+
+.gallery {
+  box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.gallery .gallery__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 19px;
+}
+
+.gallery .gallery__title .title__icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.gallery .gallery__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.gallery .gallery__body {
+  padding: 25px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery .gallery__body .img-wrapper {
+  max-width: 120px;
+  padding: 5px;
+}
+
+.gallery .gallery__body .img-wrapper .img-link {
+  text-decoration: none;
+  outline: none;
+}
+
+.gallery .gallery__body .img-wrapper .img-link img {
+  width: 100%;
+}
+
+.gallery-download {
+  box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.gallery-download .gallery-download__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 19px;
+}
+
+.gallery-download .gallery-download__title .title__icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.gallery-download .gallery-download__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.gallery-download .gallery-download__body {
+  padding: 25px;
+}
+
+.gallery-download .gallery-download__body .gallery__form .upload-avatar {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.gallery-download .gallery-download__body .gallery__form .upload-avatar .avatar__input-upload {
+  flex-grow: 1;
+}
+
+.gallery-download .gallery-download__body .gallery__form .upload-avatar .avatar__button-upload {
+  margin-left: 5px;
+}
+
+.gallery-download .gallery-download__body .gallery__form .upload-avatar .avatar__button-upload label {
+  border: 1px solid #0567cc;
+  display: inline-block;
+  cursor: pointer;
+  background-color: #0567cc;
+  margin-bottom: 0;
+  height: 37px;
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.gallery-download .gallery-download__body .gallery__form .upload-avatar .avatar__button-upload input[type=file] {
+  display: none;
+}
+
+.gallery-download .gallery-download__body .gallery__form .form-group label {
+  width: 100%;
+}
+
+.gallery-download .gallery-download__body .gallery__form .form-check {
+  margin-bottom: 20px;
+}
+
+.gallery-download .gallery-download__body .gallery__form .modal-body__add-btn .button {
+  width: 100%;
+}
+
+.gallery-detail {
+  box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.gallery-detail .gallery-detail__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 19px;
+}
+
+.gallery-detail .gallery-detail__title .title__icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.gallery-detail .gallery-detail__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.gallery-detail .gallery-detail__body {
+  padding: 25px;
+}
+
+.gallery-detail .gallery-detail__body .body__items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.gallery-detail .gallery-detail__body .body__items .items__title p {
+  color: #010b4a;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-bottom: 0;
+}
+
+.gallery-detail .gallery-detail__body .body__items .items__rating .rating__like {
+  text-decoration: none;
+}
+
+.gallery-detail .gallery-detail__body .body__items .items__rating .rating__like svg {
+  width: 20px;
+  height: 18px;
+  fill: #c7c9d7;
+  transition: 0.3s;
+}
+
+.gallery-detail .gallery-detail__body .body__items .items__rating .rating__like span {
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-left: 7px;
+}
+
+.gallery-detail .gallery-detail__body .body__items .items__rating .rating__like:hover svg {
+  fill: #0567cc;
+}
+
+.gallery-detail .gallery-detail__body .body__items .items__rating .rating__dislike {
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.gallery-detail .gallery-detail__body .body__items .items__rating .rating__dislike svg {
+  width: 20px;
+  height: 18px;
+  fill: #c7c9d7;
+  transition: 0.3s;
+}
+
+.gallery-detail .gallery-detail__body .body__items .items__rating .rating__dislike span {
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-left: 7px;
+}
+
+.gallery-detail .gallery-detail__body .body__items .items__rating .rating__dislike:hover svg {
+  fill: #0567cc;
+}
+
+.gallery-detail .gallery-detail__body .body__items .items__reputation-button a {
+  text-decoration: none;
+  background: #0567cc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  width: 150px;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+.gallery-detail .gallery-detail__body .body__items .items__slide-button a {
+  text-decoration: none;
+  background-color: #fff;
+  display: flex;
+  height: 30px;
+  width: 30px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #0567cc;
+  border-radius: 3px;
+}
+
+.gallery-detail .gallery-detail__body .body__items .items__slide-button a i {
+  color: #0567cc;
+  font-size: 18px;
+}
+
+.gallery-detail .gallery-detail__body .body__img {
+  margin-bottom: 15px;
+}
+
+.gallery-detail .gallery-detail__body .body__img img {
+  width: 100%;
+  height: auto;
+}
+
+.gallery-detail .gallery-detail__body .body__edit-image-form .form-group label {
+  width: 100%;
+}
+
+.gallery-detail .gallery-detail__body .body__edit-image-form .form-check {
+  margin-bottom: 20px;
+}
+
+.gallery-detail .gallery-detail__body .body__edit-image-form .modal-body__add-btn .button {
+  width: 100%;
 }
 
 .block_chat-twitch {
