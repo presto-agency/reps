@@ -81,13 +81,16 @@
     <div class="replays__accordion accordion" id="replaysAccordion">
 
         <div class="accordion__topic card">
-            <div class="topic__header card-header js-accordion-title" id="topicOne" data-toggle="collapse" data-target="#topicCollapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <p class="header__title">Пользовательские реплеи</p>
-                <i class="fas fa-chevron-down"></i>
-
+            <div class="topic__header card-header">
+                <a class="header__title-disable" href="#">
+                    Пользовательские реплеи
+                </a>
+                <a class="header__title-disable" href="#">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
             </div>
 
-            <div id="topicCollapseOne" class="topic__body collapse" aria-labelledby="topicOne">
+            <div class="topic__body">
                 <div class="card-body">
                     <div class="body__wrap">
                         <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
@@ -114,13 +117,17 @@
         </div>
 
         <div class="accordion__topic card">
-            <div class="topic__header card-header js-accordion-title" id="topicTwo" data-toggle="collapse" data-target="#topicCollapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <p class="header__title">ГОСУ реплеи</p>
-                <i class="fas fa-chevron-down"></i>
+            <div class="topic__header card-header">
+                <a class="header__title-disable" href="#">
+                    ГОСУ реплеи
+                </a>
 
+                <a class="header__title-disable" href="#">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
             </div>
 
-            <div id="topicCollapseTwo" class="topic__body collapse" aria-labelledby="topicTwo">
+            <div class="topic__body">
                 <div class="card-body">
                     <div class="body__wrap">
                         <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>

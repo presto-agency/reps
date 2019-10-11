@@ -7,4 +7,5 @@
 
 @section('content')
     @include('content.gocu-replays')
+    @include('content.user-replays')
 @endsection

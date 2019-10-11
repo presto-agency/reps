@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('sidebar-left')
-    left
+    @include('user.components.vote')
 @endsection
 
 @section('content')
