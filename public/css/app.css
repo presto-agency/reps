@@ -11935,6 +11935,16 @@ select:focus {
   transition: 0.3s;
 }
 
+.replays .replays__accordion .accordion__topic .topic__header .header__title-disable {
+  color: #7880a1;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+
 .replays .replays__accordion .accordion__topic .topic__header .header__title-active {
   color: #7880a1;
 }
@@ -11979,7 +11989,7 @@ select:focus {
   color: #0567cc;
 }
 
-.replays .replays__accordion .accordion__topic:hover .fas {
+.replays .replays__accordion .accordion__topic:hover .fa-chevron-down {
   color: #0567cc;
 }
 
@@ -13314,6 +13324,58 @@ select:focus {
 
 .user-settings .user-settings__form .form-check .form-check-input {
   margin-left: 10px;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkbox + label {
+  display: inline-block;
+  position: relative;
+  width: 120px;
+  height: 50px;
+  background: linear-gradient(to right, #ffba18 0, #fc8b34 25%, #0567cc 100%) 0 0;
+  background-size: 290px 100%;
+  border-radius: 20px;
+  padding: 2px;
+  cursor: pointer;
+  transition: all 500ms ease;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2) inset;
+}
+
+.checkbox + label:before {
+  content: "DAY";
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 100%;
+  background: #fff;
+  text-align: center;
+  line-height: 46px;
+  font-family: "Cabin", sans-serif;
+  font-size: 8px;
+  font-weight: bold;
+  color: #ffba18;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: left 500ms ease, color 500ms ease, transform 150ms ease;
+}
+
+.checkbox + label:active:before {
+  transform: scale(0.95);
+}
+
+.checkbox:checked + label {
+  background-position-x: -170px;
+}
+
+.checkbox:checked + label:before {
+  content: "NIGHT";
+  color: #0567cc;
+  left: 73px;
 }
 
 .block_chat-twitch {

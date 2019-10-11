@@ -26,7 +26,7 @@
 			l34.4,5.5c0.9,0.3,1.3,0.6,1.4,0.7C186.9,189.1,186.8,189.7,186.2,190.4z"/>
         </svg>
 
-        <p class="title__text">Пользовательские реплеи</p>
+        <p class="title__text">ГОСУ реплеи</p>
 
         <label class="title__game-period" for="game-period" name="game-period">
             <select id="game-period">
