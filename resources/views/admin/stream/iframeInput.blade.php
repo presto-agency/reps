@@ -1,8 +1,9 @@
 
-<label for="stream_url" class="control-label required"></label>
+<label for="stream_url" class="control-label required">Вставить url</label>
         <input type="text" name="stream_url" id="stream_url"
                placeholder="Вставить url"
                class="form-control" value=""/>
+<br/>
 {{--<br>--}}
 {{--<div id="twitch-embed"></div>--}}
 {{--<iframe frameborder="0" width="100%" height="100%" src="https://goodgame.ru/player?1239"></iframe>--}}

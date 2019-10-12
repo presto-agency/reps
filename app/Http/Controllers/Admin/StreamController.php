@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use AdminSection;
 use App\Models\Stream;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class StreamController extends Controller

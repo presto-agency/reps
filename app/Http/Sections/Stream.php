@@ -115,11 +115,8 @@ class Stream extends Section implements Initializable
             $approved = AdminFormElement::checkbox('approved', 'Подтвердить'),
 
             $stream_url = AdminFormElement::hidden('stream_url')
-            ->setValidationRules(['nullable', 'max:255', 'string']),
-            view('admin.stream.iframe'),
-
-
-
+                ->setValidationRules(['nullable', 'max:255', 'string']),
+            view('admin.stream.iframeInput'),
 
 
         ]);
