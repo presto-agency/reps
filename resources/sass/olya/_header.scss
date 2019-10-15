@@ -1,5 +1,6 @@
 .header{
     background: #0567cc;
+    position: relative;
     & .header_container{
         overflow: hidden;
         padding: 10px 0;
@@ -114,6 +115,47 @@
                 }
             }
 
+        }
+    }
+    .button_input_user{
+        display: flex;
+        width: 0;
+        position: absolute;
+        bottom: 57px;
+        right: 32%;
+        & button{
+            background: none;
+            border: 0;
+        }
+        .button_input{
+            display: flex;
+            width: 24px;
+            transition: 1.5s;
+        }
+        & .active_button_input{
+            width: 170px;
+            & .search_input{
+                margin-left: 5px;
+            }
+        }
+        & .disactive_input{
+            background: white;
+        }
+        & .search_input {
+            height: 30px;
+            background: none;
+            border: 0;
+            border-bottom: 1.5px solid white;
+            padding: 5px;
+            min-width: 153px;
+            margin-left: 24px;
+            color: white;
+            font-style: italic;
+        }
+        ::placeholder {
+            color: white;
+            font-style: italic;
+            opacity: 2;
         }
     }
 

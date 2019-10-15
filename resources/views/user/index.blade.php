@@ -6,6 +6,8 @@
 
 @section('content')
     @include('user.components.setting')
+    @include('user.components.user_profile')
+
 @endsection
 
 @section('sidebar-right')
