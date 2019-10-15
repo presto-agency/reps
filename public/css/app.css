@@ -12247,8 +12247,8 @@ select:focus {
   border-radius: 5px 5px 0 0;
   background-color: #0567cc;
   display: flex;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 18px;
+  padding-bottom: 18px;
   padding-left: 19px;
 }
 
@@ -13299,6 +13299,7 @@ select:focus {
   color: #495057;
   background-color: #fff;
   border: 1px solid #ced4da;
+  margin-top: 8px;
 }
 
 .user-settings .user-settings__form .form-group .select2 .select2-selection .select2-selection__rendered {
@@ -13315,6 +13316,8 @@ select:focus {
   background-color: #fff;
   color: #495057;
   border: 1px solid #ced4da;
+  border-radius: 4px;
+  margin-top: 8px;
 }
 
 .user-settings .user-settings__form .form-check {
@@ -13780,6 +13783,7 @@ select:focus {
   color: #495057;
   background-color: #fff;
   border: 1px solid #ced4da;
+  margin-top: 5px;
 }
 
 .create-replay .create-replay__form .form-group .select2 .select2-selection .select2-selection__rendered {
@@ -15697,7 +15701,8 @@ select:focus {
   font-weight: 400;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  padding: 15px 84px 13px;
+  padding-top: 13px;
+  padding-bottom: 15px;
   margin-bottom: 0;
   display: inline-block;
   text-decoration: none;
@@ -15752,7 +15757,6 @@ select:focus {
   display: flex;
   align-items: center;
   background: #0567cc;
-  height: 60px;
   border: 0;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
