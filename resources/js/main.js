@@ -80,12 +80,12 @@ $('.js-accordionReplays-item').click(function(event) {
 
 
 /*=======accordion replays script   start=======*/
-$('.js-accordion-title').click(function(event) {
+/*$('.js-accordion-title').click(function(event) {
     const element = $(event.target).closest('.topic__header');
     event.preventDefault();
     element.children(".header__title").toggleClass('header__title-active');
     element.children("i").toggleClass('fa-ellipsis-h');
-});
+});*/
 /*=======accordion replays    end=======*/
 
 /*=======select2 script   start=======*/
