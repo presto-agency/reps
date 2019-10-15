@@ -29,9 +29,19 @@
             padding: 10px;
             width: 30%;
         }
-        & .container_img{
-
+        & img{
+            width: 100%;
         }
+        & .icon_img{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 24px;
+            & svg{
+                width: 30px;
+                color: $gray;
+            }
+        }
+
         & .container_information{
 
             & .userText_block{
