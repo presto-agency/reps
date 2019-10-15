@@ -12098,6 +12098,7 @@ select:focus {
 .gocu-replays .gocu-replays__title .title__game-period {
   margin-left: auto;
   margin-right: 20px;
+  margin-bottom: 0;
 }
 
 .gocu-replays .gocu-replays__title .title__game-period select {
@@ -13060,6 +13061,7 @@ select:focus {
 
 #registrationModal .modal-body .form-group input {
   margin-bottom: 15px;
+  padding-left: 8px;
 }
 
 #registrationModal .modal-body .form-group .select2 {
@@ -13077,6 +13079,7 @@ select:focus {
 
 #registrationModal .modal-body .form-group .select2 .select2-selection .select2-selection__rendered {
   padding-top: 4px;
+  padding-left: 8px;
 }
 
 #registrationModal .modal-body .form-group .select2 .select2-selection .select2-selection__arrow {
@@ -13653,6 +13656,288 @@ select:focus {
 
 .gallery-detail .gallery-detail__body .body__edit-image-form .modal-body__add-btn .button {
   width: 100%;
+}
+
+.user-replays {
+  box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-bottom: 34px;
+}
+
+.user-replays .user-replays__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 19px;
+}
+
+.user-replays .user-replays__title .title__icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.user-replays .user-replays__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.user-replays .user-replays__body {
+  padding: 20px;
+}
+
+.user-replays .user-replays__body .body__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 25px;
+}
+
+.user-replays .user-replays__body .body__wrap .body__title {
+  color: #141d53;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  width: 90%;
+}
+
+.user-replays .user-replays__body .body__wrap .body__numb {
+  color: #0567cc;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.user-replays .user-replays__button {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+.user-replays .user-replays__button .button {
+  width: 100%;
+}
+
+.create-replay {
+  box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-bottom: 34px;
+}
+
+.create-replay .create-replay__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 19px;
+}
+
+.create-replay .create-replay__title .title__icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.create-replay .create-replay__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.create-replay .create-replay__form {
+  padding: 25px;
+}
+
+.create-replay .create-replay__form .form-group label {
+  width: 100%;
+}
+
+.create-replay .create-replay__form .form-group label select {
+  width: 100%;
+  height: 37px;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  margin-top: 5px;
+}
+
+.create-replay .create-replay__form .form-group label input {
+  width: 100%;
+}
+
+.create-replay .create-replay__form .form-group .select2 {
+  width: 100% !important;
+  height: 37px;
+}
+
+.create-replay .create-replay__form .form-group .select2 .select2-selection {
+  height: 37px;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+}
+
+.create-replay .create-replay__form .form-group .select2 .select2-selection .select2-selection__rendered {
+  padding-top: 4px;
+}
+
+.create-replay .create-replay__form .form-group .select2 .select2-selection .select2-selection__arrow {
+  top: 5px;
+}
+
+.create-replay .create-replay__form .create-replay__button .button {
+  width: 100%;
+}
+
+.create-replay .create-replay__form hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.user-reputation-history {
+  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+}
+
+.user-reputation-history .user-reputation-history__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding: 20px 19px;
+}
+
+.user-reputation-history .user-reputation-history__title .title__icon {
+  width: 21px;
+  height: 21px;
+  fill: #ffffff;
+}
+
+.user-reputation-history .user-reputation-history__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.user-reputation-history .user-reputation-history__title .title__reputation {
+  margin-left: auto;
+  display: flex;
+}
+
+.user-reputation-history .user-reputation-history__title .title__reputation .icon__like {
+  text-decoration: none;
+}
+
+.user-reputation-history .user-reputation-history__title .title__reputation .icon__like svg {
+  width: 20px;
+  height: 18px;
+  fill: #fff;
+  transition: 0.3s;
+}
+
+.user-reputation-history .user-reputation-history__title .title__reputation .icon__like span {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-left: 7px;
+}
+
+.user-reputation-history .user-reputation-history__title .title__reputation .icon__dislike {
+  text-decoration: none;
+  margin-left: 17px;
+}
+
+.user-reputation-history .user-reputation-history__title .title__reputation .icon__dislike svg {
+  width: 20px;
+  height: 18px;
+  fill: #fff;
+  transition: 0.3s;
+}
+
+.user-reputation-history .user-reputation-history__title .title__reputation .icon__dislike span {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-left: 7px;
+}
+
+.user-reputation-history .user-reputation-history__body .body__wrap .body__info {
+  display: flex;
+  align-items: center;
+  background-color: #f0f4f8;
+  padding: 16px 20px 17px;
+}
+
+.user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__nickname {
+  color: #0567cc;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__flag {
+  width: 20px;
+  height: 20px;
+  margin-left: 13px;
+}
+
+.user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__cube {
+  width: 16px;
+  height: 16px;
+  margin-left: 11px;
+}
+
+.user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__text {
+  color: #010b4a;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 12px;
+  margin-bottom: 0;
+}
+
+.user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__date {
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-left: auto;
+}
+
+.user-reputation-history .user-reputation-history__body .body__wrap .body__content {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 20px 17px;
+}
+
+.user-reputation-history .user-reputation-history__body .body__wrap .body__content .content__title {
+  color: #010b4a;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  margin-bottom: 0;
+}
+
+.user-reputation-history .user-reputation-history__body .body__wrap .body__content .content__like {
+  text-decoration: none;
+}
+
+.user-reputation-history .user-reputation-history__body .body__wrap .body__content .content__like svg {
+  width: 20px;
+  height: 18px;
+  fill: #0567cc;
+  transition: 0.3s;
 }
 
 .block_chat-twitch {

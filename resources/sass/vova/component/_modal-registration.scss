@@ -37,6 +37,7 @@
             margin-bottom: 0;
             input {
                 margin-bottom: 15px;
+                padding-left: 8px;
             }
             .select2 {
                 width: 100%!important;
@@ -49,6 +50,7 @@
                     border: 1px solid #ced4da;
                     .select2-selection__rendered {
                         padding-top: 4px;
+                        padding-left: 8px;
                     }
                     .select2-selection__arrow {
                         top: 5px;

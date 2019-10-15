@@ -17,7 +17,7 @@
                         <input type="text"
                                class="form-control"
                                id="registration-name"
-                               placeholder="*Имя">
+                               placeholder="Имя*">
                         <input type="text"
                                class="form-control"
                                id="registration-mail"
@@ -39,12 +39,12 @@
                         <input type="password"
                                class="form-control"
                                id="registration-password"
-                               placeholder="*Пароль">
+                               placeholder="Пароль*">
 
                         <input type="password"
                                class="form-control"
                                id="registration-rePassword"
-                               placeholder="*Подтвердите пароль">
+                               placeholder="Подтвердите пароль*">
                     </div>
 
                     <div class="modal-body__enter-btn">
