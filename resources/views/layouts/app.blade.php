@@ -35,8 +35,8 @@
 <!--SECTION HEADER-->
         <header>
                 {{--include header--}}
-{{--                @include('components.header')--}}
-                 @include('user.components.header_user')
+                @include('components.header')
+{{--                 @include('user.components.header_user')--}}
                 @include('modal.authorization')
                 @include('modal.registration')
         </header>
