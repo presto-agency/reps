@@ -6,6 +6,7 @@
 @endsection
 
 @section('content')
+    @include('user.components.user_friends')
     @include('user.components.user_profile')
     @include('user.components.user_reputation')
     @include('user.components.setting')

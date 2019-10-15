@@ -15621,6 +15621,77 @@ select:focus {
   height: 180px;
 }
 
+.user_friends .wrapper {
+  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+}
+
+.user_friends .row_title {
+  padding: 15px 0;
+  border-bottom: 1px solid #9ca0b6;
+  margin: 0;
+}
+
+.user_friends .row_title span {
+  color: #9ca0b6;
+}
+
+.user_friends .row_title .user_block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user_friends .row_users {
+  padding: 10px 0;
+  border-bottom: 1px solid #9ca0b6;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.user_friends .row_users span {
+  color: #9ca0b6;
+}
+
+.user_friends .row_users .block_action {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user_friends .row_users .block_action svg {
+  width: 20px;
+  fill: #0567cc;
+}
+
+.user_friends .row_users .user_block {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user_friends .row_users .user_block .name_user {
+  color: #0567cc;
+  font-weight: 600;
+  max-width: 98px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user_friends .row_users .user_block .user-avatar {
+  width: 50px;
+  height: 50px;
+  background: #dadada;
+  color: #4890af !important;
+  font-size: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #4890af;
+}
+
 .button {
   font-size: 12px;
   font-weight: 400;
