@@ -21,12 +21,12 @@
 
         <div class="accordion__topic card">
             <div class="topic__header card-header js-accordion-title" id="forum-topicsOne" data-toggle="collapse" data-target="#forum-topicsCollapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <p class="header__title">Общий</p>
-                <i class="fas fa-chevron-down"></i>
+                <a href="#" class="header__title">Общий</a>
+                {{--<i class="fas fa-chevron-down"></i>--}}
 
             </div>
 
-            <div id="forum-topicsCollapseOne" class="topic__body collapse" aria-labelledby="forum-topicsOne">
+            {{--<div id="forum-topicsCollapseOne" class="topic__body collapse" aria-labelledby="forum-topicsOne">
                 <div class="card-body">
                     <div class="body__wrap">
                         <a href="#" class="body__title">Господи, что стало с репсами</a>
@@ -49,17 +49,17 @@
                         <span class="body__numb">(6)</span>
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div>
 
         <div class="accordion__topic card">
             <div class="topic__header card-header js-accordion-title" id="forum-topicsTwo" data-toggle="collapse" data-target="#forum-topicsCollapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <p class="header__title">Колонки</p>
-                <i class="fas fa-chevron-down"></i>
+                <a href="#"  class="header__title">Колонки</a>
+                {{--<i class="fas fa-chevron-down"></i>--}}
 
             </div>
 
-            <div id="forum-topicsCollapseTwo" class="topic__body collapse" aria-labelledby="forum-topicsTwo">
+            {{--<div id="forum-topicsCollapseTwo" class="topic__body collapse" aria-labelledby="forum-topicsTwo">
                 <div class="card-body">
                     <div class="body__wrap">
                         <a href="#" class="body__title">Как вы понимаете фразу</a>
@@ -82,17 +82,17 @@
                         <span class="body__numb">(2)</span>
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div>
 
         <div class="accordion__topic card">
             <div class="topic__header card-header js-accordion-title" id="forum-topicsThree" data-toggle="collapse" data-target="#forum-topicsCollapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <p class="header__title">Чемпионаты</p>
-                <i class="fas fa-chevron-down"></i>
+                <a href="#"  class="header__title">Чемпионаты</a>
+                {{--<i class="fas fa-chevron-down"></i>--}}
 
             </div>
 
-            <div id="forum-topicsCollapseThree" class="topic__body collapse" aria-labelledby="topicThree">
+            {{--<div id="forum-topicsCollapseThree" class="topic__body collapse" aria-labelledby="topicThree">
                 <div class="card-body">
                     <div class="body__wrap">
                         <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
@@ -115,16 +115,16 @@
                         <span class="body__numb">(0)</span>
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div>
 
         <div class="accordion__topic card">
             <div class="topic__header card-header js-accordion-title" id="forum-topicsFour" data-toggle="collapse" data-target="#forum-topicsCollapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <p class="header__title">Интервью</p>
-                <i class="fas fa-chevron-down"></i>
+                <a href="#"  class="header__title">Интервью</a>
+                {{--<i class="fas fa-chevron-down"></i>--}}
             </div>
 
-            <div id="forum-topicsCollapseFour" class="topic__body collapse" aria-labelledby="topicFour">
+            {{--<div id="forum-topicsCollapseFour" class="topic__body collapse" aria-labelledby="topicFour">
                 <div class="card-body">
                     <div class="body__wrap">
                         <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
@@ -147,16 +147,16 @@
                         <span class="body__numb">(8)</span>
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div>
 
         <div class="accordion__topic card">
             <div class="topic__header card-header js-accordion-title" id="forum-topicsFive" data-toggle="collapse" data-target="#forum-topicsCollapseFive" aria-expanded="true" aria-controls="collapseFive">
-                <p class="header__title">Статьи</p>
-                <i class="fas fa-chevron-down"></i>
+                <a href="#"  class="header__title">Статьи</a>
+                {{--<i class="fas fa-chevron-down"></i>--}}
             </div>
 
-            <div id="forum-topicsCollapseFive" class="topic__body collapse" aria-labelledby="topicFive">
+            {{--<div id="forum-topicsCollapseFive" class="topic__body collapse" aria-labelledby="topicFive">
                 <div class="card-body">
                     <div class="body__wrap">
                         <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
@@ -179,16 +179,16 @@
                         <span class="body__numb">(0)</span>
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div>
 
         <div class="accordion__topic card">
             <div class="topic__header card-header js-accordion-title" id="forum-topicsSix" data-toggle="collapse" data-target="#forum-topicsCollapseSix" aria-expanded="true" aria-controls="collapseSix">
-                <p class="header__title">Стратегии</p>
-                <i class="fas fa-chevron-down"></i>
+                <a href="#"  class="header__title">Стратегии</a>
+                {{--<i class="fas fa-chevron-down"></i>--}}
             </div>
 
-            <div id="forum-topicsCollapseSix" class="topic__body collapse" aria-labelledby="topicSix">
+            {{--<div id="forum-topicsCollapseSix" class="topic__body collapse" aria-labelledby="topicSix">
                 <div class="card-body">
                     <div class="body__wrap">
                         <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
@@ -211,7 +211,7 @@
                         <span class="body__numb">(10)</span>
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div>
     </div>
 </div>
