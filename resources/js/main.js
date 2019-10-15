@@ -1,28 +1,42 @@
 
 
 //search
-
-
-// $(this).siblings('.search_input').hide();
-//
-// $('.search  button').on('click',function(){
-//     if($(this).siblings('.search_input').is(":visible")){
-//         $(this).siblings('.search_input').hide();
-//     }
-//     else $(this).siblings('.search_input').show();
-// });
-
 $('.search_img').click(function(event) {
     event.preventDefault();
     $('.button_input').addClass('active_button_input');
 //    $('.mob_menu').removeClass('menuOff-active');
 });
 
-// $('body').click(function () {
-//     $('.button_input').removeClass('active_button_input');
-// });
+// user_cabinet: settings
+$('#settings').click(function(event) {
+    event.preventDefault();
+    $('.logged_links').addClass('active');
+    console.log(1);
+//    $('.mob_menu').removeClass('menuOff-active');
 
 
+});
+
+
+
+
+     jQuery(function($){
+         $(document).mouseup(function (e){ // событие клика по веб-документу
+
+                 var div = $("#settings_div"); // тут указываем ID элемента
+
+                 if (!div.is(e.target) // если клик был не по нашему блоку
+                     && div.has(e.target).length === 0) { // и не по его дочерним элементам
+                     // div.hide(); // скрываем его
+                     $('.logged_links').removeClass('active');
+                 }
+
+
+         });
+     });
+
+
+//
 
 /*accordion replays script   start*/
 /*const accordionState = JSON.parse(localStorage.getItem('accordionState')) || {};

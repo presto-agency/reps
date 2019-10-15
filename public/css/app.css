@@ -11130,6 +11130,7 @@ a.text-dark:focus {
 }
 
 body {
+  font-family: "Montserrat", sans-serif !important;
   background-color: #ffffff;
 }
 
@@ -13866,6 +13867,7 @@ select:focus {
 
 .header {
   background: #0567cc;
+  position: relative;
 }
 
 .header .header_container {
@@ -14027,6 +14029,76 @@ select:focus {
   bottom: -35px;
   background: none;
   position: absolute;
+}
+
+.header .button_input_user {
+  display: flex;
+  align-items: center;
+}
+
+.header .button_input_user button {
+  background: none;
+  border: 0;
+}
+
+.header .button_input_user .button_input {
+  display: flex;
+  width: 24px;
+  transition: 1.5s;
+}
+
+.header .button_input_user .active_button_input {
+  width: 170px;
+}
+
+.header .button_input_user .active_button_input .search_input {
+  margin-left: 5px;
+}
+
+.header .button_input_user .disactive_input {
+  background: white;
+}
+
+.header .button_input_user .search_input {
+  height: 30px;
+  background: none;
+  border: 0;
+  border-bottom: 1.5px solid white;
+  padding: 5px;
+  min-width: 120px;
+  margin-left: 24px;
+  color: white;
+  font-style: italic;
+}
+
+.header .button_input_user ::-webkit-input-placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
+}
+
+.header .button_input_user ::-moz-placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
+}
+
+.header .button_input_user :-ms-input-placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
+}
+
+.header .button_input_user ::-ms-input-placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
+}
+
+.header .button_input_user ::placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
 }
 
 .block_tournament .wrapper {
@@ -14946,6 +15018,311 @@ select:focus {
   opacity: 0.8;
   border-radius: 4px;
   height: 25px;
+}
+
+.user_profile .wrapper {
+  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+  margin-bottom: 70px;
+}
+
+.user_profile .title_top_userProfile {
+  background: #efefef;
+  height: 60px;
+  padding: 20px;
+}
+
+.user_profile .title_top_userProfile .title_Text {
+  font-size: 16px;
+  color: #9ca0b6;
+  margin: 0;
+  font-weight: 600;
+}
+
+.user_profile .title_top_userProfile .more {
+  background: none;
+  border: 0;
+}
+
+.user_profile .title_top_userProfile .more p {
+  font-size: 40px;
+  color: #9ca0b6;
+}
+
+.user_profile .userInfo_block {
+  padding: 30px 20px;
+}
+
+.user_profile .userInfo_block .button {
+  margin: 35px auto 0;
+  padding: 10px;
+  width: 30%;
+}
+
+.user_profile .userInfo_block img {
+  width: 100%;
+}
+
+.user_profile .userInfo_block .icon_img {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.user_profile .userInfo_block .icon_img svg {
+  width: 30px;
+  color: #9ca0b6;
+}
+
+.user_profile .userInfo_block .container_information .userText_block {
+  margin-bottom: 15px;
+}
+
+.user_profile .userInfo_block .container_information .userText_block .title {
+  font-size: 18px;
+  padding-right: 40px;
+  font-weight: 600;
+}
+
+.user_profile .userInfo_block .container_information .userText_block .date {
+  font-size: 12px;
+  color: #9ca0b6;
+  font-weight: lighter;
+}
+
+.user_profile .userInfo_block .container_information .information_block {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.user_profile .userInfo_block .container_information .information_block .left_block {
+  width: 50%;
+}
+
+.user_profile .userInfo_block .container_information .information_block .left_block span {
+  font-size: 12px;
+  color: #9ca0b6;
+  font-weight: lighter;
+}
+
+.user_profile .userInfo_block .container_information .information_block .right_block {
+  width: 50%;
+}
+
+.user_profile .userInfo_block .container_information .information_block .right_block span {
+  font-size: 14px;
+}
+
+.user_profile .userInfo_block .container_information .information_block .right_block .blue {
+  color: #0567cc;
+  font-weight: 600;
+}
+
+.user_profile .block_userInformation .container_left {
+  padding-right: 0;
+}
+
+.user_profile .block_userInformation .container_right {
+  padding-left: 0;
+  border-left: 2px solid #efefef;
+}
+
+.user_profile .block_userInformation .container_right .wrapper_information,
+.user_profile .block_userInformation .container_right .wrapper_contacts {
+  padding: 20px 20px 10px;
+}
+
+.user_profile .block_userInformation .container_right .wrapper_information .block_inform,
+.user_profile .block_userInformation .container_right .wrapper_information .block_contact,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_inform,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_contact {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.user_profile .block_userInformation .container_right .wrapper_information .block_inform .left_block span,
+.user_profile .block_userInformation .container_right .wrapper_information .block_contact .left_block span,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .left_block span,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .left_block span {
+  font-size: 12px;
+  color: #9ca0b6;
+  font-weight: lighter;
+}
+
+.user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block span,
+.user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block span,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block span,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block span {
+  font-size: 14px;
+}
+
+.user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block .small,
+.user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block .small,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block .small,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block .small {
+  font-size: 12px;
+  color: #0567cc;
+}
+
+.user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block .blue,
+.user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block .blue,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block .blue,
+.user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block .blue {
+  color: #0567cc;
+  font-weight: 600;
+}
+
+.user_profile .block_userInformation .container_right .block_armor {
+  padding: 20px 20px 10px;
+}
+
+.user_profile .block_userInformation .container_right .block_armor .armor_info {
+  padding-bottom: 10px;
+}
+
+.user_profile .block_userInformation .container_right .block_armor svg {
+  fill: #0567cc;
+  width: 17px;
+  margin-right: 10px;
+}
+
+.user_profile .block_userInformation .friends_block {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  padding-bottom: 0;
+  max-height: 300px;
+  overflow: scroll;
+  margin-right: 5px;
+}
+
+.user_profile .block_userInformation .friends_block .friends {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.user_profile .block_userInformation .friends_block .friends .left_block {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user_profile .block_userInformation .friends_block .friends .left_block .name_player {
+  margin-left: 10px;
+  font-weight: 600;
+  max-width: 100px;
+  display: inline-block;
+}
+
+.user_profile .friends_block::-webkit-scrollbar {
+  width: 7px;
+}
+
+.user_profile .friends_block::-webkit-scrollbar-thumb {
+  background-color: #e2e5e9;
+  opacity: 0.8;
+  border-radius: 4px;
+  height: 25px;
+}
+
+.user_bar {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.user_bar .user_panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.user_bar .user_panel svg {
+  width: 30px;
+  color: white;
+}
+
+.user_bar .user_panel .user-nickname {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50%;
+  color: white;
+}
+
+.user_bar .user_panel .user-avatar {
+  width: 50px;
+  height: 50px;
+  background: #dadada;
+  color: #4890af !important;
+  font-size: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #4890af;
+}
+
+.user_bar .panel {
+  padding: 12px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+  border-radius: 3px;
+  width: 256px;
+  z-index: 2;
+  right: 0;
+  bottom: 5px;
+  border: 0.5px solid #e5e6eb;
+}
+
+.user_bar .panel svg {
+  width: 22px;
+  fill: #9ca0b6;
+}
+
+.user_bar .panel :hover {
+  fill: blue;
+}
+
+.user_bar .logged_links {
+  position: absolute;
+  background: white;
+  width: 256px;
+  z-index: 3;
+}
+
+.user_bar .logged_links ul {
+  position: absolute;
+  height: 0;
+  overflow: hidden;
+}
+
+.user_bar .logged_links ul li {
+  list-style-type: none;
+}
+
+.user_bar .logged_links a {
+  display: flex;
+  padding: 6px 15px;
+  align-items: center;
+  color: #4d4d4d;
+  font-size: 14px;
+  justify-content: left;
+}
+
+.user_bar .active {
+  height: 190px;
+  border-left: 2px solid #efefef;
+  border-right: 2px solid #efefef;
+  border-bottom: 2px solid #efefef;
+}
+
+.user_bar .active ul {
+  height: 180px;
 }
 
 .button {
