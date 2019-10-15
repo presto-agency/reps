@@ -119,10 +119,7 @@
     }
     .button_input_user{
         display: flex;
-        width: 0;
-        position: absolute;
-        bottom: 57px;
-        right: 32%;
+        align-items: center;
         & button{
             background: none;
             border: 0;
@@ -147,7 +144,7 @@
             border: 0;
             border-bottom: 1.5px solid white;
             padding: 5px;
-            min-width: 153px;
+            min-width: 120px;
             margin-left: 24px;
             color: white;
             font-style: italic;

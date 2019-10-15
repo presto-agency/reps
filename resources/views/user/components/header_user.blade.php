@@ -48,15 +48,14 @@
                 </nav>
                 <img class="icon_bars" src="{{url('images\svg\bars.svg')}}"/>
             </div>
-            <div class="col-xl-3 col-lg-4 col-md-7 col-sm-7 col-12 header_search">
+            <div class="col-xl-3 col-lg-4 col-md-7 col-sm-7 col-12 button_input_user">
+                <button><img class="search_img" src="{{ url('/images/search.png') }}"></button>
+                <input id="inp"class="search_input " placeholder="поиск">
             </div>
             <div class="col-1"></div>
         </div>
     </div>
     @include('user.components.user-bar_panel')
-    <div class="button_input_user">
-        <button><img class="search_img" src="{{ url('/images/search.png') }}"></button>
-        <input id="inp"class="search_input " placeholder="поиск">
-    </div>
+
 </section>
 

@@ -13757,10 +13757,7 @@ select:focus {
 
 .header .button_input_user {
   display: flex;
-  width: 0;
-  position: absolute;
-  bottom: 57px;
-  right: 32%;
+  align-items: center;
 }
 
 .header .button_input_user button {
@@ -13792,7 +13789,7 @@ select:focus {
   border: 0;
   border-bottom: 1.5px solid white;
   padding: 5px;
-  min-width: 153px;
+  min-width: 120px;
   margin-left: 24px;
   color: white;
   font-style: italic;
@@ -14992,7 +14989,7 @@ select:focus {
 }
 
 .user_bar .panel svg {
-  width: 30px;
+  width: 22px;
   fill: #9ca0b6;
 }
 
