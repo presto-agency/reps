@@ -65,11 +65,13 @@
             .select2 {
                 width: 100%!important;
                 height: 37px;
+
                 .select2-selection {
                     height: 37px;
                     color: #495057;
                     background-color: #fff;
                     border: 1px solid #ced4da;
+                    margin-top: 8px;
                     .select2-selection__rendered {
                         padding-top: 4px;
                     }
@@ -84,6 +86,8 @@
                 background-color: #fff;
                 color: #495057;
                 border: 1px solid #ced4da;
+                border-radius: 4px;
+                margin-top: 8px;
             }
         }
         .form-check {
