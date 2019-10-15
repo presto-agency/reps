@@ -15058,6 +15058,21 @@ select:focus {
   width: 30%;
 }
 
+.user_profile .userInfo_block img {
+  width: 100%;
+}
+
+.user_profile .userInfo_block .icon_img {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.user_profile .userInfo_block .icon_img svg {
+  width: 30px;
+  color: #9ca0b6;
+}
+
 .user_profile .userInfo_block .container_information .userText_block {
   margin-bottom: 15px;
 }
