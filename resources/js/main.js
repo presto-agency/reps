@@ -91,3 +91,15 @@ $(document).ready(function(){
     });
 });
 /*=======show/hide vote result in user page  end=======*/
+
+
+// Replace the textarea #example with SCEditor
+var textarea = document.getElementById('video_iframe');
+sceditor.create(textarea, {
+    format: 'bbcode',
+    toolbar: 'youtube',
+    style: 'js/minified(sceditor-2.1.3)/themes/content/default.min.css'
+});
+
+
+

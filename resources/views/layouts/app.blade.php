@@ -17,6 +17,9 @@
 {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
 {{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
 
+    <!-- Include SCEditor -->
+    <link rel="stylesheet" href="js/minified(sceditor-2.1.3)/themes/default.min.css"/>
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -101,7 +104,14 @@
         </footer>
 <!--END FOOTER-->
 
+
+
+<!--SCEditor-->
+<script src="js/minified(sceditor-2.1.3)/sceditor.min.js"></script>
+<script src="js/minified/formats/bbcode.js"></script>
+
 <script src="https://kit.fontawesome.com/75f3a42e45.js"></script>
+
 
 {{--    </div>--}}
 
