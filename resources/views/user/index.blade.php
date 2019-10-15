@@ -13,6 +13,7 @@
     @include('user.components.gallery-comments')
     @include('user.components.gallery-add-comment')
     @include('user.components.create-new-replay')
+    @include('user.components.user-reputation-history')
 @endsection
 
 @section('sidebar-right')
