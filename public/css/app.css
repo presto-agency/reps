@@ -12273,6 +12273,38 @@ select:focus {
 .forum-topics .forum-topics__accordion .accordion__topic {
   border-radius: 1px;
   border: 0px;
+  /*.topic__body {
+      .card-body {
+          padding-bottom: 0;//обнулил бутстраповский отступ снизу
+          .body__wrap {
+              display: flex;
+              justify-content: space-between;
+              align-items: start;
+              margin-bottom: 25px;
+              .body__title {
+                  color: #0567cc;
+                  font-size: 14px;
+                  font-weight: 500;
+                  text-decoration: none;
+                  width: 90%;
+              }
+              .body__numb {
+                  color: #9ca0b6;
+                  font-size: 14px;
+                  font-weight: 400;
+              }
+          }
+      }
+  }
+  &:hover {
+      box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+  }
+  &:hover .header__title{
+      color: #0567cc;
+  }
+  &:hover .fas{
+      color: #0567cc;
+  }*/
 }
 
 .forum-topics .forum-topics__accordion .accordion__topic .topic__header {
@@ -12291,6 +12323,7 @@ select:focus {
   text-transform: uppercase;
   margin-bottom: 0;
   transition: 0.3s;
+  text-decoration: none;
 }
 
 .forum-topics .forum-topics__accordion .accordion__topic .topic__header .header__title-active {
@@ -12302,43 +12335,6 @@ select:focus {
   color: #a9afc4;
   font-size: 16px;
   transition: 0.3s;
-}
-
-.forum-topics .forum-topics__accordion .accordion__topic .topic__body .card-body {
-  padding-bottom: 0;
-}
-
-.forum-topics .forum-topics__accordion .accordion__topic .topic__body .card-body .body__wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  margin-bottom: 25px;
-}
-
-.forum-topics .forum-topics__accordion .accordion__topic .topic__body .card-body .body__wrap .body__title {
-  color: #0567cc;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  width: 90%;
-}
-
-.forum-topics .forum-topics__accordion .accordion__topic .topic__body .card-body .body__wrap .body__numb {
-  color: #9ca0b6;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.forum-topics .forum-topics__accordion .accordion__topic:hover {
-  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
-}
-
-.forum-topics .forum-topics__accordion .accordion__topic:hover .header__title {
-  color: #0567cc;
-}
-
-.forum-topics .forum-topics__accordion .accordion__topic:hover .fas {
-  color: #0567cc;
 }
 
 .comments {
