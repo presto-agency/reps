@@ -6,6 +6,7 @@
         </svg>
         <p class="title__text">Последние новости</p>
     </div>
+{{--
     @if(!$news->isEmpty())
         @foreach($news as $single_news)
         <div class="breaking-news__news-card card">
@@ -119,6 +120,7 @@
     @else
         <h2>В данный момент новостей нет</h2>
     @endif
+--}}
 
 {{--
     <div class="breaking-news__news-card card">
