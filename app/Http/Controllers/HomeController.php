@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $news = ForumTopic::with('author')->where('news', 1)->latest()->get();
-        return view('home.index', ['news' => $news]);
+//        $news = ForumTopic::with('author')->where('news', 1)->latest()->get();
+        return view('home.index');
     }
 }
