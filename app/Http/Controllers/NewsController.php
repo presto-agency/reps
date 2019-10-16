@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ForumTopic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class NewsController extends Controller
 {
@@ -14,8 +15,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = ForumTopic::with('author')->where('news', 1)->latest()->get();
-        return view('news.index', ['news' => $news]);
+//        $news = ForumTopic::with('author')->where('news', 1)->latest()->get();
+//        return view('news.index', ['news' => $news]);
+        return view('news.index');
     }
 
     /**
@@ -47,6 +49,24 @@ class NewsController extends Controller
      */
     public function show($id)
     {
+        /*ForumTopic::where('id', $id)
+            ->where(function ($q) {
+                $q->whereNull('start_on')
+                    ->orWhere('start_on', '<=', Carbon::now()->format('Y-m-d'));
+            })
+            ->with(User::getUserWithReputationQuery())
+            ->withCount('positive', 'negative', 'comments')
+            ->with('icon')->first();*/
+
+//        $topic = ForumTopic::with('author')->where('news', 1)->latest()->get();
+//        $topic = ForumTopic::where('id', $id)->first();
+        $topics = ForumTopic::withCount('comments')->where('id', $id)->first();
+        $count = $topics->comments()->count();
+//        $topics = ForumTopic::find($id);
+        dump($topics, $topics->comments_count);
+        /*foreach ($topics as $topic) {
+            dump($topic->comments_count);
+        }*/
         return view('news.show');
     }
 
@@ -82,5 +102,27 @@ class NewsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function load_news(Request $request){
+        if ($request->ajax()){
+            $visible_title = false;
+            if ($request->id > 0){
+                $data = ForumTopic::with('author')
+                    ->withCount('comments')
+                    ->where('id','<', $request->id)
+                    ->orderBy('id', 'DESC')
+                    ->limit(5)
+                    ->get();
+            }else{
+                $data = ForumTopic::with('author')
+                    ->orderBy('id', 'DESC')
+                    ->limit(5)
+                    ->get();
+                $visible_title = true;
+            }
+
+            $output = view('news.last_news', ['news' => $data, 'visible_title' => $visible_title]);
+            echo $output;
+        }
     }
 }

@@ -17,5 +17,7 @@
 @endsection
 
 @section('content')
-    @include('content.last_news')
+
+    <div id="last_news"></div>
+    {{--@include('content.last_news')--}}
 @endsection
