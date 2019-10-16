@@ -38,7 +38,7 @@
          align-items: center;
          background: #fff;
          border-radius: 3px;
-         width: 256px;
+         width: 184px;
          z-index: 2;
         // position: absolute;
          right: 0;
@@ -55,11 +55,10 @@
      & .logged_links{
          position: absolute;
          background: white;
-         width: 256px;
+         width: 100%;
          z-index:3;
          & ul{
              position: absolute;
-             //transition: height 1.5s;
              height: 0;
              overflow: hidden;
              & li {
