@@ -31,7 +31,10 @@
                     @endif
                 </div>
                 <h2 class="card-body__title">{{ $single_news->title }}</h2>
-                <p class="card-body__text">{!! $single_news->preview_content !!}</p>
+                <p class="card-body__text">
+                    {!! $single_news->preview_content !!}
+                    <a href="#">читать</a>
+                </p>
                 <div class="card-body__items">
                     <a class="items__comment" href="#">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"

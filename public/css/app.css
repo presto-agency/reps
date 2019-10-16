@@ -11224,6 +11224,12 @@ select:focus {
   font-weight: 300;
 }
 
+.breaking-news .breaking-news__news-card .card-body .card-body__text a {
+  font-size: 14px;
+  font-weight: 300;
+  text-decoration: underline;
+}
+
 .breaking-news .breaking-news__news-card .card-body .card-body__items {
   width: 100%;
   display: flex;
@@ -15784,6 +15790,14 @@ select:focus {
 .title_top .more p {
   font-size: 40px;
   color: #9ca0b6;
+}
+
+@media (min-width: 991px) and (max-width: 1920px) {
+  /* CSS-стили */
+}
+
+@media (max-width: 991px) {
+  /* CSS-стили */
 }
 
 @media (max-width: 992px) {
