@@ -77,17 +77,6 @@ $('.js-accordionReplays-item').click(function(event) {
 /*accordion replays    end*/
 
 
-
-
-/*=======accordion replays script   start=======*/
-/*$('.js-accordion-title').click(function(event) {
-    const element = $(event.target).closest('.topic__header');
-    event.preventDefault();
-    element.children(".header__title").toggleClass('header__title-active');
-    element.children("i").toggleClass('fa-ellipsis-h');
-});*/
-/*=======accordion replays    end=======*/
-
 /*=======select2 script   start=======*/
 $(document).ready(function() {
     $('.js-example-basic-single').select2();

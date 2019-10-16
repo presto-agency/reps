@@ -77,6 +77,11 @@
                 color: #010b4a;
                 font-size: 14px;
                 font-weight: 300;
+                a {
+                    font-size: 14px;
+                    font-weight: 300;
+                    text-decoration: underline;
+                }
             }
 
             .card-body__items {
