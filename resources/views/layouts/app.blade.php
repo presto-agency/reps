@@ -23,8 +23,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+{{ csrf_field() }}
 {{--    <div id="app">--}}
 
 {{--@include('components.Chat')--}}
@@ -115,6 +118,32 @@
 
 
 {{--    </div>--}}
+@section('custom-script')
+    <script>
+        $(document).ready(function () {
+            var _token = $('input[name="_token"]').val();
 
+            load_news('', _token);
+
+            function load_news(id="", _token) {
+                $.ajax({
+                    url: "{{ route('loadmore.load_news') }}",
+                    method: "POST",
+                    data: {id:id, _token:_token},
+                    success: function (data) {
+                        $('#load_more_button').remove();
+                        $('#last_news').append(data);
+                    }
+                })
+            }
+
+            $(document).on('click', '#load_more_button', function(){
+                let id = $(this).data('id');
+                $('#load_more_button').html('<b>Loading...</b>');
+                load_news(id, _token);
+            });
+        });
+    </script>
+@show
 </body>
 </html>
