@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index')->name('home.index');
 
 Route::resource('news', 'NewsController');
 Route::resource('forum', 'ForumController');
+Route::post('/loadmore/load_news', 'NewsController@load_news')->name('loadmore.load_news');
 
 Route::get('forum/topic/{id}', function (){
     return view('forum.topic');
@@ -30,6 +31,14 @@ Route::get('best', function (){
 
 Route::get('tournament', function (){
     return view('tournament.index');
+});
+
+Route::get('tournament/{id}', function (){
+    return view('tournament.show');
+});
+
+Route::get('user', function (){
+    return view('user.index');
 });
 
 Auth::routes();

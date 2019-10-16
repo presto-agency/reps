@@ -5,50 +5,47 @@
     & .container_btn{
         display: flex;
         & .button{
-            margin: 5px auto 50px;
+            margin: 20px auto 40px;
             padding: 5px;
         }
     }
-
-    & .title_replay{
-        display: flex;
-        align-items: center;
-        background: $light-gray;
-        height: 60px;
-        margin-bottom: 45px;
-        & .title_replayText{
-            font-size: 16px;
-            color: $gray;
-            margin: 0;
-            padding-left: 20px;
+    & .title_top{
+            margin-bottom: 25px;
         }
-    }
     & .row_game{
-        padding: 0 10px 25px;
+        padding: 0 10px;
+        margin-bottom: 15px;
         & .name_game{
-            font-size: 14px;
             color: $blue;
-            font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            & p{
+                font-size: 14px;
+                font-weight: bold;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: 0px 0 5px 0;
+            }
+
         }
         .content_game{
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 5px;
             & img{
-                width: 10px;
-                height: 10px;
-                margin: 5px 5px;
+                width: 16px;
+                height: 15px;
+                margin: 5px;
             }
-
             & .text_matchap{
                 font-size:14px;
-                padding:0 5px;
+               margin: 0 10px;
+
             }
             & .text{
                 font-size: 12px;
                 color:$gray;
+                margin: 0;
             }
         }
     }

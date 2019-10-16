@@ -1,0 +1,78 @@
+.user_friends{
+    & .wrapper{
+        box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+    }
+
+    & .row_title{
+        padding: 15px 0;
+        border-bottom: 1px solid $gray;
+        margin: 0;
+        & span{
+            color: $gray;
+        }
+        & .user_block{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    & .wrapper_table{
+        max-height: 320px;
+        overflow: scroll;
+        & .row_users{
+            padding: 10px 0;
+            border-bottom: 1px solid $gray;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            & span{
+                color: $gray;
+            }
+            & .block_action{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                & svg{
+                    width: 20px;
+                    fill: $blue;
+                }
+            }
+            & .user_block{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+
+                & .name_user{
+                    color: $blue;
+                    font-weight: 600;
+                    max-width: 98px;
+                    display: inline-block;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                & .user-avatar{
+                    width: 50px;
+                    height: 50px;
+                    background: #dadada;
+                    color: #4890af !important;
+                    font-size: 24px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 1px solid #4890af;
+                }
+            }
+        }
+    }
+
+}
+.wrapper_table::-webkit-scrollbar {
+    width: 10px;
+}
+.wrapper_table::-webkit-scrollbar-thumb {
+    background-color: #e2e5e9;
+    opacity: 0.8;
+    border-radius: 4px;
+    height: 227px;
+}

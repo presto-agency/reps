@@ -1,28 +1,42 @@
 
 
 //search
-
-
-// $(this).siblings('.search_input').hide();
-//
-// $('.search  button').on('click',function(){
-//     if($(this).siblings('.search_input').is(":visible")){
-//         $(this).siblings('.search_input').hide();
-//     }
-//     else $(this).siblings('.search_input').show();
-// });
-
 $('.search_img').click(function(event) {
     event.preventDefault();
     $('.button_input').addClass('active_button_input');
 //    $('.mob_menu').removeClass('menuOff-active');
 });
 
-// $('body').click(function () {
-//     $('.button_input').removeClass('active_button_input');
-// });
+// user_cabinet: settings
+$('#settings').click(function(event) {
+    event.preventDefault();
+    $('.logged_links').addClass('active');
+    console.log(1);
+//    $('.mob_menu').removeClass('menuOff-active');
 
 
+});
+
+
+
+
+     jQuery(function($){
+         $(document).mouseup(function (e){ // событие клика по веб-документу
+
+                 var div = $("#settings_div"); // тут указываем ID элемента
+
+                 if (!div.is(e.target) // если клик был не по нашему блоку
+                     && div.has(e.target).length === 0) { // и не по его дочерним элементам
+                     // div.hide(); // скрываем его
+                     $('.logged_links').removeClass('active');
+                 }
+
+
+         });
+     });
+
+
+//
 
 /*accordion replays script   start*/
 /*const accordionState = JSON.parse(localStorage.getItem('accordionState')) || {};
@@ -63,13 +77,32 @@ $('.js-accordionReplays-item').click(function(event) {
 /*accordion replays    end*/
 
 
-
-
-/*=======accordion replays script   start=======*/
-$('.js-accordion-title').click(function(event) {
-    const element = $(event.target).closest('.topic__header');
-    event.preventDefault();
-    element.children(".header__title").toggleClass('header__title-active');
-    element.children("i").toggleClass('fa-ellipsis-h');
+/*=======select2 script   start=======*/
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
 });
-/*=======accordion replays    end=======*/
+/*=======select2 script    end=======*/
+
+
+/*=======show/hide vote result in user page  start=======*/
+$(document).ready(function(){
+    $(".js-body__view-results").click(function(event){
+        const element = $(event.target).closest('.content__body');
+        event.preventDefault();
+        element.children(".vote-form").hide();
+        element.children(".view-results").show();
+    });
+});
+/*=======show/hide vote result in user page  end=======*/
+
+
+// Replace the textarea #example with SCEditor
+var textarea = document.getElementById('video_iframe');
+sceditor.create(textarea, {
+    format: 'bbcode',
+    toolbar: 'youtube',
+    style: 'js/minified(sceditor-2.1.3)/themes/content/default.min.css'
+});
+
+
+

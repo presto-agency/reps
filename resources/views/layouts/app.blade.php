@@ -13,14 +13,21 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
+{{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
+{{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
+
+    <!-- Include SCEditor -->
+    <link rel="stylesheet" href="js/minified(sceditor-2.1.3)/themes/default.min.css"/>
 
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+{{ csrf_field() }}
 {{--    <div id="app">--}}
 
 {{--@include('components.Chat')--}}
@@ -31,8 +38,10 @@
 <!--SECTION HEADER-->
         <header>
                 {{--include header--}}
-                @include('components.header')
+                         @include('user.components.NEW_header')
+{{--                 @include('user.components.header_user')--}}
                 @include('modal.authorization')
+                @include('modal.registration')
         </header>
 <!--END SECTION HEADER-->
 
@@ -99,9 +108,42 @@
         </footer>
 <!--END FOOTER-->
 
+
+
+<!--SCEditor-->
+<script src="js/minified(sceditor-2.1.3)/sceditor.min.js"></script>
+<script src="js/minified/formats/bbcode.js"></script>
+
 <script src="https://kit.fontawesome.com/75f3a42e45.js"></script>
 
-{{--    </div>--}}
 
+{{--    </div>--}}
+@section('custom-script')
+    <script>
+        $(document).ready(function () {
+            var _token = $('input[name="_token"]').val();
+
+            load_news('', _token);
+
+            function load_news(id="", _token) {
+                $.ajax({
+                    url: "{{ route('loadmore.load_news') }}",
+                    method: "POST",
+                    data: {id:id, _token:_token},
+                    success: function (data) {
+                        $('#load_more_button').remove();
+                        $('#last_news').append(data);
+                    }
+                })
+            }
+
+            $(document).on('click', '#load_more_button', function(){
+                let id = $(this).data('id');
+                $('#load_more_button').html('<b>Loading...</b>');
+                load_news(id, _token);
+            });
+        });
+    </script>
+@show
 </body>
 </html>
