@@ -11927,16 +11927,6 @@ select:focus {
 }
 
 .replays .replays__accordion .accordion__topic .topic__header .header__title {
-  color: #010b4a;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 28px;
-  text-transform: uppercase;
-  margin-bottom: 0;
-  transition: 0.3s;
-}
-
-.replays .replays__accordion .accordion__topic .topic__header .header__title-disable {
   color: #7880a1;
   font-size: 16px;
   font-weight: 400;
@@ -11944,13 +11934,17 @@ select:focus {
   text-transform: uppercase;
   margin-bottom: 0;
   text-decoration: none;
+  transition: 0.3s;
 }
 
-.replays .replays__accordion .accordion__topic .topic__header .header__title-active {
-  color: #7880a1;
+.replays .replays__accordion .accordion__topic .topic__header .header__title:hover {
+  color: #0567cc;
 }
 
-.replays .replays__accordion .accordion__topic .topic__header .fa-chevron-down,
+.replays .replays__accordion .accordion__topic .topic__header .header__title:hover svg {
+  fill: #0567cc;
+}
+
 .replays .replays__accordion .accordion__topic .topic__header .fa-ellipsis-h {
   color: #a9afc4;
   font-size: 16px;
@@ -11984,14 +11978,6 @@ select:focus {
 
 .replays .replays__accordion .accordion__topic:hover {
   box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
-}
-
-.replays .replays__accordion .accordion__topic:hover .header__title {
-  color: #0567cc;
-}
-
-.replays .replays__accordion .accordion__topic:hover .fa-chevron-down {
-  color: #0567cc;
 }
 
 .search {
