@@ -7,8 +7,8 @@
         border-radius: 5px 5px 0 0;
         background-color: #0567cc;
         display: flex;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 18px;
+        padding-bottom: 18px;
         padding-left: 19px;
 
         .title__icon {
@@ -45,6 +45,7 @@
                     text-transform: uppercase;
                     margin-bottom: 0;
                     transition: .3s;
+                    text-decoration: none;
                 }
                 .header__title-active {
                     color: #7880a1;
@@ -57,7 +58,7 @@
                 }
             }
 
-            .topic__body {
+            /*.topic__body {
                 .card-body {
                     padding-bottom: 0;//обнулил бутстраповский отступ снизу
                     .body__wrap {
@@ -88,7 +89,7 @@
             }
             &:hover .fas{
                 color: #0567cc;
-            }
+            }*/
         }
     }
 }

@@ -1,0 +1,19 @@
+    .title_block{
+    display: flex;
+    align-items: center;
+    background: $blue;
+    //height: 60px;
+    border: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 20px;
+    & img,svg{
+        width: 20px;
+        fill: #ffffff;
+    }
+    & .title_text{
+        font-size: 16px;
+        color: white;
+        margin: 0 0 0 20px;
+    }
+}

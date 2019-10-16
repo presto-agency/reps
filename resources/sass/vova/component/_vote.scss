@@ -1,0 +1,94 @@
+.vote {
+    box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+    border-radius: 5px;
+    .vote__title {
+        border-radius: 5px 5px 0 0;
+        background-color: #0567cc;
+        display: flex;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 19px;
+
+        .title__icon {
+            width: 21px;
+            height: 21px;
+            fill: #ffffff;
+        }
+
+        .title__text {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 0; //отмена стандартного margin
+            margin-left: 17px;
+        }
+    }
+    .vote__content {
+        .content__header {
+            background-color: #f0f4f8;
+            padding-top: 16px;
+            padding-bottom: 17px;
+            padding-left: 20px;
+            padding-right: 20px;
+            .header__title {
+                color: #8f95b1;
+                font-size: 16px;
+                font-weight: 400;
+                margin-bottom: 0;
+            }
+        }
+        .content__body {
+            padding-top: 16px;
+            padding-bottom: 17px;
+            padding-left: 20px;
+            padding-right: 20px;
+            .vote-form {
+                .form-check {
+                    margin-bottom: 15px;
+                    label {
+                        margin-left: 10px;
+                    }
+                }
+                .body__button-vote {
+                    margin-bottom: 15px;
+                    .button {
+                        width: 100%;
+                    }
+                }
+            }
+            .view-results {
+                display: none;
+                .results {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 15px;
+                    span {
+                        color: #141d53;
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                }
+                .result__total {
+                    margin-bottom: 15px;
+                    span {
+                        color: #141d53;
+                        font-size: 14px;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+
+            .body__view-results {
+                text-align: center;
+                .view-results__button {
+                    border: 0px;
+                    background-color: transparent;
+                    color: #0567cc;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}

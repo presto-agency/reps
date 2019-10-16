@@ -37,6 +37,10 @@ Route::get('tournament/{id}', function (){
     return view('tournament.show');
 });
 
+Route::get('user', function (){
+    return view('user.index');
+});
+
 Auth::routes();
 
 Route::get('replays/download/{id}', '\App\Http\Controllers\Admin\ReplayController@download')->name('replay.download');

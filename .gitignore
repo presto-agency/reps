@@ -1,7 +1,7 @@
 /node_modules
 /public/hot
 /public/css
-/public/js
+/public/js/app.js
 /public/files
 /public/storage
 /storage/*.key

@@ -1,6 +1,6 @@
-$blue:#0567cc;
+$blue: #0567cc;
 $light-gray: rgb(239,239,239);
-$gray:rgb(191,195,206);
+$gray: #9ca0b6;
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
@@ -10,6 +10,9 @@ $gray:rgb(191,195,206);
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Select 2
+@import '~select2/dist/css/select2.css';
+
 //global
 * {
     margin: 0;
@@ -17,7 +20,7 @@ $gray:rgb(191,195,206);
     box-sizing: border-box;
 }
 body {
-    //font-family: 'Montserrat', sans-serif !important;
+    font-family: 'Montserrat', sans-serif !important;
     background-color: #ffffff;
 }
 button:focus,

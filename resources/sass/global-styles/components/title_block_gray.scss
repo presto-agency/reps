@@ -1,0 +1,21 @@
+.title_top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: $light-gray;
+    height: 60px;
+    padding:20px;
+    & .title_Text{
+        font-size: 16px;
+        color: $gray;
+        margin:0;
+    }
+    & .more{
+        background: none;
+        border: 0;
+        & p{
+            font-size: 40px;
+            color: $gray;
+        }
+    }
+}

@@ -2,6 +2,7 @@
     box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
     border-radius: 5px;
     background-color: #ffffff;
+    margin-bottom: 34px;
 
     .replays__title {
         border-radius: 5px 5px 0 0;
@@ -46,6 +47,15 @@
                     margin-bottom: 0;
                     transition: .3s;
                 }
+                .header__title-disable {
+                    color: #7880a1;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 28px;
+                    text-transform: uppercase;
+                    margin-bottom: 0;
+                    text-decoration: none;
+                }
                 .header__title-active {
                     color: #7880a1;
                 }
@@ -86,7 +96,7 @@
             &:hover .header__title{
                 color: #0567cc;
             }
-            &:hover .fas{
+            &:hover .fa-chevron-down {
                 color: #0567cc;
             }
         }

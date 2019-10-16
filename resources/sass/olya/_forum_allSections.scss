@@ -3,12 +3,11 @@
         box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
         margin: 0 0 20px;
     }
-    margin: 40px 0 0 0;
     & .title_block {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: #3490dc;
+        background: $blue;
         height: 60px;
         border: 0;
         border-top-left-radius: 5px;

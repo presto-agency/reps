@@ -1,0 +1,91 @@
+#registrationModal {
+    .modal-header {
+        .modal-title {
+            margin: 0 auto;
+            color: dodgerblue;
+        }
+        .modal-header__close {
+            position: absolute;
+            right: -9px;
+            top: -9px;
+            width: 40px;
+            height: 40px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 50%;
+            background-color: dodgerblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                width: 13px;
+                height: 13px;
+                fill: #ffffff;
+                transition: 0.3s;
+            }
+            &:hover svg{
+                fill: #0b0b0b;
+            }
+        }
+    }
+    .modal-body {
+        .modal-body__title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 0;
+            input {
+                margin-bottom: 15px;
+                padding-left: 8px;
+            }
+            .select2 {
+                width: 100%!important;
+                margin-bottom: 16px;
+                height: 37px;
+                .select2-selection {
+                    height: 37px;
+                    color: #495057;
+                    background-color: #fff;
+                    border: 1px solid #ced4da;
+                    .select2-selection__rendered {
+                        padding-top: 4px;
+                        padding-left: 8px;
+                    }
+                    .select2-selection__arrow {
+                        top: 5px;
+                    }
+                }
+            }
+            #race {
+                width: 100%;
+                margin-bottom: 16px;
+                height: 37px;
+                background-color: #fff;
+                color: #495057;
+                border: 1px solid #ced4da;
+            }
+        }
+        .modal-body__enter-btn {
+            margin-bottom: 30px;
+            .button {
+                width: 100%;
+            }
+        }
+        .modal-body__forgot-password {
+            text-align: center;
+            text-decoration: none;
+            color: darkgray;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .modal-body__restore-password {
+            text-align: center;
+            text-decoration: none;
+            color: darkgray;
+            margin-bottom: 15px;
+            display: block;
+        }
+    }
+
+}

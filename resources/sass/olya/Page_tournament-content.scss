@@ -2,11 +2,10 @@
     .wrapper{
         box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     }
-    margin: 40px 0 0 0;
     & .title_block{
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: baseline;
         background: #0567cc;
         height: 60px;
         border: 0;
@@ -30,6 +29,23 @@
                 font-size: 14px;
                 color: white;
                 margin: 0;
+            }
+            .lable_select
+            {
+                select {
+                    height: 20px;
+                    background-color: transparent;
+                    border: 0;
+                    padding-right: 14px;
+                    color: #ffffff;
+                    font-size: 12px;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    -webkit-appearance: none;
+                    background-image: url(/images/arrow-down-sign-to-navigate.png);
+                    background-repeat: no-repeat;
+                    background-position: center right 0px;
+                }
             }
         }
 
