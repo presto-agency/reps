@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ForumSection;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -13,7 +14,8 @@ class ForumController extends Controller
      */
     public function index()
     {
-        return view('forum.forum');
+        $sections = ForumSection::withCount('topics')->get();
+        return view('forum.index')->with('sections', $sections);
     }
 
     /**

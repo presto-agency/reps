@@ -1,10 +1,12 @@
+@if(!$sections->isEmpty())
 <section class="forum_allSections">
+    @foreach($sections as $section)
     <div class="wrapper">
         <div class="title_block">
             <div class="left_section">
                 <a href="#">
                     <img id="img_menuMob" class="icon_bars" src="{{url('images\speech-bubble.png')}}"/>
-                    <span class="title_text">Общий</span>
+                    <span class="title_text">{{ $section->title }}</span>
                 </a>
             </div>
             <div class="right_section">
@@ -25,7 +27,8 @@
             <p class="text_descrArticle">Обсуждение самых разнообразных тем</p>
         </div>
     </div>
-    <div class="wrapper">
+    @endforeach
+{{--    <div class="wrapper">
         <div class="title_block">
             <div class="left_section">
                 <a href="#">
@@ -76,5 +79,8 @@
         <div class="content_allArticle">
             <p class="text_descrArticle">Обсуждение самых разнообразных тем</p>
         </div>
-    </div>
+    </div>--}}
 </section>
+@else
+    <h2>No Sections</h2>
+@endif
