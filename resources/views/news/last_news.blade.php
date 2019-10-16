@@ -53,7 +53,7 @@
 
                         <span>{{ $single_news->comments_count }}</span>
                     </a>
-                    <a class="items__share" href="#">
+                    {{--<a class="items__share" href="#">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 426.667 426.667" style="enable-background:new 0 0 426.667 426.667;"
@@ -69,7 +69,7 @@
                                 c-29.406,0-53.333-23.927-53.333-53.333s23.927-53.333,53.333-53.333S128,194.594,128,224S104.073,277.333,74.667,277.333z
                                  M352,384c-29.406,0-53.333-23.927-53.333-53.333s23.927-53.333,53.333-53.333s53.333,23.927,53.333,53.333S381.406,384,352,384z"/>
                         </svg>
-                    </a>
+                    </a>--}}
                     <a class="items__watch" href="#">
                         <svg id="Capa_1" enable-background="new 0 0 515.556 515.556" height="512"
                              viewBox="0 0 515.556 515.556" width="512" xmlns="http://www.w3.org/2000/svg">
