@@ -14164,6 +14164,15 @@ select:focus {
   min-height: 125px;
 }
 
+.header .header_container .header_row .logotype {
+  display: flex;
+  align-items: center;
+}
+
+.header .header_container .header_row .logotype img {
+  width: 100%;
+}
+
 .header .header_container .header_row .cabinet {
   display: none;
 }
@@ -14219,6 +14228,98 @@ select:focus {
   font-size: 12px;
 }
 
+.header .header_container .header_row .header_search_user {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header .header_container .header_row .header_search_user button {
+  background: none;
+  border: 0;
+}
+
+.header .header_container .header_row .header_search_user .button_input {
+  display: flex;
+  width: 218px;
+  transition: 1.5s;
+}
+
+.header .header_container .header_row .header_search_user .active_button_input {
+  width: 170px;
+  width: 100%;
+}
+
+.header .header_container .header_row .header_search_user .active_button_input .search_input {
+  margin-left: 5px;
+}
+
+.header .header_container .header_row .header_search_user .active_button_input ::-webkit-input-placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
+}
+
+.header .header_container .header_row .header_search_user .active_button_input ::-moz-placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
+}
+
+.header .header_container .header_row .header_search_user .active_button_input :-ms-input-placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
+}
+
+.header .header_container .header_row .header_search_user .active_button_input ::-ms-input-placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
+}
+
+.header .header_container .header_row .header_search_user .active_button_input ::placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
+}
+
+.header .header_container .header_row .header_search_user .disactive_input {
+  background: white;
+}
+
+.header .header_container .header_row .header_search_user .search_input {
+  height: 30px;
+  background: none;
+  border: 0;
+  border-bottom: 1.5px solid white;
+  padding: 5px;
+  margin-left: 24px;
+  color: white;
+  font-style: italic;
+  width: 9.5vw;
+}
+
+.header .header_container .header_row .header_search_user ::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.header .header_container .header_row .header_search_user ::-moz-placeholder {
+  color: transparent;
+}
+
+.header .header_container .header_row .header_search_user :-ms-input-placeholder {
+  color: transparent;
+}
+
+.header .header_container .header_row .header_search_user ::-ms-input-placeholder {
+  color: transparent;
+}
+
+.header .header_container .header_row .header_search_user ::placeholder {
+  color: transparent;
+}
+
 .header .header_container .header_row .header_search {
   display: flex;
   align-items: center;
@@ -14237,11 +14338,41 @@ select:focus {
 }
 
 .header .header_container .header_row .header_search .active_button_input {
-  width: 170px;
+  width: 100%;
 }
 
 .header .header_container .header_row .header_search .active_button_input .search_input {
   margin-left: 5px;
+}
+
+.header .header_container .header_row .header_search .active_button_input ::-webkit-input-placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
+}
+
+.header .header_container .header_row .header_search .active_button_input ::-moz-placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
+}
+
+.header .header_container .header_row .header_search .active_button_input :-ms-input-placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
+}
+
+.header .header_container .header_row .header_search .active_button_input ::-ms-input-placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
+}
+
+.header .header_container .header_row .header_search .active_button_input ::placeholder {
+  color: white;
+  font-style: italic;
+  opacity: 2;
 }
 
 .header .header_container .header_row .header_search .disactive_input {
@@ -14251,43 +14382,33 @@ select:focus {
 .header .header_container .header_row .header_search .search_input {
   height: 30px;
   background: none;
+  width: 100%;
   border: 0;
   border-bottom: 1.5px solid white;
   padding: 5px;
-  min-width: 120px;
   margin-left: 24px;
   color: white;
   font-style: italic;
 }
 
 .header .header_container .header_row .header_search ::-webkit-input-placeholder {
-  color: white;
-  font-style: italic;
-  opacity: 2;
+  color: transparent;
 }
 
 .header .header_container .header_row .header_search ::-moz-placeholder {
-  color: white;
-  font-style: italic;
-  opacity: 2;
+  color: transparent;
 }
 
 .header .header_container .header_row .header_search :-ms-input-placeholder {
-  color: white;
-  font-style: italic;
-  opacity: 2;
+  color: transparent;
 }
 
 .header .header_container .header_row .header_search ::-ms-input-placeholder {
-  color: white;
-  font-style: italic;
-  opacity: 2;
+  color: transparent;
 }
 
 .header .header_container .header_row .header_search ::placeholder {
-  color: white;
-  font-style: italic;
-  opacity: 2;
+  color: transparent;
 }
 
 .header .header_container .header_row .autorization {
@@ -14314,76 +14435,6 @@ select:focus {
   bottom: -35px;
   background: none;
   position: absolute;
-}
-
-.header .button_input_user {
-  display: flex;
-  align-items: center;
-}
-
-.header .button_input_user button {
-  background: none;
-  border: 0;
-}
-
-.header .button_input_user .button_input {
-  display: flex;
-  width: 24px;
-  transition: 1.5s;
-}
-
-.header .button_input_user .active_button_input {
-  width: 170px;
-}
-
-.header .button_input_user .active_button_input .search_input {
-  margin-left: 5px;
-}
-
-.header .button_input_user .disactive_input {
-  background: white;
-}
-
-.header .button_input_user .search_input {
-  height: 30px;
-  background: none;
-  border: 0;
-  border-bottom: 1.5px solid white;
-  padding: 5px;
-  min-width: 120px;
-  margin-left: 24px;
-  color: white;
-  font-style: italic;
-}
-
-.header .button_input_user ::-webkit-input-placeholder {
-  color: white;
-  font-style: italic;
-  opacity: 2;
-}
-
-.header .button_input_user ::-moz-placeholder {
-  color: white;
-  font-style: italic;
-  opacity: 2;
-}
-
-.header .button_input_user :-ms-input-placeholder {
-  color: white;
-  font-style: italic;
-  opacity: 2;
-}
-
-.header .button_input_user ::-ms-input-placeholder {
-  color: white;
-  font-style: italic;
-  opacity: 2;
-}
-
-.header .button_input_user ::placeholder {
-  color: white;
-  font-style: italic;
-  opacity: 2;
 }
 
 .block_tournament .wrapper {
@@ -15572,7 +15623,7 @@ select:focus {
   align-items: center;
   background: #fff;
   border-radius: 3px;
-  width: 256px;
+  width: 184px;
   z-index: 2;
   right: 0;
   bottom: 5px;
@@ -15591,7 +15642,7 @@ select:focus {
 .user_bar .logged_links {
   position: absolute;
   background: white;
-  width: 256px;
+  width: 100%;
   z-index: 3;
 }
 
@@ -15644,7 +15695,12 @@ select:focus {
   justify-content: space-between;
 }
 
-.user_friends .row_users {
+.user_friends .wrapper_table {
+  max-height: 320px;
+  overflow: scroll;
+}
+
+.user_friends .wrapper_table .row_users {
   padding: 10px 0;
   border-bottom: 1px solid #9ca0b6;
   margin: 0;
@@ -15652,28 +15708,28 @@ select:focus {
   align-items: center;
 }
 
-.user_friends .row_users span {
+.user_friends .wrapper_table .row_users span {
   color: #9ca0b6;
 }
 
-.user_friends .row_users .block_action {
+.user_friends .wrapper_table .row_users .block_action {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.user_friends .row_users .block_action svg {
+.user_friends .wrapper_table .row_users .block_action svg {
   width: 20px;
   fill: #0567cc;
 }
 
-.user_friends .row_users .user_block {
+.user_friends .wrapper_table .row_users .user_block {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.user_friends .row_users .user_block .name_user {
+.user_friends .wrapper_table .row_users .user_block .name_user {
   color: #0567cc;
   font-weight: 600;
   max-width: 98px;
@@ -15683,7 +15739,7 @@ select:focus {
   text-overflow: ellipsis;
 }
 
-.user_friends .row_users .user_block .user-avatar {
+.user_friends .wrapper_table .row_users .user_block .user-avatar {
   width: 50px;
   height: 50px;
   background: #dadada;
@@ -15694,6 +15750,17 @@ select:focus {
   align-items: center;
   justify-content: center;
   border: 1px solid #4890af;
+}
+
+.wrapper_table::-webkit-scrollbar {
+  width: 10px;
+}
+
+.wrapper_table::-webkit-scrollbar-thumb {
+  background-color: #e2e5e9;
+  opacity: 0.8;
+  border-radius: 4px;
+  height: 227px;
 }
 
 .button {

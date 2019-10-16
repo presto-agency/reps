@@ -48,14 +48,18 @@
                     <a href="#">ФАЙЛЫ</a>
                 </nav>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search_user">
+            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search">
                 <div class="button_input">
                     <button><img class="search_img" src="{{ url('/images/search.png') }}"></button>
                     <input id="inp"class="search_input " placeholder="поиск">
                 </div>
-                                @include('user.components.user-bar_panel')
+                <div class="autorization">
+                    <button type="button" data-toggle="modal" data-target="#authorizationModal">Вход</button>
+                    <button class="registration"  type="button" data-toggle="modal" data-target="#registrationModal">Регистрация</button>
+                </div>
+{{--                @include('user.components.user-bar_panel')--}}
             </div>
         </div>
     </div>
-</section>
 
+</section>
