@@ -1,12 +1,85 @@
+@media (max-width: 3840px) {
+    /* CSS-стили */;
+    #pulse-button-top,
+    #pulse-button-info {
+        display: none;
+    }
+}
+
 @media (min-width: 991px) and (max-width: 1920px) {
     /* CSS-стили */;
+
 }
 
 @media (max-width: 991px) {
     /* CSS-стили */;
+
+    #left-sidebar {
+        order: 1;
+    }
+    #right-sidebar {
+        order: 2;
+    }
+    #content {
+        order: 3;
+    }
+    #pulse-button-top,
+    #pulse-button-info {
+        display: block;
+    }
+
+
+    .left-sidebar-wrap {
+        height: auto;
+    }
+
+    .right-sidebar-wrap {
+        height: auto;
+    }
+
+    .no-height {
+        height: 0;
+        overflow: hidden;
+    }
 }
 
+@media (max-width: 576px) {
 
+
+    .header_row{
+        flex-direction: row-reverse;
+        & .mode{
+            position: absolute;
+            right: 10%;
+            bottom: 65%;
+        }
+        & .logo{
+            justify-content: center;
+        }
+        & .main_menu{
+            position:inherit!important;
+        }
+        & .icon_bars{
+            display: block!important;
+            width: 30px!important;
+        }
+        .cabinet{
+            display: flex!important;
+            & .icon_cabinet{
+                width: 30px!important;
+            }
+        }
+        & .button_input{
+            margin-left: 20px;
+            & .search_input {
+                margin-left: 0 !important;
+                min-width: 77vw !important;
+            }
+
+        }
+
+    }
+}
 
 
 
@@ -48,38 +121,4 @@
     }
 
 }
-@media (max-width: 576px) {
-    .header_row{
-        flex-direction: row-reverse;
-        & .mode{
-            position: absolute;
-            right: 10%;
-            bottom: 65%;
-        }
-        & .logo{
-            justify-content: center;
-        }
-        & .main_menu{
-            position:inherit!important;
-        }
-        & .icon_bars{
-            display: block!important;
-            width: 30px!important;
-        }
-        .cabinet{
-            display: flex!important;
-            & .icon_cabinet{
-                width: 30px!important;
-            }
-        }
-        & .button_input{
-            margin-left: 20px;
-            & .search_input {
-                margin-left: 0 !important;
-                min-width: 77vw !important;
-            }
 
-        }
-
-    }
-}

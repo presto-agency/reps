@@ -11224,7 +11224,14 @@ select:focus {
   font-weight: 300;
 }
 
-.breaking-news .breaking-news__news-card .card-body .card-body__text a {
+.breaking-news .breaking-news__news-card .card-body p {
+  display: inline-block;
+  color: #010b4a;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.breaking-news .breaking-news__news-card .card-body a {
   font-size: 14px;
   font-weight: 300;
   text-decoration: underline;
@@ -13932,6 +13939,133 @@ select:focus {
   transition: 0.3s;
 }
 
+.pulse-button {
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  margin: 0 auto 20px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  background-image: linear-gradient(to bottom, #249bf4 0%, #0567cc 100%);
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgba(91, 158, 227, 0.5);
+}
+
+.pulse-button:focus {
+  outline: 0;
+}
+
+.pulse-button:before,
+.pulse-button:after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 140%;
+  height: 100%;
+  left: -20%;
+  z-index: -1000;
+  transition: all ease-in-out 0.5s;
+  background-repeat: no-repeat;
+}
+
+.pulse-button:before {
+  display: none;
+  top: -75%;
+  background-image: radial-gradient(circle, #0567cc 20%, transparent 20%), radial-gradient(circle, transparent 20%, #0567cc 20%, transparent 30%), radial-gradient(circle, #0567cc 20%, transparent 20%), radial-gradient(circle, #0567cc 20%, transparent 20%), radial-gradient(circle, transparent 10%, #0567cc 15%, transparent 20%), radial-gradient(circle, #0567cc 20%, transparent 20%), radial-gradient(circle, #0567cc 20%, transparent 20%), radial-gradient(circle, #0567cc 20%, transparent 20%), radial-gradient(circle, #0567cc 20%, transparent 20%);
+  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+}
+
+.pulse-button:after {
+  display: none;
+  bottom: -75%;
+  background-image: radial-gradient(circle, #0567cc 20%, transparent 20%), radial-gradient(circle, #0567cc 20%, transparent 20%), radial-gradient(circle, transparent 10%, #0567cc 15%, transparent 20%), radial-gradient(circle, #0567cc 20%, transparent 20%), radial-gradient(circle, #0567cc 20%, transparent 20%), radial-gradient(circle, #0567cc 20%, transparent 20%), radial-gradient(circle, #0567cc 20%, transparent 20%);
+  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+}
+
+.pulse-button:active {
+  transform: scale(0.9);
+  background-color: #045ab3;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+}
+
+.pulse-button.animate:before {
+  display: block;
+  -webkit-animation: topBubbles ease-in-out 0.75s forwards;
+          animation: topBubbles ease-in-out 0.75s forwards;
+}
+
+.pulse-button.animate:after {
+  display: block;
+  -webkit-animation: bottomBubbles ease-in-out 0.75s forwards;
+          animation: bottomBubbles ease-in-out 0.75s forwards;
+}
+
+@-webkit-keyframes topBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+  }
+
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
+  }
+
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+@keyframes topBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+  }
+
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
+  }
+
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+@-webkit-keyframes bottomBubbles {
+  0% {
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
+  }
+
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
+  }
+
+  100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+@keyframes bottomBubbles {
+  0% {
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
+  }
+
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
+  }
+
+  100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
 .block_chat-twitch {
   padding-bottom: 40px;
 }
@@ -15792,52 +15926,50 @@ select:focus {
   color: #9ca0b6;
 }
 
+@media (max-width: 3840px) {
+  /* CSS-стили */
+
+  #pulse-button-top,
+  #pulse-button-info {
+    display: none;
+  }
+}
+
 @media (min-width: 991px) and (max-width: 1920px) {
   /* CSS-стили */
 }
 
 @media (max-width: 991px) {
   /* CSS-стили */
-}
 
-@media (max-width: 992px) {
-  .header {
-    position: relative;
+  #left-sidebar {
+    order: 1;
   }
 
-  .header .icon_bars {
-    display: block !important;
-    width: 50px;
+  #right-sidebar {
+    order: 2;
   }
 
-  .header .logo img {
-    width: 70% !important;
+  #content {
+    order: 3;
   }
 
-  .header .menu_navigation {
-    display: none !important;
+  #pulse-button-top,
+  #pulse-button-info {
+    display: block;
   }
 
-  .header .autorization {
-    display: none !important;
+  .left-sidebar-wrap {
+    height: auto;
   }
 
-  .header .main_menu {
-    position: absolute;
-    right: 0;
-    bottom: 30%;
+  .right-sidebar-wrap {
+    height: auto;
   }
 
-  .header .search {
-    justify-content: flex-start;
-  }
-
-  .header .button_input {
-    width: 100% !important;
-  }
-
-  .header .button_input .search_input {
-    min-width: 40vw !important;
+  .no-height {
+    height: 0;
+    overflow: hidden;
   }
 }
 
@@ -15880,6 +16012,47 @@ select:focus {
   .header_row .button_input .search_input {
     margin-left: 0 !important;
     min-width: 77vw !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+    position: relative;
+  }
+
+  .header .icon_bars {
+    display: block !important;
+    width: 50px;
+  }
+
+  .header .logo img {
+    width: 70% !important;
+  }
+
+  .header .menu_navigation {
+    display: none !important;
+  }
+
+  .header .autorization {
+    display: none !important;
+  }
+
+  .header .main_menu {
+    position: absolute;
+    right: 0;
+    bottom: 30%;
+  }
+
+  .header .search {
+    justify-content: flex-start;
+  }
+
+  .header .button_input {
+    width: 100% !important;
+  }
+
+  .header .button_input .search_input {
+    min-width: 40vw !important;
   }
 }
 

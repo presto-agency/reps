@@ -77,11 +77,21 @@
                 color: #010b4a;
                 font-size: 14px;
                 font-weight: 300;
-                a {
-                    font-size: 14px;
-                    font-weight: 300;
-                    text-decoration: underline;
-                }
+            }
+
+            //p - styles for text who isert from admin
+            p {
+                display: inline-block;
+                color: #010b4a;
+                font-size: 14px;
+                font-weight: 300;
+            }
+
+            //p - styles for text "читать" isert from admin
+            a {
+                font-size: 14px;
+                font-weight: 300;
+                text-decoration: underline;
             }
 
             .card-body__items {
