@@ -29,25 +29,17 @@
 
     .replays__accordion {
         transition: .3s;
+
         .accordion__topic {
             border-radius: 1px;
-            border: 0px;  //отмена бутстраповской рамки
+            border: 0px; //отмена бутстраповской рамки
             .topic__header {
                 background-color: #f0f4f8;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                border-bottom: 0px;  //отмена бутстраповской рамки
+                border-bottom: 0px; //отмена бутстраповской рамки
                 .header__title {
-                    color: #010b4a;
-                    font-size: 16px;
-                    font-weight: 400;
-                    line-height: 28px;
-                    text-transform: uppercase;
-                    margin-bottom: 0;
-                    transition: .3s;
-                }
-                .header__title-disable {
                     color: #7880a1;
                     font-size: 16px;
                     font-weight: 400;
@@ -55,11 +47,17 @@
                     text-transform: uppercase;
                     margin-bottom: 0;
                     text-decoration: none;
+                    transition: .3s;
+
+                    &:hover {
+                        color: #0567cc;
+                    }
+
+                    &:hover svg {
+                        fill: #0567cc;
+                    }
                 }
-                .header__title-active {
-                    color: #7880a1;
-                }
-                .fa-chevron-down,
+
                 .fa-ellipsis-h {
                     color: #a9afc4;
                     font-size: 16px;
@@ -69,12 +67,13 @@
 
             .topic__body {
                 .card-body {
-                    padding-bottom: 0;//обнулил бутстраповский отступ снизу
+                    padding-bottom: 0; //обнулил бутстраповский отступ снизу
                     .body__wrap {
                         display: flex;
                         justify-content: space-between;
                         align-items: start;
                         margin-bottom: 25px;
+
                         .body__title {
                             color: #141d53;
                             font-size: 14px;
@@ -82,6 +81,7 @@
                             text-decoration: none;
                             width: 90%;
                         }
+
                         .body__numb {
                             color: #0567cc;
                             font-size: 14px;
@@ -90,14 +90,9 @@
                     }
                 }
             }
+
             &:hover {
                 box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
-            }
-            &:hover .header__title{
-                color: #0567cc;
-            }
-            &:hover .fa-chevron-down {
-                color: #0567cc;
             }
         }
     }

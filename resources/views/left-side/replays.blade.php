@@ -16,76 +16,15 @@
         <p class="title__text">Реплеи</p>
     </div>
 
-    {{--replays accordion--}}
-
-    {{--<div class="accordionReplays-wrap">
-        <ul id="accordionReplays" class="accordionReplays">
-            <li class="accordionReplays__main-list" data-id="1">
-                <i class="far fa-minus-square far-big position-icon js-accordionReplays-item"></i>
-                <a class="main-list__title js-accordionReplays-item" href="#">Пользовательские реплеи</a>
-                <ul class="main-list-nasted js-accordionReplays-close">
-                    <li class="list__item" data-id="2">
-                        <a class="list__title" href="#" title="">BSL7-Eriador vs ash.Dreamer</a>
-                        <span class="list__numb">1</span>
-                    </li>
-                    <li class="list__item" data-id="3">
-                        <a class="list__title" href="#" title="">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                        <span class="list__numb">0</span>
-                    </li>
-                    <li class="list__item" data-id="4">
-                        <a class="list__title" href="#" title="">BSL7-Dreamer vs BSL7-Ononist777</a>
-                        <span class="list__numb">1</span>
-                    </li>
-                    <li class="list__item" data-id="5">
-                        <a class="list__title" href="#" title="">BSL7-Dreamer vs BSL7-Aalm</a>
-                        <span class="list__numb">1</span>
-                    </li>
-                    <li class="list__item" data-id="6">
-                        <a class="list__title" href="#" title="">mSj[Dreamer] vs mSj[Teffik]</a>
-                        <span class="list__numb">0</span>
-                    </li>
-                </ul>
-
-            </li>
-            <li class="accordionReplays__main-list" data-id="7">
-                <i class="far fa-minus-square far-big position-icon js-accordionReplays-item"></i>
-                <a class="main-list__title js-accordionReplays-item" href="#">ГОСУ реплеи</a>
-                <ul class="main-list-nasted js-accordionReplays-close">
-                    <ul class="main-list-nasted js-accordionReplays-close">
-                        <li class="list__item" data-id="8">
-                            <a class="list__title" href="#" title="">BSL7-Eriador vs ash.Dreamer</a>
-                            <span class="list__numb">1</span>
-                        </li>
-                        <li class="list__item" data-id="9">
-                            <a class="list__title" href="#" title="">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                            <span class="list__numb">0</span>
-                        </li>
-                        <li class="list__item" data-id="10">
-                            <a class="list__title" href="#" title="">BSL7-Dreamer vs BSL7-Ononist777</a>
-                            <span class="list__numb">1</span>
-                        </li>
-                        <li class="list__item" data-id="11">
-                            <a class="list__title" href="#" title="">BSL7-Dreamer vs BSL7-Aalm</a>
-                            <span class="list__numb">1</span>
-                        </li>
-                        <li class="list__item" data-id="12">
-                            <a class="list__title" href="#" title="">mSj[Dreamer] vs mSj[Teffik]</a>
-                            <span class="list__numb">0</span>
-                        </li>
-                    </ul>
-                </ul>
-            </li>
-        </ul>
-    </div>--}}
 
     <div class="replays__accordion accordion" id="replaysAccordion">
 
         <div class="accordion__topic card">
             <div class="topic__header card-header">
-                <a class="header__title-disable" href="#">
+                <a class="header__title" href="#">
                     Пользовательские реплеи
                 </a>
-                <a class="header__title-disable" href="#">
+                <a class="header__title" href="#">
                     <i class="fas fa-ellipsis-h"></i>
                 </a>
             </div>
@@ -103,14 +42,6 @@
                     <div class="body__wrap">
                         <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
                         <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Aalm</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">mSj[Dreamer] vs mSj[Teffik]</a>
-                        <span class="body__numb">0</span>
                     </div>
                 </div>
             </div>
@@ -118,8 +49,37 @@
 
         <div class="accordion__topic card">
             <div class="topic__header card-header">
-                <a class="header__title-disable" href="#">
+                <a class="header__title" href="#">
                     ГОСУ реплеи
+                </a>
+
+                <a class="header__title" href="#">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
+            </div>
+
+            <div class="topic__body">
+                <div class="card-body">
+                    <div class="body__wrap">
+                        <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
+                        <span class="body__numb">1</span>
+                    </div>
+                    <div class="body__wrap">
+                        <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
+                        <span class="body__numb">0</span>
+                    </div>
+                    <div class="body__wrap">
+                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
+                        <span class="body__numb">1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion__topic card">
+            <div class="topic__header card-header">
+                <a class="header__title" href="#">
+                    1х1
                 </a>
 
                 <a class="header__title-disable" href="#">
@@ -141,26 +101,21 @@
                         <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
                         <span class="body__numb">1</span>
                     </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Aalm</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">mSj[Dreamer] vs mSj[Teffik]</a>
-                        <span class="body__numb">0</span>
-                    </div>
                 </div>
             </div>
         </div>
 
         <div class="accordion__topic card">
-            <div class="topic__header card-header js-accordion-title" id="topicThree" data-toggle="collapse" data-target="#topicCollapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <p class="header__title">1х1</p>
-                <i class="fas fa-chevron-down"></i>
-
+            <div class="topic__header card-header">
+                <a class="header__title" href="#">
+                    park/archive
+                </a>
+                <a class="header__title-disable" href="#">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
             </div>
 
-            <div id="topicCollapseThree" class="topic__body collapse" aria-labelledby="topicThree">
+            <div class="topic__body">
                 <div class="card-body">
                     <div class="body__wrap">
                         <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
@@ -174,25 +129,21 @@
                         <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
                         <span class="body__numb">1</span>
                     </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Aalm</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">mSj[Dreamer] vs mSj[Teffik]</a>
-                        <span class="body__numb">0</span>
-                    </div>
                 </div>
             </div>
         </div>
 
         <div class="accordion__topic card">
-            <div class="topic__header card-header js-accordion-title" id="topicFour" data-toggle="collapse" data-target="#topicCollapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <p class="header__title">park/archive</p>
-                <i class="fas fa-chevron-down"></i>
+            <div class="topic__header card-header">
+                <a class="header__title" href="#">
+                    Game of the week
+                </a>
+                <a class="header__title-disable" href="#">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
             </div>
 
-            <div id="topicCollapseFour" class="topic__body collapse" aria-labelledby="topicFour">
+            <div class="topic__body">
                 <div class="card-body">
                     <div class="body__wrap">
                         <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
@@ -206,25 +157,21 @@
                         <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
                         <span class="body__numb">1</span>
                     </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Aalm</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">mSj[Dreamer] vs mSj[Teffik]</a>
-                        <span class="body__numb">0</span>
-                    </div>
                 </div>
             </div>
         </div>
 
         <div class="accordion__topic card">
-            <div class="topic__header card-header js-accordion-title" id="topicFive" data-toggle="collapse" data-target="#topicCollapseFive" aria-expanded="true" aria-controls="collapseFive">
-                <p class="header__title">Game of the week</p>
-                <i class="fas fa-chevron-down"></i>
+            <div class="topic__header card-header">
+                <a class="header__title"  href="#">
+                    2х2   3х3   4х4
+                </a>
+                <a class="header__title-disable" href="#">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
             </div>
 
-            <div id="topicCollapseFive" class="topic__body collapse" aria-labelledby="topicFive">
+            <div class="topic__body">
                 <div class="card-body">
                     <div class="body__wrap">
                         <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
@@ -237,46 +184,6 @@
                     <div class="body__wrap">
                         <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
                         <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Aalm</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">mSj[Dreamer] vs mSj[Teffik]</a>
-                        <span class="body__numb">0</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="accordion__topic card">
-            <div class="topic__header card-header js-accordion-title" id="topicSix" data-toggle="collapse" data-target="#topicCollapseSix" aria-expanded="true" aria-controls="collapseSix">
-                <p class="header__title">2х2   3х3   4х4</p>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-
-            <div id="topicCollapseSix" class="topic__body collapse" aria-labelledby="topicSix">
-                <div class="card-body">
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                        <span class="body__numb">0</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Aalm</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">mSj[Dreamer] vs mSj[Teffik]</a>
-                        <span class="body__numb">0</span>
                     </div>
                 </div>
             </div>
