@@ -37,7 +37,7 @@
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="white" d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"></path></svg>
                 </button>
             </div>
-            <div class="col-xl-5 col-lg-4 col-md-2 col-sm-2 col-3 main_menu">
+            <div class="col-xl-5 col-lg-5 col-md-2 col-sm-2 col-3 main_menu">
                 <nav class="menu_navigation">
                     <a href="/">ГЛАВНАЯ</a>
                     <a href="/forum">ФОРУМ</a>
@@ -47,6 +47,9 @@
                     <a href="/best">ЛУЧШИЕ</a>
                     <a href="#">ФАЙЛЫ</a>
                 </nav>
+                <button id="burger_menu" class="burger_menu">
+                    <svg  aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="menu_bar svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="white" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
+                </button>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search">
                 <div class="button_input">
