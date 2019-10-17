@@ -71,7 +71,8 @@
     <hr>
     <div class="detailed-forum__card card">
         <div class="card-body">
-            <p class="card-body__text">{!! $topic->content !!}</p>
+            {{--<p class="card-body__text"></p>--}}
+            <div class="card-body__text">{!! $topic->content !!}</div>
             <div class="card-body__items">
                 <div class="card-body__items-wrap">
                     <a class="items__quote" href="#">

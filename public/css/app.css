@@ -16155,14 +16155,6 @@ select:focus {
     height: 0;
     overflow: hidden;
   }
-
-  .header .burger_menu {
-    display: block !important;
-  }
-
-  .header .burger_menu .menu_bar {
-    width: 50px !important;
-  }
 }
 
 @media (max-width: 576px) {
@@ -16245,6 +16237,14 @@ select:focus {
 
   .header .button_input .search_input {
     min-width: 40vw !important;
+  }
+
+  .header .burger_menu {
+    display: block !important;
+  }
+
+  .header .burger_menu .menu_bar {
+    width: 50px !important;
   }
 }
 
