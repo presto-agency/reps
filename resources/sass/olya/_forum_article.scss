@@ -46,12 +46,44 @@
                     padding-right: 5px;
                 }
             }
+            .lable_select
+            {
+                margin-bottom: 0;
+                select {
+                    height: 20px;
+                    background-color: transparent;
+                    border: 0;
+                    //padding-right: 14px;
+                    color: #ffffff;
+                    font-size: 12px;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    -webkit-appearance: none;
+                    background-image: url(/images/arrow-down-sign-to-navigate.png);
+                    background-repeat: no-repeat;
+                    background-position: center right 0px;
+                }
+            }
+        }
+        & .right_section_autorization{
+            display: none;
+            & button{
+                background: transparent;
+                border:0;
+                display: flex;
+                align-items: center;
+            }
+            & p{
+                font-size: 16px;
+                color: white;
+                margin-bottom: 0;
+            }
         }
     }
    & .content_article{
        width: 100%;
        border: 0;
-       padding: 20px 20px 0;
+       padding: 10px 20px 0;
        align-items: baseline;
        background: white;
        & .block_nameArticle{
@@ -70,9 +102,35 @@
             }
        }
    }
+    & .counter_autorization{
+        display: none;
+        width: 100%;
+        border: 0;
+        padding: 10px 20px 0;
+        align-items: baseline;
+        background: white;
+        & .block_nameArticle{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            & .item{
+                margin: 5px 0;
+                font-size: 14px;
+                font-weight: bold;
+            }
+            & .text{
+                margin-left: 10px;
+                color: $blue;
+                font-size: 14px;
+            }
+            padding-bottom: 10px;
+            border-bottom: 1px solid #efefef;
+        }
+
+    }
     .detailed-news__info {
         background-color: #ffffff;
-        padding-bottom: 17px;
+        padding-bottom: 10px;
         border-bottom: 1px solid #efefef;
 
         .info__items {

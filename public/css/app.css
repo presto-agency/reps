@@ -14197,8 +14197,10 @@ select:focus {
   width: 65%;
 }
 
-.header .header_container .header_row .icon_bars {
+.header .header_container .header_row .burger_menu {
   display: none;
+  border: 0;
+  background: transparent;
 }
 
 .header .header_container .header_row .main_menu {
@@ -14217,7 +14219,7 @@ select:focus {
 .header .header_container .header_row .main_menu .menu_navigation a {
   color: white;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 0.8vw;
 }
 
 .header .header_container .header_row .header_search_user {
@@ -14413,7 +14415,7 @@ select:focus {
 
 .header .header_container .header_row .autorization button {
   background: white;
-  width: 125px;
+  width: 140px;
   height: 40px;
   padding-left: 10px;
   border-radius: 3px;
@@ -14500,8 +14502,8 @@ select:focus {
 }
 
 .block_replay .row_game .content_game .text_matchap {
-  font-size: 14px;
-  margin: 0 10px;
+  font-size: 12px;
+  margin: 0 9.5px;
 }
 
 .block_replay .row_game .content_game .text {
@@ -14634,10 +14636,45 @@ select:focus {
   padding-right: 5px;
 }
 
+.forum_acticle .title_block .right_section .lable_select {
+  margin-bottom: 0;
+}
+
+.forum_acticle .title_block .right_section .lable_select select {
+  height: 20px;
+  background-color: transparent;
+  border: 0;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  -webkit-appearance: none;
+  background-image: url(/images/arrow-down-sign-to-navigate.png);
+  background-repeat: no-repeat;
+  background-position: center right 0px;
+}
+
+.forum_acticle .title_block .right_section_autorization {
+  display: none;
+}
+
+.forum_acticle .title_block .right_section_autorization button {
+  background: transparent;
+  border: 0;
+  display: flex;
+  align-items: center;
+}
+
+.forum_acticle .title_block .right_section_autorization p {
+  font-size: 16px;
+  color: white;
+  margin-bottom: 0;
+}
+
 .forum_acticle .content_article {
   width: 100%;
   border: 0;
-  padding: 20px 20px 0;
+  padding: 10px 20px 0;
   align-items: baseline;
   background: white;
 }
@@ -14660,9 +14697,38 @@ select:focus {
   font-size: 12px;
 }
 
+.forum_acticle .counter_autorization {
+  display: none;
+  width: 100%;
+  border: 0;
+  padding: 10px 20px 0;
+  align-items: baseline;
+  background: white;
+}
+
+.forum_acticle .counter_autorization .block_nameArticle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #efefef;
+}
+
+.forum_acticle .counter_autorization .block_nameArticle .item {
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.forum_acticle .counter_autorization .block_nameArticle .text {
+  margin-left: 10px;
+  color: #0567cc;
+  font-size: 14px;
+}
+
 .forum_acticle .detailed-news__info {
   background-color: #ffffff;
-  padding-bottom: 17px;
+  padding-bottom: 10px;
   border-bottom: 1px solid #efefef;
 }
 
@@ -14798,7 +14864,7 @@ select:focus {
 .Page_tournament-content .title_block {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   background: #0567cc;
   height: 60px;
   border: 0;
@@ -14809,7 +14875,6 @@ select:focus {
 
 .Page_tournament-content .title_block .left_content {
   display: flex;
-  align-items: end;
 }
 
 .Page_tournament-content .title_block .left_content svg {
@@ -14829,6 +14894,10 @@ select:focus {
   font-size: 14px;
   color: white;
   margin: 0;
+}
+
+.Page_tournament-content .title_block .right_content .lable_select {
+  margin-bottom: 0;
 }
 
 .Page_tournament-content .title_block .right_content .lable_select select {
@@ -15755,6 +15824,54 @@ select:focus {
   height: 227px;
 }
 
+.mob_menu {
+  display: none;
+}
+
+.mob_menu .nav-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: #0567cc;
+  transition: all 0.2s ease;
+  background: #0567cc;
+}
+
+.mob_menu .nav-wrapper .nav-btn {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 15px;
+  top: 19px;
+  display: block;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  z-index: 9999;
+  border-radius: 50%;
+  border: 1px solid #00a3d4;
+}
+
+.mob_menu .nav-wrapper .nav_item {
+  padding: 10px 24px;
+  letter-spacing: 1.2px;
+  transform: translateX(-20px);
+  transition: all 0.2s ease;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: translateX(0);
+}
+
+.mob_menu .mob_menu_active {
+  display: block !important;
+}
+
 .button {
   font-size: 12px;
   font-weight: 400;
@@ -15905,6 +16022,14 @@ select:focus {
 
   .header .button_input .search_input {
     min-width: 40vw !important;
+  }
+
+  .header .burger_menu {
+    display: block !important;
+  }
+
+  .header .burger_menu .menu_bar {
+    width: 50px !important;
   }
 }
 

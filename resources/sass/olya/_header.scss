@@ -39,9 +39,12 @@
                     width: 65%;
                 }
             }
-            & .icon_bars{
+            & .burger_menu{
                 display: none;
+                border: 0;
+                background: transparent;
             }
+
             & .main_menu{
                 display: flex;
                 align-items: center;
@@ -51,10 +54,11 @@
                     width: 100%;
                     display: flex;
                     justify-content: space-around;
+
                     & a{
                         color: white;
                         text-decoration: none;
-                        font-size: 12px;
+                        font-size: 0.8vw;
 
                     }
                 }
@@ -153,7 +157,7 @@
                 position: relative;
                 & button {
                     background: white;
-                    width: 125px;
+                    width: 140px;
                     height: 40px;
                     padding-left: 10px;
                     border-radius: 3px;

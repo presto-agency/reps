@@ -39,6 +39,7 @@
         <header>
                 {{--include header--}}
                          @include('user.components.NEW_header')
+            @include('components.mobile_menu')
 {{--                 @include('user.components.header_user')--}}
                 @include('modal.authorization')
                 @include('modal.registration')
@@ -74,15 +75,15 @@
 
             <!--CONTENT-->
             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                {{--@include('content.Page_gameBest')--}}
-                {{--@include('content.Page_tournamentDetail-content')--}}
-                {{--@include('content.Page_tournament-content')--}}
+{{--                @include('content.Page_gameBest')--}}
+{{--                @include('content.Page_tournamentDetail-content')--}}
+{{--                @include('content.Page_tournament-content')--}}
                 @yield('content')
-                {{--@include('content.detailed-news')--}}
-                {{--@include('content.forum-allSections')--}}
-                {{--@include('content.forum-article')--}}
+{{--                @include('content.detailed-news')--}}
+{{--                @include('content.forum-allSections')--}}
+                @include('content.forum-article')
                 {{--@include('content.gocu-replays')--}}
-                {{--@include('content.comments')--}}
+{{--                @include('content.comments')--}}
                 {{--@include('content.add-comment')--}}
                 {{--@include('content.detailed-forum')--}}
             </div>
