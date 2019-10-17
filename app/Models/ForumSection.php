@@ -13,4 +13,8 @@ class ForumSection extends Model
     {
         return $this->hasMany('App\Models\ForumTopic');
     }
+    public static function active()
+    {
+        return $general_forum = ForumSection::where('is_active',1)->orderBy('position');
+    }
 }
