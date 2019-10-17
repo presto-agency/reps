@@ -14197,8 +14197,10 @@ select:focus {
   width: 65%;
 }
 
-.header .header_container .header_row .icon_bars {
+.header .header_container .header_row .burger_menu {
   display: none;
+  border: 0;
+  background: transparent;
 }
 
 .header .header_container .header_row .main_menu {
@@ -14217,7 +14219,7 @@ select:focus {
 .header .header_container .header_row .main_menu .menu_navigation a {
   color: white;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 0.8vw;
 }
 
 .header .header_container .header_row .header_search_user {
@@ -15822,6 +15824,54 @@ select:focus {
   height: 227px;
 }
 
+.mob_menu {
+  display: none;
+}
+
+.mob_menu .nav-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: #0567cc;
+  transition: all 0.2s ease;
+  background: #0567cc;
+}
+
+.mob_menu .nav-wrapper .nav-btn {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 15px;
+  top: 19px;
+  display: block;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  z-index: 9999;
+  border-radius: 50%;
+  border: 1px solid #00a3d4;
+}
+
+.mob_menu .nav-wrapper .nav_item {
+  padding: 10px 24px;
+  letter-spacing: 1.2px;
+  transform: translateX(-20px);
+  transition: all 0.2s ease;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: translateX(0);
+}
+
+.mob_menu .mob_menu_active {
+  display: block !important;
+}
+
 .button {
   font-size: 12px;
   font-weight: 400;
@@ -15972,6 +16022,14 @@ select:focus {
 
   .header .button_input .search_input {
     min-width: 40vw !important;
+  }
+
+  .header .burger_menu {
+    display: block !important;
+  }
+
+  .header .burger_menu .menu_bar {
+    width: 50px !important;
   }
 }
 
