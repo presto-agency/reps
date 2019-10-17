@@ -115,12 +115,42 @@ $(document).ready(function(){
 
 
 // Replace the textarea #example with SCEditor
-var textarea = document.getElementById('video_iframe');
-sceditor.create(textarea, {
-    format: 'bbcode',
-    toolbar: 'youtube',
-    style: 'js/minified(sceditor-2.1.3)/themes/content/default.min.css'
+// var textarea = document.getElementById('video_iframe');
+// sceditor.create(textarea, {
+//     format: 'bbcode',
+//     toolbar: 'youtube',
+//     style: 'js/sceditor/themes/content/default.min.css'
+// });
+
+/*script accordion for button on tablet and mobile version*/
+$(document).ready(function(){
+    $("#pulse-button-info").click(function(){
+        $("#left-sidebar-wrap").toggleClass("no-height", 1000, "ease");
+    });
+});
+
+$(document).ready(function(){
+    $("#pulse-button-top").click(function(){
+        $("#right-sidebar-wrap").toggleClass("no-height", 1000, "ease");
+    });
 });
 
 
+/*script animation for button on tablet and mobile version*/
+let animateButton = function(e) {
 
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove('animate');
+
+    e.target.classList.add('animate');
+    setTimeout(function(){
+        e.target.classList.remove('animate');
+    },700);
+};
+
+let bubblyButtons = document.getElementsByClassName("bubbly-button");
+
+for (let i = 0; i < bubblyButtons.length; i++) {
+    bubblyButtons[i].addEventListener('click', animateButton, false);
+}

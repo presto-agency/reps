@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -18,13 +19,13 @@
 {{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
 
     <!-- Include SCEditor -->
-    <link rel="stylesheet" href="js/minified(sceditor-2.1.3)/themes/default.min.css"/>
+    <link rel="stylesheet" href="{{ asset('js/sceditor/themes/default.min.css') }} "/>
 
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 <body>
 {{ csrf_field() }}
@@ -46,6 +47,7 @@
         </header>
 <!--END SECTION HEADER-->
 
+<!--SECTION BREADCRUMBS-->
         <section class="container">
             <div class="row">
                 <div class="col-12">
@@ -53,6 +55,8 @@
                 </div>
             </div>
         </section>
+<!--END SECTION BREADCRUMBS-->
+
 <!--Stream Section-->
     @yield('stream')
 <!--END Stream Section-->
@@ -62,40 +66,47 @@
         <div class="row">
 
             <!--SIDEBAR LEFT-->
-            <div class="col-xl-3 col-lg-3 col-md-6 col-12">
-                @yield('sidebar-left')
-                {{--@include('components.block-tournament')--}}
-                {{--@include('components.block-replay')--}}
-                {{--@include('components.block-lastNews')--}}
-                {{--@include('left-side.replays')--}}
-                {{--@include('left-side.search')--}}
-                {{--@include('left-side.forum-topics')--}}
+            <div id="left-sidebar" class="col-xl-3 col-lg-3 col-md-6 col-12">
+                @include('content.tablet__button-information')
+                <div id="left-sidebar-wrap" class="left-sidebar-wrap no-height">
+                    @yield('sidebar-left')
+                    {{--@include('components.block-tournament')--}}
+                    {{--@include('components.block-replay')--}}
+                    {{--@include('components.block-lastNews')--}}
+                    {{--@include('left-side.replays')--}}
+                    {{--@include('left-side.search')--}}
+                    {{--@include('left-side.forum-topics')--}}
+                </div>
+
             </div>
             <!--END SIDEBAR LEFT-->
 
             <!--CONTENT-->
-            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-{{--                @include('content.Page_gameBest')--}}
-{{--                @include('content.Page_tournamentDetail-content')--}}
-{{--                @include('content.Page_tournament-content')--}}
+            <div id="content" class="col-xl-6 col-lg-6 col-md-12 col-12 content">
+                {{--@include('content.Page_gameBest')--}}
+                {{--@include('content.Page_tournamentDetail-content')--}}
+                {{--@include('content.Page_tournament-content')--}}
                 @yield('content')
-{{--                @include('content.detailed-news')--}}
-{{--                @include('content.forum-allSections')--}}
-                @include('content.forum-article')
+                {{--@include('content.detailed-news')--}}
+                {{--@include('content.forum-allSections')--}}
+                {{--@include('content.forum-article')--}}
                 {{--@include('content.gocu-replays')--}}
-{{--                @include('content.comments')--}}
+                {{--@include('content.comments')--}}
                 {{--@include('content.add-comment')--}}
                 {{--@include('content.detailed-forum')--}}
             </div>
             <!--END CONTENT-->
 
             <!--SIDEBAR RIGHT-->
-            <div class="col-xl-3 col-3 col-md-6 col-12">
-                @section('sidebar-right')
-                    @include('components.block-top')
-                @show
-                {{--@yield('sidebar-right')--}}
-                {{--@include('components.block-top')--}}
+            <div id="right-sidebar"  class="col-xl-3 col-3 col-md-6 col-12">
+                @include('content.tablet__button-top')
+                <div id="right-sidebar-wrap" class="right-sidebar-wrap no-height">
+                    @section('sidebar-right')
+                        @include('components.block-top')
+                    @show
+                    {{--@yield('sidebar-right')--}}
+                    {{--@include('components.block-top')--}}
+                </div>
             </div>
             <!--END SIDEBAR RIGHT-->
 
@@ -112,8 +123,8 @@
 
 
 <!--SCEditor-->
-<script src="js/minified(sceditor-2.1.3)/sceditor.min.js"></script>
-<script src="js/minified/formats/bbcode.js"></script>
+<script src="{{ asset('js/sceditor/sceditor.min.js') }}"></script>
+<script src="{{ asset('js/sceditor/formats/bbcode.js') }}"></script>
 
 <script src="https://kit.fontawesome.com/75f3a42e45.js"></script>
 
