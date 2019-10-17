@@ -1,3 +1,4 @@
+@if(isset($topic))
 <div class="detailed-forum">
     <div class="detailed-forum__title">
         <div class="title__wrap">
@@ -14,11 +15,13 @@
                 c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
                 c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
             </svg>
-            <p class="title__text">Что с Effort`ом?</p>
+            <p class="title__text">{!! $topic->title !!}</p>
         </div>
         <div class="title__wrap">
-            <img src="{{ url('/images/newsAvatar3.png') }}" class="title__avatar" alt="avatar">
-            <p class="title__nickname">sp</p>
+            @if(isset($topic->author->avatar))
+                <img src="{{asset($topic->author->avatar)}}" class="title__avatar" alt="avatar">
+            @endif
+            <p class="title__nickname">{{ $topic->author->name ? $topic->author->name : 'user' }}</p>
             <img src="{{ url('/images/flag-russia.png') }}" class="title__flag" alt="flag">
             <img src="{{ url('/images/cube.png') }}" class="title__cube" alt="game">
             <p class="title__text">2 pts | 1 кг</p>
@@ -60,7 +63,7 @@
                             c-0.3-0.3-0.7-0.8-1.3-1.4c-0.6-0.7-1-1.1-1.1-1.3c-1-1.1-3.1-3.5-6.6-7.1c-3.4-3.6-5.9-6.4-7.4-8.4c-1.5-2-3.7-4.8-6.4-8.3
                             c-2.8-3.5-5.1-7.2-7.1-11c-2-3.8-3.9-8-5.9-12.6C459.3,374.9,477.8,358.1,491.3,338.2z"/>
                     </svg>
-                <span>3</span>
+                <span>{{ $topic->comments_count }}</span>
             </a>
             <p class="items__date">09.09.2019</p>
         </div>
@@ -68,9 +71,7 @@
     <hr>
     <div class="detailed-forum__card card">
         <div class="card-body">
-            <p class="card-body__text">Камрады подскажите, куда делся Эффорт? Канал не ведёт, с последнего АСл снялся,
-                видосом с ним нет! В свете последних событий он актуален, как никто! Кто-то же должен остановить эту
-                машину Флэша! <b>Неужели забил?!</b></p>
+            <p class="card-body__text">{!! $topic->content !!}</p>
             <div class="card-body__items">
                 <div class="card-body__items-wrap">
                     <a class="items__quote" href="#">
@@ -130,3 +131,4 @@
         </div>
     </div>
 </div>
+@endif
