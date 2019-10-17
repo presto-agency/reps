@@ -12,8 +12,7 @@
 }
 
 @media (max-width: 991px) {
-    /* CSS-стили */;
-
+    /*global styles START*/
     #left-sidebar {
         order: 1;
     }
@@ -31,16 +30,189 @@
 
     .left-sidebar-wrap {
         height: auto;
+        margin-bottom: 20px;
     }
 
     .right-sidebar-wrap {
         height: auto;
+        margin-bottom: 20px;
+    }
+
+    .content {
+        margin-bottom: 20px;
     }
 
     .no-height {
         height: 0;
         overflow: hidden;
     }
+    /*global styles END*/
+
+    /* CSS-стили */
+
+    /*===main page===*/
+
+    //Твич
+    .block_chat-twitch{
+        padding-bottom: 4vw;
+        & .block_chat{
+            padding-bottom: 2vw;
+        }
+        & .title_Text{
+            font-size: 1.6vw;
+            padding: 0 0 0 2vw;
+        }
+        & .text_support{
+            font-size: 1.8vw;
+            padding: 3vw 0;
+        }
+        & .container_titleChat{
+            height: 6vw;
+            & .content_right{
+                & button{
+                    & svg{
+                        width: 3.5vw;
+                    }
+                }
+            }
+        }
+        & .messanger{
+            max-height:62vw;
+
+        }
+        & .login_block{
+            padding: 4vw 0;
+            & a{
+                font-size: 1.4vw;
+            }
+        }
+        .row_contentChat{
+            padding: 3vw 1vw 0;
+            & svg{
+                height: 1.5vw;
+                width: 1.5vw;
+            }
+
+            & .block_user_akk{
+                & .blue_text{
+                    font-size: 1.4vw;
+                }
+                & .user{
+                    min-width: 16vw;
+
+                }
+            }
+            & .block_date{
+                font-size: 1.4vw;
+            }
+            & .block_userMessage{
+                padding: 2vw 0;
+                & .user_nick{
+                    font-size: 1.4vw;
+                }
+                & img{
+                    padding: 1vw 0;
+                }
+            }
+        }
+
+        & .title_video{
+            height: 6vw;
+            & .video_header{
+                & img{
+                    padding-right: 2vw;
+                }
+                & .left_block{
+                    & svg{
+                        width: 4vw;
+                    }
+                }
+                & .right_block{
+                    & button{
+                    }
+                    & svg{
+                        width: 3.5vw;
+                        margin-right: 1vw;
+                    }
+                }
+            }
+        }
+        & .video_twitch{
+            padding: 4vw 0;
+            height: 77vw;
+
+        }
+
+
+    }
+    .messanger::-webkit-scrollbar {
+        width: 1vw;
+    }
+    .messanger::-webkit-scrollbar-thumb {
+        height: 22.7vw;
+    }
+
+    //Предстоящие турниры
+    .block_tournament {
+        & .block_futureTournament{
+            & .information_text{
+                font-size: 1.6vw;
+                padding:5vw 0 0 0;
+            }
+            & .button{
+                margin: 4vw auto;
+                padding: 0.5vw;
+            }
+        }
+    }
+    .block_replay {
+        & .container_btn{
+            & .button{
+                margin: 20px auto 40px;
+                padding: 5px;
+            }
+        }
+        & .title_top{
+            margin-bottom: 2.5vw;
+        }
+        & .row_game{
+            padding: 0 1vw;
+            margin-bottom: 1.5vw;
+            & .name_game{
+                & p{
+                    font-size: 1.4vw;
+                    margin: 0px 0 0.5vw 0;
+                }
+            }
+            .content_game{
+                margin-bottom: 0.5vw;
+                & img{
+                    width: 1.6vw;
+                    height: 1.5vw;
+                    margin: 0.5vw;
+                }
+                & .text_matchap{
+                    font-size: 1.2vw;
+                    margin: 0 1vw;
+
+                }
+                & .text{
+                    font-size: 1.2vw;
+                }
+            }
+        }
+    }
+    .block_lastNews {
+        margin: 3vw 0 4vw 0;
+        & .block_futureTournament{
+            padding: 2.5vw 1.5vw 0;
+            & .href_tournament{
+                font-size: 1.4vw;
+                padding-bottom: 1.5vw;
+            }
+        }
+    }
+    
 }
 
 @media (max-width: 576px) {

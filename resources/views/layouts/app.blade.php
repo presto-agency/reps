@@ -21,7 +21,6 @@
     <!-- Include SCEditor -->
     <link rel="stylesheet" href="{{ asset('js/sceditor/themes/default.min.css') }} "/>
 
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 

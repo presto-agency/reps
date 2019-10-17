@@ -1,8 +1,7 @@
 <section class="block_chat-twitch">
-    <div class="container">
         <p class="text_support">Не можешь восстановить старую учетку? Збыл емейл? Пиши Русбрейну, востаановим!Идёт работа по слиянию <a href="#">reps.ru</a> и <a href="#">defiler.ru</a></p>
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 wrapper block_chat">
+            <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12 wrapper block_chat">
                 <div class="row container_titleChat ">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_left">
                         <img id="img_menuMob" class="icon_bars" src="{{url('/images\speech-bubble.png')}}"/>
@@ -145,7 +144,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-xl-9 col-lg-9 col-md-6 ">
+            <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12 col-12">
                 <div class="row title_video">
                     <div class="video_header">
                         <div class="left_block">
@@ -176,7 +175,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 

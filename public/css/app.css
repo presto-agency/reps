@@ -16124,7 +16124,7 @@ select:focus {
 }
 
 @media (max-width: 991px) {
-  /* CSS-стили */
+  /*global styles START*/
 
   #left-sidebar {
     order: 1;
@@ -16145,10 +16145,16 @@ select:focus {
 
   .left-sidebar-wrap {
     height: auto;
+    margin-bottom: 20px;
   }
 
   .right-sidebar-wrap {
     height: auto;
+    margin-bottom: 20px;
+  }
+
+  .content {
+    margin-bottom: 20px;
   }
 
   .no-height {
@@ -16156,12 +16162,172 @@ select:focus {
     overflow: hidden;
   }
 
-  .header .burger_menu {
-    display: block !important;
+  /*global styles END*/
+
+  /* CSS-стили */
+
+  /*===main page===*/
+
+  .block_chat-twitch {
+    padding-bottom: 4vw;
   }
 
-  .header .burger_menu .menu_bar {
-    width: 50px !important;
+  .block_chat-twitch .block_chat {
+    padding-bottom: 2vw;
+  }
+
+  .block_chat-twitch .title_Text {
+    font-size: 1.6vw;
+    padding: 0 0 0 2vw;
+  }
+
+  .block_chat-twitch .text_support {
+    font-size: 1.8vw;
+    padding: 3vw 0;
+  }
+
+  .block_chat-twitch .container_titleChat {
+    height: 6vw;
+  }
+
+  .block_chat-twitch .container_titleChat .content_right button svg {
+    width: 3.5vw;
+  }
+
+  .block_chat-twitch .messanger {
+    max-height: 62vw;
+  }
+
+  .block_chat-twitch .login_block {
+    padding: 4vw 0;
+  }
+
+  .block_chat-twitch .login_block a {
+    font-size: 1.4vw;
+  }
+
+  .block_chat-twitch .row_contentChat {
+    padding: 3vw 1vw 0;
+  }
+
+  .block_chat-twitch .row_contentChat svg {
+    height: 1.5vw;
+    width: 1.5vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_user_akk .blue_text {
+    font-size: 1.4vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_user_akk .user {
+    min-width: 16vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_date {
+    font-size: 1.4vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_userMessage {
+    padding: 2vw 0;
+  }
+
+  .block_chat-twitch .row_contentChat .block_userMessage .user_nick {
+    font-size: 1.4vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_userMessage img {
+    padding: 1vw 0;
+  }
+
+  .block_chat-twitch .title_video {
+    height: 6vw;
+  }
+
+  .block_chat-twitch .title_video .video_header img {
+    padding-right: 2vw;
+  }
+
+  .block_chat-twitch .title_video .video_header .left_block svg {
+    width: 4vw;
+  }
+
+  .block_chat-twitch .title_video .video_header .right_block svg {
+    width: 3.5vw;
+    margin-right: 1vw;
+  }
+
+  .block_chat-twitch .video_twitch {
+    padding: 4vw 0;
+    height: 77vw;
+  }
+
+  .messanger::-webkit-scrollbar {
+    width: 1vw;
+  }
+
+  .messanger::-webkit-scrollbar-thumb {
+    height: 22.7vw;
+  }
+
+  .block_tournament .block_futureTournament .information_text {
+    font-size: 1.6vw;
+    padding: 5vw 0 0 0;
+  }
+
+  .block_tournament .block_futureTournament .button {
+    margin: 4vw auto;
+    padding: 0.5vw;
+  }
+
+  .block_replay .container_btn .button {
+    margin: 20px auto 40px;
+    padding: 5px;
+  }
+
+  .block_replay .title_top {
+    margin-bottom: 2.5vw;
+  }
+
+  .block_replay .row_game {
+    padding: 0 1vw;
+    margin-bottom: 1.5vw;
+  }
+
+  .block_replay .row_game .name_game p {
+    font-size: 1.4vw;
+    margin: 0px 0 0.5vw 0;
+  }
+
+  .block_replay .row_game .content_game {
+    margin-bottom: 0.5vw;
+  }
+
+  .block_replay .row_game .content_game img {
+    width: 1.6vw;
+    height: 1.5vw;
+    margin: 0.5vw;
+  }
+
+  .block_replay .row_game .content_game .text_matchap {
+    font-size: 1.2vw;
+    margin: 0 1vw;
+  }
+
+  .block_replay .row_game .content_game .text {
+    font-size: 1.2vw;
+  }
+
+  .block_lastNews {
+    margin: 3vw 0 4vw 0;
+  }
+
+  .block_lastNews .block_futureTournament {
+    padding: 2.5vw 1.5vw 0;
+  }
+
+  .block_lastNews .block_futureTournament .href_tournament {
+    font-size: 1.4vw;
+    padding-bottom: 1.5vw;
   }
 }
 
@@ -16245,6 +16411,14 @@ select:focus {
 
   .header .button_input .search_input {
     min-width: 40vw !important;
+  }
+
+  .header .burger_menu {
+    display: block !important;
+  }
+
+  .header .burger_menu .menu_bar {
+    width: 50px !important;
   }
 }
 
