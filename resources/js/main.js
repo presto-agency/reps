@@ -12,8 +12,9 @@ function close_mob_menu() {
         console.log(2);
     }
 }
-$('#nav').click(function() {
-    $("#mob_menu").toggle(this.checked);
+$('#nav').click(function(event) {
+    event.preventDefault();
+        $('.mob_menu').css({"display":"none"});
 });
 
 

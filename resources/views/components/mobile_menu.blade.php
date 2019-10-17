@@ -1,12 +1,17 @@
 <section class="mob_menu">
-    <nav class=" nav-wrapper">
-        <input type="checkbox" id="nav" class="hidden" onclick="close_mob_menu()">
-        <label for="nav"  class="nav-btn">X
-            <a class="nav_item" href="#">Про нас</a>
-            <a class="nav_item" href="#">Каталог</a>
-            <a class="nav_item" href="#">Новини</a>
-            <a class="nav_item" href="#">Склад</a>
+    <nav class=" nav-wrapper" id="nav-mobile">
+        <input type="checkbox" id="nav" class="hidden">
+        <label for="nav" class="nav-btn">
+            <span>X</span>
         </label>
-        <div id="txtAge" style="display:none">Age is something</div>
+        <ul class="punct">
+            <li> <a class="nav_item" href="#">Про нас</a></li>
+            <li><a class="nav_item" href="#">Каталог</a></li>
+            <li><a class="nav_item" href="#">Новини</a></li>
+            <li><a class="nav_item" href="#">Склад</a></li>
+        </ul>
+        <div class="bottom_menu"></div>
     </nav>
+
 </section>
+
