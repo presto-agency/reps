@@ -30,7 +30,8 @@
                 <label class="lable_select" for="tournament" name="tournament">
                     <select id="tournament">
                         <option>По дате</option>
-                        <option>По времени</option>
+                        <option>по просмотрам</option>
+                        <option>Популярные</option>
                     </select>
                 </label>
             </div>

@@ -70,8 +70,7 @@
             </div>
         </div>
         <div class="title_top">
-            <p class="title_Text">TOP points</p>
-            <button class="more"><p>...</p></button>
+            <a href="#">  <p class="title_Text">TOP points</p></a>
         </div>
         <div class="block_topUsers">
             <div class="row">
@@ -112,8 +111,7 @@
             </div>
         </div>
         <div class="title_top">
-            <p class="title_Text">TOP репутация</p>
-            <button class="more"><p>...</p></button>
+            <a href="#">  <p class="title_Text">TOP points</p></a>
         </div>
         <div class="block_topUsers">
             <div class="row">
