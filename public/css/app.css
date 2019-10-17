@@ -14316,7 +14316,7 @@ select:focus {
 }
 
 .header .header_container .header_row .mode button svg {
-  width: 30px;
+  width: 35px;
   padding: 0 5px;
 }
 
@@ -14510,7 +14510,7 @@ select:focus {
 .header .header_container .header_row .header_search .search_input {
   height: 30px;
   background: none;
-  width: 100%;
+  width: 88%;
   border: 0;
   border-bottom: 1.5px solid white;
   padding: 5px;
@@ -16210,10 +16210,20 @@ select:focus {
     flex-direction: row-reverse;
   }
 
+  .header_row .logotype {
+    display: flex;
+    align-items: center;
+  }
+
+  .header_row .logotype img {
+    width: 55% !important;
+    padding-left: 20px;
+  }
+
   .header_row .mode {
     position: absolute;
     right: 10%;
-    bottom: 65%;
+    bottom: 58%;
   }
 
   .header_row .logo {

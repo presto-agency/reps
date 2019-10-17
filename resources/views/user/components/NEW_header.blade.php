@@ -1,7 +1,7 @@
 <section class="header">
     <div class="container header_container">
         <div class="row header_row">
-            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-6 logotype">
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-9 logotype">
                 <img src="{{ url('/images/logo.png') }}" alt="logo">
             </div>
             <div class="col-xl-1 col-lg-1 col-1  mode">
