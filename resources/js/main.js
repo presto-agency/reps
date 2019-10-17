@@ -1,3 +1,21 @@
+//mob_menu
+
+$('.burger_menu').click(function(event) {
+    event.preventDefault();
+    $('.mob_menu').css({"display":"block"});
+});
+function close_mob_menu() {
+    if(document.getElementById('nav_menu_check').checked) {
+        $("#txtAge").show();
+        console.log(1);
+    } else {
+        console.log(2);
+    }
+}
+$('#nav').click(function() {
+    $("#mob_menu").toggle(this.checked);
+});
+
 
 
 //search

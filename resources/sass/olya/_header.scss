@@ -6,6 +6,13 @@
         padding: 10px 0;
         & .header_row{
             min-height: 125px;
+            & .logotype{
+                display: flex;
+                align-items: center;
+                & img{
+                    width: 100%;
+                }
+            }
             & .cabinet{
                 display: none;
             }
@@ -32,9 +39,12 @@
                     width: 65%;
                 }
             }
-            & .icon_bars{
+            & .burger_menu{
                 display: none;
+                border: 0;
+                background: transparent;
             }
+
             & .main_menu{
                 display: flex;
                 align-items: center;
@@ -44,13 +54,57 @@
                     width: 100%;
                     display: flex;
                     justify-content: space-around;
+
                     & a{
                         color: white;
                         text-decoration: none;
-                        font-size: 12px;
+                        font-size: 0.8vw;
 
                     }
                 }
+            }
+            & .header_search_user{
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                & button{
+                    background: none;
+                    border: 0;
+                }
+                .button_input{
+                    display: flex;
+                    width: 218px;
+                    transition: 1.5s;
+                }
+                & .active_button_input{
+                    width: 170px;
+                    width: 100%;
+                    & .search_input{
+                        margin-left: 5px;
+                    }
+                    ::placeholder {
+                        color: white;
+                        font-style: italic;
+                        opacity: 2;
+                    }
+                }
+                & .disactive_input{
+                    background: white;
+                }
+                & .search_input {
+                    height: 30px;
+                    background: none;
+                    border: 0;
+                    border-bottom: 1.5px solid white;
+                    padding: 5px;
+                    margin-left: 24px;
+                    color: white;
+                    font-style: italic;
+                    width: 9.5vw;
+                }::placeholder {
+                     color: transparent;
+                 }
+
             }
             & .header_search{
                 display: flex;
@@ -66,9 +120,15 @@
                     transition: 1.5s;
                 }
                 & .active_button_input{
-                    width: 170px;
+                    //width: 170px;
+                    width: 100%;
                     & .search_input{
                         margin-left: 5px;
+                    }
+                    ::placeholder {
+                        color: white;
+                        font-style: italic;
+                        opacity: 2;
                     }
                 }
                 & .disactive_input{
@@ -77,19 +137,17 @@
                 & .search_input {
                     height: 30px;
                     background: none;
+                    width: 100%;
                     border: 0;
                     border-bottom: 1.5px solid white;
                     padding: 5px;
-                    min-width: 120px;
                     margin-left: 24px;
                     color: white;
                     font-style: italic;
-                }
-                ::placeholder {
-                    color: white;
-                    font-style: italic;
-                    opacity: 2;
-                }
+                }::placeholder {
+                     color: transparent;
+                 }
+
             }
             & .autorization{
                 display:flex;
@@ -99,7 +157,7 @@
                 position: relative;
                 & button {
                     background: white;
-                    width: 125px;
+                    width: 140px;
                     height: 40px;
                     padding-left: 10px;
                     border-radius: 3px;
@@ -115,44 +173,6 @@
                 }
             }
 
-        }
-    }
-    .button_input_user{
-        display: flex;
-        align-items: center;
-        & button{
-            background: none;
-            border: 0;
-        }
-        .button_input{
-            display: flex;
-            width: 24px;
-            transition: 1.5s;
-        }
-        & .active_button_input{
-            width: 170px;
-            & .search_input{
-                margin-left: 5px;
-            }
-        }
-        & .disactive_input{
-            background: white;
-        }
-        & .search_input {
-            height: 30px;
-            background: none;
-            border: 0;
-            border-bottom: 1.5px solid white;
-            padding: 5px;
-            min-width: 120px;
-            margin-left: 24px;
-            color: white;
-            font-style: italic;
-        }
-        ::placeholder {
-            color: white;
-            font-style: italic;
-            opacity: 2;
         }
     }
 

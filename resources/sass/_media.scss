@@ -117,6 +117,12 @@
                 min-width: 40vw !important;
             }
         }
+        & .burger_menu{
+            display: block!important;
+            & .menu_bar{
+                width: 50px!important;
+            }
+        }
 
     }
 
