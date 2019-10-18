@@ -1,3 +1,4 @@
+@if($sectionItems)
 <div class="forum-topics">
     <div class="forum-topics__title">
 
@@ -18,10 +19,10 @@
     </div>
 
     <div class="forum-topics__accordion accordion" id="forum-topicsAccordion">
-
+        @foreach($sectionItems as $item)
         <div class="accordion__topic card">
             <div class="topic__header card-header js-accordion-title" id="forum-topicsOne" data-toggle="collapse" data-target="#forum-topicsCollapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <a href="#" class="header__title">Общий</a>
+                <a href="{{ route('forum.show', $item->id) }}" class="header__title">{{ $item->title }}</a>
                 {{--<i class="fas fa-chevron-down"></i>--}}
 
             </div>
@@ -51,167 +52,7 @@
                 </div>
             </div>--}}
         </div>
-
-        <div class="accordion__topic card">
-            <div class="topic__header card-header js-accordion-title" id="forum-topicsTwo" data-toggle="collapse" data-target="#forum-topicsCollapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <a href="#"  class="header__title">Колонки</a>
-                {{--<i class="fas fa-chevron-down"></i>--}}
-
-            </div>
-
-            {{--<div id="forum-topicsCollapseTwo" class="topic__body collapse" aria-labelledby="forum-topicsTwo">
-                <div class="card-body">
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">Как вы понимаете фразу</a>
-                        <span class="body__numb">(3)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">КХЛ Маркетинг</a>
-                        <span class="body__numb">(9)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">Power Rank March 2019</a>
-                        <span class="body__numb">(11)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">НАШЕ будущее.</a>
-                        <span class="body__numb">(21)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">Так ли важен АПМ для игры</a>
-                        <span class="body__numb">(2)</span>
-                    </div>
-                </div>
-            </div>--}}
-        </div>
-
-        <div class="accordion__topic card">
-            <div class="topic__header card-header js-accordion-title" id="forum-topicsThree" data-toggle="collapse" data-target="#forum-topicsCollapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <a href="#"  class="header__title">Чемпионаты</a>
-                {{--<i class="fas fa-chevron-down"></i>--}}
-
-            </div>
-
-            {{--<div id="forum-topicsCollapseThree" class="topic__body collapse" aria-labelledby="topicThree">
-                <div class="card-body">
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                        <span class="body__numb">(1)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                        <span class="body__numb">(0)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                        <span class="body__numb">(1)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Aalm</a>
-                        <span class="body__numb">(1)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">mSj[Dreamer] vs mSj[Teffik]</a>
-                        <span class="body__numb">(0)</span>
-                    </div>
-                </div>
-            </div>--}}
-        </div>
-
-        <div class="accordion__topic card">
-            <div class="topic__header card-header js-accordion-title" id="forum-topicsFour" data-toggle="collapse" data-target="#forum-topicsCollapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <a href="#"  class="header__title">Интервью</a>
-                {{--<i class="fas fa-chevron-down"></i>--}}
-            </div>
-
-            {{--<div id="forum-topicsCollapseFour" class="topic__body collapse" aria-labelledby="topicFour">
-                <div class="card-body">
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                        <span class="body__numb">(21)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                        <span class="body__numb">(30)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                        <span class="body__numb">(21)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Aalm</a>
-                        <span class="body__numb">(1)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">mSj[Dreamer] vs mSj[Teffik]</a>
-                        <span class="body__numb">(8)</span>
-                    </div>
-                </div>
-            </div>--}}
-        </div>
-
-        <div class="accordion__topic card">
-            <div class="topic__header card-header js-accordion-title" id="forum-topicsFive" data-toggle="collapse" data-target="#forum-topicsCollapseFive" aria-expanded="true" aria-controls="collapseFive">
-                <a href="#"  class="header__title">Статьи</a>
-                {{--<i class="fas fa-chevron-down"></i>--}}
-            </div>
-
-            {{--<div id="forum-topicsCollapseFive" class="topic__body collapse" aria-labelledby="topicFive">
-                <div class="card-body">
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                        <span class="body__numb">(1)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                        <span class="body__numb">(0)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                        <span class="body__numb">(1)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Aalm</a>
-                        <span class="body__numb">(1)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">mSj[Dreamer] vs mSj[Teffik]</a>
-                        <span class="body__numb">(0)</span>
-                    </div>
-                </div>
-            </div>--}}
-        </div>
-
-        <div class="accordion__topic card">
-            <div class="topic__header card-header js-accordion-title" id="forum-topicsSix" data-toggle="collapse" data-target="#forum-topicsCollapseSix" aria-expanded="true" aria-controls="collapseSix">
-                <a href="#"  class="header__title">Стратегии</a>
-                {{--<i class="fas fa-chevron-down"></i>--}}
-            </div>
-
-            {{--<div id="forum-topicsCollapseSix" class="topic__body collapse" aria-labelledby="topicSix">
-                <div class="card-body">
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                        <span class="body__numb">(1)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                        <span class="body__numb">(20)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                        <span class="body__numb">(11)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Aalm</a>
-                        <span class="body__numb">(13)</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">mSj[Dreamer] vs mSj[Teffik]</a>
-                        <span class="body__numb">(10)</span>
-                    </div>
-                </div>
-            </div>--}}
-        </div>
+        @endforeach
     </div>
 </div>
+@endif
