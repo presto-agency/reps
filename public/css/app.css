@@ -14316,7 +14316,7 @@ select:focus {
 }
 
 .header .header_container .header_row .mode button svg {
-  width: 30px;
+  width: 35px;
   padding: 0 5px;
 }
 
@@ -14510,7 +14510,7 @@ select:focus {
 .header .header_container .header_row .header_search .search_input {
   height: 30px;
   background: none;
-  width: 100%;
+  width: 88%;
   border: 0;
   border-bottom: 1.5px solid white;
   padding: 5px;
@@ -15962,6 +15962,10 @@ select:focus {
   display: none;
 }
 
+.mob_menu .hidden {
+  display: none;
+}
+
 .mob_menu .nav-wrapper {
   position: fixed;
   top: 0;
@@ -15975,8 +15979,6 @@ select:focus {
 }
 
 .mob_menu .nav-wrapper .nav-btn {
-  display: flex;
-  flex-direction: column;
   position: absolute;
   left: 15px;
   top: 19px;
@@ -15989,21 +15991,76 @@ select:focus {
   border: 1px solid #00a3d4;
 }
 
+.mob_menu .nav-wrapper .nav-btn span {
+  font-size: 20px;
+  position: fixed;
+  left: 25px;
+  color: white;
+}
+
+.mob_menu .nav-wrapper .nav-btn i {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #000;
+  border-radius: 2px;
+  margin-left: 7px;
+}
+
 .mob_menu .nav-wrapper .nav_item {
   padding: 10px 24px;
+  opacity: 0;
   letter-spacing: 1.2px;
   transform: translateX(-20px);
   transition: all 0.2s ease;
   color: #ffffff;
   font-size: 16px;
-  font-weight: 400;
-  text-transform: uppercase;
-  text-decoration: none;
+  font-weight: 300;
+  display: inline-block;
+  transform: translate(-2);
+}
+
+.mob_menu .nav-wrapper .nav_item_act {
+  opacity: 1;
   transform: translateX(0);
+}
+
+.mob_menu .nav-wrapper .punct {
+  position: absolute;
+  top: 28%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.mob_menu .nav-wrapper .punct li {
+  display: block;
+  float: none;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
 }
 
 .mob_menu .mob_menu_active {
   display: block !important;
+}
+
+.mob_menu .mob_menu_active #nav:checked ~ .nav-wrapper ul li a {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mob_menu .bottom_menu {
+  position: absolute;
+  top: 85%;
+  transform: translateY(-50%);
+  width: 100%;
+  left: 0;
+  display: flex;
+  justify-content: space-around;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 30px;
+  border-top: 1px solid white;
 }
 
 .button {
@@ -16162,10 +16219,20 @@ select:focus {
     flex-direction: row-reverse;
   }
 
+  .header_row .logotype {
+    display: flex;
+    align-items: center;
+  }
+
+  .header_row .logotype img {
+    width: 55% !important;
+    padding-left: 20px;
+  }
+
   .header_row .mode {
     position: absolute;
     right: 10%;
-    bottom: 65%;
+    bottom: 58%;
   }
 
   .header_row .logo {
