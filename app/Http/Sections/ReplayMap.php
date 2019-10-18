@@ -12,7 +12,6 @@ use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
-use App\User;
 
 /**
  * Class ReplayMap
@@ -83,6 +82,14 @@ class ReplayMap extends Section
     }
 
     /**
+     * @return FormInterface
+     */
+    public function onCreate()
+    {
+        return $this->onEdit(null);
+    }
+
+    /**
      * @param int $id
      *
      * @return FormInterface
@@ -105,14 +112,6 @@ class ReplayMap extends Section
                 ->setValidationRules(['required', 'string', 'max:255']),
         ]);
         return $display;
-    }
-
-    /**
-     * @return FormInterface
-     */
-    public function onCreate()
-    {
-        return $this->onEdit(null);
     }
 
     /**

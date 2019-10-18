@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use AdminSection;
 use App\Http\Controllers\Controller;
-use App\Models\Comment;
-use App\Models\Replay;
+use App\Models\{Comment, Replay};
 use Illuminate\Http\Request;
-
 
 class ReplayController extends Controller
 {
@@ -17,7 +15,7 @@ class ReplayController extends Controller
         $columns = [
             'id',
             'map_id',
-            'user_replay',
+            'title',
             'first_country_id',
             'second_country_id',
             'first_race',

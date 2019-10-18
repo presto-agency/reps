@@ -3,8 +3,7 @@
 namespace App\Providers;
 
 
-use App\Http\ViewComposers\DashboardCountComposer;
-use App\Http\ViewComposers\InterviewVariantAnswerComposer;
+use App\Http\ViewComposers\{DashboardCountComposer, InterviewVariantAnswerComposer};
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 

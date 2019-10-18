@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use AdminSection;
+use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\UserGallery;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class UserGalleryController extends Controller
 {

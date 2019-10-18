@@ -6,14 +6,16 @@
             <p>Раса: {{$stream->races->title}}</p>
             <p>
                 Подтвержден: {!! $stream->approved == 1 ? "<i class='fa fa-check'></i>" : "<i class='fa fa-minus'></i>"!!}</p>
-            {{--            <p>Коментарий: {!! $stream->content !!}</p>--}}
             <p>Коментарий: {{ $stream->content }}</p>
-            <iframe allowfullscreen="" frameborder="0" src="{{ $stream->stream_url }}"
+            <p>{{ $stream->stream_url }}</p>
+            <iframe src="{{ $stream->stream_url."/embed" }}"
+                    allowfullscreen="true"
                     width="640"
                     height="360"
                     autoplay="1"
+                    scrolling="no"
+                    frameborder="0"
             ></iframe>
-            {{--            <p>{{ $stream->stream_url }}</p>--}}
         </div>
     </div>
 </div>

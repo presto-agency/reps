@@ -9,9 +9,7 @@ use AdminDisplay;
 use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
-use App\Models\Country;
-use App\Models\Race;
-use App\Models\Role;
+use App\Models\{Country, Race, Role};
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
@@ -189,38 +187,38 @@ class User extends Section
                 }),
 
             $email = AdminFormElement::text('email', 'Email')
-                ->setHtmlAttribute('placeholder' , 'Email')
+                ->setHtmlAttribute('placeholder', 'Email')
                 ->setHtmlAttribute('autocomplete', 'off')
                 ->setHtmlAttribute('type', 'email')
                 ->setValidationRules(['required', 'email', 'max:255', 'unique:users,email,' . $id]),
 
             $name = AdminFormElement::text('name', 'Name')
-                ->setHtmlAttribute('placeholder' , 'Name')
+                ->setHtmlAttribute('placeholder', 'Name')
                 ->setHtmlAttribute('autocomplete', 'off')
                 ->setValidationRules(['required', 'max:255', 'alpha_dash', 'unique:users,name,' . $id]),
 
             $birthday = AdminFormElement::date('birthday', 'День рождения')
-                ->setHtmlAttribute('placeholder' , Carbon::now()->format('Y-m-d'))
+                ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d'))
                 ->setValidationRules(['nullable', 'date_format:d-m-Y']),
 
             $homepage = AdminFormElement::text('homepage', 'Homepage')
-                ->setHtmlAttribute('placeholder' , 'Homepage')
+                ->setHtmlAttribute('placeholder', 'Homepage')
                 ->setValidationRules(['nullable', 'string', 'max:255']),
 
             $discord = AdminFormElement::text('isq', 'Discord')
-                ->setHtmlAttribute('placeholder' , 'Discord')
+                ->setHtmlAttribute('placeholder', 'Discord')
                 ->setValidationRules(['nullable', 'string', 'max:255']),
 
             $skype = AdminFormElement::text('skype', 'Skype')
-                ->setHtmlAttribute('placeholder' , 'Skype')
+                ->setHtmlAttribute('placeholder', 'Skype')
                 ->setValidationRules(['nullable', 'string', 'max:255']),
 
             $vk_link = AdminFormElement::text('vk_link', 'Vkontakte')
-                ->setHtmlAttribute('placeholder' , 'Vkontakte')
+                ->setHtmlAttribute('placeholder', 'Vkontakte')
                 ->setValidationRules(['nullable', 'string', 'max:255', 'url']),
 
             $fb_link = AdminFormElement::text('fb_link', 'Facebook')
-                ->setHtmlAttribute('placeholder' , 'Facebook')
+                ->setHtmlAttribute('placeholder', 'Facebook')
                 ->setValidationRules(['nullable', 'string', 'max:255', 'url']),
 
             $role_id = AdminFormElement::select('role_id', 'Роль')
@@ -244,16 +242,16 @@ class User extends Section
                     return is_null(request('race_id'));
                 }),
             $password = AdminFormElement::password('password', 'Password')
-                ->setHtmlAttribute('placeholder' , 'Password')
+                ->setHtmlAttribute('placeholder', 'Password')
                 ->setHtmlAttribute('autocomplete', 'off')
                 ->setValidationRules(['between:8,50', empty($id) ? 'required' : 'nullable'])
                 ->allowEmptyValue(),
 
             $passwordConfirm = AdminFormElement::password('password_confirmation', 'Password confirm')
-                ->setHtmlAttribute('placeholder' , 'Password confirm')
+                ->setHtmlAttribute('placeholder', 'Password confirm')
                 ->setHtmlAttribute('autocomplete', 'off')
                 ->setValueSkipped(true)
-                ->setValidationRules(['same:password','required']),
+                ->setValidationRules(['same:password', 'required']),
 
             $ban = AdminFormElement::checkbox('ban', 'Ban'),
         ]);

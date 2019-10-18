@@ -5,12 +5,11 @@ namespace App\Http\Sections;
 use AdminColumn;
 use AdminColumnEditable;
 use AdminDisplay;
+use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
-use AdminDisplayFilter;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 
@@ -69,7 +68,7 @@ class UserGallery extends Section
             $query->orderBy('id', 'desc');
         });
 
-        $display->with('users','comments');
+        $display->with('users', 'comments');
 
         $display->setColumns([
 
@@ -173,7 +172,7 @@ class UserGallery extends Section
     {
 
         $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $url = url('admin/user_galleries/show/'. $model->getKey());
+            $url = url('admin/user_galleries/show/' . $model->getKey());
             return $url;
         }, function (\Illuminate\Database\Eloquent\Model $model) {
             return 'Просмотреть';

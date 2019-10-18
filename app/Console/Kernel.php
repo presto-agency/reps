@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
-        $schedule->command('reps:BroadcastCheck')
+        $schedule->command('broadcast:check')
             ->everyFiveMinutes()
             ->timezone(config('app.timezone'));
 

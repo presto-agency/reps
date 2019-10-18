@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use AdminSection;
-use App\Models\Stream;
 use App\Http\Controllers\Controller;
+use App\Models\Stream;
 
 class StreamController extends Controller
 {
