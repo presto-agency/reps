@@ -21,7 +21,6 @@
     <!-- Include SCEditor -->
     <link rel="stylesheet" href="{{ asset('js/sceditor/themes/default.min.css') }} "/>
 
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -99,7 +98,7 @@
             <!--END CONTENT-->
 
             <!--SIDEBAR RIGHT-->
-            <div id="right-sidebar"  class="col-xl-3 col-3 col-md-6 col-12">
+            <div id="right-sidebar"  class="col-xl-3 col-lg-3 col-md-6 col-12">
                 @include('content.tablet__button-top')
                 <div id="right-sidebar-wrap" class="right-sidebar-wrap no-height">
                     @section('sidebar-right')
