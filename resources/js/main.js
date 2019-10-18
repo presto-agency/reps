@@ -3,11 +3,13 @@
 $('.burger_menu').click(function(event) {
     event.preventDefault();
     $('.mob_menu').css({"display":"block"});
+    $('.nav_item').css({"transform":"translateX(0)"});
+    $('.nav_item').css({"opacity":"1"});
+
 });
 function close_mob_menu() {
     if(document.getElementById('nav_menu_check').checked) {
-        $("#txtAge").show();
-        console.log(1);
+        $('.nav_item').addClass("nav_item_act");
     } else {
         console.log(2);
     }
@@ -15,6 +17,7 @@ function close_mob_menu() {
 $('#nav').click(function(event) {
     event.preventDefault();
         $('.mob_menu').css({"display":"none"});
+
 });
 
 

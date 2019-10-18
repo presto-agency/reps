@@ -16009,16 +16009,20 @@ select:focus {
 
 .mob_menu .nav-wrapper .nav_item {
   padding: 10px 24px;
+  opacity: 0;
   letter-spacing: 1.2px;
   transform: translateX(-20px);
   transition: all 0.2s ease;
   color: #ffffff;
   font-size: 16px;
-  font-weight: 400;
-  text-transform: uppercase;
-  text-decoration: none;
-  transform: translateX(0);
+  font-weight: 300;
   display: inline-block;
+  transform: translate(-2);
+}
+
+.mob_menu .nav-wrapper .nav_item_act {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .mob_menu .nav-wrapper .punct {
@@ -16038,6 +16042,11 @@ select:focus {
 
 .mob_menu .mob_menu_active {
   display: block !important;
+}
+
+.mob_menu .mob_menu_active #nav:checked ~ .nav-wrapper ul li a {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .mob_menu .bottom_menu {
