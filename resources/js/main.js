@@ -1,3 +1,25 @@
+//mob_menu
+
+$('.burger_menu').click(function(event) {
+    event.preventDefault();
+    $('.mob_menu').css({"display":"block"});
+    $('.nav_item').css({"transform":"translateX(0)"});
+    $('.nav_item').css({"opacity":"1"});
+
+});
+function close_mob_menu() {
+    if(document.getElementById('nav_menu_check').checked) {
+        $('.nav_item').addClass("nav_item_act");
+    } else {
+        console.log(2);
+    }
+}
+$('#nav').click(function(event) {
+    event.preventDefault();
+        $('.mob_menu').css({"display":"none"});
+
+});
+
 
 
 //search
@@ -97,12 +119,42 @@ $(document).ready(function(){
 
 
 // Replace the textarea #example with SCEditor
-var textarea = document.getElementById('video_iframe');
-sceditor.create(textarea, {
-    format: 'bbcode',
-    toolbar: 'youtube',
-    style: 'js/minified(sceditor-2.1.3)/themes/content/default.min.css'
+// var textarea = document.getElementById('video_iframe');
+// sceditor.create(textarea, {
+//     format: 'bbcode',
+//     toolbar: 'youtube',
+//     style: 'js/sceditor/themes/content/default.min.css'
+// });
+
+/*script accordion for button on tablet and mobile version*/
+$(document).ready(function(){
+    $("#pulse-button-info").click(function(){
+        $("#left-sidebar-wrap").toggleClass("no-height", 1000, "ease");
+    });
+});
+
+$(document).ready(function(){
+    $("#pulse-button-top").click(function(){
+        $("#right-sidebar-wrap").toggleClass("no-height", 1000, "ease");
+    });
 });
 
 
+/*script animation for button on tablet and mobile version*/
+let animateButton = function(e) {
 
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove('animate');
+
+    e.target.classList.add('animate');
+    setTimeout(function(){
+        e.target.classList.remove('animate');
+    },700);
+};
+
+let bubblyButtons = document.getElementsByClassName("pulse-button");
+
+for (let i = 0; i < bubblyButtons.length; i++) {
+    bubblyButtons[i].addEventListener('click', animateButton, false);
+}

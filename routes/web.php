@@ -17,9 +17,10 @@ Route::resource('news', 'NewsController');
 Route::resource('forum', 'ForumController');
 Route::post('/loadmore/load_news', 'NewsController@load_news')->name('loadmore.load_news');
 
-Route::get('forum/topic/{id}', function (){
+Route::resource('forum/topic', 'TopicController');
+/*Route::get('forum/topic/{id}', function (){
     return view('forum.topic');
-});
+});*/
 
 Route::get('replay', function (){
     return view('replay.index');
