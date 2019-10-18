@@ -89,23 +89,27 @@
             & .block_date{
                 font-size: 1.025vw;
             }
-            & .block_userMessage{
+            & .block_userMessage {
                 padding: 1.464vw 0;
-                & .user_nick{
+
+                & .user_nick {
                     font-size: 1.025vw;
                 }
-                & img{
-                    padding: 0.732vw 0;
+
+                & user_text {
+                    font-size: 1.025vw;
                 }
 
+                & img {
+                    padding: 0.732vw 0;
+                }
             }
-
-
         }
 
         & .title_video{
             height: 4.392vw;
             & .video_header{
+                padding: 0 3.472vw;
                 & img{
                     padding-right: 1.464vw;
                 }
@@ -382,6 +386,46 @@
 }
 
 @media (max-width: 991px) {
+    /*Header*/
+    .header{
+        position: relative;
+        & .icon_bars{
+            display: block!important;
+            width: 50px;
+        }
+        & .logo{
+            & img{
+                width: 70% !important;
+            }
+        }
+        & .menu_navigation{
+            display: none!important;
+        }
+        & .autorization{
+            display:none!important;
+        }
+        & .main_menu{
+            position: absolute;
+            right: 0;
+            bottom: 30%;
+        }
+        & .search{
+            justify-content: flex-start;
+        }
+        & .button_input{
+            width: 100% !important;
+            & .search_input{
+                min-width: 40vw !important;
+            }
+        }
+        & .burger_menu{
+            display: block!important;
+            & .menu_bar{
+                width: 50px!important;
+            }
+        }
+
+    }
     /*global styles START*/
     #left-sidebar {
         order: 1;
@@ -543,6 +587,9 @@
         & .row_game{
             padding: 0 1vw;
             margin-bottom: 1.5vw;
+            & .game_oneSection{
+                margin-bottom:1.736vw;
+            }
             & .name_game{
                 & p{
                     font-size: 1.4vw;
@@ -581,8 +628,38 @@
 }
 
 @media (max-width: 576px) {
+    //global_style
+    .title_block{
+        padding: 3.472vw;
+        & img,svg{
+            width: 3.472vw;
+        }
+        & .title_text{
+            font-size: 3.778vw;
+            margin: 0 0 0 3.472vw;
+        }
+    }
+    //blue
+    .title_top{
+        height: 10.417vw;
+        padding:3.472vw;
+        & .title_Text{
+            font-size: 3.778vw;
+        }
+        & .more{
+            & p{
+                font-size: 6.944vw;
+            }
+        }
+    }
+    .button {
+        font-size: 2.083vw;
+        padding-top: 2.257vw;
+        padding-bottom: 2.604vw;
+    }
 
-
+    //end global_style
+//header
     .header_row{
         flex-direction: row-reverse;
         & .logotype{
@@ -620,56 +697,470 @@
                 margin-left: 0 !important;
                 min-width: 77vw !important;
             }
-
+        }
+    }
+    //end header
+    // breadcrumb
+    .breadcrumb {
+        padding-top: 4.514vw;
+        padding-bottom: 4.340vw;
+        .breadcrumb-item {
+            font-size: 3.125vw;
+            font-weight: 300;
+            line-height: 3.299vw;
+        }
+        .breadcrumb-item + .breadcrumb-item::before {
+            padding-right: 0.5rem;
         }
 
+        .breadcrumb-item.active {
+            font-size: 3.125vw;
+            font-weight: 300;
+            line-height: 3.299vw;
+        }
     }
+    //Твич
+    .block_chat-twitch{
+        padding-bottom: 6.944vw;
+        & .block_chat{
+            padding-bottom: 3.472vw;
+        }
+        & .title_Text{
+            font-size: 2.778vw;
+            padding: 0 0 0 3.472vw
+        }
+        & .text_support{
+            font-size: 3.125vw;
+            padding: 5.208vw 0;
+        }
+        & .container_titleChat{
+            height: 10.417vw;
+            & .content_right{
+                & button{
+                    & svg{
+                        width: 6.076vw;
+                    }
+                }
+            }
+        }
+        & .messanger{
+            max-height: 107.639vw;
+        }
+        & .login_block{
+            padding: 6.944vw 0;
+            & a{
+                font-size: 4.431vw;
+            }
+        }
+        .row_contentChat{
+            padding: 5.208vw 1.736vw 0;
+            & svg{
+                height: 2.604vw;
+                width: 2.604vw;
+            }
+            & .block_user_akk{
+                & .blue_text{
+                    font-size:  4.431vw;
+                }
+                & .number_mess{
+                    font-size:  4.431vw;
+                }
+                & .user{
+                    min-width: 27.778vw;
+                }
+            }
+            & .block_date{
+                font-size: 2.431vw;
+            }
+            & .block_userMessage{
+                padding: 3.472vw 0;
+                & .user_nick{
+                    font-size: 2.431vw;
+                }
+                & img{
+                    padding: 1.736vw 0;
+                }
+            }
+        }
+        & .title_video{
+            height: 10.417vw;
+            & .video_header{
+                & img{
+                    padding-right: 3.472vw;
+                }
+                & .left_block{
+                    & svg{
+                        width: 6.944vw;
+                    }
+                }
+                & .right_block{
+                    & svg{
+                        width: 6.076vw;
+                        margin-right: 1.736vw;
+                    }
+                }
+            }
+        }
+        & .video_twitch{
+            padding: 6.944vw 0;
+            height: 133.681vw;
+
+        }
+    }
+    .messanger::-webkit-scrollbar {
+        width: 1.736vw;
+    }
+    .messanger::-webkit-scrollbar-thumb {
+        height: 39.410vw;
+    }
+
+    .breaking-news {
+        .breaking-news__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+
+            .title__icon {
+                width: 2.257vw;
+                height: 3.646vw;
+            }
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+
+        .breaking-news__news-card {
+            padding-left: 3.819vw;
+            padding-right: 3.819vw;
+            padding-top: 4.340vw;
+            .card-body {
+                .card-body__author {
+                    margin-bottom: 3.125vw;
+
+                    .author__avatar {
+                        width: 4.861vw;
+                        height: 4.861vw;
+                    }
+                    .author__nickname {
+                        font-size: 3.431vw;
+                        margin-left: 2.257vw;
+                    }
+                    .author__date {
+                        margin-left: auto;
+                        font-size: 3.083vw;
+                    }
+                }
+                .card-body__title {
+                    font-size: 2.778vw;
+                    line-height: 3.299vw;
+                }
+
+                .card-body__text {
+                    font-size: 2.431vw;
+                }
+                //p - styles for text who isert from admin
+                p {
+                    font-size: 2.431vw;
+                }
+                //p - styles for text "читать" isert from admin
+                a {
+                    font-size: 2.431vw;
+                }
+                .card-body__items {
+                    margin-bottom: 3.125vw;
+                    .items__comment {
+                        svg {
+                            width: 3.646vw;
+                            height: 3.646vw;
+                        }
+                        span {
+                            font-size: 2.083vw;
+                            line-height: 3.299vw;
+                            margin-left: 2.083vw;
+                        }
+                    }
+                    .items__share {
+                        margin-left: 6.076vw;
+                        svg {
+                            width: 3.125vw;
+                            height: 3.472vw;
+                        }
+                    }
+                    .items__watch {
+                        svg {
+                            width: 1.910vw;
+                            height: 1.910vw;
+                        }
+                        span {
+                            margin-left: 2.083vw;
+                            font-size: 2.083vw;
+                            line-height: 3.299vw;
+                        }
+                    }
+                }
+                .card-body__comment-form {
+                    margin-bottom: 7.986vw;
+                    .comment-form__group {
+                        .comment {
+                            .comment__icon {
+                                width: 3.472vw;
+                                height: 2.778vw;
+                                top: 2.604vw;
+                                right: 13.889vw;
+                            }
+                            .comment__input {
+                                height: 7.639vw;
+                                padding-left: 3.125vw;
+                                padding-right: 13.472vw;
+                                &::placeholder {
+                                    font-size: 2.083vw;
+                                }
+                            }
+                        }
+                        .buttons-upload{
+                            top: 2.083vw;
+                            right: 8.681vw;
+                            label {
+                                margin-left: 2.951vw;
+                            }
+                            i {
+                                font-size: 2.778vw;
+                            }
+                            .smile-upload {
+                                margin-left: 2.778vw;
+                                i {
+                                    font-size: 2.778vw;
+                                }
+                            }
+                        }
+                    }
+                    .comment-form__button {
+                        svg {
+                            width: 3.472vw;
+                            height: 3.125vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .breaking-news__numb-pages {
+        margin-top: 4.340vw;
+        margin-bottom: 1.389vw;
+        .numb-pages {
+            font-size: 2.083vw;
+            line-height: 3.299vw;
+        }
+    }
+
+    //tournament
+    .block_tournament{
+        & .block_futureTournament{
+            & .information_text{
+                font-size:  3.778vw;
+                padding:8.681vw 0 0 0;
+                margin: 0;
+            }
+            & .button{
+                margin: 6.944vw auto;
+                padding: 0.868vw;
+            }
+        }
+    }
+    //replay
+    .block_replay {
+        & .container_btn{
+            & .button{
+                margin: 3.472vw auto 6.944vw;
+                padding: 0.868vw;
+            }
+        }
+        & .title_top{
+            margin-bottom: 4.340vw;
+        }
+        & .row_game{
+            padding: 0 1.736vw;
+            margin-bottom: 2.604vw;
+            & .game_oneSection{
+                margin-bottom:3.009vw;
+            }
+            & .name_game{
+                & p{
+                    font-size: 2.931vw;
+                    margin: 0px 0 0.868vw 0;
+                }
+            }
+            .content_game{
+                margin-bottom: 0.868vw;
+                & img{
+                    width: 2.778vw;
+                    height: 2.604vw;
+                    margin: 0.868vw;
+                }
+                & .text_matchap{
+                    font-size:2.083vw;
+                    margin: 0 1.563vw ;
+                }
+                & .text{
+                    font-size: 2.53vw;
+                }
+            }
+        }
+    }
+    //last_news
+    .block_lastNews{
+        margin: 5.208vw 0 6.944vw 0;
+        & .block_futureTournament{
+            padding: 4.340vw 2.604vw 0;
+            & .href_tournament{
+                font-size: 3.431vw;
+                padding-bottom: 2.604vw;
+            }
+        }
+    }
+    //block_top
+    .block_top{
+        & .block_topUsers{
+            padding: 4.340vw;
+            & .content_code{
+                & p{
+                    font-size: 3.431vw;
+                }
+            }
+            & .content_img{
+                & img,svg{
+                    padding-right: 0.868vw;
+                }
+            }
+            & .content_login{
+                & p{
+                    font-size: 3.431vw;
+                }
+            }
+        }
+    }
+    //GOSU-replays
+    .gocu-replays {
+        .gocu-replays__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
+            .title__game-period {
+                margin-right: 3.472vw;
+                select {
+                    height: 3.472vw;
+                    padding-right: 2.431vw;
+                    font-size: 2.083vw;
+                }
+            }
+        }
+        .gocu-replays__match {
+            .match__author {
+                padding: 3.472vw;
+                .comment-author__nickname {
+                    font-size: 3.431vw;
+                    margin-left: 2.257vw;
+                }
+                .comment-author__replay-item {
+                    font-size: 3.083vw;
+                    line-height: 2.257vw;
+                    margin-left: 2.083vw;
+                }
+                .comment-author__date {
+                    font-size: 3.083vw;
+                    line-height: 3.299vw;
+                }
+            }
+            .match__comment {
+                font-size: 2.778vw;
+                padding-left: 3.472vw;
+                padding-right: 3.472vw;
+            }
+            .match__info {
+                padding: 3.472vw;
+                display: flex;
+                align-items: center;
+
+
+                .info__country {
+                    .country-first {
+                        margin-left: 1.042vw;
+                    }
+                    & img{
+                        width: 4.604vw;
+                    }
+                }
+                & .info__wins{
+                    width: 110px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: baseline;
+                }
+                .info__match-up {
+                    .match-up__versus {
+                        margin-left: 0.868vw;
+                        margin-right: 0.868vw;
+                    }
+                    .match-up__name {
+                        font-size: 4.431vw;
+                        line-height: 3.299vw;
+                    }
+
+                    .name__first {
+                        margin-left: 2.431vw;
+                    }
+                }
+
+                .info__maps {
+                    .maps__name {
+                        font-size: 3.431vw;
+                        margin-left: 2.083vw;
+                    }
+                }
+
+                .info__wins {
+                    svg {
+                        width: 10.868vw;
+                    }
+                    .wins__text {
+                        margin-left: 1.736vw;
+                    }
+                }
+
+                .country__text,
+                .match-up__text,
+                .maps__text,
+                .wins__text {
+                    font-size: 4.083vw;
+                    line-height: 2.257vw;
+                }
+            }
+        }
+    }
+    .gocu-replays__numb-pages {
+        margin-top: 20.868vw;
+        margin-bottom: 1.389vw;
+        .numb-pages {
+            font-size: 2.083vw;
+            line-height: 3.299vw;
+        }
+    }
+
+
+
 }
 
 
 
 
 
-@media (max-width: 992px) {
-    .header{
-        position: relative;
-        & .icon_bars{
-            display: block!important;
-            width: 50px;
-        }
-        & .logo{
-            & img{
-                width: 70% !important;
-            }
-        }
-        & .menu_navigation{
-            display: none!important;
-        }
-        & .autorization{
-            display:none!important;
-        }
-        & .main_menu{
-            position: absolute;
-            right: 0;
-            bottom: 30%;
-        }
-        & .search{
-            justify-content: flex-start;
-        }
-        & .button_input{
-            width: 100% !important;
-            & .search_input{
-                min-width: 40vw !important;
-            }
-        }
-        & .burger_menu{
-            display: block!important;
-            & .menu_bar{
-                width: 50px!important;
-            }
-        }
-
-    }
-
-}
 

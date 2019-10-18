@@ -171,7 +171,7 @@
                     </div>
                 </div>
                 <div class="row video_twitch">
-                    <iframe style="width: 99%; height: 510px;" allowfullscreen="true" scrolling="no" frameborder="0" src="https://player.twitch.tv/?volume=0.5&amp;!muted&amp;channel=grimeboss_tv"></iframe>
+                    <iframe style="width: 99%; height: 100%;" allowfullscreen="true" scrolling="no" frameborder="0" src="https://player.twitch.tv/?volume=0.5&amp;!muted&amp;channel=grimeboss_tv"></iframe>
                 </div>
             </div>
         </div>

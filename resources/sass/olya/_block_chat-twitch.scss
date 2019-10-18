@@ -25,7 +25,7 @@
         border-top-left-radius:5px;
         & .content_left{
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
 
         }
@@ -129,6 +129,7 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
+            padding: 0 20px;
             & img{
                 padding-right: 20px;
             }
