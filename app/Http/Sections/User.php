@@ -249,12 +249,11 @@ class User extends Section
                 ->setHtmlAttribute('autocomplete', 'off')
                 ->setValidationRules(['between:8,50', empty($id) ? 'required' : 'nullable'])
                 ->allowEmptyValue(),
-
             $passwordConfirm = AdminFormElement::password('password_confirmation', 'Password confirm')
                 ->setHtmlAttribute('placeholder', 'Password confirm')
                 ->setHtmlAttribute('autocomplete', 'off')
                 ->setValueSkipped(true)
-                ->setValidationRules(['same:password', 'required']),
+                ->setValidationRules(['same:password', empty($id) ? 'required' : 'nullable']),
 
             $ban = AdminFormElement::checkbox('ban', 'Ban'),
         ]);
