@@ -97,7 +97,7 @@
             <!--END CONTENT-->
 
             <!--SIDEBAR RIGHT-->
-            <div id="right-sidebar"  class="col-xl-3 col-3 col-md-6 col-12">
+            <div id="right-sidebar"  class="col-xl-3 col-lg-3 col-md-6 col-12">
                 @include('content.tablet__button-top')
                 <div id="right-sidebar-wrap" class="right-sidebar-wrap no-height">
                     @section('sidebar-right')
