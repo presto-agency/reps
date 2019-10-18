@@ -30,7 +30,7 @@ class User extends Section
      *
      * @var bool
      */
-    protected $checkAccess = false;
+    protected $checkAccess = true;
 
     protected $alias = false;
 
@@ -173,6 +173,9 @@ class User extends Section
      */
     public function onEdit($id)
     {
+//        if (auth()->user()->superAdminRoles() === false) {
+//            return back();
+//        }
         $display = AdminForm::panel();
 
         $display->setItems([
@@ -222,7 +225,7 @@ class User extends Section
                 ->setValidationRules(['nullable', 'string', 'max:255', 'url']),
 
             $role_id = AdminFormElement::select('role_id', 'Роль')
-                ->setOptions((new Role())->pluck('title', 'id')->toArray())
+                ->setOptions($this->getRoles())
                 ->setDisplay('title')
                 ->setValidationRules(['required']),
 
@@ -256,7 +259,6 @@ class User extends Section
             $ban = AdminFormElement::checkbox('ban', 'Ban'),
         ]);
 
-
         return $display;
     }
 
@@ -275,7 +277,7 @@ class User extends Section
      */
     public function onDelete($id)
     {
-        // remove if unused
+
     }
 
     /**
@@ -286,8 +288,14 @@ class User extends Section
         // remove if unused
     }
 
+    /**
+     * @var
+     */
     private $emailVr;
 
+    /**
+     * @return array
+     */
     public function emailVr()
     {
         $this->emailVr = [
@@ -297,4 +305,19 @@ class User extends Section
         return $this->emailVr;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRoles()
+    {
+        if (auth()->user()->superAdminRoles() === true) {
+            return (new Role())->pluck('title', 'id')->toArray();
+        } else {
+            $getData = (new Role())->pluck('title', 'id')->toArray();
+            if (($key = array_search('Супер-админ', $getData)) !== false) {
+                unset($getData[$key]);
+            }
+            return $getData;
+        }
+    }
 }

@@ -25,7 +25,7 @@ class DashboardCountComposer
             $data['userReplaysTypeId'] = $getUserReplay->id;
             $data['userReplays'] = $getUserReplay->replays_count;
         }
-        $getProReplay = ReplayType::withCount('replays')->where('title', 'Gosu')->first();
+        $getProReplay = ReplayType::withCount('replays')->where('title', 'Профессиональный')->first();
         if (!(empty($getProReplay))) {
             $data['gosuReplaysTypeId'] = $getProReplay->id;
             $data['gosuReplays'] = $getProReplay->replays_count;

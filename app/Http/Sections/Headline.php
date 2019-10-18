@@ -53,15 +53,14 @@ class Headline extends Section
 
         $display->setColumns([
 
-            $id = AdminColumn::text('id', 'Id')->setWidth('50px'),
+            $id = AdminColumn::text('id', 'ID')->setWidth('50px'),
 
-            $title = AdminColumn::text('title', 'Title')
+            $title = AdminColumn::text('title', 'Название')
                 ->setHtmlAttribute('class', 'text-left')
                 ->setWidth(300),
 
             $url = AdminColumn::text('url', 'Url')
-                ->setHtmlAttribute('class', 'text-left')
-                ->setWidth(200),
+                ->setHtmlAttribute('class', 'text-left'),
 
         ]);
         return $display;
@@ -77,10 +76,12 @@ class Headline extends Section
         $display = AdminForm::panel();
 
         $display->setItems([
-            $title = AdminFormElement::text('title', 'Title')
+            $title = AdminFormElement::text('title', 'Название')
+                ->setHtmlAttribute('placeholder', 'Название')
                 ->setValidationRules(['required', 'string', 'max:255']),
             $url = AdminFormElement::text('url', 'Url')
-                ->setValidationRules(['required', 'nullable', 'string', 'max:255']),
+                ->setHtmlAttribute('placeholder', 'Url')
+                ->setValidationRules(['nullable', 'string', 'max:255']),
         ]);
 
         return $display;
