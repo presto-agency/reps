@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ForumSection;
+use App\Models\ForumTopic;
 use Illuminate\Http\Request;
 
-class ForumController extends Controller
+class TopicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,15 +14,7 @@ class ForumController extends Controller
      */
     public function index()
     {
-        $sections = ForumSection::active()->with(['topics' => function ($query) {
-            $query->withCount('comments');
-        }])->withCount('topics')->get();
-
-        foreach ($sections as $section){
-            $section->section_comments_count = $section->topics->sum('comments_count');
-        }
-
-        return view('forum.index')->with('sections', $sections);
+        //
     }
 
     /**
@@ -54,11 +46,9 @@ class ForumController extends Controller
      */
     public function show($id)
     {
-        $section = ForumSection::active()->where('id', $id)->with(['topics' => function ($query) {
-            $query->withCount('comments');
-        }, 'topics.author:id,name,avatar'])->first();
+        $topic = ForumTopic::with('author','comments')->where('id', $id)->withCount('comments')->first();
 
-        return view('forum.section')->with('section', $section);
+        return view('forum.topic')->with('topic', $topic);
     }
 
     /**

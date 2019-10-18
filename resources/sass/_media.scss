@@ -585,10 +585,18 @@
 
     .header_row{
         flex-direction: row-reverse;
+        & .logotype{
+            display: flex;
+            align-items: center;
+            & img{
+                width: 55%!important;
+                padding-left: 20px;
+            }
+        }
         & .mode{
             position: absolute;
             right: 10%;
-            bottom: 65%;
+            bottom: 58%;
         }
         & .logo{
             justify-content: center;
