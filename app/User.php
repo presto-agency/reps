@@ -49,9 +49,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        $superAdminId = Role::where('name', 'super-admin')->value('id');
-        $adminId = Role::where('name', 'admin')->value('id');
-        return $this->role_id == $superAdminId || $this->role_id == $adminId;
+        return $this->roles->name == 'super-admin' || $this->roles->name == 'admin';
     }
 
 

@@ -5,11 +5,9 @@ namespace App\Http\Sections;
 use AdminColumn;
 use AdminColumnEditable;
 use AdminDisplay;
-use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
-use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 
 /**

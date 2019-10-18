@@ -12,7 +12,7 @@ class Replay extends Model
     protected $fillable = [
 
         'user_id',
-        'user_replay',
+        'title',
         'map_id',
         'first_country_id', 'second_country_id',
         'first_race', 'second_race',

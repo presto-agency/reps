@@ -6,25 +6,17 @@
             <p>Раса: {{$stream->races->title}}</p>
             <p>
                 Подтвержден: {!! $stream->approved == 1 ? "<i class='fa fa-check'></i>" : "<i class='fa fa-minus'></i>"!!}</p>
-            <p>Коментарий: {!! $stream->content !!}</p>
-        </div>
-        <div class="col-md-7">
-            <!-- Add a placeholder for the Twitch embed -->
-            <div id="twitch-embed"></div>
-{{--            <div class="video-link-wrapper">--}}
-{{--                {!! $stream->stream_url !!}--}}
-{{--            </div>--}}
+            <p>Коментарий: {{ $stream->content }}</p>
+            <p>{{ $stream->stream_url }}</p>
+            <iframe src="{{ $stream->stream_url."/embed" }}"
+                    allowfullscreen="true"
+                    width="640"
+                    height="360"
+                    autoplay="1"
+                    scrolling="no"
+                    frameborder="0"
+            ></iframe>
         </div>
     </div>
 </div>
-<!-- Load the Twitch embed script -->
-<script src="https://embed.twitch.tv/embed/v1.js"></script>
 
-<!-- Create a Twitch.Embed object that will render within the "twitch-embed" root element. -->
-<script type="text/javascript">
-    new Twitch.Embed("twitch-embed", {
-        width: 854,
-        height: 480,
-        channel: "monstercat"
-    });
-</script>

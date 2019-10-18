@@ -9,4 +9,9 @@ class ReplayType extends Model
     protected $fillable = [
         'title'
     ];
+
+    public function replays()
+    {
+        return $this->hasMany(\App\Models\Replay::class,'type_id');
+    }
 }
