@@ -55,19 +55,15 @@ class Footer extends Section
     {
 
         $display = AdminDisplay::datatablesAsync()
-            ->setHtmlAttribute('class', 'table-info text-center ')
+            ->setHtmlAttribute('class', 'table-info')
             ->paginate(1);
 
 
         $display->setColumns([
 
-            $title = AdminColumn::text('title', 'Title')
-                ->setWidth(200),
-
-            $text = AdminColumn::text('text', 'Text'),
-
-            $position = AdminColumn::text('position', 'Position')
-                ->setWidth(100),
+            $text = AdminColumn::custom('Текст Footer', function ($model) {
+                return $model->text;
+            })->setHtmlAttribute('class', 'text-left'),
 
             $approved = AdminColumnEditable::checkbox('approved')
                 ->setLabel('Approved')
@@ -88,19 +84,9 @@ class Footer extends Section
 
         $display->setItems([
 
-            $title = AdminFormElement::text('title', 'Title')
-                ->setValidationRules(['required', 'string', 'max:255']),
-
-            $text = AdminFormElement::wysiwyg('text', 'Text', 'simplemde')
-                ->setValidationRules(['required', 'string', 'max:255']),
-
-            $email = AdminFormElement::text('email', 'Email')
-                ->setHtmlAttribute('autocomplete', 'off')
-                ->setHtmlAttribute('type', 'email')
-                ->setValidationRules(['nullable', 'email', 'max:255']),
-
-            $text = AdminFormElement::text('icq', 'Discord')
-                ->setValidationRules(['nullable', 'string', 'max:255']),
+            $text = AdminFormElement::wysiwyg('text', 'Текст Footer', 'simplemde')
+                ->setHtmlAttributes(['placeholder' => 'Текст'])
+                ->setValidationRules(['required', 'string', 'between:1,1000']),
 
             $approved = AdminFormElement::checkbox('approved', 'Approved'),
 
