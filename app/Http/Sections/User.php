@@ -201,7 +201,7 @@ class User extends Section
                 ->setValidationRules(['required', 'max:255', 'alpha_dash', 'unique:users,name,' . $id]),
 
             $birthday = AdminFormElement::date('birthday', 'День рождения')
-                ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d'))
+                ->setHtmlAttribute('placeholder', Carbon::now()->format('d-m-Y'))
                 ->setValidationRules(['nullable', 'date_format:d-m-Y']),
 
             $homepage = AdminFormElement::text('homepage', 'Homepage')
