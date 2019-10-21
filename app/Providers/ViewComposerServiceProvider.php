@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 
-use App\Http\ViewComposers\{DashboardCountComposer, InterviewVariantAnswerComposer,ForumNavigationComposer};
+use App\Http\ViewComposers\{
+    DashboardCountComposer,
+    HeadlineComposer,
+    InterviewVariantAnswerComposer,
+    ForumNavigationComposer};
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,6 +29,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         $this->compose('admin.dashboard', DashboardCountComposer::class);
         $this->compose('admin.InterviewQuestion.questionClone', InterviewVariantAnswerComposer::class);
         $this->compose('left-side.forum-topics', ForumNavigationComposer::class);
+        $this->compose('components.Chat', HeadlineComposer::class);
 
     }
 

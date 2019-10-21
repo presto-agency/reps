@@ -48,6 +48,9 @@ class Country extends Section
         $display->setApply(function ($query) {
             $query->orderBy('id', 'asc');
         });
+
+        $display->with('using');
+
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'ID'),
@@ -60,9 +63,8 @@ class Country extends Section
 
             $flag = AdminColumn::image('flag', 'Флаг'),
 
-            $using = AdminColumn::custom('Используют', function ($model) {
-                return \App\Models\Country::withCount('using')->where('name', $model->name)->value('using_count');
-            })
+            $count_using = AdminColumn::count('using', 'Используют')
+                ,
         ]);
         return $display;
 
