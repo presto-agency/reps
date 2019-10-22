@@ -1,6 +1,6 @@
 <section class="Page_gameBest">
     <div class="wrapper">
-        <div class=" title_block">
+        <div class="title_block">
             <div class="left_content">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -21,11 +21,11 @@
         <div class="container_players">
             @foreach($top100Points as $item)
                 <div class="players_content">
-`                    <div class="left_block">
+                    <div class="left_block">
                         <span class="number">#{{$item['id']}}</span>
                         <a href="#">
                             <img src="{{asset($item['avatar'])}}" alt="avatar"
-`                                 class="author__avatar img-fluid">
+                                 ` class="author__avatar img-fluid">
                             <span class="name_player">{{$item['name']}}</span>
                         </a>
                     </div>

@@ -20,15 +20,16 @@ class DashboardCountComposer
         $data['users'] = User::count();
         $data['forumTopics'] = ForumTopic::count();
 
-        $getUserReplay = ReplayType::withCount('replays')->where('title', 'Пользовательский')->first();
+        $getUserReplay = ReplayType::withCount('replays')->where('title', 'Пользовательский');
         if (!(empty($getUserReplay))) {
-            $data['userReplaysTypeId'] = $getUserReplay->id;
-            $data['userReplays'] = $getUserReplay->replays_count;
+            $data['userReplaysTypeId'] = $getUserReplay->value('id');
+            $data['userReplays'] = $getUserReplay->value('replays_count');
         }
-        $getProReplay = ReplayType::withCount('replays')->where('title', 'Профессиональный')->first();
+
+        $getProReplay = ReplayType::withCount('replays')->where('title', 'Профессиональный');
         if (!(empty($getProReplay))) {
-            $data['gosuReplaysTypeId'] = $getProReplay->id;
-            $data['gosuReplays'] = $getProReplay->replays_count;
+            $data['gosuReplaysTypeId'] = $getProReplay->value('id');
+            $data['gosuReplays'] = $getProReplay->value('replays_count');
         }
         $this->category = $data;
 

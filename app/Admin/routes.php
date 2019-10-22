@@ -12,7 +12,7 @@ Route::get('information', ['as' => 'information', function () {
 
 Route::delete('interview_variant_answers/delete/{id}', '\App\Http\Controllers\Admin\InterviewVariantAnswerController@delete')->name('admin.answers.delete');
 
-Route::get('interview_questions/show/{id}', '\App\Http\Controllers\Admin\InterviewQuestionsController@show');
+Route::get('interview_questions/{id}/show', '\App\Http\Controllers\Admin\InterviewQuestionsController@show');
 
 Route::get('replays/show/{id}', '\App\Http\Controllers\Admin\ReplayController@show');
 Route::post('replays/show/{id}/send_comment', '\App\Http\Controllers\Admin\ReplayController@comment')->name('admin.replays.comment_send');

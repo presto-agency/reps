@@ -28,7 +28,7 @@ trait UserRelation
 
     public function totalNews()
     {
-        return $this->hasMany(\App\Models\ForumTopic::class, 'user_id', 'id');
+        return $this->hasMany(\App\Models\ForumTopic::class, 'user_id', 'id')->whereNews(1);
     }
 
     public function totalComments()
