@@ -67,10 +67,12 @@
                     & .gray{
                         font-size: 14px;
                         color: $gray;
+                        font-weight: 400;
                     }
                     & .blue{
                         font-size: 14px;
                         color: $blue;
+                        font-weight: 400;
                     }
                 }
             }
@@ -177,9 +179,11 @@
         padding: 20px 20px 10px;
         & .winner_round{
             display: flex;
+            align-items: baseline;
             padding-bottom: 10px;
             & .left_block{
                 display: flex;
+                align-items: center;
 
                 span{
                     font-size: 14px;
@@ -199,6 +203,7 @@
             & .center_block{
                 display: flex;
                 justify-content: center;
+                align-items: baseline;
                 & .one_player{
                     width: 110px;
                     display: block;
@@ -219,7 +224,9 @@
                 width: 30%;
                 display: flex;
                 justify-content: flex-end;
-               // justify-content: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 & a{
                     margin-right: 10px;
                     text-decoration: underline;

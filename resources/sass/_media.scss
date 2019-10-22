@@ -117,11 +117,15 @@
                     & svg{
                         width: 2.928vw;
                     }
+
                 }
                 & .right_block{
                     & svg{
                         width: 2.562vw;
                         margin-right: 0.732vw;
+                    }
+                    & .svg_close{
+                        width: 1.562vw;
                     }
                 }
             }
@@ -535,6 +539,9 @@
                     & svg{
                         width: 4vw;
                     }
+                    & .svg_close{
+                        width: 2vw;
+                    }
                 }
                 & .right_block{
                     & button{
@@ -542,6 +549,9 @@
                     & svg{
                         width: 3.5vw;
                         margin-right: 1vw;
+                    }
+                    & .svg_close{
+                        width: 2vw;
                     }
                 }
             }
@@ -821,11 +831,11 @@
             padding-left: 3.299vw;
 
             .title__icon {
-                width: 2.257vw;
-                height: 3.646vw;
+                width: 3.257vw;
+                height: auto;
             }
             .title__text {
-                font-size: 2.778vw;
+                font-size: 3.778vw;
                 margin-left: 2.951vw;
             }
         }
@@ -1081,7 +1091,7 @@
                 }
             }
             .match__comment {
-                font-size: 2.778vw;
+                font-size: 3.778vw;
                 padding-left: 3.472vw;
                 padding-right: 3.472vw;
             }
@@ -1146,13 +1156,466 @@
             }
         }
     }
+    .gocu-replays__button{
+        margin-bottom: 5.472vw;
+    }
     .gocu-replays__numb-pages {
-        margin-top: 20.868vw;
+        margin-top: 4.340vw;
         margin-bottom: 1.389vw;
         .numb-pages {
             font-size: 2.083vw;
             line-height: 3.299vw;
         }
+    }
+//replays
+    .replays {
+        margin-bottom: 5.903vw;
+        .replays__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+
+        .replays__accordion {
+            .accordion__topic {
+                .topic__header {
+                    .header__title {
+                        font-size: 3.778vw;
+                        line-height: 4.861vw;
+                    }
+                    .fa-ellipsis-h {
+                        font-size: 3.778vw;
+                    }
+                }
+                .topic__body {
+                    .card-body {
+                        .body__wrap {
+                            margin-bottom: 4.340vw;
+                            .body__title {
+                                font-size: 3.431vw;
+                            }
+                            .body__numb {
+                                font-size: 3.431vw;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //search
+    .search {
+        .search__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+            .title__text {
+                font-size: 3.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+        .search__body {
+            padding: 3.472vw;
+            label {
+                margin-bottom: 4.340vw;
+                font-size: 3.9vw;
+                input{
+                    height: 7.639vw;
+                    padding-left: 3.472vw;
+                }
+                select {
+                    height: 7.639vw;
+                    padding-left: 3.472vw;
+                    margin-top: 1.736vw;
+                    background-position: center right 3.472vw;
+                    font-size: 3.5vw;
+                }
+            }
+            .body__button-search {
+                margin-top: 3.472vw;
+                margin-bottom: 2.431vw;
+            }
+        }
+    }
+    //forum-topics
+    .forum-topics {
+        .forum-topics__title {
+            padding-top: 3.125vw;
+            padding-bottom: 3.125vw;
+            padding-left: 3.299vw;
+
+            .title__icon {
+                width: 4.472vw;
+            }
+            .title__text {
+                font-size: 3.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+        .forum-topics__accordion {
+            .accordion__topic {
+                .topic__header {
+                    .header__title {
+                        font-size: 3.778vw;
+                        line-height: 4.861vw;
+                    }
+                    .fa-chevron-down,
+                    .fa-ellipsis-h {
+                        font-size: 3.778vw;
+                    }
+                }
+            }
+        }
+    }
+    //page_tournament
+    .Page_tournament-content{
+        & .title_block{
+            height: 10.417vw;
+            padding: 3.472vw;
+            & .left_content{
+                & svg{
+                    margin-right: 1.736vw;
+                }
+            }
+            & .right_content{
+                & svg{
+                    margin-left: 1.736vw;
+                }
+                .lable_select
+                {
+                    select {
+                        padding-right: 3.431vw;
+                        font-size: 2.7vw;
+                    }
+                }
+            }
+            & img,svg{
+                width: 3.472vw;
+                margin-right: 1.736vw;
+            }
+            & .title_text{
+                font-size: 3vw;
+            }
+        }
+        & .block_navigationTournament{
+            height: 10.417vw;
+            padding: 3.472vw;
+            & a{
+                font-size: 2.778vw;
+            }
+        }
+        & .tournament_info{
+            padding: 3.472vw 3.472vw;
+            & svg{
+                width: 4vw;
+                margin-right: 1.736vw;
+            }
+            & .place{
+                & span{
+                    font-size: 3vw;
+                }
+            }
+            & .time{
+                & span{
+                    font-size: 3vw;
+                }
+            }
+            & .status{
+                & span{
+                    font-size: 2.5vw;
+                    border-radius: 2.604vw;
+                    padding: 0.868vw 3.208vw;
+                }
+            }
+            & .palayers{
+                & span {
+                    margin-left: 1.736vw;
+                    font-size: 3.083vw;
+                }
+            }
+        }
+    }
+    //page_detail
+    .Page_tournamentDetail-content{
+        & .title_block{
+            height: 10.417vw;
+            padding: 3.472vw;
+            & .left_content{
+                & svg{
+                    margin-right: 1.736vw;
+                }
+            }
+            & .right_content{
+                & svg{
+                    margin-left: 1.736vw;
+                }
+                //& .title_text{
+                //    font-size: 3.431vw;
+                //}
+            }
+            & img,svg{
+                width: 3.472vw;
+                margin-right: 1.736vw;
+            }
+            & .title_text{
+                font-size: 2.778vw;
+            }
+        }
+        & .block_replay_content{
+            padding: 30px 3.472vw;
+            & .block_left{
+                & .description_left{
+                    font-size: 2.083vw;
+                }
+                & .container_block{
+                    & .replay-desc-right{
+                        & p{
+                            font-size: 3.083vw;
+                        }
+                    }
+                    & .replay-desc-left{
+                        & p{
+                            font-size: 3.083vw;
+                        }
+                        & .gray{
+                            font-size: 3.431vw;
+                            font-weight: 400;
+                        }
+                        & .blue{
+                            font-size: 3.431vw;
+                            font-weight: 400;
+
+                        }
+                    }
+                }
+            }
+            & .block_right{
+                & .container_block{
+                    margin-top: 3.472vw;
+                    & p{
+                        font-size: 3.083vw;
+                    }
+                    & .right{
+                        & p{
+                            font-size: 3.083vw;
+                        }
+                        & svg{
+                            width: 3.604vw;
+                        }
+                    }
+                }
+            }
+        }
+        & .title_players{
+            height: 10.417vw;
+            padding: 0 3.472vw;
+            & .title_playersText{
+                font-size: 3.778vw;
+            }
+            & a{
+                font-size: 2.083vw;
+            }
+        }
+        & .container_players{
+            max-height: 220px;
+            padding: 3.472vw 0;
+            & .players_content{
+                padding: 1.736vw 45px 0.868vw 3.472vw;
+                & .left_block{
+                    align-items: center;
+                    span{
+                        font-size: 3.431vw;
+                    }
+                    & img{
+                        margin: 0 1.736vw 0 2.604vw;
+                    }
+                    & a{
+                        width: 29.514vw;
+                        & .name_player{
+                            font-size: 3.431vw;
+                        }
+                    }
+                }
+                & .center_block{
+                    & img{
+                        margin: 0 0.868vw;
+                    }
+                }
+                & .right_block{
+                    & svg{
+                        width: 3.472vw;
+                    }
+                }
+            }
+        }
+        & .container_round{
+            padding: 3.472vw 3.472vw 1.736vw;
+            & span{
+                font-size: 3.431vw;
+            }
+            & .winner_round{
+                padding-bottom: 1.736vw;
+                & .left_block{
+                    padding: 0;
+                    span{
+                        font-size: 3.431vw;
+                        margin-left: 1.736vw;
+                    }
+                    & img{
+                        margin: 0 1.736vw 0 2.604vw;
+                    }
+                    & a{
+                        & .name_player{
+                            font-size: 2.431vw;
+                        }
+                    }
+                }
+                & .center_block{
+                    padding: 0;
+                    justify-content: flex-start;
+                    & .one_player{
+                        width: 19.097vw;
+                        height: 4.861vw;
+                    }
+                    & img{
+                        margin: 0 0.868vw;
+                    }
+                    & .blue_span{
+                        margin: 0 4.340vw 0 3.472vw;
+                    }
+                }
+                & .right_block{
+                    padding: 0;
+                    & a{
+                        margin-right: 1.736vw;     }
+                    & svg{
+                        width: 3.472vw;
+                    }
+                }
+            }
+        }
+        .container_players::-webkit-scrollbar {
+            width: 1.736vw;
+        }
+        .container_players::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            height: 4.340vw;
+        }
+    }
+//page_game
+    .Page_gameBest{
+        & .title_block{
+            min-height: 10.417vw;
+            padding: 3.472vw;
+            & .left_content{
+                & svg{
+                    margin-right: 1.736vw;
+                }
+            }
+            & .right_content{
+                & svg{
+                    margin-left: 1.736vw;
+                }
+                //& .title_text{
+                //    font-size: 2.431vw;
+                //}
+            }
+            & img,svg{
+                width: 3.472vw;
+                margin-right: 1.736vw;
+            }
+        }
+        & .title_players{
+            min-height: 10.417vw;
+            padding: 0 3.472vw;
+            & .title_playersText{
+                font-size: 3.778vw;
+            }
+            & a{
+                font-size: 2.083vw;
+            }
+        }
+        & .container_players{
+            max-height: 38.194vw;
+            padding: 3.472vw 0;
+            & .players_content{
+                padding: 1.736vw 7.813vw 0.868vw 3.472vw;
+                align-items: center;
+                & .left_block{
+                    align-items: center;
+                    & .number{
+                        width: 6.944vw;
+                        font-size: 3.431vw;
+                        //height: 4.861vw;
+                    }
+                    span{
+                        font-size: 2.431vw;
+                    }
+                    & img{
+                        margin: 0 1.736vw 0 2.604vw;
+                    }
+                    & a{
+                        width: 24.306vw;
+                        & .name_player{
+                            font-size: 3.431vw;
+                        }
+                    }
+                }
+                & .center_block{
+                    & img{
+                        margin: 0 0.868vw;
+                    }
+                }
+                & .right_block{
+                    & svg{
+                        width: 3.472vw;
+                    }
+                    p{
+                        font-size: 3.431vw;
+                        width: 12.153vw;
+                        //height: 4.861vw;
+                    }
+                }
+            }
+        }
+        .container_players::-webkit-scrollbar {
+            width: 1.736vw;
+        }
+        .container_players::-webkit-scrollbar-thumb {
+            border-radius: 0.694vw;
+            height: 4.340vw;
+        }
+    }
+//stream_list
+    .streams_list{
+        padding: 2.604vw;
+        width: 45.271vw;
+        right: -45.271vw;
+        & .widget-stream-lists{
+            margin: 0.868vw 0;
+            & span{
+                margin-left: 3.472vw;
+                font-size: 3.431vw;
+
+            }
+        }
+    }
+    .open{
+        right: 1.042vw;
     }
 
 

@@ -115,12 +115,23 @@
 
 
     }
+    & .block_stream_list{
+        position: relative;
 
+    }
     & .title_video{
         background: $blue;
         border-top-right-radius:5px;
         height: 60px;
         display: flex;
+        & .btn_streams_close{
+            width: 0;
+            & .svg_close{
+                visibility: hidden;
+                width: 20px;
+            }
+        }
+
         & .title_Text{
             padding: 0;
         }

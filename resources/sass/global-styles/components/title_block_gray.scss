@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     background: $light-gray;
-    height: 60px;
+    min-height: 60px;
     padding:20px;
     & .title_Text{
         font-size: 16px;

@@ -1,7 +1,6 @@
 <section class="Page_gameBest">
     <div class="wrapper">
         <div class=" title_block">
-            <div class="left_content">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      viewBox="0 0 475.1 475.1" style="enable-background:new 0 0 475.1 475.1;" xml:space="preserve">
                     <path d="M475.1,186.6c0-7-5.3-11.4-16-13.1l-143.3-20.8L251.5,22.7c-3.6-7.8-8.3-11.7-14-11.7c-5.7,0-10.4,3.9-14,11.7l-64.2,129.9
@@ -12,7 +11,6 @@
                 </svg>
                 <p class="title_text">Лучшие</p>
             </div>
-        </div>
         {{--best-100--}}
         <div class="title_players">
             <p class="title_playersText">Top-100 pts</p>
