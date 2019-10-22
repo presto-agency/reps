@@ -6,7 +6,7 @@ use App\Models\Comment;
 use App\Models\ForumTopic;
 use Illuminate\Http\Request;
 
-class TopicController extends Controller
+class TopicCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,9 +34,16 @@ class TopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $topic = ForumTopic::find($id);
+        $comment = new Comment([
+            'user_id' => auth()->user()->id,
+            'content' => $request->input('content')
+        ]);
+        $topic->comments()->save($comment);
+
+        return back();
     }
 
     /**
@@ -47,9 +54,7 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        $topic = ForumTopic::with('author','comments')->where('id', $id)->withCount('comments')->first();
-
-        return view('forum.topic')->with('topic', $topic);
+        //
     }
 
     /**
@@ -84,16 +89,5 @@ class TopicController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function comment_send(Request $request, $id)
-    {
-        $topic = ForumTopic::find($id);
-        $comment = new Comment([
-            'user_id' => auth()->user()->id,
-            'content' => $request->input('content')
-        ]);
-        $topic->comments()->save($comment);
-        return back();
     }
 }

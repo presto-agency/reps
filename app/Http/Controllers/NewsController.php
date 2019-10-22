@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\ForumTopic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -63,7 +64,7 @@ class NewsController extends Controller
         $topics = ForumTopic::withCount('comments')->where('id', $id)->first();
         $count = $topics->comments()->count();
 //        $topics = ForumTopic::find($id);
-        dump($topics, $topics->comments_count);
+
         /*foreach ($topics as $topic) {
             dump($topic->comments_count);
         }*/
@@ -124,5 +125,16 @@ class NewsController extends Controller
             $output = view('news.last_news', ['news' => $data, 'visible_title' => $visible_title]);
             echo $output;
         }
+    }
+
+    public function comment_send(Request $request, $id)
+    {
+        $topic = ForumTopic::find($id);
+        $comment = new Comment([
+            'user_id' => auth()->user()->id,
+            'content' => $request->input('content')
+        ]);
+        $topic->comments()->save($comment);
+        return redirect()->route('news.index');
     }
 }

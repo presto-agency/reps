@@ -16,7 +16,9 @@
         @foreach($news as $single_news)
         <div class="breaking-news__news-card card">
             @if($single_news->preview_img)
-                <img src="{{ asset($single_news->preview_img) }}" class="card-img-top" alt="news">
+                <a href="{{ route('news.show', $single_news->id) }}">
+                    <img src="{{ asset($single_news->preview_img) }}" class="card-img-top" alt="news">
+                </a>
             @endif
             <div class="card-body">
                 <div class="card-body__author">
@@ -30,10 +32,12 @@
                         <span class="author__date">{{\Carbon\Carbon::parse($single_news->author->created_at)->format('d.m.Y')}}</span>
                     @endif
                 </div>
-                <h2 class="card-body__title">{{ $single_news->title }}</h2>
+                <a href="{{ route('news.show', $single_news->id) }}">
+                    <h2 class="card-body__title">{{ $single_news->title }}</h2>
+                </a>
                 <p class="card-body__text">
                     {!! $single_news->preview_content !!}
-                    <a href="#">читать</a>
+                    <a href="{{ route('news.show', $single_news->id) }}">читать</a>
                 </p>
                 <div class="card-body__items">
                     <a class="items__comment" href="#">
@@ -85,10 +89,11 @@
                     </a>
                 </div>
 
-                <form class="card-body__comment-form">
+                <form class="card-body__comment-form" method="POST" action="{{route('news.comment_send', ['id' => $single_news->id])}}" method="post">
+                    @csrf
                     <div class="comment-form__group form-group">
                         <label class="comment" for="comment">
-                            <input type="text" class="comment__input form-control" id="comment"
+                            <input type="text" class="comment__input form-control" id="comment" name="content"
                                    placeholder="Написать комментарий...">
                         </label>
 
