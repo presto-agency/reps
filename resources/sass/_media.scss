@@ -89,27 +89,23 @@
             & .block_date{
                 font-size: 1.025vw;
             }
-            & .block_userMessage {
+            & .block_userMessage{
                 padding: 1.464vw 0;
-
-                & .user_nick {
+                & .user_nick{
                     font-size: 1.025vw;
                 }
-
-                & user_text {
-                    font-size: 1.025vw;
-                }
-
-                & img {
+                & img{
                     padding: 0.732vw 0;
                 }
+
             }
+
+
         }
 
         & .title_video{
             height: 4.392vw;
             & .video_header{
-                padding: 0 3.472vw;
                 & img{
                     padding-right: 1.464vw;
                 }
@@ -117,15 +113,11 @@
                     & svg{
                         width: 2.928vw;
                     }
-
                 }
                 & .right_block{
                     & svg{
                         width: 2.562vw;
                         margin-right: 0.732vw;
-                    }
-                    & .svg_close{
-                        width: 1.562vw;
                     }
                 }
             }
@@ -390,46 +382,6 @@
 }
 
 @media (max-width: 991px) {
-    /*Header*/
-    .header{
-        position: relative;
-        & .icon_bars{
-            display: block!important;
-            width: 50px;
-        }
-        & .logo{
-            & img{
-                width: 70% !important;
-            }
-        }
-        & .menu_navigation{
-            display: none!important;
-        }
-        & .autorization{
-            display:none!important;
-        }
-        & .main_menu{
-            position: absolute;
-            right: 0;
-            bottom: 30%;
-        }
-        & .search{
-            justify-content: flex-start;
-        }
-        & .button_input{
-            width: 100% !important;
-            & .search_input{
-                min-width: 40vw !important;
-            }
-        }
-        & .burger_menu{
-            display: block!important;
-            & .menu_bar{
-                width: 50px!important;
-            }
-        }
-
-    }
     /*global styles START*/
     #left-sidebar {
         order: 1;
@@ -539,9 +491,6 @@
                     & svg{
                         width: 4vw;
                     }
-                    & .svg_close{
-                        width: 2vw;
-                    }
                 }
                 & .right_block{
                     & button{
@@ -549,9 +498,6 @@
                     & svg{
                         width: 3.5vw;
                         margin-right: 1vw;
-                    }
-                    & .svg_close{
-                        width: 2vw;
                     }
                 }
             }
@@ -597,9 +543,6 @@
         & .row_game{
             padding: 0 1vw;
             margin-bottom: 1.5vw;
-            & .game_oneSection{
-                margin-bottom:1.736vw;
-            }
             & .name_game{
                 & p{
                     font-size: 1.4vw;
@@ -638,38 +581,8 @@
 }
 
 @media (max-width: 576px) {
-    //global_style
-    .title_block{
-        padding: 3.472vw;
-        & img,svg{
-            width: 3.472vw;
-        }
-        & .title_text{
-            font-size: 3.778vw;
-            margin: 0 0 0 3.472vw;
-        }
-    }
-    //blue
-    .title_top{
-        height: 10.417vw;
-        padding:3.472vw;
-        & .title_Text{
-            font-size: 3.778vw;
-        }
-        & .more{
-            & p{
-                font-size: 6.944vw;
-            }
-        }
-    }
-    .button {
-        font-size: 2.083vw;
-        padding-top: 2.257vw;
-        padding-bottom: 2.604vw;
-    }
 
-    //end global_style
-//header
+
     .header_row{
         flex-direction: row-reverse;
         & .logotype{
@@ -707,923 +620,143 @@
                 margin-left: 0 !important;
                 min-width: 77vw !important;
             }
+
         }
+
     }
-    //end header
-    // breadcrumb
-    .breadcrumb {
-        padding-top: 4.514vw;
-        padding-bottom: 4.340vw;
-        .breadcrumb-item {
-            font-size: 3.125vw;
-            font-weight: 300;
-            line-height: 3.299vw;
-        }
-        .breadcrumb-item + .breadcrumb-item::before {
-            padding-right: 0.5rem;
-        }
-
-        .breadcrumb-item.active {
-            font-size: 3.125vw;
-            font-weight: 300;
-            line-height: 3.299vw;
-        }
-    }
-    //Твич
-    .block_chat-twitch{
-        padding-bottom: 6.944vw;
-        & .block_chat{
-            padding-bottom: 3.472vw;
-        }
-        & .title_Text{
-            font-size: 2.778vw;
-            padding: 0 0 0 3.472vw
-        }
-        & .text_support{
-            font-size: 3.125vw;
-            padding: 5.208vw 0;
-        }
-        & .container_titleChat{
-            height: 10.417vw;
-            & .content_right{
-                & button{
-                    & svg{
-                        width: 6.076vw;
-                    }
-                }
-            }
-        }
-        & .messanger{
-            max-height: 107.639vw;
-        }
-        & .login_block{
-            padding: 6.944vw 0;
-            & a{
-                font-size: 4.431vw;
-            }
-        }
-        .row_contentChat{
-            padding: 5.208vw 1.736vw 0;
-            & svg{
-                height: 2.604vw;
-                width: 2.604vw;
-            }
-            & .block_user_akk{
-                & .blue_text{
-                    font-size:  4.431vw;
-                }
-                & .number_mess{
-                    font-size:  4.431vw;
-                }
-                & .user{
-                    min-width: 27.778vw;
-                }
-            }
-            & .block_date{
-                font-size: 2.431vw;
-            }
-            & .block_userMessage{
-                padding: 3.472vw 0;
-                & .user_nick{
-                    font-size: 2.431vw;
-                }
-                & img{
-                    padding: 1.736vw 0;
-                }
-            }
-        }
-        & .title_video{
-            height: 10.417vw;
-            & .video_header{
-                & img{
-                    padding-right: 3.472vw;
-                }
-                & .left_block{
-                    & svg{
-                        width: 6.944vw;
-                    }
-                }
-                & .right_block{
-                    & svg{
-                        width: 6.076vw;
-                        margin-right: 1.736vw;
-                    }
-                }
-            }
-        }
-        & .video_twitch{
-            padding: 6.944vw 0;
-            height: 133.681vw;
-
-        }
-    }
-    .messanger::-webkit-scrollbar {
-        width: 1.736vw;
-    }
-    .messanger::-webkit-scrollbar-thumb {
-        height: 39.410vw;
-    }
-
-    .breaking-news {
-        .breaking-news__title {
-            padding-top: 3.472vw;
-            padding-bottom: 3.472vw;
-            padding-left: 3.299vw;
-
-            .title__icon {
-                width: 3.257vw;
-                height: auto;
-            }
-            .title__text {
-                font-size: 3.778vw;
-                margin-left: 2.951vw;
-            }
-        }
-
-        .breaking-news__news-card {
-            padding-left: 3.819vw;
-            padding-right: 3.819vw;
-            padding-top: 4.340vw;
-            .card-body {
-                .card-body__author {
-                    margin-bottom: 3.125vw;
-
-                    .author__avatar {
-                        width: 4.861vw;
-                        height: 4.861vw;
-                    }
-                    .author__nickname {
-                        font-size: 3.431vw;
-                        margin-left: 2.257vw;
-                    }
-                    .author__date {
-                        margin-left: auto;
-                        font-size: 3.083vw;
-                    }
-                }
-                .card-body__title {
-                    font-size: 2.778vw;
-                    line-height: 3.299vw;
-                }
-
-                .card-body__text {
-                    font-size: 2.431vw;
-                }
-                //p - styles for text who isert from admin
-                p {
-                    font-size: 2.431vw;
-                }
-                //p - styles for text "читать" isert from admin
-                a {
-                    font-size: 2.431vw;
-                }
-                .card-body__items {
-                    margin-bottom: 3.125vw;
-                    .items__comment {
-                        svg {
-                            width: 3.646vw;
-                            height: 3.646vw;
-                        }
-                        span {
-                            font-size: 2.083vw;
-                            line-height: 3.299vw;
-                            margin-left: 2.083vw;
-                        }
-                    }
-                    .items__share {
-                        margin-left: 6.076vw;
-                        svg {
-                            width: 3.125vw;
-                            height: 3.472vw;
-                        }
-                    }
-                    .items__watch {
-                        svg {
-                            width: 1.910vw;
-                            height: 1.910vw;
-                        }
-                        span {
-                            margin-left: 2.083vw;
-                            font-size: 2.083vw;
-                            line-height: 3.299vw;
-                        }
-                    }
-                }
-                .card-body__comment-form {
-                    margin-bottom: 7.986vw;
-                    .comment-form__group {
-                        .comment {
-                            .comment__icon {
-                                width: 3.472vw;
-                                height: 2.778vw;
-                                top: 2.604vw;
-                                right: 13.889vw;
-                            }
-                            .comment__input {
-                                height: 7.639vw;
-                                padding-left: 3.125vw;
-                                padding-right: 13.472vw;
-                                &::placeholder {
-                                    font-size: 2.083vw;
-                                }
-                            }
-                        }
-                        .buttons-upload{
-                            top: 2.083vw;
-                            right: 8.681vw;
-                            label {
-                                margin-left: 2.951vw;
-                            }
-                            i {
-                                font-size: 2.778vw;
-                            }
-                            .smile-upload {
-                                margin-left: 2.778vw;
-                                i {
-                                    font-size: 2.778vw;
-                                }
-                            }
-                        }
-                    }
-                    .comment-form__button {
-                        svg {
-                            width: 3.472vw;
-                            height: 3.125vw;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    .breaking-news__numb-pages {
-        margin-top: 4.340vw;
-        margin-bottom: 1.389vw;
-        .numb-pages {
-            font-size: 2.083vw;
-            line-height: 3.299vw;
-        }
-    }
-
-    //tournament
-    .block_tournament{
-        & .block_futureTournament{
-            & .information_text{
-                font-size:  3.778vw;
-                padding:8.681vw 0 0 0;
-                margin: 0;
-            }
-            & .button{
-                margin: 6.944vw auto;
-                padding: 0.868vw;
-            }
-        }
-    }
-    //replay
-    .block_replay {
-        & .container_btn{
-            & .button{
-                margin: 3.472vw auto 6.944vw;
-                padding: 0.868vw;
-            }
-        }
-        & .title_top{
-            margin-bottom: 4.340vw;
-        }
-        & .row_game{
-            padding: 0 1.736vw;
-            margin-bottom: 2.604vw;
-            & .game_oneSection{
-                margin-bottom:3.009vw;
-            }
-            & .name_game{
-                & p{
-                    font-size: 2.931vw;
-                    margin: 0px 0 0.868vw 0;
-                }
-            }
-            .content_game{
-                margin-bottom: 0.868vw;
-                & img{
-                    width: 2.778vw;
-                    height: 2.604vw;
-                    margin: 0.868vw;
-                }
-                & .text_matchap{
-                    font-size:2.083vw;
-                    margin: 0 1.563vw ;
-                }
-                & .text{
-                    font-size: 2.53vw;
-                }
-            }
-        }
-    }
-    //last_news
-    .block_lastNews{
-        margin: 5.208vw 0 6.944vw 0;
-        & .block_futureTournament{
-            padding: 4.340vw 2.604vw 0;
-            & .href_tournament{
-                font-size: 3.431vw;
-                padding-bottom: 2.604vw;
-            }
-        }
-    }
-    //block_top
-    .block_top{
-        & .block_topUsers{
-            padding: 4.340vw;
-            & .content_code{
-                & p{
-                    font-size: 3.431vw;
-                }
-            }
-            & .content_img{
-                & img,svg{
-                    padding-right: 0.868vw;
-                }
-            }
-            & .content_login{
-                & p{
-                    font-size: 3.431vw;
-                }
-            }
-        }
-    }
-    //GOSU-replays
-    .gocu-replays {
-        .gocu-replays__title {
-            padding-top: 3.472vw;
-            padding-bottom: 3.472vw;
-            padding-left: 3.299vw;
-            .title__icon {
-                width: 3.472vw;
-                height: 3.472vw;
-            }
-            .title__text {
-                font-size: 2.778vw;
-                margin-left: 2.951vw;
-            }
-            .title__game-period {
-                margin-right: 3.472vw;
-                select {
-                    height: 3.472vw;
-                    padding-right: 2.431vw;
-                    font-size: 2.083vw;
-                }
-            }
-        }
-        .gocu-replays__match {
-            .match__author {
-                padding: 3.472vw;
-                .comment-author__nickname {
-                    font-size: 3.431vw;
-                    margin-left: 2.257vw;
-                }
-                .comment-author__replay-item {
-                    font-size: 3.083vw;
-                    line-height: 2.257vw;
-                    margin-left: 2.083vw;
-                }
-                .comment-author__date {
-                    font-size: 3.083vw;
-                    line-height: 3.299vw;
-                }
-            }
-            .match__comment {
-                font-size: 3.778vw;
-                padding-left: 3.472vw;
-                padding-right: 3.472vw;
-            }
-            .match__info {
-                padding: 3.472vw;
-                display: flex;
-                align-items: center;
-
-
-                .info__country {
-                    .country-first {
-                        margin-left: 1.042vw;
-                    }
-                    & img{
-                        width: 4.604vw;
-                    }
-                }
-                & .info__wins{
-                    width: 110px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: baseline;
-                }
-                .info__match-up {
-                    .match-up__versus {
-                        margin-left: 0.868vw;
-                        margin-right: 0.868vw;
-                    }
-                    .match-up__name {
-                        font-size: 4.431vw;
-                        line-height: 3.299vw;
-                    }
-
-                    .name__first {
-                        margin-left: 2.431vw;
-                    }
-                }
-
-                .info__maps {
-                    .maps__name {
-                        font-size: 3.431vw;
-                        margin-left: 2.083vw;
-                    }
-                }
-
-                .info__wins {
-                    svg {
-                        width: 10.868vw;
-                    }
-                    .wins__text {
-                        margin-left: 1.736vw;
-                    }
-                }
-
-                .country__text,
-                .match-up__text,
-                .maps__text,
-                .wins__text {
-                    font-size: 4.083vw;
-                    line-height: 2.257vw;
-                }
-            }
-        }
-    }
-    .gocu-replays__button{
-        margin-bottom: 5.472vw;
-    }
-    .gocu-replays__numb-pages {
-        margin-top: 4.340vw;
-        margin-bottom: 1.389vw;
-        .numb-pages {
-            font-size: 2.083vw;
-            line-height: 3.299vw;
-        }
-    }
-//replays
-    .replays {
-        margin-bottom: 5.903vw;
-        .replays__title {
-            padding-top: 3.472vw;
-            padding-bottom: 3.472vw;
-            padding-left: 3.299vw;
-            .title__icon {
-                width: 3.472vw;
-                height: 3.472vw;
-            }
-
-            .title__text {
-                font-size: 2.778vw;
-                margin-left: 2.951vw;
-            }
-        }
-
-        .replays__accordion {
-            .accordion__topic {
-                .topic__header {
-                    .header__title {
-                        font-size: 3.778vw;
-                        line-height: 4.861vw;
-                    }
-                    .fa-ellipsis-h {
-                        font-size: 3.778vw;
-                    }
-                }
-                .topic__body {
-                    .card-body {
-                        .body__wrap {
-                            margin-bottom: 4.340vw;
-                            .body__title {
-                                font-size: 3.431vw;
-                            }
-                            .body__numb {
-                                font-size: 3.431vw;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    //search
-    .search {
-        .search__title {
-            padding-top: 3.472vw;
-            padding-bottom: 3.472vw;
-            padding-left: 3.299vw;
-
-            .title__icon {
-                width: 3.472vw;
-                height: 3.472vw;
-            }
-            .title__text {
-                font-size: 3.778vw;
-                margin-left: 2.951vw;
-            }
-        }
-        .search__body {
-            padding: 3.472vw;
-            label {
-                margin-bottom: 4.340vw;
-                font-size: 3.9vw;
-                input{
-                    height: 7.639vw;
-                    padding-left: 3.472vw;
-                }
-                select {
-                    height: 7.639vw;
-                    padding-left: 3.472vw;
-                    margin-top: 1.736vw;
-                    background-position: center right 3.472vw;
-                    font-size: 3.5vw;
-                }
-            }
-            .body__button-search {
-                margin-top: 3.472vw;
-                margin-bottom: 2.431vw;
-            }
-        }
-    }
-    //forum-topics
-    .forum-topics {
-        .forum-topics__title {
-            padding-top: 3.125vw;
-            padding-bottom: 3.125vw;
-            padding-left: 3.299vw;
-
-            .title__icon {
-                width: 4.472vw;
-            }
-            .title__text {
-                font-size: 3.778vw;
-                margin-left: 2.951vw;
-            }
-        }
-        .forum-topics__accordion {
-            .accordion__topic {
-                .topic__header {
-                    .header__title {
-                        font-size: 3.778vw;
-                        line-height: 4.861vw;
-                    }
-                    .fa-chevron-down,
-                    .fa-ellipsis-h {
-                        font-size: 3.778vw;
-                    }
-                }
-            }
-        }
-    }
-    //page_tournament
-    .Page_tournament-content{
-        & .title_block{
-            height: 10.417vw;
-            padding: 3.472vw;
-            & .left_content{
-                & svg{
-                    margin-right: 1.736vw;
-                }
-            }
-            & .right_content{
-                & svg{
-                    margin-left: 1.736vw;
-                }
-                .lable_select
-                {
-                    select {
-                        padding-right: 3.431vw;
-                        font-size: 2.7vw;
-                    }
-                }
-            }
-            & img,svg{
-                width: 3.472vw;
-                margin-right: 1.736vw;
-            }
-            & .title_text{
-                font-size: 3vw;
-            }
-        }
-        & .block_navigationTournament{
-            height: 10.417vw;
-            padding: 3.472vw;
-            & a{
-                font-size: 2.778vw;
-            }
-        }
-        & .tournament_info{
-            padding: 3.472vw 3.472vw;
-            & svg{
-                width: 4vw;
-                margin-right: 1.736vw;
-            }
-            & .place{
-                & span{
-                    font-size: 3vw;
-                }
-            }
-            & .time{
-                & span{
-                    font-size: 3vw;
-                }
-            }
-            & .status{
-                & span{
-                    font-size: 2.5vw;
-                    border-radius: 2.604vw;
-                    padding: 0.868vw 3.208vw;
-                }
-            }
-            & .palayers{
-                & span {
-                    margin-left: 1.736vw;
-                    font-size: 3.083vw;
-                }
-            }
-        }
-    }
-    //page_detail
-    .Page_tournamentDetail-content{
-        & .title_block{
-            height: 10.417vw;
-            padding: 3.472vw;
-            & .left_content{
-                & svg{
-                    margin-right: 1.736vw;
-                }
-            }
-            & .right_content{
-                & svg{
-                    margin-left: 1.736vw;
-                }
-                //& .title_text{
-                //    font-size: 3.431vw;
-                //}
-            }
-            & img,svg{
-                width: 3.472vw;
-                margin-right: 1.736vw;
-            }
-            & .title_text{
-                font-size: 2.778vw;
-            }
-        }
-        & .block_replay_content{
-            padding: 30px 3.472vw;
-            & .block_left{
-                & .description_left{
-                    font-size: 2.083vw;
-                }
-                & .container_block{
-                    & .replay-desc-right{
-                        & p{
-                            font-size: 3.083vw;
-                        }
-                    }
-                    & .replay-desc-left{
-                        & p{
-                            font-size: 3.083vw;
-                        }
-                        & .gray{
-                            font-size: 3.431vw;
-                            font-weight: 400;
-                        }
-                        & .blue{
-                            font-size: 3.431vw;
-                            font-weight: 400;
-
-                        }
-                    }
-                }
-            }
-            & .block_right{
-                & .container_block{
-                    margin-top: 3.472vw;
-                    & p{
-                        font-size: 3.083vw;
-                    }
-                    & .right{
-                        & p{
-                            font-size: 3.083vw;
-                        }
-                        & svg{
-                            width: 3.604vw;
-                        }
-                    }
-                }
-            }
-        }
-        & .title_players{
-            height: 10.417vw;
-            padding: 0 3.472vw;
-            & .title_playersText{
-                font-size: 3.778vw;
-            }
-            & a{
-                font-size: 2.083vw;
-            }
-        }
-        & .container_players{
-            max-height: 220px;
-            padding: 3.472vw 0;
-            & .players_content{
-                padding: 1.736vw 45px 0.868vw 3.472vw;
-                & .left_block{
-                    align-items: center;
-                    span{
-                        font-size: 3.431vw;
-                    }
-                    & img{
-                        margin: 0 1.736vw 0 2.604vw;
-                    }
-                    & a{
-                        width: 29.514vw;
-                        & .name_player{
-                            font-size: 3.431vw;
-                        }
-                    }
-                }
-                & .center_block{
-                    & img{
-                        margin: 0 0.868vw;
-                    }
-                }
-                & .right_block{
-                    & svg{
-                        width: 3.472vw;
-                    }
-                }
-            }
-        }
-        & .container_round{
-            padding: 3.472vw 3.472vw 1.736vw;
-            & span{
-                font-size: 3.431vw;
-            }
-            & .winner_round{
-                padding-bottom: 1.736vw;
-                & .left_block{
-                    padding: 0;
-                    span{
-                        font-size: 3.431vw;
-                        margin-left: 1.736vw;
-                    }
-                    & img{
-                        margin: 0 1.736vw 0 2.604vw;
-                    }
-                    & a{
-                        & .name_player{
-                            font-size: 2.431vw;
-                        }
-                    }
-                }
-                & .center_block{
-                    padding: 0;
-                    justify-content: flex-start;
-                    & .one_player{
-                        width: 19.097vw;
-                        height: 4.861vw;
-                    }
-                    & img{
-                        margin: 0 0.868vw;
-                    }
-                    & .blue_span{
-                        margin: 0 4.340vw 0 3.472vw;
-                    }
-                }
-                & .right_block{
-                    padding: 0;
-                    & a{
-                        margin-right: 1.736vw;     }
-                    & svg{
-                        width: 3.472vw;
-                    }
-                }
-            }
-        }
-        .container_players::-webkit-scrollbar {
-            width: 1.736vw;
-        }
-        .container_players::-webkit-scrollbar-thumb {
-            border-radius: 4px;
-            height: 4.340vw;
-        }
-    }
-//page_game
-    .Page_gameBest{
-        & .title_block{
-            min-height: 10.417vw;
-            padding: 3.472vw;
-            & .left_content{
-                & svg{
-                    margin-right: 1.736vw;
-                }
-            }
-            & .right_content{
-                & svg{
-                    margin-left: 1.736vw;
-                }
-                //& .title_text{
-                //    font-size: 2.431vw;
-                //}
-            }
-            & img,svg{
-                width: 3.472vw;
-                margin-right: 1.736vw;
-            }
-        }
-        & .title_players{
-            min-height: 10.417vw;
-            padding: 0 3.472vw;
-            & .title_playersText{
-                font-size: 3.778vw;
-            }
-            & a{
-                font-size: 2.083vw;
-            }
-        }
-        & .container_players{
-            max-height: 38.194vw;
-            padding: 3.472vw 0;
-            & .players_content{
-                padding: 1.736vw 7.813vw 0.868vw 3.472vw;
-                align-items: center;
-                & .left_block{
-                    align-items: center;
-                    & .number{
-                        width: 6.944vw;
-                        font-size: 3.431vw;
-                        //height: 4.861vw;
-                    }
-                    span{
-                        font-size: 2.431vw;
-                    }
-                    & img{
-                        margin: 0 1.736vw 0 2.604vw;
-                    }
-                    & a{
-                        width: 24.306vw;
-                        & .name_player{
-                            font-size: 3.431vw;
-                        }
-                    }
-                }
-                & .center_block{
-                    & img{
-                        margin: 0 0.868vw;
-                    }
-                }
-                & .right_block{
-                    & svg{
-                        width: 3.472vw;
-                    }
-                    p{
-                        font-size: 3.431vw;
-                        width: 12.153vw;
-                        //height: 4.861vw;
-                    }
-                }
-            }
-        }
-        .container_players::-webkit-scrollbar {
-            width: 1.736vw;
-        }
-        .container_players::-webkit-scrollbar-thumb {
-            border-radius: 0.694vw;
-            height: 4.340vw;
-        }
-    }
-//stream_list
-    .streams_list{
-        padding: 2.604vw;
-        width: 45.271vw;
-        right: -45.271vw;
-        & .widget-stream-lists{
-            margin: 0.868vw 0;
-            & span{
-                margin-left: 3.472vw;
-                font-size: 3.431vw;
-
-            }
-        }
-    }
-    .open{
-        right: 1.042vw;
-    }
-
-
-
 }
 
 
 
 
 
+@media (max-width: 992px) {
+    .header{
+        position: relative;
+        & .icon_bars{
+            display: block!important;
+            width: 50px;
+        }
+        & .logo{
+            & img{
+                width: 70% !important;
+            }
+        }
+        & .menu_navigation{
+            display: none!important;
+        }
+        & .autorization{
+            display:none!important;
+        }
+        & .main_menu{
+            position: absolute;
+            right: 0;
+            bottom: 30%;
+        }
+        & .search{
+            justify-content: flex-start;
+        }
+        & .button_input{
+            width: 100% !important;
+            & .search_input{
+                min-width: 40vw !important;
+            }
+        }
+        & .burger_menu{
+            display: block!important;
+            & .menu_bar{
+                width: 50px!important;
+            }
+        }
+
+    }
+    .footer {
+        padding-top: 7.417vw;
+        padding-bottom: 7.417vw;
+        position: relative;
+        .footer__logo {
+            .logo__text {
+                font-size: 3.083vw;
+                margin-top: 3.299vw;
+            }
+            & img{
+                display: none;
+            }
+        }
+        .footer__link {
+            .link-list__item {
+                font-size:3.083vw;
+                line-height: 5.556vw;
+            }
+        }
+        .footer__info {
+            .footer__title {
+                font-size: 3.083vw;
+                letter-spacing: 1.2px;
+                margin-bottom: 5.556vw;
+            }
+            .footer__text {
+                font-size: 3.083vw;
+
+            }
+            .footer__mail {
+                font-size: 2.431vw;
+                line-height: 2.431vw;
+                svg {
+                    margin-right: 15px;
+                    width: 2.778vw;
+                    height: 5.556vw;
+                }
+            }
+        }
+        .footer__our-birthday {
+            .footer__title {
+                font-size: 3.083vw;
+            }
+            .our-birthday__nickname {
+                font-size: 2.431vw;
+                margin-bottom: 2.778vw;
+            }
+        }
+        .footer__useful {
+            position: absolute;
+            top: 17%;
+            left: 60%;
+            .footer__title {
+                font-size: 3.083vw;
+            }
+            .useful__link {
+                font-size: 3.083vw;
+                margin-bottom: 3.472vw;
+            }
+        }
+        .produced {
+            margin-top: 30px;
+            display: flex;
+            align-items: flex-end;
+            & p {
+                font-size: 2.431vw;
+                line-height: 4.167vw;
+                margin-bottom: 0;
+            }
+            & a {
+                display: flex;
+                align-items: flex-end;
+                font-size: 2.431vw;
+                line-height: 4.167vw;
+                margin-left: 0.868vw;
+            }
+        }
+
+    }
+
+    .footer__copyright {
+        .copyright__text {
+            font-size: 2.556vw;
+            line-height: 5.556vw;
+        }
+    }
+
+
+}
 

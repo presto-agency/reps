@@ -46,19 +46,34 @@
                 {{--                <a class="footer__mail" href="mailto:Rus_Brain#6290">Rus_Brain#6290</a>--}}
 
             </div>
-            <div class="footer__our-birthday col-xl-2 col-lg-2 mt-lg-0 col-md-6 col-sm-12 mt-4">
-                <h2 class="info__title footer__title">Наши именинники</h2>
+            <div class="footer__our-birthday col-xl-2 col-lg-2 mt-lg-0 col-md-6 col-sm-12 col-6 mt-4">
+                <h2 class="info__title footer__title">Наши именинники:</h2>
                 <div class="row">
                     <div class="col-6">
+                        <p class="our-birthday__nickname">bgfhjk</p>
+                        <p class="our-birthday__nickname">bgfhjk</p>
+                        <p class="our-birthday__nickname">bgfhjk</p>
+                        <p class="our-birthday__nickname">bgfhjk</p>
+                        @foreach($footerData['footerUsers'] as $item)
+                            <p class="our-birthday__nickname">{{$item->name}}</p>
+                        @endforeach
+                    </div>
+                    <div class="col-6">
+                        <p class="our-birthday__nickname">bgfhjk</p>
+                        <p class="our-birthday__nickname">bgfhjk</p>
+                        <p class="our-birthday__nickname">bgfhjk</p>
+                        <p class="our-birthday__nickname">bgfhjk</p>
                         @foreach($footerData['footerUsers'] as $item)
                             <p class="our-birthday__nickname">{{$item->name}}</p>
                         @endforeach
                     </div>
                 </div>
-
             </div>
             <div class="footer__useful col-xl-2 col-lg-2 mt-lg-0 col-md-6 col-sm-12 mt-4">
                 <h2 class="info__title footer__title">Полезное:</h2>
+                <a href="#" class="useful__link" title="Файловый архив">Файловый архив</a>
+                <a href="#" class="useful__link" title="Файловый архив">Файловый архив</a>
+                <a href="#" class="useful__link" title="Файловый архив">Файловый архив</a>
                 @foreach($footerData['footerUrl'] as $item)
                     <a href="{{$item->url}}" class="useful__link">{{$item->title}}</a>
                 @endforeach
