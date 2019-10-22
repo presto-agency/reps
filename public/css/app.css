@@ -16295,20 +16295,12 @@ select:focus {
     font-size: 1.025vw;
   }
 
-  .block_chat-twitch .row_contentChat .block_userMessage user_text {
-    font-size: 1.025vw;
-  }
-
   .block_chat-twitch .row_contentChat .block_userMessage img {
     padding: 0.732vw 0;
   }
 
   .block_chat-twitch .title_video {
     height: 4.392vw;
-  }
-
-  .block_chat-twitch .title_video .video_header {
-    padding: 0 3.472vw;
   }
 
   .block_chat-twitch .title_video .video_header img {
@@ -16322,10 +16314,6 @@ select:focus {
   .block_chat-twitch .title_video .video_header .right_block svg {
     width: 2.562vw;
     margin-right: 0.732vw;
-  }
-
-  .block_chat-twitch .title_video .video_header .right_block .svg_close {
-    width: 1.562vw;
   }
 
   .block_chat-twitch .video_twitch {
@@ -16596,9 +16584,7 @@ select:focus {
   }
 }
 
-@media (max-width: 991px) {
-  /*Header*/
-
+@media (max-width: 992px) {
   .header {
     position: relative;
   }
@@ -16645,7 +16631,9 @@ select:focus {
   .header .burger_menu .menu_bar {
     width: 50px !important;
   }
+}
 
+@media (max-width: 991px) {
   /*global styles START*/
 
   #left-sidebar {
@@ -16771,10 +16759,6 @@ select:focus {
     width: 4vw;
   }
 
-  .block_chat-twitch .title_video .video_header .left_block .svg_close {
-    width: 2vw;
-  }
-
   .block_chat-twitch .title_video .video_header .right_block svg {
     width: 3.5vw;
     margin-right: 1vw;
@@ -16819,10 +16803,6 @@ select:focus {
   .block_replay .row_game {
     padding: 0 1vw;
     margin-bottom: 1.5vw;
-  }
-
-  .block_replay .row_game .game_oneSection {
-    margin-bottom: 1.736vw;
   }
 
   .block_replay .row_game .name_game p {
@@ -17907,6 +17887,92 @@ select:focus {
 
   .open {
     right: 1.042vw;
+  }
+
+  .footer {
+    padding-top: 7.417vw;
+    padding-bottom: 7.417vw;
+    position: relative;
+    min-height: 560px;
+  }
+
+  .footer .footer__logo .logo__text {
+    font-size: 3.083vw;
+    margin-top: 3.299vw;
+  }
+
+  .footer .footer__logo img {
+    display: none;
+  }
+
+  .footer .footer__link .link-list__item {
+    font-size: 3.083vw;
+    line-height: 5.556vw;
+  }
+
+  .footer .footer__info .footer__title {
+    font-size: 3.083vw;
+    letter-spacing: 1.2px;
+    margin-bottom: 1.556vw;
+  }
+
+  .footer .footer__info .footer__text {
+    font-size: 3.083vw;
+    margin-bottom: 1.736vw;
+  }
+
+  .footer .footer__info .footer__mail {
+    font-size: 2.431vw;
+    line-height: 2.431vw;
+  }
+
+  .footer .footer__info .footer__mail svg {
+    margin-right: 15px;
+    width: 2.778vw;
+    height: 5.556vw;
+  }
+
+  .footer .footer__our-birthday .footer__title {
+    font-size: 3.083vw;
+  }
+
+  .footer .footer__our-birthday .our-birthday__nickname {
+    font-size: 2.431vw;
+    margin-bottom: 2.778vw;
+  }
+
+  .footer .footer__useful .footer__title {
+    font-size: 3.083vw;
+  }
+
+  .footer .footer__useful .useful__link {
+    font-size: 3.083vw;
+    margin-bottom: 3.472vw;
+  }
+
+  .footer .produced {
+    margin-top: 30px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .footer .produced p {
+    font-size: 2.431vw;
+    line-height: 4.167vw;
+    margin-bottom: 0;
+  }
+
+  .footer .produced a {
+    display: flex;
+    align-items: flex-end;
+    font-size: 2.431vw;
+    line-height: 4.167vw;
+    margin-left: 0.868vw;
+  }
+
+  .footer__copyright .copyright__text {
+    font-size: 2.556vw;
+    line-height: 5.556vw;
   }
 }
 

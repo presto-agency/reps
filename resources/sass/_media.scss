@@ -89,27 +89,23 @@
             & .block_date{
                 font-size: 1.025vw;
             }
-            & .block_userMessage {
+            & .block_userMessage{
                 padding: 1.464vw 0;
-
-                & .user_nick {
+                & .user_nick{
                     font-size: 1.025vw;
                 }
-
-                & user_text {
-                    font-size: 1.025vw;
-                }
-
-                & img {
+                & img{
                     padding: 0.732vw 0;
                 }
+
             }
+
+
         }
 
         & .title_video{
             height: 4.392vw;
             & .video_header{
-                padding: 0 3.472vw;
                 & img{
                     padding-right: 1.464vw;
                 }
@@ -117,15 +113,11 @@
                     & svg{
                         width: 2.928vw;
                     }
-
                 }
                 & .right_block{
                     & svg{
                         width: 2.562vw;
                         margin-right: 0.732vw;
-                    }
-                    & .svg_close{
-                        width: 1.562vw;
                     }
                 }
             }
@@ -389,8 +381,9 @@
     }
 }
 
-@media (max-width: 991px) {
-    /*Header*/
+
+
+@media (max-width: 992px) {
     .header{
         position: relative;
         & .icon_bars{
@@ -430,6 +423,11 @@
         }
 
     }
+
+
+}
+
+@media (max-width: 991px) {
     /*global styles START*/
     #left-sidebar {
         order: 1;
@@ -539,9 +537,6 @@
                     & svg{
                         width: 4vw;
                     }
-                    & .svg_close{
-                        width: 2vw;
-                    }
                 }
                 & .right_block{
                     & button{
@@ -597,9 +592,6 @@
         & .row_game{
             padding: 0 1vw;
             margin-bottom: 1.5vw;
-            & .game_oneSection{
-                margin-bottom:1.736vw;
-            }
             & .name_game{
                 & p{
                     font-size: 1.4vw;
@@ -637,6 +629,7 @@
 
 }
 
+
 @media (max-width: 576px) {
     //global_style
     .title_block{
@@ -669,7 +662,7 @@
     }
 
     //end global_style
-//header
+    //header
     .header_row{
         flex-direction: row-reverse;
         & .logotype{
@@ -1167,7 +1160,7 @@
             line-height: 3.299vw;
         }
     }
-//replays
+    //replays
     .replays {
         margin-bottom: 5.903vw;
         .replays__title {
@@ -1516,7 +1509,7 @@
             height: 4.340vw;
         }
     }
-//page_game
+    //page_game
     .Page_gameBest{
         & .title_block{
             min-height: 10.417vw;
@@ -1600,7 +1593,7 @@
             height: 4.340vw;
         }
     }
-//stream_list
+    //stream_list
     .streams_list{
         padding: 2.604vw;
         width: 45.271vw;
@@ -1619,9 +1612,94 @@
     }
 
 
+    .footer {
+        padding-top: 7.417vw;
+        padding-bottom: 7.417vw;
+        position: relative;
+        min-height: 560px;
+        .footer__logo {
+            .logo__text {
+                font-size: 3.083vw;
+                margin-top: 3.299vw;
+            }
+            & img{
+                display: none;
+            }
+        }
+        .footer__link {
+            .link-list__item {
+                font-size:3.083vw;
+                line-height: 5.556vw;
+            }
+        }
+        .footer__info {
+            .footer__title {
+                font-size: 3.083vw;
+                letter-spacing: 1.2px;
+                margin-bottom: 1.556vw;
+            }
+            .footer__text {
+                font-size: 3.083vw;
+                margin-bottom: 1.736vw;
+
+            }
+            .footer__mail {
+                font-size: 2.431vw;
+                line-height: 2.431vw;
+                svg {
+                    margin-right: 15px;
+                    width: 2.778vw;
+                    height: 5.556vw;
+                }
+            }
+        }
+        .footer__our-birthday {
+            .footer__title {
+                font-size: 3.083vw;
+            }
+            .our-birthday__nickname {
+                font-size: 2.431vw;
+                margin-bottom: 2.778vw;
+            }
+        }
+        .footer__useful {
+            .footer__title {
+                font-size: 3.083vw;
+            }
+            .useful__link {
+                font-size: 3.083vw;
+                margin-bottom: 3.472vw;
+            }
+        }
+        .produced {
+            margin-top: 30px;
+            display: flex;
+            align-items: flex-end;
+            & p {
+                font-size: 2.431vw;
+                line-height: 4.167vw;
+                margin-bottom: 0;
+            }
+            & a {
+                display: flex;
+                align-items: flex-end;
+                font-size: 2.431vw;
+                line-height: 4.167vw;
+                margin-left: 0.868vw;
+            }
+        }
+
+    }
+
+    .footer__copyright {
+        .copyright__text {
+            font-size: 2.556vw;
+            line-height: 5.556vw;
+        }
+    }
+
 
 }
-
 
 
 
