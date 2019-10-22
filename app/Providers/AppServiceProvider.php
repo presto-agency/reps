@@ -3,8 +3,9 @@
 namespace App\Providers;
 
 
-use App\Models\{Comment, ForumTopic, Replay, Stream, UserGallery, InterviewQuestion};
+use App\Models\{Comment, Country, ForumTopic, Replay, Stream, UserGallery, InterviewQuestion};
 use App\Observers\{CommentObserver,
+    CountryObserver,
     ForumTopicObserver,
     ReplayObserver,
     StreamObserver,
@@ -45,6 +46,7 @@ class AppServiceProvider extends ServiceProvider
         ForumTopic::observe(ForumTopicObserver::class);
         Comment::observe(CommentObserver::class);
         User::observe(UserObserver::class);
+        Country::observe(CountryObserver::class);
 
     }
 }
