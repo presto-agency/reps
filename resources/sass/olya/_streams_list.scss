@@ -1,0 +1,37 @@
+.streams_list{
+    padding: 15px;
+    top: 7.2%;
+    width: 255px;
+    position: absolute;
+    height: 92%;
+    overflow: hidden;
+    right: -255px;
+    transition-duration: 0.3s;
+    z-index: 9;
+    background: white;
+    background: transparent;
+    & .widget-stream-lists{
+        visibility: hidden;
+        margin: 5px 0;
+        & span{
+            margin-left: 20px;
+        }
+    }
+}
+ .open{
+     right: 6px;
+    transition-duration: 0.3s;
+    background: white;
+     & .widget-stream-lists{
+         visibility: visible;
+         color: $blue;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         & span{
+             font-weight: 400;
+
+         }
+
+     }
+}
