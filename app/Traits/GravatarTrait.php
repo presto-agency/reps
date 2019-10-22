@@ -21,7 +21,6 @@ trait GravatarTrait
 //      }
         $url = 'images/avatar.jpg';
     }
-
     return $url;
   }
 }
