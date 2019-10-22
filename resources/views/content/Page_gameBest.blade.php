@@ -21,11 +21,11 @@
         <div class="container_players">
             @foreach($top100Points as $item)
                 <div class="players_content">
-                    <div class="left_block">
+`                    <div class="left_block">
                         <span class="number">#{{$item['id']}}</span>
                         <a href="#">
                             <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                 class="author__avatar img-fluid">
+`                                 class="author__avatar img-fluid">
                             <span class="name_player">{{$item['name']}}</span>
                         </a>
                     </div>

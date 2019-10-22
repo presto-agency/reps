@@ -219,7 +219,7 @@
                 <div class="col-xl-1 col-lg-1 col-md-1 col-1  left_block">
                     <span>#1</span>
                 </div>
-                <div class="col-xl-8 col-lg-10 col-md-10 col-sm-8 col-8 center_block">
+                <div class="col-xl-8 col-lg-10 col-md-10 col-sm-8 col-7 center_block">
                     <div class="one_player">
                         <img class="icon_bars" src="http://reps.loc/images\ava.png">
                         <span> [fr]phobo</span>
@@ -230,15 +230,15 @@
                         <span>psyduck</span>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-3 right_block">
+                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-4 right_block">
                     <a href="#">reps1</a>
                 </div>
-            </div>
-            <div class="row winner_round">
+{{--            </div>--}}
+{{--            <div class="row winner_round">--}}
                 <div class="col-xl-1 col-lg-1 col-md-1 col-1 left_block">
                     <span>#1</span>
                 </div>
-                <div class="col-xl-8 col-lg-10 col-md-10 col-sm-8 col-8 center_block">
+                <div class="col-xl-8 col-lg-10 col-md-10 col-sm-8 col-7 center_block">
                     <div class="one_player">
                         <img class="icon_bars" src="http://reps.loc/images\ava.png">
                         <span> [fr]phobo</span>
@@ -249,12 +249,11 @@
                         <span>psyduck</span>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-3 right_block">
+                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-4 right_block">
                     <a href="#">reps1</a>
                     <a href="#">reps1</a>
                 </div>
-            </div>
-            <div class="row winner_round">
+{{--            <div class="row winner_round">--}}
                 <div class="col-xl-1 col-lg-1 col-md-1 col-1 left_block">
                     <span>#1</span>
                 </div>
@@ -274,7 +273,7 @@
                     <a href="#">reps1</a>
                     <a href="#">reps1</a>
                 </div>
-            </div>
+{{--            </div>--}}
         </div>
     </div>
 </section>

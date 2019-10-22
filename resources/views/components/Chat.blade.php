@@ -178,8 +178,9 @@
                 </a>
             </div>
         </div>
-        <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12 col-12">
-            <div class="row title_video">
+        <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12 col-12 block_stream_list">
+            <div class="row title_video ">
+                @include('components.streams_list')
                 <div class="video_header">
                     <div class="left_block">
                         <img class="icon_bars" src="{{url('/images\arrow-point-to-right.png')}}"/>
@@ -188,28 +189,34 @@
                         <p class="title_Text">Guest</p>
                     </div>
                     <div class="right_block">
-                        <button>
+                        <button class="btn_theatre_mode">
                             <svg viewBox="0 0 59 55" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="8" y="12" width="42" height="31" stroke="white" stroke-width="2"/>
                                 <line x1="37" y1="43" x2="37" y2="11" stroke="white" stroke-width="2"/>
                             </svg>
                         </button>
-                        <button>
-                            <svg viewBox="0 0 59 55" fill="white" xmlns="http://www.w3.org/2000/svg">
+                        <button class="btn_streams_list">
+                            <svg class="svg_stream" viewBox="0 0 59 55" fill="white" xmlns="http://www.w3.org/2000/svg">
                                 <line x1="12" y1="16" x2="47" y2="16" stroke="white" stroke-width="2"/>
                                 <line x1="12" y1="27" x2="47" y2="27" stroke="white" stroke-width="2"/>
                                 <line x1="12" y1="38" x2="47" y2="38" stroke="white" stroke-width="2"/>
                             </svg>
+
+                        </button>
+                        <button class="btn_streams_close">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class=" svg_close svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="white" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
                         </button>
                     </div>
                 </div>
             </div>
             <div class="row video_twitch">
-                <iframe style="width: 99%; height: 510px;" allowfullscreen="true" scrolling="no" frameborder="0"
-                        src="https://player.twitch.tv/?volume=0.5&amp;!muted&amp;channel=grimeboss_tv"></iframe>
+                <iframe style="width: 99%; height: 100%;" allowfullscreen="true" scrolling="no" frameborder="0" src="https://player.twitch.tv/?volume=0.5&amp;!muted&amp;channel=grimeboss_tv"></iframe>
             </div>
         </div>
     </div>
 </section>
+
+
+
 
 

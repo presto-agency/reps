@@ -3,50 +3,14 @@
         box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     }
     & .title_block{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: #0567cc;
-        height: 60px;
-        border: 0;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        padding: 20px;
-        & .left_content{
-            display: flex;
-            align-items: end;
-            & svg{
-                margin-right: 10px;
-                fill: white;
-            }
-        }
-        & .right_content{
-            display: flex;
-            align-items: center;
-            & svg{
-                margin-left: 10px;
-            }
-            & .title_text{
-                font-size: 14px;
-                color: white;
-                margin: 0;
-            }
-        }
-        & img,svg{
-            width: 20px;
-            margin-right: 10px;
-        }
-        & .title_text{
-            font-size: 16px;
-            color: white;
-            margin: 0;
-        }
+        justify-content: flex-start;
+        align-items: baseline;
     }
     & .title_players{
         display: flex;
         align-items: center;
         background: $light-gray;
-        height: 60px;
+        min-height: 60px;
         justify-content: space-between;
         padding: 0 20px;
         & .title_playersText{
@@ -76,7 +40,7 @@
                 & .number{
                     width: 40px;
                     display: block;
-                    height: 28px;
+                    //height: 28px;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -90,7 +54,7 @@
                 & a{
                     width: 140px;
                     display: block;
-                    height: 28px;
+                    //height: 28px;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -114,7 +78,7 @@
                     font-size: 14px;
                     width: 70px;
                     display: block;
-                    height: 28px;
+                    //height: 28px;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
