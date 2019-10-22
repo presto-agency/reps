@@ -2,14 +2,14 @@
 
 namespace App\Http\Sections;
 
+use AdminColumn;
 use AdminColumnEditable;
 use AdminDisplay;
-use AdminColumn;
+use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
-use AdminDisplayFilter;
-use App\Models\Country;
-use App\Models\Race;
+use App\Http\ViewComposers\StreamIframeComposer;
+use App\Models\{Country, Race};
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
@@ -68,15 +68,22 @@ class Stream extends Section implements Initializable
 
         $display->setColumns([
 
-            $id = AdminColumn::text('id', 'Id')
-                ->setWidth(50),
-            $user_id = AdminColumn::relatedLink('users.name', 'User'),
+            $id = AdminColumn::text('id', 'ID'),
+            $user_id = AdminColumn::relatedLink('users.name', 'Пользователь'),
 
-            $title = AdminColumn::text('title', 'Title'),
+            $title = AdminColumn::text('title', 'Название'),
 
-            $approved = AdminColumnEditable::checkbox('approved')->setLabel('Approved')
+            $approved = AdminColumnEditable::checkbox('approved')->setLabel('Подтвержден')
                 ->append(AdminColumn::filter('approved'))
-                ->setWidth(100),
+                ->setWidth(150),
+            $online = AdminColumn::custom('Online', function ($model) {
+                return $model->active == 1 ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
+            }),
+            $service = AdminColumn::custom('Service', function ($model) {
+                $parts = $this->parse_stream_url($model->stream_url);
+                $host = $parts['host'];
+                return $host;
+            }),
         ]);
 
         $control = $display->getColumns()->getControlColumn();
@@ -87,43 +94,54 @@ class Stream extends Section implements Initializable
     }
 
     /**
-     * @param int $id
-     *
-     * @return FormInterface
+     * @param $id
+     * @return \SleepingOwl\Admin\Form\FormPanel
+     * @throws \Throwable
      */
     public function onEdit($id)
     {
         $display = AdminForm::panel();
         $display->setItems([
 
-            $title = AdminFormElement::text('title', 'Title')
+            $title = AdminFormElement::text('title', 'Название')
                 ->setValidationRules(['required', 'max:255', 'string']),
 
-            $race_id = AdminFormElement::select('race_id', 'Race')
+            $race_id = AdminFormElement::select('race_id', 'Первая раса')
                 ->setOptions((new Race())->pluck('title', 'id')->toArray())
                 ->setDisplay('title')
                 ->setValidationRules(['required']),
 
-            $content = AdminFormElement::wysiwyg('content', 'Content')
-                ->setValidationRules(['nullable']),
-            $country_id = AdminFormElement::select('country_id', 'Country')
+            $country_id = AdminFormElement::select('country_id', 'Первая страна')
                 ->setOptions((new Country())->pluck('name', 'id')->toArray())
                 ->setDisplay('name')
                 ->setValidationRules(['required']),
 
-            $stream_url = AdminFormElement::text('stream_url', 'Stream url')
-                ->setValidationRules(['nullable', 'max:255', 'string']),
+            $content = AdminFormElement::textarea('content', 'Комментарий')
+                ->setValidationRules(['nullable']),
 
-            $approved = AdminFormElement::checkbox('approved', 'Approved'),
+            $approved = AdminFormElement::checkbox('approved', 'Подтвердить'),
+
+            $stream_url = AdminFormElement::text('stream_url', 'Вставить url')
+                ->setHtmlAttribute('title', 'http:// or https://')
+                ->setHtmlAttribute('placeholder', 'Вставить url')
+                ->setValidationRules(['required', 'max:255', 'string', 'url']),
 
 
         ]);
+
+        if (!empty($id)) {
+            $getStreamUrl = \App\Models\Stream::where('id', $id)->value('stream_url');
+            $display->setItems([
+                view('admin.stream.iframeInput', compact('getStreamUrl'))->render(),
+            ]);
+        }
 
         return $display;
     }
 
     /**
-     * @return FormInterface
+     * @return \SleepingOwl\Admin\Form\FormPanel
+     * @throws \Throwable
      */
     public function onCreate()
     {
@@ -166,4 +184,12 @@ class Stream extends Section implements Initializable
         return $link;
     }
 
+    /**
+     * @param $url
+     * @return mixed
+     */
+    public function parse_stream_url($url)
+    {
+        return parse_url(htmlspecialchars_decode($url));
+    }
 }

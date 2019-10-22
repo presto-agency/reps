@@ -2,9 +2,8 @@
 
 namespace App;
 
-use App\Models\Role;
-use App\Traits\ModelRelations\UserRelation;
 use App\Traits\GravatarTrait;
+use App\Traits\ModelRelations\UserRelation;
 use App\Traits\ModelSetAttributes\UserSetAttribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,10 +48,16 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        $superAdminId = Role::where('name', 'super-admin')->value('id');
-        $adminId = Role::where('name', 'admin')->value('id');
-        return $this->role_id == $superAdminId || $this->role_id == $adminId;
+        return $this->roles->name == 'super-admin' || $this->roles->name == 'admin';
     }
 
+    public function hasSuperAdmin()
+    {
+        return $this->roles->name == 'super-admin' ? true : false;
+    }
 
+    public function superAdminRoles()
+    {
+        return $this->roles->name == 'super-admin' ? true : false;
+    }
 }

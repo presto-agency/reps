@@ -6,19 +6,13 @@ use AdminColumn;
 use AdminColumnEditable;
 use AdminColumnFilter;
 use AdminDisplay;
-use AdminForm;
-
 use AdminDisplayFilter;
+use AdminForm;
 use AdminFormElement;
-use App\Models\Race;
-use App\Models\ReplayMap;
-use App\Models\Country;
-use App\Models\ReplayType;
+use App\Models\{Country, Race, ReplayMap, ReplayType};
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
-use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -84,7 +78,7 @@ class Replay extends Section
 
             $user_id = AdminColumn::relatedLink('users.name', 'Пользователь'),
 
-            $user_replay = AdminColumn::text('user_replay', 'Название'),
+            $user_replay = AdminColumn::text('title', 'Название'),
 
             $map_id = AdminColumn::relatedLink('maps.name', 'Карта')
                 ->setWidth(100),
@@ -149,7 +143,7 @@ class Replay extends Section
                 ->setOperator('contains')
                 ->setPlaceholder('Пользователь')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
-            $user_replay = AdminColumnFilter::text()
+            $title = AdminColumnFilter::text()
                 ->setOperator(FilterInterface::CONTAINS)
                 ->setPlaceholder('Название')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
@@ -192,7 +186,7 @@ class Replay extends Section
             AdminFormElement::columns()
                 ->addColumn([
 
-                    $user_replay = AdminFormElement::text('user_replay', 'Название')
+                    $user_replay = AdminFormElement::text('title', 'Название')
                         ->setHtmlAttributes(['placeholder' => 'Название'])
                         ->setValidationRules(['required', 'string', 'between:4,255'])
                 ], 3)
@@ -337,7 +331,7 @@ class Replay extends Section
     {
 
         $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $url = url('admin/replays/show/'. $model->getKey());
+            $url = url('admin/replays/show/' . $model->getKey());
             return $url;
         }, function (\Illuminate\Database\Eloquent\Model $model) {
             return 'Просмотреть';

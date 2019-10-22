@@ -17,7 +17,8 @@ class Stream extends Model
         'content',
         'country_id',
         'stream_url',
-        'approved'
+        'approved',
+        'active'
 
     ];
 }

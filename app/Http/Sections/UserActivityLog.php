@@ -156,7 +156,7 @@ class UserActivityLog extends Section
      */
     private function uploadReplayDescription($id)
     {
-        $user_replay = Replay::where('id', $id)->value('user_replay');
+        $user_replay = Replay::where('id', $id)->value('title');
         $for = 'Replay ';
         if (!empty($user_replay)) {
             return $this->link($for, $this->replays, $id, $user_replay);
@@ -206,7 +206,7 @@ class UserActivityLog extends Section
             $showId = $commentable->id;
             $className = $this->getClassName($commentable);
             if ($className == 'Replay') {
-                return $this->link($for, $this->replays, $showId, $commentable->user_replay);
+                return $this->link($for, $this->replays, $showId, $commentable->title);
             }
             if ($className == 'ForumTopic') {
                 return $this->link($for, $this->forum_topics, $showId, $commentable->title);

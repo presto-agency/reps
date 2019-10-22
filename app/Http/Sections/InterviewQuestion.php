@@ -5,11 +5,9 @@ namespace App\Http\Sections;
 use AdminColumn;
 use AdminColumnEditable;
 use AdminDisplay;
-use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
-use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -51,19 +49,23 @@ class InterviewQuestion extends Section
         $display->with('answers', 'userAnswers');
 
         $display->setApply(function ($query) {
-            $query->orderBy('id', 'desc');
+            $query->orderBy('id', 'asc');
         });
 
         $display->setColumns([
 
-            $id = AdminColumn::text('id', 'Id')->setWidth('100px'),
+            $id = AdminColumn::text('id', 'ID')
+                ->setWidth('100px'),
 
-            $question = AdminColumn::text('question', 'Title')->setWidth('100px'),
+            $question = AdminColumn::text('question', 'Вопрос')
+                ->setWidth('100px'),
 
-            $active = AdminColumnEditable::checkbox('active')->setLabel('Active')
+            $active = AdminColumnEditable::checkbox('active')
+                ->setLabel('Активный')
                 ->setWidth(100),
 
-            $for_login = AdminColumnEditable::checkbox('for_login')->setLabel('For login only')
+            $for_login = AdminColumnEditable::checkbox('for_login')
+                ->setLabel('Только для авторизированных')
                 ->setWidth(100),
 
             $count_answer = AdminColumn::count('answers', 'Количество вариатов')
@@ -95,12 +97,13 @@ class InterviewQuestion extends Section
                 ->addColumn(function () {
                     return [
 
-                        $question = AdminFormElement::text('question', 'Question')
+                        $question = AdminFormElement::text('question', 'Вопрос')
+                            ->setHtmlAttribute('placeholder', 'Вопрос')
                             ->setValidationRules(['required', 'string', 'max:255']),
 
-                        $active = AdminFormElement::checkbox('active', 'Active'),
+                        $active = AdminFormElement::checkbox('active', 'Активный'),
 
-                        $active = AdminFormElement::checkbox('for_login', 'For login only'),
+                        $active = AdminFormElement::checkbox('for_login', 'Только для авторизированных'),
 
                     ];
                 })->addColumn(function () {

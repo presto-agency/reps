@@ -12,10 +12,10 @@ class ReplayTypesSeeder extends Seeder
      */
     public function run()
     {
-        $replayType = ReplayType::query()->firstOrNew(['title' => 'Gosu']);
+        $replayType = ReplayType::query()->firstOrNew(['title' => 'Профессиональный']);
         if (!$replayType->exists) {
             $replayType->fill([
-                'title' => 'Gosu',
+                'title' => 'Профессиональный',
             ])->save();
         }
         $replayType = ReplayType::query()->firstOrNew(['title' => 'Пользовательский']);

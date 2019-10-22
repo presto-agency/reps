@@ -9,9 +9,7 @@ class StreamObserver
 
     public function creating(Stream $stream)
     {
-
         $this->setUserIdAttribute($stream);
-
     }
     /**
      * Handle the stream "created" event.
