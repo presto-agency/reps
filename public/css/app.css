@@ -14089,7 +14089,6 @@ select:focus {
 
 .block_chat-twitch .text_support {
   font-size: 18px;
-  padding: 30px 0;
   margin: 0;
 }
 
@@ -14234,7 +14233,6 @@ select:focus {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0 20px;
 }
 
 .block_chat-twitch .title_video .video_header img {
@@ -14245,6 +14243,7 @@ select:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 10px;
 }
 
 .block_chat-twitch .title_video .video_header .left_block svg {
@@ -14726,10 +14725,6 @@ select:focus {
   font-weight: bold;
 }
 
-.forum_acticle {
-  margin: 40px 0 0 0;
-}
-
 .forum_acticle .wrapper {
   box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
 }
@@ -14760,6 +14755,10 @@ select:focus {
 
 .forum_acticle .title_block .left_section {
   display: flex;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .forum_acticle .title_block .left_section button {
@@ -16243,7 +16242,6 @@ select:focus {
 
   .block_chat-twitch .text_support {
     font-size: 1.318vw;
-    padding: 2.196vw 0;
   }
 
   .block_chat-twitch .container_titleChat {
@@ -16301,6 +16299,10 @@ select:focus {
 
   .block_chat-twitch .title_video {
     height: 4.392vw;
+  }
+
+  .block_chat-twitch .title_video .video_header {
+    padding: 0;
   }
 
   .block_chat-twitch .title_video .video_header img {
@@ -16691,7 +16693,6 @@ select:focus {
 
   .block_chat-twitch .text_support {
     font-size: 1.8vw;
-    padding: 3vw 0;
   }
 
   .block_chat-twitch .container_titleChat {
@@ -16963,7 +16964,6 @@ select:focus {
 
   .block_chat-twitch .text_support {
     font-size: 3.125vw;
-    padding: 5.208vw 0;
   }
 
   .block_chat-twitch .container_titleChat {
@@ -17086,7 +17086,6 @@ select:focus {
 
   .breaking-news .breaking-news__news-card .card-body .card-body__author .author__nickname {
     font-size: 3.431vw;
-    margin-left: 2.257vw;
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__author .author__date {
@@ -17095,20 +17094,20 @@ select:focus {
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__title {
-    font-size: 2.778vw;
+    font-size: 3.778vw;
     line-height: 3.299vw;
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__text {
-    font-size: 2.431vw;
+    font-size: 3.431vw;
   }
 
   .breaking-news .breaking-news__news-card .card-body p {
-    font-size: 2.431vw;
+    font-size: 3.431vw;
   }
 
   .breaking-news .breaking-news__news-card .card-body a {
-    font-size: 2.431vw;
+    font-size: 3.431vw;
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__items {
@@ -17136,13 +17135,13 @@ select:focus {
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__items .items__watch svg {
-    width: 1.91vw;
-    height: 1.91vw;
+    width: 2.91vw;
+    height: 2.91vw;
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__items .items__watch span {
     margin-left: 2.083vw;
-    font-size: 2.083vw;
+    font-size: 3.083vw;
     line-height: 3.299vw;
   }
 
@@ -17164,23 +17163,23 @@ select:focus {
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-webkit-input-placeholder {
-    font-size: 2.083vw;
+    font-size: 3.083vw;
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-moz-placeholder {
-    font-size: 2.083vw;
+    font-size: 3.083vw;
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input:-ms-input-placeholder {
-    font-size: 2.083vw;
+    font-size: 3.083vw;
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-ms-input-placeholder {
-    font-size: 2.083vw;
+    font-size: 3.083vw;
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::placeholder {
-    font-size: 2.083vw;
+    font-size: 3.083vw;
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload {
@@ -17201,7 +17200,7 @@ select:focus {
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload .smile-upload i {
-    font-size: 2.778vw;
+    font-size: 3.778vw;
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__button svg {
@@ -17215,7 +17214,7 @@ select:focus {
   }
 
   .breaking-news__numb-pages .numb-pages {
-    font-size: 2.083vw;
+    font-size: 3.083vw;
     line-height: 3.299vw;
   }
 
@@ -17973,6 +17972,475 @@ select:focus {
   .footer__copyright .copyright__text {
     font-size: 2.556vw;
     line-height: 5.556vw;
+  }
+
+  .forum_allSections .wrapper {
+    margin: 0 0 3.472vw;
+  }
+
+  .forum_allSections .title_block {
+    background: #0567cc;
+    height: 10.417vw;
+    border-top-left-radius: 0.868vw;
+    border-top-right-radius: 0.868vw;
+    padding: 0 3.472vw;
+  }
+
+  .forum_allSections .title_block svg,
+  .forum_allSections .title_block img {
+    width: 6.944vw;
+    padding-right: 2.604vw;
+  }
+
+  .forum_allSections .title_block .title_text {
+    font-size: 2.778vw;
+  }
+
+  .forum_allSections .title_block .right_section .block_text {
+    padding-left: 1.736vw;
+  }
+
+  .forum_allSections .title_block .right_section .block_text span {
+    font-size: 2.431vw;
+    padding-right: 0.868vw;
+  }
+
+  .forum_allSections .title_block .right_section a svg {
+    width: 5.208vw;
+    padding-bottom: 0.521vw;
+  }
+
+  .forum_allSections .content_allArticle {
+    padding: 2.778vw 3.472vw 0;
+  }
+
+  .forum_acticle .title_block {
+    height: 10.417vw;
+    border-top-left-radius: 0.868vw;
+    border-top-right-radius: 0.868vw;
+    padding: 0 3.472vw;
+  }
+
+  .forum_acticle .title_block svg {
+    width: 7.472vw;
+    padding-right: 2.604vw;
+  }
+
+  .forum_acticle .title_block .title_text {
+    font-size: 3.778vw;
+  }
+
+  .forum_acticle .title_block .right_section button svg {
+    width: 5.208vw;
+  }
+
+  .forum_acticle .title_block .right_section button span {
+    padding-right: 0.868vw;
+  }
+
+  .forum_acticle .title_block .right_section .lable_select select {
+    height: 3.472vw;
+  }
+
+  .forum_acticle .title_block .right_section_autorization p {
+    font-size: 2.778vw;
+  }
+
+  .forum_acticle .content_article {
+    padding: 1.736vw 3.472vw 0;
+  }
+
+  .forum_acticle .content_article .block_nameArticle .name {
+    margin: 0.868vw 0;
+    font-size: 3.778vw;
+  }
+
+  .forum_acticle .content_article .block_nameArticle .date {
+    font-size: 2.5vw;
+    margin: 0.868vw 0;
+  }
+
+  .forum_acticle .counter_autorization {
+    padding: 1.736vw 3.472vw 0;
+  }
+
+  .forum_acticle .counter_autorization .block_nameArticle {
+    padding-bottom: 1.736vw;
+  }
+
+  .forum_acticle .counter_autorization .block_nameArticle .item {
+    margin: 0.868vw 0;
+    font-size: 2.431vw;
+  }
+
+  .forum_acticle .counter_autorization .block_nameArticle .text {
+    margin-left: 1.736vw;
+    color: #0567cc;
+    font-size: 2.431vw;
+  }
+
+  .forum_acticle .detailed-news__info {
+    padding-bottom: 1.736vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .block_account img {
+    max-width: 5.208vw;
+    max-height: 5.208vw;
+    border-radius: 3.472vw;
+    padding-right: 1.736vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .block_account span {
+    font-size: 2.431vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .items__watch svg,
+  .forum_acticle .detailed-news__info .info__items .items__comment svg {
+    width: 5.604vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .items__watch span,
+  .forum_acticle .detailed-news__info .info__items .items__comment span {
+    font-size: 3.083vw;
+    line-height: 3.299vw;
+    margin-left: 1.736vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .items__comment {
+    margin-left: 5.556vw;
+  }
+
+  .forum-topics .forum-topics__title {
+    padding-top: 3.125vw;
+    padding-bottom: 3.125vw;
+    padding-left: 3.299vw;
+  }
+
+  .forum-topics .forum-topics__title .title__icon {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
+
+  .forum-topics .forum-topics__title .title__text {
+    font-size: 2.778vw;
+    margin-left: 2.951vw;
+  }
+
+  .forum-topics .forum-topics__accordion .accordion__topic .topic__header .header__title {
+    font-size: 2.778vw;
+    line-height: 4.861vw;
+  }
+
+  .forum-topics .forum-topics__accordion .accordion__topic .topic__header .fa-chevron-down,
+  .forum-topics .forum-topics__accordion .accordion__topic .topic__header .fa-ellipsis-h {
+    font-size: 2.778vw;
+  }
+
+  .detailed-forum .detailed-forum__title {
+    padding: 3.472vw;
+  }
+
+  .detailed-forum .detailed-forum__title .title__wrap .title__icon {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
+
+  .detailed-forum .detailed-forum__title .title__wrap .title__text {
+    font-size: 3.472vw;
+    margin-left: 3.472vw;
+  }
+
+  .detailed-forum .detailed-forum__title .title__wrap .title__avatar {
+    width: 4.861vw;
+    height: 4.861vw;
+  }
+
+  .detailed-forum .detailed-forum__title .title__wrap .title__nickname {
+    font-size: 3.431vw;
+    margin-left: 2.257vw;
+  }
+
+  .detailed-forum .detailed-forum__title .title__wrap .title__flag {
+    width: 3.472vw;
+    height: 3.472vw;
+    margin-left: 2.257vw;
+  }
+
+  .detailed-forum .detailed-forum__title .title__wrap .title__cube {
+    width: 3.472vw;
+    height: 3.472vw;
+    margin-left: 1.91vw;
+  }
+
+  .detailed-forum .detailed-forum__title .title__wrap .title__text {
+    font-size: 3.431vw;
+    margin-left: 2.083vw;
+  }
+
+  .detailed-forum .detailed-forum__info {
+    padding-top: 3.125vw;
+    padding-bottom: 2.951vw;
+    padding-left: 3.646vw;
+    padding-right: 3.819vw;
+  }
+
+  .detailed-forum .detailed-forum__info .info__items .items__watch svg,
+  .detailed-forum .detailed-forum__info .info__items .items__comment svg {
+    width: 5.819vw;
+  }
+
+  .detailed-forum .detailed-forum__info .info__items .items__watch span,
+  .detailed-forum .detailed-forum__info .info__items .items__comment span {
+    font-size: 3.083vw;
+    font-weight: 400;
+    line-height: 3.299vw;
+    margin-left: 1.736vw;
+  }
+
+  .detailed-forum .detailed-forum__info .info__items .items__comment {
+    margin-left: 5.556vw;
+  }
+
+  .detailed-forum .detailed-forum__info .info__items .items__date {
+    font-size: 2.5vw;
+    line-height: 3.299vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__title {
+    font-size: 3.472vw;
+    line-height: 3.299vw;
+    margin-top: 6.25vw;
+    margin-bottom: 4.688vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__text {
+    font-size: 3.472vw;
+    line-height: 4.167vw;
+    margin-bottom: 4.861vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__banner {
+    margin-bottom: 6.771vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items {
+    padding-bottom: 2.951vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__quote svg {
+    width: 5.472vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__share {
+    margin-left: 3.646vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__share svg {
+    width: 3.125vw;
+    height: 3.472vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__like svg {
+    width: 5.472vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__like span {
+    font-size: 3.083vw;
+    line-height: 3.299vw;
+    margin-left: 1.215vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__dislike {
+    margin-left: 2.951vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__dislike svg {
+    width: 3.472vw;
+    height: 3.125vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__dislike span {
+    font-size: 3.083vw;
+    line-height: 3.299vw;
+    margin-left: 1.215vw;
+  }
+
+  .comments .comments__title {
+    padding-top: 3.472vw;
+    padding-bottom: 3.472vw;
+    padding-left: 3.299vw;
+    display: flex;
+    align-items: center;
+  }
+
+  .comments .comments__title .title__icon {
+    width: 3.646vw;
+    height: 3.646vw;
+  }
+
+  .comments .comments__title .title__text {
+    font-size: 2.778vw;
+    margin-left: 2.951vw;
+  }
+
+  .comments .comments__wrapp .comments__info {
+    padding-top: 2.778vw;
+    padding-bottom: 2.951vw;
+    padding-left: 3.472vw;
+    padding-right: 3.472vw;
+  }
+
+  .comments .comments__wrapp .comments__info .info__avatar {
+    width: 4.861vw;
+    height: 4.861vw;
+  }
+
+  .comments .comments__wrapp .comments__info .info__nickname {
+    font-size: 2.431vw;
+    margin-left: 2.257vw;
+  }
+
+  .comments .comments__wrapp .comments__info .info__flag {
+    width: 3.472vw;
+    height: 3.472vw;
+    margin-left: 2.257vw;
+  }
+
+  .comments .comments__wrapp .comments__info .info__cube {
+    width: 2.778vw;
+    height: 2.778vw;
+    margin-left: 1.91vw;
+  }
+
+  .comments .comments__wrapp .comments__info .info__text {
+    font-size: 2.431vw;
+    margin-left: 2.083vw;
+  }
+
+  .comments .comments__wrapp .comments__info .info__date {
+    font-size: 2.083vw;
+    line-height: 3.299vw;
+  }
+
+  .comments .comments__wrapp .comments__content .content__title {
+    font-size: 2.778vw;
+    line-height: 24px;
+    padding-left: 3.472vw;
+    padding-right: 3.472vw;
+    margin-top: 5.208vw;
+    margin-bottom: 3.472vw;
+  }
+
+  .comments .comments__wrapp .comments__content .content__img {
+    margin-bottom: 40px;
+    padding-left: 3.472vw;
+    padding-right: 3.472vw;
+  }
+
+  .comments .comments__wrapp .comments__items {
+    padding-bottom: 2.951vw;
+    padding-left: 3.472vw;
+    padding-right: 3.472vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__wrap .items__quote svg {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__share {
+    margin-left: 3.646vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__share svg {
+    width: 3.125vw;
+    height: 3.472vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__like svg {
+    width: 3.472vw;
+    height: 3.125vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__like span {
+    font-size: 2.083vw;
+    line-height: 3.299vw;
+    margin-left: 1.215vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__dislike {
+    margin-left: 2.951vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__dislike svg {
+    width: 3.472vw;
+    height: 3.125vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__dislike span {
+    font-size: 2.083vw;
+    line-height: 3.299vw;
+    margin-left: 1.215vw;
+  }
+
+  .add-comment .add-comment__title {
+    padding-top: 3.472vw;
+    padding-bottom: 3.472vw;
+    padding-left: 3.299vw;
+  }
+
+  .add-comment .add-comment__title .title__icon {
+    width: 3.646vw;
+    height: 3.646vw;
+  }
+
+  .add-comment .add-comment__title .title__text {
+    font-size: 3.778vw;
+    margin-left: 2.951vw;
+  }
+
+  .add-comment .add-comment__form {
+    padding: 3.472vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__icon {
+    width: 3.472vw;
+    height: 2.778vw;
+    top: 2.604vw;
+    right: 13.889vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__input {
+    height: 7.639vw;
+    padding-left: 3.125vw;
+    padding-right: 20.833vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload {
+    position: absolute;
+    top: 2.083vw;
+    right: 8.681vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload label {
+    margin-left: 2.951vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload i {
+    font-size: 3.778vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload .smile-upload {
+    margin-left: 2.778vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload .smile-upload i {
+    font-size: 3.778vw;
+  }
+
+  .add-comment .add-comment__form .add-comment__button svg {
+    width: 3.472vw;
+    height: 3.125vw;
   }
 }
 

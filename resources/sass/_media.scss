@@ -50,7 +50,6 @@
         }
         & .text_support{
             font-size: 1.318vw;
-            padding: 2.196vw 0;
         }
         & .container_titleChat{
             height: 4.392vw;
@@ -106,6 +105,7 @@
         & .title_video{
             height: 4.392vw;
             & .video_header{
+                padding: 0;
                 & img{
                     padding-right: 1.464vw;
                 }
@@ -475,7 +475,6 @@
         }
         & .text_support{
             font-size: 1.8vw;
-            padding: 3vw 0;
         }
         & .container_titleChat{
             height: 6vw;
@@ -734,7 +733,6 @@
         }
         & .text_support{
             font-size: 3.125vw;
-            padding: 5.208vw 0;
         }
         & .container_titleChat{
             height: 10.417vw;
@@ -847,7 +845,6 @@
                     }
                     .author__nickname {
                         font-size: 3.431vw;
-                        margin-left: 2.257vw;
                     }
                     .author__date {
                         margin-left: auto;
@@ -855,20 +852,20 @@
                     }
                 }
                 .card-body__title {
-                    font-size: 2.778vw;
+                    font-size: 3.778vw;
                     line-height: 3.299vw;
                 }
 
                 .card-body__text {
-                    font-size: 2.431vw;
+                    font-size: 3.431vw;
                 }
                 //p - styles for text who isert from admin
                 p {
-                    font-size: 2.431vw;
+                    font-size: 3.431vw;
                 }
                 //p - styles for text "читать" isert from admin
                 a {
-                    font-size: 2.431vw;
+                    font-size: 3.431vw;
                 }
                 .card-body__items {
                     margin-bottom: 3.125vw;
@@ -892,12 +889,12 @@
                     }
                     .items__watch {
                         svg {
-                            width: 1.910vw;
-                            height: 1.910vw;
+                            width: 2.910vw;
+                            height: 2.910vw;
                         }
                         span {
                             margin-left: 2.083vw;
-                            font-size: 2.083vw;
+                            font-size: 3.083vw;
                             line-height: 3.299vw;
                         }
                     }
@@ -917,7 +914,7 @@
                                 padding-left: 3.125vw;
                                 padding-right: 13.472vw;
                                 &::placeholder {
-                                    font-size: 2.083vw;
+                                    font-size: 3.083vw;
                                 }
                             }
                         }
@@ -933,7 +930,7 @@
                             .smile-upload {
                                 margin-left: 2.778vw;
                                 i {
-                                    font-size: 2.778vw;
+                                    font-size: 3.778vw;
                                 }
                             }
                         }
@@ -952,7 +949,7 @@
         margin-top: 4.340vw;
         margin-bottom: 1.389vw;
         .numb-pages {
-            font-size: 2.083vw;
+            font-size: 3.083vw;
             line-height: 3.299vw;
         }
     }
@@ -1695,6 +1692,491 @@
         .copyright__text {
             font-size: 2.556vw;
             line-height: 5.556vw;
+        }
+    }
+    //forum_allSection
+    .forum_allSections {
+        .wrapper {
+            margin: 0 0 3.472vw;
+        }
+        & .title_block {
+            background: $blue;
+            height: 10.417vw;
+            border-top-left-radius: 0.868vw;
+            border-top-right-radius: 0.868vw;
+            padding: 0 3.472vw;
+            & svg,img {
+                width: 6.944vw;
+                padding-right: 2.604vw;
+            }
+            & .title_text {
+                font-size: 2.778vw;
+            }
+
+            & .right_section {
+
+                & .block_text{
+                    padding-left: 1.736vw;
+                    & span{
+                        font-size: 2.431vw;
+                        padding-right: 0.868vw;
+                    }
+                }
+                & a{
+                    & svg{
+                        width: 5.208vw;
+                        padding-bottom: 0.521vw;
+                    }
+                }
+            }
+        }
+        & .content_allArticle{
+            padding: 2.778vw 3.472vw 0;
+        }
+    }
+    //foru_article
+    .forum_acticle{
+        & .title_block{
+            height: 10.417vw;
+            border-top-left-radius: 0.868vw;
+            border-top-right-radius: 0.868vw;
+            padding: 0 3.472vw;
+            & svg{
+                width: 7.472vw;
+                padding-right: 2.604vw;
+            }
+            & .title_text{
+                font-size: 3.778vw;
+            }
+            & .right_section{
+                & button{
+                    & svg{
+                        width: 5.208vw;
+                    }
+                    & span{
+                        padding-right: 0.868vw;
+                    }
+                }
+                .lable_select
+                {
+                    select {
+                        height: 3.472vw;
+                    }
+                }
+            }
+            & .right_section_autorization{
+                & p{
+                    font-size: 2.778vw;
+                }
+            }
+        }
+        & .content_article{
+            padding: 1.736vw 3.472vw 0;
+            & .block_nameArticle{
+                & .name{
+                    margin: 0.868vw 0;
+                    font-size: 3.778vw;
+                }
+                & .date{
+                    font-size: 2.5vw;
+                    margin: 0.868vw 0;
+                }
+            }
+        }
+        & .counter_autorization{
+            padding: 1.736vw 3.472vw 0;
+            & .block_nameArticle{
+                & .item{
+                    margin: 0.868vw 0;
+                    font-size: 2.431vw;
+                }
+                & .text{
+                    margin-left: 1.736vw;
+                    color: $blue;
+                    font-size: 2.431vw;
+                }
+                padding-bottom: 1.736vw;
+            }
+
+        }
+        .detailed-news__info {
+            padding-bottom: 1.736vw;
+            .info__items {
+                & .block_account{
+                    & img{
+                        max-width: 5.208vw;
+                        max-height: 5.208vw;
+                        border-radius: 3.472vw;
+                        padding-right: 1.736vw;
+                    }
+                    & span{
+                        font-size: 2.431vw;
+                    }
+                }
+                .items__watch,
+                .items__comment {
+                    svg {
+                        width: 5.604vw;
+                    }
+                    span {
+                        font-size: 3.083vw;
+                        line-height: 3.299vw;
+                        margin-left: 1.736vw;
+                    }
+                }
+                .items__comment {
+                    margin-left: 5.556vw;
+                }
+            }
+        }
+    }
+    //forum-topics
+    .forum-topics {
+        .forum-topics__title {
+            padding-top: 3.125vw;
+            padding-bottom: 3.125vw;
+            padding-left: 3.299vw;
+
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+
+        .forum-topics__accordion {
+            .accordion__topic {
+                .topic__header {
+                    .header__title {
+                        font-size: 2.778vw;
+                        line-height: 4.861vw;
+                    }
+                    .fa-chevron-down,
+                    .fa-ellipsis-h {
+                        font-size: 2.778vw;
+                    }
+                }
+            }
+        }
+    }
+//detailed-forum
+    .detailed-forum {
+        .detailed-forum__title {
+            padding: 3.472vw;
+            .title__wrap {
+                .title__icon {
+                    width: 3.472vw;
+                    height: 3.472vw;
+                }
+                .title__text {
+                    font-size: 3.472vw;
+                    margin-left: 3.472vw;
+                }
+                .title__avatar {
+                    width: 4.861vw;
+                    height: 4.861vw;
+                }
+                .title__nickname {
+                    font-size: 3.431vw;
+                    margin-left: 2.257vw;
+                }
+                .title__flag {
+                    width: 3.472vw;
+                    height: 3.472vw;
+                    margin-left: 2.257vw;
+                }
+                .title__cube {
+                    width: 3.472vw;
+                    height: 3.472vw;
+                    margin-left: 1.910vw;
+                }
+                .title__text {
+                    font-size: 3.431vw;
+                    margin-left: 2.083vw;
+                }
+            }
+        }
+        .detailed-forum__info {
+            padding-top: 3.125vw;
+            padding-bottom: 2.951vw;
+            padding-left: 3.646vw;
+            padding-right: 3.819vw;
+
+            .info__items {
+                .items__watch,
+                .items__comment {
+                    svg {
+                        width: 5.819vw;
+                    }
+                    span {
+                        font-size: 3.083vw;
+                        font-weight: 400;
+                        line-height: 3.299vw;
+                        margin-left: 1.736vw;
+                    }
+                }
+                .items__comment {
+                    margin-left: 5.556vw;
+                }
+                .items__date {
+                    font-size:2.5vw;
+                    line-height: 3.299vw;
+
+                }
+            }
+        }
+        .detailed-forum__card {
+            .card-body {
+                .card-body__title {
+                    font-size: 3.472vw;
+                    line-height: 3.299vw;
+                    margin-top: 6.250vw;
+                    margin-bottom: 4.688vw;
+                }
+                .card-body__text {
+                    font-size: 3.472vw;
+                    line-height: 4.167vw;
+                    margin-bottom: 4.861vw;
+                }
+                .card-body__banner {
+                    margin-bottom: 6.771vw;
+                }
+                .card-body__items {
+                    padding-bottom: 2.951vw;
+                    .card-body__items-wrap {
+                        .items__quote {
+                            svg {
+                                width: 5.472vw;
+                            }
+                        }
+                        .items__share {
+                            margin-left: 3.646vw;
+                            svg {
+                                width: 3.125vw;
+                                height: 3.472vw;
+                            }
+                        }
+                    }
+                    .card-body__items-wrap {
+                        .items__like {
+                            svg {
+                                width: 5.472vw;
+                            }
+                            span {
+                                font-size: 3.083vw;
+                                line-height: 3.299vw;
+                                margin-left: 1.215vw;
+                            }
+                        }
+                        .items__dislike {
+                            margin-left: 2.951vw;
+                            svg {
+                                width: 3.472vw;
+                                height: 3.125vw;
+                            }
+                            span {
+                                font-size: 3.083vw;
+                                line-height: 3.299vw;
+                                margin-left: 1.215vw;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+    //comments
+    .comments {
+        .comments__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            display: flex;
+            align-items: center;
+
+            .title__icon {
+                width: 3.646vw;
+                height: 3.646vw;
+            }
+
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+
+        .comments__wrapp {
+            .comments__info {
+                padding-top: 2.778vw;
+                padding-bottom: 2.951vw;
+                padding-left: 3.472vw;
+                padding-right: 3.472vw;
+
+                .info__avatar {
+                    width: 4.861vw;
+                    height: 4.861vw;
+                }
+
+                .info__nickname {
+                    font-size: 2.431vw;
+                    margin-left: 2.257vw;
+                }
+
+                .info__flag {
+                    width: 3.472vw;
+                    height: 3.472vw;
+                    margin-left: 2.257vw;
+                }
+
+                .info__cube {
+                    width: 2.778vw;
+                    height: 2.778vw;
+                    margin-left: 1.910vw;
+                }
+
+                .info__text {
+                    font-size: 2.431vw;
+                    margin-left: 2.083vw;
+                }
+
+                .info__date {
+                    font-size: 2.083vw;
+                    line-height: 3.299vw;
+                }
+            }
+
+            .comments__content {
+                .content__title {
+                    font-size: 2.778vw;
+                    line-height: 24px;
+                    padding-left: 3.472vw;
+                    padding-right: 3.472vw;
+                    margin-top: 5.208vw;
+                    margin-bottom: 3.472vw;
+                }
+                .content__img {
+                    margin-bottom: 40px;
+                    padding-left: 3.472vw;
+                    padding-right: 3.472vw;
+                }
+            }
+
+            .comments__items {
+                padding-bottom: 2.951vw;
+                padding-left: 3.472vw;
+                padding-right: 3.472vw;
+
+                .items__wrap {
+                    .items__quote {
+                        svg {
+                            width: 3.472vw;
+                            height: 3.472vw;
+                        }
+                    }
+                }
+
+                .items__share {
+                    margin-left: 3.646vw;
+                    svg {
+                        width: 3.125vw;
+                        height: 3.472vw;
+                    }
+                }
+
+                .items__like {
+                    svg {
+                        width: 3.472vw;
+                        height: 3.125vw;
+                    }
+
+                    span {
+                        font-size: 2.083vw;
+                        line-height: 3.299vw;
+                        margin-left: 1.215vw;
+                    }
+                }
+
+                .items__dislike {
+                    margin-left: 2.951vw;
+                    svg {
+                        width: 3.472vw;
+                        height: 3.125vw;
+                    }
+
+                    span {
+                        font-size: 2.083vw;
+                        line-height: 3.299vw;
+                        margin-left: 1.215vw;
+                    }
+                }
+            }
+        }
+
+    }
+// add_comments
+    .add-comment {
+        .add-comment__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+
+            .title__icon {
+                width: 3.646vw;
+                height: 3.646vw;
+            }
+
+            .title__text {
+                font-size: 3.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+        .add-comment__form {
+            padding: 3.472vw;
+            .form__group {
+                .comment {
+                    .comment__icon {
+                        width: 3.472vw;
+                        height: 2.778vw;
+                        top: 2.604vw;
+                        right: 13.889vw;
+                    }
+                    .comment__input {
+                        height: 7.639vw;
+                        padding-left: 3.125vw;
+                        padding-right: 20.833vw;
+                    }
+                }
+
+                .buttons-upload{
+                    position: absolute;
+                    top: 2.083vw;
+                    right: 8.681vw;
+                    label {
+                        margin-left: 2.951vw;
+                    }
+                    i {
+                        font-size: 3.778vw;
+                    }
+
+                    .smile-upload {
+                        margin-left: 2.778vw;
+                        i {
+                            font-size: 3.778vw;
+                        }
+                    }
+                }
+            }
+            .add-comment__button {
+                svg {
+                    width: 3.472vw;
+                    height: 3.125vw;
+                }
+            }
         }
     }
 
