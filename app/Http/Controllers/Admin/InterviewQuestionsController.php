@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use AdminSection;
+use App\Http\Controllers\Controller;
 use App\Models\InterviewQuestion;
 use App\Models\InterviewVariantAnswer;
-use App\Http\Controllers\Controller;
 
 class InterviewQuestionsController extends Controller
 {

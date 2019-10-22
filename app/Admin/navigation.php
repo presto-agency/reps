@@ -20,26 +20,6 @@
 // AdminSection::addMenuPage(\App\User::class)
 
 return [
-//    [
-//        'title' => "General",
-//        'id' => "parent-general",
-//        'icon' => 'fa fa-credit-card',
-//        'pages' => [
-//            [
-//                'title' => 'Dashboard',
-//                'icon' => 'fa fa-dashboard',
-//                'priority' => 0,
-//                'url' => route('admin.dashboard'),
-//            ],
-//        ]
-//    ],
-
-
-//    [
-//        'title' => 'Information',
-//        'icon' => 'fa fa-exclamation-circle',
-//        'url' => route('admin.dashboard'),
-//    ],
 
     [
         'title' => 'Translation Manager',

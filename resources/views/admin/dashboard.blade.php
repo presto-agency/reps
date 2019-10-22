@@ -24,13 +24,13 @@
             <div class="inner">
                 <h3>{{$data['userReplays'] ?? ''}}</h3>
 
-                <p>Количество User Replays</p>
+                <p>Количество пользовательский Replays</p>
             </div>
             <div class="icon">
                 <i class="fas fa-file-video"></i>
             </div>
 
-            <a href="{{url('admin\replays'.'?type_id='.$data['userReplaysTypeId'])}}" class="small-box-footer">
+            <a href="{{!empty($data['userReplaysTypeId']) ? url('admin\replays'.'?type_id='.$data['userReplaysTypeId']) : url('admin\replays')}}" class="small-box-footer">
                 Список <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
@@ -42,13 +42,13 @@
             <div class="inner">
                 <h3>{{$data['gosuReplays'] ?? ''}}</h3>
 
-                <p>Количество Gosu Replays</p>
+                <p>Количество профисиональных Replays</p>
             </div>
             <div class="icon">
                 <i class="fas fa-file-video"></i>
             </div>
 
-            <a href="{{url('admin\replays'.'?type_id='.$data['gosuReplaysTypeId'])}}" class="small-box-footer">
+            <a href="{{!empty($data['gosuReplaysTypeId']) ?  url('admin\replays'.'?type_id='.$data['gosuReplaysTypeId']) : url('admin\replays')}}" class="small-box-footer">
                 Список <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>

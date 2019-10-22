@@ -4,12 +4,10 @@ namespace App\Http\Sections;
 
 use AdminColumn;
 use AdminDisplay;
-use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
-use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 
 
@@ -43,29 +41,31 @@ class Country extends Section
     {
 
         $display = AdminDisplay::datatablesAsync()
-            ->paginate(10);
+            ->paginate(50);
 
         $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
 
         $display->setApply(function ($query) {
-            $query->orderBy('id', 'desc');
+            $query->orderBy('id', 'asc');
         });
+
+        $display->with('using');
 
         $display->setColumns([
 
-            $id = AdminColumn::text('id', 'Id')
-                ->setHtmlAttribute('class', 'hidden-sm '),
+            $id = AdminColumn::text('id', 'ID'),
 
-            $name = AdminColumn::text('name', 'Name')
-                ->setHtmlAttribute('class', 'hidden-sm '),
+            $name = AdminColumn::text('name', 'Название'),
 
-            $code = AdminColumn::text('code', 'Code')
-                ->setHtmlAttribute('class', 'hidden-sm '),
+            $code = AdminColumn::text('code', 'Код')
+                ->setHtmlAttribute('class', 'hidden-sm ')
+                ->setHtmlAttribute('title', 'Alpha-2 ISO 3166-1'),
 
-            $flag = AdminColumn::image('flag', 'Flag')
-                ->setHtmlAttribute('class', 'hidden-sm'),
+            $flag = AdminColumn::image('flag', 'Флаг'),
+
+            $count_using = AdminColumn::count('using', 'Используют')
+                ,
         ]);
-
         return $display;
 
     }
@@ -83,12 +83,17 @@ class Country extends Section
             AdminFormElement::columns()
                 ->addColumn(function () {
                     return [
-                        AdminFormElement::text('name', 'First Name')->setValidationRules(['required', 'min:2', 'max:60']),
-                        AdminFormElement::text('code', 'Last Name')->setValidationRules(['required', 'min:2', 'max:5']),
+                        AdminFormElement::text('name', 'Название')
+                            ->setHtmlAttribute('placeholder', 'Название')
+                            ->setValidationRules(['required', 'min:2', 'max:255']),
+                        AdminFormElement::text('code', 'Код страны')
+                            ->setHtmlAttribute('placeholder', 'Код страны')
+                            ->setHtmlAttribute('title', 'Alpha-2 ISO 3166-1')
+                            ->setValidationRules(['required', 'min:2', 'max:10']),
                     ];
                 })->addColumn(function () {
                     return [
-                        AdminFormElement::image('flag', 'Flag')
+                        AdminFormElement::image('flag', 'Флаг')
                             ->setUploadPath(function (UploadedFile $file) {
                                 return 'storage/image/county/flag';
                             })

@@ -14,13 +14,18 @@
 Route::get('/', 'HomeController@index')->name('home.index');
 
 Route::resource('news', 'NewsController');
+Route::post('news/{id}/send_comment', 'NewsController@comment_send')->name('news.comment_send');
+
 Route::resource('forum', 'ForumController');
 Route::post('/loadmore/load_news', 'NewsController@load_news')->name('loadmore.load_news');
 
-Route::resource('forum/topic', 'TopicController');
-/*Route::get('forum/topic/{id}', function (){
+Route::resource('forum/topic', 'TopicController');/*Route::get('forum/topic/{id}', function (){
     return view('forum.topic');
 });*/
+
+//Route::resource('forum/topic/comment','TopicCommentController');
+Route::post('forum/topic/{id}/comment', 'TopicCommentController@store')->name('comment.store');
+
 
 Route::get('replay', function (){
     return view('replay.index');

@@ -44,24 +44,20 @@ class Headline extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync();
-        $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
+        $display->setHtmlAttribute('class', 'table-info table-sm');
         $display->paginate(10);
 
         $display->setApply(function ($query) {
-            $query->orderBy('id', 'desc');
+            $query->orderBy('id', 'asc');
         });
 
         $display->setColumns([
 
-            $id = AdminColumn::text('id', 'Id')->setWidth('50px'),
+            $id = AdminColumn::text('id', 'ID')->setWidth('50px'),
 
-            $title = AdminColumn::text('title', 'Title')
-                ->setHtmlAttribute('class', 'text-left')
-                ->setWidth(300),
-
-            $url = AdminColumn::text('url', 'Url')
-                ->setHtmlAttribute('class', 'text-left')
-                ->setWidth(200),
+            $title = AdminColumn::custom('Новостная строка', function ($model) {
+                return $model->title;
+            })->setHtmlAttribute('class', 'text-left'),
 
         ]);
         return $display;
@@ -77,10 +73,9 @@ class Headline extends Section
         $display = AdminForm::panel();
 
         $display->setItems([
-            $title = AdminFormElement::text('title', 'Title')
-                ->setValidationRules(['required', 'string', 'max:255']),
-            $url = AdminFormElement::text('url', 'Url')
-                ->setValidationRules(['required', 'nullable', 'string', 'max:255']),
+            $title = AdminFormElement::wysiwyg('title', 'Новостная строка', 'simplemde')
+                ->setHtmlAttributes(['placeholder' => 'Новостная строка'])
+                ->setValidationRules(['required', 'string', 'between:1,1000']),
         ]);
 
         return $display;
