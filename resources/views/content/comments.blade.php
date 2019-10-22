@@ -1,3 +1,4 @@
+@if(isset($comments))
 <div class="comments">
     <div class="comments__title">
         <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -15,6 +16,7 @@
         <p class="title__text">Комментарии</p>
     </div>
 
+    @foreach($comments as $comment)
     <div class="comments__wrapp">
         <div class="comments__info">
             <img src="{{ url('/images/newsAvatar3.png') }}" class="info__avatar" alt="avatar">
@@ -25,7 +27,8 @@
             <span class="info__date">09.09.2019</span>
         </div>
         <div class="comments__content">
-            <p class="content__title">Флэш афк'шнется, всё в порядке</p>
+            <p class="content__title">{{ $comment->content }}</p>
+
             <img src="{{ url('/images/newsBanner.png') }}" class="content__img img-fluid" alt="banner">
         </div>
         <div class="comments__items">
@@ -80,8 +83,9 @@
             </div>
         </div>
     </div>
+    @endforeach
 
-    <div class="comments__wrapp">
+    {{--<div class="comments__wrapp">
         <div class="comments__info">
             <img src="{{ url('/images/newsAvatar3.png') }}" class="info__avatar" alt="avatar">
             <p class="info__nickname">4p)MickeyMouse</p>
@@ -144,9 +148,9 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div>--}}
 
-    <div class="comments__wrapp">
+    {{--<div class="comments__wrapp">
         <div class="comments__info">
             <img src="{{ url('/images/newsAvatar3.png') }}" class="info__avatar" alt="avatar">
             <p class="info__nickname">paradOx</p>
@@ -209,6 +213,9 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div>--}}
 
 </div>
+@else
+    <h2>Нет комментариев</h2>
+@endif
