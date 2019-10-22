@@ -17910,11 +17910,6 @@ select:focus {
     line-height: 5.556vw;
   }
 
-  .footer .footer__info {
-    position: absolute;
-    bottom: 60px;
-  }
-
   .footer .footer__info .footer__title {
     font-size: 3.083vw;
     letter-spacing: 1.2px;
@@ -17946,12 +17941,6 @@ select:focus {
     margin-bottom: 2.778vw;
   }
 
-  .footer .footer__useful {
-    position: absolute;
-    top: 13%;
-    left: 60%;
-  }
-
   .footer .footer__useful .footer__title {
     font-size: 3.083vw;
   }
@@ -17965,8 +17954,6 @@ select:focus {
     margin-top: 30px;
     display: flex;
     align-items: flex-end;
-    position: absolute;
-    bottom: 3%;
   }
 
   .footer .produced p {
