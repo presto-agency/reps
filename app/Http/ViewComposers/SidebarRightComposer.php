@@ -10,14 +10,12 @@ use Illuminate\View\View;
 class SidebarRightComposer
 {
     private $categoryNewUser;
-    private $categoryTop5Rating;
 
     public function __construct()
     {
         $this->categoryNewUser = collect();
-        $this->categoryNewUser = $this->getNewUsers();
-        dd($this->getTop5Rating());
-        $this->categoryTop5Rating = $this->getTop5Rating();
+
+        $this->categoryNewUser = self::getNew5Users();
     }
 
     /**
@@ -26,7 +24,32 @@ class SidebarRightComposer
     public function compose(View $view)
     {
         $view->with('newUsers', $this->categoryNewUser);
-        $view->with('top5Rating', $this->categoryTop5Rating);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getNew5Users()
+    {
+        $data = [];
+
+        $getData = User::with('countries:id,flag', 'races:id,title')
+            ->orderBy('id', 'desc')
+            ->take(5)
+            ->get(['id', 'name', 'race_id', 'country_id']);
+
+        if (!$getData->isEmpty()) {
+            foreach ($getData as $item) {
+                $data[] = [
+                    'id' => $item->id,
+                    'name' => $item->name,
+                    'raceIcon' => $item->races->title,
+                    'countryFlag25x20' => self::pathToFlag25x20($item->countries->flag),
+                ];
+            }
+        }
+
+        return $data;
     }
 
     /**
@@ -51,37 +74,5 @@ class SidebarRightComposer
         return $fileName = reset($getImgName2);
     }
 
-    /**
-     * @return array
-     */
-    public function getNewUsers()
-    {
-        $data = [];
-        $getData = User::with('countries:id,flag', 'races')
-            ->orderBy('id', 'desc')
-            ->take(5)
-            ->get(['id', 'name', 'race_id', 'country_id']);
-        if (!$getData->isEmpty()) {
-            foreach ($getData as $item) {
-                $data[] = [
-                    'id' => $item->id,
-                    'name' => $item->name,
-                    'raceIcon' => $item->races->id,
-                    'countryFlag25x20' => self::pathToFlag25x20($item->countries->flag),
-                ];
-            }
-        }
 
-        return $data;
-    }
-
-    public function getTop5Rating()
-    {
-        $data = [];
-        $getData =  User::orderByRaw("(count_positive - count_negative) DESC")
-            ->take(5)
-            ->get();
-
-        return $getData;
-    }
 }

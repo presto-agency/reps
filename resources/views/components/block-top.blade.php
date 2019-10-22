@@ -13,7 +13,6 @@
             <p class="title_text">Новые пользователи</p>
         </div>
         <div class="block_topUsers">
-
             @foreach($newUsers as $item)
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
@@ -21,7 +20,26 @@
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
                         <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}"/>
-                        <img class="icon_bars" src=""/>
+                        <img class="icon_bars" src="{{asset($item['raceIcon'])}}"/>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
+                        <p>{{$item['name']}}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="title_top">
+            <a href="#"><p class="title_Text">Top 10 (репутация)</a>
+        </div>
+        <div class="block_topUsers">
+            @foreach($top10Rating as $item)
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
+                        <p>{{$item['max']}} кг</p>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
+                        <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}"/>
+                        <img class="icon_bars" src="{{asset($item['raceIcon'])}}"/>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
                         <p>{{$item['name']}}</p>
@@ -33,83 +51,20 @@
             <a href="#"><p class="title_Text">TOP points</p></a>
         </div>
         <div class="block_topUsers">
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
-                    <p>#3797</p>
+            @foreach($top10Points as $item)
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
+                        <p>{{$item['max']}} pts</p>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
+                        <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}"/>
+                        <img class="icon_bars" src="{{asset($item['raceIcon'])}}"/>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
+                        <p>{{$item['name']}}</p>
+                    </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                    <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
-                    <img class="icon_bars" src="{{url('images\ava.png')}}"/>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                    <p>Rus_Brain</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
-                    <p>#3797</p>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                    <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
-                    <img class="icon_bars" src="{{url('images\ava.png')}}"/>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                    <p>Rus_Brain</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
-                    <p>#3797</p>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                    <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
-                    <img class="icon_bars" src="{{url('images\ava.png')}}"/>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                    <p>Rus_Brain</p>
-                </div>
-            </div>
-        </div>
-        <div class="title_top">
-            <a href="#"><p class="title_Text">TOP points</p></a>
-        </div>
-        <div class="block_topUsers">
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
-                    <p>#3797</p>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                    <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
-                    <img class="icon_bars" src="{{url('images\ava.png')}}"/>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                    <p>Rus_Brain</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
-                    <p>#3797</p>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                    <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
-                    <img class="icon_bars" src="{{url('images\ava.png')}}"/>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                    <p>Rus_Brain</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
-                    <p>#3797</p>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                    <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
-                    <img class="icon_bars" src="{{url('images\ava.png')}}"/>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                    <p>Rus_Brain</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

@@ -2,7 +2,8 @@
     <div class="wrapper">
         <div class=" title_block">
             <div class="left_content">
-                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      viewBox="0 0 475.1 475.1" style="enable-background:new 0 0 475.1 475.1;" xml:space="preserve">
                     <path d="M475.1,186.6c0-7-5.3-11.4-16-13.1l-143.3-20.8L251.5,22.7c-3.6-7.8-8.3-11.7-14-11.7c-5.7,0-10.4,3.9-14,11.7l-64.2,129.9
                         L16,173.4c-10.7,1.7-16,6.1-16,13.1c0,4,2.4,8.6,7.1,13.7l103.9,101.1L86.5,444.1c-0.4,2.7-0.6,4.6-0.6,5.7c0,4,1,7.4,3,10.1
@@ -18,344 +19,100 @@
             <p class="title_playersText">Top-100 pts</p>
         </div>
         <div class="container_players">
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
+            @foreach($top100Points as $item)
+                <div class="players_content">
+                    <div class="left_block">
+                        <span class="number">#{{$item['id']}}</span>
+                        <a href="#">
+                            <img src="{{asset($item['avatar'])}}" alt="avatar"
+                                 class="author__avatar img-fluid">
+                            <span class="name_player">{{$item['name']}}</span>
+                        </a>
+                    </div>
+                    <div class="center_block">
+                        <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
+                        <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
+                    </div>
+                    <div class="right_block">
+                        <p>{{$item['max']}} pts</p>
+                    </div>
                 </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1443 pts</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1443 pts</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1443 pts</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1443 pts</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1443 pts</p>
-                </div>
-            </div>
+            @endforeach
         </div>
         {{--top-100-reputation--}}
         <div class="title_players">
-            <p class="title_playersText">Top-100 репутация</p>
+            <p class="title_playersText">Top-100 kg</p>
         </div>
         <div class="container_players">
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
+            @foreach($top100Rating as $item)
+                <div class="players_content">
+                    <div class="left_block">
+                        <span class="number">#{{$item['id']}}</span>
+                        <a href="#">
+                            <img src="{{asset($item['avatar'])}}" alt="avatar"
+                                 class="author__avatar img-fluid">
+                            <span class="name_player">{{$item['name']}}</span>
+                        </a>
+                    </div>
+                    <div class="center_block">
+                        <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
+                        <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
+                    </div>
+                    <div class="right_block">
+                        <p>{{$item['max']}} kg</p>
+                    </div>
                 </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1443 кг</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1443 кг</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1443 кг</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1443 кг</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1443 кг</p>
-                </div>
-            </div>
+            @endforeach
         </div>
         {{--top-100-news--}}
         <div class="title_players">
-            <p class="title_playersText">Top-100 новости</p>
+            <p class="title_playersText">Top-100 news</p>
         </div>
         <div class="container_players">
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
+            @foreach($top100News as $item)
+                <div class="players_content">
+                    <div class="left_block">
+                        <span class="number">#{{$item['id']}}</span>
+                        <a href="#">
+                            <img src="{{asset($item['avatar'])}}" alt="avatar"
+                                 class="author__avatar img-fluid">
+                            <span class="name_player">{{$item['name']}}</span>
+                        </a>
+                    </div>
+                    <div class="center_block">
+                        <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
+                        <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
+                    </div>
+                    <div class="right_block">
+                        <p>{{$item['max']}} news</p>
+                    </div>
                 </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1443</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>144</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>14435</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1443</p>
-                </div>
-            </div>
+            @endforeach
         </div>
         {{--top-100-replays--}}
         <div class="title_players">
             <p class="title_playersText">Top-100 replays</p>
         </div>
         <div class="container_players">
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
+            @foreach($top100Replay as $item)
+                <div class="players_content">
+                    <div class="left_block">
+                        <span class="number">#{{$item['id']}}</span>
+                        <a href="#">
+                            <img src="{{asset($item['avatar'])}}" alt="avatar"
+                                 class="author__avatar img-fluid">
+                            <span class="name_player">{{$item['name']}}</span>
+                        </a>
+                    </div>
+                    <div class="center_block">
+                        <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
+                        <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
+                    </div>
+                    <div class="right_block">
+                        <p>{{$item['max']}} replays</p>
+                    </div>
                 </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>144</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>1443</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>14455</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>144</p>
-                </div>
-            </div>
-            <div class="players_content">
-                <div class="left_block">
-                    <span class="number">#1</span>
-                    <a href="#">
-                        <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                        <span class="name_player">Rus Brain</span>
-                    </a>
-                </div>
-                <div class="center_block">
-                    <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                    <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                </div>
-                <div class="right_block">
-                    <p>14</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
