@@ -28,8 +28,6 @@
         </div>
         <div class="comments__content">
             <p class="content__title">{{ $comment->content }}</p>
-
-            <img src="{{ url('/images/newsBanner.png') }}" class="content__img img-fluid" alt="banner">
         </div>
         <div class="comments__items">
             <div class="items__wrap">
