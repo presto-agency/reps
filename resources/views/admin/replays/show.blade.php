@@ -85,8 +85,13 @@
                 <div class="box-body">
                     @foreach($replay->comments as $comment)
                         <div class="item row">
-                            <img src="{{$comment->user->avatar_url_or_blank}}"
-                                 class="img-circle img-bordered-sm" alt="User avatar"/>
+                            @if(file_exists($comment->user->avatar) === true)
+                                <img src="{{asset($comment->user->avatar)}}"
+                                     class="img-circle img-bordered-sm" alt="User avatar"/>
+                            @else
+                                <img src="{{asset($comment->user->avatar_url_or_blank)}}"
+                                     class="img-circle img-bordered-sm" alt="User avatar"/>
+                            @endif
                             <p class="message">
                                 <a href="#" class="name">
                                     <small class="text-muted pull-right"><i

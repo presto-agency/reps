@@ -21,11 +21,11 @@
             <div class="footer__our-birthday col-xl-2 col-lg-2 mt-lg-0 col-md-6 col-sm-12 col-12 col-6 order-4 mt-4">
                 <h2 class="info__title footer__title">Наши именинники:</h2>
                 <div class="row">
-                    @foreach($footerData['footerUsers'] as $item)
-                        <div class="col-4">
+                    <div class="col-4">
+                        @foreach($footerData['footerUsers'] as $item)
                             <p class="our-birthday__nickname">{{$item->name}}</p>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
             <div class="footer__useful col-xl-2 col-lg-2 mt-lg-0 col-md-6 col-6 order-3 col-sm-12 mt-4">

@@ -329,9 +329,9 @@ class Replay extends Section
      */
     public function show()
     {
-
         $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $url = url('admin/replays/show/' . $model->getKey());
+            $id = $model->getKey();
+            $url = url("admin/replays/$id/show");
             return $url;
         }, function (\Illuminate\Database\Eloquent\Model $model) {
             return 'Просмотреть';
