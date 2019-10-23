@@ -12,26 +12,67 @@
             </div>
             <div class="modal-body">
                 <h2 class="modal-body__title">Добро пожаловать!</h2>
-                <form>
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+
                     <div class="form-group">
-                        <input type="text"
-                               class="form-control"
+                        <input type="email"
+                               class="form-control @error('email') is-invalid @enderror"
                                id="authorization-mail"
-                               placeholder="Имя пользователя(Ел. почта)">
+                               placeholder="{{ __('E-Mail Address') }}"
+                               name="email"
+                               value="{{ old('email') }}"
+                               required autocomplete="email" autofocus
+                        >
+
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+
                         <input type="password"
-                               class="form-control"
+                               class="form-control @error('password') is-invalid @enderror"
                                id="authorization-password"
-                               placeholder="Введите пароль">
+                               placeholder="{{ __('Password') }}"
+                               name="password"
+                               required autocomplete="current-password"
+                        >
+
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-6 offset-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                <label class="form-check-label" for="remember">
+                                    {{ __('Remember Me') }}
+                                </label>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="modal-body__enter-btn">
-                        <button class="button button__download-more">
-                            Вход
+                        <button type="submit" class="button button__download-more">
+                            {{ __('Login') }}
                         </button>
                     </div>
+
+                    @if (Route::has('password.request'))
+                        <a class="modal-body__forgot-password" href="{{ route('password.request') }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                    @endif
                 </form>
-                <a href="#" class="modal-body__forgot-password">Забыли пароль?</a>
-                <a href="#" class="modal-body__restore-password">Восстановить пароль</a>
+                {{--<a href="#" class="modal-body__forgot-password">Забыли пароль?</a>--}}
+                {{--<a href="#" class="modal-body__restore-password">Восстановить пароль</a>--}}
 
             </div>
         </div>

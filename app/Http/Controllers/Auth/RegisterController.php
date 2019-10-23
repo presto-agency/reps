@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -90,11 +91,14 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        Session::flash('showModal', 'registration');
+
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);
+
 
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
