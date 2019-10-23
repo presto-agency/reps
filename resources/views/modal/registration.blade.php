@@ -51,7 +51,7 @@
                             </span>
                         @enderror
 
-                        <input type="text"
+                        <input type="email"
                                class="form-control @error('email') is-invalid @enderror"
                                id="registration-mail"
                                placeholder={{ __('E-Mail Address') }}
