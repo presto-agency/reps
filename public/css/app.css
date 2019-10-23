@@ -12078,6 +12078,7 @@ select:focus {
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 19px;
+  align-items: center;
 }
 
 .gocu-replays .gocu-replays__title .title__icon {
@@ -12098,6 +12099,7 @@ select:focus {
   margin-left: auto;
   margin-right: 20px;
   margin-bottom: 0;
+  display: flex;
 }
 
 .gocu-replays .gocu-replays__title .title__game-period select {
@@ -14100,7 +14102,7 @@ select:focus {
 
 .block_chat-twitch .container_titleChat .content_left {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -14203,11 +14205,24 @@ select:focus {
   padding: 10px 0;
 }
 
+.block_chat-twitch .block_stream_list {
+  position: relative;
+}
+
 .block_chat-twitch .title_video {
   background: #0567cc;
   border-top-right-radius: 5px;
   height: 60px;
   display: flex;
+}
+
+.block_chat-twitch .title_video .btn_streams_close {
+  width: 0;
+}
+
+.block_chat-twitch .title_video .btn_streams_close .svg_close {
+  visibility: hidden;
+  width: 20px;
 }
 
 .block_chat-twitch .title_video .title_Text {
@@ -14219,6 +14234,7 @@ select:focus {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  padding: 0 20px;
 }
 
 .block_chat-twitch .title_video .video_header img {
@@ -14283,7 +14299,7 @@ select:focus {
 
 .header .header_container {
   overflow: hidden;
-  padding: 10px 0;
+  padding: 10px 15px;
 }
 
 .header .header_container .header_row {
@@ -14605,7 +14621,6 @@ select:focus {
 }
 
 .block_replay .row_game {
-  padding: 0 10px;
   margin-bottom: 15px;
 }
 
@@ -15215,11 +15230,13 @@ select:focus {
 .Page_tournamentDetail-content .block_replay_content .block_left .container_block .replay-desc-left .gray {
   font-size: 14px;
   color: #9ca0b6;
+  font-weight: 400;
 }
 
 .Page_tournamentDetail-content .block_replay_content .block_left .container_block .replay-desc-left .blue {
   font-size: 14px;
   color: #0567cc;
+  font-weight: 400;
 }
 
 .Page_tournamentDetail-content .block_replay_content .block_right .container_block {
@@ -15336,11 +15353,13 @@ select:focus {
 
 .Page_tournamentDetail-content .container_round .winner_round {
   display: flex;
+  align-items: baseline;
   padding-bottom: 10px;
 }
 
 .Page_tournamentDetail-content .container_round .winner_round .left_block {
   display: flex;
+  align-items: center;
 }
 
 .Page_tournamentDetail-content .container_round .winner_round .left_block span {
@@ -15364,6 +15383,7 @@ select:focus {
 .Page_tournamentDetail-content .container_round .winner_round .center_block {
   display: flex;
   justify-content: center;
+  align-items: baseline;
 }
 
 .Page_tournamentDetail-content .container_round .winner_round .center_block .one_player {
@@ -15388,6 +15408,9 @@ select:focus {
   width: 30%;
   display: flex;
   justify-content: flex-end;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .Page_tournamentDetail-content .container_round .winner_round .right_block a {
@@ -15415,59 +15438,15 @@ select:focus {
 }
 
 .Page_gameBest .title_block {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #0567cc;
-  height: 60px;
-  border: 0;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  padding: 20px;
-}
-
-.Page_gameBest .title_block .left_content {
-  display: flex;
-  align-items: end;
-}
-
-.Page_gameBest .title_block .left_content svg {
-  margin-right: 10px;
-  fill: white;
-}
-
-.Page_gameBest .title_block .right_content {
-  display: flex;
-  align-items: center;
-}
-
-.Page_gameBest .title_block .right_content svg {
-  margin-left: 10px;
-}
-
-.Page_gameBest .title_block .right_content .title_text {
-  font-size: 14px;
-  color: white;
-  margin: 0;
-}
-
-.Page_gameBest .title_block img,
-.Page_gameBest .title_block svg {
-  width: 20px;
-  margin-right: 10px;
-}
-
-.Page_gameBest .title_block .title_text {
-  font-size: 16px;
-  color: white;
-  margin: 0;
+  justify-content: flex-start;
+  align-items: baseline;
 }
 
 .Page_gameBest .title_players {
   display: flex;
   align-items: center;
   background: #efefef;
-  height: 60px;
+  min-height: 60px;
   justify-content: space-between;
   padding: 0 20px;
 }
@@ -15507,7 +15486,6 @@ select:focus {
 .Page_gameBest .container_players .players_content .left_block .number {
   width: 40px;
   display: block;
-  height: 28px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -15524,7 +15502,6 @@ select:focus {
 .Page_gameBest .container_players .players_content .left_block a {
   width: 140px;
   display: block;
-  height: 28px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -15548,7 +15525,6 @@ select:focus {
   font-size: 14px;
   width: 70px;
   display: block;
-  height: 28px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -16063,6 +16039,47 @@ select:focus {
   border-top: 1px solid white;
 }
 
+.streams_list {
+  padding: 15px;
+  top: 7.2%;
+  width: 255px;
+  position: absolute;
+  height: 92%;
+  overflow: hidden;
+  right: -255px;
+  transition-duration: 0.3s;
+  z-index: 9;
+  background: white;
+  background: transparent;
+}
+
+.streams_list .widget-stream-lists {
+  visibility: hidden;
+  margin: 5px 0;
+}
+
+.streams_list .widget-stream-lists span {
+  margin-left: 20px;
+}
+
+.open {
+  right: 6px;
+  transition-duration: 0.3s;
+  background: white;
+}
+
+.open .widget-stream-lists {
+  visibility: visible;
+  color: #0567cc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.open .widget-stream-lists span {
+  font-weight: 400;
+}
+
 .button {
   font-size: 12px;
   font-weight: 400;
@@ -16124,6 +16141,7 @@ select:focus {
   display: flex;
   align-items: center;
   background: #0567cc;
+  min-height: 60px;
   border: 0;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -16147,7 +16165,7 @@ select:focus {
   align-items: center;
   justify-content: space-between;
   background: #efefef;
-  height: 60px;
+  min-height: 60px;
   padding: 20px;
 }
 
@@ -16168,101 +16186,401 @@ select:focus {
 }
 
 @media (max-width: 3840px) {
-  /* CSS-стили */
-
   #pulse-button-top,
   #pulse-button-info {
     display: none;
   }
 }
 
-@media (min-width: 991px) and (max-width: 1920px) {
-  /* CSS-стили */
-}
+@media (max-width: 1366px) {
+  /*Главная*/
 
-@media (max-width: 991px) {
-  /* CSS-стили */
-
-  #left-sidebar {
-    order: 1;
+  .title_block {
+    padding: 1.464vw;
   }
 
-  #right-sidebar {
-    order: 2;
+  .title_block img,
+  .title_block svg {
+    width: 1.464vw;
   }
 
-  #content {
-    order: 3;
+  .title_block .title_text {
+    font-size: 1.167vw;
+    margin: 0 0 0 1.464vw;
   }
 
-  #pulse-button-top,
-  #pulse-button-info {
-    display: block;
+  .title_top {
+    height: 4.392vw;
+    padding: 1.464vw;
   }
 
-  .left-sidebar-wrap {
-    height: auto;
+  .title_top .title_Text {
+    font-size: 1.171vw;
   }
 
-  .right-sidebar-wrap {
-    height: auto;
+  .title_top .more p {
+    font-size: 2.928vw;
   }
 
-  .no-height {
-    height: 0;
-    overflow: hidden;
-  }
-}
-
-@media (max-width: 576px) {
-  .header_row {
-    flex-direction: row-reverse;
+  .button {
+    font-size: 0.878vw;
+    padding-top: 0.952vw;
+    padding-bottom: 1.098vw;
   }
 
-  .header_row .logotype {
-    display: flex;
-    align-items: center;
+  .block_chat-twitch {
+    padding-bottom: 2.928vw;
   }
 
-  .header_row .logotype img {
-    width: 55% !important;
-    padding-left: 20px;
+  .block_chat-twitch .block_chat {
+    padding-bottom: 1.464vw;
   }
 
-  .header_row .mode {
-    position: absolute;
-    right: 10%;
-    bottom: 58%;
+  .block_chat-twitch .title_Text {
+    font-size: 1.171vw;
+    padding: 0 0 0 1.464vw;
   }
 
-  .header_row .logo {
-    justify-content: center;
+  .block_chat-twitch .text_support {
+    font-size: 1.318vw;
+    padding: 2.196vw 0;
   }
 
-  .header_row .main_menu {
-    position: inherit !important;
+  .block_chat-twitch .container_titleChat {
+    height: 4.392vw;
   }
 
-  .header_row .icon_bars {
-    display: block !important;
-    width: 30px !important;
+  .block_chat-twitch .container_titleChat .content_right button svg {
+    width: 2.562vw;
   }
 
-  .header_row .cabinet {
-    display: flex !important;
+  .block_chat-twitch .messanger {
+    max-height: 45.388vw;
   }
 
-  .header_row .cabinet .icon_cabinet {
-    width: 30px !important;
+  .block_chat-twitch .login_block {
+    padding: 2.928vw 0;
   }
 
-  .header_row .button_input {
-    margin-left: 20px;
+  .block_chat-twitch .login_block a {
+    font-size: 1.025vw;
   }
 
-  .header_row .button_input .search_input {
-    margin-left: 0 !important;
-    min-width: 77vw !important;
+  .block_chat-twitch .row_contentChat {
+    padding: 2.196vw 0.732vw 0;
+  }
+
+  .block_chat-twitch .row_contentChat svg {
+    height: 1.098vw;
+    width: 1.098vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_user_akk .blue_text {
+    font-size: 1.025vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_user_akk .user {
+    min-width: 11.713vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_date {
+    font-size: 1.025vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_userMessage {
+    padding: 1.464vw 0;
+  }
+
+  .block_chat-twitch .row_contentChat .block_userMessage .user_nick {
+    font-size: 1.025vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_userMessage img {
+    padding: 0.732vw 0;
+  }
+
+  .block_chat-twitch .title_video {
+    height: 4.392vw;
+  }
+
+  .block_chat-twitch .title_video .video_header img {
+    padding-right: 1.464vw;
+  }
+
+  .block_chat-twitch .title_video .video_header .left_block svg {
+    width: 2.928vw;
+  }
+
+  .block_chat-twitch .title_video .video_header .right_block svg {
+    width: 2.562vw;
+    margin-right: 0.732vw;
+  }
+
+  .block_chat-twitch .video_twitch {
+    padding: 2.928vw 0;
+    height: 56.369vw;
+  }
+
+  .messanger::-webkit-scrollbar {
+    width: 0.732vw;
+  }
+
+  .messanger::-webkit-scrollbar-thumb {
+    height: 16.618vw;
+  }
+
+  .block_tournament .block_futureTournament .information_text {
+    font-size: 1.171vw;
+    padding: 3.66vw 0 0 0;
+  }
+
+  .block_tournament .block_futureTournament .button {
+    margin: 2.928vw auto;
+    padding: 0.366vw;
+  }
+
+  .block_replay .container_btn .button {
+    margin: 1.464vw auto 2.928vw;
+    padding: 0.366vw;
+  }
+
+  .block_replay .title_top {
+    margin-bottom: 1.83vw;
+  }
+
+  .block_replay .row_game {
+    padding: 0 0.732vw;
+    margin-bottom: 1.098vw;
+  }
+
+  .block_replay .row_game .name_game p {
+    font-size: 1.025vw;
+  }
+
+  .block_replay .row_game .content_game {
+    margin-bottom: 0.366vw;
+  }
+
+  .block_replay .row_game .content_game img {
+    width: 1.171vw;
+    height: 1.098vw;
+    margin: 5px;
+  }
+
+  .block_replay .row_game .content_game .text_matchap {
+    font-size: 0.878vw;
+  }
+
+  .block_replay .row_game .content_game .text {
+    font-size: 0.878vw;
+  }
+
+  .block_lastNews {
+    margin: 2.196vw 0 2.928vw 0;
+  }
+
+  .block_lastNews .block_futureTournament {
+    padding: 1.83vw 1.098vw 0;
+  }
+
+  .block_lastNews .block_futureTournament .href_tournament {
+    font-size: 1.025vw;
+    padding-bottom: 1.098vw;
+  }
+
+  .breaking-news .breaking-news__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.464vw;
+  }
+
+  .breaking-news .breaking-news__title .title__icon {
+    width: 0.952vw;
+    height: 1.537vw;
+  }
+
+  .breaking-news .breaking-news__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .breaking-news .breaking-news__news-card {
+    padding-left: 1.611vw;
+    padding-right: 1.611vw;
+    padding-top: 1.83vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__author {
+    margin-bottom: 1.318vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__author .author__avatar {
+    width: 2.05vw;
+    height: 2.05vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__author .author__nickname {
+    font-size: 1.025vw;
+    margin-left: 0.952vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__author .author__date {
+    font-size: 0.878vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__title {
+    font-size: 1.171vw;
+    line-height: 1.391vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__text {
+    font-size: 1.025vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body p {
+    font-size: 1.025vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body a {
+    font-size: 1.025vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items {
+    margin-bottom: 1.318vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__comment svg {
+    width: 1.537vw;
+    height: 1.537vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__comment span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-left: 0.732vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__share {
+    margin-left: 2.562vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__share svg {
+    width: 1.318vw;
+    height: 1.464vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__watch svg {
+    width: 0.805vw;
+    height: 0.805vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__watch span {
+    margin-left: 0.732vw;
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form {
+    margin-bottom: 3.367vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__icon {
+    width: 1.464vw;
+    height: 1.171vw;
+    top: 1.098vw;
+    right: 5.857vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input {
+    height: 3.221vw;
+    padding-left: 1.318vw;
+    padding-right: 8.785vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-webkit-input-placeholder {
+    font-size: 0.878vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-moz-placeholder {
+    font-size: 0.878vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input:-ms-input-placeholder {
+    font-size: 0.878vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-ms-input-placeholder {
+    font-size: 0.878vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::placeholder {
+    font-size: 0.878vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload {
+    top: 0.878vw;
+    right: 3.66vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload label {
+    margin-left: 3.66vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload i {
+    font-size: 3.66vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload .smile-upload {
+    margin-left: 1.171vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload .smile-upload i {
+    font-size: 1.171vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__button svg {
+    width: 1.464vw;
+    height: 1.318vw;
+  }
+
+  .block_top .block_topUsers {
+    padding: 1.83vw;
+  }
+
+  .block_top .block_topUsers .content_code p {
+    font-size: 1.025vw;
+  }
+
+  .block_top .block_topUsers .content_img img,
+  .block_top .block_topUsers .content_img svg {
+    padding-right: 0.366vw;
+  }
+
+  .block_top .block_topUsers .content_login p {
+    font-size: 1.025vw;
+  }
+
+  .block_lastNews {
+    margin: 2.196vw 0 2.928vw 0;
+  }
+
+  .block_lastNews .block_futureTournament {
+    padding: 1.83vw 1.098vw 0;
+  }
+
+  .block_lastNews .block_futureTournament .href_tournament {
+    font-size: 1.025vw;
+    padding-bottom: 1.098vw;
+  }
+
+  .breaking-news__numb-pages {
+    margin-top: 1.83vw;
+    margin-bottom: 0.586vw;
+  }
+
+  .breaking-news__numb-pages .numb-pages {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
   }
 }
 
@@ -16312,6 +16630,1349 @@ select:focus {
 
   .header .burger_menu .menu_bar {
     width: 50px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  /*global styles START*/
+
+  #left-sidebar {
+    order: 1;
+  }
+
+  #right-sidebar {
+    order: 2;
+  }
+
+  #content {
+    order: 3;
+  }
+
+  #pulse-button-top,
+  #pulse-button-info {
+    display: block;
+  }
+
+  .left-sidebar-wrap {
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .right-sidebar-wrap {
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .content {
+    margin-bottom: 20px;
+  }
+
+  .no-height {
+    height: 0;
+    overflow: hidden;
+  }
+
+  /*global styles END*/
+
+  /*===main page===*/
+
+  .block_chat-twitch {
+    padding-bottom: 4vw;
+  }
+
+  .block_chat-twitch .block_chat {
+    padding-bottom: 2vw;
+  }
+
+  .block_chat-twitch .title_Text {
+    font-size: 1.6vw;
+    padding: 0 0 0 2vw;
+  }
+
+  .block_chat-twitch .text_support {
+    font-size: 1.8vw;
+    padding: 3vw 0;
+  }
+
+  .block_chat-twitch .container_titleChat {
+    height: 6vw;
+  }
+
+  .block_chat-twitch .container_titleChat .content_right button svg {
+    width: 3.5vw;
+  }
+
+  .block_chat-twitch .messanger {
+    max-height: 62vw;
+  }
+
+  .block_chat-twitch .login_block {
+    padding: 4vw 0;
+  }
+
+  .block_chat-twitch .login_block a {
+    font-size: 1.4vw;
+  }
+
+  .block_chat-twitch .row_contentChat {
+    padding: 3vw 1vw 0;
+  }
+
+  .block_chat-twitch .row_contentChat svg {
+    height: 1.5vw;
+    width: 1.5vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_user_akk .blue_text {
+    font-size: 1.4vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_user_akk .user {
+    min-width: 16vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_date {
+    font-size: 1.4vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_userMessage {
+    padding: 2vw 0;
+  }
+
+  .block_chat-twitch .row_contentChat .block_userMessage .user_nick {
+    font-size: 1.4vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_userMessage img {
+    padding: 1vw 0;
+  }
+
+  .block_chat-twitch .title_video {
+    height: 6vw;
+  }
+
+  .block_chat-twitch .title_video .video_header img {
+    padding-right: 2vw;
+  }
+
+  .block_chat-twitch .title_video .video_header .left_block svg {
+    width: 4vw;
+  }
+
+  .block_chat-twitch .title_video .video_header .right_block svg {
+    width: 3.5vw;
+    margin-right: 1vw;
+  }
+
+  .block_chat-twitch .title_video .video_header .right_block .svg_close {
+    width: 2vw;
+  }
+
+  .block_chat-twitch .video_twitch {
+    padding: 4vw 0;
+    height: 77vw;
+  }
+
+  .messanger::-webkit-scrollbar {
+    width: 1vw;
+  }
+
+  .messanger::-webkit-scrollbar-thumb {
+    height: 22.7vw;
+  }
+
+  .block_tournament .block_futureTournament .information_text {
+    font-size: 1.6vw;
+    padding: 5vw 0 0 0;
+  }
+
+  .block_tournament .block_futureTournament .button {
+    margin: 4vw auto;
+    padding: 0.5vw;
+  }
+
+  .block_replay .container_btn .button {
+    margin: 2vw auto 4vw;
+    padding: 5px;
+  }
+
+  .block_replay .title_top {
+    margin-bottom: 2.5vw;
+  }
+
+  .block_replay .row_game {
+    padding: 0 1vw;
+    margin-bottom: 1.5vw;
+  }
+
+  .block_replay .row_game .name_game p {
+    font-size: 1.4vw;
+    margin: 0px 0 0.5vw 0;
+  }
+
+  .block_replay .row_game .content_game {
+    margin-bottom: 0.5vw;
+  }
+
+  .block_replay .row_game .content_game img {
+    width: 1.6vw;
+    height: 1.5vw;
+    margin: 0.5vw;
+  }
+
+  .block_replay .row_game .content_game .text_matchap {
+    font-size: 1.2vw;
+    margin: 0 1vw;
+  }
+
+  .block_replay .row_game .content_game .text {
+    font-size: 1.2vw;
+  }
+
+  .block_lastNews {
+    margin: 3vw 0 4vw 0;
+  }
+
+  .block_lastNews .block_futureTournament {
+    padding: 2.5vw 1.5vw 0;
+  }
+
+  .block_lastNews .block_futureTournament .href_tournament {
+    font-size: 1.4vw;
+    padding-bottom: 1.5vw;
+  }
+}
+
+@media (max-width: 576px) {
+  .title_block {
+    padding: 3.472vw;
+  }
+
+  .title_block img,
+  .title_block svg {
+    width: 3.472vw;
+  }
+
+  .title_block .title_text {
+    font-size: 3.778vw;
+    margin: 0 0 0 3.472vw;
+  }
+
+  .title_top {
+    height: 10.417vw;
+    padding: 3.472vw;
+  }
+
+  .title_top .title_Text {
+    font-size: 3.778vw;
+  }
+
+  .title_top .more p {
+    font-size: 6.944vw;
+  }
+
+  .button {
+    font-size: 2.083vw;
+    padding-top: 2.257vw;
+    padding-bottom: 2.604vw;
+  }
+
+  .header_row {
+    flex-direction: row-reverse;
+  }
+
+  .header_row .logotype {
+    display: flex;
+    align-items: center;
+  }
+
+  .header_row .logotype img {
+    width: 55% !important;
+    padding-left: 20px;
+  }
+
+  .header_row .mode {
+    position: absolute;
+    right: 10%;
+    bottom: 58%;
+  }
+
+  .header_row .logo {
+    justify-content: center;
+  }
+
+  .header_row .main_menu {
+    position: inherit !important;
+  }
+
+  .header_row .icon_bars {
+    display: block !important;
+    width: 30px !important;
+  }
+
+  .header_row .cabinet {
+    display: flex !important;
+  }
+
+  .header_row .cabinet .icon_cabinet {
+    width: 30px !important;
+  }
+
+  .header_row .button_input {
+    margin-left: 20px;
+  }
+
+  .header_row .button_input .search_input {
+    margin-left: 0 !important;
+    min-width: 77vw !important;
+  }
+
+  .breadcrumb {
+    padding-top: 4.514vw;
+    padding-bottom: 4.34vw;
+  }
+
+  .breadcrumb .breadcrumb-item {
+    font-size: 3.125vw;
+    font-weight: 300;
+    line-height: 3.299vw;
+  }
+
+  .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    padding-right: 0.5rem;
+  }
+
+  .breadcrumb .breadcrumb-item.active {
+    font-size: 3.125vw;
+    font-weight: 300;
+    line-height: 3.299vw;
+  }
+
+  .block_chat-twitch {
+    padding-bottom: 6.944vw;
+  }
+
+  .block_chat-twitch .block_chat {
+    padding-bottom: 3.472vw;
+  }
+
+  .block_chat-twitch .title_Text {
+    font-size: 2.778vw;
+    padding: 0 0 0 3.472vw;
+  }
+
+  .block_chat-twitch .text_support {
+    font-size: 3.125vw;
+    padding: 5.208vw 0;
+  }
+
+  .block_chat-twitch .container_titleChat {
+    height: 10.417vw;
+  }
+
+  .block_chat-twitch .container_titleChat .content_right button svg {
+    width: 6.076vw;
+  }
+
+  .block_chat-twitch .messanger {
+    max-height: 107.639vw;
+  }
+
+  .block_chat-twitch .login_block {
+    padding: 6.944vw 0;
+  }
+
+  .block_chat-twitch .login_block a {
+    font-size: 4.431vw;
+  }
+
+  .block_chat-twitch .row_contentChat {
+    padding: 5.208vw 1.736vw 0;
+  }
+
+  .block_chat-twitch .row_contentChat svg {
+    height: 2.604vw;
+    width: 2.604vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_user_akk .blue_text {
+    font-size: 4.431vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_user_akk .number_mess {
+    font-size: 4.431vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_user_akk .user {
+    min-width: 27.778vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_date {
+    font-size: 2.431vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_userMessage {
+    padding: 3.472vw 0;
+  }
+
+  .block_chat-twitch .row_contentChat .block_userMessage .user_nick {
+    font-size: 2.431vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_userMessage img {
+    padding: 1.736vw 0;
+  }
+
+  .block_chat-twitch .title_video {
+    height: 10.417vw;
+  }
+
+  .block_chat-twitch .title_video .video_header img {
+    padding-right: 3.472vw;
+  }
+
+  .block_chat-twitch .title_video .video_header .left_block svg {
+    width: 6.944vw;
+  }
+
+  .block_chat-twitch .title_video .video_header .right_block svg {
+    width: 6.076vw;
+    margin-right: 1.736vw;
+  }
+
+  .block_chat-twitch .video_twitch {
+    padding: 6.944vw 0;
+    height: 133.681vw;
+  }
+
+  .messanger::-webkit-scrollbar {
+    width: 1.736vw;
+  }
+
+  .messanger::-webkit-scrollbar-thumb {
+    height: 39.41vw;
+  }
+
+  .breaking-news .breaking-news__title {
+    padding-top: 3.472vw;
+    padding-bottom: 3.472vw;
+    padding-left: 3.299vw;
+  }
+
+  .breaking-news .breaking-news__title .title__icon {
+    width: 3.257vw;
+    height: auto;
+  }
+
+  .breaking-news .breaking-news__title .title__text {
+    font-size: 3.778vw;
+    margin-left: 2.951vw;
+  }
+
+  .breaking-news .breaking-news__news-card {
+    padding-left: 3.819vw;
+    padding-right: 3.819vw;
+    padding-top: 4.34vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__author {
+    margin-bottom: 3.125vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__author .author__avatar {
+    width: 4.861vw;
+    height: 4.861vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__author .author__nickname {
+    font-size: 3.431vw;
+    margin-left: 2.257vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__author .author__date {
+    margin-left: auto;
+    font-size: 3.083vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__title {
+    font-size: 2.778vw;
+    line-height: 3.299vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__text {
+    font-size: 2.431vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body p {
+    font-size: 2.431vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body a {
+    font-size: 2.431vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items {
+    margin-bottom: 3.125vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__comment svg {
+    width: 3.646vw;
+    height: 3.646vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__comment span {
+    font-size: 2.083vw;
+    line-height: 3.299vw;
+    margin-left: 2.083vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__share {
+    margin-left: 6.076vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__share svg {
+    width: 3.125vw;
+    height: 3.472vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__watch svg {
+    width: 1.91vw;
+    height: 1.91vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__watch span {
+    margin-left: 2.083vw;
+    font-size: 2.083vw;
+    line-height: 3.299vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form {
+    margin-bottom: 7.986vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__icon {
+    width: 3.472vw;
+    height: 2.778vw;
+    top: 2.604vw;
+    right: 13.889vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input {
+    height: 7.639vw;
+    padding-left: 3.125vw;
+    padding-right: 13.472vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-webkit-input-placeholder {
+    font-size: 2.083vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-moz-placeholder {
+    font-size: 2.083vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input:-ms-input-placeholder {
+    font-size: 2.083vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-ms-input-placeholder {
+    font-size: 2.083vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::placeholder {
+    font-size: 2.083vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload {
+    top: 2.083vw;
+    right: 8.681vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload label {
+    margin-left: 2.951vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload i {
+    font-size: 2.778vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload .smile-upload {
+    margin-left: 2.778vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload .smile-upload i {
+    font-size: 2.778vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__button svg {
+    width: 3.472vw;
+    height: 3.125vw;
+  }
+
+  .breaking-news__numb-pages {
+    margin-top: 4.34vw;
+    margin-bottom: 1.389vw;
+  }
+
+  .breaking-news__numb-pages .numb-pages {
+    font-size: 2.083vw;
+    line-height: 3.299vw;
+  }
+
+  .block_tournament .block_futureTournament .information_text {
+    font-size: 3.778vw;
+    padding: 8.681vw 0 0 0;
+    margin: 0;
+  }
+
+  .block_tournament .block_futureTournament .button {
+    margin: 6.944vw auto;
+    padding: 0.868vw;
+  }
+
+  .block_replay .container_btn .button {
+    margin: 3.472vw auto 6.944vw;
+    padding: 0.868vw;
+  }
+
+  .block_replay .title_top {
+    margin-bottom: 4.34vw;
+  }
+
+  .block_replay .row_game {
+    padding: 0 1.736vw;
+    margin-bottom: 2.604vw;
+  }
+
+  .block_replay .row_game .game_oneSection {
+    margin-bottom: 3.009vw;
+  }
+
+  .block_replay .row_game .name_game p {
+    font-size: 2.931vw;
+    margin: 0px 0 0.868vw 0;
+  }
+
+  .block_replay .row_game .content_game {
+    margin-bottom: 0.868vw;
+  }
+
+  .block_replay .row_game .content_game img {
+    width: 2.778vw;
+    height: 2.604vw;
+    margin: 0.868vw;
+  }
+
+  .block_replay .row_game .content_game .text_matchap {
+    font-size: 2.083vw;
+    margin: 0 1.563vw;
+  }
+
+  .block_replay .row_game .content_game .text {
+    font-size: 2.53vw;
+  }
+
+  .block_lastNews {
+    margin: 5.208vw 0 6.944vw 0;
+  }
+
+  .block_lastNews .block_futureTournament {
+    padding: 4.34vw 2.604vw 0;
+  }
+
+  .block_lastNews .block_futureTournament .href_tournament {
+    font-size: 3.431vw;
+    padding-bottom: 2.604vw;
+  }
+
+  .block_top .block_topUsers {
+    padding: 4.34vw;
+  }
+
+  .block_top .block_topUsers .content_code p {
+    font-size: 3.431vw;
+  }
+
+  .block_top .block_topUsers .content_img img,
+  .block_top .block_topUsers .content_img svg {
+    padding-right: 0.868vw;
+  }
+
+  .block_top .block_topUsers .content_login p {
+    font-size: 3.431vw;
+  }
+
+  .gocu-replays .gocu-replays__title {
+    padding-top: 3.472vw;
+    padding-bottom: 3.472vw;
+    padding-left: 3.299vw;
+  }
+
+  .gocu-replays .gocu-replays__title .title__icon {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
+
+  .gocu-replays .gocu-replays__title .title__text {
+    font-size: 2.778vw;
+    margin-left: 2.951vw;
+  }
+
+  .gocu-replays .gocu-replays__title .title__game-period {
+    margin-right: 3.472vw;
+  }
+
+  .gocu-replays .gocu-replays__title .title__game-period select {
+    height: 3.472vw;
+    padding-right: 2.431vw;
+    font-size: 2.083vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__author {
+    padding: 3.472vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__author .comment-author__nickname {
+    font-size: 3.431vw;
+    margin-left: 2.257vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__author .comment-author__replay-item {
+    font-size: 3.083vw;
+    line-height: 2.257vw;
+    margin-left: 2.083vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__author .comment-author__date {
+    font-size: 3.083vw;
+    line-height: 3.299vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__comment {
+    font-size: 3.778vw;
+    padding-left: 3.472vw;
+    padding-right: 3.472vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info {
+    padding: 3.472vw;
+    display: flex;
+    align-items: center;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__country .country-first {
+    margin-left: 1.042vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__country img {
+    width: 4.604vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__wins {
+    width: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__match-up .match-up__versus {
+    margin-left: 0.868vw;
+    margin-right: 0.868vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__match-up .match-up__name {
+    font-size: 4.431vw;
+    line-height: 3.299vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__match-up .name__first {
+    margin-left: 2.431vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__maps .maps__name {
+    font-size: 3.431vw;
+    margin-left: 2.083vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__wins svg {
+    width: 10.868vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__wins .wins__text {
+    margin-left: 1.736vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .country__text,
+  .gocu-replays .gocu-replays__match .match__info .match-up__text,
+  .gocu-replays .gocu-replays__match .match__info .maps__text,
+  .gocu-replays .gocu-replays__match .match__info .wins__text {
+    font-size: 4.083vw;
+    line-height: 2.257vw;
+  }
+
+  .gocu-replays__button {
+    margin-bottom: 5.472vw;
+  }
+
+  .gocu-replays__numb-pages {
+    margin-top: 4.34vw;
+    margin-bottom: 1.389vw;
+  }
+
+  .gocu-replays__numb-pages .numb-pages {
+    font-size: 2.083vw;
+    line-height: 3.299vw;
+  }
+
+  .replays {
+    margin-bottom: 5.903vw;
+  }
+
+  .replays .replays__title {
+    padding-top: 3.472vw;
+    padding-bottom: 3.472vw;
+    padding-left: 3.299vw;
+  }
+
+  .replays .replays__title .title__icon {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
+
+  .replays .replays__title .title__text {
+    font-size: 2.778vw;
+    margin-left: 2.951vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__header .header__title {
+    font-size: 3.778vw;
+    line-height: 4.861vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__header .fa-ellipsis-h {
+    font-size: 3.778vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__body .card-body .body__wrap {
+    margin-bottom: 4.34vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__body .card-body .body__wrap .body__title {
+    font-size: 3.431vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__body .card-body .body__wrap .body__numb {
+    font-size: 3.431vw;
+  }
+
+  .search .search__title {
+    padding-top: 3.472vw;
+    padding-bottom: 3.472vw;
+    padding-left: 3.299vw;
+  }
+
+  .search .search__title .title__icon {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
+
+  .search .search__title .title__text {
+    font-size: 3.778vw;
+    margin-left: 2.951vw;
+  }
+
+  .search .search__body {
+    padding: 3.472vw;
+  }
+
+  .search .search__body label {
+    margin-bottom: 4.34vw;
+    font-size: 3.9vw;
+  }
+
+  .search .search__body label input {
+    height: 7.639vw;
+    padding-left: 3.472vw;
+  }
+
+  .search .search__body label select {
+    height: 7.639vw;
+    padding-left: 3.472vw;
+    margin-top: 1.736vw;
+    background-position: center right 3.472vw;
+    font-size: 3.5vw;
+  }
+
+  .search .search__body .body__button-search {
+    margin-top: 3.472vw;
+    margin-bottom: 2.431vw;
+  }
+
+  .forum-topics .forum-topics__title {
+    padding-top: 3.125vw;
+    padding-bottom: 3.125vw;
+    padding-left: 3.299vw;
+  }
+
+  .forum-topics .forum-topics__title .title__icon {
+    width: 4.472vw;
+  }
+
+  .forum-topics .forum-topics__title .title__text {
+    font-size: 3.778vw;
+    margin-left: 2.951vw;
+  }
+
+  .forum-topics .forum-topics__accordion .accordion__topic .topic__header .header__title {
+    font-size: 3.778vw;
+    line-height: 4.861vw;
+  }
+
+  .forum-topics .forum-topics__accordion .accordion__topic .topic__header .fa-chevron-down,
+  .forum-topics .forum-topics__accordion .accordion__topic .topic__header .fa-ellipsis-h {
+    font-size: 3.778vw;
+  }
+
+  .Page_tournament-content .title_block {
+    height: 10.417vw;
+    padding: 3.472vw;
+  }
+
+  .Page_tournament-content .title_block .left_content svg {
+    margin-right: 1.736vw;
+  }
+
+  .Page_tournament-content .title_block .right_content svg {
+    margin-left: 1.736vw;
+  }
+
+  .Page_tournament-content .title_block .right_content .lable_select select {
+    padding-right: 3.431vw;
+    font-size: 2.7vw;
+  }
+
+  .Page_tournament-content .title_block img,
+  .Page_tournament-content .title_block svg {
+    width: 3.472vw;
+    margin-right: 1.736vw;
+  }
+
+  .Page_tournament-content .title_block .title_text {
+    font-size: 3vw;
+  }
+
+  .Page_tournament-content .block_navigationTournament {
+    height: 10.417vw;
+    padding: 3.472vw;
+  }
+
+  .Page_tournament-content .block_navigationTournament a {
+    font-size: 2.778vw;
+  }
+
+  .Page_tournament-content .tournament_info {
+    padding: 3.472vw 3.472vw;
+  }
+
+  .Page_tournament-content .tournament_info svg {
+    width: 4vw;
+    margin-right: 1.736vw;
+  }
+
+  .Page_tournament-content .tournament_info .place span {
+    font-size: 3vw;
+  }
+
+  .Page_tournament-content .tournament_info .time span {
+    font-size: 3vw;
+  }
+
+  .Page_tournament-content .tournament_info .status span {
+    font-size: 2.5vw;
+    border-radius: 2.604vw;
+    padding: 0.868vw 3.208vw;
+  }
+
+  .Page_tournament-content .tournament_info .palayers span {
+    margin-left: 1.736vw;
+    font-size: 3.083vw;
+  }
+
+  .Page_tournamentDetail-content .title_block {
+    height: 10.417vw;
+    padding: 3.472vw;
+  }
+
+  .Page_tournamentDetail-content .title_block .left_content svg {
+    margin-right: 1.736vw;
+  }
+
+  .Page_tournamentDetail-content .title_block .right_content svg {
+    margin-left: 1.736vw;
+  }
+
+  .Page_tournamentDetail-content .title_block img,
+  .Page_tournamentDetail-content .title_block svg {
+    width: 3.472vw;
+    margin-right: 1.736vw;
+  }
+
+  .Page_tournamentDetail-content .title_block .title_text {
+    font-size: 2.778vw;
+  }
+
+  .Page_tournamentDetail-content .block_replay_content {
+    padding: 30px 3.472vw;
+  }
+
+  .Page_tournamentDetail-content .block_replay_content .block_left .description_left {
+    font-size: 2.083vw;
+  }
+
+  .Page_tournamentDetail-content .block_replay_content .block_left .container_block .replay-desc-right p {
+    font-size: 3.083vw;
+  }
+
+  .Page_tournamentDetail-content .block_replay_content .block_left .container_block .replay-desc-left p {
+    font-size: 3.083vw;
+  }
+
+  .Page_tournamentDetail-content .block_replay_content .block_left .container_block .replay-desc-left .gray {
+    font-size: 3.431vw;
+    font-weight: 400;
+  }
+
+  .Page_tournamentDetail-content .block_replay_content .block_left .container_block .replay-desc-left .blue {
+    font-size: 3.431vw;
+    font-weight: 400;
+  }
+
+  .Page_tournamentDetail-content .block_replay_content .block_right .container_block {
+    margin-top: 3.472vw;
+  }
+
+  .Page_tournamentDetail-content .block_replay_content .block_right .container_block p {
+    font-size: 3.083vw;
+  }
+
+  .Page_tournamentDetail-content .block_replay_content .block_right .container_block .right p {
+    font-size: 3.083vw;
+  }
+
+  .Page_tournamentDetail-content .block_replay_content .block_right .container_block .right svg {
+    width: 3.604vw;
+  }
+
+  .Page_tournamentDetail-content .title_players {
+    height: 10.417vw;
+    padding: 0 3.472vw;
+  }
+
+  .Page_tournamentDetail-content .title_players .title_playersText {
+    font-size: 3.778vw;
+  }
+
+  .Page_tournamentDetail-content .title_players a {
+    font-size: 2.083vw;
+  }
+
+  .Page_tournamentDetail-content .container_players {
+    max-height: 220px;
+    padding: 3.472vw 0;
+  }
+
+  .Page_tournamentDetail-content .container_players .players_content {
+    padding: 1.736vw 45px 0.868vw 3.472vw;
+  }
+
+  .Page_tournamentDetail-content .container_players .players_content .left_block {
+    align-items: center;
+  }
+
+  .Page_tournamentDetail-content .container_players .players_content .left_block span {
+    font-size: 3.431vw;
+  }
+
+  .Page_tournamentDetail-content .container_players .players_content .left_block img {
+    margin: 0 1.736vw 0 2.604vw;
+  }
+
+  .Page_tournamentDetail-content .container_players .players_content .left_block a {
+    width: 29.514vw;
+  }
+
+  .Page_tournamentDetail-content .container_players .players_content .left_block a .name_player {
+    font-size: 3.431vw;
+  }
+
+  .Page_tournamentDetail-content .container_players .players_content .center_block img {
+    margin: 0 0.868vw;
+  }
+
+  .Page_tournamentDetail-content .container_players .players_content .right_block svg {
+    width: 3.472vw;
+  }
+
+  .Page_tournamentDetail-content .container_round {
+    padding: 3.472vw 3.472vw 1.736vw;
+  }
+
+  .Page_tournamentDetail-content .container_round span {
+    font-size: 3.431vw;
+  }
+
+  .Page_tournamentDetail-content .container_round .winner_round {
+    padding-bottom: 1.736vw;
+  }
+
+  .Page_tournamentDetail-content .container_round .winner_round .left_block {
+    padding: 0;
+  }
+
+  .Page_tournamentDetail-content .container_round .winner_round .left_block span {
+    font-size: 3.431vw;
+    margin-left: 1.736vw;
+  }
+
+  .Page_tournamentDetail-content .container_round .winner_round .left_block img {
+    margin: 0 1.736vw 0 2.604vw;
+  }
+
+  .Page_tournamentDetail-content .container_round .winner_round .left_block a .name_player {
+    font-size: 2.431vw;
+  }
+
+  .Page_tournamentDetail-content .container_round .winner_round .center_block {
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .Page_tournamentDetail-content .container_round .winner_round .center_block .one_player {
+    width: 19.097vw;
+    height: 4.861vw;
+  }
+
+  .Page_tournamentDetail-content .container_round .winner_round .center_block img {
+    margin: 0 0.868vw;
+  }
+
+  .Page_tournamentDetail-content .container_round .winner_round .center_block .blue_span {
+    margin: 0 4.34vw 0 3.472vw;
+  }
+
+  .Page_tournamentDetail-content .container_round .winner_round .right_block {
+    padding: 0;
+  }
+
+  .Page_tournamentDetail-content .container_round .winner_round .right_block a {
+    margin-right: 1.736vw;
+  }
+
+  .Page_tournamentDetail-content .container_round .winner_round .right_block svg {
+    width: 3.472vw;
+  }
+
+  .Page_tournamentDetail-content .container_players::-webkit-scrollbar {
+    width: 1.736vw;
+  }
+
+  .Page_tournamentDetail-content .container_players::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    height: 4.34vw;
+  }
+
+  .Page_gameBest .title_block {
+    min-height: 10.417vw;
+    padding: 3.472vw;
+  }
+
+  .Page_gameBest .title_block .left_content svg {
+    margin-right: 1.736vw;
+  }
+
+  .Page_gameBest .title_block .right_content svg {
+    margin-left: 1.736vw;
+  }
+
+  .Page_gameBest .title_block img,
+  .Page_gameBest .title_block svg {
+    width: 3.472vw;
+    margin-right: 1.736vw;
+  }
+
+  .Page_gameBest .title_players {
+    min-height: 10.417vw;
+    padding: 0 3.472vw;
+  }
+
+  .Page_gameBest .title_players .title_playersText {
+    font-size: 3.778vw;
+  }
+
+  .Page_gameBest .title_players a {
+    font-size: 2.083vw;
+  }
+
+  .Page_gameBest .container_players {
+    max-height: 38.194vw;
+    padding: 3.472vw 0;
+  }
+
+  .Page_gameBest .container_players .players_content {
+    padding: 1.736vw 7.813vw 0.868vw 3.472vw;
+    align-items: center;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block {
+    align-items: center;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block .number {
+    width: 6.944vw;
+    font-size: 3.431vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block span {
+    font-size: 2.431vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block img {
+    margin: 0 1.736vw 0 2.604vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block a {
+    width: 24.306vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block a .name_player {
+    font-size: 3.431vw;
+  }
+
+  .Page_gameBest .container_players .players_content .center_block img {
+    margin: 0 0.868vw;
+  }
+
+  .Page_gameBest .container_players .players_content .right_block svg {
+    width: 3.472vw;
+  }
+
+  .Page_gameBest .container_players .players_content .right_block p {
+    font-size: 3.431vw;
+    width: 12.153vw;
+  }
+
+  .Page_gameBest .container_players::-webkit-scrollbar {
+    width: 1.736vw;
+  }
+
+  .Page_gameBest .container_players::-webkit-scrollbar-thumb {
+    border-radius: 0.694vw;
+    height: 4.34vw;
+  }
+
+  .streams_list {
+    padding: 2.604vw;
+    width: 45.271vw;
+    right: -45.271vw;
+  }
+
+  .streams_list .widget-stream-lists {
+    margin: 0.868vw 0;
+  }
+
+  .streams_list .widget-stream-lists span {
+    margin-left: 3.472vw;
+    font-size: 3.431vw;
+  }
+
+  .open {
+    right: 1.042vw;
+  }
+
+  .footer {
+    padding-top: 7.417vw;
+    padding-bottom: 7.417vw;
+    position: relative;
+    min-height: 560px;
+  }
+
+  .footer .footer__logo .logo__text {
+    font-size: 3.083vw;
+    margin-top: 3.299vw;
+  }
+
+  .footer .footer__logo img {
+    display: none;
+  }
+
+  .footer .footer__link .link-list__item {
+    font-size: 3.083vw;
+    line-height: 5.556vw;
+  }
+
+  .footer .footer__info .footer__title {
+    font-size: 3.083vw;
+    letter-spacing: 1.2px;
+    margin-bottom: 1.556vw;
+  }
+
+  .footer .footer__info .footer__text {
+    font-size: 3.083vw;
+    margin-bottom: 1.736vw;
+  }
+
+  .footer .footer__info .footer__mail {
+    font-size: 2.431vw;
+    line-height: 2.431vw;
+  }
+
+  .footer .footer__info .footer__mail svg {
+    margin-right: 15px;
+    width: 2.778vw;
+    height: 5.556vw;
+  }
+
+  .footer .footer__our-birthday .footer__title {
+    font-size: 3.083vw;
+  }
+
+  .footer .footer__our-birthday .our-birthday__nickname {
+    font-size: 2.431vw;
+    margin-bottom: 2.778vw;
+  }
+
+  .footer .footer__useful .footer__title {
+    font-size: 3.083vw;
+  }
+
+  .footer .footer__useful .useful__link {
+    font-size: 3.083vw;
+    margin-bottom: 3.472vw;
+  }
+
+  .footer .produced {
+    margin-top: 30px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .footer .produced p {
+    font-size: 2.431vw;
+    line-height: 4.167vw;
+    margin-bottom: 0;
+  }
+
+  .footer .produced a {
+    display: flex;
+    align-items: flex-end;
+    font-size: 2.431vw;
+    line-height: 4.167vw;
+    margin-left: 0.868vw;
+  }
+
+  .footer__copyright .copyright__text {
+    font-size: 2.556vw;
+    line-height: 5.556vw;
   }
 }
 
