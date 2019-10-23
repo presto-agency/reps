@@ -64,7 +64,7 @@ class Country extends Section
             $flag = AdminColumn::image('flag', 'Флаг'),
 
             $count_using = AdminColumn::count('using', 'Используют')
-                ,
+            ,
         ]);
         return $display;
 
@@ -95,10 +95,12 @@ class Country extends Section
                     return [
                         AdminFormElement::image('flag', 'Флаг')
                             ->setUploadPath(function (UploadedFile $file) {
-                                return 'storage/image/county/flag';
+                                $save_path = "storage/image/county/flag";
+                                $this->checkUploadPath($save_path);
+                                return $save_path;
                             })
                             ->setUploadFileName(function (UploadedFile $file) {
-                                return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
+                                return $this->creatUploadName($file);
                             }),
                     ];
                 })
@@ -123,5 +125,23 @@ class Country extends Section
     public function isDeletable($model)
     {
         return true;
+    }
+
+    /**
+     * @param $save_path
+     * @return bool
+     */
+    public function checkUploadPath($save_path)
+    {
+        return !file_exists($save_path) === true ? mkdir($save_path, 666, true) : null;
+    }
+
+    /**
+     * @param $file
+     * @return string
+     */
+    public function creatUploadName($file)
+    {
+        return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
     }
 }

@@ -35,27 +35,43 @@ $('#settings').click(function(event) {
     $('.logged_links').addClass('active');
     console.log(1);
 //    $('.mob_menu').removeClass('menuOff-active');
+});
 
-
+// stream_list
+$('.btn_streams_list').click(function(event) {
+    event.preventDefault();
+    $('.svg_close').css({"visibility":"visible"});
+     $('.btn_theatre_mode').css({"visibility":"hidden"});
+    $('.svg_stream').css({"visibility":"hidden"});
+    $('.btn_streams_list').css({"width":"0"});
+    $('.btn_streams_close').css({"width":"50px"});
+    $('.streams_list').addClass("open");
+});
+$('.btn_streams_close').click(function(event) {
+    event.preventDefault();
+    $('.streams_list').removeClass("open");
+    $('.btn_theatre_mode').css({"visibility":"visible"});
+    $('.svg_close').css({"visibility":"hidden"});
+    $('.svg_stream').css({"visibility":"visible"});
+    $('.btn_streams_list').css({"width":"50px"});
+    $('.btn_streams_close').css({"width":"0"});
 });
 
 
+ jQuery(function($){
+     $(document).mouseup(function (e){ // событие клика по веб-документу
+
+             var div = $("#settings_div"); // тут указываем ID элемента
+
+             if (!div.is(e.target) // если клик был не по нашему блоку
+                 && div.has(e.target).length === 0) { // и не по его дочерним элементам
+                 // div.hide(); // скрываем его
+                 $('.logged_links').removeClass('active');
+             }
 
 
-     jQuery(function($){
-         $(document).mouseup(function (e){ // событие клика по веб-документу
-
-                 var div = $("#settings_div"); // тут указываем ID элемента
-
-                 if (!div.is(e.target) // если клик был не по нашему блоку
-                     && div.has(e.target).length === 0) { // и не по его дочерним элементам
-                     // div.hide(); // скрываем его
-                     $('.logged_links').removeClass('active');
-                 }
-
-
-         });
      });
+ });
 
 
 //

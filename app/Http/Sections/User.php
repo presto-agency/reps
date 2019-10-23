@@ -173,9 +173,7 @@ class User extends Section
      */
     public function onEdit($id)
     {
-//        if (auth()->user()->superAdminRoles() === false) {
-//            return back();
-//        }
+
         $display = AdminForm::panel();
 
         $display->setItems([
@@ -183,10 +181,13 @@ class User extends Section
 
             $avatar = AdminFormElement::image('avatar', 'Avatar')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage/image/user/avatar';
+                    $save_path = "storage/image/user/avatar";
+                    $this->checkUploadPath($save_path);
+                    return $save_path;
                 })
                 ->setUploadFileName(function (UploadedFile $file) {
-                    return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
+
+                    return $this->creatUploadName($file);
                 }),
 
             $email = AdminFormElement::text('email', 'Email')
@@ -318,5 +319,23 @@ class User extends Section
             }
             return $getData;
         }
+    }
+
+    /**
+     * @param $save_path
+     * @return bool
+     */
+    public function checkUploadPath($save_path)
+    {
+        return !file_exists($save_path) === true ? mkdir($save_path, 666, true) : null;
+    }
+
+    /**
+     * @param $file
+     * @return string
+     */
+    public function creatUploadName($file)
+    {
+        return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
     }
 }
