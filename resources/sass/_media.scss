@@ -6,8 +6,6 @@
 }
 
 @media (max-width: 1366px) {
-    /*Главная*/
-
     //Глобальныйе стили(папка global-styles)
     .title_block{
         padding: 1.464vw;
@@ -35,6 +33,95 @@
         font-size: 0.878vw;
         padding-top: 0.952vw;
         padding-bottom: 1.098vw;
+    }
+    .breadcrumb {
+        padding-top: 1.903vw;
+        padding-bottom: 1.830vw;
+        .breadcrumb-item {
+            font-size: 1.318vw;
+            line-height: 1.391vw;
+        }
+
+        .breadcrumb-item.active {
+            font-size: 1.318vw;
+            line-height: 1.391vw;
+        }
+    }
+    .footer {
+        padding-top: 4.392vw;
+        padding-bottom: 4.392vw;
+        .footer__logo {
+            .logo__text {
+                font-size: 0.878vw;
+                margin-top: 1.391vw;
+            }
+        }
+        .footer__link {
+            .link-list__item {
+                font-size: 0.878vw;
+                line-height: 2.343vw;
+            }
+        }
+        .footer__info {
+            .footer__title {
+                font-size: 0.878vw;
+                margin-bottom: 0.878vw;
+            }
+            .footer__text {
+                font-size: 0.878vw;
+            }
+            .footer__mail {
+                font-size: 1.025vw;
+                line-height: 1.977vw;
+                svg {
+                    margin-right: 1.098vw;
+                    width: 1.171vw;
+                    height: 0.878vw;
+                }
+            }
+        }
+        .footer__our-birthday {
+            .footer__title {
+                font-size: 0.878vw;
+            }
+            .our-birthday__nickname {
+                font-size: 1.025vw;
+                margin-bottom: 1.171vw;
+            }
+        }
+        .footer__useful {
+            .footer__title {
+                font-size: 0.878vw;
+            }
+            .useful__link {
+                font-size: 0.878vw;
+                margin-bottom: 1.464vw;
+            }
+        }
+        .produced {
+            margin-top: 2.196vw;
+            & p {
+                font-size: 1.025vw;
+                line-height: 1.757vw;
+            }
+            & a {
+                font-size: 1.025vw;
+                line-height: 1.757vw;
+                margin-left: 0.366vw;
+            }
+        }
+
+    }
+    .footer__copyright {
+        .copyright__text {
+            font-size: 0.878vw;
+            line-height: 2.343vw;
+        }
+    }
+    .pulse-button {
+        font-size: 1.171vw;
+        padding: 1.025vw 2.050vw;
+        margin: 0 auto 1.464vw;
     }
 
 
@@ -159,7 +246,7 @@
             margin-bottom: 1.830vw;
         }
         & .row_game{
-            padding: 0 0.732vw;
+            margin: 0 0.732vw;
             margin-bottom: 1.098vw;
             & .name_game{
                 & p{
@@ -286,7 +373,6 @@
                             line-height: 1.391vw;
                         }
                     }
-
                 }
 
                 .card-body__comment-form {
@@ -302,14 +388,14 @@
                             .comment__input {
                                 height: 3.221vw;
                                 padding-left: 1.318vw;
-                                padding-right: 8.785vw;
+                                padding-right: 125px;
                                 &::placeholder {
                                     font-size: 0.878vw;
                                 }
                             }
                         }
-                        .buttons-upload{
-                            top: 0.878vw;
+                        .buttons-upload {
+                            top: 0.778vw;
                             right: 3.660vw;
 
                             label {
@@ -379,6 +465,1442 @@
             line-height: 1.391vw;
         }
     }
+
+
+    /*Форум*/
+    .forum_acticle{
+        margin: 2.928vw 0 0 0;
+        & .title_block{
+            height: 4.392vw;
+            padding: 0 1.464vw;
+            & svg{
+                width: 2.928vw;
+                padding-right: 1.098vw;
+            }
+            & .title_text{
+                font-size: 1.171vw;
+            }
+            & .right_section{
+                & button{
+                    & svg{
+                        width: 2.196vw;
+                    }
+                    & span{
+                        padding-right: 0.366vw;
+                    }
+                }
+                .lable_select {
+                    select {
+                        height: 1.464vw;
+                        font-size: 0.878vw;
+                    }
+                }
+            }
+            & .right_section_autorization{
+                & p{
+                    font-size: 1.171vw;
+                }
+            }
+        }
+        & .content_article{
+            padding: 0.732vw 1.464vw 0;
+            & .block_nameArticle{
+                & .name{
+                    margin: 0.366vw 0;
+                    font-size: 1.171vw;
+                }
+                & .date{
+                    font-size: 0.878vw;
+                }
+            }
+        }
+        & .counter_autorization{
+            padding: 0.732vw 1.464vw 0;
+            & .block_nameArticle{
+                & .item{
+                    margin: 0.366vw 0;
+                    font-size: 1.025vw;
+                }
+                & .text{
+                    margin-left: 0.732vw;
+                    font-size: 1.025vw;
+                }
+                padding-bottom: 0.732vw;
+            }
+
+        }
+        .detailed-news__info {
+            padding-bottom: 0.732vw;
+
+            .info__items {
+                & .block_account{
+                    & img{
+                        max-width: 2.196vw;
+                        max-height: 2.196vw;
+                        border-radius: 1.464vw;
+                        padding-right: 0.732vw;
+                    }
+                    & span{
+                        font-size: 1.025vw;
+                    }
+
+                }
+                .items__watch,
+                .items__comment {
+                    svg {
+                        width: 1.098vw;
+                        height: 0.952vw;
+                    }
+                    span {
+                        font-size: 0.878vw;
+                        line-height: 1.391vw;
+                        margin-left: 0.732vw;
+                    }
+                }
+                .items__comment {
+                    margin-left: 2.343vw;
+                }
+            }
+        }
+    }
+
+
+    //Темы форума
+    .forum-topics {
+        .forum-topics__title {
+            padding-top: 1.318vw;
+            padding-bottom: 1.318vw;
+            padding-left: 1.391vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+
+        .forum-topics__accordion {
+            .accordion__topic {
+                .topic__header {
+                    .header__title {
+                        font-size: 1.171vw;
+                        line-height: 2.050vw;
+                    }
+                    .fa-chevron-down,
+                    .fa-ellipsis-h {
+                        font-size: 1.171vw;
+                    }
+                }
+
+            }
+        }
+    }
+    .forum_allSections {
+        .wrapper {
+            margin: 0 0 1.464vw;
+        }
+        & .title_block {
+            height: 4.392vw;
+            padding: 0 1.464vw;
+            & svg,img {
+                width: 2.928vw;
+                padding-right: 1.098vw;
+            }
+            & .title_text {
+                font-size: 1.171vw;
+            }
+
+            & .right_section {
+                & .block_text{
+                    padding-left: 0.732vw;
+                    & span{
+                        font-size: 1.025vw;
+                        padding-right: 0.366vw;
+                    }
+                }
+                & a{
+                    & svg{
+                        width: 2.196vw;
+                        padding-bottom: 0.220vw;
+                    }
+                }
+            }
+        }
+        & .content_allArticle{
+            padding: 1.171vw 1.464vw 0;
+            p {
+                font-size: 1.171vw;
+            }
+        }
+    }
+
+    /*РЕПЛЕИ*/
+
+    .replays {
+        border-radius: 0.366vw;
+        margin-bottom: 2.489vw;
+
+        .replays__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.391vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+
+        .replays__accordion {
+            .accordion__topic {
+                .topic__header {
+                    .header__title {
+                        font-size: 1.171vw;
+                        line-height: 2.050vw;
+                    }
+
+                    .fa-ellipsis-h {
+                    }
+                }
+
+                .topic__body {
+                    .card-body {
+                        .body__wrap {
+                            margin-bottom: 1.830vw;
+
+                            .body__title {
+                                font-size: 1.025vw;
+                            }
+
+                            .body__numb {
+                                font-size: 1.025vw;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .search {
+        .search__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.464vw;
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+
+        .search__body {
+            padding: 1.464vw;
+            label {
+                margin-bottom: 1.830vw;
+                font-size: 0.878vw;
+                input{
+                    height: 3.221vw;
+                    border-radius: 0.366vw;
+                    padding-left: 1.464vw;
+                }
+                select {
+                    height: 3.221vw;
+                    border-radius: 0.366vw;
+                    padding-left: 1.464vw;
+                    margin-top: 0.732vw;
+
+                    background-position: center right 1.464vw;
+                }
+            }
+            .body__button-search {
+                margin-top: 1.464vw;
+                margin-bottom: 1.025vw;
+            }
+        }
+    }
+    .gocu-replays {
+        .gocu-replays__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.464vw;
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+
+            .title__game-period {
+                margin-right: 1.464vw;
+
+                select {
+                    height: 1.464vw;
+                    padding-right: 1.025vw;
+                    font-size: 0.878vw;
+                }
+            }
+        }
+
+        .gocu-replays__match {
+            .match__author {
+                padding: 1.464vw;
+
+                .comment-author__nickname {
+                    font-size: 1.025vw;
+                    margin-left: 0.952vw;
+                }
+
+                .comment-author__replay-item {
+                    font-size: 0.878vw;
+                    line-height: 2.196vw;
+                    margin-left: 0.878vw;
+                }
+
+                .comment-author__date {
+                    font-size: 0.878vw;
+                    line-height: 1.464vw;
+                }
+            }
+
+            .match__comment {
+                font-size: 1.171vw;
+                padding-left: 1.464vw;
+                padding-right: 1.464vw;
+            }
+
+            .match__info {
+                padding: 1.464vw;
+
+                .info__country {
+                    .country-first {
+                        margin-left: 0.439vw;
+                    }
+                }
+
+                .info__match-up {
+                    .match-up__versus {
+                        margin-left: 0.366vw;
+                        margin-right: 0.366vw;
+                    }
+
+                    .match-up__name {
+                        font-size: 1.025vw;
+                        line-height: 1.391vw;
+                    }
+
+                    .name__first {
+                        margin-left: 1.025vw;
+                    }
+                }
+
+                .info__maps {
+                    .maps__name {
+                        font-size: 1.025vw;
+                        margin-left: 0.878vw;
+                    }
+                }
+
+                .info__wins {
+                    svg {
+                        width: 1.830vw;
+                        height: 1.830vw;
+                    }
+
+                    .wins__text {
+                        margin-left: 0.732vw;
+                    }
+                }
+
+                .country__text,
+                .match-up__text,
+                .maps__text,
+                .wins__text {
+                    font-size: 0.878vw;
+                    line-height: 2.196vw;
+                }
+            }
+        }
+    }
+    .gocu-replays__numb-pages {
+        margin-top: 1.830vw;
+        margin-bottom: 0.586vw;
+
+        .numb-pages {
+            font-size: 0.878vw;
+            line-height: 1.391vw;
+        }
+    }
+
+    /*ДЕТАЛЬНЫЕ НОВОСТИ*/
+
+    .detailed-news {
+        .detailed-news__title {
+            padding: 1.464vw;
+            .title__wrap {
+                .title__icon {
+                    width: 1.464vw;
+                    height: 1.464vw;
+                }
+                .title__text {
+                    font-size: 1.171vw;
+                    margin-left: 1.464vw;
+                }
+                .title__avatar {
+                    width: 2.050vw;
+                    height: 2.050vw;
+                }
+                .title__nickname {
+                    font-size: 1.025vw;
+                    margin-left: 0.952vw;
+                }
+                .title__flag {
+                    width: 1.464vw;
+                    height: 1.464vw;
+                    margin-left: 0.952vw;
+                }
+                .title__cube {
+                    width: 1.171vw;
+                    height: 1.171vw;
+                    margin-left: 0.805vw;
+                }
+                .title__text {
+                    font-size: 1.025vw;
+                    margin-left: 0.878vw;
+                }
+
+            }
+        }
+        .detailed-news__info {
+            padding-top: 1.318vw;
+            padding-bottom: 1.245vw;
+            padding-left: 1.464vw;
+            padding-right: 1.464vw;
+            .info__items {
+                .items__watch,
+                .items__comment {
+                    svg {
+                        width: 1.098vw;
+                        height: 0.952vw;
+                    }
+                    span {
+                        font-size: 0.878vw;
+                        line-height: 1.391vw;
+                        margin-left: 0.732vw;
+                    }
+                }
+                .items__comment {
+                    margin-left: 2.343vw;
+                }
+                .items__date {
+                    font-size: 0.878vw;
+                    line-height: 1.464vw;
+
+                }
+            }
+        }
+        .detailed-news__card {
+            .card-body {
+                .card-body__title {
+                    font-size: 1.171vw;
+                    line-height: 1.464vw;
+                    margin-top: 2.635vw;
+                    margin-bottom: 1.977vw;
+                }
+                .card-body__text {
+                    font-size: 1.171vw;
+                    line-height: 1.757vw;
+                    margin-bottom: 2.050vw;
+                }
+                .card-body__banner {
+                    margin-bottom: 2.855vw;
+                }
+                .card-body__items {
+                    padding-bottom: 1.245vw;
+                    .card-body__items-wrap {
+                        .items__quote {
+                            svg {
+                                width: 1.464vw;
+                                height: 1.464vw;
+                            }
+                        }
+                        .items__share {
+                            margin-left: 1.537vw;
+                            svg {
+                                width: 1.318vw;
+                                height: 1.464vw;
+                            }
+                        }
+                    }
+                    .card-body__items-wrap {
+                        .items__like {
+                            svg {
+                                width: 1.464vw;
+                                height: 1.318vw;
+                            }
+                            span {
+                                font-size: 0.878vw;
+                                line-height: 1.391vw;
+                                margin-left: 0.512vw;
+                            }
+                        }
+                        .items__dislike {
+                            margin-left: 1.245vw;
+                            svg {
+                                width: 1.464vw;
+                                height: 1.318vw;
+                            }
+                            span {
+                                font-size: 0.878vw;
+                                line-height: 1.391vw;
+                                margin-left: 0.512vw;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+    .comments {
+        .comments__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.464vw;
+            .title__icon {
+                width: 1.537vw;
+                height: 1.537vw;
+            }
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+
+        .comments__wrapp {
+            .comments__info {
+                padding-top: 1.171vw;
+                padding-bottom: 1.245vw;
+                padding-left: 1.464vw;
+                padding-right: 1.464vw;
+
+                .info__avatar {
+                    width: 28px;
+                    height: 28px;
+                }
+
+                .info__nickname {
+                    font-size: 14px;
+                    margin-left: 13px;
+                }
+
+                .info__flag {
+                    width: 1.464vw;
+                    height: 1.464vw;
+                    margin-left: 13px;
+                }
+
+                .info__cube {
+                    width: 1.171vw;
+                    height: 1.171vw;
+                    margin-left: 11px;
+                }
+
+                .info__text {
+                    font-size: 14px;
+                    margin-left: 12px;
+                }
+
+                .info__date {
+                    font-size: 12px;
+                    line-height: 19px;
+                }
+            }
+
+            .comments__content {
+                .content__title {
+                    font-size: 1.171vw;
+                    line-height: 1.757vw;
+                    padding-left: 1.464vw;
+                    padding-right: 1.464vw;
+                    margin-top: 2.196vw;
+                    margin-bottom: 1.464vw;
+                }
+                .content__img {
+                    margin-bottom: 2.928vw;
+                    padding-left: 1.464vw;
+                    padding-right: 1.464vw;
+                }
+            }
+
+            .comments__items {
+                padding-bottom: 1.171vw;
+                padding-left: 1.464vw;
+                padding-right: 1.464vw;
+                .items__wrap {
+                    .items__quote {
+                        svg {
+                            width: 1.464vw;
+                            height: 1.464vw;
+                        }
+                    }
+                }
+
+                .items__share {
+                    margin-left: 1.537vw;
+                    svg {
+                        width: 1.318vw;
+                        height: 1.464vw;
+                    }
+                }
+
+                .items__like {
+                    svg {
+                        width: 1.464vw;
+                        height: 1.318vw;
+                    }
+
+                    span {
+                        font-size: 0.878vw;
+                        line-height: 1.391vw;
+                        margin-left: 0.512vw;
+                    }
+                }
+
+                .items__dislike {
+                    margin-left: 1.245vw;
+
+                    svg {
+                        width: 1.464vw;
+                        height: 1.318vw;
+                    }
+
+                    span {
+                        font-size: 0.878vw;
+                        line-height: 1.391vw;
+                        margin-left: 0.512vw;
+                    }
+                }
+            }
+        }
+
+    }
+    .add-comment {
+
+        .add-comment__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.464vw;
+
+            .title__icon {
+                width: 1.537vw;
+                height: 1.537vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+        .add-comment__form {
+            padding: 1.464vw;
+            .form__group {
+                .comment {
+                    .comment__icon {
+                        width: 1.464vw;
+                        height: 1.171vw;
+                        position: absolute;
+                        top: 1.098vw;
+                        right: 5.857vw;
+                    }
+                    .comment__input {
+                        height: 3.221vw;
+                        padding-left: 1.318vw;
+                        padding-right: 120px;
+                        &::placeholder {
+                            font-size: 0.878vw;
+                        }
+                    }
+                }
+
+                .buttons-upload{
+                    position: absolute;
+                    top: 0.778vw;
+                    right: 3.660vw;
+
+                    label {
+                        margin-left: 1.245vw;
+                    }
+
+                    i {
+                        font-size: 1.171vw;
+                    }
+
+                    .smile-upload {
+                        margin-left: 1.171vw;
+                        i {
+                            font-size: 1.171vw;
+                        }
+                    }
+                }
+            }
+            .add-comment__button {
+                svg {
+                    width: 1.464vw;
+                    height: 1.318vw;
+                }
+            }
+        }
+    }
+
+    /*ТУРНИРЫ*/
+
+    //Предстоящие турниры
+    .Page_tournament-content{
+        & .title_block{
+            height: 4.392vw;
+            padding: 1.464vw;
+            & .left_content{
+                & svg{
+                    margin-right: 0.732vw;
+                }
+            }
+            & .right_content{
+                & svg{
+                    margin-left: 0.732vw;
+                }
+                & .title_text{
+                    font-size: 1.025vw;
+                }
+                .lable_select {
+                    select {
+                        height: 1.464vw;
+                        padding-right: 1.025vw;
+                        font-size: 0.878vw;
+                    }
+                }
+            }
+
+            & img,svg{
+                width: 1.464vw;
+                margin-right: 0.732vw;
+            }
+            & .title_text{
+                font-size: 1.171vw;
+            }
+        }
+        & .block_navigationTournament{
+            height: 4.392vw;
+            padding: 1.464vw;
+            & a{
+                font-size: 1.171vw;
+            }
+        }
+        & .tournament_info{
+            padding: 1.830vw 1.464vw;
+            & svg{
+                width: 0.732vw;
+                margin-right: 0.732vw;
+            }
+            & .place{
+                & span{
+                    font-size: 1.025vw;
+                }
+            }
+            & .time{
+                & span{
+                    font-size: 1.025vw;
+                }
+            }
+            & .status{
+                & span{
+                    font-size: 0.878vw;
+                    border-radius: 1.098vw;
+                    padding: 0.366vw 2.196vw;
+                }
+            }
+            & .players{
+                font-size: 0.878vw;
+            }
+        }
+    }
+
+
+    /*ЛУЧШИЕ*/
+    .Page_gameBest{
+        & .title_block{
+            height: 4.392vw;
+            padding: 1.464vw;
+            & .left_content{
+                & svg{
+                    margin-right: 0.732vw;
+                }
+            }
+            & .right_content{
+                & svg{
+                    margin-left: 0.732vw;
+                }
+                & .title_text{
+                    font-size: 1.025vw;
+                }
+            }
+            & img,svg{
+                width: 1.464vw;
+                margin-right: 0.732vw;
+            }
+            & .title_text{
+                font-size: 1.171vw;
+            }
+        }
+        & .title_players{
+            height: 4.392vw;
+            padding: 0 1.464vw;
+            & .title_playersText{
+                font-size: 1.171vw;
+            }
+            & a{
+                font-size: 0.878vw
+            }
+        }
+        & .container_players{
+            max-height: 16.105vw;
+            padding: 1.464vw 0;
+            & .players_content{
+                padding: 0.732vw 3.294vw 0.366vw 1.464vw;
+                & .left_block{
+                    & .number{
+                        width: 2.928vw;
+                        height: 2.050vw;
+                    }
+                    span{
+                        font-size: 1.025vw;
+                    }
+                    & img{
+                        margin: 0 0.732vw 0 1.098vw;
+                    }
+                    & a{
+                        width: 10.249vw;
+                        height: 2.050vw;
+                        & .name_player{
+                            font-size: 1.025vw;
+                        }
+                    }
+                }
+                & .right_block{
+                    & svg{
+                        width: 1.464vw;
+                    }
+                    p{
+                        font-size: 1.025vw;
+                        width: 5.124vw;
+                        height: 2.050vw;
+                    }
+                }
+            }
+        }
+        .container_players::-webkit-scrollbar {
+            width: 0.732vw;
+        }
+        .container_players::-webkit-scrollbar-thumb {
+            height: 1.830vw;
+        }
+    }
+
+    /*КАБИНЕТ ПОЛЬЗОВАТЕЛЯ*/
+    .gallery {
+        .gallery__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.391vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+
+        .gallery__body {
+            padding: 1.830vw;
+            .img-wrapper {
+                max-width: 8.785vw;
+                padding: 0.366vw;
+            }
+        }
+    }
+    .gallery-detail {
+        .gallery-detail__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.391vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+
+        .gallery-detail__body {
+            padding: 1.830vw;
+            .body__items {
+                margin-bottom: 0.732vw;
+                .items__title {
+                    p {
+                        font-size: 1.171vw;
+                        line-height: 1.391vw;
+                    }
+                }
+                .items__rating {
+                    .rating__like {
+                        svg {
+                            width: 1.464vw;
+                            height: 1.318vw;
+                        }
+
+                        span {
+                            font-size: 0.878vw;
+                            line-height: 1.391vw;
+                            margin-left: 0.512vw;
+                        }
+                    }
+
+                    .rating__dislike {
+                        margin-left: 0.732vw;
+                        svg {
+                            width: 1.464vw;
+                            height: 1.318vw;
+                        }
+
+                        span {
+                            font-size: 0.878vw;
+                            line-height: 1.391vw;
+                            margin-left: 0.512vw;
+                        }
+                    }
+                }
+
+                .items__reputation-button {
+                    a {
+                        width: 10.981vw;
+                        padding: 0.366vw 0.732vw;
+                        font-size: 1.171vw;
+                    }
+                }
+
+                .items__slide-button {
+                    a {
+                        height: 2.196vw;
+                        width: 2.196vw;
+
+                        i {
+                            font-size: 1.318vw;
+                        }
+                    }
+                }
+            }
+            .body__img {
+                margin-bottom: 1.098vw;
+            }
+            .body__edit-image-form {
+                .form-group {
+                    label {
+                        font-size: 1.171vw;
+                    }
+                }
+                .form-check {
+                    margin-bottom: 1.464vw;
+                    label {
+                        font-size: 1.171vw;
+                    }
+                }
+            }
+
+        }
+    }
+    .user-settings {
+        .user-settings__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.391vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+
+        .user-settings__form {
+            padding: 1.830vw;
+            .form-group {
+                label {
+                    font-size: 1.171vw;
+                }
+            }
+            .form-check {
+                margin-bottom: 1.464vw;
+                .form-check-label {
+                    font-size: 1.171vw;
+                }
+                .form-check-input {
+                    margin-left: 0.732vw;
+                }
+            }
+        }
+    }
+    .user-replays {
+        margin-bottom: 2.489vw;
+        .user-replays__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.391vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+        .user-replays__body {
+            padding: 1.464vw;
+            .body__wrap {
+                margin-bottom: 1.830vw;
+                .body__title {
+                    font-size: 1.025vw;
+                }
+                .body__numb {
+                    font-size: 1.025vw;
+                }
+            }
+        }
+        .user-replays__button {
+            padding-left: 1.464vw;
+            padding-right: 1.464vw;
+            padding-bottom: 1.464vw;
+        }
+    }
+    .user-reputation-history {
+        .user-reputation-history__title {
+            padding: 1.464vw 1.391vw;
+            .title__icon {
+                width: 1.537vw;
+                height: 1.537vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+
+            .title__reputation {
+                .icon__like {
+                    svg {
+                        width: 1.464vw;
+                        height: 1.318vw;
+                    }
+
+                    span {
+                        font-size: 0.878vw;
+                        line-height: 1.391vw;
+                        margin-left: 0.512vw;
+                    }
+                }
+                .icon__dislike {
+                    margin-left: 1.245vw;
+                    svg {
+                        width: 1.464vw;
+                        height: 1.318vw;
+                    }
+
+                    span {
+                        font-size: 0.878vw;
+                        line-height: 1.391vw;
+                        margin-left: 0.512vw;
+                    }
+                }
+            }
+        }
+        .user-reputation-history__body {
+            .body__wrap {
+                .body__info {
+                    padding: 1.171vw 1.464vw 1.245vw;
+
+                    .info__nickname {
+                        font-size: 1.025vw;
+                    }
+
+                    .info__flag {
+                        width: 1.464vw;
+                        height: 1.464vw;
+                        margin-left: 0.952vw;
+                    }
+
+                    .info__cube {
+                        width: 1.171vw;
+                        height: 1.171vw;
+                        margin-left: 0.805vw;
+                    }
+
+                    .info__text {
+                        font-size: 1.025vw;
+                        margin-left: 0.878vw;
+                    }
+
+                    .info__date {
+                        font-size: 0.878vw;
+                        line-height: 1.391vw;
+                    }
+                }
+                .body__content {
+                    padding: 1.171vw 1.464vw 1.245vw;
+                    .content__title {
+                        font-size: 1.171vw;
+                        line-height: 1.757vw;
+                    }
+                    .content__like {
+                        svg {
+                            width: 1.464vw;
+                            height: 1.318vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .gallery-download {
+        .gallery-download__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.391vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+        .gallery-download__body {
+            padding: 1.830vw;
+            .gallery__form {
+                .upload-avatar {
+                    margin-bottom: 1.464vw;
+                    .avatar__button-upload {
+                        margin-left: 0.366vw;
+                        label {
+                            padding: 0.366vw 0.732vw;
+                            font-size: 1.171vw;
+                        }
+                    }
+                }
+                .form-group {
+                    label {
+                        font-size: 1.171vw;
+                    }
+                }
+                .form-check {
+                    margin-bottom: 1.464vw;
+                    label {
+                        font-size: 1.171vw;
+                    }
+                }
+            }
+        }
+    }
+    .vote {
+        .vote__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.391vw;
+
+            .title__icon {
+                width: 1.537vw;
+                height: 1.537vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+        .vote__content {
+            .content__header {
+                padding-top: 1.171vw;
+                padding-bottom: 1.245vw;
+                padding-left: 1.464vw;
+                padding-right: 1.464vw;
+                .header__title {
+                    font-size: 1.171vw;
+                }
+            }
+            .content__body {
+                padding-top: 1.171vw;
+                padding-bottom: 1.245vw;
+                padding-left: 1.464vw;
+                padding-right: 1.464vw;
+                .vote-form {
+                    .form-check {
+                        margin-bottom: 1.098vw;
+                        label {
+                            margin-left: 0.732vw;
+                            font-size: 1.171vw;
+                        }
+                    }
+                    .body__button-vote {
+                        margin-bottom: 1.098vw;
+                    }
+                }
+                .view-results {
+                    .results {
+                        margin-bottom: 1.098vw;
+                        span {
+                            font-size: 1.025vw;
+                        }
+                    }
+                    .result__total {
+                        margin-bottom: 1.098vw;
+                        span {
+                            font-size: 1.025vw;
+                        }
+                    }
+                }
+
+
+                .body__view-results {
+                    .view-results__button {
+                        font-size: 1.025vw;
+                    }
+                }
+            }
+        }
+    }
+    .create-replay {
+        margin-bottom: 2.489vw;
+
+        .create-replay__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.391vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+
+        .create-replay__form {
+            padding: 1.830vw;
+            .form-group {
+                label {
+                    font-size: 1.171vw;
+                    select {
+                        margin-top: 0.366vw;
+                    }
+                }
+
+                .select2 {
+                    .select2-seßlection {
+                        .select2-selection__rendered {
+                            padding-top: 0.293vw;
+                        }
+                        .select2-selection__arrow {
+                            top: 0.366vw;
+                        }
+                    }
+                }
+            }
+            hr {
+                margin-top: 1.464vw;
+                margin-bottom: 1.464vw;
+            }
+        }
+    }
+    .user_friends{
+
+        & .row_title{
+            padding: 1.098vw 0;
+        }
+        & .wrapper_table{
+            max-height: 23.426vw;
+            & .row_users{
+                padding: 0.732vw 0;
+                & .block_action{
+                    & svg{
+                        width: 1.464vw;
+                    }
+                }
+                & .user_block{
+                    & .name_user{
+                        max-width: 7.174vw;
+                    }
+                    & .user-avatar{
+                        width: 3.660vw;
+                        height: 3.660vw;
+                        font-size: 1.757vw;
+                    }
+                }
+            }
+        }
+
+    }
+    .wrapper_table::-webkit-scrollbar {
+        width: 0.732vw;
+    }
+    .wrapper_table::-webkit-scrollbar-thumb {
+        border-radius: 0.293vw;
+        height: 16.618vw;
+    }
+    .user_profile{
+        & .wrapper{
+            margin-bottom: 5.124vw;
+        }
+        & .title_top_userProfile{
+            height: 4.392vw;
+            padding: 1.464vw;
+            & .title_Text{
+                font-size: 1.171vw;
+            }
+            & .more{
+                & p{
+                    font-size: 2.928vw;
+                }
+            }
+        }
+        & .userInfo_block{
+            padding: 2.196vw 1.464vw;
+            & .button{
+                margin: 2.562vw auto 0;
+                padding: 0.732vw;
+            }
+            & .icon_img{
+                margin-top: 1.757vw;
+                & svg{
+                    width: 2.196vw;
+                }
+            }
+
+            & .container_information{
+
+                & .userText_block{
+                    margin-bottom: 1.098vw;
+                    & .title{
+                        font-size: 1.318vw;
+                        padding-right: 2.928vw;
+                    }
+                    & .date{
+                        font-size: 0.878vw;
+                    }
+                }
+                & .information_block{
+                    padding-top: 0.732vw;
+                    & .left_block{
+                        & span{
+                            font-size: 0.878vw;
+                        }
+
+                    }
+                    & .right_block{
+                        & span{
+                            font-size: 1.025vw;
+                        }
+                    }
+                }
+            }
+        }
+        & .block_userInformation{
+            & .container_right{
+                & .wrapper_information, .wrapper_contacts{
+                    padding: 1.464vw 1.464vw 0.732vw;
+                    & .block_inform, .block_contact{
+                        padding-bottom: 0.732vw;
+                        & .left_block{
+                            & span{
+                                font-size: 0.878vw;
+                            }
+                        }
+                        & .right_block{
+                            & span{
+                                font-size: 1.025vw;
+                            }
+                            & .small{
+                                font-size: 0.878vw;
+                            }
+                        }
+                    }
+                }
+                & .block_armor{
+                    padding: 1.464vw 1.464vw 0.732vw;
+                    & .armor_info{
+                        padding-bottom: 0.732vw;
+                    }
+                    & svg{
+                        width: 1.245vw;
+                        margin-right: 0.732vw;
+                    }
+                }
+            }
+
+            & .friends_block{
+                padding: 1.830vw;
+                max-height: 21.962vw;
+                margin-right: 0.366vw;
+                & .friends{
+                    padding-bottom: 0.732vw;
+                    & .left_block{
+                        & .name_player{
+                            margin-left: 0.732vw;
+                            max-width: 7.321vw;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        .friends_block::-webkit-scrollbar {
+            width: 0.512vw;
+        }
+        .friends_block::-webkit-scrollbar-thumb {
+            height: 1.830vw;
+        }
+    }
 }
 
 
@@ -443,7 +1965,6 @@
         display: block;
     }
 
-
     .left-sidebar-wrap {
         height: auto;
         margin-bottom: 20px;
@@ -459,9 +1980,131 @@
         height: 0;
         overflow: hidden;
     }
+
+    .footer {
+        .footer__logo {
+            display: none;
+        }
+    }
     /*global styles END*/
 
-    /*===main page===*/
+    //Глобальныйе стили(папка global-styles)
+    .title_block{
+        padding: 2.018vw;
+        & img,svg{
+            width: 2.018vw;
+        }
+        & .title_text{
+            font-size: 1.615vw;
+            margin: 0 0 0 2.018vw;
+        }
+    }
+    .title_top{
+        height: 6.054vw;
+        padding: 2.018vw;
+        & .title_Text{
+            font-size: 1.615vw;
+        }
+        & .more{
+            & p{
+                font-size: 4.036vw;
+            }
+        }
+    }
+    .button {
+        font-size: 1.211vw;
+        padding-top: 1.312vw;
+        padding-bottom: 1.514vw;
+    }
+    .breadcrumb {
+        padding-top: 2.624vw;
+        padding-bottom: 2.523vw;
+        .breadcrumb-item {
+            font-size: 1.816vw;
+            line-height: 1.917vw;
+        }
+
+        .breadcrumb-item.active {
+            font-size: 1.816vw;
+            line-height: 1.917vw;
+        }
+    }
+    .footer {
+        padding-top: 6.054vw;
+        padding-bottom: 6.054vw;
+        .footer__logo {
+            .logo__text {
+                font-size: 1.211vw;
+                margin-top: 1.917vw;
+            }
+        }
+        .footer__link {
+            .link-list__item {
+                font-size: 1.211vw;
+                line-height: 3.229vw;
+            }
+        }
+        .footer__info {
+            .footer__title {
+                font-size: 1.211vw;
+                margin-bottom: 1.211vw;
+            }
+            .footer__text {
+                font-size: 1.211vw;
+            }
+            .footer__mail {
+                font-size: 1.413vw;
+                line-height: 2.725vw;
+                svg {
+                    margin-right: 1.514vw;
+                    width: 1.615vw;
+                    height: 1.211vw;
+                }
+            }
+        }
+        .footer__our-birthday {
+            .footer__title {
+                font-size: 1.211vw;
+            }
+            .our-birthday__nickname {
+                font-size: 1.413vw;
+                margin-bottom: 1.615vw;
+            }
+        }
+        .footer__useful {
+            .footer__title {
+                font-size: 1.211vw;
+            }
+            .useful__link {
+                font-size: 1.211vw;
+                margin-bottom: 2.018vw;
+            }
+        }
+        .produced {
+            margin-top: 3.027vw;
+            & p {
+                font-size: 1.413vw;
+                line-height: 2.422vw;
+            }
+            & a {
+                font-size: 1.413vw;
+                line-height: 2.422vw;
+                margin-left: 0.505vw;
+            }
+        }
+
+    }
+    .footer__copyright {
+        .copyright__text {
+            font-size: 1.211vw;
+            line-height: 3.229vw;
+        }
+    }
+    .pulse-button {
+        font-size: 1.615vw;
+        padding: 1.413vw 2.825vw;
+        margin: 0 auto 2.018vw;
+    }
 
     //Твич
     .block_chat-twitch{
@@ -590,7 +2233,7 @@
             margin-bottom: 2.5vw;
         }
         & .row_game{
-            padding: 0 1vw;
+            margin: 0 2vw;
             margin-bottom: 1.5vw;
             & .name_game{
                 & p{
@@ -627,6 +2270,1661 @@
         }
     }
 
+    //Последние новости
+    .breaking-news {
+        .breaking-news__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+            .title__icon {
+                width: 1.312vw;
+                height: 2.119vw;
+            }
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+        .breaking-news__news-card {
+            padding-left: 2.220vw;
+            padding-right: 2.220vw;
+            padding-top: 2.523vw;
+            .card-body {
+                .card-body__author {
+                    margin-bottom: 1.816vw;
+
+                    .author__avatar {
+                        width: 2.825vw;
+                        height: 2.825vw;
+                    }
+
+                    .author__nickname {
+                        font-size: 1.413vw;
+                        margin-left: 1.312vw;
+                    }
+
+                    .author__date {
+                        font-size: 1.211vw;
+                    }
+                }
+                .card-body__title {
+                    font-size: 1.615vw;
+                    line-height: 1.917vw;
+                }
+
+                .card-body__text {
+                    font-size: 1.413vw;
+                }
+
+                p {
+                    font-size: 1.413vw;
+                }
+
+                a {
+                    font-size: 1.413vw;
+                }
+                .card-body__items {
+                    margin-bottom: 1.816vw;
+                    .items__comment {
+                        svg {
+                            width: 2.119vw;
+                            height: 2.119vw;
+                        }
+                        span {
+                            font-size: 1.211vw;
+                            line-height: 1.917vw;
+                            margin-left: 1.009vw;
+                        }
+                    }
+                    .items__share {
+                        margin-left: 3.532vw;
+                        svg {
+                            width: 1.816vw;
+                            height: 2.018vw;
+                        }
+                    }
+                    .items__watch {
+                        svg {
+                            width: 1.110vw;
+                            height: 1.110vw;
+                        }
+                        span {
+                            margin-left: 1.009vw;
+                            font-size: 1.211vw;
+                            line-height: 1.917vw;
+                        }
+                    }
+                }
+                .card-body__comment-form {
+                    margin-bottom: 4.642vw;
+                    .comment-form__group {
+                        .comment {
+                            .comment__icon {
+                                width: 2.018vw;
+                                height: 1.615vw;
+                                top: 1.514vw;
+                                right: 8.073vw;
+                            }
+                            .comment__input {
+                                height: 4.440vw;
+                                padding-left: 1.816vw;
+                                padding-right: 12.109vw;
+                                &::placeholder {
+                                    font-size: 1.211vw;
+                                }
+                            }
+                        }
+                        .buttons-upload{
+                            top: 1.211vw;
+                            right: 5.045vw;
+
+                            label {
+                                margin-left: 1.715vw;
+                            }
+
+                            i {
+                                font-size: 1.615vw;
+                            }
+
+                            .smile-upload {
+                                margin-left: 1.615vw;
+                                i {
+                                    font-size: 1.615vw;
+                                }
+                            }
+                        }
+                    }
+                    .comment-form__button {
+                        svg {
+                            width: 2.018vw;
+                            height: 1.816vw;
+                        }
+                    }
+                }
+            }
+
+
+        }
+    }
+    .breaking-news__numb-pages {
+        margin-top: 2.523vw;
+        margin-bottom: 0.807vw;
+        .numb-pages {
+            font-size: 1.211vw;
+            line-height: 1.917vw;
+        }
+    }
+
+    //Топ
+    .block_top{
+        & .block_topUsers{
+            padding: 2.523vw;
+            & .content_code{
+                & p{
+                    font-size: 1.413vw;
+                }
+            }
+            & .content_img{
+                & img,svg{
+                    padding-right: 0.505vw;
+                }
+            }
+            & .content_login{
+                & p{
+                    font-size: 1.413vw;
+                }
+            }
+        }
+    }
+
+    //Последние темы
+    .block_lastNews{
+        margin: 3.027vw 0 4.036vw 0;
+        & .block_futureTournament{
+            padding: 2.523vw 1.514vw 0;
+            & .href_tournament{
+                font-size: 1.413vw;
+                padding-bottom: 1.514vw;
+            }
+        }
+    }
+
+    /*Форум*/
+    .forum_acticle{
+        margin: 4.036vw 0 0 0;
+        & .title_block{
+            height: 6.054vw;
+            padding: 0 2.018vw;
+            & svg{
+                width: 4.036vw;
+                padding-right: 1.514vw;
+            }
+            & .title_text{
+                font-size: 1.615vw
+            }
+
+            & .right_section{
+                & button{
+                    & svg{
+                        width: 3.027vw;
+                    }
+                    & span{
+                        padding-right: 0.505vw;
+                    }
+                }
+                .lable_select {
+                    select {
+                        height: 2.018vw;
+                        font-size: 1.211vw;
+                    }
+                }
+            }
+            & .right_section_autorization{
+                & p{
+                    font-size: 1.615vw;
+                }
+            }
+        }
+        & .content_article{
+            padding: 1.009vw 2.018vw 0;
+            & .block_nameArticle{
+                & .name{
+                    margin: 0.505vw 0;
+                    font-size: 1.615vw;
+                }
+                & .date{
+                    font-size: 1.211vw;
+                }
+            }
+        }
+        & .counter_autorization{
+            padding: 1.009vw 2.018vw 0;
+            & .block_nameArticle{
+                & .item{
+                    margin: 0.505vw 0;
+                    font-size: 1.413vw;
+                }
+                & .text{
+                    margin-left: 1.009vw;
+                    font-size: 1.413vw;
+                }
+                padding-bottom: 1.009vw;
+            }
+
+        }
+        .detailed-news__info {
+            padding-bottom: 1.009vw;
+
+            .info__items {
+                & .block_account{
+                    & img{
+                        max-width: 3.027vw;
+                        max-height: 3.027vw;
+                        border-radius: 2.018vw;
+                        padding-right: 1.009vw;
+                    }
+                    & span{
+                        font-size: 1.413vw;
+                    }
+
+                }
+                .items__watch,
+                .items__comment {
+                    svg {
+                        width: 1.514vw;
+                        height: 1.312vw;
+                    }
+                    span {
+                        font-size: 1.211vw;
+                        line-height: 1.917vw;
+                        margin-left: 1.009vw;
+                    }
+                }
+                .items__comment {
+                    margin-left: 3.229vw;
+                }
+            }
+        }
+    }
+
+
+    //Темы форума
+    .forum-topics {
+        .forum-topics__title {
+            padding-top: 1.816vw;
+            padding-bottom: 1.816vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .forum-topics__accordion {
+            .accordion__topic {
+                .topic__header {
+                    .header__title {
+                        font-size: 1.615vw;
+                        line-height: 2.825vw;
+                    }
+                    .fa-chevron-down,
+                    .fa-ellipsis-h {
+                        font-size: 1.615vw;
+                    }
+                }
+            }
+        }
+    }
+    .forum_allSections {
+        .wrapper {
+            margin: 0 0 2.018vw;
+        }
+        & .title_block {
+            height: 6.054vw;
+            padding: 0 2.018vw;
+
+            & svg,img {
+                width: 4.036vw;
+                padding-right: 1.514vw;
+            }
+            & .title_text {
+                font-size: 1.615vw;
+            }
+
+
+            & .right_section {
+                & .block_text{
+                    padding-left: 1.009vw;
+                    & span{
+                        font-size: 1.413vw;
+                        padding-right: 0.505vw;
+                    }
+                }
+                & a{
+                    & svg{
+                        width: 3.027vw;
+                    }
+                }
+            }
+        }
+        & .content_allArticle{
+            padding: 1.615vw 2.018vw 0;
+            p {
+                font-size: 1.615vw;
+                padding-left: 2.018vw;
+                padding-right: 2.018vw;
+            }
+        }
+    }
+
+    /*РЕПЛЕИ*/
+    .replays {
+        margin-bottom: 3.431vw;
+
+        .replays__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .replays__accordion {
+            .accordion__topic {
+                .topic__header {
+                    .header__title {
+                        font-size: 1.615vw;
+                        line-height: 2.825vw;
+                    }
+
+                    .fa-ellipsis-h {
+                        font-size: 1.615vw;
+                    }
+                }
+
+                .topic__body {
+                    .card-body {
+                        .body__wrap {
+                            margin-bottom: 2.523vw;
+
+                            .body__title {
+                                font-size: 1.413vw;
+                            }
+
+                            .body__numb {
+                                font-size: 1.413vw;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .search {
+        .search__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .search__body {
+            padding: 2.018vw;
+            label {
+                margin-bottom: 2.523vw;
+                font-size: 1.211vw;
+                input{
+                    height: 4.440vw;
+                    border-radius: 0.505vw;
+                    padding-left: 2.018vw;
+                }
+                select {
+                    height: 4.440vw;
+                    border-radius: 0.505vw;
+                    padding-left: 2.018vw;
+                    margin-top: 1.009vw;
+                    background-position: center right 2.018vw;
+                }
+            }
+            .body__button-search {
+                margin-top: 2.018vw;
+                margin-bottom: 1.413vw;
+            }
+        }
+    }
+    .gocu-replays {
+        .gocu-replays__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+
+            .title__game-period {
+                margin-right: 2.018vw;
+
+                select {
+                    height: 2.018vw;
+                    padding-right: 1.413vw;
+                    font-size: 1.211vw;
+                }
+            }
+        }
+
+        .gocu-replays__match {
+            .match__author {
+                padding: 2.018vw;
+
+                .comment-author__nickname {
+                    font-size: 1.413vw;
+                    margin-left: 1.312vw;
+                }
+
+                .comment-author__replay-item {
+                    font-size: 1.211vw;
+                    line-height: 3.027vw;
+                    margin-left: 1.211vw;
+                }
+
+                .comment-author__date {
+                    font-size: 1.211vw;
+                    line-height: 1.917vw;
+                }
+            }
+
+            .match__comment {
+                font-size: 1.615vw;
+                padding-left: 2.018vw;
+                padding-right: 2.018vw;
+            }
+
+            .match__info {
+                padding: 2.018vw;
+
+                .info__country {
+                    .country-first {
+                        margin-left: 0.605vw;
+                    }
+                }
+
+                .info__match-up {
+                    .match-up__versus {
+                        margin-left: 0.505vw;
+                        margin-right: 0.505vw;
+                    }
+
+                    .match-up__name {
+                        font-size: 1.413vw;
+                        line-height: 1.917vw;
+                    }
+
+                    .name__first {
+                        margin-left: 1.413vw;
+                    }
+                }
+
+                .info__maps {
+                    .maps__name {
+                        font-size: 1.413vw;
+                        margin-left: 1.211vw;
+                    }
+                }
+
+                .info__wins {
+                    svg {
+                        width: 2.523vw;
+                        height: 2.523vw;
+                    }
+
+                    .wins__text {
+                        margin-left: 1.009vw;
+                    }
+                }
+
+                .country__text,
+                .match-up__text,
+                .maps__text,
+                .wins__text {
+                    font-size: 1.211vw;
+                    line-height: 3.027vw;
+                }
+            }
+        }
+    }
+    .gocu-replays__numb-pages {
+        margin-top: 2.523vw;
+        margin-bottom: 0.807vw;
+
+        .numb-pages {
+            font-size: 1.211vw;
+            line-height: 1.917vw;
+        }
+    }
+
+    /*ДЕТАЛЬНЫЕ НОВОСТИ*/
+    .detailed-news {
+        .detailed-news__title {
+            padding: 2.018vw;
+            .title__wrap {
+                .title__icon {
+                    width: 2.018vw;
+                    height: 2.018vw;
+                }
+                .title__text {
+                    font-size: 1.615vw;
+                    margin-left: 2.018vw;
+                }
+                .title__avatar {
+                    width: 2.825vw;
+                    height: 2.825vw;
+                }
+                .title__nickname {
+                    font-size: 1.413vw;
+                    margin-left: 1.312vw;
+                }
+                .title__flag {
+                    width: 2.018vw;
+                    height: 2.018vw;
+                    margin-left: 1.312vw;
+                }
+                .title__cube {
+                    width: 1.615vw;
+                    height: 1.615vw;
+                    margin-left: 1.110vw;
+                }
+                .title__text {
+                    font-size: 1.413vw;
+                    margin-left: 1.211vw;
+                }
+
+            }
+        }
+        .detailed-news__info {
+            padding-top: 1.816vw;
+            padding-bottom: 1.715vw;
+            padding-left: 2.119vw;
+            padding-right: 2.220vw;
+
+            .info__items {
+
+                .items__watch,
+                .items__comment {
+                    svg {
+                        width: 1.514vw;
+                        height: 1.312vw;
+                    }
+                    span {
+                        font-size: 1.211vw;
+                        line-height: 1.917vw;
+                        margin-left: 1.009vw;
+                    }
+                }
+                .items__comment {
+                    margin-left: 3.229vw;
+                }
+                .items__date {
+                    font-size: 1.211vw;
+                    line-height: 1.917vw;
+
+                }
+            }
+        }
+        .detailed-news__card {
+            .card-body {
+                .card-body__title {
+                    font-size: 1.615vw;
+                    line-height: 1.917vw;
+                    margin-top: 3.633vw;
+                    margin-bottom: 2.725vw;
+                }
+                .card-body__text {
+                    font-size: 1.615vw;
+                    line-height: 2.422vw;
+                    margin-bottom: 2.825vw;
+                }
+                .card-body__banner {
+                    margin-bottom: 3.935vw;
+                }
+                .card-body__items {
+                    padding-bottom: 1.715vw;
+                    .card-body__items-wrap {
+                        .items__quote {
+                            svg {
+                                width: 2.018vw;
+                                height: 2.018vw;
+                            }
+                        }
+                        .items__share {
+                            margin-left: 2.119vw;
+                            svg {
+                                width: 1.816vw;
+                                height: 2.018vw;
+                            }
+                        }
+                    }
+                    .card-body__items-wrap {
+                        .items__like {
+                            svg {
+                                width: 2.018vw;
+                                height: 1.816vw;
+                            }
+                            span {
+                                font-size: 1.211vw;
+                                line-height: 1.917vw;
+                                margin-left: 0.706vw;
+                            }
+                        }
+                        .items__dislike {
+                            margin-left: 1.715vw;
+                            svg {
+                                width: 2.018vw;
+                                height: 1.816vw;
+                            }
+                            span {
+                                font-size: 1.211vw;
+                                line-height: 1.917vw;
+                                margin-left: 0.706vw;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+    .comments {
+
+        .comments__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.119vw;
+                height: 2.119vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .comments__wrapp {
+            .comments__info {
+                padding-top: 1.615vw;
+                padding-bottom: 1.715vw;
+                padding-left: 2.018vw;
+                padding-right: 2.018vw;
+
+                .info__avatar {
+                    width: 2.825vw;
+                    height: 2.825vw;
+                }
+
+                .info__nickname {
+                    font-size: 1.413vw;
+                    margin-left: 1.312vw;
+                }
+
+                .info__flag {
+                    width: 2.018vw;
+                    height: 2.018vw;
+                    margin-left: 1.312vw;
+                }
+
+                .info__cube {
+                    width: 1.615vw;
+                    height: 1.615vw;
+                    margin-left: 1.110vw;
+                }
+
+                .info__text {
+                    font-size: 1.413vw;
+                    margin-left: 1.211vw;
+                }
+
+                .info__date {
+                    font-size: 1.211vw;
+                    line-height: 1.917vw;
+                }
+            }
+
+            .comments__content {
+                .content__title {
+                    font-size: 1.615vw;
+                    line-height: 2.422vw;
+                    padding-left: 2.018vw;
+                    padding-right: 2.018vw;
+                    margin-top: 3.027vw;
+                    margin-bottom: 2.018vw;
+                }
+                .content__img {
+                    margin-bottom: 4.036vw;
+                    padding-left: 2.018vw;
+                    padding-right: 2.018vw;
+                }
+            }
+
+            .comments__items {
+                padding-bottom: 1.715vw;
+                padding-left: 2.018vw;
+                padding-right: 2.018vw;
+
+                .items__wrap {
+                    .items__quote {
+                        svg {
+                            width: 2.018vw;
+                            height: 2.018vw;
+                        }
+                    }
+                }
+
+                .items__share {
+                    margin-left: 2.119vw;
+
+                    svg {
+                        width: 1.816vw;
+                        height: 2.018vw;
+                    }
+                }
+
+                .items__like {
+
+                    svg {
+                        width: 2.018vw;
+                        height: 1.816vw;
+                    }
+
+                    span {
+                        font-size: 1.211vw;
+                        line-height: 1.917vw;
+                        margin-left: 0.706vw;
+                    }
+                }
+
+                .items__dislike {
+                    margin-left: 1.715vw;
+
+                    svg {
+                        width: 2.018vw;
+                        height: 1.816vw;
+                    }
+
+                    span {
+                        font-size: 1.211vw;
+                        line-height: 1.917vw;
+                        margin-left: 0.706vw;
+                    }
+                }
+            }
+        }
+
+    }
+    .add-comment {
+        .add-comment__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.119vw;
+                height: 2.119vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+        .add-comment__form {
+            padding: 2.018vw;
+            .form__group {
+                .comment {
+                    .comment__icon {
+                        width: 2.018vw;
+                        height: 1.615vw;
+                        top: 1.514vw;
+                        right: 8.073vw;
+                    }
+                    .comment__input {
+                        height: 4.440vw;
+                        padding-left: 1.816vw;
+                        padding-right: 12.109vw;
+                        &::placeholder {
+                            font-size: 1.211vw;
+                        }
+                    }
+                }
+
+                .buttons-upload{
+                    top: 1.211vw;
+                    right: 5.045vw;
+
+                    label {
+                        margin-left: 1.715vw;
+                    }
+
+
+                    i {
+                        font-size: 1.615vw;
+                    }
+
+                    .smile-upload {
+                        margin-left: 1.615vw;
+                        i {
+                            font-size: 1.615vw;
+                        }
+                    }
+                }
+            }
+            .add-comment__button {
+                svg {
+                    width: 2.018vw;
+                    height: 1.816vw;
+                }
+            }
+        }
+    }
+
+    /*ТУРНИРЫ*/
+
+    //Предстоящие турниры
+    .Page_tournament-content{
+        & .title_block{
+            height: 6.054vw;
+            padding: 2.018vw;
+            & .left_content{
+                & svg{
+                    margin-right: 1.009vw;
+                }
+            }
+            & .right_content{
+                & svg{
+                    margin-left: 1.009vw;
+                }
+                & .title_text{
+                    font-size: 1.413vw;
+                }
+                .lable_select {
+                    select {
+                        height: 2.018vw;
+                        padding-right: 1.413vw;
+                        font-size: 1.211vw;
+
+                    }
+                }
+            }
+
+            & img,svg{
+                width: 2.018vw;
+                margin-right: 1.009vw;
+            }
+            & .title_text{
+                font-size: 1.615vw;
+            }
+        }
+        & .block_navigationTournament{
+            height: 6.054vw;
+            padding: 2.018vw;
+            & a{
+                font-size: 1.615vw;
+            }
+        }
+        & .tournament_info{
+            padding: 2.523vw 2.018vw;
+            & svg{
+                width: 1.009vw;
+                margin-right: 1.009vw;
+            }
+            & .place{
+                & span{
+                    font-size: 1.413vw;
+                }
+            }
+            & .time{
+                & span{
+                    font-size: 1.413vw;
+                }
+            }
+            & .status{
+                & span{
+                    font-size: 1.211vw;
+                    border-radius: 1.514vw;
+                    padding: 0.505vw 3.027vw;
+                }
+            }
+            & .players{
+                font-size: 1.211vw;
+            }
+        }
+    }
+
+    /*ЛУЧШИЕ*/
+    .Page_gameBest{
+        & .title_block{
+            height: 6.054vw;
+            padding: 2.018vw;
+            & .left_content{
+                & svg{
+                    margin-right: 1.009vw;
+                }
+            }
+            & .right_content{
+                & svg{
+                    margin-left: 1.009vw;
+                }
+                & .title_text{
+                    font-size: 1.413vw;
+                }
+            }
+            & img,svg{
+                width: 2.018vw;
+                margin-right: 1.009vw;
+            }
+            & .title_text{
+                font-size: 1.615vw;
+            }
+        }
+        & .title_players{
+            height: 6.054vw;
+            padding: 0 2.018vw;
+            & .title_playersText{
+                font-size: 1.615vw;
+            }
+            & a{
+                font-size: 1.211vw;
+            }
+        }
+        & .container_players{
+            max-height: 22.200vw;
+            padding: 2.018vw 0;
+            & .players_content{
+                padding: 1.009vw 4.541vw 0.505vw 2.018vw;
+                & .left_block{
+                    & .number{
+                        width: 4.036vw;
+                        height: 2.825vw;
+                    }
+                    span{
+                        font-size: 1.413vw;
+                    }
+                    & img{
+                        margin: 0 1.009vw 0 1.514vw;
+                    }
+                    & a{
+                        width: 14.127vw;
+                        height: 2.825vw;
+                        & .name_player{
+                            font-size: 1.413vw;
+                        }
+                    }
+                }
+                & .center_block{
+                    & img{
+                        margin: 0 0.505vw;
+                    }
+                }
+                & .right_block{
+                    & svg{
+                        width: 2.018vw;
+                    }
+                    p{
+                        font-size: 1.413vw;
+                        width: 7.064vw;
+                        height: 2.825vw;
+                    }
+                }
+            }
+        }
+        .container_players::-webkit-scrollbar {
+            width: 1.009vw;
+        }
+        .container_players::-webkit-scrollbar-thumb {
+            height: 2.523vw;
+        }
+    }
+
+    /*КАБИНЕТ ПОЛЬЗОВАТЕЛЯ*/
+    .gallery {
+        .gallery__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .gallery__body {
+            padding: 2.523vw;
+            .img-wrapper {
+                max-width: 12.109vw;
+                padding: 0.505vw;
+
+            }
+        }
+    }
+    .gallery-detail {
+        .gallery-detail__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .gallery-detail__body {
+            padding: 2.523vw;
+            .body__items {
+                margin-bottom: 1.009vw;
+                .items__title {
+                    p {
+                        font-size: 1.615vw;
+                        line-height: 1.917vw;
+                    }
+                }
+
+                .items__rating {
+                    .rating__like {
+                        svg {
+                            width: 2.018vw;
+                            height: 1.816vw;
+                        }
+
+                        span {
+                            font-size: 1.211vw;
+                            line-height: 1.917vw;
+                            margin-left: 0.706vw;
+                        }
+                    }
+
+                    .rating__dislike {
+                        margin-left: 1.009vw;
+                        svg {
+                            width: 2.018vw;
+                            height: 1.816vw;
+                        }
+
+                        span {
+                            font-size: 1.211vw;
+                            line-height: 1.917vw;
+                            margin-left: 0.706vw;
+                        }
+                    }
+                }
+
+                .items__reputation-button {
+                    a {
+                        width: 15.136vw;
+                        padding: 0.505vw 1.009vw;
+                        font-size: 1.615vw;
+                    }
+                }
+
+                .items__slide-button {
+                    a {
+                        height: 3.027vw;
+                        width: 3.027vw;
+                        i {
+                            font-size: 1.816vw;
+                        }
+                    }
+                }
+            }
+            .body__img {
+                margin-bottom: 1.514vw;
+            }
+            .body__edit-image-form {
+                .form-group {
+                    label {
+                        font-size: 1.615vw;
+                    }
+                }
+                .form-check {
+                    margin-bottom: 2.018vw;
+                    label {
+                        font-size: 1.615vw;
+                    }
+                }
+            }
+
+        }
+    }
+    .user-settings {
+        .user-settings__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .user-settings__form {
+            padding: 2.523vw;
+            .upload-avatar {
+                .avatar__button-upload {
+                    margin-left: 0.505vw;
+                    label {
+                        padding-left: 1.009vw;
+                        padding-right: 1.009vw;
+                        padding-top: 0.505vw;
+                        padding-bottom: 0.505vw;
+                    }
+                }
+            }
+
+            .form-group {
+                label {
+                    font-size: 1.615vw;
+                }
+                .select2 {
+                    .select2-selection {
+                        margin-top: 0.807vw;
+                        .select2-selection__rendered {
+                            padding-top: 0.404vw;
+                        }
+                        .select2-selection__arrow {
+                            top: 0.505vw;
+                        }
+                    }
+                }
+                #user-settings__race {
+                    margin-top: 0.807vw;
+                }
+            }
+            .form-check {
+                margin-bottom: 2.018vw;
+                .form-check-input {
+                    margin-left: 1.009vw;
+                }
+                .form-check-label {
+                    font-size: 1.615vw;
+                }
+            }
+        }
+    }
+    .user-replays {
+        margin-bottom: 3.431vw;
+
+        .user-replays__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+        .user-replays__body {
+            padding: 2.018vw;
+            .body__wrap {
+                margin-bottom: 2.523vw;
+                .body__title {
+                    font-size: 1.413vw;
+                }
+                .body__numb {
+                    font-size: 1.413vw;
+                }
+            }
+        }
+        .user-replays__button {
+            padding-left: 2.018vw;
+            padding-right: 2.018vw;
+            padding-bottom: 2.018vw;
+        }
+    }
+    .user-reputation-history {
+        .user-reputation-history__title {
+            padding: 2.018vw 1.917vw;
+            .title__icon {
+                width: 2.119vw;
+                height: 2.119vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+
+            .title__reputation {
+                .icon__like {
+                    svg {
+                        width: 2.018vw;
+                        height: 1.816vw;
+                    }
+
+                    span {
+                        font-size: 1.211vw;
+                        line-height: 1.917vw;
+                        margin-left: 0.706vw;
+                    }
+                }
+                .icon__dislike {
+                    margin-left: 1.715vw;
+                    svg {
+                        width: 2.018vw;
+                        height: 1.816vw;
+                    }
+
+                    span {
+                        font-size: 1.211vw;
+                        line-height: 1.917vw;
+                        margin-left: 0.706vw;
+                    }
+                }
+            }
+        }
+        .user-reputation-history__body {
+            .body__wrap {
+                .body__info {
+                    padding: 1.615vw 2.018vw 1.715vw;
+
+                    .info__nickname {
+                        font-size: 1.413vw;
+                    }
+
+                    .info__flag {
+                        width: 2.018vw;
+                        height: 2.018vw;
+                        margin-left: 1.312vw;
+                    }
+
+                    .info__cube {
+                        width: 1.615vw;
+                        height: 1.615vw;
+                        margin-left: 1.110vw;
+                    }
+
+                    .info__text {
+                        font-size: 1.413vw;
+                        margin-left: 1.211vw;
+                    }
+
+                    .info__date {
+                        font-size: 1.211vw;
+                        line-height: 1.917vw;
+                    }
+                }
+                .body__content {
+                    padding: 1.615vw 2.018vw 1.715vw;
+                    .content__title {
+                        font-size: 1.615vw;
+                        line-height: 2.422vw;
+                    }
+                    .content__like {
+                        svg {
+                            width: 2.018vw;
+                            height: 1.816vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .gallery-download {
+        .gallery-download__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+        .gallery-download__body {
+            padding: 2.523vw;
+            .gallery__form {
+                .upload-avatar {
+                    margin-bottom: 2.018vw;
+                    .avatar__button-upload {
+                        margin-left: 0.505vw;
+                        label {
+                            height: 37px;
+                            padding: 0.505vw 1.009vw;
+                        }
+                    }
+                }
+                .form-group {
+                    label {
+                        font-size: 1.615vw;
+                    }
+                }
+                .form-check {
+                    margin-bottom: 2.018vw;
+                    label {
+                        font-size: 1.615vw;
+                    }
+                }
+            }
+        }
+    }
+    .vote {
+        .vote__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.119vw;
+                height: 2.119vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+        .vote__content {
+            .content__header {
+                padding-top: 1.615vw;
+                padding-bottom: 1.715vw;
+                padding-left: 2.018vw;
+                padding-right: 2.018vw;
+                .header__title {
+                    font-size: 1.615vw;
+                }
+            }
+            .content__body {
+                padding-top: 1.615vw;
+                padding-bottom: 1.715vw;
+                padding-left: 2.018vw;
+                padding-right: 2.018vw;
+                .vote-form {
+                    .form-check {
+                        margin-bottom: 1.514vw;
+                        label {
+                            margin-left: 1.009vw;
+                            font-size: 1.615vw;
+                        }
+                    }
+                    .body__button-vote {
+                        margin-bottom: 1.514vw;
+                    }
+                }
+                .view-results {
+                    .results {
+                        margin-bottom: 1.514vw;
+                        span {
+                            font-size: 1.413vw;
+                        }
+                    }
+                    .result__total {
+                        margin-bottom: 1.514vw;
+                        span {
+                            font-size: 1.413vw;
+                        }
+                    }
+                }
+                .body__view-results {
+                    .view-results__button {
+                        font-size: 1.413vw;
+                    }
+                }
+            }
+        }
+    }
+    .create-replay {
+        margin-bottom: 3.431vw;
+
+        .create-replay__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .create-replay__form {
+            padding: 2.523vw;
+            .form-group {
+                label {
+                    font-size: 1.615vw;
+                    select {
+                        height: 37px;
+                        margin-top: 0.505vw;
+                    }
+                }
+
+                .select2 {
+                    height: 37px;
+                    .select2-selection {
+                        height: 37px;
+                        margin-top: 0.505vw;
+                        .select2-selection__rendered {
+                            padding-top: 0.404vw;
+                        }
+                        .select2-selection__arrow {
+                            top: 0.505vw;
+                        }
+                    }
+                }
+            }
+            hr {
+                margin-top: 2.018vw;
+                margin-bottom: 2.018vw;
+            }
+        }
+    }
+    .user_friends{
+        & .row_title{
+            padding: 1.514vw 0;
+        }
+        & .wrapper_table{
+            max-height: 32.291vw;
+            & .row_users{
+                padding: 1.009vw 0;
+                & .block_action{
+                    & svg{
+                        width: 2.018vw;
+                    }
+                }
+                & .user_block{
+                    & .name_user{
+                        max-width: 9.889vw;
+                    }
+                    & .user-avatar{
+                        width: 5.045vw;
+                        height: 5.045vw;
+                        font-size: 2.422vw;
+                    }
+                }
+            }
+        }
+
+    }
+    .wrapper_table::-webkit-scrollbar {
+        width: 1.009vw;
+    }
+    .wrapper_table::-webkit-scrollbar-thumb {
+        height: 22.906vw;
+    }
+    .user_profile{
+        & .wrapper{
+            margin-bottom: 7.064vw;
+        }
+        & .title_top_userProfile{
+            height: 6.054vw;
+            padding: 2.018vw;
+            & .title_Text{
+                font-size: 1.615vw;
+            }
+            & .more{
+                & p{
+                    font-size: 4.036vw;
+                }
+            }
+        }
+        & .userInfo_block{
+            padding: 3.027vw 2.018vw;
+            & .button{
+                margin: 3.532vw auto 0;
+                padding: 1.009vw;
+            }
+            & .icon_img{
+                margin-top: 2.422vw;
+                & svg{
+                    width: 3.027vw;
+                }
+            }
+
+            & .container_information{
+                & .userText_block{
+                    margin-bottom: 1.514vw;
+                    & .title{
+                        font-size: 1.816vw;
+                        padding-right: 4.036vw;
+                    }
+                    & .date{
+                        font-size: 1.211vw;
+                    }
+                }
+                & .information_block{
+                    padding-top: 1.009vw;
+                    & .left_block{
+                        & span{
+                            font-size: 1.211vw;
+                        }
+
+                    }
+                    & .right_block{
+                        & span{
+                            font-size: 1.413vw;
+                        }
+                    }
+                }
+            }
+        }
+        & .block_userInformation{
+            & .container_right{
+                & .wrapper_information, .wrapper_contacts{
+                    padding: 2.018vw 2.018vw 1.009vw;
+                    & .block_inform, .block_contact{
+                        padding-bottom: 1.009vw;
+                        & .left_block{
+                            & span{
+                                font-size: 1.211vw;
+                            }
+
+                        }
+                        & .right_block{
+                            & span{
+                                font-size: 1.413vw;
+                            }
+                            & .small{
+                                font-size: 1.211vw;
+                            }
+                        }
+                    }
+                }
+                & .block_armor{
+                    padding: 2.018vw 2.018vw 1.009vw;
+                    & .armor_info{
+                        padding-bottom: 1.009vw;
+                    }
+                    & svg{
+                        width: 1.715vw;
+                        margin-right: 1.009vw;
+                    }
+                }
+            }
+
+            & .friends_block{
+                padding: 2.523vw;
+                max-height: 30.272vw;
+                margin-right: 0.505vw;
+                & .friends{
+                    padding-bottom: 1.009vw;
+                    & .left_block{
+                        & .name_player{
+                            margin-left: 1.009vw;
+                            max-width: 10.091vw;
+                        }
+                    }
+                }
+            }
+        }
+
+        .friends_block::-webkit-scrollbar {
+            width: 0.706vw;
+        }
+        .friends_block::-webkit-scrollbar-thumb {
+            height: 2.523vw;
+        }
+    }
 }
 
 
