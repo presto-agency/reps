@@ -11954,8 +11954,8 @@ select:focus {
   color: #0567cc;
 }
 
-.replays .replays__accordion .accordion__topic .topic__header .header__title:hover svg {
-  fill: #0567cc;
+.replays .replays__accordion .accordion__topic .topic__header p.header__title:hover {
+  color: #7880a1;
 }
 
 .replays .replays__accordion .accordion__topic .topic__header .fa-ellipsis-h {
@@ -11966,6 +11966,68 @@ select:focus {
 
 .replays .replays__accordion .accordion__topic .topic__body .card-body {
   padding-bottom: 0;
+}
+
+.replays .replays__accordion .accordion__topic .topic__body .card-body .subtopic__topic {
+  box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-bottom: 34px;
+  border: 0;
+}
+
+.replays .replays__accordion .accordion__topic .topic__body .card-body .subtopic__topic .subtopic__header {
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0px;
+}
+
+.replays .replays__accordion .accordion__topic .topic__body .card-body .subtopic__topic .subtopic__header .header__title {
+  color: #7880a1;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.replays .replays__accordion .accordion__topic .topic__body .card-body .subtopic__topic .subtopic__header .header__title:hover {
+  color: #0567cc;
+}
+
+.replays .replays__accordion .accordion__topic .topic__body .card-body .subtopic__topic .subtopic__header .header__title:hover svg {
+  fill: #0567cc;
+}
+
+.replays .replays__accordion .accordion__topic .topic__body .card-body .subtopic__topic .subtopic__header .fa-ellipsis-h {
+  color: #a9afc4;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.replays .replays__accordion .accordion__topic .topic__body .card-body .subtopic__topic .subtopic__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 25px;
+}
+
+.replays .replays__accordion .accordion__topic .topic__body .card-body .subtopic__topic .subtopic__wrap .body__title {
+  color: #141d53;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  width: 90%;
+}
+
+.replays .replays__accordion .accordion__topic .topic__body .card-body .subtopic__topic .subtopic__wrap .body__numb {
+  color: #0567cc;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .replays .replays__accordion .accordion__topic .topic__body .card-body .body__wrap {

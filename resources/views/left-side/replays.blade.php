@@ -46,128 +46,109 @@
 
         <div class="accordion__topic card">
             <div class="topic__header card-header">
-                <a class="header__title" href="#">
-                    ГОСУ реплеи
-                </a>
+                <p class="header__title">
+                    Професіонали
+                </p>
             </div>
 
             <div class="topic__body">
                 <div class="card-body">
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                        <span class="body__numb">0</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <div class="subtopic__topic card">
+                        <div class="subtopic__header card-header">
+                            <a class="header__title" href="#">
+                                1х1
+                            </a>
 
-        <div class="accordion__topic card">
-            <div class="topic__header card-header">
-                <a class="header__title" href="#">
-                    1х1
-                </a>
+                        </div>
 
-            </div>
+                        <div class="subtopic__body">
+                            <div class="card-body">
+                                <div class="body__wrap">
+                                    <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
+                                    <span class="body__numb">1</span>
+                                </div>
+                                <div class="body__wrap">
+                                    <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
+                                    <span class="body__numb">0</span>
+                                </div>
+                                <div class="body__wrap">
+                                    <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
+                                    <span class="body__numb">1</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subtopic__topic card">
+                        <div class="topic__header card-header">
+                            <a class="header__title" href="#">
+                                park/archive
+                            </a>
+                        </div>
 
-            <div class="topic__body">
-                <div class="card-body">
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                        <span class="body__numb">1</span>
+                        <div class="topic__body">
+                            <div class="card-body">
+                                <div class="body__wrap">
+                                    <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
+                                    <span class="body__numb">1</span>
+                                </div>
+                                <div class="body__wrap">
+                                    <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
+                                    <span class="body__numb">0</span>
+                                </div>
+                                <div class="body__wrap">
+                                    <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
+                                    <span class="body__numb">1</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                        <span class="body__numb">0</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <div class="subtopic__topic card">
+                        <div class="topic__header card-header">
+                            <a class="header__title" href="#">
+                                Game of the week
+                            </a>
+                        </div>
 
-        <div class="accordion__topic card">
-            <div class="topic__header card-header">
-                <a class="header__title" href="#">
-                    park/archive
-                </a>
-                <a class="header__title-disable" href="#">
-                    <i class="fas fa-ellipsis-h"></i>
-                </a>
-            </div>
+                        <div class="topic__body">
+                            <div class="card-body">
+                                <div class="body__wrap">
+                                    <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
+                                    <span class="body__numb">1</span>
+                                </div>
+                                <div class="body__wrap">
+                                    <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
+                                    <span class="body__numb">0</span>
+                                </div>
+                                <div class="body__wrap">
+                                    <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
+                                    <span class="body__numb">1</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subtopic__topic card">
+                        <div class="topic__header card-header">
+                            <a class="header__title"  href="#">
+                                2х2   3х3   4х4
+                            </a>
+                        </div>
 
-            <div class="topic__body">
-                <div class="card-body">
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                        <span class="body__numb">0</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="accordion__topic card">
-            <div class="topic__header card-header">
-                <a class="header__title" href="#">
-                    Game of the week
-                </a>
-            </div>
-
-            <div class="topic__body">
-                <div class="card-body">
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                        <span class="body__numb">0</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="accordion__topic card">
-            <div class="topic__header card-header">
-                <a class="header__title"  href="#">
-                    2х2   3х3   4х4
-                </a>
-            </div>
-
-            <div class="topic__body">
-                <div class="card-body">
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                        <span class="body__numb">0</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                        <span class="body__numb">1</span>
+                        <div class="topic__body">
+                            <div class="card-body">
+                                <div class="body__wrap">
+                                    <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
+                                    <span class="body__numb">1</span>
+                                </div>
+                                <div class="body__wrap">
+                                    <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
+                                    <span class="body__numb">0</span>
+                                </div>
+                                <div class="body__wrap">
+                                    <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
+                                    <span class="body__numb">1</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
