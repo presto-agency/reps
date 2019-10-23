@@ -8,7 +8,13 @@ use Illuminate\Http\Request;
 trait GravatarTrait
 {
 
-  public function getAvatarUrlOrBlankAttribute() {
+    public function getAvatarUrlOrBlankAttribute()
+    {
+        $url = 'images/avatar.jpg';
+        return $url;
+    }
+}
+
 //    if (empty($url = $this->avatar)) {
 ////      $s = 200;
 ////      $d = '404';
@@ -21,7 +27,3 @@ trait GravatarTrait
 ////      }
 //
 //    }
-      $url = 'images/avatar.jpg';
-    return $url;
-  }
-}
