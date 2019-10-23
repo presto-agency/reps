@@ -12117,6 +12117,33 @@ select:focus {
   background-position: center right 0px;
 }
 
+.gocu-replays .gocu-replays__subtitle {
+  background-color: #f0f4f8;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gocu-replays .gocu-replays__subtitle .subtitle__name {
+  color: #8086a6;
+  font-size: 16px;
+  font-weight: 400;
+  transition: 0.3s;
+  margin-bottom: 0;
+}
+
+.gocu-replays .gocu-replays__subtitle .subtitle__name:hover {
+  color: #0567cc;
+}
+
+.gocu-replays .gocu-replays__subtitle .subtitle__date {
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
 .gocu-replays .gocu-replays__match .match__author {
   width: 100%;
   display: flex;
@@ -15006,6 +15033,15 @@ select:focus {
   padding: 16px 20px 0;
 }
 
+.forum_allSections .content_allArticle p {
+  color: #010b4a;
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 0;
+}
+
 .Page_tournament-content .wrapper {
   box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
 }
@@ -16193,8 +16229,6 @@ select:focus {
 }
 
 @media (max-width: 1366px) {
-  /*Главная*/
-
   .title_block {
     padding: 1.464vw;
   }
@@ -16226,6 +16260,100 @@ select:focus {
     font-size: 0.878vw;
     padding-top: 0.952vw;
     padding-bottom: 1.098vw;
+  }
+
+  .breadcrumb {
+    padding-top: 1.903vw;
+    padding-bottom: 1.83vw;
+  }
+
+  .breadcrumb .breadcrumb-item {
+    font-size: 1.318vw;
+    line-height: 1.391vw;
+  }
+
+  .breadcrumb .breadcrumb-item.active {
+    font-size: 1.318vw;
+    line-height: 1.391vw;
+  }
+
+  .footer {
+    padding-top: 4.392vw;
+    padding-bottom: 4.392vw;
+  }
+
+  .footer .footer__logo .logo__text {
+    font-size: 0.878vw;
+    margin-top: 1.391vw;
+  }
+
+  .footer .footer__link .link-list__item {
+    font-size: 0.878vw;
+    line-height: 2.343vw;
+  }
+
+  .footer .footer__info .footer__title {
+    font-size: 0.878vw;
+    margin-bottom: 0.878vw;
+  }
+
+  .footer .footer__info .footer__text {
+    font-size: 0.878vw;
+  }
+
+  .footer .footer__info .footer__mail {
+    font-size: 1.025vw;
+    line-height: 1.977vw;
+  }
+
+  .footer .footer__info .footer__mail svg {
+    margin-right: 1.098vw;
+    width: 1.171vw;
+    height: 0.878vw;
+  }
+
+  .footer .footer__our-birthday .footer__title {
+    font-size: 0.878vw;
+  }
+
+  .footer .footer__our-birthday .our-birthday__nickname {
+    font-size: 1.025vw;
+    margin-bottom: 1.171vw;
+  }
+
+  .footer .footer__useful .footer__title {
+    font-size: 0.878vw;
+  }
+
+  .footer .footer__useful .useful__link {
+    font-size: 0.878vw;
+    margin-bottom: 1.464vw;
+  }
+
+  .footer .produced {
+    margin-top: 2.196vw;
+  }
+
+  .footer .produced p {
+    font-size: 1.025vw;
+    line-height: 1.757vw;
+  }
+
+  .footer .produced a {
+    font-size: 1.025vw;
+    line-height: 1.757vw;
+    margin-left: 0.366vw;
+  }
+
+  .footer__copyright .copyright__text {
+    font-size: 0.878vw;
+    line-height: 2.343vw;
+  }
+
+  .pulse-button {
+    font-size: 1.171vw;
+    padding: 1.025vw 2.05vw;
+    margin: 0 auto 1.464vw;
   }
 
   .block_chat-twitch {
@@ -16349,7 +16477,7 @@ select:focus {
   }
 
   .block_replay .row_game {
-    padding: 0 0.732vw;
+    margin: 0 0.732vw;
     margin-bottom: 1.098vw;
   }
 
@@ -16494,7 +16622,7 @@ select:focus {
   .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input {
     height: 3.221vw;
     padding-left: 1.318vw;
-    padding-right: 8.785vw;
+    padding-right: 125px;
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-webkit-input-placeholder {
@@ -16518,7 +16646,7 @@ select:focus {
   }
 
   .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload {
-    top: 0.878vw;
+    top: 0.778vw;
     right: 3.66vw;
   }
 
@@ -16581,6 +16709,1450 @@ select:focus {
   .breaking-news__numb-pages .numb-pages {
     font-size: 0.878vw;
     line-height: 1.391vw;
+  }
+
+  /*Форум*/
+
+  .forum_acticle {
+    margin: 2.928vw 0 0 0;
+  }
+
+  .forum_acticle .title_block {
+    height: 4.392vw;
+    padding: 0 1.464vw;
+  }
+
+  .forum_acticle .title_block svg {
+    width: 2.928vw;
+    padding-right: 1.098vw;
+  }
+
+  .forum_acticle .title_block .title_text {
+    font-size: 1.171vw;
+  }
+
+  .forum_acticle .title_block .right_section button svg {
+    width: 2.196vw;
+  }
+
+  .forum_acticle .title_block .right_section button span {
+    padding-right: 0.366vw;
+  }
+
+  .forum_acticle .title_block .right_section .lable_select select {
+    height: 1.464vw;
+    font-size: 0.878vw;
+  }
+
+  .forum_acticle .title_block .right_section_autorization p {
+    font-size: 1.171vw;
+  }
+
+  .forum_acticle .content_article {
+    padding: 0.732vw 1.464vw 0;
+  }
+
+  .forum_acticle .content_article .block_nameArticle .name {
+    margin: 0.366vw 0;
+    font-size: 1.171vw;
+  }
+
+  .forum_acticle .content_article .block_nameArticle .date {
+    font-size: 0.878vw;
+  }
+
+  .forum_acticle .counter_autorization {
+    padding: 0.732vw 1.464vw 0;
+  }
+
+  .forum_acticle .counter_autorization .block_nameArticle {
+    padding-bottom: 0.732vw;
+  }
+
+  .forum_acticle .counter_autorization .block_nameArticle .item {
+    margin: 0.366vw 0;
+    font-size: 1.025vw;
+  }
+
+  .forum_acticle .counter_autorization .block_nameArticle .text {
+    margin-left: 0.732vw;
+    font-size: 1.025vw;
+  }
+
+  .forum_acticle .detailed-news__info {
+    padding-bottom: 0.732vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .block_account img {
+    max-width: 2.196vw;
+    max-height: 2.196vw;
+    border-radius: 1.464vw;
+    padding-right: 0.732vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .block_account span {
+    font-size: 1.025vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .items__watch svg,
+  .forum_acticle .detailed-news__info .info__items .items__comment svg {
+    width: 1.098vw;
+    height: 0.952vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .items__watch span,
+  .forum_acticle .detailed-news__info .info__items .items__comment span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-left: 0.732vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .items__comment {
+    margin-left: 2.343vw;
+  }
+
+  .forum-topics .forum-topics__title {
+    padding-top: 1.318vw;
+    padding-bottom: 1.318vw;
+    padding-left: 1.391vw;
+  }
+
+  .forum-topics .forum-topics__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .forum-topics .forum-topics__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .forum-topics .forum-topics__accordion .accordion__topic .topic__header .header__title {
+    font-size: 1.171vw;
+    line-height: 2.05vw;
+  }
+
+  .forum-topics .forum-topics__accordion .accordion__topic .topic__header .fa-chevron-down,
+  .forum-topics .forum-topics__accordion .accordion__topic .topic__header .fa-ellipsis-h {
+    font-size: 1.171vw;
+  }
+
+  .forum_allSections .wrapper {
+    margin: 0 0 1.464vw;
+  }
+
+  .forum_allSections .title_block {
+    height: 4.392vw;
+    padding: 0 1.464vw;
+  }
+
+  .forum_allSections .title_block svg,
+  .forum_allSections .title_block img {
+    width: 2.928vw;
+    padding-right: 1.098vw;
+  }
+
+  .forum_allSections .title_block .title_text {
+    font-size: 1.171vw;
+  }
+
+  .forum_allSections .title_block .right_section .block_text {
+    padding-left: 0.732vw;
+  }
+
+  .forum_allSections .title_block .right_section .block_text span {
+    font-size: 1.025vw;
+    padding-right: 0.366vw;
+  }
+
+  .forum_allSections .title_block .right_section a svg {
+    width: 2.196vw;
+    padding-bottom: 0.22vw;
+  }
+
+  .forum_allSections .content_allArticle {
+    padding: 1.171vw 1.464vw 0;
+  }
+
+  .forum_allSections .content_allArticle p {
+    font-size: 1.171vw;
+  }
+
+  /*РЕПЛЕИ*/
+
+  .replays {
+    border-radius: 0.366vw;
+    margin-bottom: 2.489vw;
+  }
+
+  .replays .replays__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.391vw;
+  }
+
+  .replays .replays__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .replays .replays__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__header .header__title {
+    font-size: 1.171vw;
+    line-height: 2.05vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__body .card-body .body__wrap {
+    margin-bottom: 1.83vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__body .card-body .body__wrap .body__title {
+    font-size: 1.025vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__body .card-body .body__wrap .body__numb {
+    font-size: 1.025vw;
+  }
+
+  .search .search__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.464vw;
+  }
+
+  .search .search__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .search .search__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .search .search__body {
+    padding: 1.464vw;
+  }
+
+  .search .search__body label {
+    margin-bottom: 1.83vw;
+    font-size: 0.878vw;
+  }
+
+  .search .search__body label input {
+    height: 3.221vw;
+    border-radius: 0.366vw;
+    padding-left: 1.464vw;
+  }
+
+  .search .search__body label select {
+    height: 3.221vw;
+    border-radius: 0.366vw;
+    padding-left: 1.464vw;
+    margin-top: 0.732vw;
+    background-position: center right 1.464vw;
+  }
+
+  .search .search__body .body__button-search {
+    margin-top: 1.464vw;
+    margin-bottom: 1.025vw;
+  }
+
+  .gocu-replays .gocu-replays__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.464vw;
+  }
+
+  .gocu-replays .gocu-replays__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .gocu-replays .gocu-replays__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .gocu-replays .gocu-replays__title .title__game-period {
+    margin-right: 1.464vw;
+  }
+
+  .gocu-replays .gocu-replays__title .title__game-period select {
+    height: 1.464vw;
+    padding-right: 1.025vw;
+    font-size: 0.878vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__author {
+    padding: 1.464vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__author .comment-author__nickname {
+    font-size: 1.025vw;
+    margin-left: 0.952vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__author .comment-author__replay-item {
+    font-size: 0.878vw;
+    line-height: 2.196vw;
+    margin-left: 0.878vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__author .comment-author__date {
+    font-size: 0.878vw;
+    line-height: 1.464vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__comment {
+    font-size: 1.171vw;
+    padding-left: 1.464vw;
+    padding-right: 1.464vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info {
+    padding: 1.464vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__country .country-first {
+    margin-left: 0.439vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__match-up .match-up__versus {
+    margin-left: 0.366vw;
+    margin-right: 0.366vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__match-up .match-up__name {
+    font-size: 1.025vw;
+    line-height: 1.391vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__match-up .name__first {
+    margin-left: 1.025vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__maps .maps__name {
+    font-size: 1.025vw;
+    margin-left: 0.878vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__wins svg {
+    width: 1.83vw;
+    height: 1.83vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__wins .wins__text {
+    margin-left: 0.732vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .country__text,
+  .gocu-replays .gocu-replays__match .match__info .match-up__text,
+  .gocu-replays .gocu-replays__match .match__info .maps__text,
+  .gocu-replays .gocu-replays__match .match__info .wins__text {
+    font-size: 0.878vw;
+    line-height: 2.196vw;
+  }
+
+  .gocu-replays__numb-pages {
+    margin-top: 1.83vw;
+    margin-bottom: 0.586vw;
+  }
+
+  .gocu-replays__numb-pages .numb-pages {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+  }
+
+  /*ДЕТАЛЬНЫЕ НОВОСТИ*/
+
+  .detailed-news .detailed-news__title {
+    padding: 1.464vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.464vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__avatar {
+    width: 2.05vw;
+    height: 2.05vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__nickname {
+    font-size: 1.025vw;
+    margin-left: 0.952vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__flag {
+    width: 1.464vw;
+    height: 1.464vw;
+    margin-left: 0.952vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__cube {
+    width: 1.171vw;
+    height: 1.171vw;
+    margin-left: 0.805vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__text {
+    font-size: 1.025vw;
+    margin-left: 0.878vw;
+  }
+
+  .detailed-news .detailed-news__info {
+    padding-top: 1.318vw;
+    padding-bottom: 1.245vw;
+    padding-left: 1.464vw;
+    padding-right: 1.464vw;
+  }
+
+  .detailed-news .detailed-news__info .info__items .items__watch svg,
+  .detailed-news .detailed-news__info .info__items .items__comment svg {
+    width: 1.098vw;
+    height: 0.952vw;
+  }
+
+  .detailed-news .detailed-news__info .info__items .items__watch span,
+  .detailed-news .detailed-news__info .info__items .items__comment span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-left: 0.732vw;
+  }
+
+  .detailed-news .detailed-news__info .info__items .items__comment {
+    margin-left: 2.343vw;
+  }
+
+  .detailed-news .detailed-news__info .info__items .items__date {
+    font-size: 0.878vw;
+    line-height: 1.464vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__title {
+    font-size: 1.171vw;
+    line-height: 1.464vw;
+    margin-top: 2.635vw;
+    margin-bottom: 1.977vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__text {
+    font-size: 1.171vw;
+    line-height: 1.757vw;
+    margin-bottom: 2.05vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__banner {
+    margin-bottom: 2.855vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items {
+    padding-bottom: 1.245vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__quote svg {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__share {
+    margin-left: 1.537vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__share svg {
+    width: 1.318vw;
+    height: 1.464vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__like svg {
+    width: 1.464vw;
+    height: 1.318vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__like span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-left: 0.512vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__dislike {
+    margin-left: 1.245vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__dislike svg {
+    width: 1.464vw;
+    height: 1.318vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__dislike span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-left: 0.512vw;
+  }
+
+  .comments .comments__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.464vw;
+  }
+
+  .comments .comments__title .title__icon {
+    width: 1.537vw;
+    height: 1.537vw;
+  }
+
+  .comments .comments__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .comments .comments__wrapp .comments__info {
+    padding-top: 1.171vw;
+    padding-bottom: 1.245vw;
+    padding-left: 1.464vw;
+    padding-right: 1.464vw;
+  }
+
+  .comments .comments__wrapp .comments__info .info__avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .comments .comments__wrapp .comments__info .info__nickname {
+    font-size: 14px;
+    margin-left: 13px;
+  }
+
+  .comments .comments__wrapp .comments__info .info__flag {
+    width: 1.464vw;
+    height: 1.464vw;
+    margin-left: 13px;
+  }
+
+  .comments .comments__wrapp .comments__info .info__cube {
+    width: 1.171vw;
+    height: 1.171vw;
+    margin-left: 11px;
+  }
+
+  .comments .comments__wrapp .comments__info .info__text {
+    font-size: 14px;
+    margin-left: 12px;
+  }
+
+  .comments .comments__wrapp .comments__info .info__date {
+    font-size: 12px;
+    line-height: 19px;
+  }
+
+  .comments .comments__wrapp .comments__content .content__title {
+    font-size: 1.171vw;
+    line-height: 1.757vw;
+    padding-left: 1.464vw;
+    padding-right: 1.464vw;
+    margin-top: 2.196vw;
+    margin-bottom: 1.464vw;
+  }
+
+  .comments .comments__wrapp .comments__content .content__img {
+    margin-bottom: 2.928vw;
+    padding-left: 1.464vw;
+    padding-right: 1.464vw;
+  }
+
+  .comments .comments__wrapp .comments__items {
+    padding-bottom: 1.171vw;
+    padding-left: 1.464vw;
+    padding-right: 1.464vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__wrap .items__quote svg {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__share {
+    margin-left: 1.537vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__share svg {
+    width: 1.318vw;
+    height: 1.464vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__like svg {
+    width: 1.464vw;
+    height: 1.318vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__like span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-left: 0.512vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__dislike {
+    margin-left: 1.245vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__dislike svg {
+    width: 1.464vw;
+    height: 1.318vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__dislike span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-left: 0.512vw;
+  }
+
+  .add-comment .add-comment__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.464vw;
+  }
+
+  .add-comment .add-comment__title .title__icon {
+    width: 1.537vw;
+    height: 1.537vw;
+  }
+
+  .add-comment .add-comment__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .add-comment .add-comment__form {
+    padding: 1.464vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__icon {
+    width: 1.464vw;
+    height: 1.171vw;
+    position: absolute;
+    top: 1.098vw;
+    right: 5.857vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__input {
+    height: 3.221vw;
+    padding-left: 1.318vw;
+    padding-right: 120px;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__input::-webkit-input-placeholder {
+    font-size: 0.878vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__input::-moz-placeholder {
+    font-size: 0.878vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__input:-ms-input-placeholder {
+    font-size: 0.878vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__input::-ms-input-placeholder {
+    font-size: 0.878vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__input::placeholder {
+    font-size: 0.878vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload {
+    position: absolute;
+    top: 0.778vw;
+    right: 3.66vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload label {
+    margin-left: 1.245vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload i {
+    font-size: 1.171vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload .smile-upload {
+    margin-left: 1.171vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload .smile-upload i {
+    font-size: 1.171vw;
+  }
+
+  .add-comment .add-comment__form .add-comment__button svg {
+    width: 1.464vw;
+    height: 1.318vw;
+  }
+
+  /*ТУРНИРЫ*/
+
+  .Page_tournament-content .title_block {
+    height: 4.392vw;
+    padding: 1.464vw;
+  }
+
+  .Page_tournament-content .title_block .left_content svg {
+    margin-right: 0.732vw;
+  }
+
+  .Page_tournament-content .title_block .right_content svg {
+    margin-left: 0.732vw;
+  }
+
+  .Page_tournament-content .title_block .right_content .title_text {
+    font-size: 1.025vw;
+  }
+
+  .Page_tournament-content .title_block .right_content .lable_select select {
+    height: 1.464vw;
+    padding-right: 1.025vw;
+    font-size: 0.878vw;
+  }
+
+  .Page_tournament-content .title_block img,
+  .Page_tournament-content .title_block svg {
+    width: 1.464vw;
+    margin-right: 0.732vw;
+  }
+
+  .Page_tournament-content .title_block .title_text {
+    font-size: 1.171vw;
+  }
+
+  .Page_tournament-content .block_navigationTournament {
+    height: 4.392vw;
+    padding: 1.464vw;
+  }
+
+  .Page_tournament-content .block_navigationTournament a {
+    font-size: 1.171vw;
+  }
+
+  .Page_tournament-content .tournament_info {
+    padding: 1.83vw 1.464vw;
+  }
+
+  .Page_tournament-content .tournament_info svg {
+    width: 0.732vw;
+    margin-right: 0.732vw;
+  }
+
+  .Page_tournament-content .tournament_info .place span {
+    font-size: 1.025vw;
+  }
+
+  .Page_tournament-content .tournament_info .time span {
+    font-size: 1.025vw;
+  }
+
+  .Page_tournament-content .tournament_info .status span {
+    font-size: 0.878vw;
+    border-radius: 1.098vw;
+    padding: 0.366vw 2.196vw;
+  }
+
+  .Page_tournament-content .tournament_info .players {
+    font-size: 0.878vw;
+  }
+
+  /*ЛУЧШИЕ*/
+
+  .Page_gameBest .title_block {
+    height: 4.392vw;
+    padding: 1.464vw;
+  }
+
+  .Page_gameBest .title_block .left_content svg {
+    margin-right: 0.732vw;
+  }
+
+  .Page_gameBest .title_block .right_content svg {
+    margin-left: 0.732vw;
+  }
+
+  .Page_gameBest .title_block .right_content .title_text {
+    font-size: 1.025vw;
+  }
+
+  .Page_gameBest .title_block img,
+  .Page_gameBest .title_block svg {
+    width: 1.464vw;
+    margin-right: 0.732vw;
+  }
+
+  .Page_gameBest .title_block .title_text {
+    font-size: 1.171vw;
+  }
+
+  .Page_gameBest .title_players {
+    height: 4.392vw;
+    padding: 0 1.464vw;
+  }
+
+  .Page_gameBest .title_players .title_playersText {
+    font-size: 1.171vw;
+  }
+
+  .Page_gameBest .title_players a {
+    font-size: 0.878vw;
+  }
+
+  .Page_gameBest .container_players {
+    max-height: 16.105vw;
+    padding: 1.464vw 0;
+  }
+
+  .Page_gameBest .container_players .players_content {
+    padding: 0.732vw 3.294vw 0.366vw 1.464vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block .number {
+    width: 2.928vw;
+    height: 2.05vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block span {
+    font-size: 1.025vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block img {
+    margin: 0 0.732vw 0 1.098vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block a {
+    width: 10.249vw;
+    height: 2.05vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block a .name_player {
+    font-size: 1.025vw;
+  }
+
+  .Page_gameBest .container_players .players_content .right_block svg {
+    width: 1.464vw;
+  }
+
+  .Page_gameBest .container_players .players_content .right_block p {
+    font-size: 1.025vw;
+    width: 5.124vw;
+    height: 2.05vw;
+  }
+
+  .Page_gameBest .container_players::-webkit-scrollbar {
+    width: 0.732vw;
+  }
+
+  .Page_gameBest .container_players::-webkit-scrollbar-thumb {
+    height: 1.83vw;
+  }
+
+  /*КАБИНЕТ ПОЛЬЗОВАТЕЛЯ*/
+
+  .gallery .gallery__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.391vw;
+  }
+
+  .gallery .gallery__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .gallery .gallery__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .gallery .gallery__body {
+    padding: 1.83vw;
+  }
+
+  .gallery .gallery__body .img-wrapper {
+    max-width: 8.785vw;
+    padding: 0.366vw;
+  }
+
+  .gallery-detail .gallery-detail__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.391vw;
+  }
+
+  .gallery-detail .gallery-detail__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .gallery-detail .gallery-detail__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .gallery-detail .gallery-detail__body {
+    padding: 1.83vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items {
+    margin-bottom: 0.732vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__title p {
+    font-size: 1.171vw;
+    line-height: 1.391vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__like svg {
+    width: 1.464vw;
+    height: 1.318vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__like span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-left: 0.512vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__dislike {
+    margin-left: 0.732vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__dislike svg {
+    width: 1.464vw;
+    height: 1.318vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__dislike span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-left: 0.512vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__reputation-button a {
+    width: 10.981vw;
+    padding: 0.366vw 0.732vw;
+    font-size: 1.171vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__slide-button a {
+    height: 2.196vw;
+    width: 2.196vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__slide-button a i {
+    font-size: 1.318vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__img {
+    margin-bottom: 1.098vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__edit-image-form .form-group label {
+    font-size: 1.171vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__edit-image-form .form-check {
+    margin-bottom: 1.464vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__edit-image-form .form-check label {
+    font-size: 1.171vw;
+  }
+
+  .user-settings .user-settings__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.391vw;
+  }
+
+  .user-settings .user-settings__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .user-settings .user-settings__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .user-settings .user-settings__form {
+    padding: 1.83vw;
+  }
+
+  .user-settings .user-settings__form .form-group label {
+    font-size: 1.171vw;
+  }
+
+  .user-settings .user-settings__form .form-check {
+    margin-bottom: 1.464vw;
+  }
+
+  .user-settings .user-settings__form .form-check .form-check-label {
+    font-size: 1.171vw;
+  }
+
+  .user-settings .user-settings__form .form-check .form-check-input {
+    margin-left: 0.732vw;
+  }
+
+  .user-replays {
+    margin-bottom: 2.489vw;
+  }
+
+  .user-replays .user-replays__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.391vw;
+  }
+
+  .user-replays .user-replays__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .user-replays .user-replays__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .user-replays .user-replays__body {
+    padding: 1.464vw;
+  }
+
+  .user-replays .user-replays__body .body__wrap {
+    margin-bottom: 1.83vw;
+  }
+
+  .user-replays .user-replays__body .body__wrap .body__title {
+    font-size: 1.025vw;
+  }
+
+  .user-replays .user-replays__body .body__wrap .body__numb {
+    font-size: 1.025vw;
+  }
+
+  .user-replays .user-replays__button {
+    padding-left: 1.464vw;
+    padding-right: 1.464vw;
+    padding-bottom: 1.464vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title {
+    padding: 1.464vw 1.391vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__icon {
+    width: 1.537vw;
+    height: 1.537vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__like svg {
+    width: 1.464vw;
+    height: 1.318vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__like span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-left: 0.512vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__dislike {
+    margin-left: 1.245vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__dislike svg {
+    width: 1.464vw;
+    height: 1.318vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__dislike span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-left: 0.512vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info {
+    padding: 1.171vw 1.464vw 1.245vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__nickname {
+    font-size: 1.025vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__flag {
+    width: 1.464vw;
+    height: 1.464vw;
+    margin-left: 0.952vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__cube {
+    width: 1.171vw;
+    height: 1.171vw;
+    margin-left: 0.805vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__text {
+    font-size: 1.025vw;
+    margin-left: 0.878vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__date {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__content {
+    padding: 1.171vw 1.464vw 1.245vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__content .content__title {
+    font-size: 1.171vw;
+    line-height: 1.757vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__content .content__like svg {
+    width: 1.464vw;
+    height: 1.318vw;
+  }
+
+  .gallery-download .gallery-download__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.391vw;
+  }
+
+  .gallery-download .gallery-download__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .gallery-download .gallery-download__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .gallery-download .gallery-download__body {
+    padding: 1.83vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .upload-avatar {
+    margin-bottom: 1.464vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .upload-avatar .avatar__button-upload {
+    margin-left: 0.366vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .upload-avatar .avatar__button-upload label {
+    padding: 0.366vw 0.732vw;
+    font-size: 1.171vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .form-group label {
+    font-size: 1.171vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .form-check {
+    margin-bottom: 1.464vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .form-check label {
+    font-size: 1.171vw;
+  }
+
+  .vote .vote__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.391vw;
+  }
+
+  .vote .vote__title .title__icon {
+    width: 1.537vw;
+    height: 1.537vw;
+  }
+
+  .vote .vote__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .vote .vote__content .content__header {
+    padding-top: 1.171vw;
+    padding-bottom: 1.245vw;
+    padding-left: 1.464vw;
+    padding-right: 1.464vw;
+  }
+
+  .vote .vote__content .content__header .header__title {
+    font-size: 1.171vw;
+  }
+
+  .vote .vote__content .content__body {
+    padding-top: 1.171vw;
+    padding-bottom: 1.245vw;
+    padding-left: 1.464vw;
+    padding-right: 1.464vw;
+  }
+
+  .vote .vote__content .content__body .vote-form .form-check {
+    margin-bottom: 1.098vw;
+  }
+
+  .vote .vote__content .content__body .vote-form .form-check label {
+    margin-left: 0.732vw;
+    font-size: 1.171vw;
+  }
+
+  .vote .vote__content .content__body .vote-form .body__button-vote {
+    margin-bottom: 1.098vw;
+  }
+
+  .vote .vote__content .content__body .view-results .results {
+    margin-bottom: 1.098vw;
+  }
+
+  .vote .vote__content .content__body .view-results .results span {
+    font-size: 1.025vw;
+  }
+
+  .vote .vote__content .content__body .view-results .result__total {
+    margin-bottom: 1.098vw;
+  }
+
+  .vote .vote__content .content__body .view-results .result__total span {
+    font-size: 1.025vw;
+  }
+
+  .vote .vote__content .content__body .body__view-results .view-results__button {
+    font-size: 1.025vw;
+  }
+
+  .create-replay {
+    margin-bottom: 2.489vw;
+  }
+
+  .create-replay .create-replay__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.391vw;
+  }
+
+  .create-replay .create-replay__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .create-replay .create-replay__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .create-replay .create-replay__form {
+    padding: 1.83vw;
+  }
+
+  .create-replay .create-replay__form .form-group label {
+    font-size: 1.171vw;
+  }
+
+  .create-replay .create-replay__form .form-group label select {
+    margin-top: 0.366vw;
+  }
+
+  .create-replay .create-replay__form .form-group .select2 .select2-seßlection .select2-selection__rendered {
+    padding-top: 0.293vw;
+  }
+
+  .create-replay .create-replay__form .form-group .select2 .select2-seßlection .select2-selection__arrow {
+    top: 0.366vw;
+  }
+
+  .create-replay .create-replay__form hr {
+    margin-top: 1.464vw;
+    margin-bottom: 1.464vw;
+  }
+
+  .user_friends .row_title {
+    padding: 1.098vw 0;
+  }
+
+  .user_friends .wrapper_table {
+    max-height: 23.426vw;
+  }
+
+  .user_friends .wrapper_table .row_users {
+    padding: 0.732vw 0;
+  }
+
+  .user_friends .wrapper_table .row_users .block_action svg {
+    width: 1.464vw;
+  }
+
+  .user_friends .wrapper_table .row_users .user_block .name_user {
+    max-width: 7.174vw;
+  }
+
+  .user_friends .wrapper_table .row_users .user_block .user-avatar {
+    width: 3.66vw;
+    height: 3.66vw;
+    font-size: 1.757vw;
+  }
+
+  .wrapper_table::-webkit-scrollbar {
+    width: 0.732vw;
+  }
+
+  .wrapper_table::-webkit-scrollbar-thumb {
+    border-radius: 0.293vw;
+    height: 16.618vw;
+  }
+
+  .user_profile .wrapper {
+    margin-bottom: 5.124vw;
+  }
+
+  .user_profile .title_top_userProfile {
+    height: 4.392vw;
+    padding: 1.464vw;
+  }
+
+  .user_profile .title_top_userProfile .title_Text {
+    font-size: 1.171vw;
+  }
+
+  .user_profile .title_top_userProfile .more p {
+    font-size: 2.928vw;
+  }
+
+  .user_profile .userInfo_block {
+    padding: 2.196vw 1.464vw;
+  }
+
+  .user_profile .userInfo_block .button {
+    margin: 2.562vw auto 0;
+    padding: 0.732vw;
+  }
+
+  .user_profile .userInfo_block .icon_img {
+    margin-top: 1.757vw;
+  }
+
+  .user_profile .userInfo_block .icon_img svg {
+    width: 2.196vw;
+  }
+
+  .user_profile .userInfo_block .container_information .userText_block {
+    margin-bottom: 1.098vw;
+  }
+
+  .user_profile .userInfo_block .container_information .userText_block .title {
+    font-size: 1.318vw;
+    padding-right: 2.928vw;
+  }
+
+  .user_profile .userInfo_block .container_information .userText_block .date {
+    font-size: 0.878vw;
+  }
+
+  .user_profile .userInfo_block .container_information .information_block {
+    padding-top: 0.732vw;
+  }
+
+  .user_profile .userInfo_block .container_information .information_block .left_block span {
+    font-size: 0.878vw;
+  }
+
+  .user_profile .userInfo_block .container_information .information_block .right_block span {
+    font-size: 1.025vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information,
+  .user_profile .block_userInformation .container_right .wrapper_contacts {
+    padding: 1.464vw 1.464vw 0.732vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information .block_inform,
+  .user_profile .block_userInformation .container_right .wrapper_information .block_contact,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact {
+    padding-bottom: 0.732vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information .block_inform .left_block span,
+  .user_profile .block_userInformation .container_right .wrapper_information .block_contact .left_block span,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .left_block span,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .left_block span {
+    font-size: 0.878vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block span,
+  .user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block span,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block span,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block span {
+    font-size: 1.025vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block .small,
+  .user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block .small,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block .small,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block .small {
+    font-size: 0.878vw;
+  }
+
+  .user_profile .block_userInformation .container_right .block_armor {
+    padding: 1.464vw 1.464vw 0.732vw;
+  }
+
+  .user_profile .block_userInformation .container_right .block_armor .armor_info {
+    padding-bottom: 0.732vw;
+  }
+
+  .user_profile .block_userInformation .container_right .block_armor svg {
+    width: 1.245vw;
+    margin-right: 0.732vw;
+  }
+
+  .user_profile .block_userInformation .friends_block {
+    padding: 1.83vw;
+    max-height: 21.962vw;
+    margin-right: 0.366vw;
+  }
+
+  .user_profile .block_userInformation .friends_block .friends {
+    padding-bottom: 0.732vw;
+  }
+
+  .user_profile .block_userInformation .friends_block .friends .left_block .name_player {
+    margin-left: 0.732vw;
+    max-width: 7.321vw;
+  }
+
+  .user_profile .friends_block::-webkit-scrollbar {
+    width: 0.512vw;
+  }
+
+  .user_profile .friends_block::-webkit-scrollbar-thumb {
+    height: 1.83vw;
   }
 }
 
@@ -16672,9 +18244,138 @@ select:focus {
     overflow: hidden;
   }
 
+  .footer .footer__logo {
+    display: none;
+  }
+
   /*global styles END*/
 
-  /*===main page===*/
+  .title_block {
+    padding: 2.018vw;
+  }
+
+  .title_block img,
+  .title_block svg {
+    width: 2.018vw;
+  }
+
+  .title_block .title_text {
+    font-size: 1.615vw;
+    margin: 0 0 0 2.018vw;
+  }
+
+  .title_top {
+    height: 6.054vw;
+    padding: 2.018vw;
+  }
+
+  .title_top .title_Text {
+    font-size: 1.615vw;
+  }
+
+  .title_top .more p {
+    font-size: 4.036vw;
+  }
+
+  .button {
+    font-size: 1.211vw;
+    padding-top: 1.312vw;
+    padding-bottom: 1.514vw;
+  }
+
+  .breadcrumb {
+    padding-top: 2.624vw;
+    padding-bottom: 2.523vw;
+  }
+
+  .breadcrumb .breadcrumb-item {
+    font-size: 1.816vw;
+    line-height: 1.917vw;
+  }
+
+  .breadcrumb .breadcrumb-item.active {
+    font-size: 1.816vw;
+    line-height: 1.917vw;
+  }
+
+  .footer {
+    padding-top: 6.054vw;
+    padding-bottom: 6.054vw;
+  }
+
+  .footer .footer__logo .logo__text {
+    font-size: 1.211vw;
+    margin-top: 1.917vw;
+  }
+
+  .footer .footer__link .link-list__item {
+    font-size: 1.211vw;
+    line-height: 3.229vw;
+  }
+
+  .footer .footer__info .footer__title {
+    font-size: 1.211vw;
+    margin-bottom: 1.211vw;
+  }
+
+  .footer .footer__info .footer__text {
+    font-size: 1.211vw;
+  }
+
+  .footer .footer__info .footer__mail {
+    font-size: 1.413vw;
+    line-height: 2.725vw;
+  }
+
+  .footer .footer__info .footer__mail svg {
+    margin-right: 1.514vw;
+    width: 1.615vw;
+    height: 1.211vw;
+  }
+
+  .footer .footer__our-birthday .footer__title {
+    font-size: 1.211vw;
+  }
+
+  .footer .footer__our-birthday .our-birthday__nickname {
+    font-size: 1.413vw;
+    margin-bottom: 1.615vw;
+  }
+
+  .footer .footer__useful .footer__title {
+    font-size: 1.211vw;
+  }
+
+  .footer .footer__useful .useful__link {
+    font-size: 1.211vw;
+    margin-bottom: 2.018vw;
+  }
+
+  .footer .produced {
+    margin-top: 3.027vw;
+  }
+
+  .footer .produced p {
+    font-size: 1.413vw;
+    line-height: 2.422vw;
+  }
+
+  .footer .produced a {
+    font-size: 1.413vw;
+    line-height: 2.422vw;
+    margin-left: 0.505vw;
+  }
+
+  .footer__copyright .copyright__text {
+    font-size: 1.211vw;
+    line-height: 3.229vw;
+  }
+
+  .pulse-button {
+    font-size: 1.615vw;
+    padding: 1.413vw 2.825vw;
+    margin: 0 auto 2.018vw;
+  }
 
   .block_chat-twitch {
     padding-bottom: 4vw;
@@ -16801,7 +18502,7 @@ select:focus {
   }
 
   .block_replay .row_game {
-    padding: 0 1vw;
+    margin: 0 2vw;
     margin-bottom: 1.5vw;
   }
 
@@ -16840,6 +18541,1687 @@ select:focus {
   .block_lastNews .block_futureTournament .href_tournament {
     font-size: 1.4vw;
     padding-bottom: 1.5vw;
+  }
+
+  .breaking-news .breaking-news__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .breaking-news .breaking-news__title .title__icon {
+    width: 1.312vw;
+    height: 2.119vw;
+  }
+
+  .breaking-news .breaking-news__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .breaking-news .breaking-news__news-card {
+    padding-left: 2.22vw;
+    padding-right: 2.22vw;
+    padding-top: 2.523vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__author {
+    margin-bottom: 1.816vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__author .author__avatar {
+    width: 2.825vw;
+    height: 2.825vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__author .author__nickname {
+    font-size: 1.413vw;
+    margin-left: 1.312vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__author .author__date {
+    font-size: 1.211vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__title {
+    font-size: 1.615vw;
+    line-height: 1.917vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__text {
+    font-size: 1.413vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body p {
+    font-size: 1.413vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body a {
+    font-size: 1.413vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items {
+    margin-bottom: 1.816vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__comment svg {
+    width: 2.119vw;
+    height: 2.119vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__comment span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 1.009vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__share {
+    margin-left: 3.532vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__share svg {
+    width: 1.816vw;
+    height: 2.018vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__watch svg {
+    width: 1.11vw;
+    height: 1.11vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__items .items__watch span {
+    margin-left: 1.009vw;
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form {
+    margin-bottom: 4.642vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__icon {
+    width: 2.018vw;
+    height: 1.615vw;
+    top: 1.514vw;
+    right: 8.073vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input {
+    height: 4.44vw;
+    padding-left: 1.816vw;
+    padding-right: 12.109vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-webkit-input-placeholder {
+    font-size: 1.211vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-moz-placeholder {
+    font-size: 1.211vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input:-ms-input-placeholder {
+    font-size: 1.211vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-ms-input-placeholder {
+    font-size: 1.211vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::placeholder {
+    font-size: 1.211vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload {
+    top: 1.211vw;
+    right: 5.045vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload label {
+    margin-left: 1.715vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload i {
+    font-size: 1.615vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload .smile-upload {
+    margin-left: 1.615vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload .smile-upload i {
+    font-size: 1.615vw;
+  }
+
+  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__button svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .breaking-news__numb-pages {
+    margin-top: 2.523vw;
+    margin-bottom: 0.807vw;
+  }
+
+  .breaking-news__numb-pages .numb-pages {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  .block_top .block_topUsers {
+    padding: 2.523vw;
+  }
+
+  .block_top .block_topUsers .content_code p {
+    font-size: 1.413vw;
+  }
+
+  .block_top .block_topUsers .content_img img,
+  .block_top .block_topUsers .content_img svg {
+    padding-right: 0.505vw;
+  }
+
+  .block_top .block_topUsers .content_login p {
+    font-size: 1.413vw;
+  }
+
+  .block_lastNews {
+    margin: 3.027vw 0 4.036vw 0;
+  }
+
+  .block_lastNews .block_futureTournament {
+    padding: 2.523vw 1.514vw 0;
+  }
+
+  .block_lastNews .block_futureTournament .href_tournament {
+    font-size: 1.413vw;
+    padding-bottom: 1.514vw;
+  }
+
+  /*Форум*/
+
+  .forum_acticle {
+    margin: 4.036vw 0 0 0;
+  }
+
+  .forum_acticle .title_block {
+    height: 6.054vw;
+    padding: 0 2.018vw;
+  }
+
+  .forum_acticle .title_block svg {
+    width: 4.036vw;
+    padding-right: 1.514vw;
+  }
+
+  .forum_acticle .title_block .title_text {
+    font-size: 1.615vw;
+  }
+
+  .forum_acticle .title_block .right_section button svg {
+    width: 3.027vw;
+  }
+
+  .forum_acticle .title_block .right_section button span {
+    padding-right: 0.505vw;
+  }
+
+  .forum_acticle .title_block .right_section .lable_select select {
+    height: 2.018vw;
+    font-size: 1.211vw;
+  }
+
+  .forum_acticle .title_block .right_section_autorization p {
+    font-size: 1.615vw;
+  }
+
+  .forum_acticle .content_article {
+    padding: 1.009vw 2.018vw 0;
+  }
+
+  .forum_acticle .content_article .block_nameArticle .name {
+    margin: 0.505vw 0;
+    font-size: 1.615vw;
+  }
+
+  .forum_acticle .content_article .block_nameArticle .date {
+    font-size: 1.211vw;
+  }
+
+  .forum_acticle .counter_autorization {
+    padding: 1.009vw 2.018vw 0;
+  }
+
+  .forum_acticle .counter_autorization .block_nameArticle {
+    padding-bottom: 1.009vw;
+  }
+
+  .forum_acticle .counter_autorization .block_nameArticle .item {
+    margin: 0.505vw 0;
+    font-size: 1.413vw;
+  }
+
+  .forum_acticle .counter_autorization .block_nameArticle .text {
+    margin-left: 1.009vw;
+    font-size: 1.413vw;
+  }
+
+  .forum_acticle .detailed-news__info {
+    padding-bottom: 1.009vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .block_account img {
+    max-width: 3.027vw;
+    max-height: 3.027vw;
+    border-radius: 2.018vw;
+    padding-right: 1.009vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .block_account span {
+    font-size: 1.413vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .items__watch svg,
+  .forum_acticle .detailed-news__info .info__items .items__comment svg {
+    width: 1.514vw;
+    height: 1.312vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .items__watch span,
+  .forum_acticle .detailed-news__info .info__items .items__comment span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 1.009vw;
+  }
+
+  .forum_acticle .detailed-news__info .info__items .items__comment {
+    margin-left: 3.229vw;
+  }
+
+  .forum-topics .forum-topics__title {
+    padding-top: 1.816vw;
+    padding-bottom: 1.816vw;
+    padding-left: 1.917vw;
+  }
+
+  .forum-topics .forum-topics__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .forum-topics .forum-topics__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .forum-topics .forum-topics__accordion .accordion__topic .topic__header .header__title {
+    font-size: 1.615vw;
+    line-height: 2.825vw;
+  }
+
+  .forum-topics .forum-topics__accordion .accordion__topic .topic__header .fa-chevron-down,
+  .forum-topics .forum-topics__accordion .accordion__topic .topic__header .fa-ellipsis-h {
+    font-size: 1.615vw;
+  }
+
+  .forum_allSections .wrapper {
+    margin: 0 0 2.018vw;
+  }
+
+  .forum_allSections .title_block {
+    height: 6.054vw;
+    padding: 0 2.018vw;
+  }
+
+  .forum_allSections .title_block svg,
+  .forum_allSections .title_block img {
+    width: 4.036vw;
+    padding-right: 1.514vw;
+  }
+
+  .forum_allSections .title_block .title_text {
+    font-size: 1.615vw;
+  }
+
+  .forum_allSections .title_block .right_section .block_text {
+    padding-left: 1.009vw;
+  }
+
+  .forum_allSections .title_block .right_section .block_text span {
+    font-size: 1.413vw;
+    padding-right: 0.505vw;
+  }
+
+  .forum_allSections .title_block .right_section a svg {
+    width: 3.027vw;
+  }
+
+  .forum_allSections .content_allArticle {
+    padding: 1.615vw 2.018vw 0;
+  }
+
+  .forum_allSections .content_allArticle p {
+    font-size: 1.615vw;
+    padding-left: 2.018vw;
+    padding-right: 2.018vw;
+  }
+
+  /*РЕПЛЕИ*/
+
+  .replays {
+    margin-bottom: 3.431vw;
+  }
+
+  .replays .replays__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .replays .replays__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .replays .replays__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__header .header__title {
+    font-size: 1.615vw;
+    line-height: 2.825vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__header .fa-ellipsis-h {
+    font-size: 1.615vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__body .card-body .body__wrap {
+    margin-bottom: 2.523vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__body .card-body .body__wrap .body__title {
+    font-size: 1.413vw;
+  }
+
+  .replays .replays__accordion .accordion__topic .topic__body .card-body .body__wrap .body__numb {
+    font-size: 1.413vw;
+  }
+
+  .search .search__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .search .search__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .search .search__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .search .search__body {
+    padding: 2.018vw;
+  }
+
+  .search .search__body label {
+    margin-bottom: 2.523vw;
+    font-size: 1.211vw;
+  }
+
+  .search .search__body label input {
+    height: 4.44vw;
+    border-radius: 0.505vw;
+    padding-left: 2.018vw;
+  }
+
+  .search .search__body label select {
+    height: 4.44vw;
+    border-radius: 0.505vw;
+    padding-left: 2.018vw;
+    margin-top: 1.009vw;
+    background-position: center right 2.018vw;
+  }
+
+  .search .search__body .body__button-search {
+    margin-top: 2.018vw;
+    margin-bottom: 1.413vw;
+  }
+
+  .gocu-replays .gocu-replays__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .gocu-replays .gocu-replays__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .gocu-replays .gocu-replays__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .gocu-replays .gocu-replays__title .title__game-period {
+    margin-right: 2.018vw;
+  }
+
+  .gocu-replays .gocu-replays__title .title__game-period select {
+    height: 2.018vw;
+    padding-right: 1.413vw;
+    font-size: 1.211vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__author {
+    padding: 2.018vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__author .comment-author__nickname {
+    font-size: 1.413vw;
+    margin-left: 1.312vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__author .comment-author__replay-item {
+    font-size: 1.211vw;
+    line-height: 3.027vw;
+    margin-left: 1.211vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__author .comment-author__date {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__comment {
+    font-size: 1.615vw;
+    padding-left: 2.018vw;
+    padding-right: 2.018vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info {
+    padding: 2.018vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__country .country-first {
+    margin-left: 0.605vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__match-up .match-up__versus {
+    margin-left: 0.505vw;
+    margin-right: 0.505vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__match-up .match-up__name {
+    font-size: 1.413vw;
+    line-height: 1.917vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__match-up .name__first {
+    margin-left: 1.413vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__maps .maps__name {
+    font-size: 1.413vw;
+    margin-left: 1.211vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__wins svg {
+    width: 2.523vw;
+    height: 2.523vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .info__wins .wins__text {
+    margin-left: 1.009vw;
+  }
+
+  .gocu-replays .gocu-replays__match .match__info .country__text,
+  .gocu-replays .gocu-replays__match .match__info .match-up__text,
+  .gocu-replays .gocu-replays__match .match__info .maps__text,
+  .gocu-replays .gocu-replays__match .match__info .wins__text {
+    font-size: 1.211vw;
+    line-height: 3.027vw;
+  }
+
+  .gocu-replays__numb-pages {
+    margin-top: 2.523vw;
+    margin-bottom: 0.807vw;
+  }
+
+  .gocu-replays__numb-pages .numb-pages {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  /*ДЕТАЛЬНЫЕ НОВОСТИ*/
+
+  .detailed-news .detailed-news__title {
+    padding: 2.018vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__text {
+    font-size: 1.615vw;
+    margin-left: 2.018vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__avatar {
+    width: 2.825vw;
+    height: 2.825vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__nickname {
+    font-size: 1.413vw;
+    margin-left: 1.312vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__flag {
+    width: 2.018vw;
+    height: 2.018vw;
+    margin-left: 1.312vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__cube {
+    width: 1.615vw;
+    height: 1.615vw;
+    margin-left: 1.11vw;
+  }
+
+  .detailed-news .detailed-news__title .title__wrap .title__text {
+    font-size: 1.413vw;
+    margin-left: 1.211vw;
+  }
+
+  .detailed-news .detailed-news__info {
+    padding-top: 1.816vw;
+    padding-bottom: 1.715vw;
+    padding-left: 2.119vw;
+    padding-right: 2.22vw;
+  }
+
+  .detailed-news .detailed-news__info .info__items .items__watch svg,
+  .detailed-news .detailed-news__info .info__items .items__comment svg {
+    width: 1.514vw;
+    height: 1.312vw;
+  }
+
+  .detailed-news .detailed-news__info .info__items .items__watch span,
+  .detailed-news .detailed-news__info .info__items .items__comment span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 1.009vw;
+  }
+
+  .detailed-news .detailed-news__info .info__items .items__comment {
+    margin-left: 3.229vw;
+  }
+
+  .detailed-news .detailed-news__info .info__items .items__date {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__title {
+    font-size: 1.615vw;
+    line-height: 1.917vw;
+    margin-top: 3.633vw;
+    margin-bottom: 2.725vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__text {
+    font-size: 1.615vw;
+    line-height: 2.422vw;
+    margin-bottom: 2.825vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__banner {
+    margin-bottom: 3.935vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items {
+    padding-bottom: 1.715vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__quote svg {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__share {
+    margin-left: 2.119vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__share svg {
+    width: 1.816vw;
+    height: 2.018vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__like svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__like span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__dislike {
+    margin-left: 1.715vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__dislike svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .detailed-news .detailed-news__card .card-body .card-body__items .card-body__items-wrap .items__dislike span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
+
+  .comments .comments__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .comments .comments__title .title__icon {
+    width: 2.119vw;
+    height: 2.119vw;
+  }
+
+  .comments .comments__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .comments .comments__wrapp .comments__info {
+    padding-top: 1.615vw;
+    padding-bottom: 1.715vw;
+    padding-left: 2.018vw;
+    padding-right: 2.018vw;
+  }
+
+  .comments .comments__wrapp .comments__info .info__avatar {
+    width: 2.825vw;
+    height: 2.825vw;
+  }
+
+  .comments .comments__wrapp .comments__info .info__nickname {
+    font-size: 1.413vw;
+    margin-left: 1.312vw;
+  }
+
+  .comments .comments__wrapp .comments__info .info__flag {
+    width: 2.018vw;
+    height: 2.018vw;
+    margin-left: 1.312vw;
+  }
+
+  .comments .comments__wrapp .comments__info .info__cube {
+    width: 1.615vw;
+    height: 1.615vw;
+    margin-left: 1.11vw;
+  }
+
+  .comments .comments__wrapp .comments__info .info__text {
+    font-size: 1.413vw;
+    margin-left: 1.211vw;
+  }
+
+  .comments .comments__wrapp .comments__info .info__date {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  .comments .comments__wrapp .comments__content .content__title {
+    font-size: 1.615vw;
+    line-height: 2.422vw;
+    padding-left: 2.018vw;
+    padding-right: 2.018vw;
+    margin-top: 3.027vw;
+    margin-bottom: 2.018vw;
+  }
+
+  .comments .comments__wrapp .comments__content .content__img {
+    margin-bottom: 4.036vw;
+    padding-left: 2.018vw;
+    padding-right: 2.018vw;
+  }
+
+  .comments .comments__wrapp .comments__items {
+    padding-bottom: 1.715vw;
+    padding-left: 2.018vw;
+    padding-right: 2.018vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__wrap .items__quote svg {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__share {
+    margin-left: 2.119vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__share svg {
+    width: 1.816vw;
+    height: 2.018vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__like svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__like span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__dislike {
+    margin-left: 1.715vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__dislike svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .comments .comments__wrapp .comments__items .items__dislike span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
+
+  .add-comment .add-comment__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .add-comment .add-comment__title .title__icon {
+    width: 2.119vw;
+    height: 2.119vw;
+  }
+
+  .add-comment .add-comment__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .add-comment .add-comment__form {
+    padding: 2.018vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__icon {
+    width: 2.018vw;
+    height: 1.615vw;
+    top: 1.514vw;
+    right: 8.073vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__input {
+    height: 4.44vw;
+    padding-left: 1.816vw;
+    padding-right: 12.109vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__input::-webkit-input-placeholder {
+    font-size: 1.211vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__input::-moz-placeholder {
+    font-size: 1.211vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__input:-ms-input-placeholder {
+    font-size: 1.211vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__input::-ms-input-placeholder {
+    font-size: 1.211vw;
+  }
+
+  .add-comment .add-comment__form .form__group .comment .comment__input::placeholder {
+    font-size: 1.211vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload {
+    top: 1.211vw;
+    right: 5.045vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload label {
+    margin-left: 1.715vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload i {
+    font-size: 1.615vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload .smile-upload {
+    margin-left: 1.615vw;
+  }
+
+  .add-comment .add-comment__form .form__group .buttons-upload .smile-upload i {
+    font-size: 1.615vw;
+  }
+
+  .add-comment .add-comment__form .add-comment__button svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  /*ТУРНИРЫ*/
+
+  .Page_tournament-content .title_block {
+    height: 6.054vw;
+    padding: 2.018vw;
+  }
+
+  .Page_tournament-content .title_block .left_content svg {
+    margin-right: 1.009vw;
+  }
+
+  .Page_tournament-content .title_block .right_content svg {
+    margin-left: 1.009vw;
+  }
+
+  .Page_tournament-content .title_block .right_content .title_text {
+    font-size: 1.413vw;
+  }
+
+  .Page_tournament-content .title_block .right_content .lable_select select {
+    height: 2.018vw;
+    padding-right: 1.413vw;
+    font-size: 1.211vw;
+  }
+
+  .Page_tournament-content .title_block img,
+  .Page_tournament-content .title_block svg {
+    width: 2.018vw;
+    margin-right: 1.009vw;
+  }
+
+  .Page_tournament-content .title_block .title_text {
+    font-size: 1.615vw;
+  }
+
+  .Page_tournament-content .block_navigationTournament {
+    height: 6.054vw;
+    padding: 2.018vw;
+  }
+
+  .Page_tournament-content .block_navigationTournament a {
+    font-size: 1.615vw;
+  }
+
+  .Page_tournament-content .tournament_info {
+    padding: 2.523vw 2.018vw;
+  }
+
+  .Page_tournament-content .tournament_info svg {
+    width: 1.009vw;
+    margin-right: 1.009vw;
+  }
+
+  .Page_tournament-content .tournament_info .place span {
+    font-size: 1.413vw;
+  }
+
+  .Page_tournament-content .tournament_info .time span {
+    font-size: 1.413vw;
+  }
+
+  .Page_tournament-content .tournament_info .status span {
+    font-size: 1.211vw;
+    border-radius: 1.514vw;
+    padding: 0.505vw 3.027vw;
+  }
+
+  .Page_tournament-content .tournament_info .players {
+    font-size: 1.211vw;
+  }
+
+  /*ЛУЧШИЕ*/
+
+  .Page_gameBest .title_block {
+    height: 6.054vw;
+    padding: 2.018vw;
+  }
+
+  .Page_gameBest .title_block .left_content svg {
+    margin-right: 1.009vw;
+  }
+
+  .Page_gameBest .title_block .right_content svg {
+    margin-left: 1.009vw;
+  }
+
+  .Page_gameBest .title_block .right_content .title_text {
+    font-size: 1.413vw;
+  }
+
+  .Page_gameBest .title_block img,
+  .Page_gameBest .title_block svg {
+    width: 2.018vw;
+    margin-right: 1.009vw;
+  }
+
+  .Page_gameBest .title_block .title_text {
+    font-size: 1.615vw;
+  }
+
+  .Page_gameBest .title_players {
+    height: 6.054vw;
+    padding: 0 2.018vw;
+  }
+
+  .Page_gameBest .title_players .title_playersText {
+    font-size: 1.615vw;
+  }
+
+  .Page_gameBest .title_players a {
+    font-size: 1.211vw;
+  }
+
+  .Page_gameBest .container_players {
+    max-height: 22.2vw;
+    padding: 2.018vw 0;
+  }
+
+  .Page_gameBest .container_players .players_content {
+    padding: 1.009vw 4.541vw 0.505vw 2.018vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block .number {
+    width: 4.036vw;
+    height: 2.825vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block span {
+    font-size: 1.413vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block img {
+    margin: 0 1.009vw 0 1.514vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block a {
+    width: 14.127vw;
+    height: 2.825vw;
+  }
+
+  .Page_gameBest .container_players .players_content .left_block a .name_player {
+    font-size: 1.413vw;
+  }
+
+  .Page_gameBest .container_players .players_content .center_block img {
+    margin: 0 0.505vw;
+  }
+
+  .Page_gameBest .container_players .players_content .right_block svg {
+    width: 2.018vw;
+  }
+
+  .Page_gameBest .container_players .players_content .right_block p {
+    font-size: 1.413vw;
+    width: 7.064vw;
+    height: 2.825vw;
+  }
+
+  .Page_gameBest .container_players::-webkit-scrollbar {
+    width: 1.009vw;
+  }
+
+  .Page_gameBest .container_players::-webkit-scrollbar-thumb {
+    height: 2.523vw;
+  }
+
+  /*КАБИНЕТ ПОЛЬЗОВАТЕЛЯ*/
+
+  .gallery .gallery__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .gallery .gallery__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .gallery .gallery__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .gallery .gallery__body {
+    padding: 2.523vw;
+  }
+
+  .gallery .gallery__body .img-wrapper {
+    max-width: 12.109vw;
+    padding: 0.505vw;
+  }
+
+  .gallery-detail .gallery-detail__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .gallery-detail .gallery-detail__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .gallery-detail .gallery-detail__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .gallery-detail .gallery-detail__body {
+    padding: 2.523vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items {
+    margin-bottom: 1.009vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__title p {
+    font-size: 1.615vw;
+    line-height: 1.917vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__like svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__like span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__dislike {
+    margin-left: 1.009vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__dislike svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__dislike span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__reputation-button a {
+    width: 15.136vw;
+    padding: 0.505vw 1.009vw;
+    font-size: 1.615vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__slide-button a {
+    height: 3.027vw;
+    width: 3.027vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__slide-button a i {
+    font-size: 1.816vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__img {
+    margin-bottom: 1.514vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__edit-image-form .form-group label {
+    font-size: 1.615vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__edit-image-form .form-check {
+    margin-bottom: 2.018vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__edit-image-form .form-check label {
+    font-size: 1.615vw;
+  }
+
+  .user-settings .user-settings__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .user-settings .user-settings__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .user-settings .user-settings__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .user-settings .user-settings__form {
+    padding: 2.523vw;
+  }
+
+  .user-settings .user-settings__form .upload-avatar .avatar__button-upload {
+    margin-left: 0.505vw;
+  }
+
+  .user-settings .user-settings__form .upload-avatar .avatar__button-upload label {
+    padding-left: 1.009vw;
+    padding-right: 1.009vw;
+    padding-top: 0.505vw;
+    padding-bottom: 0.505vw;
+  }
+
+  .user-settings .user-settings__form .form-group label {
+    font-size: 1.615vw;
+  }
+
+  .user-settings .user-settings__form .form-group .select2 .select2-selection {
+    margin-top: 0.807vw;
+  }
+
+  .user-settings .user-settings__form .form-group .select2 .select2-selection .select2-selection__rendered {
+    padding-top: 0.404vw;
+  }
+
+  .user-settings .user-settings__form .form-group .select2 .select2-selection .select2-selection__arrow {
+    top: 0.505vw;
+  }
+
+  .user-settings .user-settings__form .form-group #user-settings__race {
+    margin-top: 0.807vw;
+  }
+
+  .user-settings .user-settings__form .form-check {
+    margin-bottom: 2.018vw;
+  }
+
+  .user-settings .user-settings__form .form-check .form-check-input {
+    margin-left: 1.009vw;
+  }
+
+  .user-settings .user-settings__form .form-check .form-check-label {
+    font-size: 1.615vw;
+  }
+
+  .user-replays {
+    margin-bottom: 3.431vw;
+  }
+
+  .user-replays .user-replays__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .user-replays .user-replays__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .user-replays .user-replays__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .user-replays .user-replays__body {
+    padding: 2.018vw;
+  }
+
+  .user-replays .user-replays__body .body__wrap {
+    margin-bottom: 2.523vw;
+  }
+
+  .user-replays .user-replays__body .body__wrap .body__title {
+    font-size: 1.413vw;
+  }
+
+  .user-replays .user-replays__body .body__wrap .body__numb {
+    font-size: 1.413vw;
+  }
+
+  .user-replays .user-replays__button {
+    padding-left: 2.018vw;
+    padding-right: 2.018vw;
+    padding-bottom: 2.018vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title {
+    padding: 2.018vw 1.917vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__icon {
+    width: 2.119vw;
+    height: 2.119vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__like svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__like span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__dislike {
+    margin-left: 1.715vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__dislike svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__dislike span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info {
+    padding: 1.615vw 2.018vw 1.715vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__nickname {
+    font-size: 1.413vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__flag {
+    width: 2.018vw;
+    height: 2.018vw;
+    margin-left: 1.312vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__cube {
+    width: 1.615vw;
+    height: 1.615vw;
+    margin-left: 1.11vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__text {
+    font-size: 1.413vw;
+    margin-left: 1.211vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__date {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__content {
+    padding: 1.615vw 2.018vw 1.715vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__content .content__title {
+    font-size: 1.615vw;
+    line-height: 2.422vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__content .content__like svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .gallery-download .gallery-download__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .gallery-download .gallery-download__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .gallery-download .gallery-download__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .gallery-download .gallery-download__body {
+    padding: 2.523vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .upload-avatar {
+    margin-bottom: 2.018vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .upload-avatar .avatar__button-upload {
+    margin-left: 0.505vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .upload-avatar .avatar__button-upload label {
+    height: 37px;
+    padding: 0.505vw 1.009vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .form-group label {
+    font-size: 1.615vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .form-check {
+    margin-bottom: 2.018vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .form-check label {
+    font-size: 1.615vw;
+  }
+
+  .vote .vote__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .vote .vote__title .title__icon {
+    width: 2.119vw;
+    height: 2.119vw;
+  }
+
+  .vote .vote__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .vote .vote__content .content__header {
+    padding-top: 1.615vw;
+    padding-bottom: 1.715vw;
+    padding-left: 2.018vw;
+    padding-right: 2.018vw;
+  }
+
+  .vote .vote__content .content__header .header__title {
+    font-size: 1.615vw;
+  }
+
+  .vote .vote__content .content__body {
+    padding-top: 1.615vw;
+    padding-bottom: 1.715vw;
+    padding-left: 2.018vw;
+    padding-right: 2.018vw;
+  }
+
+  .vote .vote__content .content__body .vote-form .form-check {
+    margin-bottom: 1.514vw;
+  }
+
+  .vote .vote__content .content__body .vote-form .form-check label {
+    margin-left: 1.009vw;
+    font-size: 1.615vw;
+  }
+
+  .vote .vote__content .content__body .vote-form .body__button-vote {
+    margin-bottom: 1.514vw;
+  }
+
+  .vote .vote__content .content__body .view-results .results {
+    margin-bottom: 1.514vw;
+  }
+
+  .vote .vote__content .content__body .view-results .results span {
+    font-size: 1.413vw;
+  }
+
+  .vote .vote__content .content__body .view-results .result__total {
+    margin-bottom: 1.514vw;
+  }
+
+  .vote .vote__content .content__body .view-results .result__total span {
+    font-size: 1.413vw;
+  }
+
+  .vote .vote__content .content__body .body__view-results .view-results__button {
+    font-size: 1.413vw;
+  }
+
+  .create-replay {
+    margin-bottom: 3.431vw;
+  }
+
+  .create-replay .create-replay__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .create-replay .create-replay__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .create-replay .create-replay__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .create-replay .create-replay__form {
+    padding: 2.523vw;
+  }
+
+  .create-replay .create-replay__form .form-group label {
+    font-size: 1.615vw;
+  }
+
+  .create-replay .create-replay__form .form-group label select {
+    height: 37px;
+    margin-top: 0.505vw;
+  }
+
+  .create-replay .create-replay__form .form-group .select2 {
+    height: 37px;
+  }
+
+  .create-replay .create-replay__form .form-group .select2 .select2-selection {
+    height: 37px;
+    margin-top: 0.505vw;
+  }
+
+  .create-replay .create-replay__form .form-group .select2 .select2-selection .select2-selection__rendered {
+    padding-top: 0.404vw;
+  }
+
+  .create-replay .create-replay__form .form-group .select2 .select2-selection .select2-selection__arrow {
+    top: 0.505vw;
+  }
+
+  .create-replay .create-replay__form hr {
+    margin-top: 2.018vw;
+    margin-bottom: 2.018vw;
+  }
+
+  .user_friends .row_title {
+    padding: 1.514vw 0;
+  }
+
+  .user_friends .wrapper_table {
+    max-height: 32.291vw;
+  }
+
+  .user_friends .wrapper_table .row_users {
+    padding: 1.009vw 0;
+  }
+
+  .user_friends .wrapper_table .row_users .block_action svg {
+    width: 2.018vw;
+  }
+
+  .user_friends .wrapper_table .row_users .user_block .name_user {
+    max-width: 9.889vw;
+  }
+
+  .user_friends .wrapper_table .row_users .user_block .user-avatar {
+    width: 5.045vw;
+    height: 5.045vw;
+    font-size: 2.422vw;
+  }
+
+  .wrapper_table::-webkit-scrollbar {
+    width: 1.009vw;
+  }
+
+  .wrapper_table::-webkit-scrollbar-thumb {
+    height: 22.906vw;
+  }
+
+  .user_profile .wrapper {
+    margin-bottom: 7.064vw;
+  }
+
+  .user_profile .title_top_userProfile {
+    height: 6.054vw;
+    padding: 2.018vw;
+  }
+
+  .user_profile .title_top_userProfile .title_Text {
+    font-size: 1.615vw;
+  }
+
+  .user_profile .title_top_userProfile .more p {
+    font-size: 4.036vw;
+  }
+
+  .user_profile .userInfo_block {
+    padding: 3.027vw 2.018vw;
+  }
+
+  .user_profile .userInfo_block .button {
+    margin: 3.532vw auto 0;
+    padding: 1.009vw;
+  }
+
+  .user_profile .userInfo_block .icon_img {
+    margin-top: 2.422vw;
+  }
+
+  .user_profile .userInfo_block .icon_img svg {
+    width: 3.027vw;
+  }
+
+  .user_profile .userInfo_block .container_information .userText_block {
+    margin-bottom: 1.514vw;
+  }
+
+  .user_profile .userInfo_block .container_information .userText_block .title {
+    font-size: 1.816vw;
+    padding-right: 4.036vw;
+  }
+
+  .user_profile .userInfo_block .container_information .userText_block .date {
+    font-size: 1.211vw;
+  }
+
+  .user_profile .userInfo_block .container_information .information_block {
+    padding-top: 1.009vw;
+  }
+
+  .user_profile .userInfo_block .container_information .information_block .left_block span {
+    font-size: 1.211vw;
+  }
+
+  .user_profile .userInfo_block .container_information .information_block .right_block span {
+    font-size: 1.413vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information,
+  .user_profile .block_userInformation .container_right .wrapper_contacts {
+    padding: 2.018vw 2.018vw 1.009vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information .block_inform,
+  .user_profile .block_userInformation .container_right .wrapper_information .block_contact,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact {
+    padding-bottom: 1.009vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information .block_inform .left_block span,
+  .user_profile .block_userInformation .container_right .wrapper_information .block_contact .left_block span,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .left_block span,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .left_block span {
+    font-size: 1.211vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block span,
+  .user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block span,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block span,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block span {
+    font-size: 1.413vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block .small,
+  .user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block .small,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block .small,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block .small {
+    font-size: 1.211vw;
+  }
+
+  .user_profile .block_userInformation .container_right .block_armor {
+    padding: 2.018vw 2.018vw 1.009vw;
+  }
+
+  .user_profile .block_userInformation .container_right .block_armor .armor_info {
+    padding-bottom: 1.009vw;
+  }
+
+  .user_profile .block_userInformation .container_right .block_armor svg {
+    width: 1.715vw;
+    margin-right: 1.009vw;
+  }
+
+  .user_profile .block_userInformation .friends_block {
+    padding: 2.523vw;
+    max-height: 30.272vw;
+    margin-right: 0.505vw;
+  }
+
+  .user_profile .block_userInformation .friends_block .friends {
+    padding-bottom: 1.009vw;
+  }
+
+  .user_profile .block_userInformation .friends_block .friends .left_block .name_player {
+    margin-left: 1.009vw;
+    max-width: 10.091vw;
+  }
+
+  .user_profile .friends_block::-webkit-scrollbar {
+    width: 0.706vw;
+  }
+
+  .user_profile .friends_block::-webkit-scrollbar-thumb {
+    height: 2.523vw;
   }
 }
 
