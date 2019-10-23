@@ -9,7 +9,9 @@ use App\Http\ViewComposers\{AllTopsComposer,
     HeadlineComposer,
     InterviewVariantAnswerComposer,
     ForumNavigationComposer,
-    SidebarRightComposer};
+    SidebarRightComposer,
+    RegistrationComposer
+};
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
@@ -35,6 +37,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         $this->compose('components.block-top', AllTopsComposer::class);
         $this->compose('components.block-top', SidebarRightComposer::class);
         $this->compose('footer.footer', FooterComposer::class);
+        $this->compose('modal.registration', RegistrationComposer::class);
 
     }
 

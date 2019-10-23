@@ -154,6 +154,15 @@
                 $('#load_more_button').html('<b>Loading...</b>');
                 load_news(id, _token);
             });
+
+            /*
+            якщо є помилки при валідації під час реєстрації,
+            відбувається редірект з відкритим модальним вікном
+            і списком помилок в ньому
+            */
+            @if (count($errors) > 0)
+                $('#registrationModal').modal('show');
+            @endif
         });
     </script>
 @show
