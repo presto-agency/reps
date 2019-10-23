@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
+use App\Models\Race;
 use App\Models\Role;
 use App\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -66,12 +70,33 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $roleUserId = Role::where('name', 'user')->select('id')->first()->id;
+        $raceId = Race::where('code', $data['race'])->select('id')->first()->id;
+        $countryId = Country::where('code', $data['country'])->select('id')->first()->id;
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'country_id' => $countryId,
+            'race_id' => $raceId,
             'role_id' => $roleUserId,
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
     }
 }

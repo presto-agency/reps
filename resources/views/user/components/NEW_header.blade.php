@@ -57,8 +57,15 @@
                     <input id="inp"class="search_input " placeholder="поиск">
                 </div>
                 <div class="autorization">
-                    <button type="button" data-toggle="modal" data-target="#authorizationModal">Вход</button>
-                    <button class="registration"  type="button" data-toggle="modal" data-target="#registrationModal">Регистрация</button>
+                    @if (Auth::guest())
+                        <button type="button" data-toggle="modal" data-target="#authorizationModal">{{ __('Login') }}</button>
+                        <button class="registration"  type="button" data-toggle="modal" data-target="#registrationModal">{{ __('Register') }}</button>
+                    @else
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit">{{ __('Logout') }}</button>
+                        </form>
+                    @endif
                 </div>
 {{--                @include('user.components.user-bar_panel')--}}
             </div>
