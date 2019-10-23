@@ -563,6 +563,229 @@
             }
         }
     }
+    /*.detailed-forum {
+        box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+        border-radius: 5px;
+        .detailed-forum__title {
+            display: flex;
+            justify-content: space-between;
+            border-radius: 5px 5px 0 0;
+            background-color: #0567cc;
+            padding: 20px;
+
+            .title__wrap {
+                display: flex;
+                align-items: center;
+                .title__icon {
+                    width: 20px;
+                    height: 20px;
+                    fill: #ffffff;
+                }
+                .title__text {
+                    color: #ffffff;
+                    font-size: 16px;
+                    font-weight: 400;
+                    margin-left: 20px;
+                    margin-bottom: 0; //отмена стандартного отступа
+                }
+                .title__avatar {
+                    width: 28px;
+                    height: 28px;
+                }
+                .title__nickname {
+                    color: #ffffff;
+                    font-size: 14px;
+                    font-weight: 400;
+                    margin-left: 13px;
+                    margin-bottom: 0; //отмена стандартного отступа
+                }
+                .title__flag {
+                    width: 20px;
+                    height: 20px;
+                    margin-left: 13px;
+                }
+                .title__cube {
+                    width: 16px;
+                    height: 16px;
+                    margin-left: 11px;
+                }
+                .title__text {
+                    color: #ffffff;
+                    font-size: 14px;
+                    font-weight: 500;
+                    margin-left: 12px;
+                    margin-bottom: 0; //отмена стандартного отступа
+                }
+
+            }
+        }
+        .detailed-forum__info {
+            background-color: #ffffff;
+            padding-top: 18px;
+            padding-bottom: 17px;
+            padding-left: 21px;
+            padding-right: 22px;
+
+            .info__items {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .items__watch,
+                .items__comment {
+                    text-decoration: none;
+                    transition: .3s;
+                    svg {
+                        width: 15px;
+                        height: 13px;
+                        fill: #9ca0b6;
+                    }
+                    span {
+                        color: #9ca0b6;
+                        font-size: 12px;
+                        font-weight: 400;
+                        line-height: 19px;
+                        margin-left: 10px;
+                    }
+                    &:hover {
+                        & svg {
+                            fill: #0567cc;
+                        }
+                    }
+                }
+                .items__comment {
+                    margin-left: 32px;
+                }
+                .items__date {
+                    margin-left: auto;
+                    margin-bottom: 0;
+                    color: #9ca0b6;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 19px;
+
+                }
+            }
+        }
+        hr {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .detailed-forum__card {
+            border: 0px;
+            .card-body {
+                .card-body__title {
+                    color: #010b4a;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 19px;
+                    text-transform: uppercase;
+                    margin-top: 36px;
+                    margin-bottom: 27px;
+                }
+                .card-body__text {
+                    color: #010b4a;
+                    font-size: 16px;
+                    font-weight: 300;
+                    line-height: 24px;
+                    margin-bottom: 28px;
+                    margin-top: 28px;
+                    span {
+                        color: #0567cc;
+                        font-weight: 400;
+                        text-decoration: underline;
+                    }
+                }
+                .card-body__banner {
+                    margin-bottom: 39px;
+                }
+                .card-body__items {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding-bottom: 17px;
+                    .card-body__items-wrap {
+                        .items__quote {
+                            text-decoration: none;
+                            svg {
+                                width: 20px;
+                                height: 20px;
+                                fill: #c7c9d7;
+                                transition: .3s;
+                            }
+                            &:hover {
+                                & svg {
+                                    fill: #0567cc;
+                                }
+                            }
+                        }
+                        .items__share {
+                            text-decoration: none;
+                            margin-left: 21px;
+                            svg {
+                                width: 18px;
+                                height: 20px;
+                                fill: #c7c9d7;
+                                transition: .3s;
+                            }
+                            &:hover {
+                                & svg {
+                                    fill: #0567cc;
+                                }
+                            }
+                        }
+                    }
+                    .card-body__items-wrap {
+                        .items__like {
+                            text-decoration: none;
+                            svg {
+                                width: 20px;
+                                height: 18px;
+                                fill: #c7c9d7;
+                                transition: .3s;
+                            }
+                            span {
+                                color: #9ca0b6;
+                                font-size: 12px;
+                                font-weight: 400;
+                                line-height: 19px;
+                                margin-left: 7px;
+                            }
+                            &:hover {
+                                & svg {
+                                    fill: #0567cc;
+                                }
+                            }
+                        }
+                        .items__dislike {
+                            text-decoration: none;
+                            margin-left: 17px;
+                            svg {
+                                width: 20px;
+                                height: 18px;
+                                fill: #c7c9d7;
+                                transition: .3s;
+                            }
+                            span {
+                                color: #9ca0b6;
+                                font-size: 12px;
+                                font-weight: 400;
+                                line-height: 19px;
+                                margin-left: 7px;
+                            }
+                            &:hover {
+                                & svg {
+                                    fill: #0567cc;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }*/
 
 
     //Темы форума
@@ -2543,6 +2766,229 @@
             }
         }
     }
+    /*.detailed-forum {
+        box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+        border-radius: 5px;
+        .detailed-forum__title {
+            display: flex;
+            justify-content: space-between;
+            border-radius: 5px 5px 0 0;
+            background-color: #0567cc;
+            padding: 20px;
+
+            .title__wrap {
+                display: flex;
+                align-items: center;
+                .title__icon {
+                    width: 20px;
+                    height: 20px;
+                    fill: #ffffff;
+                }
+                .title__text {
+                    color: #ffffff;
+                    font-size: 16px;
+                    font-weight: 400;
+                    margin-left: 20px;
+                    margin-bottom: 0; //отмена стандартного отступа
+                }
+                .title__avatar {
+                    width: 28px;
+                    height: 28px;
+                }
+                .title__nickname {
+                    color: #ffffff;
+                    font-size: 14px;
+                    font-weight: 400;
+                    margin-left: 13px;
+                    margin-bottom: 0; //отмена стандартного отступа
+                }
+                .title__flag {
+                    width: 20px;
+                    height: 20px;
+                    margin-left: 13px;
+                }
+                .title__cube {
+                    width: 16px;
+                    height: 16px;
+                    margin-left: 11px;
+                }
+                .title__text {
+                    color: #ffffff;
+                    font-size: 14px;
+                    font-weight: 500;
+                    margin-left: 12px;
+                    margin-bottom: 0; //отмена стандартного отступа
+                }
+
+            }
+        }
+        .detailed-forum__info {
+            background-color: #ffffff;
+            padding-top: 18px;
+            padding-bottom: 17px;
+            padding-left: 21px;
+            padding-right: 22px;
+
+            .info__items {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .items__watch,
+                .items__comment {
+                    text-decoration: none;
+                    transition: .3s;
+                    svg {
+                        width: 15px;
+                        height: 13px;
+                        fill: #9ca0b6;
+                    }
+                    span {
+                        color: #9ca0b6;
+                        font-size: 12px;
+                        font-weight: 400;
+                        line-height: 19px;
+                        margin-left: 10px;
+                    }
+                    &:hover {
+                        & svg {
+                            fill: #0567cc;
+                        }
+                    }
+                }
+                .items__comment {
+                    margin-left: 32px;
+                }
+                .items__date {
+                    margin-left: auto;
+                    margin-bottom: 0;
+                    color: #9ca0b6;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 19px;
+
+                }
+            }
+        }
+        hr {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .detailed-forum__card {
+            border: 0px;
+            .card-body {
+                .card-body__title {
+                    color: #010b4a;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 19px;
+                    text-transform: uppercase;
+                    margin-top: 36px;
+                    margin-bottom: 27px;
+                }
+                .card-body__text {
+                    color: #010b4a;
+                    font-size: 16px;
+                    font-weight: 300;
+                    line-height: 24px;
+                    margin-bottom: 28px;
+                    margin-top: 28px;
+                    span {
+                        color: #0567cc;
+                        font-weight: 400;
+                        text-decoration: underline;
+                    }
+                }
+                .card-body__banner {
+                    margin-bottom: 39px;
+                }
+                .card-body__items {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding-bottom: 17px;
+                    .card-body__items-wrap {
+                        .items__quote {
+                            text-decoration: none;
+                            svg {
+                                width: 20px;
+                                height: 20px;
+                                fill: #c7c9d7;
+                                transition: .3s;
+                            }
+                            &:hover {
+                                & svg {
+                                    fill: #0567cc;
+                                }
+                            }
+                        }
+                        .items__share {
+                            text-decoration: none;
+                            margin-left: 21px;
+                            svg {
+                                width: 18px;
+                                height: 20px;
+                                fill: #c7c9d7;
+                                transition: .3s;
+                            }
+                            &:hover {
+                                & svg {
+                                    fill: #0567cc;
+                                }
+                            }
+                        }
+                    }
+                    .card-body__items-wrap {
+                        .items__like {
+                            text-decoration: none;
+                            svg {
+                                width: 20px;
+                                height: 18px;
+                                fill: #c7c9d7;
+                                transition: .3s;
+                            }
+                            span {
+                                color: #9ca0b6;
+                                font-size: 12px;
+                                font-weight: 400;
+                                line-height: 19px;
+                                margin-left: 7px;
+                            }
+                            &:hover {
+                                & svg {
+                                    fill: #0567cc;
+                                }
+                            }
+                        }
+                        .items__dislike {
+                            text-decoration: none;
+                            margin-left: 17px;
+                            svg {
+                                width: 20px;
+                                height: 18px;
+                                fill: #c7c9d7;
+                                transition: .3s;
+                            }
+                            span {
+                                color: #9ca0b6;
+                                font-size: 12px;
+                                font-weight: 400;
+                                line-height: 19px;
+                                margin-left: 7px;
+                            }
+                            &:hover {
+                                & svg {
+                                    fill: #0567cc;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }*/
 
 
     //Темы форума
