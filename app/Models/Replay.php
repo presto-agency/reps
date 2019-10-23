@@ -10,12 +10,12 @@ class Replay extends Model
     use ReplayRelationTrait;
 
     const REPLAY_PRO = 0;
-    const REPLAY_USER = 1;
 
     public static $userReplaysType = [
         0 => 'Профессиональный',
         1 => 'Пользовательский',
     ];
+
     protected $fillable = [
 
         'user_id',
@@ -24,7 +24,7 @@ class Replay extends Model
         'first_country_id', 'second_country_id',
         'first_race', 'second_race',
         'type_id',
-        'comments_count',
+        'user_replay',
         'user_rating',
         'negative_count', 'rating', 'positive_count',
         'approved',
