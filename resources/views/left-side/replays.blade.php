@@ -24,9 +24,6 @@
                 <a class="header__title" href="#">
                     Пользовательские реплеи
                 </a>
-                <a class="header__title" href="#">
-                    <i class="fas fa-ellipsis-h"></i>
-                </a>
             </div>
 
             <div class="topic__body">
@@ -51,10 +48,6 @@
             <div class="topic__header card-header">
                 <a class="header__title" href="#">
                     ГОСУ реплеи
-                </a>
-
-                <a class="header__title" href="#">
-                    <i class="fas fa-ellipsis-h"></i>
                 </a>
             </div>
 
@@ -82,9 +75,6 @@
                     1х1
                 </a>
 
-                <a class="header__title-disable" href="#">
-                    <i class="fas fa-ellipsis-h"></i>
-                </a>
             </div>
 
             <div class="topic__body">
@@ -138,9 +128,6 @@
                 <a class="header__title" href="#">
                     Game of the week
                 </a>
-                <a class="header__title-disable" href="#">
-                    <i class="fas fa-ellipsis-h"></i>
-                </a>
             </div>
 
             <div class="topic__body">
@@ -165,9 +152,6 @@
             <div class="topic__header card-header">
                 <a class="header__title"  href="#">
                     2х2   3х3   4х4
-                </a>
-                <a class="header__title-disable" href="#">
-                    <i class="fas fa-ellipsis-h"></i>
                 </a>
             </div>
 
