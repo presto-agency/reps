@@ -85,7 +85,7 @@
                 <div class="box-body">
                     @foreach($replay->comments as $comment)
                         <div class="item row">
-                            <img src="{{$comment->user->avatar ?? $comment->user->avatar_url_or_blank }}"
+                            <img src="{{$comment->user->avatar_url_or_blank}}"
                                  class="img-circle img-bordered-sm" alt="User avatar"/>
                             <p class="message">
                                 <a href="#" class="name">
