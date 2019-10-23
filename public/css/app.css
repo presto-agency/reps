@@ -17630,8 +17630,16 @@ select:focus {
     margin-bottom: 1.098vw;
   }
 
+  .gallery-detail .gallery-detail__body .body__edit-image-form .form-group label {
+    font-size: 1.171vw;
+  }
+
   .gallery-detail .gallery-detail__body .body__edit-image-form .form-check {
     margin-bottom: 1.464vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__edit-image-form .form-check label {
+    font-size: 1.171vw;
   }
 
   .user-settings .user-settings__title {
@@ -17654,44 +17662,16 @@ select:focus {
     padding: 1.83vw;
   }
 
-  .user-settings .user-settings__form .upload-avatar .avatar__button-upload {
-    margin-left: 0.366vw;
-  }
-
-  .user-settings .user-settings__form .upload-avatar .avatar__button-upload label {
+  .user-settings .user-settings__form .form-group label {
     font-size: 1.171vw;
-    height: 2.709vw;
-    padding-left: 0.732vw;
-    padding-right: 0.732vw;
-    padding-top: 0.366vw;
-    padding-bottom: 0.366vw;
-  }
-
-  .user-settings .user-settings__form .form-group .select2 {
-    height: 2.709vw;
-  }
-
-  .user-settings .user-settings__form .form-group .select2 .select2-selection {
-    height: 2.709vw;
-    margin-top: 0.586vw;
-  }
-
-  .user-settings .user-settings__form .form-group .select2 .select2-selection .select2-selection__rendered {
-    padding-top: 0.293vw;
-  }
-
-  .user-settings .user-settings__form .form-group .select2 .select2-selection .select2-selection__arrow {
-    top: 0.366vw;
-  }
-
-  .user-settings .user-settings__form .form-group #user-settings__race {
-    height: 2.709vw;
-    border-radius: 0.293vw;
-    margin-top: 0.586vw;
   }
 
   .user-settings .user-settings__form .form-check {
     margin-bottom: 1.464vw;
+  }
+
+  .user-settings .user-settings__form .form-check .form-check-label {
+    font-size: 1.171vw;
   }
 
   .user-settings .user-settings__form .form-check .form-check-input {
@@ -17853,13 +17833,20 @@ select:focus {
   }
 
   .gallery-download .gallery-download__body .gallery__form .upload-avatar .avatar__button-upload label {
-    height: 2.709vw;
     padding: 0.366vw 0.732vw;
+    font-size: 1.171vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .form-group label {
     font-size: 1.171vw;
   }
 
   .gallery-download .gallery-download__body .gallery__form .form-check {
     margin-bottom: 1.464vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .form-check label {
+    font-size: 1.171vw;
   }
 
   .vote .vote__title {
@@ -17958,24 +17945,14 @@ select:focus {
   }
 
   .create-replay .create-replay__form .form-group label select {
-    height: 2.709vw;
     margin-top: 0.366vw;
   }
 
-  .create-replay .create-replay__form .form-group .select2 {
-    height: 2.709vw;
-  }
-
-  .create-replay .create-replay__form .form-group .select2 .select2-selection {
-    height: 2.709vw;
-    margin-top: 0.366vw;
-  }
-
-  .create-replay .create-replay__form .form-group .select2 .select2-selection .select2-selection__rendered {
+  .create-replay .create-replay__form .form-group .select2 .select2-seßlection .select2-selection__rendered {
     padding-top: 0.293vw;
   }
 
-  .create-replay .create-replay__form .form-group .select2 .select2-selection .select2-selection__arrow {
+  .create-replay .create-replay__form .form-group .select2 .select2-seßlection .select2-selection__arrow {
     top: 0.366vw;
   }
 
@@ -18037,114 +18014,114 @@ select:focus {
   }
 
   .user_profile .userInfo_block {
-    padding: 30px 20px;
+    padding: 2.196vw 1.464vw;
   }
 
   .user_profile .userInfo_block .button {
-    margin: 35px auto 0;
-    padding: 10px;
+    margin: 2.562vw auto 0;
+    padding: 0.732vw;
   }
 
   .user_profile .userInfo_block .icon_img {
-    margin-top: 24px;
+    margin-top: 1.757vw;
   }
 
   .user_profile .userInfo_block .icon_img svg {
-    width: 30px;
+    width: 2.196vw;
   }
 
   .user_profile .userInfo_block .container_information .userText_block {
-    margin-bottom: 15px;
+    margin-bottom: 1.098vw;
   }
 
   .user_profile .userInfo_block .container_information .userText_block .title {
-    font-size: 18px;
-    padding-right: 40px;
+    font-size: 1.318vw;
+    padding-right: 2.928vw;
   }
 
   .user_profile .userInfo_block .container_information .userText_block .date {
-    font-size: 12px;
+    font-size: 0.878vw;
   }
 
   .user_profile .userInfo_block .container_information .information_block {
-    padding-top: 10px;
+    padding-top: 0.732vw;
   }
 
   .user_profile .userInfo_block .container_information .information_block .left_block span {
-    font-size: 12px;
+    font-size: 0.878vw;
   }
 
   .user_profile .userInfo_block .container_information .information_block .right_block span {
-    font-size: 14px;
+    font-size: 1.025vw;
   }
 
   .user_profile .block_userInformation .container_right .wrapper_information,
   .user_profile .block_userInformation .container_right .wrapper_contacts {
-    padding: 20px 20px 10px;
+    padding: 1.464vw 1.464vw 0.732vw;
   }
 
   .user_profile .block_userInformation .container_right .wrapper_information .block_inform,
   .user_profile .block_userInformation .container_right .wrapper_information .block_contact,
   .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform,
   .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact {
-    padding-bottom: 10px;
+    padding-bottom: 0.732vw;
   }
 
   .user_profile .block_userInformation .container_right .wrapper_information .block_inform .left_block span,
   .user_profile .block_userInformation .container_right .wrapper_information .block_contact .left_block span,
   .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .left_block span,
   .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .left_block span {
-    font-size: 12px;
+    font-size: 0.878vw;
   }
 
   .user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block span,
   .user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block span,
   .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block span,
   .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block span {
-    font-size: 14px;
+    font-size: 1.025vw;
   }
 
   .user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block .small,
   .user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block .small,
   .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block .small,
   .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block .small {
-    font-size: 12px;
+    font-size: 0.878vw;
   }
 
   .user_profile .block_userInformation .container_right .block_armor {
-    padding: 20px 20px 10px;
+    padding: 1.464vw 1.464vw 0.732vw;
   }
 
   .user_profile .block_userInformation .container_right .block_armor .armor_info {
-    padding-bottom: 10px;
+    padding-bottom: 0.732vw;
   }
 
   .user_profile .block_userInformation .container_right .block_armor svg {
-    width: 17px;
-    margin-right: 10px;
+    width: 1.245vw;
+    margin-right: 0.732vw;
   }
 
   .user_profile .block_userInformation .friends_block {
-    padding: 25px;
-    max-height: 300px;
-    margin-right: 5px;
+    padding: 1.83vw;
+    max-height: 21.962vw;
+    margin-right: 0.366vw;
   }
 
   .user_profile .block_userInformation .friends_block .friends {
-    padding-bottom: 10px;
+    padding-bottom: 0.732vw;
   }
 
   .user_profile .block_userInformation .friends_block .friends .left_block .name_player {
-    margin-left: 10px;
-    max-width: 100px;
+    margin-left: 0.732vw;
+    max-width: 7.321vw;
   }
 
   .user_profile .friends_block::-webkit-scrollbar {
-    width: 7px;
+    width: 0.512vw;
   }
 
   .user_profile .friends_block::-webkit-scrollbar-thumb {
-    height: 25px;
+    height: 1.83vw;
   }
 }
 
@@ -19529,6 +19506,637 @@ select:focus {
   }
 
   .Page_gameBest .container_players::-webkit-scrollbar-thumb {
+    height: 2.523vw;
+  }
+
+  /*КАБИНЕТ ПОЛЬЗОВАТЕЛЯ*/
+
+  .gallery .gallery__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .gallery .gallery__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .gallery .gallery__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .gallery .gallery__body {
+    padding: 2.523vw;
+  }
+
+  .gallery .gallery__body .img-wrapper {
+    max-width: 12.109vw;
+    padding: 0.505vw;
+  }
+
+  .gallery-detail .gallery-detail__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .gallery-detail .gallery-detail__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .gallery-detail .gallery-detail__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .gallery-detail .gallery-detail__body {
+    padding: 2.523vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items {
+    margin-bottom: 1.009vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__title p {
+    font-size: 1.615vw;
+    line-height: 1.917vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__like svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__like span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__dislike {
+    margin-left: 1.009vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__dislike svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__rating .rating__dislike span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__reputation-button a {
+    width: 15.136vw;
+    padding: 0.505vw 1.009vw;
+    font-size: 1.615vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__slide-button a {
+    height: 3.027vw;
+    width: 3.027vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__items .items__slide-button a i {
+    font-size: 1.816vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__img {
+    margin-bottom: 1.514vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__edit-image-form .form-group label {
+    font-size: 1.615vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__edit-image-form .form-check {
+    margin-bottom: 2.018vw;
+  }
+
+  .gallery-detail .gallery-detail__body .body__edit-image-form .form-check label {
+    font-size: 1.615vw;
+  }
+
+  .user-settings .user-settings__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .user-settings .user-settings__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .user-settings .user-settings__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .user-settings .user-settings__form {
+    padding: 2.523vw;
+  }
+
+  .user-settings .user-settings__form .upload-avatar .avatar__button-upload {
+    margin-left: 0.505vw;
+  }
+
+  .user-settings .user-settings__form .upload-avatar .avatar__button-upload label {
+    padding-left: 1.009vw;
+    padding-right: 1.009vw;
+    padding-top: 0.505vw;
+    padding-bottom: 0.505vw;
+  }
+
+  .user-settings .user-settings__form .form-group label {
+    font-size: 1.615vw;
+  }
+
+  .user-settings .user-settings__form .form-group .select2 .select2-selection {
+    margin-top: 0.807vw;
+  }
+
+  .user-settings .user-settings__form .form-group .select2 .select2-selection .select2-selection__rendered {
+    padding-top: 0.404vw;
+  }
+
+  .user-settings .user-settings__form .form-group .select2 .select2-selection .select2-selection__arrow {
+    top: 0.505vw;
+  }
+
+  .user-settings .user-settings__form .form-group #user-settings__race {
+    margin-top: 0.807vw;
+  }
+
+  .user-settings .user-settings__form .form-check {
+    margin-bottom: 2.018vw;
+  }
+
+  .user-settings .user-settings__form .form-check .form-check-input {
+    margin-left: 1.009vw;
+  }
+
+  .user-settings .user-settings__form .form-check .form-check-label {
+    font-size: 1.615vw;
+  }
+
+  .user-replays {
+    margin-bottom: 3.431vw;
+  }
+
+  .user-replays .user-replays__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .user-replays .user-replays__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .user-replays .user-replays__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .user-replays .user-replays__body {
+    padding: 2.018vw;
+  }
+
+  .user-replays .user-replays__body .body__wrap {
+    margin-bottom: 2.523vw;
+  }
+
+  .user-replays .user-replays__body .body__wrap .body__title {
+    font-size: 1.413vw;
+  }
+
+  .user-replays .user-replays__body .body__wrap .body__numb {
+    font-size: 1.413vw;
+  }
+
+  .user-replays .user-replays__button {
+    padding-left: 2.018vw;
+    padding-right: 2.018vw;
+    padding-bottom: 2.018vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title {
+    padding: 2.018vw 1.917vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__icon {
+    width: 2.119vw;
+    height: 2.119vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__like svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__like span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__dislike {
+    margin-left: 1.715vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__dislike svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .user-reputation-history .user-reputation-history__title .title__reputation .icon__dislike span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info {
+    padding: 1.615vw 2.018vw 1.715vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__nickname {
+    font-size: 1.413vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__flag {
+    width: 2.018vw;
+    height: 2.018vw;
+    margin-left: 1.312vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__cube {
+    width: 1.615vw;
+    height: 1.615vw;
+    margin-left: 1.11vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__text {
+    font-size: 1.413vw;
+    margin-left: 1.211vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__info .info__date {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__content {
+    padding: 1.615vw 2.018vw 1.715vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__content .content__title {
+    font-size: 1.615vw;
+    line-height: 2.422vw;
+  }
+
+  .user-reputation-history .user-reputation-history__body .body__wrap .body__content .content__like svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .gallery-download .gallery-download__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .gallery-download .gallery-download__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .gallery-download .gallery-download__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .gallery-download .gallery-download__body {
+    padding: 2.523vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .upload-avatar {
+    margin-bottom: 2.018vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .upload-avatar .avatar__button-upload {
+    margin-left: 0.505vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .upload-avatar .avatar__button-upload label {
+    height: 37px;
+    padding: 0.505vw 1.009vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .form-group label {
+    font-size: 1.615vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .form-check {
+    margin-bottom: 2.018vw;
+  }
+
+  .gallery-download .gallery-download__body .gallery__form .form-check label {
+    font-size: 1.615vw;
+  }
+
+  .vote .vote__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .vote .vote__title .title__icon {
+    width: 2.119vw;
+    height: 2.119vw;
+  }
+
+  .vote .vote__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .vote .vote__content .content__header {
+    padding-top: 1.615vw;
+    padding-bottom: 1.715vw;
+    padding-left: 2.018vw;
+    padding-right: 2.018vw;
+  }
+
+  .vote .vote__content .content__header .header__title {
+    font-size: 1.615vw;
+  }
+
+  .vote .vote__content .content__body {
+    padding-top: 1.615vw;
+    padding-bottom: 1.715vw;
+    padding-left: 2.018vw;
+    padding-right: 2.018vw;
+  }
+
+  .vote .vote__content .content__body .vote-form .form-check {
+    margin-bottom: 1.514vw;
+  }
+
+  .vote .vote__content .content__body .vote-form .form-check label {
+    margin-left: 1.009vw;
+    font-size: 1.615vw;
+  }
+
+  .vote .vote__content .content__body .vote-form .body__button-vote {
+    margin-bottom: 1.514vw;
+  }
+
+  .vote .vote__content .content__body .view-results .results {
+    margin-bottom: 1.514vw;
+  }
+
+  .vote .vote__content .content__body .view-results .results span {
+    font-size: 1.413vw;
+  }
+
+  .vote .vote__content .content__body .view-results .result__total {
+    margin-bottom: 1.514vw;
+  }
+
+  .vote .vote__content .content__body .view-results .result__total span {
+    font-size: 1.413vw;
+  }
+
+  .vote .vote__content .content__body .body__view-results .view-results__button {
+    font-size: 1.413vw;
+  }
+
+  .create-replay {
+    margin-bottom: 3.431vw;
+  }
+
+  .create-replay .create-replay__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 1.917vw;
+  }
+
+  .create-replay .create-replay__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .create-replay .create-replay__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .create-replay .create-replay__form {
+    padding: 2.523vw;
+  }
+
+  .create-replay .create-replay__form .form-group label {
+    font-size: 1.615vw;
+  }
+
+  .create-replay .create-replay__form .form-group label select {
+    height: 37px;
+    margin-top: 0.505vw;
+  }
+
+  .create-replay .create-replay__form .form-group .select2 {
+    height: 37px;
+  }
+
+  .create-replay .create-replay__form .form-group .select2 .select2-selection {
+    height: 37px;
+    margin-top: 0.505vw;
+  }
+
+  .create-replay .create-replay__form .form-group .select2 .select2-selection .select2-selection__rendered {
+    padding-top: 0.404vw;
+  }
+
+  .create-replay .create-replay__form .form-group .select2 .select2-selection .select2-selection__arrow {
+    top: 0.505vw;
+  }
+
+  .create-replay .create-replay__form hr {
+    margin-top: 2.018vw;
+    margin-bottom: 2.018vw;
+  }
+
+  .user_friends .row_title {
+    padding: 1.514vw 0;
+  }
+
+  .user_friends .wrapper_table {
+    max-height: 32.291vw;
+  }
+
+  .user_friends .wrapper_table .row_users {
+    padding: 1.009vw 0;
+  }
+
+  .user_friends .wrapper_table .row_users .block_action svg {
+    width: 2.018vw;
+  }
+
+  .user_friends .wrapper_table .row_users .user_block .name_user {
+    max-width: 9.889vw;
+  }
+
+  .user_friends .wrapper_table .row_users .user_block .user-avatar {
+    width: 5.045vw;
+    height: 5.045vw;
+    font-size: 2.422vw;
+  }
+
+  .wrapper_table::-webkit-scrollbar {
+    width: 1.009vw;
+  }
+
+  .wrapper_table::-webkit-scrollbar-thumb {
+    height: 22.906vw;
+  }
+
+  .user_profile .wrapper {
+    margin-bottom: 7.064vw;
+  }
+
+  .user_profile .title_top_userProfile {
+    height: 6.054vw;
+    padding: 2.018vw;
+  }
+
+  .user_profile .title_top_userProfile .title_Text {
+    font-size: 1.615vw;
+  }
+
+  .user_profile .title_top_userProfile .more p {
+    font-size: 4.036vw;
+  }
+
+  .user_profile .userInfo_block {
+    padding: 3.027vw 2.018vw;
+  }
+
+  .user_profile .userInfo_block .button {
+    margin: 3.532vw auto 0;
+    padding: 1.009vw;
+  }
+
+  .user_profile .userInfo_block .icon_img {
+    margin-top: 2.422vw;
+  }
+
+  .user_profile .userInfo_block .icon_img svg {
+    width: 3.027vw;
+  }
+
+  .user_profile .userInfo_block .container_information .userText_block {
+    margin-bottom: 1.514vw;
+  }
+
+  .user_profile .userInfo_block .container_information .userText_block .title {
+    font-size: 1.816vw;
+    padding-right: 4.036vw;
+  }
+
+  .user_profile .userInfo_block .container_information .userText_block .date {
+    font-size: 1.211vw;
+  }
+
+  .user_profile .userInfo_block .container_information .information_block {
+    padding-top: 1.009vw;
+  }
+
+  .user_profile .userInfo_block .container_information .information_block .left_block span {
+    font-size: 1.211vw;
+  }
+
+  .user_profile .userInfo_block .container_information .information_block .right_block span {
+    font-size: 1.413vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information,
+  .user_profile .block_userInformation .container_right .wrapper_contacts {
+    padding: 2.018vw 2.018vw 1.009vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information .block_inform,
+  .user_profile .block_userInformation .container_right .wrapper_information .block_contact,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact {
+    padding-bottom: 1.009vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information .block_inform .left_block span,
+  .user_profile .block_userInformation .container_right .wrapper_information .block_contact .left_block span,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .left_block span,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .left_block span {
+    font-size: 1.211vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block span,
+  .user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block span,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block span,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block span {
+    font-size: 1.413vw;
+  }
+
+  .user_profile .block_userInformation .container_right .wrapper_information .block_inform .right_block .small,
+  .user_profile .block_userInformation .container_right .wrapper_information .block_contact .right_block .small,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_inform .right_block .small,
+  .user_profile .block_userInformation .container_right .wrapper_contacts .block_contact .right_block .small {
+    font-size: 1.211vw;
+  }
+
+  .user_profile .block_userInformation .container_right .block_armor {
+    padding: 2.018vw 2.018vw 1.009vw;
+  }
+
+  .user_profile .block_userInformation .container_right .block_armor .armor_info {
+    padding-bottom: 1.009vw;
+  }
+
+  .user_profile .block_userInformation .container_right .block_armor svg {
+    width: 1.715vw;
+    margin-right: 1.009vw;
+  }
+
+  .user_profile .block_userInformation .friends_block {
+    padding: 2.523vw;
+    max-height: 30.272vw;
+    margin-right: 0.505vw;
+  }
+
+  .user_profile .block_userInformation .friends_block .friends {
+    padding-bottom: 1.009vw;
+  }
+
+  .user_profile .block_userInformation .friends_block .friends .left_block .name_player {
+    margin-left: 1.009vw;
+    max-width: 10.091vw;
+  }
+
+  .user_profile .friends_block::-webkit-scrollbar {
+    width: 0.706vw;
+  }
+
+  .user_profile .friends_block::-webkit-scrollbar-thumb {
     height: 2.523vw;
   }
 }

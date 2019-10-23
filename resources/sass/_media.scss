@@ -1439,8 +1439,16 @@
                 margin-bottom: 1.098vw;
             }
             .body__edit-image-form {
+                .form-group {
+                    label {
+                        font-size: 1.171vw;
+                    }
+                }
                 .form-check {
                     margin-bottom: 1.464vw;
+                    label {
+                        font-size: 1.171vw;
+                    }
                 }
             }
 
@@ -1465,42 +1473,16 @@
 
         .user-settings__form {
             padding: 1.830vw;
-            .upload-avatar {
-                .avatar__button-upload {
-                    margin-left: 0.366vw;
-                    label {
-                        font-size: 1.171vw;
-                        height: 2.709vw;
-                        padding-left: 0.732vw;
-                        padding-right: 0.732vw;
-                        padding-top: 0.366vw;
-                        padding-bottom: 0.366vw;
-                    }
-                }
-            }
-
             .form-group {
-                .select2 {
-                    height: 2.709vw;
-                    .select2-selection {
-                        height: 2.709vw;
-                        margin-top: 0.586vw;
-                        .select2-selection__rendered {
-                            padding-top: 0.293vw;
-                        }
-                        .select2-selection__arrow {
-                            top: 0.366vw;
-                        }
-                    }
-                }
-                #user-settings__race {
-                    height: 2.709vw;
-                    border-radius: 0.293vw;
-                    margin-top: 0.586vw;
+                label {
+                    font-size: 1.171vw;
                 }
             }
             .form-check {
                 margin-bottom: 1.464vw;
+                .form-check-label {
+                    font-size: 1.171vw;
+                }
                 .form-check-input {
                     margin-left: 0.732vw;
                 }
@@ -1653,14 +1635,21 @@
                     .avatar__button-upload {
                         margin-left: 0.366vw;
                         label {
-                            height: 2.709vw;
                             padding: 0.366vw 0.732vw;
                             font-size: 1.171vw;
                         }
                     }
                 }
+                .form-group {
+                    label {
+                        font-size: 1.171vw;
+                    }
+                }
                 .form-check {
                     margin-bottom: 1.464vw;
+                    label {
+                        font-size: 1.171vw;
+                    }
                 }
             }
         }
@@ -1752,22 +1741,17 @@
         }
 
         .create-replay__form {
-            padding: 1.830vw
-        ;
+            padding: 1.830vw;
             .form-group {
                 label {
                     font-size: 1.171vw;
                     select {
-                        height: 2.709vw;
                         margin-top: 0.366vw;
                     }
                 }
 
                 .select2 {
-                    height: 2.709vw;
-                    .select2-selection {
-                        height: 2.709vw;
-                        margin-top: 0.366vw;
+                    .select2-seßlection {
                         .select2-selection__rendered {
                             padding-top: 0.293vw;
                         }
@@ -1835,41 +1819,41 @@
             }
         }
         & .userInfo_block{
-            padding: 30px 20px;
+            padding: 2.196vw 1.464vw;
             & .button{
-                margin: 35px auto 0;
-                padding: 10px;
+                margin: 2.562vw auto 0;
+                padding: 0.732vw;
             }
             & .icon_img{
-                margin-top: 24px;
+                margin-top: 1.757vw;
                 & svg{
-                    width: 30px;
+                    width: 2.196vw;
                 }
             }
 
             & .container_information{
 
                 & .userText_block{
-                    margin-bottom: 15px;
+                    margin-bottom: 1.098vw;
                     & .title{
-                        font-size: 18px;
-                        padding-right:40px;
+                        font-size: 1.318vw;
+                        padding-right: 2.928vw;
                     }
                     & .date{
-                        font-size: 12px;
+                        font-size: 0.878vw;
                     }
                 }
                 & .information_block{
-                    padding-top: 10px;
+                    padding-top: 0.732vw;
                     & .left_block{
                         & span{
-                            font-size: 12px;
+                            font-size: 0.878vw;
                         }
 
                     }
                     & .right_block{
                         & span{
-                            font-size: 14px;
+                            font-size: 1.025vw;
                         }
                     }
                 }
@@ -1878,46 +1862,46 @@
         & .block_userInformation{
             & .container_right{
                 & .wrapper_information, .wrapper_contacts{
-                    padding: 20px 20px 10px;
+                    padding: 1.464vw 1.464vw 0.732vw;
                     & .block_inform, .block_contact{
-                        padding-bottom: 10px;
+                        padding-bottom: 0.732vw;
                         & .left_block{
                             & span{
-                                font-size: 12px;
+                                font-size: 0.878vw;
                             }
                         }
                         & .right_block{
                             & span{
-                                font-size: 14px;
+                                font-size: 1.025vw;
                             }
                             & .small{
-                                font-size: 12px;
+                                font-size: 0.878vw;
                             }
                         }
                     }
                 }
                 & .block_armor{
-                    padding:20px 20px 10px;
+                    padding: 1.464vw 1.464vw 0.732vw;
                     & .armor_info{
-                        padding-bottom: 10px;
+                        padding-bottom: 0.732vw;
                     }
                     & svg{
-                        width:17px;
-                        margin-right: 10px;
+                        width: 1.245vw;
+                        margin-right: 0.732vw;
                     }
                 }
             }
 
             & .friends_block{
-                padding: 25px;
-                max-height: 300px;
-                margin-right: 5px;
+                padding: 1.830vw;
+                max-height: 21.962vw;
+                margin-right: 0.366vw;
                 & .friends{
-                    padding-bottom: 10px;
+                    padding-bottom: 0.732vw;
                     & .left_block{
                         & .name_player{
-                            margin-left: 10px;
-                            max-width: 100px;
+                            margin-left: 0.732vw;
+                            max-width: 7.321vw;
                         }
 
                     }
@@ -1926,15 +1910,12 @@
         }
 
         .friends_block::-webkit-scrollbar {
-            width: 7px;
+            width: 0.512vw;
         }
         .friends_block::-webkit-scrollbar-thumb {
-            height: 25px;
+            height: 1.830vw;
         }
     }
-
-
-
 }
 
 @media (max-width: 991px) {
@@ -3301,6 +3282,615 @@
         }
     }
 
+    /*КАБИНЕТ ПОЛЬЗОВАТЕЛЯ*/
+    .gallery {
+        .gallery__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .gallery__body {
+            padding: 2.523vw;
+            .img-wrapper {
+                max-width: 12.109vw;
+                padding: 0.505vw;
+
+            }
+        }
+    }
+    .gallery-detail {
+        .gallery-detail__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .gallery-detail__body {
+            padding: 2.523vw;
+            .body__items {
+                margin-bottom: 1.009vw;
+                .items__title {
+                    p {
+                        font-size: 1.615vw;
+                        line-height: 1.917vw;
+                    }
+                }
+
+                .items__rating {
+                    .rating__like {
+                        svg {
+                            width: 2.018vw;
+                            height: 1.816vw;
+                        }
+
+                        span {
+                            font-size: 1.211vw;
+                            line-height: 1.917vw;
+                            margin-left: 0.706vw;
+                        }
+                    }
+
+                    .rating__dislike {
+                        margin-left: 1.009vw;
+                        svg {
+                            width: 2.018vw;
+                            height: 1.816vw;
+                        }
+
+                        span {
+                            font-size: 1.211vw;
+                            line-height: 1.917vw;
+                            margin-left: 0.706vw;
+                        }
+                    }
+                }
+
+                .items__reputation-button {
+                    a {
+                        width: 15.136vw;
+                        padding: 0.505vw 1.009vw;
+                        font-size: 1.615vw;
+                    }
+                }
+
+                .items__slide-button {
+                    a {
+                        height: 3.027vw;
+                        width: 3.027vw;
+                        i {
+                            font-size: 1.816vw;
+                        }
+                    }
+                }
+            }
+            .body__img {
+                margin-bottom: 1.514vw;
+            }
+            .body__edit-image-form {
+                .form-group {
+                    label {
+                        font-size: 1.615vw;
+                    }
+                }
+                .form-check {
+                    margin-bottom: 2.018vw;
+                    label {
+                        font-size: 1.615vw;
+                    }
+                }
+            }
+
+        }
+    }
+    .user-settings {
+        .user-settings__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .user-settings__form {
+            padding: 2.523vw;
+            .upload-avatar {
+                .avatar__button-upload {
+                    margin-left: 0.505vw;
+                    label {
+                        padding-left: 1.009vw;
+                        padding-right: 1.009vw;
+                        padding-top: 0.505vw;
+                        padding-bottom: 0.505vw;
+                    }
+                }
+            }
+
+            .form-group {
+                label {
+                    font-size: 1.615vw;
+                }
+                .select2 {
+                    .select2-selection {
+                        margin-top: 0.807vw;
+                        .select2-selection__rendered {
+                            padding-top: 0.404vw;
+                        }
+                        .select2-selection__arrow {
+                            top: 0.505vw;
+                        }
+                    }
+                }
+                #user-settings__race {
+                    margin-top: 0.807vw;
+                }
+            }
+            .form-check {
+                margin-bottom: 2.018vw;
+                .form-check-input {
+                    margin-left: 1.009vw;
+                }
+                .form-check-label {
+                    font-size: 1.615vw;
+                }
+            }
+        }
+    }
+    .user-replays {
+        margin-bottom: 3.431vw;
+
+        .user-replays__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+        .user-replays__body {
+            padding: 2.018vw;
+            .body__wrap {
+                margin-bottom: 2.523vw;
+                .body__title {
+                    font-size: 1.413vw;
+                }
+                .body__numb {
+                    font-size: 1.413vw;
+                }
+            }
+        }
+        .user-replays__button {
+            padding-left: 2.018vw;
+            padding-right: 2.018vw;
+            padding-bottom: 2.018vw;
+        }
+    }
+    .user-reputation-history {
+        .user-reputation-history__title {
+            padding: 2.018vw 1.917vw;
+            .title__icon {
+                width: 2.119vw;
+                height: 2.119vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+
+            .title__reputation {
+                .icon__like {
+                    svg {
+                        width: 2.018vw;
+                        height: 1.816vw;
+                    }
+
+                    span {
+                        font-size: 1.211vw;
+                        line-height: 1.917vw;
+                        margin-left: 0.706vw;
+                    }
+                }
+                .icon__dislike {
+                    margin-left: 1.715vw;
+                    svg {
+                        width: 2.018vw;
+                        height: 1.816vw;
+                    }
+
+                    span {
+                        font-size: 1.211vw;
+                        line-height: 1.917vw;
+                        margin-left: 0.706vw;
+                    }
+                }
+            }
+        }
+        .user-reputation-history__body {
+            .body__wrap {
+                .body__info {
+                    padding: 1.615vw 2.018vw 1.715vw;
+
+                    .info__nickname {
+                        font-size: 1.413vw;
+                    }
+
+                    .info__flag {
+                        width: 2.018vw;
+                        height: 2.018vw;
+                        margin-left: 1.312vw;
+                    }
+
+                    .info__cube {
+                        width: 1.615vw;
+                        height: 1.615vw;
+                        margin-left: 1.110vw;
+                    }
+
+                    .info__text {
+                        font-size: 1.413vw;
+                        margin-left: 1.211vw;
+                    }
+
+                    .info__date {
+                        font-size: 1.211vw;
+                        line-height: 1.917vw;
+                    }
+                }
+                .body__content {
+                    padding: 1.615vw 2.018vw 1.715vw;
+                    .content__title {
+                        font-size: 1.615vw;
+                        line-height: 2.422vw;
+                    }
+                    .content__like {
+                        svg {
+                            width: 2.018vw;
+                            height: 1.816vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .gallery-download {
+        .gallery-download__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+        .gallery-download__body {
+            padding: 2.523vw;
+            .gallery__form {
+                .upload-avatar {
+                    margin-bottom: 2.018vw;
+                    .avatar__button-upload {
+                        margin-left: 0.505vw;
+                        label {
+                            height: 37px;
+                            padding: 0.505vw 1.009vw;
+                        }
+                    }
+                }
+                .form-group {
+                    label {
+                        font-size: 1.615vw;
+                    }
+                }
+                .form-check {
+                    margin-bottom: 2.018vw;
+                    label {
+                        font-size: 1.615vw;
+                    }
+                }
+            }
+        }
+    }
+    .vote {
+        .vote__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.119vw;
+                height: 2.119vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+        .vote__content {
+            .content__header {
+                padding-top: 1.615vw;
+                padding-bottom: 1.715vw;
+                padding-left: 2.018vw;
+                padding-right: 2.018vw;
+                .header__title {
+                    font-size: 1.615vw;
+                }
+            }
+            .content__body {
+                padding-top: 1.615vw;
+                padding-bottom: 1.715vw;
+                padding-left: 2.018vw;
+                padding-right: 2.018vw;
+                .vote-form {
+                    .form-check {
+                        margin-bottom: 1.514vw;
+                        label {
+                            margin-left: 1.009vw;
+                            font-size: 1.615vw;
+                        }
+                    }
+                    .body__button-vote {
+                        margin-bottom: 1.514vw;
+                    }
+                }
+                .view-results {
+                    .results {
+                        margin-bottom: 1.514vw;
+                        span {
+                            font-size: 1.413vw;
+                        }
+                    }
+                    .result__total {
+                        margin-bottom: 1.514vw;
+                        span {
+                            font-size: 1.413vw;
+                        }
+                    }
+                }
+                .body__view-results {
+                    .view-results__button {
+                        font-size: 1.413vw;
+                    }
+                }
+            }
+        }
+    }
+    .create-replay {
+        margin-bottom: 3.431vw;
+
+        .create-replay__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 1.917vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .create-replay__form {
+            padding: 2.523vw;
+            .form-group {
+                label {
+                    font-size: 1.615vw;
+                    select {
+                        height: 37px;
+                        margin-top: 0.505vw;
+                    }
+                }
+
+                .select2 {
+                    height: 37px;
+                    .select2-selection {
+                        height: 37px;
+                        margin-top: 0.505vw;
+                        .select2-selection__rendered {
+                            padding-top: 0.404vw;
+                        }
+                        .select2-selection__arrow {
+                            top: 0.505vw;
+                        }
+                    }
+                }
+            }
+            hr {
+                margin-top: 2.018vw;
+                margin-bottom: 2.018vw;
+            }
+        }
+    }
+    .user_friends{
+        & .row_title{
+            padding: 1.514vw 0;
+        }
+        & .wrapper_table{
+            max-height: 32.291vw;
+            & .row_users{
+                padding: 1.009vw 0;
+                & .block_action{
+                    & svg{
+                        width: 2.018vw;
+                    }
+                }
+                & .user_block{
+                    & .name_user{
+                        max-width: 9.889vw;
+                    }
+                    & .user-avatar{
+                        width: 5.045vw;
+                        height: 5.045vw;
+                        font-size: 2.422vw;
+                    }
+                }
+            }
+        }
+
+    }
+    .wrapper_table::-webkit-scrollbar {
+        width: 1.009vw;
+    }
+    .wrapper_table::-webkit-scrollbar-thumb {
+        height: 22.906vw;
+    }
+    .user_profile{
+        & .wrapper{
+            margin-bottom: 7.064vw;
+        }
+        & .title_top_userProfile{
+            height: 6.054vw;
+            padding: 2.018vw;
+            & .title_Text{
+                font-size: 1.615vw;
+            }
+            & .more{
+                & p{
+                    font-size: 4.036vw;
+                }
+            }
+        }
+        & .userInfo_block{
+            padding: 3.027vw 2.018vw;
+            & .button{
+                margin: 3.532vw auto 0;
+                padding: 1.009vw;
+            }
+            & .icon_img{
+                margin-top: 2.422vw;
+                & svg{
+                    width: 3.027vw;
+                }
+            }
+
+            & .container_information{
+                & .userText_block{
+                    margin-bottom: 1.514vw;
+                    & .title{
+                        font-size: 1.816vw;
+                        padding-right: 4.036vw;
+                    }
+                    & .date{
+                        font-size: 1.211vw;
+                    }
+                }
+                & .information_block{
+                    padding-top: 1.009vw;
+                    & .left_block{
+                        & span{
+                            font-size: 1.211vw;
+                        }
+
+                    }
+                    & .right_block{
+                        & span{
+                            font-size: 1.413vw;
+                        }
+                    }
+                }
+            }
+        }
+        & .block_userInformation{
+            & .container_right{
+                & .wrapper_information, .wrapper_contacts{
+                    padding: 2.018vw 2.018vw 1.009vw;
+                    & .block_inform, .block_contact{
+                        padding-bottom: 1.009vw;
+                        & .left_block{
+                            & span{
+                                font-size: 1.211vw;
+                            }
+
+                        }
+                        & .right_block{
+                            & span{
+                                font-size: 1.413vw;
+                            }
+                            & .small{
+                                font-size: 1.211vw;
+                            }
+                        }
+                    }
+                }
+                & .block_armor{
+                    padding: 2.018vw 2.018vw 1.009vw;
+                    & .armor_info{
+                        padding-bottom: 1.009vw;
+                    }
+                    & svg{
+                        width: 1.715vw;
+                        margin-right: 1.009vw;
+                    }
+                }
+            }
+
+            & .friends_block{
+                padding: 2.523vw;
+                max-height: 30.272vw;
+                margin-right: 0.505vw;
+                & .friends{
+                    padding-bottom: 1.009vw;
+                    & .left_block{
+                        & .name_player{
+                            margin-left: 1.009vw;
+                            max-width: 10.091vw;
+                        }
+                    }
+                }
+            }
+        }
+
+        .friends_block::-webkit-scrollbar {
+            width: 0.706vw;
+        }
+        .friends_block::-webkit-scrollbar-thumb {
+            height: 2.523vw;
+        }
+    }
 }
 
 @media (max-width: 576px) {
