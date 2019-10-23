@@ -9,6 +9,13 @@ class Replay extends Model
 {
     use ReplayRelationTrait;
 
+    const REPLAY_PRO = 0;
+    const REPLAY_USER = 1;
+
+    public static $userReplaysType = [
+        0 => 'Профессиональный',
+        1 => 'Пользовательский',
+    ];
     protected $fillable = [
 
         'user_id',

@@ -14,7 +14,7 @@ class Mod2UserReplayTable extends Migration
     public function up()
     {
         Schema::table('replays', function (Blueprint $table) {
-            $table->renameColumn('comments_count', 'type_id');
+            $table->renameColumn('comments_count', 'user_replay');
         });
     }
 
@@ -26,7 +26,7 @@ class Mod2UserReplayTable extends Migration
     public function down()
     {
         Schema::table('replays', function (Blueprint $table) {
-            $table->renameColumn('type_id', 'comments_count');
+            $table->renameColumn('user_replay', 'comments_count');
         });
     }
 }
