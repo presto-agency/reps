@@ -10,45 +10,95 @@
                     </svg>
                 </a>
             </div>
+            {{--@if (!empty(Session::get('error_code')) && Session::get('error_code') > 0)
+                <div class="alert alert-danger">
+                    <strong>Error</strong><br><br>
+                    <ul>
+                        --}}{{--@foreach ($error_code->all() as $error)--}}{{--
+                            <li>{{ Session::get('error_code') }}</li>
+                        --}}{{--@endforeach--}}{{--
+                    </ul>
+                </div>
+            @endif--}}
+
+            {{--@if(count($errors) > 0)
+            <!-- класс фреймворка бутстрап -->
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif--}}
+
             <div class="modal-body">
                 <h2 class="modal-body__title">Добро пожаловать!</h2>
-                <form>
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
                     <div class="form-group">
                         <input type="text"
-                               class="form-control"
+                               class="form-control @error('name') is-invalid @enderror"
                                id="registration-name"
-                               placeholder="Имя*">
-                        <input type="text"
-                               class="form-control"
-                               id="registration-mail"
-                               placeholder="E-mail">
+                               placeholder={{ __('Name') }}
+                               name="name"
+                               value="{{ old('name') }}"
+                               required autocomplete="name" autofocus>
 
-                        <select class="js-example-basic-single" name="state">
-                            <option value="UK">Ukraine</option>
-                            <option value="IT">Italy</option>
-                            <option value="FR">France</option>
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+
+                        <input type="text"
+                               class="form-control @error('email') is-invalid @enderror"
+                               id="registration-mail"
+                               placeholder={{ __('E-Mail Address') }}
+                               name="email"
+                               value="{{ old('email') }}"
+                               required autocomplete="email">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+
+                        <select class="js-example-basic-single" name="country">
+                            @foreach($countries as $country)
+                                <option value="{{ $country->code }}">{{ $country->name }}</option>
+                            @endforeach
                         </select>
 
                         <select name="race" id="race" class="race">
-                            <option>Race</option>
-                            <option>Z</option>
-                            <option>T</option>
-                            <option>P</option>
+                            @foreach($race as $item)
+                                <option value="{{ $item->code }}">{{ $item->title }}</option>
+                            @endforeach
                         </select>
 
                         <input type="password"
-                               class="form-control"
+                               class="form-control @error('password') is-invalid @enderror"
                                id="registration-password"
-                               placeholder="Пароль*">
+                               placeholder={{ __('Password') }}
+                                name="password"
+                               required autocomplete="new-password">
+
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
 
                         <input type="password"
                                class="form-control"
                                id="registration-rePassword"
-                               placeholder="Подтвердите пароль*">
+                               placeholder={{ __('Confirm Password') }}
+                                name="password_confirmation"
+                               required autocomplete="new-password">
                     </div>
 
                     <div class="modal-body__enter-btn">
-                        <button class="button button__download-more">
+                        <button type="submit" class="button button__download-more">
                             Зарегистрироваться
                         </button>
                     </div>
