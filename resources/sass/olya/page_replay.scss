@@ -1,0 +1,123 @@
+.page_replay{
+    .title_block{
+        justify-content: space-between;
+        .left_block{
+            display: flex;
+        }
+        .right_block{
+            a{
+                font-size: 12px;
+                color: white;
+                margin-left: 10px;
+            }
+             span{
+                font-size: 12px;
+                color: white;
+            }
+            img{
+                margin-left: 5px;
+            }
+        }
+    }
+    .title_block_gray{
+        padding: 15px;
+        span{
+            font-size: 16px;
+        }
+        .title_top{
+            padding: 0;
+            height: auto;
+        }
+        svg{
+            width: 15px;
+            fill:$gray;
+        }
+        .right_block{
+            a{
+                color: $gray;
+            }
+             .comment_count{
+                margin-right: 10px;
+            }
+        }
+    }
+    .replay-content{
+        padding-bottom: 15px;
+        padding-top: 20px;
+        display: flex;
+        .content_left{
+            display: flex;
+            span{
+                font-size: 14px;
+            }
+            .left_block{
+                width: 50%;
+                border-right: 1px solid grey;
+                border-bottom: 1px solid grey;
+                padding: 5px 10px;
+
+
+            }
+            .right_block{
+                 width: 50%;
+                 border-bottom: 1px solid grey;
+                padding: 5px 10px;
+                display: flex;
+                img{
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50px;
+                }
+
+            }
+
+        }
+        .content_right{
+            .title{
+                font-size: 16px;
+                color: $gray;
+                font-weight: 400;
+                text-align: center;
+            }
+            img{
+                width: 100%;
+                margin: 20px 0 36px;
+            }
+            .replay-rating{
+                display: flex;
+                justify-content: space-around;
+                margin-bottom: 10px;
+                svg{
+                    width: 15px;
+                    fill: $gray;
+                }
+                span{
+                    font-size: 12px;
+                    color:$gray;
+                }
+            }
+            .replay-download{
+                display: flex;
+                justify-content: center;
+                align-items: baseline;
+                svg{
+                    width: 15px;
+                    fill: $gray;
+                }
+                a{
+                    span{
+                        font-size: 14px;
+                        color: $blue;
+                    }
+                    .download{
+                        font-weight: 400;
+                        margin-left: 10px;
+                      }
+
+                }
+            }
+
+
+        }
+    }
+}

@@ -5,6 +5,9 @@
     & .title_block{
         justify-content: flex-start;
         align-items: baseline;
+        .left_content{
+            display: flex;
+        }
     }
     & .title_players{
         display: flex;
@@ -50,6 +53,9 @@
                 }
                 & img{
                     margin: 0 10px 0 15px;
+                    width: 30px;
+                    border-radius: 50px;
+                    height: 30px;
                 }
                 & a{
                     width: 140px;
@@ -68,6 +74,9 @@
             & .center_block{
                 & img{
                     margin: 0 5px;
+                    width: 30px;
+                    border-radius: 50px;
+                    height: 30px;
                 }
             }
             & .right_block{
