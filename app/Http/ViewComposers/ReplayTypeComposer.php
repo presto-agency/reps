@@ -11,7 +11,6 @@ class ReplayTypeComposer
 {
     public static $replayTypes;
 
-
     public function __construct()
     {
         self::$replayTypes = self::getReplayTypes();
@@ -37,7 +36,6 @@ class ReplayTypeComposer
                 ];
             }
         }
-
         return $dataType;
     }
 }

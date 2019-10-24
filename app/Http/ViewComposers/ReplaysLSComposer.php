@@ -9,6 +9,7 @@ class ReplaysLSComposer
 {
     private static $replayLSPro;
     private static $replayLSUser;
+    public static $type;
 
 
     public function __construct()
@@ -30,5 +31,14 @@ class ReplaysLSComposer
     {
         $view->with('replayLSPro', self::$replayLSPro);
         $view->with('replayLSUser', self::$replayLSUser);
+        $view->with("replayLSPro" . self::$type, self::$replayLSUser);
+    }
+
+    public static function setReplayProType($type)
+    {
+        self::$type = $type;
+        self::$replayLSUser;
+        dd(self::$type);
+        return null;
     }
 }
