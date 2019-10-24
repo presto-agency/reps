@@ -126,6 +126,9 @@
                 & .armor_info{
                     padding-bottom: 10px;
                 }
+                & span{
+                    font-size: 14px;
+                }
                 & svg{
                     fill:$blue;
                     width:17px;
@@ -151,12 +154,29 @@
                      overflow: hidden;
                      text-overflow: ellipsis;
                      & .name_player{
+                         font-size: 12px;
                          margin-left: 10px;
                          font-weight: 600;
                          max-width: 100px;
                          display: inline-block;
                      }
+                     & img{
+                         width: 18px;
+                         height: 18px;
+                         border-radius: 50px;
+                     }
 
+                 }
+                 & .right_block{
+                     display: flex;
+                     flex-wrap: nowrap;
+                     align-items: center;
+                     overflow: hidden;
+                     & img{
+                         width: 18px;
+                         height: 18px;
+                         border-radius: 50px;
+                     }
                  }
              }
          }
