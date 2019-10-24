@@ -17,6 +17,7 @@
     @include('user.components.gallery-add-comment')
     @include('user.components.create-new-replay')
     @include('user.components.user-reputation-history')
+    @include('user.components.my-topics')
 @endsection
 
 @section('sidebar-right')
