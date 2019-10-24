@@ -34,7 +34,8 @@ Route::group(['prefix' => 'replay'], function () {
     Route::group(['prefix' => 'pro'], function () {
         Route::get("/", 'ReplayTypeController@show');
         foreach (ReplayTypeComposer::getReplayTypes() as $item) {
-            Route::get("/{$item['name']}", ReplaysLSComposer::setReplayProType($item['name']));
+            Route::get("/{$item['name']}", 'ReplayTypeController@show');
+//            Route::get("/{$item['name']}", ReplaysLSComposer::setReplayProType($item['name']));
         }
     });
 });
