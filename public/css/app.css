@@ -11179,6 +11179,87 @@ select:focus {
   padding-left: 0px;
   padding-right: 0px;
   padding-bottom: 0px;
+  /*.card-body__comment-form {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 46px;
+      .comment-form__group {
+          width: 100%;
+          margin-bottom: 0; //отмена стандартного margin
+          position: relative;
+          .comment {
+              width: 95%;
+              margin-bottom: 0;
+              position: relative;
+              .comment__icon {
+                  width: 20px;
+                  height: 16px;
+                  position: absolute;
+                  top: 15px;
+                  right: 80px;
+                  fill: #c7cbd9;
+              }
+              .comment__input {
+                  width: 100%;
+                  height: 44px;
+                  padding-left: 18px;
+                  background-color: #f0f4f8;
+                  border-radius: 5px;
+                  border: 1px solid transparent;
+                  padding-right: 120px;
+                  &::placeholder {
+                      opacity: 0.5;
+                      color: #010b4a;
+                      font-size: 12px;
+                      font-weight: 400;
+                  }
+              }
+          }
+          .buttons-upload{
+              position: absolute;
+              top: 12px;
+              right: 50px;
+
+              label {
+                  border: 0px;
+                  display: inline-block;
+                  cursor: pointer;
+                  background-color: #f0f4f8;
+                  margin-left: 17px;
+                  margin-bottom: 0;
+              }
+
+              input[type="file"] {
+                  display: none;
+              }
+
+              i {
+                  font-size: 16px;
+                  color: #b9bdcf;
+              }
+
+              .smile-upload {
+                  background-color: #f0f4f8;
+                  border: 0;
+                  margin-left: 16px;
+                  i {
+                      font-size: 16px;
+                      color: #b9bdcf;
+                  }
+              }
+          }
+      }
+      .comment-form__button {
+          background-color: transparent;
+          border: 0px;
+          padding: 0;
+          svg {
+              width: 20px;
+              height: 18px;
+              fill: #0567cc;
+          }
+      }
+  }*/
 }
 
 .breaking-news .breaking-news__news-card .card-body .card-body__author {
@@ -11305,125 +11386,6 @@ select:focus {
 }
 
 .breaking-news .breaking-news__news-card .card-body .card-body__items .items__watch:hover svg {
-  fill: #0567cc;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 46px;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group {
-  width: 100%;
-  margin-bottom: 0;
-  position: relative;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment {
-  width: 95%;
-  margin-bottom: 0;
-  position: relative;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__icon {
-  width: 20px;
-  height: 16px;
-  position: absolute;
-  top: 15px;
-  right: 80px;
-  fill: #c7cbd9;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input {
-  width: 100%;
-  height: 44px;
-  padding-left: 18px;
-  background-color: #f0f4f8;
-  border-radius: 5px;
-  border: 1px solid transparent;
-  padding-right: 120px;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-webkit-input-placeholder {
-  opacity: 0.5;
-  color: #010b4a;
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-moz-placeholder {
-  opacity: 0.5;
-  color: #010b4a;
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input:-ms-input-placeholder {
-  opacity: 0.5;
-  color: #010b4a;
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-ms-input-placeholder {
-  opacity: 0.5;
-  color: #010b4a;
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::placeholder {
-  opacity: 0.5;
-  color: #010b4a;
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload {
-  position: absolute;
-  top: 12px;
-  right: 50px;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload label {
-  border: 0px;
-  display: inline-block;
-  cursor: pointer;
-  background-color: #f0f4f8;
-  margin-left: 17px;
-  margin-bottom: 0;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload input[type=file] {
-  display: none;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload i {
-  font-size: 16px;
-  color: #b9bdcf;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload .smile-upload {
-  background-color: #f0f4f8;
-  border: 0;
-  margin-left: 16px;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload .smile-upload i {
-  font-size: 16px;
-  color: #b9bdcf;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__button {
-  background-color: transparent;
-  border: 0px;
-  padding: 0;
-}
-
-.breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__button svg {
-  width: 20px;
-  height: 18px;
   fill: #0567cc;
 }
 
@@ -16603,6 +16565,54 @@ select:focus {
     padding-top: 1.83vw;
   }
 
+  .breaking-news .breaking-news__news-card .card-body {
+    /*.card-body__comment-form {
+        margin-bottom: 3.367vw;
+        .comment-form__group {
+            .comment {
+                .comment__icon {
+                    width: 1.464vw;
+                    height: 1.171vw;
+                    top: 1.098vw;
+                    right: 5.857vw;
+                }
+                .comment__input {
+                    height: 3.221vw;
+                    padding-left: 1.318vw;
+                    padding-right: 125px;
+                    &::placeholder {
+                        font-size: 0.878vw;
+                    }
+                }
+            }
+            .buttons-upload {
+                top: 0.778vw;
+                right: 3.660vw;
+
+                label {
+                    margin-left: 3.660vw;
+                }
+                i {
+                    font-size: 3.660vw;
+                }
+
+                .smile-upload {
+                    margin-left: 1.171vw;
+                    i {
+                        font-size: 1.171vw;
+                    }
+                }
+            }
+        }
+        .comment-form__button {
+            svg {
+                width: 1.464vw;
+                height: 1.318vw;
+            }
+        }
+    }*/
+  }
+
   .breaking-news .breaking-news__news-card .card-body .card-body__author {
     margin-bottom: 1.318vw;
   }
@@ -16671,69 +16681,6 @@ select:focus {
     margin-left: 0.732vw;
     font-size: 0.878vw;
     line-height: 1.391vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form {
-    margin-bottom: 3.367vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__icon {
-    width: 1.464vw;
-    height: 1.171vw;
-    top: 1.098vw;
-    right: 5.857vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input {
-    height: 3.221vw;
-    padding-left: 1.318vw;
-    padding-right: 125px;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-webkit-input-placeholder {
-    font-size: 0.878vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-moz-placeholder {
-    font-size: 0.878vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input:-ms-input-placeholder {
-    font-size: 0.878vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-ms-input-placeholder {
-    font-size: 0.878vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::placeholder {
-    font-size: 0.878vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload {
-    top: 0.778vw;
-    right: 3.66vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload label {
-    margin-left: 3.66vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload i {
-    font-size: 3.66vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload .smile-upload {
-    margin-left: 1.171vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload .smile-upload i {
-    font-size: 1.171vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__button svg {
-    width: 1.464vw;
-    height: 1.318vw;
   }
 
   .block_top .block_topUsers {
@@ -18853,6 +18800,55 @@ select:focus {
     padding-top: 2.523vw;
   }
 
+  .breaking-news .breaking-news__news-card .card-body {
+    /*.card-body__comment-form {
+        margin-bottom: 4.642vw;
+        .comment-form__group {
+            .comment {
+                .comment__icon {
+                    width: 2.018vw;
+                    height: 1.615vw;
+                    top: 1.514vw;
+                    right: 8.073vw;
+                }
+                .comment__input {
+                    height: 4.440vw;
+                    padding-left: 1.816vw;
+                    padding-right: 12.109vw;
+                    &::placeholder {
+                        font-size: 1.211vw;
+                    }
+                }
+            }
+            .buttons-upload{
+                top: 1.211vw;
+                right: 5.045vw;
+
+                label {
+                    margin-left: 1.715vw;
+                }
+
+                i {
+                    font-size: 1.615vw;
+                }
+
+                .smile-upload {
+                    margin-left: 1.615vw;
+                    i {
+                        font-size: 1.615vw;
+                    }
+                }
+            }
+        }
+        .comment-form__button {
+            svg {
+                width: 2.018vw;
+                height: 1.816vw;
+            }
+        }
+    }*/
+  }
+
   .breaking-news .breaking-news__news-card .card-body .card-body__author {
     margin-bottom: 1.816vw;
   }
@@ -18921,69 +18917,6 @@ select:focus {
     margin-left: 1.009vw;
     font-size: 1.211vw;
     line-height: 1.917vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form {
-    margin-bottom: 4.642vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__icon {
-    width: 2.018vw;
-    height: 1.615vw;
-    top: 1.514vw;
-    right: 8.073vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input {
-    height: 4.44vw;
-    padding-left: 1.816vw;
-    padding-right: 12.109vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-webkit-input-placeholder {
-    font-size: 1.211vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-moz-placeholder {
-    font-size: 1.211vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input:-ms-input-placeholder {
-    font-size: 1.211vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::-ms-input-placeholder {
-    font-size: 1.211vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .comment .comment__input::placeholder {
-    font-size: 1.211vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload {
-    top: 1.211vw;
-    right: 5.045vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload label {
-    margin-left: 1.715vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload i {
-    font-size: 1.615vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload .smile-upload {
-    margin-left: 1.615vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__group .buttons-upload .smile-upload i {
-    font-size: 1.615vw;
-  }
-
-  .breaking-news .breaking-news__news-card .card-body .card-body__comment-form .comment-form__button svg {
-    width: 2.018vw;
-    height: 1.816vw;
   }
 
   .breaking-news__numb-pages {

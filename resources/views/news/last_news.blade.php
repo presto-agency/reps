@@ -89,7 +89,8 @@
                     </a>
                 </div>
 
-                <form class="card-body__comment-form" method="POST" action="{{route('news.comment_send', ['id' => $single_news->id])}}" method="post">
+
+                {{--<form class="card-body__comment-form" method="POST" action="{{route('news.comment_send', ['id' => $single_news->id])}}" method="post">
                     @csrf
                     <div class="comment-form__group form-group">
                         <label class="comment" for="comment">
@@ -124,7 +125,7 @@
                                 </g>
                         </svg>
                     </button>
-                </form>
+                </form>--}}
 
                 <hr class="card-body__horizontal-line">
             </div>
