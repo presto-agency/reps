@@ -14120,6 +14120,10 @@ select:focus {
   }
 }
 
+.chat_overflow {
+  overflow-x: hidden;
+}
+
 .block_chat-twitch {
   padding-bottom: 40px;
 }
@@ -14132,7 +14136,7 @@ select:focus {
   padding-bottom: 20px;
 }
 
-.block_chat-twitch .title_Text {
+.block_chat-twitch .title_text {
   font-size: 16px;
   color: white;
   margin: 0;
@@ -15660,7 +15664,7 @@ select:focus {
 
 .user_profile .userInfo_block .icon_img {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 24px;
 }
 
@@ -16315,6 +16319,36 @@ select:focus {
 .page_replay .replay-content .content_right .replay-download a .download {
   font-weight: 400;
   margin-left: 10px;
+}
+
+.popup_chat .title_block .btn_close {
+  font-size: 25px;
+  color: #9ca0b6;
+}
+
+.popup_chat .popup_contant {
+  max-height: calc(100vh - 140px) !important;
+  min-height: calc(100vh - 140px) !important;
+  overflow: scroll;
+}
+
+.popup_chat .modal-content {
+  border: 0;
+}
+
+.popup_chat .modal-content .row_contentChat {
+  padding: 15px 10px 0;
+}
+
+.popup_contant::-webkit-scrollbar {
+  width: 10px;
+}
+
+.popup_contant::-webkit-scrollbar-thumb {
+  background-color: #e2e5e9;
+  opacity: 0.8;
+  border-radius: 4px;
+  height: 227px;
 }
 
 .button {
