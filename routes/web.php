@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\ViewComposers\ReplayTypeComposer;
+
 Route::get('/', 'HomeController@index')->name('home.index');
 
 Route::resource('news', 'NewsController');
@@ -28,10 +30,14 @@ Route::post('forum/topic/{id}/comment', 'TopicCommentController@store')->name('c
 
 Route::group(['prefix' => 'replay'], function () {
     Route::get('/', function () {
-        return view('replay.index');
+        return view('replay.index', ['checkProLS' => true]);
     });
-    Route::get('/pro', function () {
-        return view('replay.indexPro');
+    Route::group(['prefix' => 'pro'], function () {
+        foreach (ReplayTypeComposer::getReplayTypes() as $item) {
+            Route::get("/{$item['name']}", function () {
+                return view('replay.indexPro', ['checkProLS' => false]);
+            });
+        }
     });
 });
 

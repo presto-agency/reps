@@ -12,11 +12,9 @@ class HeadlineComposer
 
     public function __construct()
     {
-        $this->category = collect();
+        $data = [];
 
         $getData = Headline::get(['title']);
-
-        $data = [];
 
         if (!$getData->isEmpty()) {
             foreach ($getData as $item) {

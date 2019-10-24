@@ -6,7 +6,6 @@ namespace App\Http\ViewComposers;
 use App\Models\Replay;
 use App\User;
 use App\Models\ForumTopic;
-use App\Models\ReplayType;
 use Illuminate\View\View;
 
 class DashboardCountComposer
@@ -16,8 +15,6 @@ class DashboardCountComposer
 
     public function __construct()
     {
-        $this->category = collect();
-
         $data['users'] = User::count();
         $data['forumTopics'] = ForumTopic::count();
 
