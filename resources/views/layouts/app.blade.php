@@ -70,6 +70,7 @@
                 @include('content.tablet__button-information')
                 <div id="left-sidebar-wrap" class="left-sidebar-wrap no-height">
                     @yield('sidebar-left')
+
                     {{--@include('components.block-tournament')--}}
                     {{--@include('components.block-replay')--}}
                     {{--@include('components.block-lastNews')--}}
@@ -84,8 +85,9 @@
             <!--CONTENT-->
             <div id="content" class="col-xl-6 col-lg-6 col-md-12 col-12 content">
                 {{--@include('content.Page_gameBest')--}}
-                {{--@include('content.Page_tournamentDetail-content')--}}
-                {{--@include('content.Page_tournament-content')--}}
+                @include('content.Page_tournamentDetail-content')
+                @include('content.Page_tournament-content')
+                @include('content.page_replay')
                 @yield('content')
                 {{--@include('content.detailed-news')--}}
                 {{--@include('content.forum-allSections')--}}

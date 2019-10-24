@@ -29,12 +29,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="gallery-name">Подпись:</label>
+                <label class="label_group" for="gallery-name">Подпись:</label>
                 <input type="text" class="form-control" id="gallery-name">
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="gallery__for-adults" checked="">
-                <label class="form-check-label" for="gallery__for-adults">
+                <label class="label_group" class="form-check-label" for="gallery__for-adults">
                     18+
                 </label>
             </div>

@@ -26,24 +26,29 @@ Route::resource('forum/topic', 'TopicController');/*Route::get('forum/topic/{id}
 //Route::resource('forum/topic/comment','TopicCommentController');
 Route::post('forum/topic/{id}/comment', 'TopicCommentController@store')->name('comment.store');
 
-
-Route::get('replay', function (){
-    return view('replay.index');
+Route::group(['prefix' => 'replay'], function () {
+    Route::get('/', function () {
+        return view('replay.index');
+    });
+    Route::get('/pro', function () {
+        return view('replay.indexPro');
+    });
 });
 
-Route::get('best', function (){
+
+Route::get('best', function () {
     return view('best.index');
 });
 
-Route::get('tournament', function (){
+Route::get('tournament', function () {
     return view('tournament.index');
 });
 
-Route::get('tournament/{id}', function (){
+Route::get('tournament/{id}', function () {
     return view('tournament.show');
 });
 
-Route::get('user', function (){
+Route::get('user', function () {
     return view('user.index');
 });
 

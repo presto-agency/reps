@@ -1,8 +1,15 @@
 @if ($user)
     <li class="dropdown user user-menu" style="margin-right: 20px;">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-            <img src="{{asset($user->avatar_url_or_blank) }}" class="user-image"/>
-            <span class="hidden-xs">{{ $user->name }}</span>
+            @if(file_exists($user->avatar) === true)
+                <img src="{{asset($user->avatar)}}"
+                     class="user-image"/>
+                <span class="hidden-xs">{{ $user->name }}</span>
+            @else
+                <img src="{{asset($user->avatar_url_or_blank) }}"
+                     class="user-image"/>
+                <span class="hidden-xs">{{ $user->name }}</span>
+            @endif
         </a>
         <ul class="dropdown-menu">
             <li class="user-header">

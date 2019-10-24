@@ -62,7 +62,7 @@ class Replay extends Section
 
         $display->setFilters([
             AdminDisplayFilter::related('approved')->setModel(\App\Models\Replay::class),
-            AdminDisplayFilter::related('type_id')->setModel(\App\Models\Replay::class),
+            AdminDisplayFilter::related('user_replay')->setModel(\App\Models\Replay::class),
         ]);
 
         $display->setApply(function ($query) {
@@ -109,8 +109,13 @@ class Replay extends Section
                 ->setWidth(70),
 
             $type_id = AdminColumn::text('types.title', 'Тип')
-                ->append(AdminColumn::filter('type_id'))
-                ->setWidth(55),
+                ->setWidth(70),
+
+            $user_replay = AdminColumn::custom('Тип 2', function ($model) {
+                return $model->user_replay == $model::REPLAY_PRO ? "Профессиональный" : "Пользовательский";
+            })
+                ->append(AdminColumn::filter('user_replay'))
+                ->setWidth(100),
 
             $comments_count = AdminColumn::text('comments_count', 'Коментарии')
                 ->setWidth(105),
@@ -129,6 +134,7 @@ class Replay extends Section
             })->setWidth(10),
 
             $approved = AdminColumnEditable::checkbox('approved')->setLabel('Подтвержден')
+                ->setHtmlAttributes(['checked' => 'checked'])
                 ->append(AdminColumn::filter('approved'))
                 ->setWidth(75),
 
@@ -150,17 +156,22 @@ class Replay extends Section
             $map_id = AdminColumnFilter::select()
                 ->setOptions((new ReplayMap())->pluck('name', 'name')->toArray())
                 ->setOperator(FilterInterface::EQUAL)
-                ->setPlaceholder('Все карты')
+                ->setPlaceholder('Все')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
             $country = AdminColumnFilter::select()
                 ->setOptions((new Country())->pluck('name', 'name')->toArray())
                 ->setOperator(FilterInterface::EQUAL)
-                ->setPlaceholder('Все Страны')
+                ->setPlaceholder('Все')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
             $race = AdminColumnFilter::select()
                 ->setOptions((new Race())->pluck('title', 'title')->toArray())
                 ->setOperator(FilterInterface::EQUAL)
-                ->setPlaceholder('Все Расы')
+                ->setPlaceholder('Все')
+                ->setHtmlAttributes(['style' => 'width: 100%']),
+            $type_id = AdminColumnFilter::select()
+                ->setOptions((new ReplayType())->pluck('title', 'title')->toArray())
+                ->setOperator(FilterInterface::EQUAL)
+                ->setPlaceholder('Все')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
 
         ]);
@@ -185,7 +196,6 @@ class Replay extends Section
         $form->addHeader([
             AdminFormElement::columns()
                 ->addColumn([
-
                     $user_replay = AdminFormElement::text('title', 'Название')
                         ->setHtmlAttributes(['placeholder' => 'Название'])
                         ->setValidationRules(['required', 'string', 'between:4,255'])
@@ -201,23 +211,26 @@ class Replay extends Section
                         ->setOptions((new ReplayMap())->pluck('name', 'id')->toArray())
                         ->setDisplay('name')
                         ->setValidationRules(['required', 'string'])
-                ])
+
+                ], 3)
+                ->addColumn([
+                    $map_id = AdminFormElement::select('user_replay', 'Профессиональный/Пользовательский')
+                        ->setOptions(\App\Models\Replay::$userReplaysType)
+                        ->setValidationRules(['required', 'string'])
+                ], 3)
         ]);
         $form->setItems(
             AdminFormElement::columns()
                 ->addColumn(function () {
                     return [
-
                         $first_race = AdminFormElement::select('first_race', 'Перва раса')
                             ->setOptions((new Race())->pluck('title', 'id')->toArray())
                             ->setDisplay('name')
                             ->setValidationRules(['required', 'string']),
-
                         $first_country_id = AdminFormElement::select('first_country_id', 'Первая страна')
                             ->setOptions((new Country())->pluck('name', 'id')->toArray())
                             ->setDisplay('name')
                             ->setValidationRules(['required', 'string']),
-
                         $first_location = AdminFormElement::text('first_location', 'Первая локация')
                             ->setHtmlAttributes(['placeholder' => 'Первая локация'])
                             ->setValidationRules(['nullable', 'numeric', 'max:255'])
@@ -329,9 +342,9 @@ class Replay extends Section
      */
     public function show()
     {
-
         $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $url = url('admin/replays/show/' . $model->getKey());
+            $id = $model->getKey();
+            $url = url("admin/replays/$id/show");
             return $url;
         }, function (\Illuminate\Database\Eloquent\Model $model) {
             return 'Просмотреть';

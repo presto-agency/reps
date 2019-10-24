@@ -58,7 +58,6 @@ class ForumTopics extends Section
     {
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
-//            ->setDisplaySearch(true)
             ->setHtmlAttribute('class', 'table-info table-hover text-center')
             ->paginate(10);
         $display->setFilters([
@@ -86,31 +85,17 @@ class ForumTopics extends Section
                 ),
             $rating = AdminColumn::text('rating', 'Rating')
                 ->setWidth('30px'),
-            $comments_count = AdminColumn::text('comments_count', 'Comments')
+            $comments_count = AdminColumn::count('comments', 'Comments')
                 ->setWidth('15px'),
             $reviews = AdminColumn::text('reviews', 'Reviews')
                 ->setWidth('30px'),
-
             $news = AdminColumnEditable::checkbox('news','Yes', 'No')->setLabel('News'),
 
-            /*$activity_at = AdminColumn::datetime('activity_at', 'Last activity')
-                ->setFormat('d-m-Y')
-                ->setWidth('50px'),*/
         ]);
 
         $control = $display->getColumns()->getControlColumn();
-
-        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $url = url('admin/forum_topics/show');
-            return $url.'/'.$model->getKey(); // Генерация ссылки
-        }, function (\Illuminate\Database\Eloquent\Model $model) {
-            return $model->title; // Генерация текста на кнопке
-        }, 50);
-        $link->hideText();
-        $link->setIcon('fa fa-eye');
-        $link->setHtmlAttribute('class', 'btn-info');
-
-        $control->addButton($link);
+        $buttonShow = $this->show($display);
+        $control->addButton($buttonShow);
 
         $display->setColumnFilters([
             null,
@@ -175,5 +160,24 @@ class ForumTopics extends Section
     public function onRestore($id)
     {
         // remove if unused
+    }
+    /**
+     * @param $display
+     * @return \SleepingOwl\Admin\Display\ControlLink
+     */
+    public function show($display)
+    {
+        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
+            $id = $model->getKey();
+            $url = url("admin/forum_topics/$id/show");
+            return $url; // Генерация ссылки
+        }, function (\Illuminate\Database\Eloquent\Model $model) {
+            return $model->title; // Генерация текста на кнопке
+        }, 50);
+        $link->hideText();
+        $link->setIcon('fa fa-eye');
+        $link->setHtmlAttribute('class', 'btn-info');
+
+        return $link;
     }
 }
