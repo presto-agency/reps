@@ -18,7 +18,7 @@
         <p class="title__text">Темы форума</p>
     </div>
 
-    <div class="forum-topics__accordion accordion" id="forum-topicsAccordion">
+    <div class="forum-topics__accordion" id="forum-topicsAccordion">
         @foreach($sectionItems as $item)
         <div class="accordion__topic card">
             <div class="topic__header card-header js-accordion-title" id="forum-topicsOne" data-toggle="collapse" data-target="#forum-topicsCollapseOne" aria-expanded="true" aria-controls="collapseOne">
