@@ -6,7 +6,7 @@ namespace App\Http\ViewComposers;
 use App\User;
 use Illuminate\View\View;
 
-class AllTopsComposer
+class TopsComposer
 {
     private $getTop100Points;
     private $getTop100Rating;
@@ -133,29 +133,6 @@ class AllTopsComposer
     }
 
     /**
-     * @param $filePath
-     * @return string
-     */
-    public static function pathToFlag25x20($filePath)
-    {
-        $ext = ".png";
-        $filename = self::getFileName($filePath);
-        return "storage/image/county/flag/25x20/$filename$ext";
-    }
-
-    /**
-     * @param $filePath
-     * @return mixed
-     */
-    public static function getFileName($filePath)
-    {
-        $getImgName1 = explode('/', $filePath);
-        $end = end($getImgName1);
-        $getImgName2 = explode('.', $end);
-        return $fileName = reset($getImgName2);
-    }
-
-    /**
      * @param $setData
      * @param $type
      * @return array
@@ -170,7 +147,7 @@ class AllTopsComposer
                 'name' => $item->name,
                 'avatar' => $item->avatar ?? $item->avatar_url_or_blank,
                 'raceIcon' => "images\\" . $item->races->title . ".png",
-                'countryFlag25x20' => self::pathToFlag25x20($item->countries->flag),
+                'countryFlag25x20' => $item->countries->flag,
                 'max' => self::setMaxType($type, $item),
             ];
         }

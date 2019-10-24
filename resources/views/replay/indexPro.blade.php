@@ -6,5 +6,5 @@
 @endsection
 
 @section('content')
-    @include('content.user-replays')
+    @include('content.gocu-replays')
 @endsection

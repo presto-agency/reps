@@ -1,4 +1,3 @@
-{{--@inject('imageService','App\Services\ImageService'))--}}
 <section class="block_top">
     <div class="wrapper">
         <div class="title_block">
@@ -29,7 +28,7 @@
             @endforeach
         </div>
         <div class="title_top">
-            <a href="#"><p class="title_Text">Top 10 (репутация)</a>
+            <a href="/best"><p class="title_Text">Top 10 кг</a>
         </div>
         <div class="block_topUsers">
             @foreach($top10Rating as $item)
@@ -48,7 +47,7 @@
             @endforeach
         </div>
         <div class="title_top">
-            <a href="#"><p class="title_Text">TOP points</p></a>
+            <a href="/best"><p class="title_Text">TOP 10 pts</p></a>
         </div>
         <div class="block_topUsers">
             @foreach($top10Points as $item)

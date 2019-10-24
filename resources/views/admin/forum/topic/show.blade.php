@@ -40,10 +40,10 @@
                         @if(isset($topic->author->avatar))
                             <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatar)}}" alt="User img">
                         @else
-                            <img class="img-circle img-bordered-sm" src="{{route('news').'/dist/img/avatar.png'}}" alt="User img">
+{{--                            <img class="img-circle img-bordered-sm" src="{{route('news').'/dist/img/avatar.png'}}" alt="User img">--}}
                         @endif
                         <span class="username">
-                            <a href="#{{--{{route('admin.user.profile', ['id' => $topic->user->id])}}--}}">{{$topic->author->name}}</a>
+{{--                            <a href="#{{route('admin.user.profile', ['id' => $topic->author->id])}}">{{$topic->author->name}}</a>--}}
                         </span>
                         <span class="description">{{$topic->created_at->format('h:m d-m-Y')}}</span>
                     </div>
@@ -77,18 +77,18 @@
                                 <div class="table-content">
                                     @foreach($topic->comments as $comment)
                                         <div class="item row">
-                                            @if(isset($comment->user->avatar))
-                                                <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatar)}}" alt="User img">
-                                            @else
-                                                <img class="img-circle img-bordered-sm" src="{{route('news').'/dist/img/avatar.png'}}" alt="User img">
-                                            @endif
+{{--                                            @if(isset($comment->user->avatar))--}}
+{{--                                                <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatar)}}" alt="User img">--}}
+{{--                                            @else--}}
+{{--                                                <img class="img-circle img-bordered-sm" src="{{route('news').'/dist/img/avatar.png'}}" alt="User img">--}}
+{{--                                            @endif--}}
 
                                             <p class="message">
                                                 <a href="#" class="name">
                                                     <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d-m-Y')}}</small>
                                                     {{$comment->user->name}}
                                                 </a>
-                                                <a type="button" class="btn btn-default text-red"  title="Удалить запись" href="#{{--{{route('admin.comments.remove', ['id' => $comment->id])}}--}}"><i class="fa fa-trash"></i></a>
+{{--                                                <a type="button" class="btn btn-default text-red"  title="Удалить запись" href="#{{route('admin.comments.remove', ['id' => $comment->id])}}"><i class="fa fa-trash"></i></a>--}}
                                                 {!! $comment->content !!}
                                             </p>
                                         </div>
@@ -98,33 +98,7 @@
                             <div class="box-footer clearfix pagination-content">
                             </div>
                         </div>
-
                 </div>
-                {{--<div class="post">
-
-
-
-                    <br>
-                    <div>
-                        <div class="box-body chat" id="chat-box">
-                            <div class="box-footer">
-                                <form method="POST" action="{{route('admin.forum.topic.comment_send', ['id' => $topic->id])}}" method="post">
-                                    @csrf
-                                    <div class="input-group">
-                                        <input class="form-control" placeholder="Type message..." type="text" name="content" >
-
-                                        <div class="input-group-btn">
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="table-content"></div>
-                        </div>
-                        <div class="box-footer clearfix pagination-content">
-                        </div>
-                    </div>
-                </div>--}}
             </div>
         </div>
     </div>
