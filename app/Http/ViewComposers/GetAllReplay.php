@@ -39,7 +39,7 @@ class GetAllReplay
         }
 
         $dataAll = array_merge($dataPro, $dataUser);
-
+//        self::getReplayProWithNumType($num, $type);
         self::$replayPro = $dataPro;
         self::$replayUser = $dataUser;
 
@@ -66,7 +66,7 @@ class GetAllReplay
         return array_slice(self::$replayPro, 0, $num);
     }
 
-    public function getReplayProWithNumType($num, $type)
+    public static function getReplayProWithNumType($num, $type)
     {
         return null;
     }
