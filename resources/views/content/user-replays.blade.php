@@ -37,6 +37,10 @@
         </label>
     </div>
 
+    <div class="gocu-replays__subtitle">
+        <p class="subtitle__name">Bisu v Last</p>
+        <p class="subtitle__date">09.09.2019</p>
+    </div>
     <div class="gocu-replays__match">
         <div class="match__author">
             <img src="{{ url('/images/newsAvatar3.png') }}" alt="avatar">
@@ -81,6 +85,10 @@
     </div>
     <hr>
 
+    <div class="gocu-replays__subtitle">
+        <p class="subtitle__name">Bisu v Last</p>
+        <p class="subtitle__date">09.09.2019</p>
+    </div>
     <div class="gocu-replays__match">
         <div class="match__author">
             <img src="{{ url('/images/newsAvatar3.png') }}" alt="avatar">
@@ -125,6 +133,10 @@
     </div>
     <hr>
 
+    <div class="gocu-replays__subtitle">
+        <p class="subtitle__name">Bisu v Last</p>
+        <p class="subtitle__date">09.09.2019</p>
+    </div>
     <div class="gocu-replays__match">
         <div class="match__author">
             <img src="{{ url('/images/newsAvatar.png') }}" alt="avatar">
@@ -169,6 +181,10 @@
     </div>
     <hr>
 
+    <div class="gocu-replays__subtitle">
+        <p class="subtitle__name">Bisu v Last</p>
+        <p class="subtitle__date">09.09.2019</p>
+    </div>
     <div class="gocu-replays__match">
         <div class="match__author">
             <img src="{{ url('/images/newsAvatar2.png') }}" alt="avatar">
@@ -213,6 +229,10 @@
     </div>
     <hr>
 
+    <div class="gocu-replays__subtitle">
+        <p class="subtitle__name">Bisu v Last</p>
+        <p class="subtitle__date">09.09.2019</p>
+    </div>
     <div class="gocu-replays__match">
         <div class="match__author">
             <img src="{{ url('/images/newsAvatar3.png') }}" alt="avatar">
@@ -257,6 +277,10 @@
     </div>
     <hr>
 
+    <div class="gocu-replays__subtitle">
+        <p class="subtitle__name">Bisu v Last</p>
+        <p class="subtitle__date">09.09.2019</p>
+    </div>
     <div class="gocu-replays__match">
         <div class="match__author">
             <img src="{{ url('/images/newsAvatar.png') }}" alt="avatar">
