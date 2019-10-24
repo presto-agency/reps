@@ -161,7 +161,11 @@
             і списком помилок в ньому
             */
             @if (count($errors) > 0)
-                $('#registrationModal').modal('show');
+                    @if(!empty(Session::get('showModal')) && Session::get('showModal') == 'registration')
+                        $('#registrationModal').modal('show');
+                    @elseif(!empty(Session::get('showModal')) && Session::get('showModal') == 'login')
+                        $('#authorizationModal').modal('show');
+                    @endif
             @endif
         });
     </script>
