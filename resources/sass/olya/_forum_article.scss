@@ -2,7 +2,6 @@
     .wrapper{
         box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     }
-    margin: 40px 0 0 0;
     & .title_block{
         display: flex;
         justify-content: space-between;
@@ -25,6 +24,10 @@
         }
         & .left_section{
             display: flex;
+            max-width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             & button{
                 background: none;
                 border: 0;

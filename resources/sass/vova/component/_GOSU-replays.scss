@@ -51,6 +51,30 @@
         }
     }
 
+    .gocu-replays__subtitle {
+        background-color: #f0f4f8;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .subtitle__name {
+            color: #8086a6;
+            font-size: 16px;
+            font-weight: 400;
+            transition: .3s;
+            margin-bottom: 0;
+            &:hover {
+                color: #0567cc;
+            }
+        }
+        .subtitle__date {
+            color: #9ca0b6;
+            font-size: 12px;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+    }
+
     .gocu-replays__match {
         .match__author {
             width: 100%;

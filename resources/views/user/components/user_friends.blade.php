@@ -1,6 +1,6 @@
 <section class="user_friends">
     <div class="wrapper my-friends">
-        <div class=" title_block">
+        <div class="title_block">
             <p class="title_text">Список Ваших друзей</p>
         </div>
         <div class="row row_title">

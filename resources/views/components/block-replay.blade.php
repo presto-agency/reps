@@ -4,54 +4,226 @@
             <p class="title_Text">РЕПЛЕИ</p>
         </div>
         <div class="row row_game">
-            @foreach($replayPro as $item)
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-3 col-4">
-                    <div class="game_oneSection">
-                        <a class="name_game" title="Busi v Last"><p>{{$item['firstName']." v ".$item['secondName']}}</p>
-                        </a>
-                        <div class="content_game">
-                            <p class="text">Страны:</p>
-                            <img class="icon_bars" src="{{asset($item['firstCountryFlag25x20'])}}"/>
-                            <p class="text">vs</p>
-                            <img class="icon_bars" src="{{asset($item['secondCountryFlag25x20'])}}"/>
-                        </div>
-                        <div class="content_game">
-                            <p class="text">Матчап:</p>
-                            <p class="text_matchap">{{$item['firstRace']}}</p>
-                            <p class="text">vs</p>
-                            <p class="text_matchap">{{$item['secondRace']}}</p>
-                        </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                <div class="game_oneSection">
+                    <a class="name_game" title="Busi v Last"><p>Busi v Last</p></a>
+                    <div class="content_game">
+                        <p class="text">Страны:</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                        <p class="text">vs</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                    </div>
+                    <div class="content_game">
+                        <p class="text">Матчап:</p>
+                        <p class="text_matchap">Z</p>
+                        <p class="text">vs</p>
+                        <p class="text_matchap">P</p>
                     </div>
                 </div>
-            @endforeach
-        </div>
-        <div class="container_btn">
-            <button class="button button__download-more">Другие профессиональные реплеи</button>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                <div class="game_oneSection">
+                    <a class="name_game" title="BW Jeel weekly"><p>BW Jeel weekly</p></a>
+                    <div class="content_game">
+                        <p class="text">Страны:</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                        <p class="text">vs</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                    </div>
+                    <div class="content_game">
+                        <p class="text">Матчап:</p>
+                        <p class="text_matchap">Z</p>
+                        <p class="text">vs</p>
+                        <p class="text_matchap">P</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row row_game">
-            @foreach($replayPro as $item)
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-3 col-4">
-                    <div class="game_oneSection">
-                        <a class="name_game" title="Busi v Last"><p>{{$item['firstName']." v ".$item['secondName']}}</p>
-                        </a>
-                        <div class="content_game">
-                            <p class="text">Страны:</p>
-                            <img class="icon_bars" src="{{asset($item['firstCountryFlag25x20'])}}"/>
-                            <p class="text">vs</p>
-                            <img class="icon_bars" src="{{asset($item['secondCountryFlag25x20'])}}"/>
-                        </div>
-                        <div class="content_game">
-                            <p class="text">Матчап:</p>
-                            <p class="text_matchap">{{$item['firstRace']}}</p>
-                            <p class="text">vs</p>
-                            <p class="text_matchap">{{$item['secondRace']}}</p>
-                        </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                <div class="game_oneSection">
+                    <a class="name_game" title="Busi v Last"><p>Busi v Last</p></a>
+                    <div class="content_game">
+                        <p class="text">Страны:</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                        <p class="text">vs</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                    </div>
+                    <div class="content_game">
+                        <p class="text">Матчап:</p>
+                        <p class="text_matchap">Z</p>
+                        <p class="text">vs</p>
+                        <p class="text_matchap">P</p>
                     </div>
                 </div>
-            @endforeach
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                <div class="game_oneSection">
+                    <a class="name_game" title="Busi v Last"><p>Busi v Last</p></a>
+                    <div class="content_game">
+                        <p class="text">Страны:</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                        <p class="text">vs</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                    </div>
+                    <div class="content_game">
+                        <p class="text">Матчап:</p>
+                        <p class="text_matchap">Z</p>
+                        <p class="text">vs</p>
+                        <p class="text_matchap">P</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row_game">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                <div class="game_oneSection">
+                    <a class="name_game" title="Busi v Last"><p>Busi v Last</p></a>
+                    <div class="content_game">
+                        <p class="text">Страны:</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                        <p class="text">vs</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                    </div>
+                    <div class="content_game">
+                        <p class="text">Матчап:</p>
+                        <p class="text_matchap">Z</p>
+                        <p class="text">vs</p>
+                        <p class="text_matchap">P</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                <div class="game_oneSection">
+                    <a class="name_game" title="Busi v Last"><p>Busi v Last</p></a>
+                    <div class="content_game">
+                        <p class="text">Страны:</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                        <p class="text">vs</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                    </div>
+                    <div class="content_game">
+                        <p class="text">Матчап:</p>
+                        <p class="text_matchap">Z</p>
+                        <p class="text">vs</p>
+                        <p class="text_matchap">P</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row_game">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                <div class="game_oneSection">
+                    <a class="name_game" title="Busi v Last"><p>Busi v Last</p></a>
+                    <div class="content_game">
+                        <p class="text">Страны:</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                        <p class="text">vs</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                    </div>
+                    <div class="content_game">
+                        <p class="text">Матчап:</p>
+                        <p class="text_matchap">Z</p>
+                        <p class="text">vs</p>
+                        <p class="text_matchap">P</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                <div class="game_oneSection">
+                    <a class="name_game" title="Busi v Last"><p>Busi v Last</p></a>
+                    <div class="content_game">
+                        <p class="text">Страны:</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                        <p class="text">vs</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                    </div>
+                    <div class="content_game">
+                        <p class="text">Матчап:</p>
+                        <p class="text_matchap">Z</p>
+                        <p class="text">vs</p>
+                        <p class="text_matchap">P</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="container_btn">
-            <button class="button button__download-more">Другие пользовательские реплеи</button>
+            <button class="button button__download-more">Другие госу реплеи</button>
+        </div>
+        <div class="row row_game">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                <div class="game_oneSection">
+                    <a class="name_game" title="Busi v Last"><p>Busi v Last</p></a>
+                    <div class="content_game">
+                        <p class="text">Страны:</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                        <p class="text">vs</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                    </div>
+                    <div class="content_game">
+                        <p class="text">Матчап:</p>
+                        <p class="text_matchap">Z</p>
+                        <p class="text">vs</p>
+                        <p class="text_matchap">P</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                <div class="game_oneSection">
+                    <a class="name_game" title="Busi v Last"><p>Busi v Last</p></a>
+                    <div class="content_game">
+                        <p class="text">Страны:</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                        <p class="text">vs</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                    </div>
+                    <div class="content_game">
+                        <p class="text">Матчап:</p>
+                        <p class="text_matchap">Z</p>
+                        <p class="text">vs</p>
+                        <p class="text_matchap">P</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row_game">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                <div class="game_oneSection">
+                    <a class="name_game" title="Busi v Last"><p>Busi v Last</p></a>
+                    <div class="content_game">
+                        <p class="text">Страны:</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                        <p class="text">vs</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                    </div>
+                    <div class="content_game">
+                        <p class="text">Матчап:</p>
+                        <p class="text_matchap">Z</p>
+                        <p class="text">vs</p>
+                        <p class="text_matchap">P</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                <div class="game_oneSection">
+                    <a class="name_game" title="Busi v Last"><p>Busi v Last</p></a>
+                    <div class="content_game">
+                        <p class="text">Страны:</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                        <p class="text">vs</p>
+                        <img class="icon_bars" src="{{url('images\country_flag.png')}}"/>
+                    </div>
+                    <div class="content_game">
+                        <p class="text">Матчап:</p>
+                        <p class="text_matchap">Z</p>
+                        <p class="text">vs</p>
+                        <p class="text_matchap">P</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container_btn">
+            <button class="button button__download-more">Пользовательские реплеи</button>
         </div>
     </div>
 </section>

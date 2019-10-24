@@ -26,7 +26,7 @@
 			l34.4,5.5c0.9,0.3,1.3,0.6,1.4,0.7C186.9,189.1,186.8,189.7,186.2,190.4z"/>
         </svg>
 
-        <p class="title__text">Профессиональные реплеи</p>
+        <p class="title__text">Пользовательские реплеи</p>
 
         <label class="title__game-period" for="game-period" name="game-period">
             <select id="game-period">
@@ -36,35 +36,35 @@
             </select>
         </label>
     </div>
-    @foreach($replayPro as $item)
+    <div class="gocu-replays__subtitle">
+        <p class="subtitle__name">Bisu v Last</p>
+        <p class="subtitle__date">09.09.2019</p>
+    </div>
+
     <div class="gocu-replays__match">
-            <div class="match__author">
-                @if(file_exists($item['userAvatar']) === true)
-                    <img src="{{ asset($item['userAvatar']) }}" alt="avatar">
-                @else
-                    <img src="{{ asset($item['userBlank']) }}" alt="avatar">
-                @endif
-                <span class="comment-author__nickname">{{$item['userName']}}</span>
-                <span class="comment-author__replay-item">Видео реплай</span>
-                <span class="comment-author__date">{{$item['replayCreate']}}</span>
-            </div>
-        <p class="match__comment">{{$item['replayTitle']}}</p>
+        <div class="match__author">
+            <img src="{{ url('/images/newsAvatar3.png') }}" alt="avatar">
+            <span class="comment-author__nickname">Rus_Brain</span>
+            <span class="comment-author__replay-item">Видео реплай</span>
+            <span class="comment-author__date">09.09.2019</span>
+        </div>
+        <p class="match__comment"></p>
         <div class="match__info">
             <div class="info__country">
                 <span class="country__text">Страны:</span>
-                <img class="country__img country-first" src="{{ asset($item['firstCountryFlag25x20']) }}" alt="flag">
+                <img class="country__img country-first" src="{{ url('/images/united-kingdom_flag.png') }}" alt="flag">
                 <span class="country__text">vs</span>
-                <img src="{{ asset($item['secondCountryFlag25x20']) }}" alt="flag">
+                <img src="{{ url('/images/sweden_flag.png') }}" alt="flag">
             </div>
             <div class="info__match-up">
                 <span class="match-up__text">Матчап: </span>
-                <span class="match-up__name name__first">{{$item['firstRace']}}</span>
+                <span class="match-up__name name__first">Z</span>
                 <span class="match-up__text match-up__versus">vs</span>
-                <span class="match-up__name name__second">{{$item['secondRace']}}</span>
+                <span class="match-up__name name__second">P</span>
             </div>
             <div class="info__maps">
                 <span class="maps__text">Карта:</span>
-                <span class="maps__name">{{$item['mapName']}}</span>
+                <span class="maps__name">Sylphide</span>
             </div>
             <div class="info__wins">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -79,12 +79,251 @@
                     c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                     C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
-                <span class="wins__text">{{$item['replayRait']}}</span>
+                <span class="wins__text">1</span>
             </div>
         </div>
     </div>
     <hr>
-    @endforeach
+
+    <div class="gocu-replays__subtitle">
+        <p class="subtitle__name">Bisu v Last</p>
+        <p class="subtitle__date">09.09.2019</p>
+    </div>
+    <div class="gocu-replays__match">
+        <div class="match__author">
+            <img src="{{ url('/images/newsAvatar3.png') }}" alt="avatar">
+            <span class="comment-author__nickname">4p)MickeyMouse</span>
+            <span class="comment-author__replay-item">Видео реплай</span>
+            <span class="comment-author__date">09.09.2019</span>
+        </div>
+        <p class="match__comment">Action навязал Флэшу красивейшую агрессивную zvt игру.</p>
+        <div class="match__info">
+            <div class="info__country">
+                <span class="country__text">Страны:</span>
+                <img class="country__img country-first" src="{{ url('/images/sweden_flag.png') }}" alt="flag">
+                <span class="country__text">vs</span>
+                <img src="{{ url('/images/flag-russia.png') }}" alt="flag">
+            </div>
+            <div class="info__match-up">
+                <span class="match-up__text">Матчап: </span>
+                <span class="match-up__name name__first">Z</span>
+                <span class="match-up__text match-up__versus">vs</span>
+                <span class="match-up__name name__second">T</span>
+            </div>
+            <div class="info__maps">
+                <span class="maps__text">Карта:</span>
+                <span class="maps__name">Overwatchhide</span>
+            </div>
+            <div class="info__wins">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+	                <path d="M497,37h-65.7c0.2-7.3,0.4-14.6,0.4-22c0-8.3-6.7-15-15-15H95.3c-8.3,0-15,6.7-15,15c0,7.4,0.1,14.7,0.4,22H15
+                    C6.7,37,0,43.7,0,52c0,67.2,17.6,130.6,49.5,178.6c31.5,47.4,73.5,74.6,118.9,77.2c10.3,11.2,21.2,20.3,32.5,27.3v66.7h-25.2
+                    c-30.4,0-55.2,24.8-55.2,55.2V482h-1.1c-8.3,0-15,6.7-15,15c0,8.3,6.7,15,15,15h273.1c8.3,0,15-6.7,15-15c0-8.3-6.7-15-15-15h-1.1
+                    v-25.2c0-30.4-24.8-55.2-55.2-55.2h-25.2V335c11.3-7,22.2-16.1,32.5-27.3c45.4-2.6,87.4-29.8,118.9-77.2
+                    C494.4,182.6,512,119.2,512,52C512,43.7,505.3,37,497,37z M74.4,213.9C48.1,174.4,32.7,122.6,30.3,67h52.1
+                    c5.4,68.5,21.5,131.7,46.6,182c4,8,8.2,15.6,12.5,22.7C116.6,262.2,93.5,242.5,74.4,213.9z M437.6,213.9
+                    c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
+                    C479.3,122.6,463.9,174.4,437.6,213.9z"/>
+                </svg>
+                <span class="wins__text">2</span>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="gocu-replays__subtitle">
+        <p class="subtitle__name">Bisu v Last</p>
+        <p class="subtitle__date">09.09.2019</p>
+    </div>
+    <div class="gocu-replays__match">
+        <div class="match__author">
+            <img src="{{ url('/images/newsAvatar.png') }}" alt="avatar">
+            <span class="comment-author__nickname">Rus_Brain</span>
+            <span class="comment-author__replay-item">Видео реплай</span>
+            <span class="comment-author__date">09.09.2019</span>
+        </div>
+        <p class="match__comment">Потнейшее zvp от Джае</p>
+        <div class="match__info">
+            <div class="info__country">
+                <span class="country__text">Страны:</span>
+                <img class="country__img country-first" src="{{ url('/images/flag-russia.png') }}" alt="flag">
+                <span class="country__text">vs</span>
+                <img src="{{ url('/images/germany_flag.png') }}" alt="flag">
+            </div>
+            <div class="info__match-up">
+                <span class="match-up__text">Матчап: </span>
+                <span class="match-up__name name__first">Z</span>
+                <span class="match-up__text match-up__versus">vs</span>
+                <span class="match-up__name name__second">T</span>
+            </div>
+            <div class="info__maps">
+                <span class="maps__text">Карта:</span>
+                <span class="maps__name">Overwatchhide</span>
+            </div>
+            <div class="info__wins">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+	                <path d="M497,37h-65.7c0.2-7.3,0.4-14.6,0.4-22c0-8.3-6.7-15-15-15H95.3c-8.3,0-15,6.7-15,15c0,7.4,0.1,14.7,0.4,22H15
+                    C6.7,37,0,43.7,0,52c0,67.2,17.6,130.6,49.5,178.6c31.5,47.4,73.5,74.6,118.9,77.2c10.3,11.2,21.2,20.3,32.5,27.3v66.7h-25.2
+                    c-30.4,0-55.2,24.8-55.2,55.2V482h-1.1c-8.3,0-15,6.7-15,15c0,8.3,6.7,15,15,15h273.1c8.3,0,15-6.7,15-15c0-8.3-6.7-15-15-15h-1.1
+                    v-25.2c0-30.4-24.8-55.2-55.2-55.2h-25.2V335c11.3-7,22.2-16.1,32.5-27.3c45.4-2.6,87.4-29.8,118.9-77.2
+                    C494.4,182.6,512,119.2,512,52C512,43.7,505.3,37,497,37z M74.4,213.9C48.1,174.4,32.7,122.6,30.3,67h52.1
+                    c5.4,68.5,21.5,131.7,46.6,182c4,8,8.2,15.6,12.5,22.7C116.6,262.2,93.5,242.5,74.4,213.9z M437.6,213.9
+                    c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
+                    C479.3,122.6,463.9,174.4,437.6,213.9z"/>
+                </svg>
+                <span class="wins__text">2</span>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="gocu-replays__subtitle">
+        <p class="subtitle__name">Bisu v Last</p>
+        <p class="subtitle__date">09.09.2019</p>
+    </div>
+    <div class="gocu-replays__match">
+        <div class="match__author">
+            <img src="{{ url('/images/newsAvatar2.png') }}" alt="avatar">
+            <span class="comment-author__nickname">mSj.RusAiur</span>
+            <span class="comment-author__replay-item">Видео реплай</span>
+            <span class="comment-author__date">09.09.2019</span>
+        </div>
+        <p class="match__comment">gggf</p>
+        <div class="match__info">
+            <div class="info__country">
+                <span class="country__text">Страны:</span>
+                <img class="country__img country-first" src="{{ url('/images/germany_flag.png') }}" alt="flag">
+                <span class="country__text">vs</span>
+                <img src="{{ url('/images/united-kingdom_flag.png') }}" alt="flag">
+            </div>
+            <div class="info__match-up">
+                <span class="match-up__text">Матчап: </span>
+                <span class="match-up__name name__first">Z</span>
+                <span class="match-up__text match-up__versus">vs</span>
+                <span class="match-up__name name__second">T</span>
+            </div>
+            <div class="info__maps">
+                <span class="maps__text">Карта:</span>
+                <span class="maps__name">Overwatchhide</span>
+            </div>
+            <div class="info__wins">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+	                <path d="M497,37h-65.7c0.2-7.3,0.4-14.6,0.4-22c0-8.3-6.7-15-15-15H95.3c-8.3,0-15,6.7-15,15c0,7.4,0.1,14.7,0.4,22H15
+                    C6.7,37,0,43.7,0,52c0,67.2,17.6,130.6,49.5,178.6c31.5,47.4,73.5,74.6,118.9,77.2c10.3,11.2,21.2,20.3,32.5,27.3v66.7h-25.2
+                    c-30.4,0-55.2,24.8-55.2,55.2V482h-1.1c-8.3,0-15,6.7-15,15c0,8.3,6.7,15,15,15h273.1c8.3,0,15-6.7,15-15c0-8.3-6.7-15-15-15h-1.1
+                    v-25.2c0-30.4-24.8-55.2-55.2-55.2h-25.2V335c11.3-7,22.2-16.1,32.5-27.3c45.4-2.6,87.4-29.8,118.9-77.2
+                    C494.4,182.6,512,119.2,512,52C512,43.7,505.3,37,497,37z M74.4,213.9C48.1,174.4,32.7,122.6,30.3,67h52.1
+                    c5.4,68.5,21.5,131.7,46.6,182c4,8,8.2,15.6,12.5,22.7C116.6,262.2,93.5,242.5,74.4,213.9z M437.6,213.9
+                    c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
+                    C479.3,122.6,463.9,174.4,437.6,213.9z"/>
+                </svg>
+                <span class="wins__text">2</span>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="gocu-replays__subtitle">
+        <p class="subtitle__name">Bisu v Last</p>
+        <p class="subtitle__date">09.09.2019</p>
+    </div>
+    <div class="gocu-replays__match">
+        <div class="match__author">
+            <img src="{{ url('/images/newsAvatar3.png') }}" alt="avatar">
+            <span class="comment-author__nickname">Rus_Brain</span>
+            <span class="comment-author__replay-item">Видео реплай</span>
+            <span class="comment-author__date">09.09.2019</span>
+        </div>
+        <p class="match__comment"></p>
+        <div class="match__info">
+            <div class="info__country">
+                <span class="country__text">Страны:</span>
+                <img class="country__img country-first" src="{{ url('/images/united-kingdom_flag.png') }}" alt="flag">
+                <span class="country__text">vs</span>
+                <img src="{{ url('/images/sweden_flag.png') }}" alt="flag">
+            </div>
+            <div class="info__match-up">
+                <span class="match-up__text">Матчап: </span>
+                <span class="match-up__name name__first">Z</span>
+                <span class="match-up__text match-up__versus">vs</span>
+                <span class="match-up__name name__second">P</span>
+            </div>
+            <div class="info__maps">
+                <span class="maps__text">Карта:</span>
+                <span class="maps__name">Sylphide</span>
+            </div>
+            <div class="info__wins">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+	                <path d="M497,37h-65.7c0.2-7.3,0.4-14.6,0.4-22c0-8.3-6.7-15-15-15H95.3c-8.3,0-15,6.7-15,15c0,7.4,0.1,14.7,0.4,22H15
+                    C6.7,37,0,43.7,0,52c0,67.2,17.6,130.6,49.5,178.6c31.5,47.4,73.5,74.6,118.9,77.2c10.3,11.2,21.2,20.3,32.5,27.3v66.7h-25.2
+                    c-30.4,0-55.2,24.8-55.2,55.2V482h-1.1c-8.3,0-15,6.7-15,15c0,8.3,6.7,15,15,15h273.1c8.3,0,15-6.7,15-15c0-8.3-6.7-15-15-15h-1.1
+                    v-25.2c0-30.4-24.8-55.2-55.2-55.2h-25.2V335c11.3-7,22.2-16.1,32.5-27.3c45.4-2.6,87.4-29.8,118.9-77.2
+                    C494.4,182.6,512,119.2,512,52C512,43.7,505.3,37,497,37z M74.4,213.9C48.1,174.4,32.7,122.6,30.3,67h52.1
+                    c5.4,68.5,21.5,131.7,46.6,182c4,8,8.2,15.6,12.5,22.7C116.6,262.2,93.5,242.5,74.4,213.9z M437.6,213.9
+                    c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
+                    C479.3,122.6,463.9,174.4,437.6,213.9z"/>
+                </svg>
+                <span class="wins__text">1</span>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="gocu-replays__subtitle">
+        <p class="subtitle__name">Bisu v Last</p>
+        <p class="subtitle__date">09.09.2019</p>
+    </div>
+    <div class="gocu-replays__match">
+        <div class="match__author">
+            <img src="{{ url('/images/newsAvatar.png') }}" alt="avatar">
+            <span class="comment-author__nickname">Rus_Brain</span>
+            <span class="comment-author__replay-item">Видео реплай</span>
+            <span class="comment-author__date">09.09.2019</span>
+        </div>
+        <p class="match__comment">Потнейшее zvp от Джае</p>
+        <div class="match__info">
+            <div class="info__country">
+                <span class="country__text">Страны:</span>
+                <img class="country__img country-first" src="{{ url('/images/flag-russia.png') }}" alt="flag">
+                <span class="country__text">vs</span>
+                <img src="{{ url('/images/germany_flag.png') }}" alt="flag">
+            </div>
+            <div class="info__match-up">
+                <span class="match-up__text">Матчап: </span>
+                <span class="match-up__name name__first">Z</span>
+                <span class="match-up__text match-up__versus">vs</span>
+                <span class="match-up__name name__second">T</span>
+            </div>
+            <div class="info__maps">
+                <span class="maps__text">Карта:</span>
+                <span class="maps__name">Overwatchhide</span>
+            </div>
+            <div class="info__wins">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+	                <path d="M497,37h-65.7c0.2-7.3,0.4-14.6,0.4-22c0-8.3-6.7-15-15-15H95.3c-8.3,0-15,6.7-15,15c0,7.4,0.1,14.7,0.4,22H15
+                    C6.7,37,0,43.7,0,52c0,67.2,17.6,130.6,49.5,178.6c31.5,47.4,73.5,74.6,118.9,77.2c10.3,11.2,21.2,20.3,32.5,27.3v66.7h-25.2
+                    c-30.4,0-55.2,24.8-55.2,55.2V482h-1.1c-8.3,0-15,6.7-15,15c0,8.3,6.7,15,15,15h273.1c8.3,0,15-6.7,15-15c0-8.3-6.7-15-15-15h-1.1
+                    v-25.2c0-30.4-24.8-55.2-55.2-55.2h-25.2V335c11.3-7,22.2-16.1,32.5-27.3c45.4-2.6,87.4-29.8,118.9-77.2
+                    C494.4,182.6,512,119.2,512,52C512,43.7,505.3,37,497,37z M74.4,213.9C48.1,174.4,32.7,122.6,30.3,67h52.1
+                    c5.4,68.5,21.5,131.7,46.6,182c4,8,8.2,15.6,12.5,22.7C116.6,262.2,93.5,242.5,74.4,213.9z M437.6,213.9
+                    c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
+                    C479.3,122.6,463.9,174.4,437.6,213.9z"/>
+                </svg>
+                <span class="wins__text">2</span>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <div class="gocu-replays__numb-pages">
