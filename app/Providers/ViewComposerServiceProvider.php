@@ -5,6 +5,7 @@ namespace App\Providers;
 
 use App\Http\ViewComposers\{GetAllReplay,
     ProReplayComposer,
+    ProUserReplayComposer,
     TopsComposer,
     DashboardCountComposer,
     FooterComposer,
@@ -44,6 +45,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         $this->compose('components.streams_list', OnlineStreamListComposer::class);
         $this->compose('content.gocu-replays', ProReplayComposer::class);
         $this->compose('content.user-replays', UserReplayComposer::class);
+        $this->compose('components.block-replay', ProUserReplayComposer::class);
     }
 
 

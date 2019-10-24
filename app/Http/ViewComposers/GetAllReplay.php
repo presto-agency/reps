@@ -12,10 +12,16 @@ class GetAllReplay
     public static $replayPro;
     public static $replayUser;
 
+    public static $replay4User;
+    public static $replay8Pro;
+
     public function __construct()
     {
         self::$replayPro = collect();
         self::$replayUser = collect();
+
+        self::$replay4User = collect();
+        self::$replay8Pro = collect();
 
         $relation = [
             'users:id,avatar,name',
@@ -39,6 +45,10 @@ class GetAllReplay
 
         self::$replayPro = $dataPro;
         self::$replayUser = $dataUser;
+
+        self::$replay4User = array_slice($dataPro, 0, 4);
+        self::$replay8Pro = array_slice($dataUser, 0, 8);
+//        self::$replay8Pro = $getData;
     }
 
 
@@ -52,6 +62,16 @@ class GetAllReplay
         return self::$replayUser;
     }
 
+    public function get4ReplayUser()
+    {
+        return self::$replay4User;
+    }
+
+    public function get8ReplayPro()
+    {
+        return self::$replay8Pro;
+    }
+
     /**
      * @param $item
      * @return array
@@ -63,37 +83,17 @@ class GetAllReplay
             'userBlank' => $item->users->avatar_url_or_blank,
             'userName' => $item->users->name,
             'replayCreate' => $item->created_at->format('d.m.Y'),
-            'firstCountryFlag25x20' => self::pathToFlag25x20($item->firstCountries->flag),
-            'secondCountryFlag25x20' => self::pathToFlag25x20($item->firstCountries->flag),
+            'firstCountryFlag25x20' => $item->firstCountries->flag,
+            'secondCountryFlag25x20' => $item->firstCountries->flag,
             'firstRace' => $item->firstRaces->code,
             'secondRace' => $item->secondRaces->code,
             'mapName' => $item->maps->name,
             'mapUrl' => $item->maps->url,
             'replayTitle' => $item->title,
             'replayRait' => $item->positive_count - $item->negative_count,
+            'firstName' => $item->first_name,
+            'secondName' => $item->second_name,
         ];
-    }
-
-    /**
-     * @param $filePath
-     * @return string
-     */
-    public static function pathToFlag25x20($filePath)
-    {
-        $ext = ".png";
-        $filename = self::getFileName($filePath);
-        return "storage/image/county/flag/25x20/$filename$ext";
-    }
-
-    /**
-     * @param $filePath
-     * @return mixed
-     */
-    public static function getFileName($filePath)
-    {
-        $getImgName1 = explode('/', $filePath);
-        $getImgName2 = explode('.', end($getImgName1));
-        return $fileName = reset($getImgName2);
     }
 
 

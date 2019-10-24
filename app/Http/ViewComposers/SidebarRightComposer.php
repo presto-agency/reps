@@ -44,35 +44,12 @@ class SidebarRightComposer
                     'id' => $item->id,
                     'name' => $item->name,
                     'raceIcon' => $item->races->title,
-                    'countryFlag25x20' => self::pathToFlag25x20($item->countries->flag),
+                    'countryFlag25x20' => $item->countries->flag,
                 ];
             }
         }
 
         return $data;
     }
-
-    /**
-     * @param $filePath
-     * @return string
-     */
-    public static function pathToFlag25x20($filePath)
-    {
-        $ext = ".png";
-        $filename = self::getFileName($filePath);
-        return "storage/image/county/flag/25x20/$filename$ext";
-    }
-
-    /**
-     * @param $filePath
-     * @return mixed
-     */
-    public static function getFileName($filePath)
-    {
-        $getImgName1 = explode('/', $filePath);
-        $getImgName2 = explode('.', end($getImgName1));
-        return $fileName = reset($getImgName2);
-    }
-
 
 }
