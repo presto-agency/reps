@@ -30,7 +30,7 @@ Route::get('streams/show/{id}', '\App\Http\Controllers\Admin\StreamController@sh
 //Route::get('', '\App\Http\Controllers\MyController@index');
 
 
-Route::get('forum_topics/show/{id}', '\App\Http\Controllers\Admin\ForumTopicController@show');
+Route::get('forum_topics/{id}/show', '\App\Http\Controllers\Admin\ForumTopicController@show');
 Route::post('forum_topics/show/{id}/send_comment', '\App\Http\Controllers\Admin\TopicCommentController@store')->name('admin.forum.topic.comment_send');
 
 //Route::get('translations/{groupKey?}', '\Barryvdh\TranslationManager\Controller@getIndex');

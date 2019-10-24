@@ -134,6 +134,7 @@ class Replay extends Section
             })->setWidth(10),
 
             $approved = AdminColumnEditable::checkbox('approved')->setLabel('Подтвержден')
+                ->setHtmlAttributes(['checked' => 'checked'])
                 ->append(AdminColumn::filter('approved'))
                 ->setWidth(75),
 

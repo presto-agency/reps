@@ -36,31 +36,35 @@
             </select>
         </label>
     </div>
-
+    @foreach($replayPro as $item)
     <div class="gocu-replays__match">
-        <div class="match__author">
-            <img src="{{ url('/images/newsAvatar3.png') }}" alt="avatar">
-            <span class="comment-author__nickname">Rus_Brain</span>
-            <span class="comment-author__replay-item">Видео реплай</span>
-            <span class="comment-author__date">09.09.2019</span>
-        </div>
-        <p class="match__comment"></p>
+            <div class="match__author">
+                @if(file_exists($item['userAvatar']) === true)
+                    <img src="{{ asset($item['userAvatar']) }}" alt="avatar">
+                @else
+                    <img src="{{ asset($item['userBlank']) }}" alt="avatar">
+                @endif
+                <span class="comment-author__nickname">{{$item['userName']}}</span>
+                <span class="comment-author__replay-item">Видео реплай</span>
+                <span class="comment-author__date">{{$item['replayCreate']}}</span>
+            </div>
+        <p class="match__comment">{{$item['replayTitle']}}</p>
         <div class="match__info">
             <div class="info__country">
                 <span class="country__text">Страны:</span>
-                <img class="country__img country-first" src="{{ url('/images/united-kingdom_flag.png') }}" alt="flag">
+                <img class="country__img country-first" src="{{ asset($item['firstCountryFlag25x20']) }}" alt="flag">
                 <span class="country__text">vs</span>
-                <img src="{{ url('/images/sweden_flag.png') }}" alt="flag">
+                <img src="{{ asset($item['secondCountryFlag25x20']) }}" alt="flag">
             </div>
             <div class="info__match-up">
                 <span class="match-up__text">Матчап: </span>
-                <span class="match-up__name name__first">Z</span>
+                <span class="match-up__name name__first">{{$item['firstRace']}}</span>
                 <span class="match-up__text match-up__versus">vs</span>
-                <span class="match-up__name name__second">P</span>
+                <span class="match-up__name name__second">{{$item['secondRace']}}</span>
             </div>
             <div class="info__maps">
                 <span class="maps__text">Карта:</span>
-                <span class="maps__name">Sylphide</span>
+                <span class="maps__name">{{$item['mapName']}}</span>
             </div>
             <div class="info__wins">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +84,7 @@
         </div>
     </div>
     <hr>
-
+    @endforeach
     <div class="gocu-replays__match">
         <div class="match__author">
             <img src="{{ url('/images/newsAvatar3.png') }}" alt="avatar">

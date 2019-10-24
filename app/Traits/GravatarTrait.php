@@ -11,6 +11,7 @@ trait GravatarTrait
     public function getAvatarUrlOrBlankAttribute()
     {
         $url = 'images/avatar.jpg';
+        $url = 'images/newsAvatar.png';
         return $url;
     }
 }

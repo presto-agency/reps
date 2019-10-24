@@ -6,7 +6,7 @@ namespace App\Http\ViewComposers;
 use App\User;
 use Illuminate\View\View;
 
-class AllTopsComposer
+class TopsComposer
 {
     private $getTop100Points;
     private $getTop100Rating;

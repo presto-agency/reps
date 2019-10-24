@@ -101,7 +101,14 @@ class Country extends Section
                             })
                             ->setUploadFileName(function (UploadedFile $file) {
                                 return $this->creatUploadName($file);
-                            }),
+                            })
+                            ->setUploadSettings([
+                                'orientate' => [],
+                                'resize' => [25, 20, function ($constraint) {
+                                    $constraint->upsize();
+                                    $constraint->aspectRatio();
+                                }],
+                            ]),
                     ];
                 })
         );

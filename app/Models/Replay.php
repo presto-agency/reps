@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\ModelRelations\ReplayRelationTrait;
 
+
 class Replay extends Model
 {
     use ReplayRelationTrait;
