@@ -48,7 +48,6 @@ class GetAllReplay
 
         self::$replay4User = array_slice($dataPro, 0, 4);
         self::$replay8Pro = array_slice($dataUser, 0, 8);
-//        self::$replay8Pro = $getData;
     }
 
 

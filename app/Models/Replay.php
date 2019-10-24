@@ -11,10 +11,11 @@ class Replay extends Model
     use ReplayRelationTrait;
 
     const REPLAY_PRO = 0;
+    const REPLAY_USER = 1;
 
     public static $userReplaysType = [
-        0 => 'Профессиональный',
-        1 => 'Пользовательский',
+        Replay::REPLAY_PRO => 'Профессиональный',
+        Replay::REPLAY_USER => 'Пользовательский',
     ];
 
     protected $fillable = [

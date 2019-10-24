@@ -13,13 +13,11 @@ class ProReplayComposer
     public function __construct()
     {
         $data = new GetAllReplay();
-//        dd($data->getReplayPro());
         self::$replayPro = $data->getReplayPro();
     }
 
     public function compose(View $view)
     {
-
         $view->with('replayPro', self::$replayPro);
     }
 }
