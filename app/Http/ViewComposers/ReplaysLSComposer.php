@@ -38,7 +38,5 @@ class ReplaysLSComposer
     {
         self::$type = $type;
         self::$replayLSUser;
-
-        return null;
     }
 }
