@@ -10,13 +10,13 @@ Route::get('information', ['as' => 'information', function () {
     return AdminSection::view($content, 'Information');
 }]);
 
-Route::delete('interview_variant_answers/delete/{id}', '\App\Http\Controllers\Admin\InterviewVariantAnswerController@delete')->name('admin.answers.delete');
+Route::delete('interview_variant_answers/{id}/delete', '\App\Http\Controllers\Admin\InterviewVariantAnswerController@delete')->name('admin.answers.delete');
 
-Route::get('interview_questions/show/{id}', '\App\Http\Controllers\Admin\InterviewQuestionsController@show');
+Route::get('interview_questions/{id}/show', '\App\Http\Controllers\Admin\InterviewQuestionsController@show');
 
-Route::get('replays/show/{id}', '\App\Http\Controllers\Admin\ReplayController@show');
-Route::post('replays/show/{id}/send_comment', '\App\Http\Controllers\Admin\ReplayController@comment')->name('admin.replays.comment_send');
-Route::delete('replays/show/{id}/delete_comment', '\App\Http\Controllers\Admin\ReplayController@deleteComment')->name('admin.replays.comment_delete');
+Route::get('replays/{id}/show', '\App\Http\Controllers\Admin\ReplayController@show');
+Route::post('replays/{id}/show/send_comment', '\App\Http\Controllers\Admin\ReplayController@comment')->name('admin.replays.comment_send');
+Route::delete('replays/{id}/show/delete_comment', '\App\Http\Controllers\Admin\ReplayController@deleteComment')->name('admin.replays.comment_delete');
 
 Route::get('user_galleries/show/{id}', '\App\Http\Controllers\Admin\UserGalleryController@show');
 Route::post('user_galleries/show/{id}/send_comment', '\App\Http\Controllers\Admin\UserGalleryController@comment')->name('admin.usergallery.comment_send');
@@ -30,7 +30,7 @@ Route::get('streams/show/{id}', '\App\Http\Controllers\Admin\StreamController@sh
 //Route::get('', '\App\Http\Controllers\MyController@index');
 
 
-Route::get('forum_topics/show/{id}', '\App\Http\Controllers\Admin\ForumTopicController@show');
+Route::get('forum_topics/{id}/show', '\App\Http\Controllers\Admin\ForumTopicController@show');
 Route::post('forum_topics/show/{id}/send_comment', '\App\Http\Controllers\Admin\TopicCommentController@store')->name('admin.forum.topic.comment_send');
 
 //Route::get('translations/{groupKey?}', '\Barryvdh\TranslationManager\Controller@getIndex');

@@ -32,7 +32,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
 
         \App\Models\Replay::class => 'App\Http\Sections\Replay',
         \App\Models\ReplayMap::class => 'App\Http\Sections\ReplayMap',
-        \App\Models\ReplayType::class => 'App\Http\Sections\ReplayType',
+//        \App\Models\ReplayType::class => 'App\Http\Sections\ReplayType',
         \App\Models\ForumTopic::class => 'App\Http\Sections\ForumTopics',
         \App\Models\ForumSection::class => 'App\Http\Sections\ForumSections',
         \App\Models\ChatSmile::class => 'App\Http\Sections\ChatSmile',
@@ -114,7 +114,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'pages' => [
                     (new Page(\App\Models\Replay::class))->setPriority(1),
                     (new Page(\App\Models\ReplayMap::class))->setPriority(2),
-                    (new Page(\App\Models\ReplayType::class))->setPriority(3),
+//                    (new Page(\App\Models\ReplayType::class))->setPriority(3),
                 ]
             ]
         ]);
