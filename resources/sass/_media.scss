@@ -203,7 +203,7 @@
                 }
                 & .right_block{
                     & svg{
-                        width: 2.562vw;
+                        width: 1.562vw;
                         margin-right: 0.732vw;
                     }
                 }
@@ -2406,7 +2406,7 @@
                     & button{
                     }
                     & svg{
-                        width: 3.5vw;
+                        width: 2.5vw;
                         margin-right: 1vw;
                     }
                     & .svg_close{
@@ -4577,119 +4577,119 @@
             }
         }
 
-        .breaking-news__news-card {
-            padding-left: 3.819vw;
-            padding-right: 3.819vw;
-            padding-top: 4.340vw;
-            .card-body {
-                .card-body__author {
-                    margin-bottom: 3.125vw;
-
-                    .author__avatar {
-                        width: 4.861vw;
-                        height: 4.861vw;
-                    }
-                    .author__nickname {
-                        font-size: 3.431vw;
-                    }
-                    .author__date {
-                        margin-left: auto;
-                        font-size: 3.083vw;
-                    }
-                }
-                .card-body__title {
-                    font-size: 3.778vw;
-                    line-height: 3.299vw;
-                }
-
-                .card-body__text {
-                    font-size: 3.431vw;
-                }
-                //p - styles for text who isert from admin
-                p {
-                    font-size: 3.431vw;
-                }
-                //p - styles for text "читать" isert from admin
-                a {
-                    font-size: 3.431vw;
-                }
-                .card-body__items {
-                    margin-bottom: 3.125vw;
-                    .items__comment {
-                        svg {
-                            width: 3.646vw;
-                            height: 3.646vw;
-                        }
-                        span {
-                            font-size: 2.083vw;
-                            line-height: 3.299vw;
-                            margin-left: 2.083vw;
-                        }
-                    }
-                    .items__share {
-                        margin-left: 6.076vw;
-                        svg {
-                            width: 3.125vw;
-                            height: 3.472vw;
-                        }
-                    }
-                    .items__watch {
-                        svg {
-                            width: 2.910vw;
-                            height: 2.910vw;
-                        }
-                        span {
-                            margin-left: 2.083vw;
-                            font-size: 3.083vw;
-                            line-height: 3.299vw;
-                        }
-                    }
-                }
-                .card-body__comment-form {
-                    margin-bottom: 7.986vw;
-                    .comment-form__group {
-                        .comment {
-                            .comment__icon {
-                                width: 3.472vw;
-                                height: 2.778vw;
-                                top: 2.604vw;
-                                right: 13.889vw;
-                            }
-                            .comment__input {
-                                height: 7.639vw;
-                                padding-left: 3.125vw;
-                                padding-right: 13.472vw;
-                                &::placeholder {
-                                    font-size: 3.083vw;
-                                }
-                            }
-                        }
-                        .buttons-upload{
-                            top: 2.083vw;
-                            right: 8.681vw;
-                            label {
-                                margin-left: 2.951vw;
-                            }
-                            i {
-                                font-size: 2.778vw;
-                            }
-                            .smile-upload {
-                                margin-left: 2.778vw;
-                                i {
-                                    font-size: 3.778vw;
-                                }
-                            }
-                        }
-                    }
-                    .comment-form__button {
-                        svg {
-                            width: 3.472vw;
-                            height: 3.125vw;
-                        }
-                    }
-                }
-            }
-        }
+        //.breaking-news__news-card {
+        //    padding-left: 3.819vw;
+        //    padding-right: 3.819vw;
+        //    padding-top: 4.340vw;
+        //    .card-body {
+        //        .card-body__author {
+        //            margin-bottom: 3.125vw;
+        //
+        //            .author__avatar {
+        //                width: 4.861vw;
+        //                height: 4.861vw;
+        //            }
+        //            .author__nickname {
+        //                font-size: 3.431vw;
+        //            }
+        //            .author__date {
+        //                margin-left: auto;
+        //                font-size: 3.083vw;
+        //            }
+        //        }
+        //        .card-body__title {
+        //            font-size: 3.778vw;
+        //            line-height: 3.299vw;
+        //        }
+        //
+        //        .card-body__text {
+        //            font-size: 3.431vw;
+        //        }
+        //        //p - styles for text who isert from admin
+        //        p {
+        //            font-size: 3.431vw;
+        //        }
+        //        //p - styles for text "читать" isert from admin
+        //        a {
+        //            font-size: 3.431vw;
+        //        }
+        //        .card-body__items {
+        //            margin-bottom: 3.125vw;
+        //            .items__comment {
+        //                svg {
+        //                    width: 3.646vw;
+        //                    height: 3.646vw;
+        //                }
+        //                span {
+        //                    font-size: 2.083vw;
+        //                    line-height: 3.299vw;
+        //                    margin-left: 2.083vw;
+        //                }
+        //            }
+        //            .items__share {
+        //                margin-left: 6.076vw;
+        //                svg {
+        //                    width: 3.125vw;
+        //                    height: 3.472vw;
+        //                }
+        //            }
+        //            .items__watch {
+        //                svg {
+        //                    width: 2.910vw;
+        //                    height: 2.910vw;
+        //                }
+        //                span {
+        //                    margin-left: 2.083vw;
+        //                    font-size: 3.083vw;
+        //                    line-height: 3.299vw;
+        //                }
+        //            }
+        //        }
+        //        .card-body__comment-form {
+        //            margin-bottom: 7.986vw;
+        //            .comment-form__group {
+        //                .comment {
+        //                    .comment__icon {
+        //                        width: 3.472vw;
+        //                        height: 2.778vw;
+        //                        top: 2.604vw;
+        //                        right: 13.889vw;
+        //                    }
+        //                    .comment__input {
+        //                        height: 7.639vw;
+        //                        padding-left: 3.125vw;
+        //                        padding-right: 13.472vw;
+        //                        &::placeholder {
+        //                            font-size: 3.083vw;
+        //                        }
+        //                    }
+        //                }
+        //                .buttons-upload{
+        //                    top: 2.083vw;
+        //                    right: 8.681vw;
+        //                    label {
+        //                        margin-left: 2.951vw;
+        //                    }
+        //                    i {
+        //                        font-size: 2.778vw;
+        //                    }
+        //                    .smile-upload {
+        //                        margin-left: 2.778vw;
+        //                        i {
+        //                            font-size: 3.778vw;
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //            .comment-form__button {
+        //                svg {
+        //                    width: 3.472vw;
+        //                    height: 3.125vw;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
     .breaking-news__numb-pages {
         margin-top: 4.340vw;
@@ -5036,6 +5036,7 @@
                     select {
                         padding-right: 3.431vw;
                         font-size: 2.7vw;
+                        height: auto;
                     }
                 }
             }
@@ -5157,8 +5158,7 @@
             }
         }
         & .title_players{
-            height: 10.417vw;
-            padding: 0 3.472vw;
+            padding:  3.472vw;
             & .title_playersText{
                 font-size: 3.778vw;
             }
@@ -5252,23 +5252,127 @@
             height: 4.340vw;
         }
     }
-    //page_game
+    //page_replay
+    .page_replay {
+        .title_block {
+            .right_block {
+                a {
+                    font-size: 2.083vw;
+                    margin-left: 1.736vw;
+                }
+
+                span {
+                    font-size: 2.083vw;
+                }
+
+                img {
+                    margin-left: 0.868vw;
+                }
+            }
+        }
+
+        .title_block_gray {
+            padding: 2.604vw;
+            span{
+                font-size: 3.431vw;
+            }
+            svg {
+                width: 3.604vw;
+            }
+
+            .right_block {
+                a {
+                    .comment_count {
+                        margin-right: 1.736vw;
+                    }
+                }
+            }
+
+            .replay-content {
+                padding-bottom: 2.604vw;
+                padding-top: 3.472vw;
+
+                .content_left {
+                    span {
+                        font-size: 2.431vw;
+                    }
+
+                    .left_block {
+                        padding: 0.868vw 1.736vw;
+                    }
+
+                    .right_block {
+                        padding: 0.868vw 1.736vw;
+
+                        img {
+                            width: 2.604vw;
+                            height: 2.604vw;
+                            border-radius: 8.681vw;
+                        }
+                    }
+
+                }
+
+                .content_right {
+                    .title {
+                        font-size: 2.778vw;
+                    }
+
+                    img {
+                        margin: 3.472vw 0 36px;
+                    }
+
+                    .replay-rating {
+                        margin-bottom: 1.736vw;
+
+                        svg {
+                            width: 2.604vw;
+                        }
+
+                        span {
+                            font-size: 2.083vw;
+                        }
+                    }
+
+                    .replay-download {
+                        display: flex;
+                        align-items: baseline;
+                        svg {
+                            width: 2.604vw;
+                        }
+                        a {
+                            span {
+                                font-size: 2.431vw;
+                            }
+
+                            .download {
+                                margin-left: 1.736vw;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+        //page_game
     .Page_gameBest{
-        & .title_block{
+        .title_block{
             min-height: 10.417vw;
             padding: 3.472vw;
-            & .left_content{
+            display: flex;
+            align-items: center;
+             .left_content{
+                 .title_text{
+                     font-size: 3.5vw;
+                 }
                 & svg{
                     margin-right: 1.736vw;
                 }
             }
-            & .right_content{
+             .right_content{
                 & svg{
                     margin-left: 1.736vw;
                 }
-                //& .title_text{
-                //    font-size: 2.431vw;
-                //}
             }
             & img,svg{
                 width: 3.472vw;
@@ -5283,6 +5387,7 @@
             }
             & a{
                 font-size: 2.083vw;
+                height: auto;
             }
         }
         & .container_players{
@@ -5296,7 +5401,7 @@
                     & .number{
                         width: 6.944vw;
                         font-size: 3.431vw;
-                        //height: 4.861vw;
+                        height: auto;
                     }
                     span{
                         font-size: 2.431vw;
@@ -5306,6 +5411,7 @@
                     }
                     & a{
                         width: 24.306vw;
+                        height: auto;
                         & .name_player{
                             font-size: 3.431vw;
                         }
@@ -5323,7 +5429,7 @@
                     p{
                         font-size: 3.431vw;
                         width: 12.153vw;
-                        //height: 4.861vw;
+                        height: auto;
                     }
                 }
             }
@@ -5359,7 +5465,6 @@
         padding-top: 7.417vw;
         padding-bottom: 7.417vw;
         position: relative;
-        min-height: 560px;
         .footer__logo {
             .logo__text {
                 font-size: 3.083vw;
@@ -5900,7 +6005,7 @@
 
                 .buttons-upload{
                     position: absolute;
-                    top: 2.083vw;
+                    top: 1.083vw;
                     right: 8.681vw;
                     label {
                         margin-left: 2.951vw;
@@ -5941,8 +6046,11 @@
         & .title_top_userProfile{
             height: 10.417vw;
             padding: 3.472vw;
-            & .more{
-                & p{
+          .title_Text{
+              font-size: 3vw;
+          }
+             .more{
+                 p{
                     font-size: 6.944vw;
                 }
             }
@@ -6128,9 +6236,11 @@
             padding: 4.340vw;
             .upload-avatar {
                 .avatar__button-upload {
+                    display: flex;
                     margin-left: 0.868vw;
                     label {
                        // height: 6.424vw;
+                        font-size: 3vw;
                         padding-right: 1.736vw;
                         padding-top: 0.868vw;
                         padding-bottom: 0.868vw;
