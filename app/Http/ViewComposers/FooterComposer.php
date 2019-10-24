@@ -15,8 +15,6 @@ class FooterComposer
 
     public function __construct()
     {
-        $this->category = collect();
-
         $data['footer'] = Footer::where('approved', 1)->value('text');
         $data['footerUrl'] = FooterUrl::where('approved', 1)->get(['title', 'url']);
         $data['footerUsers'] = User::where('birthday', Carbon::now()->format('Y-m-d'))->get(['name']);

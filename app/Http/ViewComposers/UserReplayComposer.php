@@ -17,7 +17,6 @@ class UserReplayComposer
 
     public function compose(View $view)
     {
-
         $view->with('replayUser', self::$replayUser);
     }
 }

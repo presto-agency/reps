@@ -21,9 +21,9 @@ class InterviewVariantAnswerComposer
 
     public function __construct()
     {
-        $this->category = collect();
 
         $data = InterviewVariantAnswer::where('question_id', self::$id)->get(['id', 'question_id', 'answer',]);
+
         self::$count = $data->count();
 
         $this->category = $data;

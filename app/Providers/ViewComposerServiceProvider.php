@@ -6,6 +6,8 @@ namespace App\Providers;
 use App\Http\ViewComposers\{GetAllReplay,
     ProReplayComposer,
     ProUserReplayComposer,
+    ReplaysLSComposer,
+    ReplayTypeComposer,
     TopsComposer,
     DashboardCountComposer,
     FooterComposer,
@@ -34,7 +36,6 @@ class ViewComposerServiceProvider extends ServiceProvider
 
         $this->compose('admin.dashboard', DashboardCountComposer::class);
         $this->compose('admin.InterviewQuestion.questionClone', InterviewVariantAnswerComposer::class);
-
         $this->compose('left-side.forum-topics', ForumNavigationComposer::class);
         $this->compose('components.Chat', HeadlineComposer::class);
         $this->compose('content.Page_gameBest', TopsComposer::class);
@@ -46,6 +47,9 @@ class ViewComposerServiceProvider extends ServiceProvider
         $this->compose('content.gocu-replays', ProReplayComposer::class);
         $this->compose('content.user-replays', UserReplayComposer::class);
         $this->compose('components.block-replay', ProUserReplayComposer::class);
+        $this->compose('left-side.replays', ReplaysLSComposer::class);
+        $this->compose('left-side.replays', ReplayTypeComposer::class);
+
     }
 
 
