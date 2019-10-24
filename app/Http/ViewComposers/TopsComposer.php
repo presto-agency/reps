@@ -19,11 +19,6 @@ class TopsComposer
 
     public function __construct()
     {
-        $this->getTop100Points = collect();
-        $this->getTop100Rating = collect();
-        $this->getTop100Replay = collect();
-        $this->getTop100News = collect();
-
         $setTop100Points = self::getTop100Points();
         $setTop100Rating = self::getTop100Rating();
         $setTop100Replay = self::getTop100Replay();
@@ -33,9 +28,6 @@ class TopsComposer
         $this->getTop100Rating = $setTop100Rating;
         $this->getTop100Replay = $setTop100Replay;
         $this->getTop100News = $setTop100News;
-
-        $this->getTop10Rating = collect();
-        $this->getTop10Points = collect();
 
         $this->getTop10Rating = array_slice($setTop100Rating, 0, 9);
         $this->getTop10Points = array_slice($setTop100Points, 0, 9);

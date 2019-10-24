@@ -13,8 +13,6 @@ class SidebarRightComposer
 
     public function __construct()
     {
-        $this->categoryNewUser = collect();
-
         $this->categoryNewUser = self::getNew5Users();
     }
 

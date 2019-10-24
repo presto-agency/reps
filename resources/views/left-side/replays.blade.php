@@ -1,7 +1,8 @@
 <div class="replays">
     <div class="replays__title">
 
-        <svg class="title__icon"  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        <svg class="title__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
         	<path d="M497,37h-65.7c0.2-7.3,0.4-14.6,0.4-22c0-8.3-6.7-15-15-15H95.3c-8.3,0-15,6.7-15,15c0,7.4,0.1,14.7,0.4,22H15
                 C6.7,37,0,43.7,0,52c0,67.2,17.6,130.6,49.5,178.6c31.5,47.4,73.5,74.6,118.9,77.2c10.3,11.2,21.2,20.3,32.5,27.3v66.7h-25.2
@@ -15,143 +16,73 @@
 
         <p class="title__text">Реплеи</p>
     </div>
-
-
     <div class="replays__accordion accordion" id="replaysAccordion">
-
-        <div class="accordion__topic card">
-            <div class="topic__header card-header">
-                <a class="header__title" href="#">
-                    Пользовательские реплеи
-                </a>
-            </div>
-
-            <div class="topic__body">
-                <div class="card-body">
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                        <span class="body__numb">1</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                        <span class="body__numb">0</span>
-                    </div>
-                    <div class="body__wrap">
-                        <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                        <span class="body__numb">1</span>
-                    </div>
+        @if($checkProLS)
+            <div class="accordion__topic card">
+                <div class="topic__header card-header">
+                    <a class="header__title" href="/replay/pro">
+                        Профессиональные реплеи
+                    </a>
                 </div>
+                @foreach($replayLSPro as $item)
+                    <div class="topic__body">
+                        <div class="card-body">
+                            <div class="body__wrap">
+                                <a href="#" class="body__title">{{$item['firstName'].' vs '.$item['secondName']}}</a>
+                                <span class="body__numb">{{$item['replayRait']}}</span>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-        </div>
-
-        <div class="accordion__topic card">
-            <div class="topic__header card-header">
-                <p class="header__title">
-                    Професіонали
-                </p>
-            </div>
-
-            <div class="topic__body">
-                <div class="card-body">
-                    <div class="subtopic__topic card">
-                        <div class="subtopic__header card-header">
-                            <a class="header__title" href="#">
-                                1х1
-                            </a>
-
-                        </div>
-
-                        <div class="subtopic__body">
-                            <div class="card-body">
-                                <div class="body__wrap">
-                                    <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                                    <span class="body__numb">1</span>
-                                </div>
-                                <div class="body__wrap">
-                                    <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                                    <span class="body__numb">0</span>
-                                </div>
-                                <div class="body__wrap">
-                                    <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                                    <span class="body__numb">1</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subtopic__topic card">
-                        <div class="topic__header card-header">
-                            <a class="header__title" href="#">
-                                park/archive
-                            </a>
-                        </div>
-
-                        <div class="topic__body">
-                            <div class="card-body">
-                                <div class="body__wrap">
-                                    <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                                    <span class="body__numb">1</span>
-                                </div>
-                                <div class="body__wrap">
-                                    <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                                    <span class="body__numb">0</span>
-                                </div>
-                                <div class="body__wrap">
-                                    <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                                    <span class="body__numb">1</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subtopic__topic card">
-                        <div class="topic__header card-header">
-                            <a class="header__title" href="#">
-                                Game of the week
-                            </a>
-                        </div>
-
-                        <div class="topic__body">
-                            <div class="card-body">
-                                <div class="body__wrap">
-                                    <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                                    <span class="body__numb">1</span>
-                                </div>
-                                <div class="body__wrap">
-                                    <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                                    <span class="body__numb">0</span>
-                                </div>
-                                <div class="body__wrap">
-                                    <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                                    <span class="body__numb">1</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subtopic__topic card">
-                        <div class="topic__header card-header">
-                            <a class="header__title"  href="#">
-                                2х2   3х3   4х4
-                            </a>
-                        </div>
-
-                        <div class="topic__body">
-                            <div class="card-body">
-                                <div class="body__wrap">
-                                    <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                                    <span class="body__numb">1</span>
-                                </div>
-                                <div class="body__wrap">
-                                    <a href="#" class="body__title">BSL7 ladder Tour#1 Dreamer vs KameZerg</a>
-                                    <span class="body__numb">0</span>
-                                </div>
-                                <div class="body__wrap">
-                                    <a href="#" class="body__title">BSL7-Dreamer vs BSL7-Ononist777</a>
-                                    <span class="body__numb">1</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="accordion__topic card">
+                <div class="topic__header card-header">
+                    <p class="header__title">
+                        Професіонали
+                    </p>
                 </div>
+                @foreach($replayTypes as $typeItem)
+                    <div class="topic__body">
+                        <div class="card-body">
+                            <div class="subtopic__topic card">
+                                <div class="subtopic__header card-header">
+                                    <a class="header__title" href="{{asset($typeItem['url'])}}">
+                                        {{$typeItem['title']}}
+                                    </a>
+                                </div>
+                                <div class="subtopic__body">
+                                    <div class="card-body">
+                                        @foreach($replayLSPro as $item)
+                                            <div class="body__wrap">
+                                                <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
+                                                <span class="body__numb">1</span>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-        </div>
+        @else
+            <div class="accordion__topic card">
+                <div class="topic__header card-header">
+                    <a class="header__title" href="/replay">
+                        Пользовательские реплеи
+                    </a>
+                </div>
+                @foreach($replayLSUser as $item)
+                    <div class="topic__body">
+                        <div class="card-body">
+                            <div class="body__wrap">
+                                <a href="#" class="body__title">{{$item['firstName'].' vs '.$item['secondName']}}</a>
+                                <span class="body__numb">{{$item['replayRait']}}</span>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
     </div>
 </div>
