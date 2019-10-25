@@ -19,100 +19,108 @@
             <p class="title_playersText">Top-100 pts</p>
         </div>
         <div class="container_players">
-            @foreach($top100Points as $item)
-                <div class="players_content">
-                    <div class="left_block">
-                        <span class="number">#{{$item['id']}}</span>
-                        <a href="#">
-                            <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                 ` class="author__avatar img-fluid">
-                            <span class="name_player">{{$item['name']}}</span>
-                        </a>
+            @isset($top100Points)
+                @foreach($top100Points as $item)
+                    <div class="players_content">
+                        <div class="left_block">
+                            <span class="number">#{{$item['id']}}</span>
+                            <a href="#">
+                                <img src="{{asset($item['avatar'])}}" alt="avatar"
+                                     ` class="author__avatar img-fluid">
+                                <span class="name_player">{{$item['name']}}</span>
+                            </a>
+                        </div>
+                        <div class="center_block">
+                            <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
+                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
+                        </div>
+                        <div class="right_block">
+                            <p>{{$item['max']}} pts</p>
+                        </div>
                     </div>
-                    <div class="center_block">
-                        <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
-                        <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
-                    </div>
-                    <div class="right_block">
-                        <p>{{$item['max']}} pts</p>
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endisset
         </div>
         {{--top-100-reputation--}}
         <div class="title_players">
             <p class="title_playersText">Top-100 kg</p>
         </div>
         <div class="container_players">
-            @foreach($top100Rating as $item)
-                <div class="players_content">
-                    <div class="left_block">
-                        <span class="number">#{{$item['id']}}</span>
-                        <a href="#">
-                            <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                 class="author__avatar img-fluid">
-                            <span class="name_player">{{$item['name']}}</span>
-                        </a>
+            @isset($top100Rating)
+                @foreach($top100Rating as $item)
+                    <div class="players_content">
+                        <div class="left_block">
+                            <span class="number">#{{$item['id']}}</span>
+                            <a href="#">
+                                <img src="{{asset($item['avatar'])}}" alt="avatar"
+                                     class="author__avatar img-fluid">
+                                <span class="name_player">{{$item['name']}}</span>
+                            </a>
+                        </div>
+                        <div class="center_block">
+                            <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
+                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
+                        </div>
+                        <div class="right_block">
+                            <p>{{$item['max']}} kg</p>
+                        </div>
                     </div>
-                    <div class="center_block">
-                        <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
-                        <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
-                    </div>
-                    <div class="right_block">
-                        <p>{{$item['max']}} kg</p>
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endisset
         </div>
         {{--top-100-news--}}
         <div class="title_players">
             <p class="title_playersText">Top-100 news</p>
         </div>
         <div class="container_players">
-            @foreach($top100News as $item)
-                <div class="players_content">
-                    <div class="left_block">
-                        <span class="number">#{{$item['id']}}</span>
-                        <a href="#">
-                            <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                 class="author__avatar img-fluid">
-                            <span class="name_player">{{$item['name']}}</span>
-                        </a>
+            @isset($top100News)
+                @foreach($top100News as $item)
+                    <div class="players_content">
+                        <div class="left_block">
+                            <span class="number">#{{$item['id']}}</span>
+                            <a href="#">
+                                <img src="{{asset($item['avatar'])}}" alt="avatar"
+                                     class="author__avatar img-fluid">
+                                <span class="name_player">{{$item['name']}}</span>
+                            </a>
+                        </div>
+                        <div class="center_block">
+                            <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
+                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
+                        </div>
+                        <div class="right_block">
+                            <p>{{$item['max']}} news</p>
+                        </div>
                     </div>
-                    <div class="center_block">
-                        <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
-                        <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
-                    </div>
-                    <div class="right_block">
-                        <p>{{$item['max']}} news</p>
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endisset
         </div>
         {{--top-100-replays--}}
         <div class="title_players">
             <p class="title_playersText">Top-100 replays</p>
         </div>
         <div class="container_players">
-            @foreach($top100Replay as $item)
-                <div class="players_content">
-                    <div class="left_block">
-                        <span class="number">#{{$item['id']}}</span>
-                        <a href="#">
-                            <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                 class="author__avatar img-fluid">
-                            <span class="name_player">{{$item['name']}}</span>
-                        </a>
+            @isset($top100Replay)
+                @foreach($top100Replay as $item)
+                    <div class="players_content">
+                        <div class="left_block">
+                            <span class="number">#{{$item['id']}}</span>
+                            <a href="#">
+                                <img src="{{asset($item['avatar'])}}" alt="avatar"
+                                     class="author__avatar img-fluid">
+                                <span class="name_player">{{$item['name']}}</span>
+                            </a>
+                        </div>
+                        <div class="center_block">
+                            <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
+                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
+                        </div>
+                        <div class="right_block">
+                            <p>{{$item['max']}} replays</p>
+                        </div>
                     </div>
-                    <div class="center_block">
-                        <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
-                        <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
-                    </div>
-                    <div class="right_block">
-                        <p>{{$item['max']}} replays</p>
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endisset
         </div>
     </div>
 </section>
