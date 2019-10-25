@@ -11,6 +11,9 @@
 |
 */
 
+use App\Http\ViewComposers\ReplaysLSComposer;
+use App\Http\ViewComposers\ReplayTypeComposer;
+
 Route::get('/', 'HomeController@index')->name('home.index');
 
 Route::resource('news', 'NewsController');
@@ -27,29 +30,31 @@ Route::resource('forum/topic', 'TopicController');/*Route::get('forum/topic/{id}
 Route::post('forum/topic/{id}/comment', 'TopicCommentController@store')->name('comment.store');
 
 Route::group(['prefix' => 'replay'], function () {
-    Route::get('/', function () {
-        return view('replay.index');
-    });
-    Route::get('/pro', function () {
-        return view('replay.indexPro');
+    Route::get("/", 'ReplayController@show');
+    Route::group(['prefix' => 'pro'], function () {
+        Route::get("/", 'ReplayTypeController@show');
+        foreach (ReplayTypeComposer::getReplayTypes() as $item) {
+            Route::get("/{$item['name']}", 'ReplayTypeController@show');
+//            Route::get("/{$item['name']}", ReplaysLSComposer::setReplayProType($item['name']));
+        }
     });
 });
 
 
 Route::get('best', function () {
-    return view('best.index');
+    return view('best.index', ['checkProLS' => true]);
 });
 
 Route::get('tournament', function () {
-    return view('tournament.index');
+    return view('tournament.index', ['checkProLS' => true]);
 });
 
 Route::get('tournament/{id}', function () {
-    return view('tournament.show');
+    return view('tournament.show', ['checkProLS' => true]);
 });
 
 Route::get('user', function () {
-    return view('user.index');
+    return view('user.index', ['checkProLS' => true]);
 });
 
 Auth::routes();

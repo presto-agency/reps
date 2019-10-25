@@ -13,9 +13,8 @@ class ProUserReplayComposer
     public function __construct()
     {
         $data = new GetAllReplay();
-        self::$replayPro = $data->get8ReplayPro();
-        self::$replayUser = $data->get4ReplayUser();
-//        dd(self::$replayPro);
+        self::$replayPro = $data->getReplayProWithNum(8);
+        self::$replayUser = $data->getReplayUserWithNum(4);
     }
 
     public function compose(View $view)

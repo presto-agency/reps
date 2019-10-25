@@ -5,6 +5,7 @@ namespace App\Http\ViewComposers;
 
 
 use App\Models\Replay;
+use phpDocumentor\Reflection\Type;
 
 
 class GetAllReplay
@@ -12,21 +13,13 @@ class GetAllReplay
     public static $replayPro;
     public static $replayUser;
 
-    public static $replay4User;
-    public static $replay8Pro;
-
     public function __construct()
     {
-        self::$replayPro = collect();
-        self::$replayUser = collect();
-
-        self::$replay4User = collect();
-        self::$replay8Pro = collect();
 
         $relation = [
             'users:id,avatar,name',
             'maps:id,name,url',
-            'types',
+            'types:id,name,title',
             'firstCountries:id,name,flag',
             'secondCountries:id,name,flag',
             'firstRaces:id,title,code',
@@ -35,19 +28,21 @@ class GetAllReplay
         $getData = Replay::with($relation)->where('approved', 1)->get();
         $dataPro = [];
         $dataUser = [];
-        foreach ($getData as $item) {
-            if ($item->user_replay == Replay::REPLAY_PRO) {
-                $dataPro[] = self::getData($item);
-            } else {
-                $dataUser[] = self::getData($item);
+        if (!$getData->isEmpty()) {
+            foreach ($getData as $item) {
+                if ($item->user_replay == Replay::REPLAY_PRO) {
+                    $dataPro[] = self::getData($item);
+                } else {
+                    $dataUser[] = self::getData($item);
+                }
             }
         }
 
+        $dataAll = array_merge($dataPro, $dataUser);
+//        self::getReplayProWithNumType($num, $type);
         self::$replayPro = $dataPro;
         self::$replayUser = $dataUser;
 
-        self::$replay4User = array_slice($dataPro, 0, 4);
-        self::$replay8Pro = array_slice($dataUser, 0, 8);
     }
 
 
@@ -61,15 +56,21 @@ class GetAllReplay
         return self::$replayUser;
     }
 
-    public function get4ReplayUser()
+    public function getReplayUserWithNum($num)
     {
-        return self::$replay4User;
+        return array_slice(self::$replayUser, 0, $num);
     }
 
-    public function get8ReplayPro()
+    public function getReplayProWithNum($num)
     {
-        return self::$replay8Pro;
+        return array_slice(self::$replayPro, 0, $num);
     }
+
+    public static function getReplayProWithNumType($num, $type)
+    {
+        return null;
+    }
+
 
     /**
      * @param $item
@@ -92,6 +93,7 @@ class GetAllReplay
             'replayRait' => $item->positive_count - $item->negative_count,
             'firstName' => $item->first_name,
             'secondName' => $item->second_name,
+            'type' => $item->types->name,
         ];
     }
 
