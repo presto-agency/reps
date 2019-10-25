@@ -17,7 +17,7 @@
         <p class="title__text">Реплеи</p>
     </div>
     <div class="replays__accordion accordion" id="replaysAccordion">
-        @if($checkProLS)
+       @if($pro)
             <div class="accordion__topic card">
                 <div class="topic__header card-header">
                     <a class="header__title" href="/replay/pro">

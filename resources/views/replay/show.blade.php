@@ -26,7 +26,7 @@
 			l34.4,5.5c0.9,0.3,1.3,0.6,1.4,0.7C186.9,189.1,186.8,189.7,186.2,190.4z"/>
         </svg>
 
-        <p class="title__text">Пользовательские реплеи</p>
+        <p class="title__text">Профессиональный реплеи</p>
 
         <label class="title__game-period" for="game-period" name="game-period">
             <select id="game-period">
@@ -36,19 +36,15 @@
             </select>
         </label>
     </div>
-    @isset($replayUser)
-        @foreach($replayUser as $item)
+    @isset($replay)
+        @foreach($replay as $item)
             <div class="gocu-replays__subtitle">
                 <p class="subtitle__name">{{$item['firstName'].' v '.$item['secondName']}}</p>
                 <p class="subtitle__date">{{$item['replayCreate']}}</p>
             </div>
             <div class="gocu-replays__match">
                 <div class="match__author">
-                    @if(file_exists($item['userAvatar']) === true)
-                        <img src="{{asset($item['userAvatar'])}}" alt="avatar">
-                    @else
-                        <img src="{{asset($item['userBlank'])}}" alt="avatar">
-                    @endif
+                    <img src="{{asset($item['userAvatar'])}}" alt="avatar">
                     <span class="comment-author__nickname">{{$item['userName']}}</span>
                     <span class="comment-author__replay-item">Видео реплай</span>
                     <span class="comment-author__date">{{$item['replayCreate']}}</span>
@@ -92,12 +88,14 @@
             <hr>
         @endforeach
     @endisset
-    <div class="gocu-replays__numb-pages">
-        <p class="numb-pages">10 из 240</p>
-    </div>
-    <div class="gocu-replays__button">
-        <button class="button button__download-more">
-            Загрузить еще
-        </button>
-    </div>
+</div>
+
+<div class="gocu-replays__numb-pages">
+    <p class="numb-pages">10 из 240</p>
+</div>
+
+<div class="gocu-replays__button">
+    <button class="button button__download-more">
+        Загрузить еще
+    </button>
 </div>
