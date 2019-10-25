@@ -8,8 +8,8 @@ use App\Http\ViewComposers\{DashboardCountComposer,
     ForumNavigationComposer,
     HeadlineComposer,
     InterviewVariantAnswerComposer,
+    LeftSide\ReplaysNavigationComposer,
     RegistrationComposer,
-    ReplaysLSComposer,
     ReplayTypeComposer,
     RightSide\LastRegisteredUsersComposer,
     RightSide\Top10Composer};
@@ -32,17 +32,13 @@ class ViewComposerServiceProvider extends ServiceProvider
         $this->compose('admin.dashboard', DashboardCountComposer::class);
         $this->compose('admin.InterviewQuestion.questionClone', InterviewVariantAnswerComposer::class);
 
-
-//        $this->compose('content.gocu-replays', ProReplayComposer::class);
-//        $this->compose('content.user-replays', UserReplayComposer::class);
-
 //        $this->compose('components.block-replay', ProUserReplayComposer::class);
 //        $this->compose('components.streams_list', OnlineStreamListComposer::class);
         $this->compose('components.Chat', HeadlineComposer::class);
 
         /*left-side*/
         $this->compose('left-side.forum-topics', ForumNavigationComposer::class);
-        $this->compose('left-side.replays', ReplaysLSComposer::class);
+        $this->compose('left-side.replays', ReplaysNavigationComposer::class);
         $this->compose('left-side.replays', ReplayTypeComposer::class);
 
         /*right-side*/

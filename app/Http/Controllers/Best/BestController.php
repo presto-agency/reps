@@ -113,7 +113,7 @@ class BestController extends Controller
             $data[] = [
                 'id' => $item->id,
                 'name' => $item->name,
-                'avatar' => file_exists($item->avatar) === true ? $item->avatar : $item->avatar_url_or_blank,
+                'avatar' => self::checkAvatar($item),
                 'raceIcon' => "images\\" . $item->races->title . ".png",
                 'countryFlag25x20' => $item->countries->flag,
                 'max' => self::setMaxType($type, $item),
@@ -123,8 +123,22 @@ class BestController extends Controller
 
     }
 
+    /**
+     * @param $item
+     * @return mixed
+     */
+    public static function checkAvatar($item)
+    {
+       return file_exists($item->avatar) === true ? $item->avatar : $item->avatar_url_or_blank;
+    }
 
-    public static function setMaxType($type, $item)
+    /**
+     * @param $type
+     * @param $item
+     * @return |null
+     */
+    public
+    static function setMaxType($type, $item)
     {
         switch ($type) {
             case 'comments':
