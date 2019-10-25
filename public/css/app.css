@@ -14317,6 +14317,88 @@ select:focus {
   transition: 0.3s;
 }
 
+.password-recovery {
+  box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.password-recovery .password-recovery__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 19px;
+}
+
+.password-recovery .password-recovery__title .title__icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.password-recovery .password-recovery__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.password-recovery .password-recovery__form {
+  padding: 25px;
+}
+
+.password-recovery .password-recovery__form .form-group label {
+  width: 100%;
+}
+
+.password-recovery .password-recovery__form .modal-body__enter-btn .button {
+  width: 100%;
+}
+
+.get-recovery-link {
+  box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.get-recovery-link .get-recovery-link__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 19px;
+}
+
+.get-recovery-link .get-recovery-link__title .title__icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.get-recovery-link .get-recovery-link__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.get-recovery-link .get-recovery-link__form {
+  padding: 25px;
+}
+
+.get-recovery-link .get-recovery-link__form .form-group label {
+  width: 100%;
+}
+
+.get-recovery-link .get-recovery-link__form .modal-body__enter-btn .button {
+  width: 100%;
+}
+
 .block_chat-twitch {
   padding-bottom: 40px;
 }
