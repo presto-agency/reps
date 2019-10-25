@@ -14120,8 +14120,201 @@ select:focus {
   }
 }
 
-.chat_overflow {
-  overflow-x: hidden;
+.my-topics {
+  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.my-topics .my-topics__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 19px;
+  align-items: center;
+}
+
+.my-topics .my-topics__title .title__icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.my-topics .my-topics__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.my-topics .my-topics__accordion {
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  /* Style the accordion panel. Note: hidden by default */
+}
+
+.my-topics .my-topics__accordion .accordion-button {
+  background-color: #f0f4f8;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.my-topics .my-topics__accordion .active,
+.my-topics .my-topics__accordion .accordion-button:hover {
+  background-color: #efefef;
+}
+
+.my-topics .my-topics__accordion .accordion-button:after {
+  content: "+";
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.my-topics .my-topics__accordion .active:after {
+  content: "\2212";
+}
+
+.my-topics .my-topics__accordion .panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  margin-bottom: 1px;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f1f3;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items {
+  display: flex;
+  align-items: center;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items .items__link {
+  color: #0567cc;
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items span {
+  margin-bottom: 0;
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items .items__icon {
+  width: 15px;
+  height: 13px;
+  fill: #9ca0b6;
+  margin-right: 5px;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items .items__info {
+  margin-left: 10px;
+  margin-bottom: 0;
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items .items__info.info {
+  color: #0567cc;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__body {
+  margin-bottom: 15px;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__body .body__comment {
+  color: #010b4a;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__footer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 15px;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item {
+  display: flex;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .items__items {
+  display: flex;
+  align-items: center;
+  border: 0;
+  background-color: transparent;
+  margin-right: 15px;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .items__items svg {
+  width: 16px;
+  height: 16px;
+  fill: #c7c9d7;
+  transition: 0.3s;
+  margin-right: 7px;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .items__items svg:hover {
+  fill: #0567cc;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .items__items span {
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .rate {
+  text-decoration: none;
+  background: #0567cc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  width: 150px;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .item__later svg {
+  width: 20px;
+  height: 20px;
+  fill: #0567cc;
+  transition: 0.3s;
 }
 
 .password-recovery {
@@ -14206,16 +14399,34 @@ select:focus {
   width: 100%;
 }
 
+.chat_overflow {
+  overflow-x: hidden;
+}
+
 .block_chat-twitch {
   padding-bottom: 40px;
+}
+
+.block_chat-twitch .active_big_video .block_chat {
+  display: none;
+  width: 0;
+}
+
+.block_chat-twitch .active_big_video .block_stream_list {
+  width: 100%;
 }
 
 .block_chat-twitch .wrapper {
   box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
 }
 
+.block_chat-twitch .main_container {
+  display: flex;
+}
+
 .block_chat-twitch .block_chat {
   padding-bottom: 20px;
+  width: 25%;
 }
 
 .block_chat-twitch .title_text {
@@ -14234,6 +14445,8 @@ select:focus {
   background: #0567cc;
   height: 60px;
   border: 0;
+  display: flex;
+  align-items: center;
   border-top-left-radius: 5px;
 }
 
@@ -14344,6 +14557,7 @@ select:focus {
 
 .block_chat-twitch .block_stream_list {
   position: relative;
+  width: 75%;
 }
 
 .block_chat-twitch .title_video {
@@ -14371,6 +14585,29 @@ select:focus {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+}
+
+.block_chat-twitch .title_video .video_header .big_video_left {
+  display: none;
+  background: transparent;
+  border: 0;
+}
+
+.block_chat-twitch .title_video .video_header .big_video_left svg {
+  fill: white;
+  width: 15px;
+  padding-right: 20px;
+}
+
+.block_chat-twitch .title_video .video_header .big_video_right {
+  background: transparent;
+  border: 0;
+}
+
+.block_chat-twitch .title_video .video_header .big_video_right svg {
+  fill: white;
+  width: 15px;
+  padding-right: 20px;
 }
 
 .block_chat-twitch .title_video .video_header img {
@@ -15407,6 +15644,11 @@ select:focus {
   color: #0567cc;
 }
 
+.Page_tournamentDetail-content .block_replay_content .block_right .container_block .left .btn_modal {
+  background: transparent;
+  border: 0;
+}
+
 .Page_tournamentDetail-content .block_replay_content .block_right .container_block .right p {
   font-size: 14px;
 }
@@ -16273,6 +16515,7 @@ select:focus {
 
 .page_replay .title_block {
   justify-content: space-between;
+  align-items: center;
 }
 
 .page_replay .title_block .left_block {
@@ -16433,6 +16676,47 @@ select:focus {
   height: 227px;
 }
 
+.modal_tournament h5 {
+  font-size: 16px;
+}
+
+.modal_tournament .title_block_gray {
+  padding: 10px;
+}
+
+.modal_tournament .title_block .title_text {
+  font-size: 14px;
+}
+
+.modal_tournament .modal_width {
+  min-width: 70%;
+}
+
+.modal_tournament .small_block .content {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.modal_tournament .small_block .content span {
+  color: black;
+}
+
+.modal_tournament .small_block .left_content span {
+  font-size: 14px;
+}
+
+.modal_tournament .small_block .left_content svg {
+  width: 20px;
+  fill: white;
+}
+
+.modal_tournament .big_block .container_map img {
+  width: 100%;
+  height: 150px;
+}
+
 .button {
   font-size: 12px;
   font-weight: 400;
@@ -16518,7 +16802,6 @@ select:focus {
   align-items: center;
   justify-content: space-between;
   background: #efefef;
-  min-height: 60px;
   padding: 20px;
 }
 
@@ -16721,6 +17004,10 @@ select:focus {
 
   .block_chat-twitch .row_contentChat .block_user_akk .blue_text {
     font-size: 1.025vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_user_akk .number_mess {
+    font-size: 1vw;
   }
 
   .block_chat-twitch .row_contentChat .block_user_akk .user {
@@ -18685,55 +18972,6 @@ select:focus {
   }
 }
 
-@media (max-width: 992px) {
-  .header {
-    position: relative;
-  }
-
-  .header .icon_bars {
-    display: block !important;
-    width: 50px;
-  }
-
-  .header .logo img {
-    width: 70% !important;
-  }
-
-  .header .menu_navigation {
-    display: none !important;
-  }
-
-  .header .autorization {
-    display: none !important;
-  }
-
-  .header .main_menu {
-    position: absolute;
-    right: 0;
-    bottom: 30%;
-  }
-
-  .header .search {
-    justify-content: flex-start;
-  }
-
-  .header .button_input {
-    width: 100% !important;
-  }
-
-  .header .button_input .search_input {
-    min-width: 40vw !important;
-  }
-
-  .header .burger_menu {
-    display: block !important;
-  }
-
-  .header .burger_menu .menu_bar {
-    width: 50px !important;
-  }
-}
-
 @media (max-width: 991px) {
   /*global styles START*/
 
@@ -18906,6 +19144,53 @@ select:focus {
     margin: 0 auto 2.018vw;
   }
 
+  .header {
+    position: relative;
+  }
+
+  .header .icon_bars {
+    display: block !important;
+    width: 50px;
+  }
+
+  .header .logo img {
+    width: 70% !important;
+  }
+
+  .header .menu_navigation {
+    display: none !important;
+  }
+
+  .header .autorization {
+    display: none !important;
+  }
+
+  .header .main_menu {
+    position: absolute;
+    right: 0;
+    bottom: 30%;
+  }
+
+  .header .search {
+    justify-content: flex-start;
+  }
+
+  .header .button_input {
+    width: 100% !important;
+  }
+
+  .header .button_input .search_input {
+    min-width: 40vw !important;
+  }
+
+  .header .burger_menu {
+    display: block !important;
+  }
+
+  .header .burger_menu .menu_bar {
+    width: 50px !important;
+  }
+
   .block_chat-twitch {
     padding-bottom: 4vw;
   }
@@ -18917,6 +19202,38 @@ select:focus {
   .block_chat-twitch .title_Text {
     font-size: 1.6vw;
     padding: 0 0 0 2vw;
+  }
+
+  .block_chat-twitch .block_chat {
+    padding-bottom: 2.016vw;
+    width: 40%;
+  }
+
+  .block_chat-twitch .block_stream_list {
+    width: 60%;
+  }
+
+  .block_chat-twitch .big_video_left {
+    display: none;
+    background: transparent;
+    border: 0;
+  }
+
+  .block_chat-twitch .big_video_left svg {
+    fill: white;
+    width: 1.512vw;
+    padding-right: 2.016vw;
+  }
+
+  .block_chat-twitch .big_video_right {
+    background: transparent;
+    border: 0;
+  }
+
+  .block_chat-twitch .big_video_right svg {
+    fill: white;
+    width: 1.512vw;
+    padding-right: 2.016vw;
   }
 
   .block_chat-twitch .text_support {
@@ -18954,6 +19271,10 @@ select:focus {
 
   .block_chat-twitch .row_contentChat .block_user_akk .blue_text {
     font-size: 1.4vw;
+  }
+
+  .block_chat-twitch .row_contentChat .block_user_akk .number_mess {
+    font-size: 1.7vw;
   }
 
   .block_chat-twitch .row_contentChat .block_user_akk .user {
@@ -21001,6 +21322,18 @@ select:focus {
     padding-bottom: 2.604vw;
   }
 
+  .title_block_gray {
+    padding: 3.472vw;
+  }
+
+  .title_block_gray .title_text {
+    font-size: 3.778vw;
+  }
+
+  .title_block_gray .more p {
+    font-size: 6.944vw;
+  }
+
   .header_row {
     flex-direction: row-reverse;
   }
@@ -21072,6 +21405,32 @@ select:focus {
     line-height: 3.299vw;
   }
 
+  .popup_chat .title_block .btn_close {
+    font-size: 4.34vw;
+  }
+
+  .popup_chat .popup_contant {
+    max-height: calc(100vh - 24.306vw) !important;
+    min-height: calc(100vh - 24.306vw) !important;
+  }
+
+  .popup_chat .modal-content {
+    border: 0;
+  }
+
+  .popup_chat .modal-content .row_contentChat {
+    padding: 2.604vw 1.736vw 0;
+  }
+
+  .popup_contant::-webkit-scrollbar {
+    width: 1.736vw;
+  }
+
+  .popup_contant::-webkit-scrollbar-thumb {
+    border-radius: 0.694vw;
+    height: 39.41vw;
+  }
+
   .block_chat-twitch {
     padding-bottom: 6.944vw;
   }
@@ -21095,6 +21454,23 @@ select:focus {
 
   .block_chat-twitch .container_titleChat .content_right button svg {
     width: 6.076vw;
+  }
+
+  .block_chat-twitch .main_container {
+    display: block;
+  }
+
+  .block_chat-twitch .block_chat {
+    padding-bottom: 2.016vw;
+    width: 100%;
+  }
+
+  .block_chat-twitch .block_stream_list {
+    width: 100%;
+  }
+
+  .block_chat-twitch .big_video_right {
+    display: none;
   }
 
   .block_chat-twitch .messanger {
@@ -21762,6 +22138,39 @@ select:focus {
   .Page_tournamentDetail-content .container_players::-webkit-scrollbar-thumb {
     border-radius: 4px;
     height: 4.34vw;
+  }
+
+  .modal_tournament modal-dialog {
+    width: 80%;
+  }
+
+  .modal_tournament h5 {
+    font-size: 3.778vw;
+  }
+
+  .modal_tournament .title_block_gray {
+    padding: 1.736vw;
+  }
+
+  .modal_tournament .title_block .title_text {
+    font-size: 3.431vw;
+  }
+
+  .modal_tournament .small_block .content {
+    padding: 1.736vw;
+    margin-top: 1.736vw;
+  }
+
+  .modal_tournament .small_block .left_content span {
+    font-size: 2vw;
+  }
+
+  .modal_tournament .small_block .left_content svg {
+    width: 4.472vw;
+  }
+
+  .modal_tournament .big_block .container_map img {
+    height: 26.042vw;
   }
 
   .page_replay .title_block .right_block a {
