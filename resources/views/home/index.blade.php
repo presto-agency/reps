@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('stream')
-    <section class="container">
+    <section class="container chat_overflow">
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 @include('components.Chat')

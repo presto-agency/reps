@@ -1,3 +1,6 @@
+.chat_overflow{
+    overflow-x: hidden;
+}
 .block_chat-twitch{
     padding-bottom: 40px;
     & .wrapper{
@@ -6,7 +9,7 @@
     & .block_chat{
         padding-bottom: 20px;
     }
-    & .title_Text{
+    & .title_text{
         font-size: 16px;
         color:white;
         margin: 0;
