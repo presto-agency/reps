@@ -12,58 +12,64 @@
             <p class="title_text">Новые пользователи</p>
         </div>
         <div class="block_topUsers">
-            @foreach($newUsers as $item)
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
-                        <p>#{{$item['id']}}</p>
+            @isset($newUsers)
+                @foreach($newUsers as $item)
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
+                            <p>#{{$item['id']}}</p>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
+                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}"/>
+                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}"/>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
+                            <p>{{$item['name']}}</p>
+                        </div>
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                        <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}"/>
-                        <img class="icon_bars" src="{{asset($item['raceIcon'])}}"/>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                        <p>{{$item['name']}}</p>
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endisset
         </div>
         <div class="title_top">
             <a href="/best"><p class="title_Text">Top 10 кг</a>
         </div>
         <div class="block_topUsers">
-            @foreach($top10Rating as $item)
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
-                        <p>{{$item['max']}} кг</p>
+            @isset($top10Rating)
+                @foreach($top10Rating as $item)
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
+                            <p>{{$item['max']}} кг</p>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
+                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}"/>
+                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}"/>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
+                            <p>{{$item['name']}}</p>
+                        </div>
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                        <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}"/>
-                        <img class="icon_bars" src="{{asset($item['raceIcon'])}}"/>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                        <p>{{$item['name']}}</p>
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endisset
         </div>
         <div class="title_top">
             <a href="/best"><p class="title_Text">TOP 10 pts</p></a>
         </div>
         <div class="block_topUsers">
-            @foreach($top10Points as $item)
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
-                        <p>{{$item['max']}} pts</p>
+            @isset($top10Points)
+                @foreach($top10Points as $item)
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
+                            <p>{{$item['max']}} pts</p>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
+                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}"/>
+                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}"/>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
+                            <p>{{$item['name']}}</p>
+                        </div>
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                        <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}"/>
-                        <img class="icon_bars" src="{{asset($item['raceIcon'])}}"/>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                        <p>{{$item['name']}}</p>
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endisset
         </div>
     </div>
 </section>
