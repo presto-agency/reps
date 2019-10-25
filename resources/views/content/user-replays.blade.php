@@ -36,46 +36,46 @@
             </select>
         </label>
     </div>
-
-    @foreach($replayUser as $item)
-        <div class="gocu-replays__subtitle">
-            <p class="subtitle__name">{{$item['firstName'].' v '.$item['secondName']}}</p>
-            <p class="subtitle__date">{{$item['replayCreate']}}</p>
-        </div>
-        <div class="gocu-replays__match">
-            <div class="match__author">
-                @if(file_exists($item['userAvatar']) === true)
-                    <img src="{{asset($item['userAvatar'])}}" alt="avatar">
-                @else
-                    <img src="{{asset($item['userBlank'])}}" alt="avatar">
-                @endif
-                <span class="comment-author__nickname">{{$item['userName']}}</span>
-                <span class="comment-author__replay-item">Видео реплай</span>
-                <span class="comment-author__date">{{$item['replayCreate']}}</span>
+    @isset($replayUser)
+        @foreach($replayUser as $item)
+            <div class="gocu-replays__subtitle">
+                <p class="subtitle__name">{{$item['firstName'].' v '.$item['secondName']}}</p>
+                <p class="subtitle__date">{{$item['replayCreate']}}</p>
             </div>
-            <p class="match__comment"></p>
-            <div class="match__info">
-                <div class="info__country">
-                    <span class="country__text">Страны:</span>
-                    <img class="country__img country-first" src="{{$item['firstCountryFlag25x20']}}"
-                         alt="flag">
-                    <span class="country__text">vs</span>
-                    <img src="{{$item['secondCountryFlag25x20']}}" alt="flag">
+            <div class="gocu-replays__match">
+                <div class="match__author">
+                    @if(file_exists($item['userAvatar']) === true)
+                        <img src="{{asset($item['userAvatar'])}}" alt="avatar">
+                    @else
+                        <img src="{{asset($item['userBlank'])}}" alt="avatar">
+                    @endif
+                    <span class="comment-author__nickname">{{$item['userName']}}</span>
+                    <span class="comment-author__replay-item">Видео реплай</span>
+                    <span class="comment-author__date">{{$item['replayCreate']}}</span>
                 </div>
-                <div class="info__match-up">
-                    <span class="match-up__text">Матчап: </span>
-                    <span class="match-up__name name__first">{{$item['firstRace']}}</span>
-                    <span class="match-up__text match-up__versus">vs</span>
-                    <span class="match-up__name name__second">{{$item['secondRace']}}</span>
-                </div>
-                <div class="info__maps">
-                    <span class="maps__text">Карта:</span>
-                    <span class="maps__name">{{$item['mapName']}}</span>
-                </div>
-                <div class="info__wins">
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                         viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                <p class="match__comment"></p>
+                <div class="match__info">
+                    <div class="info__country">
+                        <span class="country__text">Страны:</span>
+                        <img class="country__img country-first" src="{{$item['firstCountryFlag25x20']}}"
+                             alt="flag">
+                        <span class="country__text">vs</span>
+                        <img src="{{$item['secondCountryFlag25x20']}}" alt="flag">
+                    </div>
+                    <div class="info__match-up">
+                        <span class="match-up__text">Матчап: </span>
+                        <span class="match-up__name name__first">{{$item['firstRace']}}</span>
+                        <span class="match-up__text match-up__versus">vs</span>
+                        <span class="match-up__name name__second">{{$item['secondRace']}}</span>
+                    </div>
+                    <div class="info__maps">
+                        <span class="maps__text">Карта:</span>
+                        <span class="maps__name">{{$item['mapName']}}</span>
+                    </div>
+                    <div class="info__wins">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 	                <path d="M497,37h-65.7c0.2-7.3,0.4-14.6,0.4-22c0-8.3-6.7-15-15-15H95.3c-8.3,0-15,6.7-15,15c0,7.4,0.1,14.7,0.4,22H15
                     C6.7,37,0,43.7,0,52c0,67.2,17.6,130.6,49.5,178.6c31.5,47.4,73.5,74.6,118.9,77.2c10.3,11.2,21.2,20.3,32.5,27.3v66.7h-25.2
                     c-30.4,0-55.2,24.8-55.2,55.2V482h-1.1c-8.3,0-15,6.7-15,15c0,8.3,6.7,15,15,15h273.1c8.3,0,15-6.7,15-15c0-8.3-6.7-15-15-15h-1.1
@@ -85,16 +85,16 @@
                     c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                     C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
-                    <span class="wins__text">{{$item['replayRait']}}</span>
+                        <span class="wins__text">{{$item['replayRait']}}</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <hr>
-    @endforeach
+            <hr>
+        @endforeach
+    @endisset
     <div class="gocu-replays__numb-pages">
         <p class="numb-pages">10 из 240</p>
     </div>
-
     <div class="gocu-replays__button">
         <button class="button button__download-more">
             Загрузить еще
