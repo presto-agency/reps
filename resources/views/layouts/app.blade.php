@@ -104,7 +104,7 @@
                 <button id="pulse-button-top" class="pulse-button">Топ</button>
                 <div id="right-sidebar-wrap" class="right-sidebar-wrap no-height">
                     @section('sidebar-right')
-                        @include('components.banner')
+                        @include('right-side.banner')
                         @include('right-side.block-top')
                     @show
                 </div>
