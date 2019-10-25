@@ -15451,6 +15451,11 @@ select:focus {
   background-position: center right 0px;
 }
 
+.Page_tournament-content .title_block .right_content .lable_select select option {
+  background: #0567cc;
+  border: 0;
+}
+
 .Page_tournament-content .title_block img,
 .Page_tournament-content .title_block svg {
   width: 20px;
@@ -16722,7 +16727,7 @@ select:focus {
 }
 
 .banner {
-  padding: 20px 0;
+  padding: 20px 0 0;
 }
 
 .banner .wrapper {
@@ -21608,6 +21613,160 @@ select:focus {
   .block_tournament .block_futureTournament .button {
     margin: 6.944vw auto;
     padding: 0.868vw;
+  }
+
+  .my-topics {
+    border-radius: 0.868vw;
+    margin-bottom: 3.472vw;
+  }
+
+  .my-topics .my-topics__title {
+    border-radius: 0.868vw 0.868vw 0 0;
+    padding-top: 3.472vw;
+    padding-bottom: 3.472vw;
+    padding-left: 3.299vw;
+  }
+
+  .my-topics .my-topics__title .title__icon {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
+
+  .my-topics .my-topics__title .title__text {
+    font-size: 3.778vw;
+    margin-left: 0.951vw;
+  }
+
+  .my-topics .my-topics__accordion {
+    /* Style the accordion panel. Note: hidden by default */
+  }
+
+  .my-topics .my-topics__accordion .accordion-button {
+    padding: 3.125vw;
+    font-size: 3.868vw;
+  }
+
+  .my-topics .my-topics__accordion .accordion-button:after {
+    margin-left: 0.868vw;
+  }
+
+  .my-topics .my-topics__accordion .panel {
+    padding: 0 3.125vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header {
+    margin-top: 1.868vw;
+    padding-bottom: 1.736vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items {
+    width: 50%;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items .items__link {
+    font-size: 3.083vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items span {
+    font-size: 3.083vw;
+    line-height: 3.299vw;
+    margin-right: 0.868vw;
+    margin-left: 0.868vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items .items__icon {
+    width: 10.868vw;
+    height: 2.257vw;
+    margin-right: 0.868vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items .items__info {
+    margin-left: 1.736vw;
+    font-size: 3.083vw;
+    line-height: 3.299vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__body {
+    margin-bottom: 2.868vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__body .body__comment {
+    font-size: 3.778vw;
+    line-height: 4.167vw;
+    margin-bottom: 2.868vw;
+    margin-top: 2.868vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer {
+    margin-bottom: 1.736vw;
+    padding-bottom: 2.868vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .items__items {
+    margin-right: 2.868vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .items__items svg {
+    width: 2.778vw;
+    height: 2.778vw;
+    margin-right: 1.215vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .items__items span {
+    font-size: 3.083vw;
+    line-height: 3.299vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .rate {
+    border-radius: 0.694vw;
+    width: 26.042vw;
+    padding: 0.868vw 1.736vw;
+    font-size: 2.083vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .item__later svg {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
+
+  .password-recovery .password-recovery__title {
+    padding-top: 3.472vw;
+    padding-bottom: 3.472vw;
+    padding-left: 3.299vw;
+  }
+
+  .password-recovery .password-recovery__title .title__icon {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
+
+  .password-recovery .password-recovery__title .title__text {
+    font-size: 3.778vw;
+    margin-left: 2.778vw;
+  }
+
+  .password-recovery .password-recovery__form {
+    padding: 4.34vw;
+  }
+
+  .get-recovery-link .get-recovery-link__title {
+    padding-top: 3.472vw;
+    padding-bottom: 3.472vw;
+    padding-left: 3.299vw;
+  }
+
+  .get-recovery-link .get-recovery-link__title .title__icon {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
+
+  .get-recovery-link .get-recovery-link__title .title__text {
+    font-size: 3.778vw;
+    margin-left: 2.951vw;
+  }
+
+  .get-recovery-link .get-recovery-link__form {
+    padding: 4.34vw;
   }
 
   .block_replay .container_btn .button {

@@ -4793,6 +4793,146 @@
             }
         }
     }
+    //my-topics
+    .my-topics {
+        border-radius: 0.868vw;
+        margin-bottom: 3.472vw;
+        .my-topics__title {
+            border-radius: 0.868vw 0.868vw 0 0;
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+
+            .title__text {
+                font-size: 3.778vw;
+                margin-left: 0.951vw;
+            }
+        }
+        .my-topics__accordion {
+            .accordion-button {
+                padding: 3.125vw;
+                font-size: 3.868vw;
+            }
+            .accordion-button:after {
+                margin-left: 0.868vw;
+            }
+            /* Style the accordion panel. Note: hidden by default */
+            .panel {
+                padding: 0 3.125vw;
+                .panel__wrap {
+                    .panel__header {
+                        margin-top: 1.868vw;
+                        padding-bottom: 1.736vw;
+                        .header__items {
+                            width: 50%;
+                            .items__link {
+                                font-size: 3.083vw;
+                            }
+                            span {
+                                font-size: 3.083vw;
+                                line-height: 3.299vw;
+                                margin-right: 0.868vw;
+                                margin-left: 0.868vw;
+                            }
+
+                            .items__icon {
+                                width: 10.868vw;
+                                height: 2.257vw;
+                                margin-right: 0.868vw;
+                            }
+                            .items__info {
+                                margin-left: 1.736vw;
+                                font-size: 3.083vw;
+                                line-height: 3.299vw;
+                            }
+                        }
+                    }
+                    .panel__body {
+                        margin-bottom: 2.868vw;
+                        .body__comment {
+                            font-size:3.778vw;
+                            line-height: 4.167vw;
+                            margin-bottom: 2.868vw;
+                            margin-top: 2.868vw;
+                        }
+                    }
+                    .panel__footer {
+                        margin-bottom: 1.736vw;
+                        padding-bottom: 2.868vw;
+                        .footer__item {
+                            .items__items {
+                                margin-right: 2.868vw;
+                                svg {
+                                    width: 2.778vw;
+                                    height: 2.778vw;
+                                    margin-right: 1.215vw;
+                                }
+                                span {
+                                    font-size: 3.083vw;
+                                    line-height: 3.299vw;
+                                }
+                            }
+                            .rate {
+                                border-radius: 0.694vw;
+                                width: 26.042vw;
+                                padding: 0.868vw 1.736vw;
+                                font-size: 2.083vw;
+                            }
+                            .item__later {
+                                svg {
+                                    width: 3.472vw;
+                                    height: 3.472vw;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //password-recovery
+    .password-recovery {
+        .password-recovery__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+            .title__text {
+                font-size: 3.778vw;
+                margin-left: 2.778vw;
+            }
+        }
+        .password-recovery__form {
+            padding: 4.340vw;
+        }
+    }
+    // get-recovery-links
+    .get-recovery-link {
+        .get-recovery-link__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+            .title__text {
+                font-size: 3.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+        .get-recovery-link__form {
+            padding: 4.340vw;
+        }
+    }
+
     //replay
     .block_replay {
         & .container_btn{
