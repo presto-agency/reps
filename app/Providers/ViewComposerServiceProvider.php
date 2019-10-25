@@ -36,19 +36,27 @@ class ViewComposerServiceProvider extends ServiceProvider
 
         $this->compose('admin.dashboard', DashboardCountComposer::class);
         $this->compose('admin.InterviewQuestion.questionClone', InterviewVariantAnswerComposer::class);
-        $this->compose('left-side.forum-topics', ForumNavigationComposer::class);
+
+//        $this->compose('content.Page_gameBest', TopsComposer::class);   <-- work on this
+
+
+//        $this->compose('content.gocu-replays', ProReplayComposer::class);
+//        $this->compose('content.user-replays', UserReplayComposer::class);
+
+//        $this->compose('components.block-replay', ProUserReplayComposer::class);
+//        $this->compose('components.streams_list', OnlineStreamListComposer::class);
         $this->compose('components.Chat', HeadlineComposer::class);
-        $this->compose('content.Page_gameBest', TopsComposer::class);
-        $this->compose('components.block-top', TopsComposer::class);
-        $this->compose('components.block-top', SidebarRightComposer::class);
-        $this->compose('footer.footer', FooterComposer::class);
-        $this->compose('modal.registration', RegistrationComposer::class);
-        $this->compose('components.streams_list', OnlineStreamListComposer::class);
-        $this->compose('content.gocu-replays', ProReplayComposer::class);
-        $this->compose('content.user-replays', UserReplayComposer::class);
-        $this->compose('components.block-replay', ProUserReplayComposer::class);
+//        $this->compose('components.block-top', TopsComposer::class);
+//        $this->compose('components.block-top', SidebarRightComposer::class);
+
+        $this->compose('left-side.forum-topics', ForumNavigationComposer::class);
         $this->compose('left-side.replays', ReplaysLSComposer::class);
         $this->compose('left-side.replays', ReplayTypeComposer::class);
+
+
+        $this->compose('footer.footer', FooterComposer::class);
+        $this->compose('modal.registration', RegistrationComposer::class);
+
 
     }
 
