@@ -10,7 +10,6 @@ use App\Http\ViewComposers\{DashboardCountComposer,
     InterviewVariantAnswerComposer,
     LeftSide\ReplaysNavigationComposer,
     RegistrationComposer,
-    ReplayTypeComposer,
     RightSide\LastRegisteredUsersComposer,
     RightSide\Top10Composer};
 use Illuminate\Contracts\View\Factory;
@@ -25,29 +24,21 @@ class ViewComposerServiceProvider extends ServiceProvider
     {
 
 //  toAllViews      $this->compose('*', InterviewQuestionObserver::class);
-
-
         $this->views = $viewFactory;
 
         $this->compose('admin.dashboard', DashboardCountComposer::class);
         $this->compose('admin.InterviewQuestion.questionClone', InterviewVariantAnswerComposer::class);
-
-//        $this->compose('components.block-replay', ProUserReplayComposer::class);
 //        $this->compose('components.streams_list', OnlineStreamListComposer::class);
         $this->compose('components.Chat', HeadlineComposer::class);
-
         /*left-side*/
         $this->compose('left-side.forum-topics', ForumNavigationComposer::class);
-        $this->compose('left-side.replays', ReplaysNavigationComposer::class);
-        $this->compose('left-side.replays', ReplayTypeComposer::class);
-
+        $this->compose('left-side.replays-navigation', ReplaysNavigationComposer::class);
         /*right-side*/
-        $this->compose('components.block-top', LastRegisteredUsersComposer::class);
-        $this->compose('components.block-top', Top10Composer::class);
+        $this->compose('right-side.block-top', LastRegisteredUsersComposer::class);
+        $this->compose('right-side.block-top', Top10Composer::class);
 
         $this->compose('footer.footer', FooterComposer::class);
         $this->compose('modal.registration', RegistrationComposer::class);
-
 
     }
 

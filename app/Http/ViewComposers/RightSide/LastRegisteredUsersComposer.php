@@ -10,26 +10,20 @@ use phpDocumentor\Reflection\Types\Null_;
 
 class LastRegisteredUsersComposer
 {
-    private $newUsers;
-    private  static $userTake = 5;
-
-    public function __construct()
-    {
-        $this->newUsers = self::getNewUsers();
-    }
+    private static $userTake = 5;
 
     /**
      * @param View $view
      */
     public function compose(View $view)
     {
-        $view->with('newUsers', $this->newUsers);
+        $view->with('newUsers', self::getNewUsers());
     }
 
     /**
      * @return array
      */
-    public static function getNewUsers()
+    private static function getNewUsers()
     {
         $data = null;
 

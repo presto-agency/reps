@@ -67,7 +67,7 @@
 
             <!--SIDEBAR LEFT-->
             <div id="left-sidebar" class="col-xl-3 col-lg-3 col-md-6 col-12">
-                @include('content.tablet__button-information')
+                <button id="pulse-button-info" class="pulse-button">Информация</button>
                 <div id="left-sidebar-wrap" class="left-sidebar-wrap no-height">
                     @yield('sidebar-left')
 
@@ -99,15 +99,13 @@
             </div>
             <!--END CONTENT-->
 
-            <!--SIDEBAR RIGHT-->
+            <!-- RIGHT SIDEBAR-->
             <div id="right-sidebar"  class="col-xl-3 col-lg-3 col-md-6 col-12">
-                @include('content.tablet__button-top')
+                <button id="pulse-button-top" class="pulse-button">Топ</button>
                 <div id="right-sidebar-wrap" class="right-sidebar-wrap no-height">
                     @section('sidebar-right')
-                        @include('components.block-top')
+                        @include('right-side.block-top')
                     @show
-                    {{--@yield('sidebar-right')--}}
-                    {{--@include('components.block-top')--}}
                 </div>
             </div>
             <!--END SIDEBAR RIGHT-->
