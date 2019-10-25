@@ -16513,6 +16513,10 @@ select:focus {
   font-weight: 400;
 }
 
+.page_replay .wrapper {
+  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+}
+
 .page_replay .title_block {
   justify-content: space-between;
   align-items: center;
@@ -16715,6 +16719,23 @@ select:focus {
 .modal_tournament .big_block .container_map img {
   width: 100%;
   height: 150px;
+}
+
+.banner {
+  padding: 20px 0;
+}
+
+.banner .wrapper {
+  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+}
+
+.banner .block_content {
+  margin-bottom: 5px;
+  padding: 0 20px;
+}
+
+.banner .block_content img {
+  width: 100%;
 }
 
 .button {
