@@ -168,6 +168,9 @@
                 & .blue_text{
                     font-size: 1.025vw;
                 }
+                .number_mess{
+                    font-size:1vw;
+                }
                 & .user{
                     min-width: 11.713vw;
                 }
@@ -2127,49 +2130,6 @@
     }
 }
 
-@media (max-width: 992px) {
-    .header{
-        position: relative;
-        & .icon_bars{
-            display: block!important;
-            width: 50px;
-        }
-        & .logo{
-            & img{
-                width: 70% !important;
-            }
-        }
-        & .menu_navigation{
-            display: none!important;
-        }
-        & .autorization{
-            display:none!important;
-        }
-        & .main_menu{
-            position: absolute;
-            right: 0;
-            bottom: 30%;
-        }
-        & .search{
-            justify-content: flex-start;
-        }
-        & .button_input{
-            width: 100% !important;
-            & .search_input{
-                min-width: 40vw !important;
-            }
-        }
-        & .burger_menu{
-            display: block!important;
-            & .menu_bar{
-                width: 50px!important;
-            }
-        }
-
-    }
-
-
-}
 
 @media (max-width: 991px) {
     /*global styles START*/
@@ -2327,7 +2287,46 @@
         padding: 1.413vw 2.825vw;
         margin: 0 auto 2.018vw;
     }
+//header
+    .header{
+        position: relative;
+        & .icon_bars{
+            display: block!important;
+            width: 50px;
+        }
+        & .logo{
+            & img{
+                width: 70% !important;
+            }
+        }
+        & .menu_navigation{
+            display: none!important;
+        }
+        & .autorization{
+            display:none!important;
+        }
+        & .main_menu{
+            position: absolute;
+            right: 0;
+            bottom: 30%;
+        }
+        & .search{
+            justify-content: flex-start;
+        }
+        & .button_input{
+            width: 100% !important;
+            & .search_input{
+                min-width: 40vw !important;
+            }
+        }
+        & .burger_menu{
+            display: block!important;
+            & .menu_bar{
+                width: 50px!important;
+            }
+        }
 
+    }
     //Твич
     .block_chat-twitch{
         padding-bottom: 4vw;
@@ -2337,6 +2336,33 @@
         & .title_Text{
             font-size: 1.6vw;
             padding: 0 0 0 2vw;
+        }
+         .block_chat{
+            padding-bottom: 2.016vw;
+            width: 40%;
+        }
+         .block_stream_list{
+            width: 60%;
+
+        }
+        .big_video_left{
+            display: none;
+            background: transparent;
+            border:0;
+            svg{
+                fill:white;
+                width: 1.512vw;
+                padding-right: 2.016vw;
+            }
+        }
+        .big_video_right{
+            background: transparent;
+            border:0;
+            svg{
+                fill:white;
+                width: 1.512vw;
+                padding-right: 2.016vw;
+            }
         }
         & .text_support{
             font-size: 1.8vw;
@@ -2371,6 +2397,9 @@
             & .block_user_akk{
                 & .blue_text{
                     font-size: 1.4vw;
+                }
+                .number_mess{
+                    font-size: 1.7vw;
                 }
                 & .user{
                     min-width: 16vw;
@@ -4405,7 +4434,18 @@
         padding-top: 2.257vw;
         padding-bottom: 2.604vw;
     }
-
+    //block_title_gray
+    .title_block_gray{
+        padding:3.472vw;
+        & .title_text{
+            font-size: 3.778vw;
+        }
+        & .more{
+            & p{
+                font-size: 6.944vw;
+            }
+        }
+    }
     //end global_style
     //header
     .header_row{
@@ -4467,6 +4507,31 @@
             line-height: 3.299vw;
         }
     }
+    //popup_chat
+    .popup_chat{
+        .title_block{
+            .btn_close{
+                font-size: 4.340vw;
+            }
+        }
+        .popup_contant{
+            max-height: calc(100vh - 24.306vw) !important;
+            min-height: calc(100vh - 24.306vw) !important;
+        }
+        .modal-content{
+            border: 0;
+            .row_contentChat{
+                padding: 2.604vw 1.736vw 0;
+            }
+        }
+    }
+    .popup_contant::-webkit-scrollbar {
+        width: 1.736vw;
+    }
+    .popup_contant::-webkit-scrollbar-thumb {
+        border-radius: 0.694vw;
+        height: 39.410vw;
+    }
     //Твич
     .block_chat-twitch{
         padding-bottom: 6.944vw;
@@ -4489,6 +4554,20 @@
                     }
                 }
             }
+        }
+        .main_container{
+            display: block;
+        }
+        .block_chat{
+            padding-bottom: 2.016vw;
+            width: 100%;
+        }
+        .block_stream_list{
+            width: 100%;
+
+        }
+        .big_video_right{
+            display: none;
         }
         & .messanger{
             max-height: 107.639vw;
@@ -4714,6 +4793,146 @@
             }
         }
     }
+    //my-topics
+    .my-topics {
+        border-radius: 0.868vw;
+        margin-bottom: 3.472vw;
+        .my-topics__title {
+            border-radius: 0.868vw 0.868vw 0 0;
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+
+            .title__text {
+                font-size: 3.778vw;
+                margin-left: 0.951vw;
+            }
+        }
+        .my-topics__accordion {
+            .accordion-button {
+                padding: 3.125vw;
+                font-size: 3.868vw;
+            }
+            .accordion-button:after {
+                margin-left: 0.868vw;
+            }
+            /* Style the accordion panel. Note: hidden by default */
+            .panel {
+                padding: 0 3.125vw;
+                .panel__wrap {
+                    .panel__header {
+                        margin-top: 1.868vw;
+                        padding-bottom: 1.736vw;
+                        .header__items {
+                            width: 50%;
+                            .items__link {
+                                font-size: 3.083vw;
+                            }
+                            span {
+                                font-size: 3.083vw;
+                                line-height: 3.299vw;
+                                margin-right: 0.868vw;
+                                margin-left: 0.868vw;
+                            }
+
+                            .items__icon {
+                                width: 10.868vw;
+                                height: 2.257vw;
+                                margin-right: 0.868vw;
+                            }
+                            .items__info {
+                                margin-left: 1.736vw;
+                                font-size: 3.083vw;
+                                line-height: 3.299vw;
+                            }
+                        }
+                    }
+                    .panel__body {
+                        margin-bottom: 2.868vw;
+                        .body__comment {
+                            font-size:3.778vw;
+                            line-height: 4.167vw;
+                            margin-bottom: 2.868vw;
+                            margin-top: 2.868vw;
+                        }
+                    }
+                    .panel__footer {
+                        margin-bottom: 1.736vw;
+                        padding-bottom: 2.868vw;
+                        .footer__item {
+                            .items__items {
+                                margin-right: 2.868vw;
+                                svg {
+                                    width: 2.778vw;
+                                    height: 2.778vw;
+                                    margin-right: 1.215vw;
+                                }
+                                span {
+                                    font-size: 3.083vw;
+                                    line-height: 3.299vw;
+                                }
+                            }
+                            .rate {
+                                border-radius: 0.694vw;
+                                width: 26.042vw;
+                                padding: 0.868vw 1.736vw;
+                                font-size: 2.083vw;
+                            }
+                            .item__later {
+                                svg {
+                                    width: 3.472vw;
+                                    height: 3.472vw;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //password-recovery
+    .password-recovery {
+        .password-recovery__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+            .title__text {
+                font-size: 3.778vw;
+                margin-left: 2.778vw;
+            }
+        }
+        .password-recovery__form {
+            padding: 4.340vw;
+        }
+    }
+    // get-recovery-links
+    .get-recovery-link {
+        .get-recovery-link__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+            .title__text {
+                font-size: 3.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+        .get-recovery-link__form {
+            padding: 4.340vw;
+        }
+    }
+
     //replay
     .block_replay {
         & .container_btn{
@@ -5250,6 +5469,44 @@
         .container_players::-webkit-scrollbar-thumb {
             border-radius: 4px;
             height: 4.340vw;
+        }
+    }
+    //modal_tournament
+    .modal_tournament{
+        modal-dialog{
+            width: 80%;
+        }
+        h5{
+            font-size: 3.778vw;
+        }
+        .title_block_gray{
+            padding: 1.736vw;
+        }
+        .title_block{
+            .title_text{
+                font-size: 3.431vw;
+            }
+        }
+        .small_block{
+            .content{
+                padding: 1.736vw;
+                margin-top: 1.736vw;
+            }
+            .left_content{
+                span{
+                    font-size: 2vw;
+                }
+                svg{
+                    width: 4.472vw;
+                }
+            }
+        }
+        .big_block{
+            .container_map{
+                img{
+                    height: 26.042vw;
+                }
+            }
         }
     }
     //page_replay

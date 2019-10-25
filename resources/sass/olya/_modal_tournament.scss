@@ -1,0 +1,46 @@
+.modal_tournament{
+    h5{
+        font-size: 16px;
+    }
+    .title_block_gray{
+        padding: 10px;
+    }
+    .title_block{
+        .title_text{
+            font-size: 14px;
+        }
+    }
+    .modal_width{
+        min-width:70%;
+    }
+    .small_block{
+
+        .content{
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            margin-top: 10px;
+            span{
+                color: black;
+            }
+        }
+        .left_content{
+            span{
+                font-size: 14px;
+            }
+            svg{
+                width: 20px;
+                fill:white;
+            }
+
+        }
+    }
+    .big_block{
+        .container_map{
+            img{
+                width: 100%;
+                height: 150px;
+            }
+        }
+    }
+}
