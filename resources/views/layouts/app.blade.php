@@ -64,7 +64,6 @@
 <!--SECTION CONTENT-->
     <section class="container">
         <div class="row">
-
             <!--SIDEBAR LEFT-->
             <div id="left-sidebar" class="col-xl-3 col-lg-3 col-md-6 col-12">
                 @include('content.tablet__button-information')
@@ -104,6 +103,7 @@
                 @include('content.tablet__button-top')
                 <div id="right-sidebar-wrap" class="right-sidebar-wrap no-height">
                     @section('sidebar-right')
+                        @include('components.banner')
                         @include('components.block-top')
                     @show
                     {{--@yield('sidebar-right')--}}

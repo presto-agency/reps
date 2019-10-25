@@ -91,6 +91,11 @@
                 & .left{
                     text-decoration: underline;
                     color: $blue;
+                    .btn_modal{
+                        background: transparent;
+                        border: 0;
+
+                    }
                 }
                 & .right{
                     & p{
