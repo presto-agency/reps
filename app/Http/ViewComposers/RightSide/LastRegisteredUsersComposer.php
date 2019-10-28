@@ -1,39 +1,35 @@
 <?php
 
 
-namespace App\Http\ViewComposers;
+namespace App\Http\ViewComposers\RightSide;
 
 use App\User;
 use Illuminate\View\View;
+use phpDocumentor\Reflection\Types\Null_;
 
 
-class SidebarRightComposer
+class LastRegisteredUsersComposer
 {
-    private $categoryNewUser;
-
-    public function __construct()
-    {
-        $this->categoryNewUser = self::getNew5Users();
-    }
+    private static $userTake = 5;
 
     /**
      * @param View $view
      */
     public function compose(View $view)
     {
-        $view->with('newUsers', $this->categoryNewUser);
+        $view->with('newUsers', self::getNewUsers());
     }
 
     /**
      * @return array
      */
-    public static function getNew5Users()
+    private static function getNewUsers()
     {
-        $data = [];
+        $data = null;
 
         $getData = User::with('countries:id,flag', 'races:id,title')
             ->orderBy('id', 'desc')
-            ->take(5)
+            ->take(self::$userTake)
             ->get(['id', 'name', 'race_id', 'country_id']);
 
         if (!$getData->isEmpty()) {

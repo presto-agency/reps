@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('sidebar-left')
-    @include('left-side.replays')
+    @include('left-side.replays-navigation')
     @include('left-side.search')
 @endsection
 
 @section('content')
-    @include('content.user-replays')
+    @include('replay.show')
 @endsection

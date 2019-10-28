@@ -8,14 +8,13 @@ use App\User;
 class BestController extends Controller
 {
     public static $top100 = 100;
+    public static $top10 = 10;
 
     public function show()
     {
-//to Page_gameBest.blade
         $checkProLS = true;
 
         $top100Points = $this->getTop100Points();
-//        dd($top100Points);
         $top100Rating = $this->getTop100Rating();
         $top100News = $this->getTop100News();
         $top100Replay = $this->getTop100Replay();
@@ -23,6 +22,16 @@ class BestController extends Controller
         return view('best.index',
             compact('checkProLS', 'top100Points', 'top100Rating', 'top100News', 'top100Replay')
         );
+    }
+
+    public function getTop10Rating()
+    {
+        return array_slice($this->getTop100Rating(), 0, self::$top10);
+    }
+
+    public function getTop10Points()
+    {
+        return array_slice($this->getTop100Points(), 0, self::$top10);
     }
 
     public function getTop100Points()
@@ -51,6 +60,7 @@ class BestController extends Controller
             ->with('countries:id,flag', 'races:id,title')
             ->take(100)
             ->get();
+
         if (!$getData->isEmpty()) {
             $data = self::getDataArray($getData, 'rating');
         }
@@ -103,7 +113,7 @@ class BestController extends Controller
             $data[] = [
                 'id' => $item->id,
                 'name' => $item->name,
-                'avatar' => $item->avatar ?? $item->avatar_url_or_blank,
+                'avatar' => self::checkAvatar($item),
                 'raceIcon' => "images\\" . $item->races->title . ".png",
                 'countryFlag25x20' => $item->countries->flag,
                 'max' => self::setMaxType($type, $item),
@@ -113,7 +123,22 @@ class BestController extends Controller
 
     }
 
-    public static function setMaxType($type, $item)
+    /**
+     * @param $item
+     * @return mixed
+     */
+    public static function checkAvatar($item)
+    {
+       return file_exists($item->avatar) === true ? $item->avatar : $item->avatar_url_or_blank;
+    }
+
+    /**
+     * @param $type
+     * @param $item
+     * @return |null
+     */
+    public
+    static function setMaxType($type, $item)
     {
         switch ($type) {
             case 'comments':

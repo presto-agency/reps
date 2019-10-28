@@ -56,8 +56,19 @@ $('.btn_streams_close').click(function(event) {
     $('.btn_streams_list').css({"width":"50px"});
     $('.btn_streams_close').css({"width":"0"});
 });
-
-
+//big_video
+$('.big_video_right').click(function(event) {
+    event.preventDefault();
+    $('.main_container').addClass("active_big_video");
+    $('.big_video_left').css({"display":"block"});
+    $('.big_video_right').css({"display":"none"});
+});
+$('.big_video_left').click(function(event) {
+    event.preventDefault();
+    $('.main_container').removeClass("active_big_video");
+    $('.big_video_right').css({"display":"block"});
+    $('.big_video_left').css({"display":"none"});
+});
  jQuery(function($){
      $(document).mouseup(function (e){ // событие клика по веб-документу
 
@@ -74,7 +85,12 @@ $('.btn_streams_close').click(function(event) {
  });
 
 
-//
+//day-night
+$('#night').click(function(event) {
+    event.preventDefault();
+
+
+});
 
 /*accordion replays script   start*/
 /*const accordionState = JSON.parse(localStorage.getItem('accordionState')) || {};

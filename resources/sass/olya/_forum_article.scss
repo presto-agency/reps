@@ -149,7 +149,7 @@
                     padding-right: 10px;
                 }
                 & span{
-                    color:#0567cc;
+                    color:$blue;
                     font-size: 14px;
                 }
 
@@ -172,7 +172,7 @@
                 }
                 &:hover {
                     & svg {
-                        fill: #0567cc;
+                        fill:$blue;
                     }
                 }
             }

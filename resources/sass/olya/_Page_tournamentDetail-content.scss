@@ -6,7 +6,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: #0567cc;
+        background: $blue;
         height: 60px;
         border: 0;
         border-top-left-radius: 5px;
@@ -91,6 +91,11 @@
                 & .left{
                     text-decoration: underline;
                     color: $blue;
+                    .btn_modal{
+                        background: transparent;
+                        border: 0;
+
+                    }
                 }
                 & .right{
                     & p{

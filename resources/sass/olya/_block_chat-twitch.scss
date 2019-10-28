@@ -1,12 +1,29 @@
+.chat_overflow{
+    overflow-x: hidden;
+}
 .block_chat-twitch{
     padding-bottom: 40px;
+    .active_big_video{
+        .block_chat{
+            display: none;
+            width: 0;
+        }
+        .block_stream_list{
+            width: 100%;
+        }
+
+    }
     & .wrapper{
         box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     }
-    & .block_chat{
-        padding-bottom: 20px;
+    .main_container{
+        display: flex;
     }
-    & .title_Text{
+     .block_chat{
+        padding-bottom: 20px;
+        width: 25%;
+    }
+    & .title_text{
         font-size: 16px;
         color:white;
         margin: 0;
@@ -21,6 +38,8 @@
         background: $blue;
         height: 60px;
         border: 0;
+        display: flex;
+        align-items: center;
        // border-bottom-left-radius:5px;
         border-top-left-radius:5px;
         & .content_left{
@@ -115,9 +134,9 @@
 
 
     }
-    & .block_stream_list{
+     .block_stream_list{
         position: relative;
-
+        width: 75%;
     }
     & .title_video{
         background: $blue;
@@ -140,6 +159,26 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
+            .big_video_left{
+                display: none;
+                background: transparent;
+                border:0;
+                svg{
+                    fill:white;
+                    width: 15px;
+                    padding-right: 20px;
+                }
+            }
+            .big_video_right{
+                background: transparent;
+                border:0;
+                svg{
+                    fill:white;
+                    width: 15px;
+                    padding-right: 20px;
+                }
+            }
+
             & img{
                 padding-right: 20px;
             }

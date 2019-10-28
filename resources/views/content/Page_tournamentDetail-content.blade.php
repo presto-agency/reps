@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="row block_replay_content">
-            <div class="col-xl-6 block_left">
+            <div class="col-xl-6 col-lg-6 col-md-6 block_left">
                 <div class="container_block">
                     <div class="replay-desc-right"><p>Administrator:</p></div>
                     <div class="replay-desc-left"><p class="blue">56564</p></div>
@@ -57,10 +57,14 @@
                 </div>
 
             </div>
-            <div class="col-xl-6 block_right">
+            <div class="col-xl-6 col-lg-6 col-md-6 block_right">
                 <img class="img-fluid" src="{{ url('/images/tournament_detail.png') }}" alt="logo">
                 <div class="container_block">
-                    <div class="left"><p>Rules/FAQ</p></div>
+                    <div class="left">
+                        <a href="#">
+                            <p>Rules/FAQ</p>
+                        </a>
+                    </div>
                     <div class="right">
                         <a href="#">
                             <span>Full Replay</span>
@@ -76,7 +80,97 @@
                     </div>
                 </div>
                 <div class="container_block">
-                    <div class="left"><p>Maps/Prize</p></div>
+                    <div class="left modal_tournament">
+                        <button type="button" class="btn_modal" data-toggle="modal" data-target="#exampleModal">
+                            <p>Maps/Prize</p>
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal_width" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Prize/Maps(Corruption Cup Qualification FSU #2)</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-4 col-md-4 pl-2 small_block">
+                                                    <div class=" title_block">
+                                                        <div class="left_content">
+                                                            <span class="title_text">Corruption Cup Qualification FSU #2</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content">
+                                                        <div class="left_content">
+                                                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medal" class="svg-inline--fa fa-medal fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm92.52 157.26l-37.93 36.96 8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64 23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39 4.11 0 8.22 2.14 10.33 6.39l23.43 47.52 52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"></path></svg>
+                                                        </div>
+                                                        <div class="right_content">
+                                                            <span>dfdg</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-8 col-lg-8 col-md-8 pl-2  big_block">
+                                                    <div class=" title_block ml-1">
+                                                        <div class="left_content">
+                                                            <span class="title_text">Maps</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-xl-4 pl-1 pr-0 container_map">
+                                                                <div class="title_block_gray">
+                                                                    <span class="title_text">circuit breaker</span>
+                                                                </div>
+                                                                <div class="map">
+                                                                    <img src="/storage/maps/jpg256/circuit breaker.jpg" onerror="this.onerror=null;this.src='/images/nominimap.png';">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-4 pl-1 pr-0 container_map">
+                                                                <div class="title_block_gray">
+                                                                    <span class="title_text">circuit breaker</span>
+                                                                </div>
+                                                                <div class="map">
+                                                                    <img src="/storage/maps/jpg256/circuit breaker.jpg" onerror="this.onerror=null;this.src='/images/nominimap.png';">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-4 pl-1 pr-0 container_map">
+                                                                <div class="title_block_gray">
+                                                                    <span class="title_text">circuit breaker</span>
+                                                                </div>
+                                                                <div class="map">
+                                                                    <img src="/storage/maps/jpg256/circuit breaker.jpg" onerror="this.onerror=null;this.src='/images/nominimap.png';">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-4 pl-1 pr-0 container_map">
+                                                                <div class="title_block_gray">
+                                                                    <span class="title_text">circuit breaker</span>
+                                                                </div>
+                                                                <div class="map">
+                                                                    <img src="/storage/maps/jpg256/circuit breaker.jpg" onerror="this.onerror=null;this.src='/images/nominimap.png';">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-4 pl-1 pr-0 container_map">
+                                                                <div class="title_block_gray">
+                                                                    <span class="title_text">circuit breaker</span>
+                                                                </div>
+                                                                <div class="map">
+                                                                    <img src="/storage/maps/jpg256/circuit breaker.jpg" onerror="this.onerror=null;this.src='/images/nominimap.png';">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="right">
                         <a href="#">
                             <span class="gray">Rules/FAQ</span>
