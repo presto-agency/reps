@@ -31,7 +31,7 @@ Route::post('forum/topic/{id}/comment', 'TopicCommentController@store')->name('c
 
 
 /*Best*/
-Route::get('best', 'Best\BestController@show');
+Route::resource('best', 'Best\BestController');
 
 /*Replay*/
 Route::resource("replay", 'Replay\ReplayUserController');
@@ -41,10 +41,13 @@ Route::group(['prefix' => 'replay'], function () {
 });
 Route::resource("replay_pro", 'Replay\ReplayProController');
 Route::group(['prefix' => 'replay_pro'], function () {
-    Route::get('{replay_pro}/download', 'Replay\ReplayController@download')->name('replay_pro.download');
-    Route::post('{replay_pro}/download_count', 'Replay\ReplayController@downloadCount')->name('replay.pro.download.count');
-    Route::get("show/{type}", 'Replay\ReplayProTypeController@index')->name('replay_pro.type.index');
-    Route::get("{replay_pro}/{type}", 'Replay\ReplayProTypeController@show')->name('replay_pro.type.show');
+    Route::get('{id}/download', 'Replay\ReplayController@download')->name('replay_pro.download');
+    Route::post('{id}/download_count', 'Replay\ReplayController@downloadCount')->name('replay.pro.download.count');
+    Route::get("{type}/show", 'Replay\ReplayProTypeController@index')->name('replay_pro.type.index');
+    Route::get("{type}/show/{replay_pro}", 'Replay\ReplayProTypeController@show')->name('replay_pro.type.show');
+    Route::get('{type}/show/{id}/download', 'Replay\ReplayController@download')->name('replay_pro.type.download');
+    Route::post('{type}/show/{id}/download_count', 'Replay\ReplayController@downloadCount')->name('replay_pro.type.download.count');
+
 });
 
 Route::get('tournament', function () {

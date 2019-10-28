@@ -26,6 +26,7 @@ class ReplayUserController extends Controller
         ];
         $ArrColumn = [
             'id',
+            'title',
             'user_id',
             'map_id',
             'first_name',

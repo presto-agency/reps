@@ -58,9 +58,9 @@
                         <span>Страны:</span>
                     </div>
                     <div class="right_block">
-                        <img src="{{asset($replay->firstCountries->flag)}}"/>
+                        <img src="{{asset($replay->firstCountries->flag)}}" alt="country_flag"/>
                         <span> vs </span>
-                        <img src="{{asset($replay->secondCountries->flag)}}"/>
+                        <img src="{{asset($replay->secondCountries->flag)}}" alt="country_flag"/>
                     </div>
                 </div>
                 <div class="content_left">
@@ -129,18 +129,26 @@
                             </svg>
 
                     @if($proRout)
-                        <a href="{{route('replay_pro.download',['replay_pro' =>$replay->id])}}">
+                        @if($proRoutType)
+                            <a href="{{route('replay_pro.type.download',['type' =>$type,'id' =>$replay->id])}}">
+                            <span class="download" data-id="{{$replay->id}}"
+                                  data-url="{{url("replay_pro/$type/show/$replay->id/download_count")}}">Скачать</span>
+                                <span id="downloadCount"
+                                      data-count="{{$replay->downloaded}}">({{$replay->downloaded}})</span>
+                            </a>
+                        @else
+                            <a href="{{route('replay_pro.download',['id' =>$replay->id])}}">
                             <span class="download" data-id="{{$replay->id}}"
                                   data-url="{{url("replay_pro/$replay->id/download_count")}}">Скачать</span>
-                            {{--                                  data-url="{{route('replay.pro.download.count',['replay_pro' =>$replay->id])}}">Скачать</span>--}}
-                            <span id="downloadCount"
-                                  data-count="{{$replay->downloaded}}">({{$replay->downloaded}})</span>
-                        </a>
+                                <span id="downloadCount"
+                                      data-count="{{$replay->downloaded}}">({{$replay->downloaded}})</span>
+                            </a>
+                        @endif
+
                     @else
                         <a href="{{route('replay.user.download',['id' =>$replay->id])}}">
                             <span class="download" data-id="{{$replay->id}}"
                                   data-url="{{url("replay/$replay->id/download_count")}}">Скачать</span>
-                            {{--                                  data-url="{{route('replay.user.download.count',['replay_pro' =>$replay->id])}}">Скачать</span>--}}
                             <span id="downloadCount"
                                   data-count="{{$replay->downloaded}}">({{$replay->downloaded}})</span>
                         </a>
@@ -160,14 +168,16 @@
 
         $.ajax({
             method: 'POST',
-            type: 'POST',
             url: url,
+            dataType: 'json',
+            async: false,
             data: {
                 "_token": token,
                 id: id,
             },
-            success: function (data, url) {
-                console.log(data);
+            success: function (data) {
+                $('#downloadCount').html(data.downloaded);
+                console.log(data.downloaded);
             },
             error: function (request, status, error) {
                 console.log('code: ' + request.status + "\n" + 'message: ' + request.responseText + "\n" + 'error: ' + error);

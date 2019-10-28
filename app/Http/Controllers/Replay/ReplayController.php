@@ -7,14 +7,15 @@ use App\Models\Replay;
 class ReplayController
 {
 
+    public static $type;
 
-    public static function getReplays($ArrRelations, $ArrColumn, $type)
+    public static function getReplays($ArrRelations, $ArrColumn, $user_replay)
     {
         $data = null;
 
         $data = Replay::with($ArrRelations)
             ->where('approved', 1)
-            ->where('user_replay', $type)
+            ->where('user_replay', $user_replay)
             ->get($ArrColumn);
 
         return $data;
@@ -29,6 +30,22 @@ class ReplayController
         return $data;
     }
 
+    public static function getReplaysWithType($ArrRelations, $ArrColumn, $user_replay, $type)
+    {
+        $data = null;
+
+        self::$type = $type;
+
+        $data = Replay::with($ArrRelations)
+            ->where('approved', 1)
+            ->whereHas('types', function ($query) {
+                $query->where('name', self::$type);
+            })
+            ->where('user_replay', $user_replay)
+            ->get($ArrColumn);
+
+        return $data;
+    }
 
     public function download()
     {
@@ -50,6 +67,8 @@ class ReplayController
             $replay = Replay::findOrFail($request->id);
             $replay->increment('downloaded', 1);
             $replay->save();
+
+            echo json_encode(array('downloaded' => $replay->downloaded));
         }
     }
 
@@ -66,5 +85,10 @@ class ReplayController
     public static function checkUrlPro()
     {
         return \Str::contains(self::getUrl(), 'replay_pro');
+    }
+
+    public static function checkUrlProType($type)
+    {
+        return \Str::contains(self::getUrl(), "$type");
     }
 }

@@ -40,14 +40,21 @@
         @foreach($replay as $item)
             <div class="gocu-replays__subtitle">
                 @if($proRout)
-                    <a class="subtitle__name"
-                       href="{{ route('replay_pro.show',['replay_pro' =>$item->id])}}">
-                        {{$item->first_name.' vs '.$item->second_name}}
-                    </a>
+                    @if($proRoutType)
+                        <a class="subtitle__name"
+                           href="{{ route('replay_pro.type.show',['type' => $type,'replay_pro'=>$item->id])}}">
+                            {{$item->title}}
+                        </a>
+                    @else
+                        <a class="subtitle__name"
+                           href="{{ route('replay_pro.show',['replay_pro' =>$item->id])}}">
+                            {{$item->title}}
+                        </a>
+                    @endif
                 @else
                     <a class="subtitle__name"
                        href="{{ route('replay.show',['replay' =>$item->id])}}">
-                        {{$item->first_name.' vs '.$item->second_name}}
+                        {{$item->title}}
                     </a>
                 @endif
                 <p class="subtitle__date">{{$item->created_at}}</p>

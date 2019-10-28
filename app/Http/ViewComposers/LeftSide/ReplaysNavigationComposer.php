@@ -13,6 +13,7 @@ class ReplaysNavigationComposer
 
     public static $pro;
     private static $ttl = 300;
+    private static $column = ['id', 'type_id', 'negative_count', 'positive_count','created_at', 'approved','title'];
     public static $replayTypes = [
         '1x1' => 'duel',
         'Park / Archive' => 'pack',
@@ -129,7 +130,6 @@ class ReplaysNavigationComposer
     private static function getReplayProDuel()
     {
         $data = null;
-        $column = ['id', 'type_id', 'negative_count', 'positive_count', 'first_name', 'second_name', 'created_at', 'approved'];
         $data = Replay::with('types:id,name')
             ->where('approved', 1)
             ->where('user_replay', Replay::REPLAY_PRO)
@@ -138,7 +138,7 @@ class ReplaysNavigationComposer
             })
             ->orderByDesc('created_at')
             ->take(3)
-            ->get($column);
+            ->get(self::$column);
 
         return collect($data);
     }
@@ -146,7 +146,6 @@ class ReplaysNavigationComposer
     private static function getReplayProPack()
     {
         $data = null;
-        $column = ['id', 'type_id', 'negative_count', 'positive_count', 'first_name', 'second_name', 'created_at', 'approved'];
         $data = Replay::with('types:id,name')
             ->where('approved', 1)
             ->where('user_replay', Replay::REPLAY_PRO)
@@ -155,7 +154,7 @@ class ReplaysNavigationComposer
             })
             ->orderByDesc('created_at')
             ->take(3)
-            ->get($column);
+            ->get(self::$column);
 
         return collect($data);
     }
@@ -163,7 +162,6 @@ class ReplaysNavigationComposer
     private static function getReplayProGotw()
     {
         $data = null;
-        $column = ['id', 'type_id', 'negative_count', 'positive_count', 'first_name', 'second_name', 'created_at', 'approved'];
         $data = Replay::with('types:id,name')
             ->where('approved', 1)
             ->where('user_replay', Replay::REPLAY_PRO)
@@ -172,7 +170,7 @@ class ReplaysNavigationComposer
             })
             ->orderByDesc('created_at')
             ->take(3)
-            ->get($column);
+            ->get(self::$column);
 
         return collect($data);
     }
@@ -180,7 +178,6 @@ class ReplaysNavigationComposer
     private static function getReplayProTeam()
     {
         $data = null;
-        $column = ['id', 'type_id', 'negative_count', 'positive_count', 'first_name', 'second_name', 'created_at', 'approved'];
         $data = Replay::with('types:id,name')
             ->where('approved', 1)
             ->where('user_replay', Replay::REPLAY_PRO)
@@ -189,7 +186,7 @@ class ReplaysNavigationComposer
             })
             ->orderByDesc('created_at')
             ->take(3)
-            ->get($column);
+            ->get(self::$column);
 
         return collect($data);
     }
@@ -197,13 +194,12 @@ class ReplaysNavigationComposer
     public static function getReplayUser()
     {
         $data = null;
-        $column = ['id', 'type_id', 'negative_count', 'positive_count', 'first_name', 'second_name', 'created_at', 'approved'];
         $data = Replay::with('types:id,name')
             ->where('approved', 1)
             ->where('user_replay', Replay::REPLAY_USER)
             ->orderByDesc('created_at')
             ->take(3)
-            ->get($column);
+            ->get(self::$column);
 
         return collect($data);
     }

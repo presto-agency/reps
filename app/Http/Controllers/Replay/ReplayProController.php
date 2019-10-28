@@ -25,6 +25,7 @@ class ReplayProController extends Controller
         ];
         $ArrColumn = [
             'id',
+            'title',
             'user_id',
             'map_id',
             'first_name',
@@ -40,45 +41,10 @@ class ReplayProController extends Controller
 
         $replay = ReplayController::getReplays($ArrRelations, $ArrColumn, Replay::REPLAY_PRO);
         $proRout = ReplayController::checkUrlPro() === true ? true : false;
-        return view('replay.index',
-            compact('replay', 'proRout')
-        );
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexType()
-    {
+        $proRoutType = false;
 
-        $ArrRelations = [
-            'users:id,name,avatar',
-            'maps:id,name',
-            'firstCountries:id,flag',
-            'secondCountries:id,flag',
-            'firstRaces:id,title,code',
-            'secondRaces:id,title,code',
-        ];
-        $ArrColumn = [
-            'id',
-            'user_id',
-            'map_id',
-            'first_name',
-            'second_name',
-            'first_country_id',
-            'second_country_id',
-            'first_race',
-            'second_race',
-            'positive_count',
-            'negative_count',
-            'created_at',
-        ];
-
-        $replay = ReplayController::getReplays($ArrRelations, $ArrColumn, Replay::REPLAY_PRO);
-        $proRout = ReplayController::checkUrlPro() === true ? true : false;
         return view('replay.index',
-            compact('replay', 'proRout')
+            compact('replay', 'proRout', 'proRoutType')
         );
     }
 
@@ -124,8 +90,9 @@ class ReplayProController extends Controller
         $replay = ReplayController::findReplay($ArrRelations, $id);
         $countUserPts = $replay->users->totalComments->count();
         $proRout = ReplayController::checkUrlPro() === true ? true : false;
+        $proRoutType = false;
         return view('replay.show',
-            compact('replay', 'countUserPts', 'proRout')
+            compact('replay', 'countUserPts', 'proRout', 'proRoutType')
         );
     }
 

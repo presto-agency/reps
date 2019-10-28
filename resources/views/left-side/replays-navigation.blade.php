@@ -46,8 +46,8 @@
                                                 @foreach($replayNav as $replayNavitem)
                                                     @if($replayNavitem['types']['name'] == $replayName)
                                                         <div class="body__wrap">
-                                                            <a href="{{route('replay_pro.type.show',['replay_pro' =>$replayName, 'type'=>$replayNavitem['id']])}}"
-                                                               class="body__title">{{$replayNavitem['first_name'].' vs '.$replayNavitem['second_name']}}</a>
+                                                            <a href="{{route('replay_pro.type.show',['type' =>$replayName, 'replay_pro'=>$replayNavitem['id']])}}"
+                                                               class="body__title">{{$replayNavitem['title']}}</a>
                                                             <span
                                                                 class="body__numb">{{$replayNavitem['positive_count'] - $replayNavitem['negative_count']}}</span>
                                                         </div>
@@ -80,7 +80,7 @@
                             <div class="card-body">
                                 <div class="body__wrap">
                                     <a href="{{route('replay.show',['replay' => $replayNavitem['id']])}}"
-                                       class="body__title">{{$replayNavitem['first_name'].' vs '.$replayNavitem['second_name']}}</a>
+                                       class="body__title">{{$replayNavitem['title']}}</a>
                                     <span
                                         class="body__numb">{{$replayNavitem['positive_count'] - $replayNavitem['negative_count']}}</span>
                                 </div>
