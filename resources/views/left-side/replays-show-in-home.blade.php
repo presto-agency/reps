@@ -1,12 +1,12 @@
 <section class="block_replay">
     <div class="wrapper">
-        <div class="title_top">
-            <p class="title_Text">РЕПЛЕИ</p>
+        <div class="title_block_gray">
+            <p class="title_text">РЕПЛЕИ</p>
         </div>
         <div class="row row_game">
             @isset($replaysProLsHome)
                 @foreach($replaysProLsHome as $item)
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-3 col-4 wrapper_game">
                         <div class="game_oneSection">
                             <a href="#" class="name_game" title="Busi v Last"><p>{{$item->title}}</p></a>
                             <div class="content_game">
@@ -35,7 +35,7 @@
         <div class="row row_game">
             @isset($replaysProLsHome)
                 @foreach($replaysUserLsHome as $item)
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pl-0 pr-0">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-3 col-4 wrapper_game">
                         <div class="game_oneSection">
                             <a href="#" class="name_game" title="Busi v Last"><p>{{$item->title}}</p></a>
                             <div class="content_game">
