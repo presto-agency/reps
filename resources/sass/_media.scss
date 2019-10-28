@@ -4408,6 +4408,7 @@
     //global_style
     .title_block{
         padding: 3.472vw;
+        min-height: 10.417vw;
         & img,svg{
             width: 3.472vw;
         }
@@ -4455,7 +4456,7 @@
             align-items: center;
             & img{
                 width: 55%!important;
-                padding-left: 20px;
+                padding-left: 3.472vw;
             }
         }
         & .mode{
@@ -4471,19 +4472,25 @@
         }
         & .icon_bars{
             display: block!important;
-            width: 30px!important;
+            width: 5.208vw!important;
         }
         .cabinet{
             display: flex!important;
             & .icon_cabinet{
-                width: 30px!important;
+                width: 5.208vw!important;
             }
         }
         & .button_input{
-            margin-left: 20px;
+            margin-left: 3.472vw;
             & .search_input {
                 margin-left: 0 !important;
                 min-width: 77vw !important;
+            }
+        }
+        .burger_menu{
+            display: block!important;
+            & .menu_bar{
+                width: 9.681vw !important;
             }
         }
     }
@@ -4639,7 +4646,6 @@
     .messanger::-webkit-scrollbar-thumb {
         height: 39.410vw;
     }
-
     .breaking-news {
         .breaking-news__title {
             padding-top: 3.472vw;
@@ -4656,119 +4662,119 @@
             }
         }
 
-        //.breaking-news__news-card {
-        //    padding-left: 3.819vw;
-        //    padding-right: 3.819vw;
-        //    padding-top: 4.340vw;
-        //    .card-body {
-        //        .card-body__author {
-        //            margin-bottom: 3.125vw;
-        //
-        //            .author__avatar {
-        //                width: 4.861vw;
-        //                height: 4.861vw;
-        //            }
-        //            .author__nickname {
-        //                font-size: 3.431vw;
-        //            }
-        //            .author__date {
-        //                margin-left: auto;
-        //                font-size: 3.083vw;
-        //            }
-        //        }
-        //        .card-body__title {
-        //            font-size: 3.778vw;
-        //            line-height: 3.299vw;
-        //        }
-        //
-        //        .card-body__text {
-        //            font-size: 3.431vw;
-        //        }
-        //        //p - styles for text who isert from admin
-        //        p {
-        //            font-size: 3.431vw;
-        //        }
-        //        //p - styles for text "читать" isert from admin
-        //        a {
-        //            font-size: 3.431vw;
-        //        }
-        //        .card-body__items {
-        //            margin-bottom: 3.125vw;
-        //            .items__comment {
-        //                svg {
-        //                    width: 3.646vw;
-        //                    height: 3.646vw;
-        //                }
-        //                span {
-        //                    font-size: 2.083vw;
-        //                    line-height: 3.299vw;
-        //                    margin-left: 2.083vw;
-        //                }
-        //            }
-        //            .items__share {
-        //                margin-left: 6.076vw;
-        //                svg {
-        //                    width: 3.125vw;
-        //                    height: 3.472vw;
-        //                }
-        //            }
-        //            .items__watch {
-        //                svg {
-        //                    width: 2.910vw;
-        //                    height: 2.910vw;
-        //                }
-        //                span {
-        //                    margin-left: 2.083vw;
-        //                    font-size: 3.083vw;
-        //                    line-height: 3.299vw;
-        //                }
-        //            }
-        //        }
-        //        .card-body__comment-form {
-        //            margin-bottom: 7.986vw;
-        //            .comment-form__group {
-        //                .comment {
-        //                    .comment__icon {
-        //                        width: 3.472vw;
-        //                        height: 2.778vw;
-        //                        top: 2.604vw;
-        //                        right: 13.889vw;
-        //                    }
-        //                    .comment__input {
-        //                        height: 7.639vw;
-        //                        padding-left: 3.125vw;
-        //                        padding-right: 13.472vw;
-        //                        &::placeholder {
-        //                            font-size: 3.083vw;
-        //                        }
-        //                    }
-        //                }
-        //                .buttons-upload{
-        //                    top: 2.083vw;
-        //                    right: 8.681vw;
-        //                    label {
-        //                        margin-left: 2.951vw;
-        //                    }
-        //                    i {
-        //                        font-size: 2.778vw;
-        //                    }
-        //                    .smile-upload {
-        //                        margin-left: 2.778vw;
-        //                        i {
-        //                            font-size: 3.778vw;
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //            .comment-form__button {
-        //                svg {
-        //                    width: 3.472vw;
-        //                    height: 3.125vw;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+        .breaking-news__news-card {
+            padding-left: 3.819vw;
+            padding-right: 3.819vw;
+            padding-top: 4.340vw;
+            .card-body {
+                .card-body__author {
+                    margin-bottom: 3.125vw;
+
+                    .author__avatar {
+                        width: 4.861vw;
+                        height: 4.861vw;
+                    }
+                    .author__nickname {
+                        font-size: 3.431vw;
+                    }
+                    .author__date {
+                        margin-left: auto;
+                        font-size: 3.083vw;
+                    }
+                }
+                .card-body__title {
+                    font-size: 3.778vw;
+                    line-height: 3.299vw;
+                }
+
+                .card-body__text {
+                    font-size: 3.431vw;
+                }
+                //p - styles for text who isert from admin
+                p {
+                    font-size: 3.431vw;
+                }
+                //p - styles for text "читать" isert from admin
+                a {
+                    font-size: 3.431vw;
+                }
+                .card-body__items {
+                    margin-bottom: 3.125vw;
+                    .items__comment {
+                        svg {
+                            width: 3.646vw;
+                            height: 3.646vw;
+                        }
+                        span {
+                            font-size: 2.083vw;
+                            line-height: 3.299vw;
+                            margin-left: 2.083vw;
+                        }
+                    }
+                    .items__share {
+                        margin-left: 6.076vw;
+                        svg {
+                            width: 3.125vw;
+                            height: 3.472vw;
+                        }
+                    }
+                    .items__watch {
+                        svg {
+                            width: 2.910vw;
+                            height: 2.910vw;
+                        }
+                        span {
+                            margin-left: 2.083vw;
+                            font-size: 3.083vw;
+                            line-height: 3.299vw;
+                        }
+                    }
+                }
+                //.card-body__comment-form {
+                //    margin-bottom: 7.986vw;
+                //    .comment-form__group {
+                //        .comment {
+                //            .comment__icon {
+                //                width: 3.472vw;
+                //                height: 2.778vw;
+                //                top: 2.604vw;
+                //                right: 13.889vw;
+                //            }
+                //            .comment__input {
+                //                height: 7.639vw;
+                //                padding-left: 3.125vw;
+                //                padding-right: 13.472vw;
+                //                &::placeholder {
+                //                    font-size: 3.083vw;
+                //                }
+                //            }
+                //        }
+                //        .buttons-upload{
+                //            top: 2.083vw;
+                //            right: 8.681vw;
+                //            label {
+                //                margin-left: 2.951vw;
+                //            }
+                //            i {
+                //                font-size: 2.778vw;
+                //            }
+                //            .smile-upload {
+                //                margin-left: 2.778vw;
+                //                i {
+                //                    font-size: 3.778vw;
+                //                }
+                //            }
+                //        }
+                //    }
+                //    .comment-form__button {
+                //        svg {
+                //            width: 3.472vw;
+                //            height: 3.125vw;
+                //        }
+                //    }
+                //}
+            }
+        }
     }
     .breaking-news__numb-pages {
         margin-top: 4.340vw;
@@ -4778,7 +4784,6 @@
             line-height: 3.299vw;
         }
     }
-
     //tournament
     .block_tournament{
         & .block_futureTournament{
@@ -4932,7 +4937,6 @@
             padding: 4.340vw;
         }
     }
-
     //replay
     .block_replay {
         & .container_btn{
@@ -5716,8 +5720,6 @@
     .open{
         right: 1.042vw;
     }
-
-
     .footer {
         padding-top: 7.417vw;
         padding-bottom: 7.417vw;
@@ -5795,7 +5797,6 @@
         }
 
     }
-
     .footer__copyright {
         .copyright__text {
             font-size: 2.556vw;
@@ -5934,6 +5935,135 @@
                 }
                 .items__comment {
                     margin-left: 5.556vw;
+                }
+            }
+        }
+
+    }
+    //detailed_news
+    .detailed-news {
+        .detailed-news__title {
+            padding: 3.472vw;
+            .title__wrap {
+                .title__icon {
+                    width: 3.472vw;
+                    height: 3.472vw;
+                }
+                .title__text {
+                    font-size: 2.778vw;
+                    margin-left: 3.472vw;
+                }
+                .title__avatar {
+                    width: 4.861vw;
+                    height: 4.861vw;
+                }
+                .title__nickname {
+                    font-size: 2.431vw;
+                    margin-left: 2.257vw;
+                }
+                .title__flag {
+                    width: 3.472vw;
+                    height: 3.472vw;
+                    margin-left: 2.257vw;
+                }
+                .title__cube {
+                    width: 2.778vw;
+                    height: 2.778vw;
+                    margin-left: 1.910vw;
+                }
+                .title__text {
+                    font-size: 2.431vw;
+                    margin-left: 2.083vw;
+                }
+            }
+        }
+        .detailed-news__info {
+            padding-top: 2.125vw;
+            padding-bottom: 2.125vw;
+            padding-left: 3.646vw;
+            padding-right: 3.819vw;
+            .info__items {
+                .items__watch,
+                .items__comment {
+                    svg {
+                        width: 2.604vw;
+                        height: 2.257vw;
+                    }
+                    span {
+                        font-size: 2.083vw;
+                        line-height: 3.299vw;
+                        margin-left: 1.736vw;
+                    }
+                }
+                .items__comment {
+                    margin-left: 5.556vw;
+                }
+                .items__date {
+                    font-size: 2.083vw;
+                    line-height: 3.299vw;
+                }
+            }
+        }
+        .detailed-news__card {
+            .card-body {
+                .card-body__title {
+                    font-size: 3.778vw;
+                    line-height: 4.299vw;
+                    margin-top: 6.250vw;
+                    margin-bottom: 4.688vw;
+                }
+                .card-body__text {
+                    font-size: 2.778vw;
+                    line-height: 4.167vw;
+                    margin-bottom: 4.861vw;
+                }
+                .card-body__banner {
+                    margin-bottom: 6.771vw;
+                }
+                .card-body__items {
+                    padding-bottom: 2.951vw;
+                    .card-body__items-wrap {
+                        .items__quote {
+                            text-decoration: none;
+                            svg {
+                                width: 3.472vw;
+                                height: 3.472vw;
+                            }
+                        }
+                        .items__share {
+                            margin-left: 3.646vw;
+                            svg {
+                                width: 3.125vw;
+                                height: 3.472vw;
+                            }
+                        }
+                    }
+                    .card-body__items-wrap {
+                        .items__like {
+                            svg {
+                                width: 3.472vw;
+                                height: 3.125vw;
+                            }
+                            span {
+                                font-size: 2.083vw;
+                                line-height: 3.299vw;
+                                margin-left: 1.215vw;
+                            }
+                        }
+                        .items__dislike {
+                            margin-left: 2.951vw;
+                            svg {
+                                width: 3.472vw;
+                                height: 3.125vw;
+                            }
+                            span {
+                                font-size: 2.083vw;
+                                line-height: 3.299vw;
+                                margin-left: 1.215vw;
+                            }
+                        }
+                    }
+
                 }
             }
         }

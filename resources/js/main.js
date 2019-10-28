@@ -85,7 +85,12 @@ $('.big_video_left').click(function(event) {
  });
 
 
-//
+//day-night
+$('#night').click(function(event) {
+    event.preventDefault();
+
+
+});
 
 /*accordion replays script   start*/
 /*const accordionState = JSON.parse(localStorage.getItem('accordionState')) || {};

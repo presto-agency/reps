@@ -14,7 +14,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
+    <link  href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
 {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
 {{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
 
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('js/sceditor/themes/default.min.css') }} "/>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 
 </head>
