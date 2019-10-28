@@ -23,6 +23,9 @@
                 color: $blue;
                 font-size: 14px;
                 font-weight: bold;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
     }

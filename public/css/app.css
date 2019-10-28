@@ -15297,7 +15297,20 @@ select:focus {
 }
 
 .block_replay .row_game {
+  display: flex;
+  padding: 0;
+  margin: 5px;
   margin-bottom: 15px;
+}
+
+.block_replay .row_game .game_oneSection {
+  padding: 0px;
+}
+
+.block_replay .row_game .wrapper_game {
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .block_replay .row_game .name_game {
@@ -15400,6 +15413,9 @@ select:focus {
   color: #0567cc;
   font-size: 14px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .forum_acticle .wrapper {
@@ -17024,7 +17040,7 @@ select:focus {
 }
 
 .banner {
-  padding: 20px 0 0;
+  padding: 0 0 20px;
 }
 
 .banner .wrapper {
@@ -24295,6 +24311,79 @@ select:focus {
 
   #registrationModal .modal-body .modal-body__restore-password {
     margin-bottom: 2.604vw;
+  }
+
+  .my-post {
+    margin-bottom: 3.472vw;
+  }
+
+  .my-post .my-post__title {
+    padding-top: 3.472vw;
+    padding-bottom: 3.472vw;
+    padding-left: 3.299vw;
+  }
+
+  .my-post .my-post__title .title__icon {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
+
+  .my-post .my-post__title .title__text {
+    font-size: 2.778vw;
+    margin-left: 2.951vw;
+  }
+
+  .my-post .my-post__accordion {
+    /* Style the accordion panel. Note: hidden by default */
+  }
+
+  .my-post .my-post__accordion .accordion-button {
+    padding: 3.125vw;
+    font-size: 2.604vw;
+  }
+
+  .my-post .my-post__accordion .accordion-button:after {
+    margin-left: 0.868vw;
+  }
+
+  .my-post .my-post__accordion .panel {
+    padding: 0 3.125vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__header {
+    margin-top: 2.604vw;
+    padding-bottom: 1.736vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__header .header__items .items__icon {
+    width: 2.604vw;
+    height: 2.257vw;
+    margin-right: 0.868vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__header .header__items .items__info {
+    margin-left: 1.736vw;
+    font-size: 2.083vw;
+    line-height: 3.299vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body {
+    margin-bottom: 2.604vw;
+    padding-bottom: 2.604vw;
+    padding-top: 2.604vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body .body__numb {
+    font-size: 2.431vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body .body__nick {
+    font-size: 2.431vw;
+    margin-left: 1.736vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body .body__text {
+    font-size: 2.778vw;
   }
 }
 
