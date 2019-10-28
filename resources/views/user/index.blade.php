@@ -20,6 +20,8 @@
     @include('user.components.my-topics')
     @include('user.components.password-recovery')
     @include('user.components.get-recovery-link')
+    @include('user.components.my-posts')
+    @include('user.components.reputation-info')
 @endsection
 
 @section('sidebar-right')
