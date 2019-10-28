@@ -16,7 +16,7 @@
             font-size: 1.167vw;
             margin: 0 0 0 1.464vw;
         }
-    }
+    }       //+
     .title_top{
         height: 4.392vw;
         padding: 1.464vw;
@@ -28,12 +28,12 @@
                 font-size: 2.928vw;
             }
         }
-    }
+    }              //+
     .button {
         font-size: 0.878vw;
         padding-top: 0.952vw;
         padding-bottom: 1.098vw;
-    }
+            }       //+
     .breadcrumb {
         padding-top: 1.903vw;
         padding-bottom: 1.830vw;
@@ -217,13 +217,47 @@
             height: 56.369vw;
 
         }
-    }
+    }       //+
     .messanger::-webkit-scrollbar {
         width: 0.732vw;
-    }
+    }       //+
     .messanger::-webkit-scrollbar-thumb {
         height: 16.618vw;
-    }
+    }       //+
+    .popup_chat{
+        .title_block{
+            .btn_close{
+                font-size: 1.830vw;
+            }
+
+        }
+        .popup_contant{
+            max-height: calc(100vh - 10.249vw) !important;
+            min-height: calc(100vh - 10.249vw) !important;
+        }
+        .modal-content{
+            .row_contentChat{
+                padding: 1.098vw 0.732vw 0;
+            }
+        }
+
+    }       //+
+    .popup_contant::-webkit-scrollbar {
+        width: 0.732vw;
+    }       //+
+    .popup_contant::-webkit-scrollbar-thumb {
+        height: 16.618vw;
+    }       //+
+
+    //Банер
+    .banner{
+        padding: 1.464vw 0 0;
+
+        .block_content{
+            margin-bottom: 0.366vw;
+            padding: 0 1.464vw;
+        }
+    }        //+
 
     //Предстоящие турниры
     .block_tournament{
@@ -237,7 +271,7 @@
                 padding: 0.366vw;
             }
         }
-    }
+    }       //+
     .block_replay{
         & .container_btn{
             & .button{
@@ -273,7 +307,7 @@
                 }
             }
         }
-    }
+    }       //+
     .block_lastNews{
         margin: 2.196vw 0 2.928vw 0;
         & .block_futureTournament{
@@ -283,7 +317,7 @@
                 padding-bottom: 1.098vw;
             }
         }
-    }
+    }       //+
 
     //Последние новости
     .breaking-news {
@@ -447,7 +481,7 @@
                 }
             }
         }
-    }
+    }       //+
 
     //Последние темы
     .block_lastNews{
@@ -566,221 +600,129 @@
             }
         }
     }
-    /*.detailed-forum {
-        box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
-        border-radius: 5px;
+    .detailed-forum {
         .detailed-forum__title {
-            display: flex;
-            justify-content: space-between;
-            border-radius: 5px 5px 0 0;
-            background-color: #0567cc;
-            padding: 20px;
+            padding: 1.464vw;
 
             .title__wrap {
-                display: flex;
-                align-items: center;
                 .title__icon {
-                    width: 20px;
-                    height: 20px;
-                    fill: #ffffff;
+                    width: 1.464vw;
+                    height: 1.464vw;
                 }
                 .title__text {
-                    color: #ffffff;
-                    font-size: 16px;
-                    font-weight: 400;
-                    margin-left: 20px;
-                    margin-bottom: 0; //отмена стандартного отступа
+                    font-size: 1.171vw;
+                    margin-left: 1.464vw;
                 }
                 .title__avatar {
-                    width: 28px;
-                    height: 28px;
+                    width: 2.050vw;
+                    height: 2.050vw;
                 }
                 .title__nickname {
-                    color: #ffffff;
-                    font-size: 14px;
-                    font-weight: 400;
-                    margin-left: 13px;
-                    margin-bottom: 0; //отмена стандартного отступа
+                    font-size: 1.025vw;
+                    margin-left: 0.952vw;
                 }
                 .title__flag {
-                    width: 20px;
-                    height: 20px;
-                    margin-left: 13px;
+                    width: 1.464vw;
+                    height: 1.464vw;
+                    margin-left: 0.952vw;
                 }
                 .title__cube {
-                    width: 16px;
-                    height: 16px;
-                    margin-left: 11px;
+                    width: 1.171vw;
+                    height: 1.171vw;
+                    margin-left: 0.805vw;
                 }
                 .title__text {
-                    color: #ffffff;
-                    font-size: 14px;
-                    font-weight: 500;
-                    margin-left: 12px;
-                    margin-bottom: 0; //отмена стандартного отступа
+                    font-size: 1.025vw;
+                    margin-left: 0.878vw;
                 }
 
             }
         }
         .detailed-forum__info {
-            background-color: #ffffff;
-            padding-top: 18px;
-            padding-bottom: 17px;
-            padding-left: 21px;
-            padding-right: 22px;
+            padding-top: 1.318vw;
+            padding-bottom: 1.245vw;
+            padding-left: 1.537vw;
+            padding-right: 1.611vw;
 
             .info__items {
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
                 .items__watch,
                 .items__comment {
-                    text-decoration: none;
-                    transition: .3s;
                     svg {
-                        width: 15px;
-                        height: 13px;
-                        fill: #9ca0b6;
+                        width: 1.098vw;
+                        height: 0.952vw;
                     }
                     span {
-                        color: #9ca0b6;
-                        font-size: 12px;
-                        font-weight: 400;
-                        line-height: 19px;
-                        margin-left: 10px;
-                    }
-                    &:hover {
-                        & svg {
-                            fill: #0567cc;
-                        }
+                        font-size: 0.878vw;
+                        line-height: 1.318vw;
+                        margin-left: 0.732vw;
                     }
                 }
                 .items__comment {
-                    margin-left: 32px;
+                    margin-left: 2.343vw;
                 }
                 .items__date {
-                    margin-left: auto;
-                    margin-bottom: 0;
-                    color: #9ca0b6;
-                    font-size: 12px;
-                    font-weight: 400;
-                    line-height: 19px;
+                    font-size: 0.878vw;
+                    line-height: 1.318vw;
 
                 }
             }
         }
-        hr {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
         .detailed-forum__card {
-            border: 0px;
             .card-body {
                 .card-body__title {
-                    color: #010b4a;
-                    font-size: 16px;
-                    font-weight: 400;
-                    line-height: 19px;
-                    text-transform: uppercase;
-                    margin-top: 36px;
-                    margin-bottom: 27px;
+                    font-size: 1.171vw;
+                    line-height: 1.391vw;
+                    margin-top: 2.635vw;
+                    margin-bottom: 1.977vw;
                 }
                 .card-body__text {
-                    color: #010b4a;
-                    font-size: 16px;
-                    font-weight: 300;
-                    line-height: 24px;
-                    margin-bottom: 28px;
-                    margin-top: 28px;
-                    span {
-                        color: #0567cc;
-                        font-weight: 400;
-                        text-decoration: underline;
-                    }
+                    font-size: 1.171vw;
+                    line-height: 1.757vw;
+                    margin-bottom: 2.050vw;
+                    margin-top: 2.050vw;
                 }
                 .card-body__banner {
-                    margin-bottom: 39px;
+                    margin-bottom: 2.855vw;
                 }
                 .card-body__items {
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding-bottom: 17px;
+                    padding-bottom: 1.245vw;
                     .card-body__items-wrap {
                         .items__quote {
-                            text-decoration: none;
                             svg {
-                                width: 20px;
-                                height: 20px;
-                                fill: #c7c9d7;
-                                transition: .3s;
-                            }
-                            &:hover {
-                                & svg {
-                                    fill: #0567cc;
-                                }
+                                width: 1.464vw;
+                                height: 1.464vw;
                             }
                         }
                         .items__share {
-                            text-decoration: none;
-                            margin-left: 21px;
+                            margin-left: 1.537vw;
                             svg {
-                                width: 18px;
-                                height: 20px;
-                                fill: #c7c9d7;
-                                transition: .3s;
-                            }
-                            &:hover {
-                                & svg {
-                                    fill: #0567cc;
-                                }
+                                width: 1.318vw;
+                                height: 1.464vw;
                             }
                         }
                     }
                     .card-body__items-wrap {
                         .items__like {
-                            text-decoration: none;
                             svg {
-                                width: 20px;
-                                height: 18px;
-                                fill: #c7c9d7;
-                                transition: .3s;
+                                width: 1.464vw;
+                                height: 1.318vw;
                             }
                             span {
-                                color: #9ca0b6;
-                                font-size: 12px;
-                                font-weight: 400;
-                                line-height: 19px;
-                                margin-left: 7px;
-                            }
-                            &:hover {
-                                & svg {
-                                    fill: #0567cc;
-                                }
+                                font-size: 0.878vw;
+                                line-height: 1.391vw;
+                                margin-left: 0.512vw;
                             }
                         }
                         .items__dislike {
-                            text-decoration: none;
-                            margin-left: 17px;
+                            margin-left: 1.245vw;
                             svg {
-                                width: 20px;
-                                height: 18px;
-                                fill: #c7c9d7;
-                                transition: .3s;
+                                width: 1.464vw;
+                                height: 1.318vw;
                             }
                             span {
-                                color: #9ca0b6;
-                                font-size: 12px;
-                                font-weight: 400;
-                                line-height: 19px;
-                                margin-left: 7px;
-                            }
-                            &:hover {
-                                & svg {
-                                    fill: #0567cc;
-                                }
+                                font-size: 0.878vw;
+                                line-height: 1.391vw;
+                                margin-left: 0.512vw;
                             }
                         }
                     }
@@ -788,7 +730,7 @@
                 }
             }
         }
-    }*/
+    }
 
 
     //Темы форума
@@ -824,7 +766,7 @@
 
             }
         }
-    }
+    }       //+
     .forum_allSections {
         .wrapper {
             margin: 0 0 1.464vw;
@@ -862,7 +804,7 @@
                 font-size: 1.171vw;
             }
         }
-    }
+    }       //+
 
     /*РЕПЛЕИ*/
 
@@ -1462,7 +1404,7 @@
                 font-size: 0.878vw;
             }
         }
-    }
+    }       //+
 
 
     /*ЛУЧШИЕ*/
@@ -1516,6 +1458,9 @@
                     }
                     & img{
                         margin: 0 0.732vw 0 1.098vw;
+                        width: 2.196vw;
+                        border-radius: 3.660vw;
+                        height: 2.196vw;
                     }
                     & a{
                         width: 10.249vw;
@@ -1543,7 +1488,7 @@
         .container_players::-webkit-scrollbar-thumb {
             height: 1.830vw;
         }
-    }
+    }       //+
 
     /*КАБИНЕТ ПОЛЬЗОВАТЕЛЯ*/
     .gallery {
@@ -2128,6 +2073,433 @@
             height: 1.830vw;
         }
     }
+    .page_replay{
+        .title_block{
+            .right_block{
+                a{
+                    font-size: 0.878vw;
+                    margin-left: 0.732vw;
+                }
+                span{
+                    font-size: 0.878vw;
+                }
+                img{
+                    margin-left: 0.366vw;
+                }
+            }
+        }
+        .title_block_gray{
+            padding: 1.098vw;
+            span{
+                font-size: 1.171vw;
+            }
+            svg{
+                width: 1.098vw;
+            }
+            .right_block{
+                .comment_count{
+                    margin-right: 0.732vw;
+                }
+            }
+        }
+        .replay-content{
+            padding-bottom: 1.098vw;
+            padding-top: 1.464vw;
+            .content_left{
+                span{
+                    font-size: 1.025vw;
+                }
+                .left_block{
+                    padding: 0.366vw 0.732vw;
+                }
+                .right_block{
+                    padding: 0.366vw 0.732vw;
+                    img{
+                        width: 1.098vw;
+                        height: 1.098vw;
+                        border-radius: 3.660vw;
+                    }
+
+                }
+
+            }
+            .content_right{
+                .title{
+                    font-size: 16px;
+                }
+                img{
+                    margin: 20px 0 36px;
+                }
+                .replay-rating{
+                    margin-bottom: 0.732vw;
+                    svg{
+                        width: 1.098vw;
+                    }
+                    span{
+                        font-size: 12px;
+                    }
+                }
+                .replay-download{
+                    svg{
+                        width: 1.098vw;
+                    }
+                    a{
+                        span{
+                            font-size: 14px;
+                        }
+                        .download{
+                            margin-left: 0.732vw;
+                        }
+
+                    }
+                }
+
+
+            }
+        }
+    }       //+
+    .modal_tournament{
+        h5{
+            font-size: 1.171vw;
+        }
+        .title_block_gray{
+            padding: 0.732vw;
+        }
+        .title_block{
+            .title_text{
+                font-size: 1.025vw;
+            }
+        }
+        .small_block{
+
+            .content{
+                padding: 0.732vw;
+                margin-top: 0.732vw;
+            }
+            .left_content{
+                span{
+                    font-size: 1.025vw;
+                }
+                svg{
+                    width: 1.464vw;
+                }
+
+            }
+        }
+        .big_block{
+            .container_map{
+                img{
+                    height: 10.981vw;
+                }
+            }
+        }
+    }       //+
+
+    .my-topics {
+        margin-bottom: 1.464vw;
+        .my-topics__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.464vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+
+        }
+
+        .my-topics__accordion {
+            .accordion-button {
+                padding: 1.318vw;
+                font-size: 1.098vw;
+            }
+            .accordion-button:after {
+                margin-left: 0.366vw;
+            }
+
+            .panel {
+                padding: 0 1.318vw;
+                .panel__wrap {
+                    .panel__header {
+                        margin-top: 1.098vw;
+                        padding-bottom: 0.732vw;
+                        .header__items {
+                            .items__link {
+                                font-size: 0.878vw;
+                            }
+                            span {
+                                font-size: 0.878vw;
+                                line-height: 1.391vw;
+                                margin-right: 0.366vw;
+                                margin-left: 0.366vw;
+                            }
+
+                            .items__icon {
+                                width: 1.098vw;
+                                height: 0.952vw;
+                                margin-right: 0.366vw;
+                            }
+                            .items__info {
+                                margin-left: 0.732vw;
+                                font-size: 0.878vw;
+                                line-height: 1.391vw;
+                            }
+                        }
+                    }
+                    .panel__body {
+                        margin-bottom: 1.098vw;
+                        .body__comment {
+                            font-size: 1.171vw;
+                            line-height: 1.757vw;
+                            margin-bottom: 1.098vw;
+                            margin-top: 1.098vw;
+                        }
+                    }
+                    .panel__footer {
+                        margin-bottom: 0.732vw;
+                        padding-bottom: 1.098vw;
+                        .footer__item {
+                            .items__items {
+                                margin-right: 1.098vw;
+                                svg {
+                                    width: 1.171vw;
+                                    height: 1.171vw;
+                                    margin-right: 0.512vw;
+                                }
+                                span {
+                                    font-size: 0.878vw;
+                                    line-height: 1.391vw;
+                                }
+
+                            }
+                            .rate {
+                                width: 10.981vw;
+                                padding: 0.366vw 0.732vw;
+                                font-size: 0.878vw;
+                            }
+                            .item__later {
+                                svg {
+                                    width: 1.464vw;
+                                    height: 1.464vw;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .password-recovery {
+        .password-recovery__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.464vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+
+        .password-recovery__form {
+            padding: 1.830vw;
+        }
+    }
+    .get-recovery-link {
+        .get-recovery-link__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.464vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+
+        .get-recovery-link__form {
+            padding: 1.830vw;
+        }
+    }
+    .my-post {
+        margin-bottom: 1.464vw;
+        .my-post__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.464vw;
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+
+        }
+
+        .my-post__accordion {
+            .accordion-button {
+                padding: 1.318vw;
+                font-size: 1.098vw;
+            }
+
+
+            .accordion-button:after {
+                margin-left: 0.366vw;
+            }
+            .panel {
+                padding: 0 1.318vw;
+                .panel__wrap {
+                    .panel__header {
+                        margin-top: 1.098vw;
+                        padding-bottom: 0.732vw;
+                        .header__items {
+                            .items__icon {
+                                width: 1.098vw;
+                                height: 0.952vw;
+                                margin-right: 0.366vw;
+                            }
+                            .items__info {
+                                margin-left: 0.732vw;
+                                font-size: 0.878vw;
+                                line-height: 1.391vw;
+                            }
+                        }
+                    }
+                    .panel__body {
+                        margin-bottom: 1.098vw;
+                        padding-bottom: 1.098vw;
+                        padding-top: 1.098vw;
+                        .body__numb {
+                            font-size: 1.025vw;
+                        }
+                        .body__nick {
+                            font-size: 1.025vw;
+                            margin-left: 0.732vw;
+                        }
+                        .body__text {
+                            font-size: 1.171vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .reputation-info {
+        margin-bottom: 1.464vw;
+        .reputation-info__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.464vw;
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+
+        }
+
+        .reputation-info__body {
+
+            .panel {
+                padding: 0 1.318vw;
+                .panel__header {
+                    margin-top: 1.098vw;
+                    padding-bottom: 0.732vw;
+                    .header__items {
+                        .items__link {
+                            font-size: 0.878vw;
+                        }
+                        span {
+                            font-size: 0.878vw;
+                            line-height: 1.391vw;
+                            margin-right: 0.366vw;
+                            margin-left: 0.366vw;
+                        }
+
+                        .items__icon {
+                            width: 1.098vw;
+                            height: 0.952vw;
+                            margin-right: 0.366vw;
+                        }
+                        .items__info {
+                            margin-left: 0.732vw;
+                            font-size: 0.878vw;
+                            line-height: 1.391vw;
+                        }
+                    }
+                }
+                .panel__body {
+                    margin-bottom: 1.098vw;
+                    .body__comment {
+                        font-size: 1.171vw;
+                        line-height: 1.757vw;
+                        margin-bottom: 1.098vw;
+                        margin-top: 1.098vw;
+                    }
+                }
+                .panel__footer {
+                    margin-bottom: 0.732vw;
+                    padding-bottom: 1.098vw;
+                    .footer__item {
+                        .items__items {
+                            margin-right: 1.098vw;
+                            svg {
+                                width: 1.171vw;
+                                height: 1.171vw;
+                                margin-right: 0.512vw;
+                            }
+                            span {
+                                font-size: 0.878vw;
+                                line-height: 1.391vw;
+                            }
+
+                        }
+                        .rate {
+                            width: 10.981vw;
+                            padding: 0.366vw 0.732vw;
+                            font-size: 0.878vw;
+                        }
+                        .item__later {
+                            svg {
+                                width: 1.464vw;
+                                height: 1.464vw;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
 }
 
 
@@ -2287,7 +2659,8 @@
         padding: 1.413vw 2.825vw;
         margin: 0 auto 2.018vw;
     }
-//header
+
+    //header
     .header{
         position: relative;
         & .icon_bars{
@@ -2457,6 +2830,39 @@
     }
     .messanger::-webkit-scrollbar-thumb {
         height: 22.7vw;
+    }
+    .popup_chat{
+        .title_block{
+            .btn_close{
+                font-size: 2.523vw;
+            }
+
+        }
+        .popup_contant{
+            max-height: calc(100vh - 14.127vw) !important;
+            min-height: calc(100vh - 14.127vw) !important;
+        }
+        .modal-content{
+            .row_contentChat{
+                padding: 1.514vw 1.009vw 0;
+            }
+        }
+
+    }
+    .popup_contant::-webkit-scrollbar {
+        width: 1.009vw;
+    }
+    .popup_contant::-webkit-scrollbar-thumb {
+        height: 22.906vw;
+    }
+
+    //Банер
+    .banner{
+        padding: 2.018vw 0 0;
+        .block_content{
+            margin-bottom: 0.505vw;
+            padding: 0 2.018vw;
+        }
     }
 
     //Предстоящие турниры
@@ -2797,221 +3203,128 @@
         }
     }
 
-    /*.detailed-forum {
-        box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
-        border-radius: 5px;
+    .detailed-forum {
         .detailed-forum__title {
-            display: flex;
-            justify-content: space-between;
-            border-radius: 5px 5px 0 0;
-            background-color: #0567cc;
-            padding: 20px;
-
+            padding: 2.018vw;
             .title__wrap {
-                display: flex;
-                align-items: center;
                 .title__icon {
-                    width: 20px;
-                    height: 20px;
-                    fill: #ffffff;
+                    width: 2.018vw;
+                    height: 2.018vw;
                 }
                 .title__text {
-                    color: #ffffff;
-                    font-size: 16px;
-                    font-weight: 400;
-                    margin-left: 20px;
-                    margin-bottom: 0; //отмена стандартного отступа
+                    font-size: 1.615vw;
+                    margin-left: 2.018vw;
                 }
                 .title__avatar {
-                    width: 28px;
-                    height: 28px;
+                    width: 2.825vw;
+                    height: 2.825vw;
                 }
                 .title__nickname {
-                    color: #ffffff;
-                    font-size: 14px;
-                    font-weight: 400;
-                    margin-left: 13px;
-                    margin-bottom: 0; //отмена стандартного отступа
+                    font-size: 1.413vw;
+                    margin-left: 1.312vw;
                 }
                 .title__flag {
-                    width: 20px;
-                    height: 20px;
-                    margin-left: 13px;
+                    width: 2.018vw;
+                    height: 2.018vw;
+                    margin-left: 1.312vw;
                 }
                 .title__cube {
-                    width: 16px;
-                    height: 16px;
-                    margin-left: 11px;
+                    width: 1.615vw;
+                    height: 1.615vw;
+                    margin-left: 1.110vw;
                 }
                 .title__text {
-                    color: #ffffff;
-                    font-size: 14px;
-                    font-weight: 500;
-                    margin-left: 12px;
-                    margin-bottom: 0; //отмена стандартного отступа
+                    font-size: 1.413vw;
+                    margin-left: 1.211vw;
                 }
 
             }
         }
         .detailed-forum__info {
-            background-color: #ffffff;
-            padding-top: 18px;
-            padding-bottom: 17px;
-            padding-left: 21px;
-            padding-right: 22px;
+            padding-top: 1.816vw;
+            padding-bottom: 1.715vw;
+            padding-left: 2.119vw;
+            padding-right: 2.219vw;
 
             .info__items {
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
                 .items__watch,
                 .items__comment {
-                    text-decoration: none;
-                    transition: .3s;
                     svg {
-                        width: 15px;
-                        height: 13px;
-                        fill: #9ca0b6;
+                        width: 1.514vw;
+                        height: 1.312vw;
                     }
                     span {
-                        color: #9ca0b6;
-                        font-size: 12px;
-                        font-weight: 400;
-                        line-height: 19px;
-                        margin-left: 10px;
-                    }
-                    &:hover {
-                        & svg {
-                            fill: #0567cc;
-                        }
+                        font-size: 1.211vw;
+                        line-height: 1.917vw;
+                        margin-left: 1.009vw;
                     }
                 }
                 .items__comment {
-                    margin-left: 32px;
+                    margin-left: 3.229vw;
                 }
                 .items__date {
-                    margin-left: auto;
-                    margin-bottom: 0;
-                    color: #9ca0b6;
-                    font-size: 12px;
-                    font-weight: 400;
-                    line-height: 19px;
+                    font-size: 1.211vw;
+                    line-height: 1.917vw;
 
                 }
             }
         }
-        hr {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
         .detailed-forum__card {
-            border: 0px;
             .card-body {
                 .card-body__title {
-                    color: #010b4a;
-                    font-size: 16px;
-                    font-weight: 400;
-                    line-height: 19px;
-                    text-transform: uppercase;
-                    margin-top: 36px;
-                    margin-bottom: 27px;
+                    font-size: 1.615vw;
+                    line-height: 1.917vw;
+                    margin-top: 3.633vw;
+                    margin-bottom: 2.725vw;
                 }
                 .card-body__text {
-                    color: #010b4a;
-                    font-size: 16px;
-                    font-weight: 300;
-                    line-height: 24px;
-                    margin-bottom: 28px;
-                    margin-top: 28px;
-                    span {
-                        color: #0567cc;
-                        font-weight: 400;
-                        text-decoration: underline;
-                    }
+                    font-size: 1.615vw;
+                    line-height: 2.422vw;
+                    margin-bottom: 2.825vw;
+                    margin-top: 2.825vw;
                 }
                 .card-body__banner {
-                    margin-bottom: 39px;
+                    margin-bottom: 3.935vw;
                 }
                 .card-body__items {
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding-bottom: 17px;
+                    padding-bottom: 1.715vw;
                     .card-body__items-wrap {
                         .items__quote {
-                            text-decoration: none;
                             svg {
-                                width: 20px;
-                                height: 20px;
-                                fill: #c7c9d7;
-                                transition: .3s;
-                            }
-                            &:hover {
-                                & svg {
-                                    fill: #0567cc;
-                                }
+                                width: 2.018vw;
+                                height: 2.018vw;
                             }
                         }
                         .items__share {
-                            text-decoration: none;
-                            margin-left: 21px;
+                            margin-left: 2.119vw;
                             svg {
-                                width: 18px;
-                                height: 20px;
-                                fill: #c7c9d7;
-                                transition: .3s;
-                            }
-                            &:hover {
-                                & svg {
-                                    fill: #0567cc;
-                                }
+                                width: 1.816vw;
+                                height: 2.018vw;
                             }
                         }
                     }
                     .card-body__items-wrap {
                         .items__like {
-                            text-decoration: none;
                             svg {
-                                width: 20px;
-                                height: 18px;
-                                fill: #c7c9d7;
-                                transition: .3s;
+                                width: 2.018vw;
+                                height: 1.816vw;
                             }
                             span {
-                                color: #9ca0b6;
-                                font-size: 12px;
-                                font-weight: 400;
-                                line-height: 19px;
-                                margin-left: 7px;
-                            }
-                            &:hover {
-                                & svg {
-                                    fill: #0567cc;
-                                }
+                                font-size: 1.211vw;
+                                line-height: 1.917vw;
+                                margin-left: 0.706vw;
                             }
                         }
                         .items__dislike {
-                            text-decoration: none;
-                            margin-left: 17px;
+                            margin-left: 1.715vw;
                             svg {
-                                width: 20px;
-                                height: 18px;
-                                fill: #c7c9d7;
-                                transition: .3s;
+                                width: 2.018vw;
+                                height: 1.816vw;
                             }
                             span {
-                                color: #9ca0b6;
-                                font-size: 12px;
-                                font-weight: 400;
-                                line-height: 19px;
-                                margin-left: 7px;
-                            }
-                            &:hover {
-                                & svg {
-                                    fill: #0567cc;
-                                }
+                                font-size: 1.211vw;
+                                line-height: 1.917vw;
+                                margin-left: 0.706vw;
                             }
                         }
                     }
@@ -3019,7 +3332,7 @@
                 }
             }
         }
-    }*/
+    }
 
 
     //Темы форума
@@ -3756,6 +4069,9 @@
                     }
                     & img{
                         margin: 0 1.009vw 0 1.514vw;
+                        width: 3.027vw;
+                        border-radius: 50px;
+                        height: 3.027vw;
                     }
                     & a{
                         width: 14.127vw;
@@ -4402,6 +4718,423 @@
             height: 2.523vw;
         }
     }
+    .page_replay{
+        .title_block{
+            .right_block{
+                a{
+                    font-size: 1.211vw;
+                    margin-left: 1.009vw;
+                }
+                span{
+                    font-size: 1.211vw;
+                }
+            }
+        }
+        .title_block_gray{
+            padding: 1.514vw;
+            span{
+                font-size: 1.615vw;
+            }
+            svg{
+                width: 1.514vw;
+            }
+            .right_block{
+                .comment_count{
+                    margin-right: 1.009vw;
+                }
+            }
+        }
+        .replay-content{
+            padding-bottom: 1.514vw;
+            padding-top: 2.018vw;
+            .content_left{
+                span{
+                    font-size: 1.413vw;
+                }
+                .left_block{
+                    padding: 0.505vw 1.009vw;
+                }
+                .right_block{
+                    padding: 0.505vw 1.009vw;
+                    img{
+                        width: 1.514vw;
+                        height: 1.514vw;
+                        border-radius: 5.045vw;
+                    }
+                }
+            }
+            .content_right{
+                .title{
+                    font-size: 1.615vw;
+                }
+                img{
+                    margin: 2.018vw 0 3.633vw;
+                }
+                .replay-rating{
+                    margin-bottom: 1.009vw;
+                    svg{
+                        width: 1.514vw;
+                    }
+                    span{
+                        font-size: 1.211vw;
+                    }
+                }
+                .replay-download{
+                    svg{
+                        width: 1.514vw;
+                    }
+                    a{
+                        span{
+                            font-size: 1.413vw;
+                        }
+                        .download{
+                            margin-left: 1.009vw;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+    .modal_tournament{
+        h5{
+            font-size: 1.615vw;
+        }
+        .title_block_gray{
+            padding: 1.009vw;
+        }
+        .title_block{
+            .title_text{
+                font-size: 1.413vw;
+            }
+        }
+        .small_block{
+
+            .content{
+                padding: 1.009vw;
+                margin-top: 1.009vw;
+            }
+            .left_content{
+                span{
+                    font-size: 1.413vw;
+                }
+                svg{
+                    width: 2.018vw;
+                }
+
+            }
+        }
+        .big_block{
+            .container_map{
+                img{
+                    height: 15.136vw;
+                }
+            }
+        }
+    }
+    .my-topics {
+        margin-bottom: 2.018vw;
+        .my-topics__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 2.018vw;
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+
+        }
+
+        .my-topics__accordion {
+            .accordion-button {
+                padding: 1.816vw;
+                font-size: 1.514vw;
+            }
+
+            .accordion-button:after {
+                margin-left: 0.505vw;
+            }
+
+            .panel {
+                padding: 0 1.816vw;
+
+                .panel__wrap {
+                    .panel__header {
+                        margin-top: 1.514vw;
+                        padding-bottom: 1.009vw;
+                        .header__items {
+                            .items__link {
+                                font-size: 1.211vw;
+                            }
+                            span {
+                                font-size: 1.211vw;
+                                line-height: 1.917vw;
+                                margin-right: 0.505vw;
+                                margin-left: 0.505vw;
+                            }
+
+                            .items__icon {
+                                width: 1.514vw;
+                                height: 1.312vw;
+                                margin-right: 0.505vw;
+                            }
+                            .items__info {
+                                margin-left: 1.009vw;
+                                font-size: 1.211vw;
+                                line-height: 1.917vw;
+                            }
+                        }
+                    }
+                    .panel__body {
+                        margin-bottom: 1.514vw;
+                        .body__comment {
+                            font-size: 1.615vw;
+                            line-height: 2.422vw;
+                            margin-bottom: 1.514vw;
+                            margin-top: 1.514vw;
+                        }
+                    }
+                    .panel__footer {
+                        margin-bottom: 1.009vw;
+                        padding-bottom: 1.514vw;
+                        .footer__item {
+                            .items__items {
+                                margin-right: 1.514vw;
+                                svg {
+                                    width: 1.615vw;
+                                    height: 1.615vw;
+                                    margin-right: 0.706vw;
+                                }
+                                span {
+                                    font-size: 1.211vw;
+                                    line-height: 1.917vw;
+                                }
+
+                            }
+                            .rate {
+                                width: 15.136vw;
+                                padding: 0.505vw 1.009vw;
+                                font-size: 1.211vw;
+                            }
+                            .item__later {
+                                svg {
+                                    width: 2.018vw;
+                                    height: 2.018vw;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .password-recovery {
+        .password-recovery__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 2.018vw;
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .password-recovery__form {
+            padding: 2.523vw;
+        }
+    }
+    .get-recovery-link {
+        .get-recovery-link__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 2.018vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .get-recovery-link__form {
+            padding: 2.523vw;
+        }
+    }
+    .my-post {
+        margin-bottom: 2.018vw;
+        .my-post__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 2.018vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+
+        }
+
+        .my-post__accordion {
+            .accordion-button {
+                padding: 1.816vw;
+                font-size: 1.514vw;
+            }
+
+            .accordion-button:after {
+                margin-left: 0.505vw;
+            }
+
+            .panel {
+                padding: 0 1.816vw;
+                .panel__wrap {
+                    .panel__header {
+                        margin-top: 1.514vw;
+                        padding-bottom: 1.009vw;
+                        .header__items {
+                            .items__icon {
+                                width: 1.514vw;
+                                height: 1.312vw;
+                                margin-right: 0.505vw;
+                            }
+                            .items__info {
+                                margin-left: 1.009vw;
+                                font-size: 1.211vw;
+                                line-height: 1.917vw;
+                            }
+                        }
+                    }
+                    .panel__body {
+                        margin-bottom: 1.514vw;
+                        padding-bottom: 1.514vw;
+                        padding-top: 1.514vw;
+                        .body__numb {
+                            font-size: 1.413vw;
+                        }
+                        .body__nick {
+                            font-size: 1.413vw;
+                            margin-left: 1.009vw;
+                        }
+                        .body__text {
+                            font-size: 1.615vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .reputation-info {
+        margin-bottom: 2.018vw;
+        .reputation-info__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 2.018vw;
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+
+        }
+
+        .reputation-info__body {
+
+            .panel {
+                padding: 0 1.816vw;
+                .panel__header {
+                    margin-top: 1.514vw;
+                    padding-bottom: 1.009vw;
+                    .header__items {
+                        .items__link {
+                            font-size: 1.211vw;
+                        }
+                        span {
+                            font-size: 1.211vw;
+                            line-height: 1.917vw;
+                            margin-right: 0.505vw;
+                            margin-left: 0.505vw;
+                        }
+
+                        .items__icon {
+                            width: 1.514vw;
+                            height: 1.312vw;
+                            margin-right: 0.505vw;
+                        }
+                        .items__info {
+                            margin-left: 1.009vw;
+                            font-size: 1.211vw;
+                            line-height: 1.917vw;
+                        }
+                    }
+                }
+                .panel__body {
+                    margin-bottom: 1.514vw;
+                    .body__comment {
+                        font-size: 1.615vw;
+                        line-height: 2.422vw;
+                        margin-bottom: 1.514vw;
+                        margin-top: 1.514vw;
+                    }
+                }
+                .panel__footer {
+                    margin-bottom: 1.009vw;
+                    padding-bottom: 1.514vw;
+                    .footer__item {
+                        .items__items {
+                            margin-right: 1.514vw;
+                            svg {
+                                width: 1.615vw;
+                                height: 1.615vw;
+                                margin-right: 0.706vw;
+                            }
+                            span {
+                                font-size: 1.211vw;
+                                line-height: 1.917vw;
+                            }
+
+                        }
+                        .rate {
+                            width: 15.136vw;
+                            padding: 0.505vw 1.009vw;
+                            font-size: 1.211vw;
+                        }
+                        .item__later {
+                            svg {
+                                width: 2.018vw;
+                                height: 2.018vw;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
 }
 
 @media (max-width: 576px) {

@@ -17388,6 +17388,36 @@ select:focus {
     height: 16.618vw;
   }
 
+  .popup_chat .title_block .btn_close {
+    font-size: 1.83vw;
+  }
+
+  .popup_chat .popup_contant {
+    max-height: calc(100vh - 10.249vw) !important;
+    min-height: calc(100vh - 10.249vw) !important;
+  }
+
+  .popup_chat .modal-content .row_contentChat {
+    padding: 1.098vw 0.732vw 0;
+  }
+
+  .popup_contant::-webkit-scrollbar {
+    width: 0.732vw;
+  }
+
+  .popup_contant::-webkit-scrollbar-thumb {
+    height: 16.618vw;
+  }
+
+  .banner {
+    padding: 1.464vw 0 0;
+  }
+
+  .banner .block_content {
+    margin-bottom: 0.366vw;
+    padding: 0 1.464vw;
+  }
+
   .block_tournament .block_futureTournament .information_text {
     font-size: 1.171vw;
     padding: 3.66vw 0 0 0;
@@ -17727,229 +17757,137 @@ select:focus {
     margin-left: 2.343vw;
   }
 
-  /*.detailed-forum {
-      box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
-      border-radius: 5px;
-      .detailed-forum__title {
-          display: flex;
-          justify-content: space-between;
-          border-radius: 5px 5px 0 0;
-          background-color: #0567cc;
-          padding: 20px;
+  .detailed-forum .detailed-forum__title {
+    padding: 1.464vw;
+  }
 
-          .title__wrap {
-              display: flex;
-              align-items: center;
-              .title__icon {
-                  width: 20px;
-                  height: 20px;
-                  fill: #ffffff;
-              }
-              .title__text {
-                  color: #ffffff;
-                  font-size: 16px;
-                  font-weight: 400;
-                  margin-left: 20px;
-                  margin-bottom: 0; //отмена стандартного отступа
-              }
-              .title__avatar {
-                  width: 28px;
-                  height: 28px;
-              }
-              .title__nickname {
-                  color: #ffffff;
-                  font-size: 14px;
-                  font-weight: 400;
-                  margin-left: 13px;
-                  margin-bottom: 0; //отмена стандартного отступа
-              }
-              .title__flag {
-                  width: 20px;
-                  height: 20px;
-                  margin-left: 13px;
-              }
-              .title__cube {
-                  width: 16px;
-                  height: 16px;
-                  margin-left: 11px;
-              }
-              .title__text {
-                  color: #ffffff;
-                  font-size: 14px;
-                  font-weight: 500;
-                  margin-left: 12px;
-                  margin-bottom: 0; //отмена стандартного отступа
-              }
+  .detailed-forum .detailed-forum__title .title__wrap .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
 
-          }
-      }
-      .detailed-forum__info {
-          background-color: #ffffff;
-          padding-top: 18px;
-          padding-bottom: 17px;
-          padding-left: 21px;
-          padding-right: 22px;
+  .detailed-forum .detailed-forum__title .title__wrap .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.464vw;
+  }
 
-          .info__items {
-              width: 100%;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              .items__watch,
-              .items__comment {
-                  text-decoration: none;
-                  transition: .3s;
-                  svg {
-                      width: 15px;
-                      height: 13px;
-                      fill: #9ca0b6;
-                  }
-                  span {
-                      color: #9ca0b6;
-                      font-size: 12px;
-                      font-weight: 400;
-                      line-height: 19px;
-                      margin-left: 10px;
-                  }
-                  &:hover {
-                      & svg {
-                          fill: #0567cc;
-                      }
-                  }
-              }
-              .items__comment {
-                  margin-left: 32px;
-              }
-              .items__date {
-                  margin-left: auto;
-                  margin-bottom: 0;
-                  color: #9ca0b6;
-                  font-size: 12px;
-                  font-weight: 400;
-                  line-height: 19px;
+  .detailed-forum .detailed-forum__title .title__wrap .title__avatar {
+    width: 2.05vw;
+    height: 2.05vw;
+  }
 
-              }
-          }
-      }
-      hr {
-          margin-top: 0;
-          margin-bottom: 0;
-      }
-      .detailed-forum__card {
-          border: 0px;
-          .card-body {
-              .card-body__title {
-                  color: #010b4a;
-                  font-size: 16px;
-                  font-weight: 400;
-                  line-height: 19px;
-                  text-transform: uppercase;
-                  margin-top: 36px;
-                  margin-bottom: 27px;
-              }
-              .card-body__text {
-                  color: #010b4a;
-                  font-size: 16px;
-                  font-weight: 300;
-                  line-height: 24px;
-                  margin-bottom: 28px;
-                  margin-top: 28px;
-                  span {
-                      color: #0567cc;
-                      font-weight: 400;
-                      text-decoration: underline;
-                  }
-              }
-              .card-body__banner {
-                  margin-bottom: 39px;
-              }
-              .card-body__items {
-                  width: 100%;
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  padding-bottom: 17px;
-                  .card-body__items-wrap {
-                      .items__quote {
-                          text-decoration: none;
-                          svg {
-                              width: 20px;
-                              height: 20px;
-                              fill: #c7c9d7;
-                              transition: .3s;
-                          }
-                          &:hover {
-                              & svg {
-                                  fill: #0567cc;
-                              }
-                          }
-                      }
-                      .items__share {
-                          text-decoration: none;
-                          margin-left: 21px;
-                          svg {
-                              width: 18px;
-                              height: 20px;
-                              fill: #c7c9d7;
-                              transition: .3s;
-                          }
-                          &:hover {
-                              & svg {
-                                  fill: #0567cc;
-                              }
-                          }
-                      }
-                  }
-                  .card-body__items-wrap {
-                      .items__like {
-                          text-decoration: none;
-                          svg {
-                              width: 20px;
-                              height: 18px;
-                              fill: #c7c9d7;
-                              transition: .3s;
-                          }
-                          span {
-                              color: #9ca0b6;
-                              font-size: 12px;
-                              font-weight: 400;
-                              line-height: 19px;
-                              margin-left: 7px;
-                          }
-                          &:hover {
-                              & svg {
-                                  fill: #0567cc;
-                              }
-                          }
-                      }
-                      .items__dislike {
-                          text-decoration: none;
-                          margin-left: 17px;
-                          svg {
-                              width: 20px;
-                              height: 18px;
-                              fill: #c7c9d7;
-                              transition: .3s;
-                          }
-                          span {
-                              color: #9ca0b6;
-                              font-size: 12px;
-                              font-weight: 400;
-                              line-height: 19px;
-                              margin-left: 7px;
-                          }
-                          &:hover {
-                              & svg {
-                                  fill: #0567cc;
-                              }
-                          }
-                      }
-                  }
+  .detailed-forum .detailed-forum__title .title__wrap .title__nickname {
+    font-size: 1.025vw;
+    margin-left: 0.952vw;
+  }
 
-              }
-          }
-      }
-  }*/
+  .detailed-forum .detailed-forum__title .title__wrap .title__flag {
+    width: 1.464vw;
+    height: 1.464vw;
+    margin-left: 0.952vw;
+  }
+
+  .detailed-forum .detailed-forum__title .title__wrap .title__cube {
+    width: 1.171vw;
+    height: 1.171vw;
+    margin-left: 0.805vw;
+  }
+
+  .detailed-forum .detailed-forum__title .title__wrap .title__text {
+    font-size: 1.025vw;
+    margin-left: 0.878vw;
+  }
+
+  .detailed-forum .detailed-forum__info {
+    padding-top: 1.318vw;
+    padding-bottom: 1.245vw;
+    padding-left: 1.537vw;
+    padding-right: 1.611vw;
+  }
+
+  .detailed-forum .detailed-forum__info .info__items .items__watch svg,
+  .detailed-forum .detailed-forum__info .info__items .items__comment svg {
+    width: 1.098vw;
+    height: 0.952vw;
+  }
+
+  .detailed-forum .detailed-forum__info .info__items .items__watch span,
+  .detailed-forum .detailed-forum__info .info__items .items__comment span {
+    font-size: 0.878vw;
+    line-height: 1.318vw;
+    margin-left: 0.732vw;
+  }
+
+  .detailed-forum .detailed-forum__info .info__items .items__comment {
+    margin-left: 2.343vw;
+  }
+
+  .detailed-forum .detailed-forum__info .info__items .items__date {
+    font-size: 0.878vw;
+    line-height: 1.318vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__title {
+    font-size: 1.171vw;
+    line-height: 1.391vw;
+    margin-top: 2.635vw;
+    margin-bottom: 1.977vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__text {
+    font-size: 1.171vw;
+    line-height: 1.757vw;
+    margin-bottom: 2.05vw;
+    margin-top: 2.05vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__banner {
+    margin-bottom: 2.855vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items {
+    padding-bottom: 1.245vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__quote svg {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__share {
+    margin-left: 1.537vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__share svg {
+    width: 1.318vw;
+    height: 1.464vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__like svg {
+    width: 1.464vw;
+    height: 1.318vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__like span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-left: 0.512vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__dislike {
+    margin-left: 1.245vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__dislike svg {
+    width: 1.464vw;
+    height: 1.318vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__dislike span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-left: 0.512vw;
+  }
 
   .forum-topics .forum-topics__title {
     padding-top: 1.318vw;
@@ -18671,6 +18609,9 @@ select:focus {
 
   .Page_gameBest .container_players .players_content .left_block img {
     margin: 0 0.732vw 0 1.098vw;
+    width: 2.196vw;
+    border-radius: 3.66vw;
+    height: 2.196vw;
   }
 
   .Page_gameBest .container_players .players_content .left_block a {
@@ -19294,6 +19235,425 @@ select:focus {
   .user_profile .friends_block::-webkit-scrollbar-thumb {
     height: 1.83vw;
   }
+
+  .page_replay .title_block .right_block a {
+    font-size: 0.878vw;
+    margin-left: 0.732vw;
+  }
+
+  .page_replay .title_block .right_block span {
+    font-size: 0.878vw;
+  }
+
+  .page_replay .title_block .right_block img {
+    margin-left: 0.366vw;
+  }
+
+  .page_replay .title_block_gray {
+    padding: 1.098vw;
+  }
+
+  .page_replay .title_block_gray span {
+    font-size: 1.171vw;
+  }
+
+  .page_replay .title_block_gray svg {
+    width: 1.098vw;
+  }
+
+  .page_replay .title_block_gray .right_block .comment_count {
+    margin-right: 0.732vw;
+  }
+
+  .page_replay .replay-content {
+    padding-bottom: 1.098vw;
+    padding-top: 1.464vw;
+  }
+
+  .page_replay .replay-content .content_left span {
+    font-size: 1.025vw;
+  }
+
+  .page_replay .replay-content .content_left .left_block {
+    padding: 0.366vw 0.732vw;
+  }
+
+  .page_replay .replay-content .content_left .right_block {
+    padding: 0.366vw 0.732vw;
+  }
+
+  .page_replay .replay-content .content_left .right_block img {
+    width: 1.098vw;
+    height: 1.098vw;
+    border-radius: 3.66vw;
+  }
+
+  .page_replay .replay-content .content_right .title {
+    font-size: 16px;
+  }
+
+  .page_replay .replay-content .content_right img {
+    margin: 20px 0 36px;
+  }
+
+  .page_replay .replay-content .content_right .replay-rating {
+    margin-bottom: 0.732vw;
+  }
+
+  .page_replay .replay-content .content_right .replay-rating svg {
+    width: 1.098vw;
+  }
+
+  .page_replay .replay-content .content_right .replay-rating span {
+    font-size: 12px;
+  }
+
+  .page_replay .replay-content .content_right .replay-download svg {
+    width: 1.098vw;
+  }
+
+  .page_replay .replay-content .content_right .replay-download a span {
+    font-size: 14px;
+  }
+
+  .page_replay .replay-content .content_right .replay-download a .download {
+    margin-left: 0.732vw;
+  }
+
+  .modal_tournament h5 {
+    font-size: 1.171vw;
+  }
+
+  .modal_tournament .title_block_gray {
+    padding: 0.732vw;
+  }
+
+  .modal_tournament .title_block .title_text {
+    font-size: 1.025vw;
+  }
+
+  .modal_tournament .small_block .content {
+    padding: 0.732vw;
+    margin-top: 0.732vw;
+  }
+
+  .modal_tournament .small_block .left_content span {
+    font-size: 1.025vw;
+  }
+
+  .modal_tournament .small_block .left_content svg {
+    width: 1.464vw;
+  }
+
+  .modal_tournament .big_block .container_map img {
+    height: 10.981vw;
+  }
+
+  .my-topics {
+    margin-bottom: 1.464vw;
+  }
+
+  .my-topics .my-topics__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.464vw;
+  }
+
+  .my-topics .my-topics__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .my-topics .my-topics__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .my-topics .my-topics__accordion .accordion-button {
+    padding: 1.318vw;
+    font-size: 1.098vw;
+  }
+
+  .my-topics .my-topics__accordion .accordion-button:after {
+    margin-left: 0.366vw;
+  }
+
+  .my-topics .my-topics__accordion .panel {
+    padding: 0 1.318vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header {
+    margin-top: 1.098vw;
+    padding-bottom: 0.732vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items .items__link {
+    font-size: 0.878vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-right: 0.366vw;
+    margin-left: 0.366vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items .items__icon {
+    width: 1.098vw;
+    height: 0.952vw;
+    margin-right: 0.366vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items .items__info {
+    margin-left: 0.732vw;
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__body {
+    margin-bottom: 1.098vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__body .body__comment {
+    font-size: 1.171vw;
+    line-height: 1.757vw;
+    margin-bottom: 1.098vw;
+    margin-top: 1.098vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer {
+    margin-bottom: 0.732vw;
+    padding-bottom: 1.098vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .items__items {
+    margin-right: 1.098vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .items__items svg {
+    width: 1.171vw;
+    height: 1.171vw;
+    margin-right: 0.512vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .items__items span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .rate {
+    width: 10.981vw;
+    padding: 0.366vw 0.732vw;
+    font-size: 0.878vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .item__later svg {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .password-recovery .password-recovery__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.464vw;
+  }
+
+  .password-recovery .password-recovery__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .password-recovery .password-recovery__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .password-recovery .password-recovery__form {
+    padding: 1.83vw;
+  }
+
+  .get-recovery-link .get-recovery-link__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.464vw;
+  }
+
+  .get-recovery-link .get-recovery-link__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .get-recovery-link .get-recovery-link__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .get-recovery-link .get-recovery-link__form {
+    padding: 1.83vw;
+  }
+
+  .my-post {
+    margin-bottom: 1.464vw;
+  }
+
+  .my-post .my-post__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.464vw;
+  }
+
+  .my-post .my-post__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .my-post .my-post__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .my-post .my-post__accordion .accordion-button {
+    padding: 1.318vw;
+    font-size: 1.098vw;
+  }
+
+  .my-post .my-post__accordion .accordion-button:after {
+    margin-left: 0.366vw;
+  }
+
+  .my-post .my-post__accordion .panel {
+    padding: 0 1.318vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__header {
+    margin-top: 1.098vw;
+    padding-bottom: 0.732vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__header .header__items .items__icon {
+    width: 1.098vw;
+    height: 0.952vw;
+    margin-right: 0.366vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__header .header__items .items__info {
+    margin-left: 0.732vw;
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body {
+    margin-bottom: 1.098vw;
+    padding-bottom: 1.098vw;
+    padding-top: 1.098vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body .body__numb {
+    font-size: 1.025vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body .body__nick {
+    font-size: 1.025vw;
+    margin-left: 0.732vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body .body__text {
+    font-size: 1.171vw;
+  }
+
+  .reputation-info {
+    margin-bottom: 1.464vw;
+  }
+
+  .reputation-info .reputation-info__title {
+    padding-top: 1.464vw;
+    padding-bottom: 1.464vw;
+    padding-left: 1.464vw;
+  }
+
+  .reputation-info .reputation-info__title .title__icon {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
+
+  .reputation-info .reputation-info__title .title__text {
+    font-size: 1.171vw;
+    margin-left: 1.245vw;
+  }
+
+  .reputation-info .reputation-info__body .panel {
+    padding: 0 1.318vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header {
+    margin-top: 1.098vw;
+    padding-bottom: 0.732vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header .header__items .items__link {
+    font-size: 0.878vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header .header__items span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+    margin-right: 0.366vw;
+    margin-left: 0.366vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header .header__items .items__icon {
+    width: 1.098vw;
+    height: 0.952vw;
+    margin-right: 0.366vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header .header__items .items__info {
+    margin-left: 0.732vw;
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__body {
+    margin-bottom: 1.098vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__body .body__comment {
+    font-size: 1.171vw;
+    line-height: 1.757vw;
+    margin-bottom: 1.098vw;
+    margin-top: 1.098vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer {
+    margin-bottom: 0.732vw;
+    padding-bottom: 1.098vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .items__items {
+    margin-right: 1.098vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .items__items svg {
+    width: 1.171vw;
+    height: 1.171vw;
+    margin-right: 0.512vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .items__items span {
+    font-size: 0.878vw;
+    line-height: 1.391vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .rate {
+    width: 10.981vw;
+    padding: 0.366vw 0.732vw;
+    font-size: 0.878vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .item__later svg {
+    width: 1.464vw;
+    height: 1.464vw;
+  }
 }
 
 @media (max-width: 991px) {
@@ -19655,6 +20015,36 @@ select:focus {
     height: 22.7vw;
   }
 
+  .popup_chat .title_block .btn_close {
+    font-size: 2.523vw;
+  }
+
+  .popup_chat .popup_contant {
+    max-height: calc(100vh - 14.127vw) !important;
+    min-height: calc(100vh - 14.127vw) !important;
+  }
+
+  .popup_chat .modal-content .row_contentChat {
+    padding: 1.514vw 1.009vw 0;
+  }
+
+  .popup_contant::-webkit-scrollbar {
+    width: 1.009vw;
+  }
+
+  .popup_contant::-webkit-scrollbar-thumb {
+    height: 22.906vw;
+  }
+
+  .banner {
+    padding: 2.018vw 0 0;
+  }
+
+  .banner .block_content {
+    margin-bottom: 0.505vw;
+    padding: 0 2.018vw;
+  }
+
   .block_tournament .block_futureTournament .information_text {
     font-size: 1.6vw;
     padding: 5vw 0 0 0;
@@ -19997,229 +20387,137 @@ select:focus {
     margin-left: 3.229vw;
   }
 
-  /*.detailed-forum {
-      box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
-      border-radius: 5px;
-      .detailed-forum__title {
-          display: flex;
-          justify-content: space-between;
-          border-radius: 5px 5px 0 0;
-          background-color: #0567cc;
-          padding: 20px;
+  .detailed-forum .detailed-forum__title {
+    padding: 2.018vw;
+  }
 
-          .title__wrap {
-              display: flex;
-              align-items: center;
-              .title__icon {
-                  width: 20px;
-                  height: 20px;
-                  fill: #ffffff;
-              }
-              .title__text {
-                  color: #ffffff;
-                  font-size: 16px;
-                  font-weight: 400;
-                  margin-left: 20px;
-                  margin-bottom: 0; //отмена стандартного отступа
-              }
-              .title__avatar {
-                  width: 28px;
-                  height: 28px;
-              }
-              .title__nickname {
-                  color: #ffffff;
-                  font-size: 14px;
-                  font-weight: 400;
-                  margin-left: 13px;
-                  margin-bottom: 0; //отмена стандартного отступа
-              }
-              .title__flag {
-                  width: 20px;
-                  height: 20px;
-                  margin-left: 13px;
-              }
-              .title__cube {
-                  width: 16px;
-                  height: 16px;
-                  margin-left: 11px;
-              }
-              .title__text {
-                  color: #ffffff;
-                  font-size: 14px;
-                  font-weight: 500;
-                  margin-left: 12px;
-                  margin-bottom: 0; //отмена стандартного отступа
-              }
+  .detailed-forum .detailed-forum__title .title__wrap .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
 
-          }
-      }
-      .detailed-forum__info {
-          background-color: #ffffff;
-          padding-top: 18px;
-          padding-bottom: 17px;
-          padding-left: 21px;
-          padding-right: 22px;
+  .detailed-forum .detailed-forum__title .title__wrap .title__text {
+    font-size: 1.615vw;
+    margin-left: 2.018vw;
+  }
 
-          .info__items {
-              width: 100%;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              .items__watch,
-              .items__comment {
-                  text-decoration: none;
-                  transition: .3s;
-                  svg {
-                      width: 15px;
-                      height: 13px;
-                      fill: #9ca0b6;
-                  }
-                  span {
-                      color: #9ca0b6;
-                      font-size: 12px;
-                      font-weight: 400;
-                      line-height: 19px;
-                      margin-left: 10px;
-                  }
-                  &:hover {
-                      & svg {
-                          fill: #0567cc;
-                      }
-                  }
-              }
-              .items__comment {
-                  margin-left: 32px;
-              }
-              .items__date {
-                  margin-left: auto;
-                  margin-bottom: 0;
-                  color: #9ca0b6;
-                  font-size: 12px;
-                  font-weight: 400;
-                  line-height: 19px;
+  .detailed-forum .detailed-forum__title .title__wrap .title__avatar {
+    width: 2.825vw;
+    height: 2.825vw;
+  }
 
-              }
-          }
-      }
-      hr {
-          margin-top: 0;
-          margin-bottom: 0;
-      }
-      .detailed-forum__card {
-          border: 0px;
-          .card-body {
-              .card-body__title {
-                  color: #010b4a;
-                  font-size: 16px;
-                  font-weight: 400;
-                  line-height: 19px;
-                  text-transform: uppercase;
-                  margin-top: 36px;
-                  margin-bottom: 27px;
-              }
-              .card-body__text {
-                  color: #010b4a;
-                  font-size: 16px;
-                  font-weight: 300;
-                  line-height: 24px;
-                  margin-bottom: 28px;
-                  margin-top: 28px;
-                  span {
-                      color: #0567cc;
-                      font-weight: 400;
-                      text-decoration: underline;
-                  }
-              }
-              .card-body__banner {
-                  margin-bottom: 39px;
-              }
-              .card-body__items {
-                  width: 100%;
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  padding-bottom: 17px;
-                  .card-body__items-wrap {
-                      .items__quote {
-                          text-decoration: none;
-                          svg {
-                              width: 20px;
-                              height: 20px;
-                              fill: #c7c9d7;
-                              transition: .3s;
-                          }
-                          &:hover {
-                              & svg {
-                                  fill: #0567cc;
-                              }
-                          }
-                      }
-                      .items__share {
-                          text-decoration: none;
-                          margin-left: 21px;
-                          svg {
-                              width: 18px;
-                              height: 20px;
-                              fill: #c7c9d7;
-                              transition: .3s;
-                          }
-                          &:hover {
-                              & svg {
-                                  fill: #0567cc;
-                              }
-                          }
-                      }
-                  }
-                  .card-body__items-wrap {
-                      .items__like {
-                          text-decoration: none;
-                          svg {
-                              width: 20px;
-                              height: 18px;
-                              fill: #c7c9d7;
-                              transition: .3s;
-                          }
-                          span {
-                              color: #9ca0b6;
-                              font-size: 12px;
-                              font-weight: 400;
-                              line-height: 19px;
-                              margin-left: 7px;
-                          }
-                          &:hover {
-                              & svg {
-                                  fill: #0567cc;
-                              }
-                          }
-                      }
-                      .items__dislike {
-                          text-decoration: none;
-                          margin-left: 17px;
-                          svg {
-                              width: 20px;
-                              height: 18px;
-                              fill: #c7c9d7;
-                              transition: .3s;
-                          }
-                          span {
-                              color: #9ca0b6;
-                              font-size: 12px;
-                              font-weight: 400;
-                              line-height: 19px;
-                              margin-left: 7px;
-                          }
-                          &:hover {
-                              & svg {
-                                  fill: #0567cc;
-                              }
-                          }
-                      }
-                  }
+  .detailed-forum .detailed-forum__title .title__wrap .title__nickname {
+    font-size: 1.413vw;
+    margin-left: 1.312vw;
+  }
 
-              }
-          }
-      }
-  }*/
+  .detailed-forum .detailed-forum__title .title__wrap .title__flag {
+    width: 2.018vw;
+    height: 2.018vw;
+    margin-left: 1.312vw;
+  }
+
+  .detailed-forum .detailed-forum__title .title__wrap .title__cube {
+    width: 1.615vw;
+    height: 1.615vw;
+    margin-left: 1.11vw;
+  }
+
+  .detailed-forum .detailed-forum__title .title__wrap .title__text {
+    font-size: 1.413vw;
+    margin-left: 1.211vw;
+  }
+
+  .detailed-forum .detailed-forum__info {
+    padding-top: 1.816vw;
+    padding-bottom: 1.715vw;
+    padding-left: 2.119vw;
+    padding-right: 2.219vw;
+  }
+
+  .detailed-forum .detailed-forum__info .info__items .items__watch svg,
+  .detailed-forum .detailed-forum__info .info__items .items__comment svg {
+    width: 1.514vw;
+    height: 1.312vw;
+  }
+
+  .detailed-forum .detailed-forum__info .info__items .items__watch span,
+  .detailed-forum .detailed-forum__info .info__items .items__comment span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 1.009vw;
+  }
+
+  .detailed-forum .detailed-forum__info .info__items .items__comment {
+    margin-left: 3.229vw;
+  }
+
+  .detailed-forum .detailed-forum__info .info__items .items__date {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__title {
+    font-size: 1.615vw;
+    line-height: 1.917vw;
+    margin-top: 3.633vw;
+    margin-bottom: 2.725vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__text {
+    font-size: 1.615vw;
+    line-height: 2.422vw;
+    margin-bottom: 2.825vw;
+    margin-top: 2.825vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__banner {
+    margin-bottom: 3.935vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items {
+    padding-bottom: 1.715vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__quote svg {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__share {
+    margin-left: 2.119vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__share svg {
+    width: 1.816vw;
+    height: 2.018vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__like svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__like span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__dislike {
+    margin-left: 1.715vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__dislike svg {
+    width: 2.018vw;
+    height: 1.816vw;
+  }
+
+  .detailed-forum .detailed-forum__card .card-body .card-body__items .card-body__items-wrap .items__dislike span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-left: 0.706vw;
+  }
 
   .forum-topics .forum-topics__title {
     padding-top: 1.816vw;
@@ -20943,6 +21241,9 @@ select:focus {
 
   .Page_gameBest .container_players .players_content .left_block img {
     margin: 0 1.009vw 0 1.514vw;
+    width: 3.027vw;
+    border-radius: 50px;
+    height: 3.027vw;
   }
 
   .Page_gameBest .container_players .players_content .left_block a {
@@ -21609,6 +21910,421 @@ select:focus {
 
   .user_profile .friends_block::-webkit-scrollbar-thumb {
     height: 2.523vw;
+  }
+
+  .page_replay .title_block .right_block a {
+    font-size: 1.211vw;
+    margin-left: 1.009vw;
+  }
+
+  .page_replay .title_block .right_block span {
+    font-size: 1.211vw;
+  }
+
+  .page_replay .title_block_gray {
+    padding: 1.514vw;
+  }
+
+  .page_replay .title_block_gray span {
+    font-size: 1.615vw;
+  }
+
+  .page_replay .title_block_gray svg {
+    width: 1.514vw;
+  }
+
+  .page_replay .title_block_gray .right_block .comment_count {
+    margin-right: 1.009vw;
+  }
+
+  .page_replay .replay-content {
+    padding-bottom: 1.514vw;
+    padding-top: 2.018vw;
+  }
+
+  .page_replay .replay-content .content_left span {
+    font-size: 1.413vw;
+  }
+
+  .page_replay .replay-content .content_left .left_block {
+    padding: 0.505vw 1.009vw;
+  }
+
+  .page_replay .replay-content .content_left .right_block {
+    padding: 0.505vw 1.009vw;
+  }
+
+  .page_replay .replay-content .content_left .right_block img {
+    width: 1.514vw;
+    height: 1.514vw;
+    border-radius: 5.045vw;
+  }
+
+  .page_replay .replay-content .content_right .title {
+    font-size: 1.615vw;
+  }
+
+  .page_replay .replay-content .content_right img {
+    margin: 2.018vw 0 3.633vw;
+  }
+
+  .page_replay .replay-content .content_right .replay-rating {
+    margin-bottom: 1.009vw;
+  }
+
+  .page_replay .replay-content .content_right .replay-rating svg {
+    width: 1.514vw;
+  }
+
+  .page_replay .replay-content .content_right .replay-rating span {
+    font-size: 1.211vw;
+  }
+
+  .page_replay .replay-content .content_right .replay-download svg {
+    width: 1.514vw;
+  }
+
+  .page_replay .replay-content .content_right .replay-download a span {
+    font-size: 1.413vw;
+  }
+
+  .page_replay .replay-content .content_right .replay-download a .download {
+    margin-left: 1.009vw;
+  }
+
+  .modal_tournament h5 {
+    font-size: 1.615vw;
+  }
+
+  .modal_tournament .title_block_gray {
+    padding: 1.009vw;
+  }
+
+  .modal_tournament .title_block .title_text {
+    font-size: 1.413vw;
+  }
+
+  .modal_tournament .small_block .content {
+    padding: 1.009vw;
+    margin-top: 1.009vw;
+  }
+
+  .modal_tournament .small_block .left_content span {
+    font-size: 1.413vw;
+  }
+
+  .modal_tournament .small_block .left_content svg {
+    width: 2.018vw;
+  }
+
+  .modal_tournament .big_block .container_map img {
+    height: 15.136vw;
+  }
+
+  .my-topics {
+    margin-bottom: 2.018vw;
+  }
+
+  .my-topics .my-topics__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 2.018vw;
+  }
+
+  .my-topics .my-topics__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .my-topics .my-topics__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .my-topics .my-topics__accordion .accordion-button {
+    padding: 1.816vw;
+    font-size: 1.514vw;
+  }
+
+  .my-topics .my-topics__accordion .accordion-button:after {
+    margin-left: 0.505vw;
+  }
+
+  .my-topics .my-topics__accordion .panel {
+    padding: 0 1.816vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header {
+    margin-top: 1.514vw;
+    padding-bottom: 1.009vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items .items__link {
+    font-size: 1.211vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-right: 0.505vw;
+    margin-left: 0.505vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items .items__icon {
+    width: 1.514vw;
+    height: 1.312vw;
+    margin-right: 0.505vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__header .header__items .items__info {
+    margin-left: 1.009vw;
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__body {
+    margin-bottom: 1.514vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__body .body__comment {
+    font-size: 1.615vw;
+    line-height: 2.422vw;
+    margin-bottom: 1.514vw;
+    margin-top: 1.514vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer {
+    margin-bottom: 1.009vw;
+    padding-bottom: 1.514vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .items__items {
+    margin-right: 1.514vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .items__items svg {
+    width: 1.615vw;
+    height: 1.615vw;
+    margin-right: 0.706vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .items__items span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .rate {
+    width: 15.136vw;
+    padding: 0.505vw 1.009vw;
+    font-size: 1.211vw;
+  }
+
+  .my-topics .my-topics__accordion .panel .panel__wrap .panel__footer .footer__item .item__later svg {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .password-recovery .password-recovery__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 2.018vw;
+  }
+
+  .password-recovery .password-recovery__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .password-recovery .password-recovery__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .password-recovery .password-recovery__form {
+    padding: 2.523vw;
+  }
+
+  .get-recovery-link .get-recovery-link__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 2.018vw;
+  }
+
+  .get-recovery-link .get-recovery-link__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .get-recovery-link .get-recovery-link__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .get-recovery-link .get-recovery-link__form {
+    padding: 2.523vw;
+  }
+
+  .my-post {
+    margin-bottom: 2.018vw;
+  }
+
+  .my-post .my-post__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 2.018vw;
+  }
+
+  .my-post .my-post__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .my-post .my-post__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .my-post .my-post__accordion .accordion-button {
+    padding: 1.816vw;
+    font-size: 1.514vw;
+  }
+
+  .my-post .my-post__accordion .accordion-button:after {
+    margin-left: 0.505vw;
+  }
+
+  .my-post .my-post__accordion .panel {
+    padding: 0 1.816vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__header {
+    margin-top: 1.514vw;
+    padding-bottom: 1.009vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__header .header__items .items__icon {
+    width: 1.514vw;
+    height: 1.312vw;
+    margin-right: 0.505vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__header .header__items .items__info {
+    margin-left: 1.009vw;
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body {
+    margin-bottom: 1.514vw;
+    padding-bottom: 1.514vw;
+    padding-top: 1.514vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body .body__numb {
+    font-size: 1.413vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body .body__nick {
+    font-size: 1.413vw;
+    margin-left: 1.009vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body .body__text {
+    font-size: 1.615vw;
+  }
+
+  .reputation-info {
+    margin-bottom: 2.018vw;
+  }
+
+  .reputation-info .reputation-info__title {
+    padding-top: 2.018vw;
+    padding-bottom: 2.018vw;
+    padding-left: 2.018vw;
+  }
+
+  .reputation-info .reputation-info__title .title__icon {
+    width: 2.018vw;
+    height: 2.018vw;
+  }
+
+  .reputation-info .reputation-info__title .title__text {
+    font-size: 1.615vw;
+    margin-left: 1.715vw;
+  }
+
+  .reputation-info .reputation-info__body .panel {
+    padding: 0 1.816vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header {
+    margin-top: 1.514vw;
+    padding-bottom: 1.009vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header .header__items .items__link {
+    font-size: 1.211vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header .header__items span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+    margin-right: 0.505vw;
+    margin-left: 0.505vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header .header__items .items__icon {
+    width: 1.514vw;
+    height: 1.312vw;
+    margin-right: 0.505vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header .header__items .items__info {
+    margin-left: 1.009vw;
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__body {
+    margin-bottom: 1.514vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__body .body__comment {
+    font-size: 1.615vw;
+    line-height: 2.422vw;
+    margin-bottom: 1.514vw;
+    margin-top: 1.514vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer {
+    margin-bottom: 1.009vw;
+    padding-bottom: 1.514vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .items__items {
+    margin-right: 1.514vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .items__items svg {
+    width: 1.615vw;
+    height: 1.615vw;
+    margin-right: 0.706vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .items__items span {
+    font-size: 1.211vw;
+    line-height: 1.917vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .rate {
+    width: 15.136vw;
+    padding: 0.505vw 1.009vw;
+    font-size: 1.211vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .item__later svg {
+    width: 2.018vw;
+    height: 2.018vw;
   }
 }
 
