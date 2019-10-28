@@ -5,7 +5,7 @@
                 <img src="{{ url('/images/logo.png') }}" alt="logo">
             </div>
             <div class="col-xl-1 col-lg-1 col-1  mode">
-                <button >
+                <button id="night" >
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          viewBox="0 0 45.16 45.16" style="enable-background:new 0 0 45.16 45.16;" xml:space="preserve">
                         <path fill="white" d="M22.58,11.269c-6.237,0-11.311,5.075-11.311,11.312s5.074,11.312,11.311,11.312c6.236,0,11.311-5.074,11.311-11.312

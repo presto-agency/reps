@@ -1,6 +1,7 @@
 .breaking-news {
     box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     border-radius: 5px;
+    overflow-x: hidden;
 
     .breaking-news__title {
         border-radius: 5px 5px 0 0;
