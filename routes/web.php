@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\ViewComposers\LeftSide\ReplaysNavigationComposer;
+
 Route::get('/', 'HomeController@index')->name('home.index');
 
 Route::resource('news', 'NewsController');
@@ -32,26 +34,25 @@ Route::get('best', 'Best\BestController@show');
 
 /*replay with:views(left-side:replays;search)*/
 Route::group(['prefix' => 'replay'], function () {
-    Route::get("/", 'Replay\ReplayController@showUser');
+    Route::get("/", 'Replay\ReplayController@showUser')->name('replay.user');
     Route::group(['prefix' => 'pro'], function () {
-        Route::get("/", 'Replay\ReplayController@showPro');
-//        foreach (ReplayTypeComposer::getReplayTypes() as $item) {
-//            Route::get("/{$item['name']}", 'ReplayTypeController@show');
-////            Route::get("/{$item['name']}", ReplaysLSComposer::setReplayProType($item['name']));
-//        }
+        Route::get("/", 'Replay\ReplayController@showPro')->name('replay.pro');
+        foreach (ReplaysNavigationComposer::$replayTypes as $type) {
+            Route::get("/{$type}", ['uses' => 'Replay\ReplayController@showType'])->name("replay.$type");
+        }
     });
 });
 
 Route::get('tournament', function () {
-    return view('tournament.index', ['checkProLS' => true]);
+    return view('tournament.index');
 });
 
 Route::get('tournament/{id}', function () {
-    return view('tournament.show', ['checkProLS' => true]);
+    return view('tournament.show');
 });
 
 Route::get('user', function () {
-    return view('user.index', ['checkProLS' => true]);
+    return view('user.index');
 });
 
 Auth::routes();
