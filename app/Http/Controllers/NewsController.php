@@ -34,7 +34,7 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -45,7 +45,7 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -74,7 +74,7 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -85,8 +85,8 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -97,24 +97,26 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
     }
-    public function load_news(Request $request){
-        if ($request->ajax()){
+
+    public function load_news(Request $request)
+    {
+        if ($request->ajax()) {
             $visible_title = false;
-            if ($request->id > 0){
+            if ($request->id > 0) {
                 $data = ForumTopic::with('author')
                     ->withCount('comments')
-                    ->where('id','<', $request->id)
+                    ->where('id', '<', $request->id)
                     ->orderBy('id', 'DESC')
                     ->limit(5)
                     ->get();
-            }else{
+            } else {
                 $data = ForumTopic::with('author')
                     ->orderBy('id', 'DESC')
                     ->limit(5)
@@ -125,16 +127,5 @@ class NewsController extends Controller
             $output = view('news.last_news', ['news' => $data, 'visible_title' => $visible_title]);
             echo $output;
         }
-    }
-
-    public function comment_send(Request $request, $id)
-    {
-        $topic = ForumTopic::find($id);
-        $comment = new Comment([
-            'user_id' => auth()->user()->id,
-            'content' => $request->input('content')
-        ]);
-        $topic->comments()->save($comment);
-        return redirect()->route('news.index');
     }
 }

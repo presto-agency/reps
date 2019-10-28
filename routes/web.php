@@ -17,7 +17,7 @@ use App\Http\ViewComposers\LeftSide\ReplaysNavigationComposer;
 Route::get('/', 'HomeController@index')->name('home.index');
 
 Route::resource('news', 'NewsController');
-Route::post('news/{id}/send_comment', 'NewsController@comment_send')->name('news.comment_send');
+//Route::post('news/{id}/send_comment', 'NewsController@comment_send')->name('news.comment_send');
 Route::post('/loadmore/load_news', 'NewsController@load_news')->name('loadmore.load_news');
 
 Route::resource('forum', 'ForumController');
@@ -32,6 +32,8 @@ Route::post('forum/topic/{id}/comment', 'TopicCommentController@store')->name('c
 
 /*Best*/
 Route::resource('best', 'Best\BestController');
+/*Comments_Send*/
+Route::resource('comments', 'Comment\CommentController');
 
 /*Replay*/
 Route::resource("replay", 'Replay\ReplayUserController');
