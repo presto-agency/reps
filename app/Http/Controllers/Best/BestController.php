@@ -8,7 +8,6 @@ use App\User;
 class BestController extends Controller
 {
     public static $top100 = 100;
-    public static $top10 = 10;
 
     public function show()
     {
@@ -24,23 +23,13 @@ class BestController extends Controller
         );
     }
 
-    public function getTop10Rating()
-    {
-        return array_slice($this->getTop100Rating(), 0, self::$top10);
-    }
-
-    public function getTop10Points()
-    {
-        return array_slice($this->getTop100Points(), 0, self::$top10);
-    }
-
     public function getTop100Points()
     {
         $data = null;
 
-        $getData = User::withCount('totalComments')
+        $getData = User::with('countries:id,flag', 'races:id,title')
+            ->withCount('totalComments')
             ->orderByDesc('total_comments_count')
-            ->with('countries:id,flag', 'races:id,title')
             ->take(self::$top100)
             ->get();
 
@@ -55,10 +44,10 @@ class BestController extends Controller
     {
         $data = null;
 
-        $getData = User::orderByRaw("(count_positive - count_negative) DESC")
+        $getData = User::with('countries:id,flag', 'races:id,title')
+            ->orderByRaw("(count_positive - count_negative) DESC")
             ->whereRaw("(count_positive - count_negative) >= 0")
-            ->with('countries:id,flag', 'races:id,title')
-            ->take(100)
+            ->take(self::$top100)
             ->get();
 
         if (!$getData->isEmpty()) {
@@ -72,10 +61,10 @@ class BestController extends Controller
     {
         $data = null;
 
-        $getData = User::withCount('totalNews')
+        $getData = User::with('countries:id,flag', 'races:id,title')
+            ->withCount('totalNews')
             ->orderByDesc('total_news_count')
-            ->with('countries:id,flag', 'races:id,title')
-            ->take(100)
+            ->take(self::$top100)
             ->get();
         if (!$getData->isEmpty()) {
             $data = self::getDataArray($getData, 'news');
@@ -88,10 +77,10 @@ class BestController extends Controller
     {
         $data = null;
 
-        $getData = User::withCount('totalReplays')
+        $getData = User::with('countries:id,flag', 'races:id,title')
+            ->withCount('totalReplays')
             ->orderByDesc('total_replays_count')
-            ->with('countries:id,flag', 'races:id,title')
-            ->take(100)
+            ->take(self::$top100)
             ->get();
         if (!$getData->isEmpty()) {
             $data = self::getDataArray($getData, 'replays');
@@ -129,7 +118,7 @@ class BestController extends Controller
      */
     public static function checkAvatar($item)
     {
-       return file_exists($item->avatar) === true ? $item->avatar : $item->avatar_url_or_blank;
+        return \File::exists($item->avatar) === true ? $item->avatar : $item->avatar_url_or_blank;
     }
 
     /**

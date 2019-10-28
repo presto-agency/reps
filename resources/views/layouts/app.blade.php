@@ -87,7 +87,6 @@
                 {{--@include('content.Page_gameBest')--}}
                 @include('content.Page_tournamentDetail-content')
                 @include('content.Page_tournament-content')
-                @include('content.page_replay')
                 @yield('content')
                 {{--@include('content.detailed-news')--}}
                 {{--@include('content.forum-allSections')--}}
