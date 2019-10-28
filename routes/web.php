@@ -32,15 +32,17 @@ Route::post('forum/topic/{id}/comment', 'TopicCommentController@store')->name('c
 
 /*Best*/
 Route::resource('best', 'Best\BestController');
-/*Comments_Send*/
-Route::resource('comments', 'Comment\CommentController');
+
 
 /*Replay*/
 Route::resource("replay", 'Replay\ReplayUserController');
+Route::post('replay/{id}/comments', 'Replay\ReplayController@saveComments')->name('comments.replay.store');
+
 Route::group(['prefix' => 'replay'], function () {
     Route::get('{id}/download', 'Replay\ReplayController@download')->name('replay.user.download');
     Route::post('{id}/download_count', 'Replay\ReplayController@downloadCount')->name('replay.user.download.count');
 });
+
 Route::resource("replay_pro", 'Replay\ReplayProController');
 Route::group(['prefix' => 'replay_pro'], function () {
     Route::get('{id}/download', 'Replay\ReplayController@download')->name('replay_pro.download');

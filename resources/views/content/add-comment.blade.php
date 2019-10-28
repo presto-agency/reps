@@ -16,7 +16,7 @@
         <p class="title__text">Добавить комментарий</p>
     </div>
     @auth
-        <form class="add-comment__form" action="{{route('comments.store')}}" method="POST">
+        <form class="add-comment__form" action="{{$route}}" method="POST">
             @csrf
             <div class="form__group form-group">
                 <label class="comment" for="comment">
@@ -37,7 +37,6 @@
                     </button>
                 </div>
             </div>
-            {{--<input type="hidden" name="object_id" value="{{ $object_id }}">--}}
             <button type="submit" class="add-comment__button">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

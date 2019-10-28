@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 
 class ReplayUserController extends Controller
 {
-    private static $model = "\App\Models\Replay";
 
     /**
      * Display a listing of the resource.

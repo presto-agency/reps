@@ -8,5 +8,8 @@
 @section('content')
     @include('replay.showSingle')
     @include('content.comments')
-    @include('content.add-comment')
+    @include('content.comments', ['comments' => $replay->comments])
+    @include('content.add-comment', [
+        'route' => route('comments.replay.store', ['id' =>$replay->id])
+    ])
 @endsection

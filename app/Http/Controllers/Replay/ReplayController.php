@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Replay;
 
+use App\Models\Comment;
 use App\Models\Replay;
 
 class ReplayController
@@ -70,6 +71,24 @@ class ReplayController
 
             echo json_encode(array('downloaded' => $replay->downloaded));
         }
+    }
+
+    public function saveComments()
+    {
+        $request = request();
+        $replay = Replay::find($request->id);
+        $comment = new Comment([
+            'user_id' => self::getAuthUser()->id,
+            'content' => $request->input('content')
+        ]);
+        $replay->comments()->save($comment);
+
+        return back();
+    }
+
+    public static function getAuthUser()
+    {
+        return auth()->user();
     }
 
     public static function getUrl()
