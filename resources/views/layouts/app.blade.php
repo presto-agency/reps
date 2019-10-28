@@ -87,7 +87,6 @@
                 {{--@include('content.Page_gameBest')--}}
                 @include('content.Page_tournamentDetail-content')
                 @include('content.Page_tournament-content')
-                @include('content.page_replay')
                 @yield('content')
                 {{--@include('content.detailed-news')--}}
                 {{--@include('content.forum-allSections')--}}
@@ -104,8 +103,7 @@
                 <button id="pulse-button-top" class="pulse-button">Топ</button>
                 <div id="right-sidebar-wrap" class="right-sidebar-wrap no-height">
                     @section('sidebar-right')
-                        @include('right-side.banner')
-                        @include('right-side.block-top')
+                        @include('right-side.block')
                     @show
                 </div>
             </div>

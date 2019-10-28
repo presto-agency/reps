@@ -12,7 +12,7 @@
 
 @section('sidebar-left')
     @include('components.block-tournament')
-    @include('components.block-replay')
+    @include('left-side.replays-show-in-home')
     @include('components.block-lastNews')
 @endsection
 
