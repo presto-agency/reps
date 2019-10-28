@@ -6495,7 +6495,6 @@
                             & span{
                                 font-size: 3.083vw;
                             }
-
                         }
                         & .right_block{
                             & span{
@@ -6980,8 +6979,244 @@
         }
     }
 
-
-
+//modal_autorization
+    #authorizationModal {
+        .modal-header {
+            .modal-header__close {
+                right: -1.563vw;
+                top: -1.563vw;
+                width: 6.944vw;
+                height: 6.944vw;
+                svg {
+                    width: 2.944vw;
+                    height: 6.944vw;
+                }
+            }
+        }
+        .modal-body {
+            .modal-body__title {
+                margin-bottom: 3.472vw;
+            }
+            .form-group {
+                input {
+                    margin-bottom: 2.604vw;
+                }
+            }
+            .modal-body__enter-btn {
+                margin-bottom: 5.208vw;
+            }
+            .modal-body__forgot-password {
+                margin-bottom: 2.604vw;
+            }
+            .modal-body__restore-password {
+                margin-bottom: 2.604vw;
+            }
+        }
+    }
+//modal_registration
+    #registrationModal {
+        .modal-header {
+            .modal-header__close {
+                right: -1.563vw;
+                top: -1.563vw;
+                width: 6.944vw;
+                height: 6.944vw;
+                svg {
+                    width: 2.257vw;
+                    height: 2.257vw;
+                }
+            }
+        }
+        .modal-body {
+            .modal-body__title {
+                margin-bottom: 3.472vw;
+            }
+            .form-group {
+                input {
+                    margin-bottom: 2.604vw;
+                    padding-left: 1.389vw;
+                }
+                .select2 {
+                    margin-bottom: 2.778vw;
+                    height: 6.424vw;
+                    .select2-selection {
+                        height: 6.424vw;
+                        .select2-selection__rendered {
+                            padding-top: 0;
+                            padding-left: 1.389vw;
+                        }
+                        .select2-selection__arrow {
+                            top: 0.868vw;
+                        }
+                    }
+                }
+                #race {
+                    margin-bottom: 2.778vw;
+                    height: 6.424vw;
+                }
+            }
+            .modal-body__enter-btn {
+                margin-bottom: 5.208vw;
+            }
+            .modal-body__forgot-password {
+                margin-bottom: 2.604vw;
+            }
+            .modal-body__restore-password {
+                margin-bottom: 2.604vw;
+            }
+        }
+    }
+    //my-posts
+.my-post {
+    margin-bottom: 3.472vw;
+    .my-post__title {
+        padding-top: 3.472vw;
+        padding-bottom: 3.472vw;
+        padding-left: 3.299vw;
+        .title__icon {
+            width: 3.472vw;
+            height: 3.472vw;
+        }
+        .title__text {
+            font-size: 2.778vw;
+            margin-left: 2.951vw;
+        }
+    }
+    .my-post__accordion {
+        .accordion-button {
+            padding: 3.125vw;
+            font-size: 2.604vw;
+        }
+        .accordion-button:after {
+            margin-left: 0.868vw;
+        }
+        /* Style the accordion panel. Note: hidden by default */
+        .panel {
+            padding: 0 3.125vw;
+            .panel__wrap {
+                .panel__header {
+                    margin-top: 2.604vw;
+                    padding-bottom: 1.736vw;
+                    .header__items {
+                        .items__icon {
+                            width: 2.604vw;
+                            height: 2.257vw;
+                            margin-right: 0.868vw;
+                        }
+                        .items__info {
+                            margin-left: 1.736vw;
+                            font-size: 2.083vw;
+                            line-height: 3.299vw;
+                        }
+                    }
+                }
+                .panel__body {
+                    margin-bottom: 2.604vw;
+                    padding-bottom: 2.604vw;
+                    padding-top: 2.604vw;
+                    .body__numb {
+                        font-size: 2.431vw;
+                    }
+                    .body__nick {
+                        font-size: 2.431vw;
+                        margin-left: 1.736vw;
+                    }
+                    .body__text {
+                        font-size: 2.778vw;
+                    }
+                }
+            }
+        }
+    }
+}
+//reputation-info
+.reputation-info {
+    margin-bottom: 3.472vw;
+    .reputation-info__title {
+        padding-top: 3.472vw;
+        padding-bottom: 3.472vw;
+        padding-left: 3.299vw;
+        .title__icon {
+            width: 3.472vw;
+            height: 3.472vw;
+        }
+        .title__text {
+            font-size: 3.778vw;
+            margin-left: 2.951vw;
+        }
+    }
+    .reputation-info__body {
+        /* Style the accordion panel. Note: hidden by default */
+        .panel {
+            padding: 0 3.125vw;
+            .panel__header {
+                margin-top: 2.604vw;
+                padding-bottom: 1.736vw;
+                .header__items {
+                    .items__link {
+                        font-size: 2.083vw;
+                    }
+                    span {
+                        font-size: 2.083vw;
+                        line-height: 3.299vw;
+                        margin-right: 0.868vw;
+                        margin-left: 0.868vw;
+                    }
+                    .items__icon {
+                        width: 2.604vw;
+                        height: 2.257vw;
+                        margin-right: 0.868vw;
+                    }
+                    .items__info {
+                        margin-left: 1.736vw;
+                        font-size: 2.083vw;
+                        line-height: 3.299vw;
+                    }
+                }
+            }
+            .panel__body {
+                margin-bottom: 2.604vw;
+                .body__comment {
+                    font-size: 2.778vw;
+                    line-height: 4.167vw;
+                    margin-bottom: 2.604vw;
+                    margin-top: 2.604vw;
+                }
+            }
+            .panel__footer {
+                margin-bottom: 1.736vw;
+                padding-bottom: 2.604vw;
+                .footer__item {
+                    display: flex;
+                    .items__items {
+                        margin-right: 2.604vw;
+                        svg {
+                            width: 2.778vw;
+                            height: 2.778vw;
+                            margin-right: 1.215vw;
+                        }
+                        span {
+                            font-size: 2.083vw;
+                            line-height: 3.299vw;
+                        }
+                    }
+                    .rate {
+                        border-radius: 0.694vw;
+                        width: 26.042vw;
+                        padding: 0.868vw 1.736vw;
+                        font-size: 2.083vw;
+                    }
+                    .item__later {
+                        svg {
+                            width: 3.472vw;
+                            height: 3.472vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 
 
