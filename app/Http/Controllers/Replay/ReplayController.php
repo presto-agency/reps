@@ -8,23 +8,40 @@ use App\Models\Replay;
 class ReplayController extends Controller
 {
 
-    public $replayAll;
     public $replayPro;
-    public $replayUser;
+    public $replayProType;
+    public static $replayUser;
+
+    public static $replayProDuel;
+    public static $replayProPack;
+    public static $replayProGotw;
+    public static $replayProTeam;
+    public static $select = 3;
+
 
     public function showUser()
     {
-        $replay = $this->getReplayUser();
+        $replay = self::$replayUser;
+        $replayTypeName = 'Пользовательские';
         return view('replay.index',
-            compact('replay')
+            compact('replay','replayTypeName')
         );
     }
 
     public function showPro()
     {
-        $replay = $this->getReplayPro();
+        $replay = $this->replayPro;
+        $replayTypeName = 'Профессиональные';
         return view('replay.index',
-            compact( 'replay')
+            compact('replay','replayTypeName')
+        );
+    }
+
+    public function showType()
+    {
+        $replay = $this->replayProType;
+        return view('replay.index',
+            compact('replay')
         );
     }
 
@@ -32,6 +49,49 @@ class ReplayController extends Controller
      * ReplayController constructor.
      */
     public function __construct()
+    {
+
+        $dataPro = null;
+        $dataUser = null;
+        $dataProWithType = null;
+
+        $dataProWithDuel = [];
+        $dataProWithPack = [];
+        $dataProWithGotw = [];
+        $dataProWithTeam = [];
+
+        $getData = $this->getReplays();
+
+        if (!$getData->isEmpty()) {
+            foreach ($getData as $item) {
+                if ($item->user_replay == Replay::REPLAY_PRO) {
+                    $dataPro[] = self::getData($item);
+                    /*get Data with single type*/
+                    if ($item->types->name == self::getUrl()->last()) {
+                        $dataProWithType[] = $this->getData($item);
+                    }
+                    /*Sort data with type*/
+                    $dataProWithDuel[] = $this->setReplayProDuel($item);
+                    $dataProWithPack[] = $this->setReplayProPack($item);
+                    $dataProWithGotw[] = $this->setReplayProGotw($item);
+                    $dataProWithTeam[] = $this->setReplayProTeam($item);
+                } else {
+                    $dataUser[] = self::getData($item);
+                }
+            }
+        }
+
+        self::$replayProDuel = $dataProWithDuel;
+        self::$replayProPack = $dataProWithPack;
+        self::$replayProGotw = $dataProWithGotw;
+        self::$replayProTeam = $dataProWithTeam;
+
+        $this->replayPro = $dataPro;
+        $this->replayProType = $dataProWithType;
+        self::$replayUser = $dataUser;
+    }
+
+    public function getReplays()
     {
         $relation = [
             'users:id,avatar,name',
@@ -42,46 +102,127 @@ class ReplayController extends Controller
             'firstRaces:id,title,code',
             'secondRaces:id,title,code',
         ];
-        $getData = Replay::with($relation)->where('approved', 1)->get();
+        $columns = [
+            'user_id',
+            'map_id',
+            'type_id',
+            'first_country_id',
+            'second_country_id',
+            'first_race',
+            'second_race',
 
-        $dataPro = [];
-        $dataUser = [];
-        if (!$getData->isEmpty()) {
-            foreach ($getData as $item) {
-                if ($item->user_replay == Replay::REPLAY_PRO) {
-                    $dataPro[] = self::getData($item);
-                } else {
-                    $dataUser[] = self::getData($item);
-                }
-            }
+            'user_replay',
+            'created_at',
+            'title',
+            'positive_count',
+            'negative_count',
+            'first_name',
+            'second_name',
+        ];
+        return Replay::with($relation)
+            ->where('approved', 1)
+            ->orderByDesc('created_at')
+            ->get($columns);
+    }
+
+    public static function getUrl()
+    {
+        return collect(request()->segments());
+    }
+
+    public static function checkUrlTournament()
+    {
+        return \Str::contains(self::getUrl(), 'tournament');
+    }
+
+    public static function checkUrlPro()
+    {
+        return \Str::contains(self::getUrl(), 'pro');
+    }
+
+    public static function getReplayUser()
+    {
+        return array_slice(array_filter(self::$replayUser), 0, self::$select);
+    }
+
+
+    public function setReplayProDuel($item)
+    {
+        if ($item->types->name == 'duel') {
+            return self::getData($item);
         }
-        $this->replayPro = $dataPro;
-        $this->replayUser = $dataUser;
-        $this->replayAll = array_merge($dataPro, $dataUser);
+    }
+
+    public function setReplayProPack($item)
+    {
+        if ($item->types->name == 'pack') {
+            return self::getData($item);
+        }
+    }
+
+    public function setReplayProGotw($item)
+    {
+        if ($item->types->name == 'gotw') {
+            return self::getData($item);
+        }
+    }
+
+    public function setReplayProTeam($item)
+    {
+        if ($item->types->name == 'team') {
+            return self::getData($item);
+        }
     }
 
     /**
-     * @return array
+     * @return 0|array
      */
-    public function getReplayPro()
+    public static function getReplayProDuel()
     {
-        return $this->replayPro;
+        if (self::checkUrlTournament() === false) {
+            return array_slice(array_filter(self::$replayProDuel), 0, self::$select);
+        } else {
+            return [];
+        }
     }
 
     /**
+     * For min Queries
      * @return array
      */
-    public function getReplayUser()
+    public static function getReplayProPack()
     {
-        return $this->replayUser;
+        if (self::checkUrlTournament() === false) {
+            return array_slice(array_filter(self::$replayProPack), 0, self::$select);
+        } else {
+            return [];
+        }
     }
 
     /**
+     * For min Queries
      * @return array
      */
-    public function getAllReplay()
+    public static function getReplayProGotw()
     {
-        return $this->replayAll;
+        if (self::checkUrlTournament() === false) {
+            return array_slice(array_filter(self::$replayProGotw), 0, self::$select);
+        } else {
+            return [];
+        }
+    }
+
+    /**
+     * For min Queries
+     * @return array
+     */
+    public static function getReplayProTeam()
+    {
+        if (self::checkUrlTournament() === false) {
+            return array_slice(array_filter(self::$replayProTeam), 0, self::$select);
+        } else {
+            return [];
+        }
     }
 
     /**

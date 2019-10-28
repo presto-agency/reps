@@ -4,45 +4,61 @@
 namespace App\Http\ViewComposers\LeftSide;
 
 
+use App\Http\Controllers\Replay\ReplayController;
 use App\Models\ReplayType;
 use Illuminate\View\View;
 
 class ReplaysNavigationComposer
 {
-    private static $replayLS;
-    public static $pro;
 
+    public static $pro;
+    public static $replayTypes = [
+        'duel',
+        'pack',
+        'gotw',
+        'team',
+    ];
+    public static $replayNav;
 
     public function __construct()
     {
-        self::$pro = collect(request()->segments())->last() != 'pro' ? true : false;
+        self::$pro = ReplayController::checkUrlPro() === false ? true : false;
+
+
+        $data1 = ReplayController::getReplayProDuel();
+        $data2 = ReplayController::getReplayProPack();
+        $data3 = ReplayController::getReplayProGotw();
+        $data4 = ReplayController::getReplayProTeam();
+        self::$replayNav = array_merge($data1, $data2, $data3, $data4);
+
+
+//dd($data1,$data2,$data3,$data4);
+
     }
 
     public function compose(View $view)
     {
         $view->with("pro", self::$pro);
-//        $view->with("replayLS" . self::$type, self::$replayLS);
+        $view->with("replayTypes", self::getReplayTypes());
+        $view->with("replayNav", self::$replayNav);
     }
 
-
-    public static $replayTypes;
-
-
-    public static function getReplayTypes()
+    /**
+     * @return array
+     */
+    private static function getReplayTypes()
     {
-        $dataType = [];
-
-        $dataTypes = ReplayType::all(['id', 'name', 'title']);
-        if (!$dataTypes->isEmpty()) {
-            foreach ($dataTypes as $item) {
-                $dataType[] = [
+        $data = null;
+        $getData = ReplayType::all();
+        if (!$getData->isEmpty()) {
+            foreach ($getData as $item) {
+                $data[] = [
                     'id' => $item->id,
                     'name' => $item->name,
                     'title' => $item->title,
-                    'url' => "replay\pro\\" . $item->name,
                 ];
             }
         }
-        return $dataType;
+        return $data;
     }
 }

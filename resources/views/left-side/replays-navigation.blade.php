@@ -1,6 +1,5 @@
 <div class="replays">
     <div class="replays__title">
-
         <svg class="title__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -13,36 +12,24 @@
                 c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                 C479.3,122.6,463.9,174.4,437.6,213.9z"/>
         </svg>
-
         <p class="title__text">Реплеи</p>
     </div>
     <div class="replays__accordion accordion" id="replaysAccordion">
-       @if($pro)
+        @if($pro)
+            @isset($replayTypeName)
+                <div class="accordion__topic card">
+                    <div class="topic__header card-header">
+                        <p class="header__title">
+                            {{$replayTypeName}}
+                        </p>
+                    </div>
+                </div>
+            @endisset
             <div class="accordion__topic card">
                 <div class="topic__header card-header">
-                    <a class="header__title" href="/replay/pro">
+                    <a class="header__title" href="{{route('replay.pro')}}">
                         Профессиональные реплеи
                     </a>
-                </div>
-                @isset($replayLSPro)
-                    @foreach($replayLSPro as $item)
-                        <div class="topic__body">
-                            <div class="card-body">
-                                <div class="body__wrap">
-                                    <a href="#"
-                                       class="body__title">{{$item['firstName'].' vs '.$item['secondName']}}</a>
-                                    <span class="body__numb">{{$item['replayRait']}}</span>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @endisset
-            </div>
-            <div class="accordion__topic card">
-                <div class="topic__header card-header">
-                    <p class="header__title">
-                        Професіонали
-                    </p>
                 </div>
                 @isset($replayTypes)
                     @foreach($replayTypes as $typeItem)
@@ -50,18 +37,22 @@
                             <div class="card-body">
                                 <div class="subtopic__topic card">
                                     <div class="subtopic__header card-header">
-                                        <a class="header__title" href="{{asset($typeItem['url'])}}">
+                                        <a class="header__title"
+                                           href="{{route('replay.'.$typeItem['name'])}}">
                                             {{$typeItem['title']}}
                                         </a>
                                     </div>
                                     <div class="subtopic__body">
                                         <div class="card-body">
-                                            @isset($replayLSPro)
-                                                @foreach($replayLSPro as $item)
-                                                    <div class="body__wrap">
-                                                        <a href="#" class="body__title">BSL7-Eriador vs ash.Dreamer</a>
-                                                        <span class="body__numb">1</span>
-                                                    </div>
+                                            @isset($replayNav)
+                                                @foreach($replayNav as $item)
+                                                    @if($item['type'] == $typeItem['name'])
+                                                        <div class="body__wrap">
+                                                            <a href="#"
+                                                               class="body__title">{{$item['firstName'].' vs '.$item['secondName']}}</a>
+                                                            <span class="body__numb">{{$item['replayRait']}}</span>
+                                                        </div>
+                                                    @endif
                                                 @endforeach
                                             @endisset
                                         </div>
@@ -74,13 +65,20 @@
             </div>
         @else
             <div class="accordion__topic card">
+                @isset($replayTypeName)
+                    <div class="topic__header card-header">
+                        <p class="header__title">
+                            {{$replayTypeName}}
+                        </p>
+                    </div>
+                @endisset
                 <div class="topic__header card-header">
-                    <a class="header__title" href="/replay">
+                    <a class="header__title" href="{{route('replay.user')}}">
                         Пользовательские реплеи
                     </a>
                 </div>
-                @isset($replayLSUser)
-                    @foreach($replayLSUser as $item)
+                @isset($replayNav)
+                    @foreach($replayNav as $item)
                         <div class="topic__body">
                             <div class="card-body">
                                 <div class="body__wrap">
