@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('sidebar-left')
-    @include('user.components.vote')
+    @include('components.vote')
     @include('user.components.create-replay')
 @endsection
 

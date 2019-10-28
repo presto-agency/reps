@@ -17,6 +17,7 @@ class ReplayController
         $data = Replay::with($ArrRelations)
             ->where('approved', 1)
             ->where('user_replay', $user_replay)
+            ->orderByDesc('created_at')
             ->get($ArrColumn);
 
         return $data;
@@ -84,6 +85,37 @@ class ReplayController
         $replay->comments()->save($comment);
 
         return back();
+    }
+
+    public static function loadReplay($ArrRelations, $ArrColumn, $user_replay)
+    {
+        $request = request();
+
+        if ($request->ajax()) {
+            $visible_title = false;
+            if ($request->id > 0) {
+                $data = Replay::with($ArrRelations)
+                    ->where('approved', 1)
+                    ->where('user_replay', $user_replay)
+                    ->where('id', '<', $request->id)
+                    ->orderByDesc('created_at')
+                    ->limit(5)
+                    ->get($ArrColumn);
+            } else {
+                $data = Replay::with($ArrRelations)
+                    ->where('approved', 1)
+                    ->where('user_replay', $user_replay)
+                    ->where('id', '<', $request->id)
+                    ->orderByDesc('created_at')
+                    ->limit(5)
+                    ->get($ArrColumn);
+
+                $visible_title = true;
+            }
+
+            $output = view('replay.index', ['replay' => $data]);
+            echo $output;
+        }
     }
 
     public static function getAuthUser()

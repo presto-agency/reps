@@ -108,11 +108,9 @@
         @endforeach
     @endisset
 </div>
-
 <div class="gocu-replays__numb-pages">
     <p class="numb-pages">10 из 240</p>
 </div>
-
 <div class="gocu-replays__button">
     <button class="button button__download-more">
         Загрузить еще

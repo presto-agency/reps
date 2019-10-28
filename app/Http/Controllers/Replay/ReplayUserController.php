@@ -39,12 +39,9 @@ class ReplayUserController extends Controller
             'negative_count',
             'created_at',
         ];
-
         $replay = ReplayController::getReplays($ArrRelations, $ArrColumn, Replay::REPLAY_USER);
         $proRout = ReplayController::checkUrlPro() === true ? true : false;
-        return view('replay.index',
-            compact('replay', 'proRout')
-        );
+        return view('replay.index', compact('proRout', 'replay'));
     }
 
     /**
@@ -91,9 +88,9 @@ class ReplayUserController extends Controller
         $replay = ReplayController::findReplay($ArrRelations, $id);
         $countUserPts = $replay->users->totalComments->count();
         $proRout = ReplayController::checkUrlPro() === true ? true : false;
-        $model = self::$model;
+
         return view('replay.show',
-            compact('replay', 'countUserPts', 'proRout', 'model')
+            compact('replay', 'countUserPts', 'proRout')
         );
     }
 
@@ -131,5 +128,33 @@ class ReplayUserController extends Controller
         //
     }
 
+    public function indexLoad()
+    {
+        $ArrRelations = [
+            'users:id,name,avatar',
+            'maps:id,name',
+            'firstCountries:id,flag',
+            'secondCountries:id,flag',
+            'firstRaces:id,title,code',
+            'secondRaces:id,title,code',
+        ];
+        $ArrColumn = [
+            'id',
+            'title',
+            'user_id',
+            'map_id',
+            'first_name',
+            'second_name',
+            'first_country_id',
+            'second_country_id',
+            'first_race',
+            'second_race',
+            'positive_count',
+            'negative_count',
+            'created_at',
+        ];
 
+
+        ReplayController::loadReplay($ArrRelations, $ArrColumn, Replay::REPLAY_USER);
+    }
 }
