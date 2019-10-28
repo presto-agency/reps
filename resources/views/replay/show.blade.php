@@ -7,4 +7,6 @@
 
 @section('content')
     @include('replay.showSingle')
+    @include('content.comments')
+    @include('content.add-comment')
 @endsection

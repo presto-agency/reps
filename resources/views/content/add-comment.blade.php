@@ -1,6 +1,7 @@
 <div class="add-comment">
     <div class="add-comment__title">
-        <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
 	        <path d="M30.5,0C14.233,0,1,13.233,1,29.5c0,5.146,1.346,10.202,3.896,14.65L0.051,58.684c-0.116,0.349-0.032,0.732,0.219,1
             C0.462,59.888,0.728,60,1,60c0.085,0,0.17-0.011,0.254-0.033l15.867-4.176C21.243,57.892,25.86,59,30.5,59
@@ -14,47 +15,40 @@
         </svg>
         <p class="title__text">Добавить комментарий</p>
     </div>
-    @if(Auth::user())
-    <form class="add-comment__form" action="{{$route}}" method="POST">
-        @csrf
-        <div class="form__group form-group">
-            <label class="comment" for="comment">
-                <input name="content" type="text" class="comment__input form-control" id="comment"
-                       placeholder="Написать комментарий...">
-            </label>
-
-            <div class="buttons-upload">
-                <label class="custom-img-upload">
-                    <input type="file" accept="image/*"/>
-                    <i class="fas fa-camera"></i>
+    @auth
+        <form class="add-comment__form" action="{{route('comments.store')}}" method="POST">
+            @csrf
+            <div class="form__group form-group">
+                <label class="comment" for="comment">
+                    <input name="content" type="text" class="comment__input form-control" id="comment"
+                           placeholder="Написать комментарий...">
                 </label>
-
-                <label class="custom-file-upload">
-                    <input type="file"/>
-                    <i class="fas fa-paperclip"></i>
-                </label>
-
-                <button class="smile-upload">
-                    <i class="far fa-smile"></i>
-                </button>
+                <div class="buttons-upload">
+                    <label class="custom-img-upload">
+                        <input type="file" accept="image/*"/>
+                        <i class="fas fa-camera"></i>
+                    </label>
+                    <label class="custom-file-upload">
+                        <input type="file"/>
+                        <i class="fas fa-paperclip"></i>
+                    </label>
+                    <button class="smile-upload">
+                        <i class="far fa-smile"></i>
+                    </button>
+                </div>
             </div>
-
-        </div>
-
-
-        {{--<input type="hidden" name="object_id" value="{{ $object_id }}">--}}
-
-        <button type="submit" class="add-comment__button">
-            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                 viewBox="0 0 535.5 535.5"
-                 style="enable-background:new 0 0 535.5 535.5;" xml:space="preserve">
+            {{--<input type="hidden" name="object_id" value="{{ $object_id }}">--}}
+            <button type="submit" class="add-comment__button">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     viewBox="0 0 535.5 535.5"
+                     style="enable-background:new 0 0 535.5 535.5;" xml:space="preserve">
 	                            <g id="send">
                                     <polygon points="0,497.25 535.5,267.75 0,38.25 0,216.75 382.5,267.75 0,318.75"/>
                                 </g>
                         </svg>
-        </button>
-    </form>
+            </button>
+        </form>
     @else
         <p>Вы не зарегистрированы на сайте, поэтому данная функция отсутствует.</p>
     @endif

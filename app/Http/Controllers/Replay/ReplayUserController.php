@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class ReplayUserController extends Controller
 {
+    private static $model = "\App\Models\Replay";
 
     /**
      * Display a listing of the resource.
@@ -85,13 +86,15 @@ class ReplayUserController extends Controller
             'secondCountries:id,name,flag',
             'firstRaces:id,title,code',
             'secondRaces:id,title,code',
+            'comments',
         ];
 
         $replay = ReplayController::findReplay($ArrRelations, $id);
         $countUserPts = $replay->users->totalComments->count();
         $proRout = ReplayController::checkUrlPro() === true ? true : false;
+        $model = self::$model;
         return view('replay.show',
-            compact('replay', 'countUserPts', 'proRout')
+            compact('replay', 'countUserPts', 'proRout', 'model')
         );
     }
 

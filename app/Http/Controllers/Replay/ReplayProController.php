@@ -86,6 +86,7 @@ class ReplayProController extends Controller
             'secondCountries:id,name,flag',
             'firstRaces:id,title,code',
             'secondRaces:id,title,code',
+            'comments',
         ];
         $replay = ReplayController::findReplay($ArrRelations, $id);
         $countUserPts = $replay->users->totalComments->count();
