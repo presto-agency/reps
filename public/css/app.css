@@ -24385,6 +24385,109 @@ select:focus {
   .my-post .my-post__accordion .panel .panel__wrap .panel__body .body__text {
     font-size: 2.778vw;
   }
+
+  .reputation-info {
+    margin-bottom: 3.472vw;
+  }
+
+  .reputation-info .reputation-info__title {
+    padding-top: 3.472vw;
+    padding-bottom: 3.472vw;
+    padding-left: 3.299vw;
+  }
+
+  .reputation-info .reputation-info__title .title__icon {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
+
+  .reputation-info .reputation-info__title .title__text {
+    font-size: 3.778vw;
+    margin-left: 2.951vw;
+  }
+
+  .reputation-info .reputation-info__body {
+    /* Style the accordion panel. Note: hidden by default */
+  }
+
+  .reputation-info .reputation-info__body .panel {
+    padding: 0 3.125vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header {
+    margin-top: 2.604vw;
+    padding-bottom: 1.736vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header .header__items .items__link {
+    font-size: 2.083vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header .header__items span {
+    font-size: 2.083vw;
+    line-height: 3.299vw;
+    margin-right: 0.868vw;
+    margin-left: 0.868vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header .header__items .items__icon {
+    width: 2.604vw;
+    height: 2.257vw;
+    margin-right: 0.868vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__header .header__items .items__info {
+    margin-left: 1.736vw;
+    font-size: 2.083vw;
+    line-height: 3.299vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__body {
+    margin-bottom: 2.604vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__body .body__comment {
+    font-size: 2.778vw;
+    line-height: 4.167vw;
+    margin-bottom: 2.604vw;
+    margin-top: 2.604vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer {
+    margin-bottom: 1.736vw;
+    padding-bottom: 2.604vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item {
+    display: flex;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .items__items {
+    margin-right: 2.604vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .items__items svg {
+    width: 2.778vw;
+    height: 2.778vw;
+    margin-right: 1.215vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .items__items span {
+    font-size: 2.083vw;
+    line-height: 3.299vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .rate {
+    border-radius: 0.694vw;
+    width: 26.042vw;
+    padding: 0.868vw 1.736vw;
+    font-size: 2.083vw;
+  }
+
+  .reputation-info .reputation-info__body .panel .panel__footer .footer__item .item__later svg {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
 }
 
 @media (min-width: 1920px) {
