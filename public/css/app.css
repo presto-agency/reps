@@ -23402,6 +23402,11 @@ select:focus {
     font-size: 2.431vw;
   }
 
+  .user_profile .block_userInformation .container_right {
+    padding-left: 15px;
+    border-left: 0px;
+  }
+
   .user_profile .block_userInformation .container_right .wrapper_information,
   .user_profile .block_userInformation .container_right .wrapper_contacts {
     padding: 3.472vw 3.472vw 1.736vw;
@@ -23462,19 +23467,19 @@ select:focus {
   }
 
   .user_profile .block_userInformation .friends_block .friends .left_block img {
-    width: 4.125vw;
-    height: 4.125vw;
+    width: 5.125vw;
+    height: 5.125vw;
   }
 
   .user_profile .block_userInformation .friends_block .friends .left_block .name_player {
     margin-left: 1.736vw;
     max-width: 17.361vw;
-    font-size: 2.083vw;
+    font-size: 3.083vw;
   }
 
   .user_profile .block_userInformation .friends_block .friends .right_block img {
-    width: 4.125vw;
-    height: 4.125vw;
+    width: 5.125vw;
+    height: 5.125vw;
   }
 
   .user_profile .friends_block::-webkit-scrollbar {

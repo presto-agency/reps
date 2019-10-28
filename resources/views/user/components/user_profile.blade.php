@@ -54,7 +54,7 @@
 
         <div class="block_userInformation">
             <div class="row">
-                <div class="col-xl-6 col-6 container_left">
+                <div class="col-xl-6 col-lg-6  col-md-6 col-12 container_left">
                     <div class="title_top_userProfile">
                         <p class="title_Text">В друзьях</p>
                     </div>
@@ -330,7 +330,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-6 container_right">
+                <div class="col-xl-6 col-lg-6  col-md-6 col-12  container_right">
                     <div class="title_top_userProfile">
                         <p class="title_Text">Информация</p>
                     </div>

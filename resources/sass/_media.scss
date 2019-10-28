@@ -6485,6 +6485,8 @@
         }
         & .block_userInformation{
             & .container_right{
+                padding-left: 15px;
+                border-left:0px;
                 & .wrapper_information, .wrapper_contacts{
                     padding: 3.472vw 3.472vw 1.736vw;
                     & .block_inform, .block_contact{
@@ -6528,19 +6530,19 @@
                     padding-bottom: 1.736vw;
                     & .left_block{
                         & img{
-                        width: 4.125vw;
-                        height: 4.125vw;
+                        width: 5.125vw;
+                        height: 5.125vw;
                     }
                         & .name_player{
                             margin-left: 1.736vw;
                             max-width: 17.361vw;
-                            font-size:2.083vw;
+                            font-size:3.083vw;
                         }
                     }
                     & .right_block{
                         & img{
-                            width: 4.125vw;
-                            height: 4.125vw;
+                            width: 5.125vw;
+                            height: 5.125vw;
                         }
                     }
                 }
