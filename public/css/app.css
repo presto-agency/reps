@@ -14399,6 +14399,142 @@ select:focus {
   width: 100%;
 }
 
+.my-post {
+  box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.my-post .my-post__title {
+  border-radius: 5px 5px 0 0;
+  background-color: #0567cc;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 19px;
+  align-items: center;
+}
+
+.my-post .my-post__title .title__icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.my-post .my-post__title .title__text {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-left: 17px;
+}
+
+.my-post .my-post__accordion {
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  /* Style the accordion panel. Note: hidden by default */
+}
+
+.my-post .my-post__accordion .accordion-button {
+  background-color: #f0f4f8;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.my-post .my-post__accordion .active,
+.my-post .my-post__accordion .accordion-button:hover {
+  background-color: #efefef;
+}
+
+.my-post .my-post__accordion .accordion-button:after {
+  content: "+";
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.my-post .my-post__accordion .active:after {
+  content: "\2212";
+}
+
+.my-post .my-post__accordion .panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  margin-bottom: 1px;
+}
+
+.my-post .my-post__accordion .panel .panel__wrap .panel__header {
+  display: flex;
+  margin-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f1f3;
+}
+
+.my-post .my-post__accordion .panel .panel__wrap .panel__header .header__items {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.my-post .my-post__accordion .panel .panel__wrap .panel__header .header__items .items__icon {
+  width: 15px;
+  height: 13px;
+  fill: #9ca0b6;
+  margin-right: 5px;
+}
+
+.my-post .my-post__accordion .panel .panel__wrap .panel__header .header__items .items__info {
+  margin-left: 10px;
+  margin-bottom: 0;
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+}
+
+.my-post .my-post__accordion .panel .panel__wrap .panel__header .header__items .items__info.info {
+  color: #0567cc;
+}
+
+.my-post .my-post__accordion .panel .panel__wrap .panel__body {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.my-post .my-post__accordion .panel .panel__wrap .panel__body .body__numb {
+  font-size: 14px;
+  color: #0567cc;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.my-post .my-post__accordion .panel .panel__wrap .panel__body .body__nick {
+  color: #9ca0b6;
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 10px;
+  text-decoration: underline;
+}
+
+.my-post .my-post__accordion .panel .panel__wrap .panel__body .body__text {
+  color: #010b4a;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
 .block_chat-twitch {
   padding-bottom: 40px;
 }
