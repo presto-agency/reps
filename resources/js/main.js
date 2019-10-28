@@ -88,6 +88,12 @@ $('.big_video_left').click(function(event) {
 //day-night
 $('#night').click(function(event) {
     event.preventDefault();
+    console.log("11");
+    $('body').addClass('nightMode');
+    // localStorage.setItem('panelTheme', theme);
+    // $(':root').css('--blue', 'red');
+    // document.documentElement.style.setProperty('--blue', 'green');
+    root.style.setProperty('--blue', '#f9f9f9');
 
 
 });
