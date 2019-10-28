@@ -6495,7 +6495,6 @@
                             & span{
                                 font-size: 3.083vw;
                             }
-
                         }
                         & .right_block{
                             & span{
@@ -6980,9 +6979,93 @@
         }
     }
 
-
-
-
+//modal_autorization
+    #authorizationModal {
+        .modal-header {
+            .modal-header__close {
+                right: -1.563vw;
+                top: -1.563vw;
+                width: 6.944vw;
+                height: 6.944vw;
+                svg {
+                    width: 2.944vw;
+                    height: 6.944vw;
+                }
+            }
+        }
+        .modal-body {
+            .modal-body__title {
+                margin-bottom: 3.472vw;
+            }
+            .form-group {
+                input {
+                    margin-bottom: 2.604vw;
+                }
+            }
+            .modal-body__enter-btn {
+                margin-bottom: 5.208vw;
+            }
+            .modal-body__forgot-password {
+                margin-bottom: 2.604vw;
+            }
+            .modal-body__restore-password {
+                margin-bottom: 2.604vw;
+            }
+        }
+    }
+//modal_registration
+    #registrationModal {
+        .modal-header {
+            .modal-header__close {
+                right: -1.563vw;
+                top: -1.563vw;
+                width: 6.944vw;
+                height: 6.944vw;
+                svg {
+                    width: 2.257vw;
+                    height: 2.257vw;
+                }
+            }
+        }
+        .modal-body {
+            .modal-body__title {
+                margin-bottom: 3.472vw;
+            }
+            .form-group {
+                input {
+                    margin-bottom: 2.604vw;
+                    padding-left: 1.389vw;
+                }
+                .select2 {
+                    margin-bottom: 2.778vw;
+                    height: 6.424vw;
+                    .select2-selection {
+                        height: 6.424vw;
+                        .select2-selection__rendered {
+                            padding-top: 0;
+                            padding-left: 1.389vw;
+                        }
+                        .select2-selection__arrow {
+                            top: 0.868vw;
+                        }
+                    }
+                }
+                #race {
+                    margin-bottom: 2.778vw;
+                    height: 6.424vw;
+                }
+            }
+            .modal-body__enter-btn {
+                margin-bottom: 5.208vw;
+            }
+            .modal-body__forgot-password {
+                margin-bottom: 2.604vw;
+            }
+            .modal-body__restore-password {
+                margin-bottom: 2.604vw;
+            }
+        }
+    }
 
 
 }

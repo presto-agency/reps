@@ -15848,7 +15848,6 @@ select:focus {
   display: flex;
   align-items: center;
   background: #efefef;
-  min-height: 60px;
   justify-content: space-between;
   padding: 0 20px;
 }
@@ -16805,7 +16804,6 @@ select:focus {
   display: flex;
   align-items: center;
   background: #0567cc;
-  min-height: 60px;
   border: 0;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -23912,6 +23910,94 @@ select:focus {
   .user-reputation-history .user-reputation-history__body .body__wrap .body__content .content__like svg {
     width: 3.472vw;
     height: 3.125vw;
+  }
+
+  #authorizationModal .modal-header .modal-header__close {
+    right: -1.563vw;
+    top: -1.563vw;
+    width: 6.944vw;
+    height: 6.944vw;
+  }
+
+  #authorizationModal .modal-header .modal-header__close svg {
+    width: 2.944vw;
+    height: 6.944vw;
+  }
+
+  #authorizationModal .modal-body .modal-body__title {
+    margin-bottom: 3.472vw;
+  }
+
+  #authorizationModal .modal-body .form-group input {
+    margin-bottom: 2.604vw;
+  }
+
+  #authorizationModal .modal-body .modal-body__enter-btn {
+    margin-bottom: 5.208vw;
+  }
+
+  #authorizationModal .modal-body .modal-body__forgot-password {
+    margin-bottom: 2.604vw;
+  }
+
+  #authorizationModal .modal-body .modal-body__restore-password {
+    margin-bottom: 2.604vw;
+  }
+
+  #registrationModal .modal-header .modal-header__close {
+    right: -1.563vw;
+    top: -1.563vw;
+    width: 6.944vw;
+    height: 6.944vw;
+  }
+
+  #registrationModal .modal-header .modal-header__close svg {
+    width: 2.257vw;
+    height: 2.257vw;
+  }
+
+  #registrationModal .modal-body .modal-body__title {
+    margin-bottom: 3.472vw;
+  }
+
+  #registrationModal .modal-body .form-group input {
+    margin-bottom: 2.604vw;
+    padding-left: 1.389vw;
+  }
+
+  #registrationModal .modal-body .form-group .select2 {
+    margin-bottom: 2.778vw;
+    height: 6.424vw;
+  }
+
+  #registrationModal .modal-body .form-group .select2 .select2-selection {
+    height: 6.424vw;
+  }
+
+  #registrationModal .modal-body .form-group .select2 .select2-selection .select2-selection__rendered {
+    padding-top: 0;
+    padding-left: 1.389vw;
+  }
+
+  #registrationModal .modal-body .form-group .select2 .select2-selection .select2-selection__arrow {
+    top: 0.868vw;
+  }
+
+  #registrationModal .modal-body .form-group #race {
+    margin-bottom: 2.778vw;
+    height: 6.424vw;
+  }
+
+  #registrationModal .modal-body .modal-body__enter-btn {
+    margin-bottom: 5.208vw;
+  }
+
+  #registrationModal .modal-body .modal-body__forgot-password {
+    margin-bottom: 2.604vw;
+  }
+
+  #registrationModal .modal-body .modal-body__restore-password {
+    margin-bottom: 2.604vw;
   }
 }
 
