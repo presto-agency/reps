@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 trait GravatarTrait
 {
-
+/*avatar_url_or_blank*/
     public function getAvatarUrlOrBlankAttribute()
     {
         $url = 'images/avatar.jpg';

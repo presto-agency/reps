@@ -5,19 +5,22 @@ namespace App\Http\ViewComposers\RightSide;
 
 use App\User;
 use Illuminate\View\View;
-use phpDocumentor\Reflection\Types\Null_;
 
 
 class LastRegisteredUsersComposer
 {
     private static $userTake = 5;
+    private static $ttl = 300;
 
     /**
      * @param View $view
      */
     public function compose(View $view)
     {
-        $view->with('newUsers', self::getNewUsers());
+
+        $result = self::getCache('newUsers');
+
+        $view->with('newUsers', $result);
     }
 
     /**
@@ -43,7 +46,22 @@ class LastRegisteredUsersComposer
             }
         }
 
-        return $data;
+        return collect($data);
     }
 
+    /**
+     * @param $cache_name
+     * @return mixed
+     */
+    public static function getCache($cache_name)
+    {
+        if (\Cache::has($cache_name) && !\Cache::get($cache_name)->isEmpty()) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
+                return self::getNewUsers();
+            });
+        }
+        return $data_cache;
+    }
 }

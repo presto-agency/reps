@@ -4,6 +4,7 @@
 namespace App\Listeners;
 
 
+use App\Models\Replay;
 use App\Models\UserActivityLog;
 use App\Models\UserActivityType;
 use App\User;

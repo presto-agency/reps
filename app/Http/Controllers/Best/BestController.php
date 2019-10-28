@@ -4,13 +4,18 @@ namespace App\Http\Controllers\Best;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Http\Request;
 
 class BestController extends Controller
 {
     public static $top100 = 100;
-    public static $top10 = 10;
 
-    public function show()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
         $checkProLS = true;
 
@@ -24,23 +29,79 @@ class BestController extends Controller
         );
     }
 
-    public function getTop10Rating()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        return array_slice($this->getTop100Rating(), 0, self::$top10);
+        //
     }
 
-    public function getTop10Points()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        return array_slice($this->getTop100Points(), 0, self::$top10);
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 
     public function getTop100Points()
     {
         $data = null;
 
-        $getData = User::withCount('totalComments')
+        $getData = User::with('countries:id,flag', 'races:id,title')
+            ->withCount('totalComments')
             ->orderByDesc('total_comments_count')
-            ->with('countries:id,flag', 'races:id,title')
             ->take(self::$top100)
             ->get();
 
@@ -55,10 +116,10 @@ class BestController extends Controller
     {
         $data = null;
 
-        $getData = User::orderByRaw("(count_positive - count_negative) DESC")
+        $getData = User::with('countries:id,flag', 'races:id,title')
+            ->orderByRaw("(count_positive - count_negative) DESC")
             ->whereRaw("(count_positive - count_negative) >= 0")
-            ->with('countries:id,flag', 'races:id,title')
-            ->take(100)
+            ->take(self::$top100)
             ->get();
 
         if (!$getData->isEmpty()) {
@@ -72,10 +133,10 @@ class BestController extends Controller
     {
         $data = null;
 
-        $getData = User::withCount('totalNews')
+        $getData = User::with('countries:id,flag', 'races:id,title')
+            ->withCount('totalNews')
             ->orderByDesc('total_news_count')
-            ->with('countries:id,flag', 'races:id,title')
-            ->take(100)
+            ->take(self::$top100)
             ->get();
         if (!$getData->isEmpty()) {
             $data = self::getDataArray($getData, 'news');
@@ -88,10 +149,10 @@ class BestController extends Controller
     {
         $data = null;
 
-        $getData = User::withCount('totalReplays')
+        $getData = User::with('countries:id,flag', 'races:id,title')
+            ->withCount('totalReplays')
             ->orderByDesc('total_replays_count')
-            ->with('countries:id,flag', 'races:id,title')
-            ->take(100)
+            ->take(self::$top100)
             ->get();
         if (!$getData->isEmpty()) {
             $data = self::getDataArray($getData, 'replays');
@@ -129,7 +190,7 @@ class BestController extends Controller
      */
     public static function checkAvatar($item)
     {
-       return file_exists($item->avatar) === true ? $item->avatar : $item->avatar_url_or_blank;
+        return \File::exists($item->avatar) === true ? $item->avatar : $item->avatar_url_or_blank;
     }
 
     /**

@@ -6,5 +6,5 @@
 @endsection
 
 @section('content')
-    @include('replay.show')
+    @include('replay.showAll')
 @endsection

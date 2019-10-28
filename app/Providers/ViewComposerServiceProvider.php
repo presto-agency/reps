@@ -9,6 +9,7 @@ use App\Http\ViewComposers\{DashboardCountComposer,
     HeadlineComposer,
     InterviewVariantAnswerComposer,
     LeftSide\ReplaysNavigationComposer,
+    LeftSide\ReplaysShowInHomeComposer,
     RegistrationComposer,
     RightSide\LastRegisteredUsersComposer,
     RightSide\Top10Composer};
@@ -24,6 +25,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     {
 
 //  toAllViews      $this->compose('*', InterviewQuestionObserver::class);
+
         $this->views = $viewFactory;
 
         $this->compose('admin.dashboard', DashboardCountComposer::class);
@@ -33,9 +35,10 @@ class ViewComposerServiceProvider extends ServiceProvider
         /*left-side*/
         $this->compose('left-side.forum-topics', ForumNavigationComposer::class);
         $this->compose('left-side.replays-navigation', ReplaysNavigationComposer::class);
+        $this->compose('left-side.replays-show-in-home', ReplaysShowInHomeComposer::class);
         /*right-side*/
-        $this->compose('right-side.block-top', LastRegisteredUsersComposer::class);
-        $this->compose('right-side.block-top', Top10Composer::class);
+        $this->compose('right-side.block', LastRegisteredUsersComposer::class);
+        $this->compose('right-side.block', Top10Composer::class);
 
         $this->compose('footer.footer', FooterComposer::class);
         $this->compose('modal.registration', RegistrationComposer::class);

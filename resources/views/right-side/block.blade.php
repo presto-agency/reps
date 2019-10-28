@@ -1,3 +1,16 @@
+{{--@isset($banners)--}}
+{{--    <section class="banner">--}}
+{{--        <div class="wrapper">--}}
+{{--            @foreach($banners as $baner)--}}
+{{--                <div class="block_content">--}}
+{{--                    <a href="#">--}}
+{{--                        <img src="{{url('images\logo.png')}}"/>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--            @endforeach--}}
+{{--        </div>--}}
+{{--    </section>--}}
+{{--@endisset--}}
 <section class="block_top">
     <div class="wrapper">
         <div class="title_block">
@@ -19,8 +32,8 @@
                             <p>#{{$item['id']}}</p>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}"/>
-                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}"/>
+                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="country_flag"/>
+                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race_icon"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
                             <p>{{$item['name']}}</p>
@@ -30,7 +43,7 @@
             @endisset
         </div>
         <div class="title_top">
-            <a href="/best"><p class="title_Text">Top 10 кг</a>
+            <a href="{{route('best.index')}}"><p class="title_Text">Top 10 кг</a>
         </div>
         <div class="block_topUsers">
             @isset($top10Rating)
@@ -40,8 +53,8 @@
                             <p>{{$item['max']}} кг</p>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}"/>
-                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}"/>
+                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="country_flag"/>
+                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race_icon"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
                             <p>{{$item['name']}}</p>
@@ -51,7 +64,7 @@
             @endisset
         </div>
         <div class="title_top">
-            <a href="/best"><p class="title_Text">TOP 10 pts</p></a>
+            <a href="{{route('best.index')}}"><p class="title_Text">TOP 10 pts</p></a>
         </div>
         <div class="block_topUsers">
             @isset($top10Points)
@@ -61,8 +74,8 @@
                             <p>{{$item['max']}} pts</p>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}"/>
-                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}"/>
+                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="country_flag"/>
+                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race_icon"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
                             <p>{{$item['name']}}</p>
