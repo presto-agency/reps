@@ -15297,7 +15297,20 @@ select:focus {
 }
 
 .block_replay .row_game {
+  display: flex;
+  padding: 0;
+  margin: 5px;
   margin-bottom: 15px;
+}
+
+.block_replay .row_game .game_oneSection {
+  padding: 0px;
+}
+
+.block_replay .row_game .wrapper_game {
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .block_replay .row_game .name_game {
@@ -15400,6 +15413,9 @@ select:focus {
   color: #0567cc;
   font-size: 14px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .forum_acticle .wrapper {
@@ -16145,7 +16161,6 @@ select:focus {
   display: flex;
   align-items: center;
   background: #efefef;
-  min-height: 60px;
   justify-content: space-between;
   padding: 0 20px;
 }
@@ -17025,7 +17040,7 @@ select:focus {
 }
 
 .banner {
-  padding: 20px 0 0;
+  padding: 0 0 20px;
 }
 
 .banner .wrapper {
@@ -17102,7 +17117,6 @@ select:focus {
   display: flex;
   align-items: center;
   background: #0567cc;
-  min-height: 60px;
   border: 0;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -24209,6 +24223,167 @@ select:focus {
   .user-reputation-history .user-reputation-history__body .body__wrap .body__content .content__like svg {
     width: 3.472vw;
     height: 3.125vw;
+  }
+
+  #authorizationModal .modal-header .modal-header__close {
+    right: -1.563vw;
+    top: -1.563vw;
+    width: 6.944vw;
+    height: 6.944vw;
+  }
+
+  #authorizationModal .modal-header .modal-header__close svg {
+    width: 2.944vw;
+    height: 6.944vw;
+  }
+
+  #authorizationModal .modal-body .modal-body__title {
+    margin-bottom: 3.472vw;
+  }
+
+  #authorizationModal .modal-body .form-group input {
+    margin-bottom: 2.604vw;
+  }
+
+  #authorizationModal .modal-body .modal-body__enter-btn {
+    margin-bottom: 5.208vw;
+  }
+
+  #authorizationModal .modal-body .modal-body__forgot-password {
+    margin-bottom: 2.604vw;
+  }
+
+  #authorizationModal .modal-body .modal-body__restore-password {
+    margin-bottom: 2.604vw;
+  }
+
+  #registrationModal .modal-header .modal-header__close {
+    right: -1.563vw;
+    top: -1.563vw;
+    width: 6.944vw;
+    height: 6.944vw;
+  }
+
+  #registrationModal .modal-header .modal-header__close svg {
+    width: 2.257vw;
+    height: 2.257vw;
+  }
+
+  #registrationModal .modal-body .modal-body__title {
+    margin-bottom: 3.472vw;
+  }
+
+  #registrationModal .modal-body .form-group input {
+    margin-bottom: 2.604vw;
+    padding-left: 1.389vw;
+  }
+
+  #registrationModal .modal-body .form-group .select2 {
+    margin-bottom: 2.778vw;
+    height: 6.424vw;
+  }
+
+  #registrationModal .modal-body .form-group .select2 .select2-selection {
+    height: 6.424vw;
+  }
+
+  #registrationModal .modal-body .form-group .select2 .select2-selection .select2-selection__rendered {
+    padding-top: 0;
+    padding-left: 1.389vw;
+  }
+
+  #registrationModal .modal-body .form-group .select2 .select2-selection .select2-selection__arrow {
+    top: 0.868vw;
+  }
+
+  #registrationModal .modal-body .form-group #race {
+    margin-bottom: 2.778vw;
+    height: 6.424vw;
+  }
+
+  #registrationModal .modal-body .modal-body__enter-btn {
+    margin-bottom: 5.208vw;
+  }
+
+  #registrationModal .modal-body .modal-body__forgot-password {
+    margin-bottom: 2.604vw;
+  }
+
+  #registrationModal .modal-body .modal-body__restore-password {
+    margin-bottom: 2.604vw;
+  }
+
+  .my-post {
+    margin-bottom: 3.472vw;
+  }
+
+  .my-post .my-post__title {
+    padding-top: 3.472vw;
+    padding-bottom: 3.472vw;
+    padding-left: 3.299vw;
+  }
+
+  .my-post .my-post__title .title__icon {
+    width: 3.472vw;
+    height: 3.472vw;
+  }
+
+  .my-post .my-post__title .title__text {
+    font-size: 2.778vw;
+    margin-left: 2.951vw;
+  }
+
+  .my-post .my-post__accordion {
+    /* Style the accordion panel. Note: hidden by default */
+  }
+
+  .my-post .my-post__accordion .accordion-button {
+    padding: 3.125vw;
+    font-size: 2.604vw;
+  }
+
+  .my-post .my-post__accordion .accordion-button:after {
+    margin-left: 0.868vw;
+  }
+
+  .my-post .my-post__accordion .panel {
+    padding: 0 3.125vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__header {
+    margin-top: 2.604vw;
+    padding-bottom: 1.736vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__header .header__items .items__icon {
+    width: 2.604vw;
+    height: 2.257vw;
+    margin-right: 0.868vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__header .header__items .items__info {
+    margin-left: 1.736vw;
+    font-size: 2.083vw;
+    line-height: 3.299vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body {
+    margin-bottom: 2.604vw;
+    padding-bottom: 2.604vw;
+    padding-top: 2.604vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body .body__numb {
+    font-size: 2.431vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body .body__nick {
+    font-size: 2.431vw;
+    margin-left: 1.736vw;
+  }
+
+  .my-post .my-post__accordion .panel .panel__wrap .panel__body .body__text {
+    font-size: 2.778vw;
   }
 }
 
