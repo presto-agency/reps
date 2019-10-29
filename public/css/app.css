@@ -13445,6 +13445,25 @@ select:focus {
   background-color: #ffffff;
 }
 
+.gallery .gallery__button {
+  display: flex;
+  justify-content: center;
+}
+
+.gallery .gallery__numb-pages {
+  text-align: right;
+  margin-top: 25px;
+  margin-bottom: 8px;
+}
+
+.gallery .gallery__numb-pages .numb-pages {
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-bottom: 0;
+}
+
 .gallery .gallery__title {
   border-radius: 5px 5px 0 0;
   background-color: #0567cc;

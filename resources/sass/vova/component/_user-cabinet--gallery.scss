@@ -2,7 +2,23 @@
     box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
     border-radius: 5px;
     background-color: #ffffff;
+    .gallery__button{
+        display: flex;
+        justify-content: center;
+    }
+    .gallery__numb-pages {
+        text-align: right; //выравнивает по левому краю
+        margin-top: 25px;
+        margin-bottom: 8px;
 
+        .numb-pages {
+            color: #9ca0b6;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 19px;
+            margin-bottom: 0; //отменяет стандартный margin
+        }
+    }
     .gallery__title {
         border-radius: 5px 5px 0 0;
         background-color: #0567cc;
