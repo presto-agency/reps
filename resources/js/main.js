@@ -83,13 +83,28 @@ $('.big_video_left').click(function(event) {
 
      });
  });
-
-
+if(localStorage.getItem('nightMode')==1){
+    $('body').addClass('nightMode');
+}
+else $('body').removeClass('nightMode');
 //day-night
 $('#night').click(function(event) {
     event.preventDefault();
+    console.log("11");
+    $('body').addClass('nightMode');
+     //localStorage.setItem('nightMode', theme);
+    localStorage.setItem('nightMode', 1);
+
+    // $(':root').css('--blue', 'red');
+    // document.documentElement.style.setProperty('--blue', 'green');
 
 
+});
+$('#day').click(function(event) {
+    event.preventDefault();
+    console.log("21");
+    $('body').removeClass('nightMode');
+    localStorage.setItem('nightMode', 2);
 });
 
 /*accordion replays script   start*/

@@ -13445,6 +13445,25 @@ select:focus {
   background-color: #ffffff;
 }
 
+.gallery .gallery__button {
+  display: flex;
+  justify-content: center;
+}
+
+.gallery .gallery__numb-pages {
+  text-align: right;
+  margin-top: 25px;
+  margin-bottom: 8px;
+}
+
+.gallery .gallery__numb-pages .numb-pages {
+  color: #9ca0b6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-bottom: 0;
+}
+
 .gallery .gallery__title {
   border-radius: 5px 5px 0 0;
   background-color: #0567cc;
@@ -15284,6 +15303,11 @@ select:focus {
 }
 
 .block_replay .container_btn {
+  display: flex;
+  justify-content: center;
+}
+
+.block_replay .container_btn a {
   display: flex;
 }
 
@@ -17157,6 +17181,26 @@ select:focus {
 .title_block_gray .more p {
   font-size: 40px;
   color: #9ca0b6;
+}
+
+.nightMode {
+  background: #01093b;
+}
+
+.nightMode .night_text {
+  color: white;
+}
+
+.nightMode .night_text a {
+  color: white;
+}
+
+.nightMode .breadcrumb-item.active {
+  color: white;
+}
+
+.nightMode button {
+  background: red;
 }
 
 @media (max-width: 3840px) {
