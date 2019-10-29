@@ -1,4 +1,4 @@
-<section class="streams_list stream-list-wrapper">
+<section class="streams_list stream-list-wrapper night_modal">
     <div class="widget-wrapper">
         <div class="streams_list_container">
             @isset($streamList)
@@ -8,7 +8,7 @@
                             <img class="margin-left-5" src="{{asset($item['countryFlag25x20'])}}" alt="CountriesFlag">
                             <img class="margin-left-5"
                                  src="{{asset($item['racesTitle'])}}" alt="Races">
-                            <span class="color-blue">{{$item['streamTitle']}}</span>
+                            <span class="color-blue night_text">{{$item['streamTitle']}}</span>
                         </button>
                     </div>
                 @endforeach

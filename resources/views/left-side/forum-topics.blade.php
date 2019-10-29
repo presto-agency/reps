@@ -1,5 +1,5 @@
 @if($sectionItems)
-<div class="forum-topics">
+<div class="forum-topics night_modal">
     <div class="forum-topics__title">
 
         <svg class="title__icon"  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -15,14 +15,14 @@
 			c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
 </svg>
 
-        <p class="title__text">Темы форума</p>
+        <p class="title__text ">Темы форума</p>
     </div>
 
     <div class="forum-topics__accordion" id="forum-topicsAccordion">
         @foreach($sectionItems as $item)
-        <div class="accordion__topic card">
-            <div class="topic__header card-header js-accordion-title" id="forum-topicsOne" data-toggle="collapse" data-target="#forum-topicsCollapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <a href="{{ route('forum.show', $item->id) }}" class="header__title">{{ $item->title }}</a>
+        <div class="accordion__topic card border_shadow ">
+            <div class="topic__header  card-header js-accordion-title night_modal" id="forum-topicsOne" data-toggle="collapse" data-target="#forum-topicsCollapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <a href="{{ route('forum.show', $item->id) }}" class="header__title night_text">{{ $item->title }}</a>
                 {{--<i class="fas fa-chevron-down"></i>--}}
 
             </div>
