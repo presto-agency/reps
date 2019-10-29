@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Requests\UserGalleryRequests;
 use App\Models\UserGallery;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,9 +18,8 @@ class UserGalleryController extends Controller
     public function index()
     {
 
-        $images = self::getUserImages();
-
-        return view('user.gallery.index', compact('images'));
+        $allUserImages = self::getAllUserImages();
+        return view('user.gallery.index', compact('allUserImages'));
     }
 
     /**
@@ -34,11 +35,34 @@ class UserGalleryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param UserGallery $request
+     * @param UserGalleryRequests $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserGallery $request)
+    public function store(UserGalleryRequests $request)
     {
+        $userGallery = new UserGallery;
+        $userGallery->user_id =
+        $userGallery->sign = $request->get('sign');
+        if ($request->has('for_adults')) {
+            $userGallery->for_adults = $request->get('for_adults');
+        } else {
+            $userGallery->for_adults = 0;
+        }
+        // Check have upload file
+        if ($request->hasFile('picture')) {
+            // Check if upload file Successful Uploads
+            if ($request->file('picture')->isValid()) {
+                // Upload file on server
+                $image = $request->file('picture');
+                $filePath = $image->store('image/user/gallery', 'public');
+                $userGallery->picture = 'storage/' . $filePath;
+            } else {
+                back();
+            }
+        } else {
+            back();
+        }
+        $userGallery->save();
 
         return back();
     }
@@ -51,7 +75,9 @@ class UserGalleryController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $userImage = self::getUserImage($id);
+        return view('user.gallery.show', compact('userImage'));
     }
 
     /**
@@ -88,12 +114,20 @@ class UserGalleryController extends Controller
         //
     }
 
-    private static function getUserImages()
+    private static function getAllUserImages()
     {
         $data = null;
         $data = UserGallery::with('users', 'comments')
             ->where('user_id', self::getAuthUser()->id)
             ->get();
+        return $data;
+    }
+
+    private static function getUserImage($id)
+    {
+        $data = null;
+        $data = UserGallery::findOrFail($id)
+            ->first();
         return $data;
     }
 
