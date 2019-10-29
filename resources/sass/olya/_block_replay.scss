@@ -4,6 +4,10 @@
     }
     & .container_btn{
         display: flex;
+        justify-content: center;
+        a{
+            display: flex;
+        }
         & .button{
             margin: 20px auto 40px;
             padding: 5px;
