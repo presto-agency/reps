@@ -12,7 +12,7 @@
 {{--    </section>--}}
 {{--@endisset--}}
 <section class="block_top">
-    <div class="wrapper">
+    <div class="wrapper border_shadow">
         <div class="title_block">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                  y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
