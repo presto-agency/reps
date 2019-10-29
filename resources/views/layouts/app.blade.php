@@ -87,7 +87,7 @@
                 {{--@include('content.Page_gameBest')--}}
                 @include('content.Page_tournamentDetail-content')
                 @include('content.Page_tournament-content')
-                @yield('content')
+                  @yield('content')
                 {{--@include('content.detailed-news')--}}
                 {{--@include('content.forum-allSections')--}}
                 {{--@include('content.forum-article')--}}

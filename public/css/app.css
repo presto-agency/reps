@@ -17188,19 +17188,25 @@ select:focus {
 }
 
 .nightMode .night_text {
-  color: white;
+  color: white !important;
 }
 
-.nightMode .night_text a {
-  color: white;
+.nightMode .night_footer {
+  background-color: #000524;
 }
 
 .nightMode .breadcrumb-item.active {
   color: white;
 }
 
-.nightMode button {
-  background: red;
+.nightMode .border_shadow {
+  box-shadow: 0 7px 35px rgba(0, 0, 12, 0.56);
+  border-radius: 5px;
+  background-color: #01093b;
+}
+
+.nightMode .change_gray {
+  background-color: #0567cc;
 }
 
 @media (max-width: 3840px) {

@@ -1,5 +1,5 @@
 <section class="Page_gameBest">
-    <div class="wrapper">
+    <div class="wrapper border_shadow">
         <div class="title_block">
             <div class="left_content">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"

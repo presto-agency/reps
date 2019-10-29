@@ -1,4 +1,4 @@
-<div class="footer">
+<div class="footer night_footer">
     <div class="container">
         <div class="row">
             <div class="footer__logo col-xl-3 col-lg-3 col-md-6 col-sm-12 order-1">
