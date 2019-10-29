@@ -17,10 +17,10 @@
         <p class="title__text">Загрузить изображение</p>
     </div>
     <div class="gallery-download__body">
-        <form class="gallery__form" action="">
+        <form class="gallery__form" action="{{ route('gallery.store') }}" method="POST" enctype="multipart/form-data">
             <div class="upload-avatar">
                 <div class="avatar__input-upload">
-                    <input type="text" class="form-control" id="user-settings-email-avatar" placeholder disabled>
+                    <input type="file" class="form-control" id="user-settings-email-avatar"  name="picture">
                 </div>
                 <div class="avatar__button-upload">
                     <label for="avatar__button-upload">Выбрать файл

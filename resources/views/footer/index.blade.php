@@ -7,22 +7,24 @@
             </div>
             <div
                 class="footer__link col-xl-2 offset-xl-1 col-lg-2 mt-lg-0 offset-lg-1 col-md-12 col-sm-12 col-6 order-2 mt-4">
-                <a class="link-list__item" href="/">Главная</a>
-                <a class="link-list__item" href="/forum">Форум</a>
-                <a class="link-list__item" href="/replay">Госу реплеи</a>
-                <a class="link-list__item" href="/replay">Реплеи</a>
-                <a class="link-list__item" href="/news">Новости</a>
+                <a class="link-list__item" href="{{route('home.index')}}" title="Главная">Главная</a>
+                <a class="link-list__item" href="{{route('forum.index')}}" title="Форум">Форум</a>
+                <a class="link-list__item" href="{{route('replay.index')}}" title="Пользовательские реплеи">Пользовательские
+                    реплеи</a>
+                <a class="link-list__item" href="{{route('replay_pro.index')}}" title="Профессиональные реплеи">Профессиональные
+                    реплеи</a>
+                <a class="link-list__item" href="{{route('news.index')}}" title="Новости">Новости</a>
             </div>
             <div class="footer__info col-xl-2 col-lg-2  mt-lg-0 col-md-6 col-sm-12  order-5 mt-4 ">
                 <div class="footer__text">
-                    {!! $footerData['footer'] !!}
+                    {!! $footer !!}
                 </div>
             </div>
             <div class="footer__our-birthday col-xl-2 col-lg-2 mt-lg-0 col-md-6 col-sm-12 col-12 col-6 order-4 mt-4">
                 <h2 class="info__title footer__title">Наши именинники:</h2>
                 <div class="row">
                     <div class="col-4">
-                        @foreach($footerData['footerUsers'] as $item)
+                        @foreach($footerUser as $item)
                             <p class="our-birthday__nickname">{{$item->name}}</p>
                         @endforeach
                     </div>
@@ -30,7 +32,7 @@
             </div>
             <div class="footer__useful col-xl-2 col-lg-2 mt-lg-0 col-md-6 col-6 order-3 col-sm-12 mt-4">
                 <h2 class="info__title footer__title">Полезное:</h2>
-                @foreach($footerData['footerUrl'] as $item)
+                @foreach($footerUrl as $item)
                     <a href="{{$item->url}}" class="useful__link" title="{{$item->title}}">{{$item->title}}</a>
                 @endforeach
             </div>

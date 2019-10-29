@@ -6,5 +6,5 @@
 @endsection
 
 @section('content')
-    @include('content.Page_tournamentDetail-content')
+    @include('tournament.showSingle.php')
 @endsection

@@ -26,13 +26,15 @@
                             <span class="number">#{{$item['id']}}</span>
                             <a href="#">
                                 <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                     ` class="author__avatar img-fluid">
-                                <span class="name_player">{{$item['name']}}</span>
+                                     class="author__avatar img-fluid">
+                                <span class="name_player" title="{{$item['name']}}">{{$item['name']}}</span>
                             </a>
                         </div>
                         <div class="center_block">
-                            <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
-                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
+                            <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag"
+                                 title="{{$item['countryName']}}">
+                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="race"
+                                 title="{{$item['raceTitle']}}">
                         </div>
                         <div class="right_block">
                             <p>{{$item['max']}} pts</p>
@@ -54,12 +56,14 @@
                             <a href="#">
                                 <img src="{{asset($item['avatar'])}}" alt="avatar"
                                      class="author__avatar img-fluid">
-                                <span class="name_player">{{$item['name']}}</span>
+                                <span class="name_player" title="{{$item['name']}}">{{$item['name']}}</span>
                             </a>
                         </div>
                         <div class="center_block">
-                            <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
-                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
+                            <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag"
+                                 title="{{$item['countryName']}}">
+                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="race"
+                                 title="{{$item['raceTitle']}}">
                         </div>
                         <div class="right_block">
                             <p>{{$item['max']}} kg</p>
@@ -81,12 +85,15 @@
                             <a href="#">
                                 <img src="{{asset($item['avatar'])}}" alt="avatar"
                                      class="author__avatar img-fluid">
-                                <span class="name_player">{{$item['name']}}</span>
+                                <span class="name_player" title="{{$item['name']}}"
+                                      title="{{$item['name']}}">{{$item['name']}}</span>
                             </a>
                         </div>
                         <div class="center_block">
-                            <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
-                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
+                            <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag"
+                                 title="{{$item['countryName']}}">
+                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="race"
+                                 title="{{$item['raceTitle']}}">
                         </div>
                         <div class="right_block">
                             <p>{{$item['max']}} news</p>
@@ -108,12 +115,14 @@
                             <a href="#">
                                 <img src="{{asset($item['avatar'])}}" alt="avatar"
                                      class="author__avatar img-fluid">
-                                <span class="name_player">{{$item['name']}}</span>
+                                <span class="name_player" title="{{$item['name']}}">{{$item['name']}}</span>
                             </a>
                         </div>
                         <div class="center_block">
-                            <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag">
-                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="game">
+                            <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag"
+                                 title="{{$item['countryName']}}">
+                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="race"
+                                 title="{{$item['raceTitle']}}">
                         </div>
                         <div class="right_block">
                             <p>{{$item['max']}} replays</p>

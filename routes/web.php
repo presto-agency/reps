@@ -11,32 +11,33 @@
 |
 */
 
-use App\Http\Controllers\Replay\ReplayController;
-use App\Http\ViewComposers\LeftSide\ReplaysNavigationComposer;
 
+/*Home*/
 Route::get('/', 'HomeController@index')->name('home.index');
 
+/*News*/
 Route::resource('news', 'NewsController');
-//Route::post('news/{id}/send_comment', 'NewsController@comment_send')->name('news.comment_send');
+Route::post('news/{id}/send_comment', 'NewsController@comment_send')->name('news.comment_send');
 Route::post('/loadmore/load_news', 'NewsController@load_news')->name('loadmore.load_news');
-
+/*Forum*/
 Route::resource('forum', 'ForumController');
-
+/*Forum topic*/
 Route::resource('forum/topic', 'TopicController');/*Route::get('forum/topic/{id}', function (){
     return view('forum.topic');
 });*/
-
 //Route::resource('forum/topic/comment','TopicCommentController');
 Route::post('forum/topic/{id}/comment', 'TopicCommentController@store')->name('comment.store');
 
+/*Interview*/
+Route::resource('interview', 'Interview\InterviewController');
 
 /*Best*/
 Route::resource('best', 'Best\BestController');
-/*Comments_Send*/
-Route::resource('comments', 'Comment\CommentController');
 
 /*Replay*/
 Route::resource("replay", 'Replay\ReplayUserController');
+Route::post('/loadmore/load_replays', 'Replay\ReplayController@loadNews')->name('load.more.replays');
+Route::post('replay/{id}/send_comment', 'Replay\ReplayController@saveComments')->name('replay.send_comment');
 Route::group(['prefix' => 'replay'], function () {
     Route::get('{id}/download', 'Replay\ReplayController@download')->name('replay.user.download');
     Route::post('{id}/download_count', 'Replay\ReplayController@downloadCount')->name('replay.user.download.count');
@@ -49,19 +50,18 @@ Route::group(['prefix' => 'replay_pro'], function () {
     Route::get("{type}/show/{replay_pro}", 'Replay\ReplayProTypeController@show')->name('replay_pro.type.show');
     Route::get('{type}/show/{id}/download', 'Replay\ReplayController@download')->name('replay_pro.type.download');
     Route::post('{type}/show/{id}/download_count', 'Replay\ReplayController@downloadCount')->name('replay_pro.type.download.count');
-
 });
-
-Route::get('tournament', function () {
-    return view('tournament.index');
-});
-
-Route::get('tournament/{id}', function () {
-    return view('tournament.show');
-});
+/*Tournament*/
+Route::resource("tournament", 'Tournament\TournamentController');
 
 Route::get('user', function () {
     return view('user.index');
 });
+
+/*User Gallery*/
+Route::group(['prefix' => 'user'], function () {
+    Route::resource("gallery", 'User\UserGalleryController');
+});
+
 
 Auth::routes();

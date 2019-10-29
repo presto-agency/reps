@@ -14,11 +14,11 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link  href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
 {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
 {{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
 
-    <!-- Include SCEditor -->
+<!-- Include SCEditor -->
     <link rel="stylesheet" href="{{ asset('js/sceditor/themes/default.min.css') }} "/>
 
     <!-- Styles -->
@@ -27,7 +27,6 @@
 
 </head>
 <body>
-{{ csrf_field() }}
 {{--    <div id="app">--}}
 
 {{--@include('components.Chat')--}}
@@ -36,90 +35,72 @@
 {{--@include('components.block-lastNews')--}}
 
 <!--SECTION HEADER-->
-        <header>
-{{--                include header--}}
-{{--                         @include('components.header')--}}
-            @include('user.components.NEW_header')
-            @include('components.mobile_menu')
-{{--                 @include('user.components.header_user')--}}
-                @include('modal.authorization')
-                @include('modal.registration')
-        </header>
+<header>
+    @include('header.index')
+</header>
 <!--END SECTION HEADER-->
 
 <!--SECTION BREADCRUMBS-->
-        <section class="container">
-            <div class="row">
-                <div class="col-12">
-                    @include('breadcrumbs.breadcrumbs')
-                </div>
-            </div>
-        </section>
+<section class="container">
+    <div class="row">
+        <div class="col-12">
+            @include('breadcrumbs.breadcrumbs')
+        </div>
+    </div>
+</section>
 <!--END SECTION BREADCRUMBS-->
 
-<!--Stream Section-->
-    @yield('stream')
-<!--END Stream Section-->
+<!--SECTION STREAM-->
+@yield('stream')
+<!--END SECTION STREAM-->
 
 <!--SECTION CONTENT-->
-    <section class="container">
-        <div class="row">
-
-            <!--SIDEBAR LEFT-->
-            <div id="left-sidebar" class="col-xl-3 col-lg-3 col-md-6 col-12">
-                <button id="pulse-button-info" class="pulse-button">Информация</button>
-                <div id="left-sidebar-wrap" class="left-sidebar-wrap no-height">
-                    @yield('sidebar-left')
-
-                    {{--@include('components.block-tournament')--}}
-                    {{--@include('components.block-replay')--}}
-                    {{--@include('components.block-lastNews')--}}
-                    {{--@include('left-side.replays')--}}
-                    {{--@include('left-side.search')--}}
-                    {{--@include('left-side.forum-topics')--}}
-                </div>
-
+<section class="container">
+    <div class="row">
+        <!--SIDEBAR LEFT-->
+        <div id="left-sidebar" class="col-xl-3 col-lg-3 col-md-6 col-12">
+            <button id="pulse-button-info" class="pulse-button">Информация</button>
+            <div id="left-sidebar-wrap" class="left-sidebar-wrap no-height">
+                @yield('sidebar-left')
+                {{--@include('components.block-tournament')--}}
+                {{--@include('components.block-replay')--}}
+                {{--@include('components.block-lastNews')--}}
+                {{--@include('left-side.replays')--}}
+                {{--@include('left-side.search')--}}
+                {{--@include('left-side.forum-topics')--}}
             </div>
-            <!--END SIDEBAR LEFT-->
-
-            <!--CONTENT-->
-            <div id="content" class="col-xl-6 col-lg-6 col-md-12 col-12 content">
-                {{--@include('content.Page_gameBest')--}}
-                @include('content.Page_tournamentDetail-content')
-                @include('content.Page_tournament-content')
-                  @yield('content')
-                {{--@include('content.detailed-news')--}}
-                {{--@include('content.forum-allSections')--}}
-                {{--@include('content.forum-article')--}}
-                {{--@include('content.gocu-replays')--}}
-                {{--@include('content.comments')--}}
-                {{--@include('content.add-comment')--}}
-                {{--@include('content.detailed-forum')--}}
-            </div>
-            <!--END CONTENT-->
-
-            <!-- RIGHT SIDEBAR-->
-            <div id="right-sidebar"  class="col-xl-3 col-lg-3 col-md-6 col-12">
-                <button id="pulse-button-top" class="pulse-button">Топ</button>
-                <div id="right-sidebar-wrap" class="right-sidebar-wrap no-height">
-                    @section('sidebar-right')
-                        @include('right-side.block')
-                    @show
-                </div>
-            </div>
-            <!--END SIDEBAR RIGHT-->
 
         </div>
-    </section>
+        <!--END SIDEBAR LEFT-->
+        <!--CONTENT-->
+        <div id="content" class="col-xl-6 col-lg-6 col-md-12 col-12 content">
+            @yield('content')
+            {{--@include('content.Page_gameBest')--}}
+            {{--@include('content.detailed-news')--}}
+            {{--@include('content.forum-allSections')--}}
+            {{--@include('content.forum-article')--}}
+            {{--@include('content.gocu-replays')--}}
+            {{--@include('content.comments')--}}
+            {{--@include('content.add-comment')--}}
+            {{--@include('content.detailed-forum')--}}
+        </div>
+        <!--END CONTENT-->
+        <!-- RIGHT SIDEBAR-->
+        <div id="right-sidebar" class="col-xl-3 col-lg-3 col-md-6 col-12">
+            <button id="pulse-button-top" class="pulse-button">Топ</button>
+            <div id="right-sidebar-wrap" class="right-sidebar-wrap no-height">
+                @include('right-side.index')
+            </div>
+        </div>
+        <!--END SIDEBAR RIGHT-->
+
+    </div>
+</section>
 <!--END SECTION CONTENT-->
 
-<!--FOOTER-->
-        <footer>
-            @include('footer.footer')
-        </footer>
-<!--END FOOTER-->
-
-
+<footer>
+    @include('footer.index')
+</footer>
 
 <!--SCEditor-->
 <script src="{{ asset('js/sceditor/sceditor.min.js') }}"></script>
@@ -136,11 +117,11 @@
 
             load_news('', _token);
 
-            function load_news(id="", _token) {
+            function load_news(id = "", _token) {
                 $.ajax({
                     url: "{{ route('loadmore.load_news') }}",
                     method: "POST",
-                    data: {id:id, _token:_token},
+                    data: {id: id, _token: _token},
                     success: function (data) {
                         $('#load_more_button').remove();
                         $('#last_news').append(data);
@@ -148,7 +129,7 @@
                 })
             }
 
-            $(document).on('click', '#load_more_button', function(){
+            $(document).on('click', '#load_more_button', function () {
                 let id = $(this).data('id');
                 $('#load_more_button').html('<b>Loading...</b>');
                 load_news(id, _token);
@@ -160,11 +141,11 @@
             і списком помилок в ньому
             */
             @if (count($errors) > 0)
-                    @if(!empty(Session::get('showModal')) && Session::get('showModal') == 'registration')
-                        $('#registrationModal').modal('show');
-                    @elseif(!empty(Session::get('showModal')) && Session::get('showModal') == 'login')
-                        $('#authorizationModal').modal('show');
-                    @endif
+            @if(!empty(Session::get('showModal')) && Session::get('showModal') == 'registration')
+            $('#registrationModal').modal('show');
+            @elseif(!empty(Session::get('showModal')) && Session::get('showModal') == 'login')
+            $('#authorizationModal').modal('show');
+            @endif
             @endif
         });
     </script>

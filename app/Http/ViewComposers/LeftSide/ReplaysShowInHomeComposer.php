@@ -11,7 +11,7 @@ class ReplaysShowInHomeComposer
 {
 
     private static $column = ['id', 'title', 'first_race', 'second_race', 'first_country_id', 'second_country_id'];
-    private static $relation = ['firstCountries:id,flag', 'secondCountries:id,flag', 'firstRaces:id,code', 'secondRaces:id,code'];
+    private static $relation = ['firstCountries:id,flag,name', 'secondCountries:id,flag,name', 'firstRaces:id,code,title', 'secondRaces:id,code,title'];
     private static $ttl = 300;
 
     /**

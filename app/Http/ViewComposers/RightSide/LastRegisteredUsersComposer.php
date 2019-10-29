@@ -17,10 +17,9 @@ class LastRegisteredUsersComposer
      */
     public function compose(View $view)
     {
-
         $result = self::getCache('newUsers');
-
         $view->with('newUsers', $result);
+        $view->with('voteRight', self::checkVoteRight());
     }
 
     /**
@@ -30,7 +29,7 @@ class LastRegisteredUsersComposer
     {
         $data = null;
 
-        $getData = User::with('countries:id,flag', 'races:id,title')
+        $getData = User::with('countries:id,flag,name', 'races:id,code,title')
             ->orderBy('id', 'desc')
             ->take(self::$userTake)
             ->get(['id', 'name', 'race_id', 'country_id']);
@@ -41,7 +40,9 @@ class LastRegisteredUsersComposer
                     'id' => $item->id,
                     'name' => $item->name,
                     'raceIcon' => $item->races->title,
+                    'raceTitle' => $item->races->title,
                     'countryFlag25x20' => $item->countries->flag,
+                    'countryName' => $item->countries->name,
                 ];
             }
         }
@@ -64,4 +65,12 @@ class LastRegisteredUsersComposer
         }
         return $data_cache;
     }
+
+    public static function checkVoteRight()
+    {
+        $url = collect(request()->segments());
+        $data = \Str::contains($url, 'user') === true ? false : true;
+        return $data;
+    }
+
 }

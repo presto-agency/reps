@@ -73,15 +73,16 @@
                     <div class="info__country">
                         <span class="country__text">Страны:</span>
                         <img class="country__img country-first" src="{{$item->firstCountries->flag}}"
-                             alt="flag">
+                             alt="flag" title="{{$item->firstCountries->name}}">
                         <span class="country__text">vs</span>
-                        <img src="{{$item->secondCountries->flag}}" alt="flag">
+                        <img src="{{$item->secondCountries->flag}}"
+                             alt="flag" title="{{$item->secondCountries->name}}">
                     </div>
                     <div class="info__match-up">
                         <span class="match-up__text">Матчап: </span>
-                        <span class="match-up__name name__first">{{$item->firstRaces->code}}</span>
+                        <span class="match-up__name name__first"  title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</span>
                         <span class="match-up__text match-up__versus">vs</span>
-                        <span class="match-up__name name__second">{{$item->secondRaces->code}}</span>
+                        <span class="match-up__name name__second"  title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</span>
                     </div>
                     <div class="info__maps">
                         <span class="maps__text">Карта:</span>
@@ -108,11 +109,9 @@
         @endforeach
     @endisset
 </div>
-
 <div class="gocu-replays__numb-pages">
     <p class="numb-pages">10 из 240</p>
 </div>
-
 <div class="gocu-replays__button">
     <button class="button button__download-more">
         Загрузить еще

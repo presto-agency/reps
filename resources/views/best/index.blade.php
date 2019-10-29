@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    @include('best.Page_gameBest')
+    @include('best.showAll')
 @endsection

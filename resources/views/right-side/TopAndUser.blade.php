@@ -32,8 +32,10 @@
                             <p>#{{$item['id']}}</p>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="country_flag"/>
-                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race_icon"/>
+                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="flag"
+                                 title="{{$item['countryName']}}"/>
+                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race"
+                                 title="{{$item['raceTitle']}}"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
                             <p>{{$item['name']}}</p>
@@ -53,8 +55,10 @@
                             <p>{{$item['max']}} кг</p>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="country_flag"/>
-                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race_icon"/>
+                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="flag"
+                                 title="{{$item['countryName']}}"/>
+                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race"
+                                 title="{{$item['raceTitle']}}"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
                             <p>{{$item['name']}}</p>
@@ -74,8 +78,10 @@
                             <p>{{$item['max']}} pts</p>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="country_flag"/>
-                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race_icon"/>
+                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="flag"
+                                 title="{{$item['countryName']}}"/>
+                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race"
+                                 title="{{$item['raceTitle']}}"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
                             <p>{{$item['name']}}</p>

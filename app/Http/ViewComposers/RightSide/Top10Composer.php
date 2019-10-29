@@ -55,7 +55,7 @@ class Top10Composer
 
         $getData = User::orderByRaw("(count_positive - count_negative) DESC")
             ->whereRaw("(count_positive - count_negative) >= 0")
-            ->with('countries:id,flag', 'races:id,title')
+            ->with('countries:id,flag,name', 'races:id,code,title')
             ->take(10)
             ->get();
 
@@ -72,7 +72,7 @@ class Top10Composer
 
         $getData = User::withCount('totalComments')
             ->orderByDesc('total_comments_count')
-            ->with('countries:id,flag', 'races:id,title')
+            ->with('countries:id,flag,name', 'races:id,code,title')
             ->take(10)
             ->get();
 
@@ -98,7 +98,9 @@ class Top10Composer
                 'name' => $item->name,
                 'avatar' => self::checkAvatar($item),
                 'raceIcon' => "images\\" . $item->races->title . ".png",
+                'raceTitle' => $item->races->title,
                 'countryFlag25x20' => $item->countries->flag,
+                'countryName' => $item->countries->name,
                 'max' => self::setMaxType($type, $item),
             ];
         }
