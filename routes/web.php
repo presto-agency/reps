@@ -28,6 +28,9 @@ Route::resource('forum/topic', 'TopicController');/*Route::get('forum/topic/{id}
 //Route::resource('forum/topic/comment','TopicCommentController');
 Route::post('forum/topic/{id}/comment', 'TopicCommentController@store')->name('comment.store');
 
+/*Interview*/
+Route::resource('interview', 'Interview\InterviewController');
+
 /*Best*/
 Route::resource('best', 'Best\BestController');
 
@@ -51,9 +54,14 @@ Route::group(['prefix' => 'replay_pro'], function () {
 /*Tournament*/
 Route::resource("tournament", 'Tournament\TournamentController');
 
-
 Route::get('user', function () {
     return view('user.index');
 });
+
+/*User Gallery*/
+Route::group(['prefix' => 'user'], function () {
+    Route::resource("gallery", 'User\UserGalleryController');
+});
+
 
 Auth::routes();

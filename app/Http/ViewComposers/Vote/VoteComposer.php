@@ -4,9 +4,8 @@
 namespace App\Http\ViewComposers\Vote;
 
 
-use App\User;
-use Carbon\Carbon;
-use App\Models\{Footer, FooterUrl, InterviewQuestion, InterviewVariantAnswer};
+use App\Http\Controllers\Interview\InterviewController;
+use App\Models\{InterviewQuestion, InterviewVariantAnswer};
 use Illuminate\View\View;
 
 class VoteComposer
@@ -15,7 +14,6 @@ class VoteComposer
 
     public function compose(View $view)
     {
-
         $view->with('votes', self::getVote());
         $view->with('answersCount', self::getAnswerCount());
     }
@@ -36,34 +34,27 @@ class VoteComposer
     private static function getVote()
     {
         $data = null;
-
-        $relation = [
-            'answers',
-            'userAnswers',
-        ];
+        if (InterviewController::checkAuthUser() == 1) {
+            $relation = ['answers', 'userAnswers', 'userAlreadyAnswer:id,question_id,user_id'];
+        } else {
+            $relation = ['answers', 'userAnswers',];
+        }
         $data = InterviewQuestion::with($relation)
             ->where('active', 1)
             ->withCount('userAnswers')
-            ->where('for_login', self::checkAuthUser())
+            ->where('for_login', InterviewController::checkAuthUser())
             ->get();
+
         return $data;
     }
 
-    public static function checkAuthUser()
-    {
-        return auth()->check() === true ? 1 : 0;
-    }
-
-    public static function getAnswerCount()
+    private static function getAnswerCount()
     {
         $getIVA = null;
         $data = null;
         if (!self::getVote()->isEmpty()) {
             foreach (self::getVote() as $item) {
-                $getIVA[] = InterviewVariantAnswer::with('question', 'userAnswers')
-                    ->withCount('userAnswers')
-                    ->where('question_id', $item->id)
-                    ->get();
+                $getIVA[] = self::getIVA($item->id);
             }
         }
         foreach ($getIVA as $items) {
@@ -77,6 +68,18 @@ class VoteComposer
                 }
             }
         }
+        return $data;
+    }
+
+    private static function getIVA($question_id)
+    {
+        $data = null;
+
+        $data = InterviewVariantAnswer::with(['question'])
+            ->withCount('userAnswers')
+            ->where('question_id', $question_id)
+            ->get();
+
         return $data;
     }
 }

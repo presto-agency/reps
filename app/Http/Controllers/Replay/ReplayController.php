@@ -43,6 +43,7 @@ class ReplayController
             ->whereHas('types', function ($query) {
                 $query->where('name', self::$type);
             })
+            ->orderByDesc('created_at')
             ->where('user_replay', $user_replay)
             ->get($ArrColumn);
 

@@ -18,8 +18,8 @@ class ReplayProController extends Controller
         $ArrRelations = [
             'users:id,name,avatar',
             'maps:id,name',
-            'firstCountries:id,flag',
-            'secondCountries:id,flag',
+            'firstCountries:id,flag,name',
+            'secondCountries:id,flag,name',
             'firstRaces:id,title,code',
             'secondRaces:id,title,code',
         ];
@@ -82,8 +82,8 @@ class ReplayProController extends Controller
             'users.totalComments',
             'maps:id,name,url',
             'types:id,name,title',
-            'firstCountries:id,name,flag',
-            'secondCountries:id,name,flag',
+            'firstCountries:id,flag,name',
+            'secondCountries:id,flag,name',
             'firstRaces:id,title,code',
             'secondRaces:id,title,code',
             'comments',

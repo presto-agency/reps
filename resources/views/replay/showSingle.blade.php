@@ -58,9 +58,11 @@
                         <span>Страны:</span>
                     </div>
                     <div class="right_block">
-                        <img src="{{asset($replay->firstCountries->flag)}}" alt="country_flag"/>
+                        <img src="{{asset($replay->firstCountries->flag)}}" alt="flag"
+                             title="{{$replay->firstCountries->name}}"/>
                         <span> vs </span>
-                        <img src="{{asset($replay->secondCountries->flag)}}" alt="country_flag"/>
+                        <img src="{{asset($replay->secondCountries->flag)}}" alt="flag"
+                             title="{{$replay->secondCountries->name}}"/>
                     </div>
                 </div>
                 <div class="content_left">

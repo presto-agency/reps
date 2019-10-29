@@ -32,24 +32,33 @@
                     <p class="header__title">{{$item->question}}</p>
                 </div>
                 <div class="content__body">
-                    <form class="vote-form" id="vote-form" action="POST">
-                        @csrf
-                        @foreach($item->answers as $answer)
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="answer_id" id="{{$answer->id}}"
-                                       value=""
-                                       checked>
-                                <label class="form-check-label" for="{{$answer->id}}">
-                                    {{$answer->answer}}
-                                </label>
-                            </div>
-                        @endforeach
-                        <div class="body__button-vote">
-                            <button class="button button__download-more">
-                                Проголосовать
-                            </button>
-                        </div>
-                    </form>
+                    @auth
+                        @if($item->userAlreadyAnswer->isEmpty())
+                            <form class="vote-form" id="vote-form" action="{{ route('interview.store')}}" method="POST"
+                                  enctype="multipart/form-data">
+                                @csrf
+                                @foreach($item->answers as $answer)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answer_id"
+                                               id="{{$answer->id}}"
+                                               value="{{$answer->id}}"
+                                               checked>
+                                        <input class="form-check-input" type="hidden" name="question_id"
+                                               id="{{$answer->question_id}}"
+                                               value="{{$answer->question_id}}">
+                                        <label class="form-check-label" for="{{$answer->id}}">
+                                            {{$answer->answer}}
+                                        </label>
+                                    </div>
+                                @endforeach
+                                <div class="body__button-vote">
+                                    <button class="button button__download-more">
+                                        Проголосовать
+                                    </button>
+                                </div>
+                            </form>
+                        @endif
+                    @endauth
                     <div class="view-results" id="view-results">
                         @isset($answersCount)
                             @foreach($answersCount as $answerCount)
