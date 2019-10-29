@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\UserGallery;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,10 @@ class UserGalleryController extends Controller
      */
     public function index()
     {
-        return view('user.gallery.index');
+
+        $images = self::getUserImages();
+
+        return view('user.gallery.index', compact('images'));
     }
 
     /**
@@ -24,18 +28,19 @@ class UserGalleryController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.gallery.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param UserGallery $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(UserGallery $request)
     {
-        //
+
+        return back();
     }
 
     /**
@@ -81,5 +86,19 @@ class UserGalleryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private static function getUserImages()
+    {
+        $data = null;
+        $data = UserGallery::with('users', 'comments')
+            ->where('user_id', self::getAuthUser()->id)
+            ->get();
+        return $data;
+    }
+
+    private static function getAuthUser()
+    {
+        return auth()->user();
     }
 }
