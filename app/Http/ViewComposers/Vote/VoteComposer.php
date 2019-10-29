@@ -57,14 +57,16 @@ class VoteComposer
                 $getIVA[] = self::getIVA($item->id);
             }
         }
-        foreach ($getIVA as $items) {
-            if (!empty($items)) {
-                foreach ($items as $ite) {
-                    $data[] = [
-                        'answer' => $ite->answer,
-                        'answer_count' => $ite->user_answers_count,
-                        'question_id' => $ite->question_id,
-                    ];
+        if (!empty($getIVA)) {
+            foreach ($getIVA as $items) {
+                if (!empty($items)) {
+                    foreach ($items as $ite) {
+                        $data[] = [
+                            'answer' => $ite->answer,
+                            'answer_count' => $ite->user_answers_count,
+                            'question_id' => $ite->question_id,
+                        ];
+                    }
                 }
             }
         }
