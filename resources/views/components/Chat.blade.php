@@ -6,7 +6,7 @@
     @endforeach
     <div class="row">
         <div class="col-12 main_container">
-            <div class="wrapper block_chat">
+            <div class="wrapper  block_chat border_shadow">
                 <div class="container_titleChat">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_left">
                         <img id="img_menuMob" class="icon_bars" src="{{url('/images\speech-bubble.png')}}"/>
@@ -41,7 +41,7 @@
                                                             <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                                             <a href="#">
                                                                 <span class="blue_text">Rus_Brain</span>
-                                                                <span class="number_mess">#3797</span>
+                                                                <span class="number_mess night_text">#3797</span>
                                                             </a>
                                                         </div>
                                                         <div class=" block_close">
@@ -72,7 +72,7 @@
                                                             <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                                             <a href="#">
                                                                 <span class="blue_text">Rus_Brain</span>
-                                                                <span class="number_mess">#3797</span>
+                                                                <span class="number_mess night_text">#3797</span>
                                                             </a>
                                                         </div>
                                                         <div class=" block_close">
@@ -104,7 +104,7 @@
                                                             <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                                             <a href="#">
                                                                 <span class="blue_text">Rus_Brain</span>
-                                                                <span class="number_mess">#3797</span>
+                                                                <span class="number_mess night_text">#3797</span>
                                                             </a>
                                                         </div>
                                                         <div class=" block_close">
@@ -136,7 +136,7 @@
                                                             <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                                             <a href="#">
                                                                 <span class="blue_text">Rus_Brain</span>
-                                                                <span class="number_mess">#3797</span>
+                                                                <span class="number_mess night_text">#3797</span>
                                                             </a>
                                                         </div>
                                                         <div class=" block_close">
@@ -168,7 +168,7 @@
                                                             <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                                             <a href="#">
                                                                 <span class="blue_text">Rus_Brain</span>
-                                                                <span class="number_mess">#3797</span>
+                                                                <span class="number_mess night_text">#3797</span>
                                                             </a>
                                                         </div>
                                                         <div class=" block_close">
@@ -200,7 +200,7 @@
                                                             <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                                             <a href="#">
                                                                 <span class="blue_text">Rus_Brain</span>
-                                                                <span class="number_mess">#3797</span>
+                                                                <span class="number_mess night_text">#3797</span>
                                                             </a>
                                                         </div>
                                                         <div class=" block_close">
@@ -244,7 +244,7 @@
                                 <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
-                                    <span class="number_mess">#3797</span>
+                                    <span class="number_mess night_text">#3797</span>
                                 </a>
                             </div>
                             <div class=" block_close">
@@ -274,7 +274,7 @@
                                 <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
-                                    <span class="number_mess">#3797</span>
+                                    <span class="number_mess night_text">#3797</span>
                                 </a>
                             </div>
                             <div class=" block_close">
@@ -303,7 +303,7 @@
                                 <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
-                                    <span class="number_mess">#3797</span>
+                                    <span class="number_mess night_text">#3797</span>
                                 </a>
                             </div>
                             <div class=" block_close">
@@ -333,7 +333,7 @@
                                 <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
-                                    <span class="number_mess">#3797</span>
+                                    <span class="number_mess night_text">#3797</span>
                                 </a>
                             </div>
                             <div class=" block_close">
@@ -363,7 +363,7 @@
                                 <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
-                                    <span class="number_mess">#3797</span>
+                                    <span class="number_mess night_text">#3797</span>
                                 </a>
                             </div>
                             <div class=" block_close">

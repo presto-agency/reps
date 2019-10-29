@@ -1,5 +1,5 @@
 <section class="Page_tournamentDetail-content">
-    <div class="wrapper">
+    <div class="wrapper border_shadow">
         <div class=" title_block">
             <div class="left_content">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -369,5 +369,6 @@
                 </div>
 {{--            </div>--}}
         </div>
+    </div>
     </div>
 </section>

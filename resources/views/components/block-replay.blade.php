@@ -1,6 +1,6 @@
 <section class="block_replay">
-    <div class="wrapper">
-        <div class="title_block_gray">
+    <div class="wrapper border_shadow">
+        <div class="title_block_gray change_gray">
             <p class="title_text">РЕПЛЕИ</p>
         </div>
         <div class="row row_game">
