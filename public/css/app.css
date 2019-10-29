@@ -15285,6 +15285,11 @@ select:focus {
 
 .block_replay .container_btn {
   display: flex;
+  justify-content: center;
+}
+
+.block_replay .container_btn a {
+  display: flex;
 }
 
 .block_replay .container_btn .button {
@@ -17157,6 +17162,22 @@ select:focus {
 .title_block_gray .more p {
   font-size: 40px;
   color: #9ca0b6;
+}
+
+.nightMode {
+  background: #01093b;
+}
+
+.nightMode .night_text {
+  color: white;
+}
+
+.nightMode .night_text a {
+  color: white;
+}
+
+.nightMode .breadcrumb-item.active {
+  color: white;
 }
 
 .nightMode button {
