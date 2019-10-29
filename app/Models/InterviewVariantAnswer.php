@@ -12,6 +12,4 @@ class InterviewVariantAnswer extends Model
     protected $fillable = [
         'question_id', 'answer',
     ];
-
-
 }

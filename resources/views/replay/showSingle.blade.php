@@ -58,9 +58,11 @@
                         <span>Страны:</span>
                     </div>
                     <div class="right_block">
-                        <img src="{{asset($replay->firstCountries->flag)}}" alt="country_flag"/>
+                        <img src="{{asset($replay->firstCountries->flag)}}" alt="flag"
+                             title="{{$replay->firstCountries->name}}"/>
                         <span> vs </span>
-                        <img src="{{asset($replay->secondCountries->flag)}}" alt="country_flag"/>
+                        <img src="{{asset($replay->secondCountries->flag)}}" alt="flag"
+                             title="{{$replay->secondCountries->name}}"/>
                     </div>
                 </div>
                 <div class="content_left">
@@ -158,31 +160,29 @@
         </div>
     </div>
 </section>
-
-<script type="text/javascript">
-    $('.download').click(function () {
-
-        let id = $(this).data('id');
-        let token = $('meta[name="csrf-token"]').attr('content');
-        let url = $(this).data('url');
-
-        $.ajax({
-            method: 'POST',
-            url: url,
-            dataType: 'json',
-            async: false,
-            data: {
-                "_token": token,
-                id: id,
-            },
-            success: function (data) {
-                $('#downloadCount').html(data.downloaded);
-                console.log(data.downloaded);
-            },
-            error: function (request, status, error) {
-                console.log('code: ' + request.status + "\n" + 'message: ' + request.responseText + "\n" + 'error: ' + error);
-            }
+@push('download-count-script')
+    <script type="text/javascript">
+        $('.download').click(function () {
+            let id = $(this).data('id');
+            let token = $('meta[name="csrf-token"]').attr('content');
+            let url = $(this).data('url');
+            $.ajax({
+                method: 'POST',
+                url: url,
+                dataType: 'json',
+                async: false,
+                data: {
+                    _token: token,
+                    id: id,
+                },
+                success: function (data) {
+                    $('#downloadCount').html(data.downloaded);
+                    console.log(data.downloaded);
+                },
+                error: function (request, status, error) {
+                    console.log('code: ' + request.status + "\n" + 'message: ' + request.responseText + "\n" + 'error: ' + error);
+                }
+            });
         });
-
-    });
-</script>
+    </script>
+@endpush

@@ -6,7 +6,7 @@
  * Time: 10:33
  */
 
-namespace App\Http\ViewComposers;
+namespace App\Http\ViewComposers\Registration;
 
 use App\Models\Country;
 use App\Models\Race;

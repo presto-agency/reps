@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Replay;
 
+use App\Models\Comment;
 use App\Models\Replay;
 
 class ReplayController
@@ -16,6 +17,7 @@ class ReplayController
         $data = Replay::with($ArrRelations)
             ->where('approved', 1)
             ->where('user_replay', $user_replay)
+            ->orderByDesc('created_at')
             ->get($ArrColumn);
 
         return $data;
@@ -41,6 +43,7 @@ class ReplayController
             ->whereHas('types', function ($query) {
                 $query->where('name', self::$type);
             })
+            ->orderByDesc('created_at')
             ->where('user_replay', $user_replay)
             ->get($ArrColumn);
 
@@ -70,6 +73,55 @@ class ReplayController
 
             echo json_encode(array('downloaded' => $replay->downloaded));
         }
+    }
+
+    public function saveComments()
+    {
+        $request = request();
+        $replay = Replay::find($request->id);
+        $comment = new Comment([
+            'user_id' => self::getAuthUser()->id,
+            'content' => $request->input('content')
+        ]);
+        $replay->comments()->save($comment);
+
+        return back();
+    }
+
+    public static function loadReplay($ArrRelations, $ArrColumn, $user_replay)
+    {
+        $request = request();
+
+        if ($request->ajax()) {
+            $visible_title = false;
+            if ($request->id > 0) {
+                $data = Replay::with($ArrRelations)
+                    ->where('approved', 1)
+                    ->where('user_replay', $user_replay)
+                    ->where('id', '<', $request->id)
+                    ->orderByDesc('created_at')
+                    ->limit(5)
+                    ->get($ArrColumn);
+            } else {
+                $data = Replay::with($ArrRelations)
+                    ->where('approved', 1)
+                    ->where('user_replay', $user_replay)
+                    ->where('id', '<', $request->id)
+                    ->orderByDesc('created_at')
+                    ->limit(5)
+                    ->get($ArrColumn);
+
+                $visible_title = true;
+            }
+
+            $output = view('replay.index', ['replay' => $data]);
+            echo $output;
+        }
+    }
+
+    public static function getAuthUser()
+    {
+        return auth()->user();
     }
 
     public static function getUrl()

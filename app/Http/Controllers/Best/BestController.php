@@ -99,7 +99,7 @@ class BestController extends Controller
     {
         $data = null;
 
-        $getData = User::with('countries:id,flag', 'races:id,title')
+        $getData = User::with('countries:id,flag,name', 'races:id,title')
             ->withCount('totalComments')
             ->orderByDesc('total_comments_count')
             ->take(self::$top100)
@@ -116,7 +116,7 @@ class BestController extends Controller
     {
         $data = null;
 
-        $getData = User::with('countries:id,flag', 'races:id,title')
+        $getData = User::with('countries:id,flag,name', 'races:id,title')
             ->orderByRaw("(count_positive - count_negative) DESC")
             ->whereRaw("(count_positive - count_negative) >= 0")
             ->take(self::$top100)
@@ -133,7 +133,7 @@ class BestController extends Controller
     {
         $data = null;
 
-        $getData = User::with('countries:id,flag', 'races:id,title')
+        $getData = User::with('countries:id,flag,name', 'races:id,title')
             ->withCount('totalNews')
             ->orderByDesc('total_news_count')
             ->take(self::$top100)
@@ -149,7 +149,7 @@ class BestController extends Controller
     {
         $data = null;
 
-        $getData = User::with('countries:id,flag', 'races:id,title')
+        $getData = User::with('countries:id,flag,name', 'races:id,title')
             ->withCount('totalReplays')
             ->orderByDesc('total_replays_count')
             ->take(self::$top100)
@@ -176,7 +176,9 @@ class BestController extends Controller
                 'name' => $item->name,
                 'avatar' => self::checkAvatar($item),
                 'raceIcon' => "images\\" . $item->races->title . ".png",
+                'raceTitle' => $item->races->title,
                 'countryFlag25x20' => $item->countries->flag,
+                'countryName' => $item->countries->name,
                 'max' => self::setMaxType($type, $item),
             ];
         }

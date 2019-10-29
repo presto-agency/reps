@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Comment;
+namespace App\Http\Controllers\Tournament;
 
-use App\Models\Comment;
-use App\Models\Replay;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CommentController extends Controller
+class TournamentController extends Controller
 {
-    public $model;
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +14,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        return view('tournament.index');
     }
 
     /**
@@ -31,45 +28,31 @@ class CommentController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-    public function store(Request $request)
-    {
-        dd($request->model);
-        if (!in_array($request->model, ['Replay']))
-        {
-            throw new \Exception('Invalid model');
-        }
-        $modelName = '\\App\\Models\\'.$request->model;
-        $this->model = new $modelName;
-        dd($this->model);
-        $model =   $this->model::find($request->id);
-        $comment = new Comment([
-            'user_id' => self::getAuthUser()->id,
-            'content' => $request->input('content')
-        ]);
-        $model->comments()->save($comment);
-        return back();
-
-    }
-
-    /**
-     * Display the specified resource.
+     * Store a newly created resource in storage.
      *
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function store(Request $request)
     {
         //
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('tournament.show');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -80,8 +63,8 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -92,16 +75,11 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-    }
-
-    private static function getAuthUser()
-    {
-        return auth()->user();
     }
 }

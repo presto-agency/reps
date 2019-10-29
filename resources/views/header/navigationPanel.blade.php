@@ -39,35 +39,43 @@
             </div>
             <div class="col-xl-5 col-lg-5 col-md-2 col-sm-2 col-3 main_menu">
                 <nav class="menu_navigation">
-                    <a href="/">ГЛАВНАЯ</a>
-                    <a href="/forum">ФОРУМ</a>
-                    <a href="/replay">РЕПЛЕИ</a>
-                    <a href="/news">НОВОСТИ</a>
-                    <a href="/tournament">ТУРНИРЫ</a>
-                    <a href="/best">ЛУЧШИЕ</a>
-                    <a href="#">ФАЙЛЫ</a>
+                    <a href="{{route('home.index')}}" title="Главная">ГЛАВНАЯ </a>
+                    <a href="{{route('forum.index')}}" title="Форум">ФОРУМ</a>
+                    <a href="{{route('replay.index')}}" title="Реплеи">РЕПЛЕИ</a>
+                    <a href="{{route('news.index')}}" title="Новости">НОВОСТИ</a>
+                    <a href="{{route('tournament.index')}}" title="Турниры">ТУРНИРЫ</a>
+                    <a href="{{route('best.index')}}" title="Лучшие">ЛУЧШИЕ</a>
+                    <a href="https://drive.google.com/drive/folders/1bkbSoSRHOzEJZKki53uBKYbVMG3xvorc?usp=sharing"
+                       title="Файлы">ФАЙЛЫ</a>
                 </nav>
                 <button id="burger_menu" class="burger_menu">
-                    <svg  aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="menu_bar svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="white" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars"
+                         class="menu_bar svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 448 512">
+                        <path fill="white"
+                              d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
+                    </svg>
                 </button>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search">
                 <div class="button_input">
-                    <button><img class="search_img" src="{{ url('/images/search.png') }}"></button>
-                    <input id="inp"class="search_input " placeholder="поиск">
+                    <button><img class="search_img" src="{{ url('/images/search.png') }}" title="Поиск"></button>
+                    <input id="inp" class="search_input"  placeholder="Поиск">
                 </div>
                 <div class="autorization">
-                    @if (Auth::guest())
-                        <button type="button" data-toggle="modal" data-target="#authorizationModal">{{ __('Login') }}</button>
-                        <button class="registration"  type="button" data-toggle="modal" data-target="#registrationModal">{{ __('Register') }}</button>
+                    @guest
+                        <button type="button" data-toggle="modal"
+                                data-target="#authorizationModal">{{ __('Login') }}</button>
+                        <button class="registration" type="button" data-toggle="modal"
+                                data-target="#registrationModal">{{ __('Register') }}</button>
                     @else
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button type="submit">{{ __('Logout') }}</button>
                         </form>
-                    @endif
+                    @endguest
                 </div>
-{{--                @include('user.components.user-bar_panel')--}}
+                {{--                @include('user.components.user-bar_panel')--}}
             </div>
         </div>
     </div>
