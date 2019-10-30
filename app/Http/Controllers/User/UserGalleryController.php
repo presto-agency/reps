@@ -9,6 +9,14 @@ use App\Http\Controllers\Controller;
 
 class UserGalleryController extends Controller
 {
+
+    public static $routCheck;
+
+    public function __construct()
+    {
+        self::$routCheck = GalleryHelper::checkUrlUsers();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +25,9 @@ class UserGalleryController extends Controller
     public function index()
     {
         $row = ['id', 'picture'];
-        $allUserImages = self::getAllUserImages($row);
-        return view('user.gallery.index', compact('allUserImages'));
+        $images = GalleryHelper::getAllUserImages($row);
+        $routCheck = self::$routCheck;
+        return view('user.gallery.index', compact('images', 'routCheck'));
     }
 
     /**
@@ -76,15 +85,16 @@ class UserGalleryController extends Controller
     {
         $relation = ['comments'];
         $row = ['id', 'sign', 'positive_count', 'negative_count', 'picture',];
-        $userImage = self::getUserImage($id, $relation, $row);
+        $userImage = GalleryHelper::getUserImage($id, $relation, $row);
 
         // get previous user id
-        $previous = self::previous($id, $relation, $row);
+        $previous = GalleryHelper::previousUserImage($id, $relation, $row);
 
         // get next user id
-        $next = self::next($id, $relation, $row);
+        $next = GalleryHelper::nextUserImage($id, $relation, $row);
 
-        return view('user.gallery.show', compact('userImage', 'previous', 'next'));
+        $routCheck = self::$routCheck;
+        return view('user.gallery.show', compact('userImage', 'previous', 'next', 'routCheck'));
 
     }
 
@@ -98,13 +108,13 @@ class UserGalleryController extends Controller
     {
         $relation = [];
         $row = ['id', 'sign', 'positive_count', 'negative_count', 'picture', 'sign', 'for_adults'];
-        $userImage = self::getUserImage($id, $relation, $row);
+        $userImage = GalleryHelper::getUserImage($id, $relation, $row);
 
         // get previous user id
-        $previous = self::previous($id, $relation, $row);
+        $previous = GalleryHelper::previousUserImage($id, $relation, $row);
 
         // get next user id
-        $next = self::next($id, $relation, $row);
+        $next = GalleryHelper::nextUserImage($id, $relation, $row);
 
         return view('user.gallery.edit', compact('userImage', 'previous', 'next'));
     }
@@ -118,7 +128,7 @@ class UserGalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return back();
     }
 
     /**
@@ -129,44 +139,7 @@ class UserGalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return back();
     }
 
-    private static function previous($id, $relation, $row)
-    {
-        $data = null;
-        $data = UserGallery::with($relation)
-            ->select($row)
-            ->where('user_id', auth()->user()->id)
-            ->where('id', '<', $id)
-            ->max('id');
-        return $data;
-    }
-
-    private static function next($id, $relation, $row)
-    {
-        $data = null;
-        $data = UserGallery::with($relation)
-            ->select($row)
-            ->where('user_id', auth()->user()->id)
-            ->where('id', '>', $id)
-            ->min('id');
-        return $data;
-    }
-
-    private static function getAllUserImages($row)
-    {
-        $data = null;
-        $data = UserGallery::where('user_id', auth()->user()->id)
-            ->get($row);
-        return $data;
-    }
-
-    private static function getUserImage($id, $relation, $row)
-    {
-        $data = null;
-        $data = UserGallery::with($relation)->select($row)->findOrFail($id)
-            ->first();
-        return $data;
-    }
 }
