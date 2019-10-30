@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserGallery extends FormRequest
+class InterviewStoreRequests extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class UserGallery extends FormRequest
     public function rules()
     {
         return [
-            //
+            'question_id' => 'required|string',
+            'answer_id' => 'required|string',
         ];
     }
 }

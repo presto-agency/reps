@@ -14,10 +14,38 @@ use Illuminate\View\View;
 
 class RegistrationComposer
 {
+    private static $ttl = 300;
+
     public function compose(View $view)
     {
-        $race = Race::all();
-        $countries = Country::all();
-        return $view->with(['race' => $race, 'countries' => $countries]);
+        return $view->with([
+            'race' => self::getCacheRac('race'),
+            'countries' => self::getCacheCountry('countries')
+        ]);
+    }
+
+    public static function getCacheRac($cache_name)
+    {
+        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
+                return Race::all();
+            });
+        }
+        return $data_cache;
+    }
+
+    public static function getCacheCountry($cache_name)
+    {
+        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
+                return Country::all();
+            });
+        }
+        return $data_cache;
     }
 }
+

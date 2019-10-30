@@ -136,11 +136,7 @@ class UserGallery extends Section
                 ->setUploadPath(function (UploadedFile $file) {
                     return 'storage/image/user/gallery';
                 })
-                ->setUploadFileName(function (UploadedFile $file) {
-                    return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
-                })
-                ->setValidationRules(['required']),
-
+                ->setValidationRules(['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:8192']),
             $sign = AdminFormElement::text('sign', 'Подпись')
                 ->setValidationRules(['nullable', 'string', 'max:255']),
 

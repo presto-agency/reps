@@ -21,7 +21,6 @@ class UserGalleryObservers
      */
     public function created(UserGallery $userGallery)
     {
-
         event(new UserUploadImage($userGallery));
     }
 

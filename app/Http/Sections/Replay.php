@@ -241,9 +241,9 @@ class Replay extends Section
                             ->setHtmlAttributes(['placeholder' => 'Первое имя'])
                             ->setValidationRules(['nullable', 'string', 'alpha_dash', 'max:255']),
 
-                        $first_apm = AdminFormElement::text('first_apm', 'Первый APM')
-                            ->setHtmlAttributes(['placeholder' => 'Первый APM'])
-                            ->setValidationRules(['nullable', 'numeric', 'between:1,255']),
+//                        $first_apm = AdminFormElement::text('first_apm', 'Первый APM')
+//                            ->setHtmlAttributes(['placeholder' => 'Первый APM'])
+//                            ->setValidationRules(['nullable', 'numeric', 'between:1,255']),
 
                     ];
                 })->addColumn(function () {
@@ -270,9 +270,9 @@ class Replay extends Section
                             ->setHtmlAttributes(['placeholder' => 'Второе имя'])
                             ->setValidationRules(['nullable', 'string', 'alpha_dash', 'max:255']),
 
-                        $first_apm = AdminFormElement::text('second_apm', 'Второй APM')
-                            ->setHtmlAttributes(['placeholder' => 'Второй APM'])
-                            ->setValidationRules(['nullable', 'numeric', 'between:1,255']),
+//                        $first_apm = AdminFormElement::text('second_apm', 'Второй APM')
+//                            ->setHtmlAttributes(['placeholder' => 'Второй APM'])
+//                            ->setValidationRules(['nullable', 'numeric', 'between:1,255']),
 
                     ];
                 })
@@ -287,12 +287,10 @@ class Replay extends Section
                 ->addColumn(function () {
                     return [
                         $file = AdminFormElement::file('file', 'Файл')
-                            ->setValidationRules(['required', 'file', 'max:10000'])
+                            ->setValidationRules(['required', 'file', 'max:10000', 'mimes:zip,rep,jar,7z,rar,gz'])
                             ->setUploadPath(function (UploadedFile $file) {
                                 return 'storage/file/replay';
-                            })->setUploadFileName(function (UploadedFile $file) {
-                                return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
-                            }),
+                            })
                     ];
                 })
                 ->addColumn(function () {

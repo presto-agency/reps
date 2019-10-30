@@ -14,19 +14,21 @@
         <p class="title__text">Галерея</p>
     </div>
     <div class="gallery__body">
-        @isset($images)
-            @foreach($images as $items)
+        @isset($allUserImages)
+            @foreach($allUserImages as $items)
                 <div class="img-wrapper">
-                    <a class="img-link" href="#">
-{{--                        <img src="{{ asset() }}" alt="image">--}}
+                    <a class="img-link" href="{{route('gallery.show',['gallery'=>$items->id])}}">
+                        @if(file_exists($items->picture))
+                            <img src="{{asset($items->picture) }}" alt="image">
+                        @endif
                     </a>
                 </div>
             @endforeach
         @endisset
     </div>
-    <div class="gallery__numb-pages">
-        <p class="numb-pages">10 из 240</p>
-    </div>
+{{--    <div class="gallery__numb-pages">--}}
+{{--        <p class="numb-pages">10 из 240</p>--}}
+{{--    </div>--}}
     <div class="gallery__button">
         <button class="button button__download-more">
             Загрузить еще

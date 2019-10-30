@@ -21,23 +21,12 @@ class CountryObserver
      */
     public function created(Country $country)
     {
-//        $filePth = $country->getAttribute('flag');
-//
-//        if (!empty($filePth)) {
-//            $fileName = $this->getFileName($filePth);
-//            new ResizeImage;
-//            ResizeImage::resizeFlagImage25x20($fileName,$filePth);
-//        }
+
     }
 
     public function updating(Country $country)
     {
-//        $filePth = $country->getAttribute('flag');
-//        if (!empty($filePth)) {
-//            $fileName = $this->getFileName($filePth);
-//            new ResizeImage;
-//            ResizeImage::resizeFlagImage25x20($fileName,$filePth);
-//        }
+
     }
 
     /**
@@ -82,17 +71,6 @@ class CountryObserver
     public function forceDeleted(Country $country)
     {
         //
-    }
-
-    /**
-     * @param $filePath
-     * @return mixed
-     */
-    public function getFileName($filePath)
-    {
-        $getImgName1 = explode('/', $filePath);
-        $getImgName2 = explode('.', end($getImgName1));
-        return $fileName = reset($getImgName2);
     }
 
 }
