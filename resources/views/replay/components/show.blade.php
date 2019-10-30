@@ -160,7 +160,7 @@
         </div>
     </div>
 </section>
-@push('download-count-script')
+@push('ess21-custom-script')
     <script type="text/javascript">
         $('.download').click(function () {
             let id = $(this).data('id');

@@ -6,8 +6,5 @@
 @endsection
 
 @section('content')
-    @include('user.gallery.components.showAll')
-@endsection
-@section('sidebar-right')
-    @include('user.components.user-replays')
+    @include('user.gallery.components.index')
 @endsection

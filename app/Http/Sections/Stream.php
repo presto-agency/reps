@@ -10,7 +10,6 @@ use AdminForm;
 use AdminFormElement;
 use App\Http\ViewComposers\StreamIframeComposer;
 use App\Models\{Country, Race};
-use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
 

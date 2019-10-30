@@ -1,7 +1,8 @@
 <div class="gallery-download">
     <div class="gallery-download__title">
 
-        <svg class="title__icon"  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 512 512" xml:space="preserve">
 
             <path d="M437.019,74.98C388.667,26.629,324.38,0,256,0C187.619,0,123.331,26.629,74.98,74.98C26.628,123.332,0,187.62,0,256
@@ -18,22 +19,33 @@
     </div>
     <div class="gallery-download__body">
         <form class="gallery__form" action="{{ route('gallery.store') }}" method="POST" enctype="multipart/form-data">
-            <div class="upload-avatar">
-                <div class="avatar__input-upload">
-                    <input type="file" class="form-control" id="user-settings-email-avatar"  name="picture">
-                </div>
-                <div class="avatar__button-upload">
-                    <label for="avatar__button-upload">Выбрать файл
-                        <input id="avatar__button-upload" type="file" class="form-control" accept="image/*">
-                    </label>
+            @csrf
+            <div class="upload-image">
+                <input id="uploadFile" class="f-input" readonly/>
+                <div class="fileUpload btn btn--browse">
+                    <span>Выбрать файл</span>
+                    <input id="uploadBtn" type="file" class="upload" value="{{old('picture')}}" accept="image/*"
+                           name="picture"/>
                 </div>
             </div>
+            @if ($errors->has('picture'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('picture') }}
+                </div>
+            @endif
             <div class="form-group">
                 <label class="label_group" for="gallery-name">Подпись:</label>
-                <input type="text" class="form-control" id="gallery-name">
+                <input type="text" name="sign" class="form-control" id="gallery-name"
+                       value="{{old('sign')}}" placeholder="Подпись">
             </div>
+            @if ($errors->has('sign'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('sign') }}
+                </div>
+            @endif
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="gallery__for-adults" checked="">
+                <input class="form-check-input" type="checkbox" value="{{old('for_adults')}}" id="gallery__for-adults"
+                       name='for_adults'>
                 <label class="label_group" class="form-check-label" for="gallery__for-adults">
                     18+
                 </label>
@@ -46,3 +58,10 @@
         </form>
     </div>
 </div>
+@push('ess21-custom-script')
+    <script type="text/javascript">
+        $('#gallery__for-adults').on('change', function () {
+            this.value = this.checked ? 1 : 0;
+        }).change();
+    </script>
+@endpush

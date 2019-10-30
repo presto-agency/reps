@@ -6,5 +6,5 @@
 @endsection
 
 @section('content')
-    @include('user.gallery.components.create')
+    @include('user.gallery.components.edit')
 @endsection

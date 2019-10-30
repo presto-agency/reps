@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Interview;
 
-use App\Http\Requests\InterviewStore;
+use App\Http\Requests\InterviewStoreRequests;
 use App\Models\InterviewUserAnswers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -33,10 +33,10 @@ class InterviewController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param InterviewStore $request
+     * @param InterviewStoreRequests $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(InterviewStore $request)
+    public function store(InterviewStoreRequests $request)
     {
         if (empty(self::checkUserAnswer($request->question_id))) {
             self::storeIUA($request);

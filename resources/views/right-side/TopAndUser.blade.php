@@ -38,7 +38,7 @@
                                  title="{{$item['raceTitle']}}"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                            <p>{{$item['name']}}</p>
+                            <p title="{{$item['name']}}">{{$item['name']}}</p>
                         </div>
                     </div>
                 @endforeach
@@ -61,7 +61,7 @@
                                  title="{{$item['raceTitle']}}"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                            <p >{{$item['name']}}</p>
+                            <p title="{{$item['name']}}">{{$item['name']}}</p>
                         </div>
                     </div>
                 @endforeach
@@ -84,7 +84,7 @@
                                  title="{{$item['raceTitle']}}"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                            <p>{{$item['name']}}</p>
+                            <p title="{{$item['name']}}">{{$item['name']}}</p>
                         </div>
                     </div>
                 @endforeach

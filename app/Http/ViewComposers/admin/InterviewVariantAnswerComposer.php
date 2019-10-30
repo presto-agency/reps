@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\ViewComposers;
+namespace App\Http\ViewComposers\admin;
 
 use App\Models\InterviewVariantAnswer;
 use Illuminate\View\View;
