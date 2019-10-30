@@ -12,6 +12,3 @@
 {{--        'route' => route('replay.send_comment', ['id' =>$userImage->id])--}}
 {{--    ])--}}
 @endsection
-@section('sidebar-right')
-    @include('user.components.user-replays')
-@endsection

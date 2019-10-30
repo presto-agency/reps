@@ -8,6 +8,3 @@
 @section('content')
     @include('user.gallery.components.index')
 @endsection
-@section('sidebar-right')
-    @include('user.components.user-replays')
-@endsection
