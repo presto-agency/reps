@@ -17,7 +17,7 @@
 
                     <div class="form-group">
                         <input type="email"
-                               class="form-control @error('email') is-invalid @enderror"
+                               class="form-control night_input @error('email') is-invalid @enderror"
                                id="authorization-mail"
                                placeholder="{{ __('E-Mail Address') }}"
                                name="email"
@@ -32,7 +32,7 @@
                         @enderror
 
                         <input type="password"
-                               class="form-control @error('password') is-invalid @enderror"
+                               class="form-control night_input @error('password') is-invalid @enderror"
                                id="authorization-password"
                                placeholder="{{ __('Password') }}"
                                name="password"

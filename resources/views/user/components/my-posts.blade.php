@@ -1,12 +1,12 @@
-<div class="my-post">
+<div class="my-post border_shadow">
     <div class="my-post__title">
         <p class="title__text">Мои посты</p>
     </div>
 
     <div class="my-post__accordion">
 
-        <button class="accordion-button">Форум</button>
-        <div class="panel">
+        <button class="accordion-button change_gray night_text">Форум</button>
+        <div class="panel night_modal">
             <div class="panel__wrap">
                 <div class="panel__header">
                     <div class="header__items">
@@ -18,7 +18,7 @@
                 <div class="panel__body">
                     <a class="body__numb" href="#">#1</a>
                     <a class="body__nick" href="#">Scratch:</a>
-                    <p class="body__text">чули сеточкой?</p>
+                    <p class="body__text night_text">чули сеточкой?</p>
                 </div>
 
             </div>
@@ -33,14 +33,14 @@
                 <div class="panel__body">
                     <a class="body__numb" href="#">#1</a>
                     <a class="body__nick" href="#">Scratch:</a>
-                    <p class="body__text">чули сеточкой?</p>
+                    <p class="body__text night_text">чули сеточкой?</p>
                 </div>
 
             </div>
         </div>
 
-        <button class="accordion-button">Галереи</button>
-        <div class="panel">
+        <button class="accordion-button change_gray night_text">Галереи</button>
+        <div class="panel night_modal">
             <div class="panel__wrap">
                 <div class="panel__header">
                     <div class="header__items">
@@ -52,7 +52,7 @@
                 <div class="panel__body">
                     <a class="body__numb" href="#">#1</a>
                     <a class="body__nick" href="#">Scratch:</a>
-                    <p class="body__text">чули сеточкой?</p>
+                    <p class="body__text night_text">чули сеточкой?</p>
                 </div>
 
             </div>
@@ -67,7 +67,7 @@
                 <div class="panel__body">
                     <a class="body__numb" href="#">#1</a>
                     <a class="body__nick" href="#">Scratch:</a>
-                    <p class="body__text">чули сеточкой?</p>
+                    <p class="body__text night_text">чули сеточкой?</p>
                 </div>
 
             </div>

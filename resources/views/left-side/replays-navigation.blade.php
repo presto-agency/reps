@@ -1,4 +1,4 @@
-<div class="replays">
+<div class="replays border_shadow">
     <div class="replays__title">
         <svg class="title__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -16,16 +16,16 @@
     </div>
     <div class="replays__accordion accordion" id="replaysAccordion">
         @if($pro)
-            <div class="accordion__topic card">
-                <div class="topic__header card-header">
-                    <p class="header__title">
+            <div class="accordion__topic card night_modal ">
+                <div class="topic__header card-header change_gray">
+                    <a class="header__title night_text">
                         {{$replayTypeName}}
-                    </p>
+                    </a>
                 </div>
             </div>
-            <div class="accordion__topic card">
-                <div class="topic__header card-header">
-                    <a class="header__title" href="{{route('replay_pro.index')}}">
+            <div class="accordion__topic card night_modal">
+                <div class="topic__header card-header change_gray">
+                    <a class="header__title night_text" href="{{route('replay_pro.index')}}">
                         Профессиональные реплеи
                     </a>
                 </div>
@@ -33,9 +33,9 @@
                     @foreach($replayTypes as $replayTitle => $replayName)
                         <div class="topic__body">
                             <div class="card-body">
-                                <div class="subtopic__topic card">
-                                    <div class="subtopic__header card-header">
-                                        <a class="header__title"
+                                <div class="subtopic__topic card night_modal border_shadow">
+                                    <div class="subtopic__header card-header change_gray">
+                                        <a class="header__title night_text"
                                            href="{{route("replay_pro.type.index",['type'=>$replayName])}}">
                                             {{$replayTitle}}
                                         </a>
@@ -47,7 +47,7 @@
                                                     @if($replayNavitem['types']['name'] == $replayName)
                                                         <div class="body__wrap">
                                                             <a href="{{route('replay_pro.type.show',['type' =>$replayName, 'replay_pro'=>$replayNavitem['id']])}}"
-                                                               class="body__title">{{$replayNavitem['title']}}</a>
+                                                               class="body__title night_text">{{$replayNavitem['title']}}</a>
                                                             <span
                                                                 class="body__numb">{{$replayNavitem['positive_count'] - $replayNavitem['negative_count']}}</span>
                                                         </div>
@@ -63,14 +63,14 @@
                 @endisset
             </div>
         @else
-            <div class="accordion__topic card">
-                <div class="topic__header card-header">
-                    <p class="header__title">
+            <div class="accordion__topic card night_modal">
+                <div class="topic__header card-header change_gray">
+                    <a class="header__title night_text">
                         {{$replayTypeName}}
-                    </p>
+                    </a>
                 </div>
-                <div class="topic__header card-header">
-                    <a class="header__title" href="{{route('replay.index')}}">
+                <div class="topic__header card-header change_gray">
+                    <a class="header__title night_text" href="{{route('replay.index')}}">
                         Пользовательские реплеи
                     </a>
                 </div>
@@ -80,7 +80,7 @@
                             <div class="card-body">
                                 <div class="body__wrap">
                                     <a href="{{route('replay.show',['replay' => $replayNavitem['id']])}}"
-                                       class="body__title">{{$replayNavitem['title']}}</a>
+                                       class="body__title night_text">{{$replayNavitem['title']}}</a>
                                     <span
                                         class="body__numb">{{$replayNavitem['positive_count'] - $replayNavitem['negative_count']}}</span>
                                 </div>

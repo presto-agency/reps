@@ -1,0 +1,44 @@
+.upload-image {
+    .fileUpload {
+
+        position: relative;
+        overflow: hidden;
+    }
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    .btn--browse{
+        border: 1px solid #0567cc;
+        display: inline-block;
+        cursor: pointer;
+        background-color: #0567cc;
+        margin-bottom: 0;
+        padding: 10px 10px;
+        color: #fff;
+        border-radius: 4px;
+        height: 42px;
+        align-items: center;
+        width: 100%;
+    }
+
+    .f-input{
+        height: 42px;
+        width: 100%;
+        float: left;
+        padding: 0 14px;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+    }
+}

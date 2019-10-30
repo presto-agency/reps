@@ -1,4 +1,4 @@
-<div class="search">
+<div class="search border_ border_shadow">
     <div class="search__title">
         <svg class="title__icon" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
              xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 512 512">
@@ -8,15 +8,15 @@
         <p class="title__text">Поиск реплеев</p>
     </div>
 
-    <div class="search__body">
+    <div class="search__body night_modal">
         <form>
             <label class="body__name" for="name">
-                <input id="name" placeholder="Имя / Описание..." type="text" name="name">
+                <input class="night_input" id="name" placeholder="Имя / Описание..." type="text" name="name">
             </label>
 
             <label class="body__country-winner" for="country-winner" name="country-winner">
                 Победившая страна:
-                <select id="country-winner">
+                <select class="night_input" id="country-winner">
                     <option>Все</option>
                     <option>Lorem ipsum.</option>
                     <option>Lorem ipsum.</option>
@@ -25,7 +25,7 @@
 
             <label class="body__country-loser" for="country-loser" name="country-loser">
                 Проигравшая страна:
-                <select id="country-loser">
+                <select class="night_input" id="country-loser">
                     <option>Все</option>
                     <option>Lorem ipsum.</option>
                     <option>Lorem ipsum.</option>
@@ -34,7 +34,7 @@
 
             <label class="body__winning-race" for="winning-race" name="winning-race">
                 Победившая раса:
-                <select id="winning-race">
+                <select class="night_input" id="winning-race">
                     <option>Все</option>
                     <option>Lorem ipsum.</option>
                     <option>Lorem ipsum.</option>
@@ -43,7 +43,7 @@
 
             <label class="body__losing-race" for="losing-race" name="losing-race">
                 Проигравшая раса:
-                <select id="losing-race">
+                <select class="night_input" id="losing-race">
                     <option>Все</option>
                     <option>Lorem ipsum.</option>
                     <option>Lorem ipsum.</option>
@@ -52,7 +52,7 @@
 
             <label class="body__map" for="map" name="map">
                 Карта:
-                <select id="map">
+                <select class="night_input" id="map">
                     <option>Все</option>
                     <option>Lorem ipsum.</option>
                     <option>Lorem ipsum.</option>
@@ -61,7 +61,7 @@
 
             <label class="body__type" for="type" name="type">
                 Тип:
-                <select id="type">
+                <select class="night_input" id="type">
                     <option>Все</option>
                     <option>Lorem ipsum.</option>
                     <option>Lorem ipsum.</option>
@@ -70,7 +70,7 @@
 
             <label class="body__sorting" for="sorting" name="sorting">
                 Сортировка:
-                <select id="sorting">
+                <select class="night_input" id="sorting">
                     <option>Все</option>
                     <option>Lorem ipsum.</option>
                     <option>Lorem ipsum.</option>

@@ -77,6 +77,8 @@ Route::group(['prefix' => 'user','middleware' => 'auth'], function () {
 Route::group(['prefix' => 'user'], function () {
     Route::resource("gallery", 'User\UserGalleryController');
 });
+/*Galleries*/
+Route::resource("galleries", 'User\GalleriesController');
 
 
 Auth::routes();

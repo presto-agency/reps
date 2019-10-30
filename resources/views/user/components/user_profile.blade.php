@@ -1,5 +1,5 @@
 <section class="user_profile">
-    <div class="wrapper">
+    <div class="wrapper border_shadow">
         <div class="title_block">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
                 <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
@@ -24,25 +24,25 @@
                 </div>
                 <div class="col-xl-8 col-8 container_information">
                     <div class="userText_block">
-                        <span class="title">{{ $user->name }}</span>
+                        <span class="title night_text">{{ $user->name }}</span>
 
                         @if($user->isOnline())
                         <!-- if online displays this -->
                             <span class="date">online</span>
                         @else
                         <!-- if INACTIVE displays this -->
-                            <div class="user-last-online">{{ \Carbon\Carbon::parse($user->activity_at)->diffForHumans() }}</div>
+                            <div class="date">{{ \Carbon\Carbon::parse($user->activity_at)->diffForHumans() }}</div>
                         @endif
 
                     </div>
 
                     <div class="information_block">
                             <div class="left_block"><span>Статус:</span></div>
-                            <div class="right_block"><span>{{$user->getUserStatus($user->points)}} {{ $user->points }} pts</span></div>
+                            <div class="right_block night_text"><span>{{$user->getUserStatus($user->points)}} {{ $user->points }} pts</span></div>
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>ДР:</span></div>
-                        <div class="right_block">
+                        <div class="right_block night_text">
                             @if($user->birthday)
                                 <span>{{$user->birthday}}</span>
                             @else
@@ -53,7 +53,7 @@
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>Страна:</span></div>
-                        <div class="right_block">
+                        <div class="right_block night_text">
                             @if($user->countries->name)
                                 <span>{{$user->countries->name}}</span>
                             @else
@@ -63,7 +63,7 @@
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>Раса:</span></div>
-                        <div class="right_block">
+                        <div class="right_block night_text">
                             @if($user->races->title)
                                 <span>{{ $user->races->title }}</span>
                             @else
@@ -73,7 +73,7 @@
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>Репутация:</span></div>
-                        <div class="right_block"><a href="#"><span class="blue">675 кг</span></a></div>
+                        <div class="right_block night_text"><a href="#"><span class="blue">675 кг</span></a></div>
                     </div>
                 </div>
                 @if(Auth::id() != $user->id)
@@ -86,7 +86,7 @@
         <div class="block_userInformation">
             <div class="row">
                 <div class="col-xl-6 col-lg-6  col-md-6 col-12 container_left">
-                    <div class="title_top_userProfile">
+                    <div class="title_top_userProfile change_gray">
                         <p class="title_Text">Список друзей</p>
                     </div>
 
@@ -284,7 +284,7 @@
                     </div>--}}
                 </div>
                 <div class="col-xl-6 col-lg-6  col-md-6 col-12  container_right">
-                    <div class="title_top_userProfile">
+                    <div class="title_top_userProfile change_gray">
                         <p class="title_Text">Информация</p>
                     </div>
                     <div class="wrapper_information">
@@ -353,7 +353,7 @@
 {{--                            <span>Logi G102</span>--}}
 {{--                        </div>--}}
 {{--                    </div>--}}
-                    <div class="title_top_userProfile">
+                    <div class="title_top_userProfile change_gray">
                         <p class="title_Text">Контакты</p>
                     </div>
                     <div class="wrapper_contacts">
@@ -361,9 +361,9 @@
                             <div class="left_block"><span>E-mail:</span></div>
                             <div class="right_block">
                                 @if(Auth::id() == $user->id)
-                                    <span>{{$user->email ?? 'не указано'}}</span>
+                                    <span class="night_text">{{$user->email ?? 'не указано'}}</span>
                                 @else
-                                    <span>{{'Скрыт' ?? 'не указано'}}</span>
+                                    <span class="night_text">{{'Скрыт' ?? 'не указано'}}</span>
                                 @endif
                             </div>
                         </div>
@@ -380,11 +380,11 @@
                         </div>
                         <div class="block_contact">
                             <div class="left_block"><span>Discord:</span></div>
-                            <div class="right_block"><span>{{$user->isq ?? 'не указано'}}</span></div>
+                            <div class="right_block"><span class="night_text">{{$user->isq ?? 'не указано'}}</span></div>
                         </div>
                         <div class="block_contact">
                             <div class="left_block"><span>Skype:</span></div>
-                            <div class="right_block"><span>{{$user->skype ?? 'не указано'}}</span></div>
+                            <div class="right_block"><span class="night_text">{{$user->skype ?? 'не указано'}}</span></div>
                         </div>
                     </div>
                 </div>

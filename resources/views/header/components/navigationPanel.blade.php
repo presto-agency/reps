@@ -5,8 +5,9 @@
                 <img src="{{ url('/images/logo.png') }}" alt="logo">
             </div>
             <div class="col-xl-1 col-lg-1 col-1  mode">
-                <button id="day" >
-                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                <button id="day">
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          viewBox="0 0 45.16 45.16" style="enable-background:new 0 0 45.16 45.16;" xml:space="preserve">
                         <path fill="white" d="M22.58,11.269c-6.237,0-11.311,5.075-11.311,11.312s5.074,11.312,11.311,11.312c6.236,0,11.311-5.074,11.311-11.312
                         S28.816,11.269,22.58,11.269z"/>
@@ -33,8 +34,13 @@
                             c-0.862,0.861-0.862,2.259,0,3.12l2.497,2.497C9.972,13.094,11.369,13.094,12.231,12.231z"/>
                     </svg>
                 </button>
-                <button id="night" >
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="white" d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"></path></svg>
+                <button id="night">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon"
+                         class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 512 512">
+                        <path fill="white"
+                              d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"></path>
+                    </svg>
                 </button>
             </div>
             <div class="col-xl-5 col-lg-5 col-md-2 col-sm-2 col-3 main_menu">
@@ -60,7 +66,7 @@
             <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search">
                 <div class="button_input">
                     <button><img class="search_img" src="{{ url('/images/search.png') }}" title="Поиск"></button>
-                    <input id="inp" class="search_input"  placeholder="Поиск">
+                    <input id="inp" class="search_input" placeholder="Поиск">
                 </div>
                 <div class="autorization">
                     @guest
@@ -75,9 +81,10 @@
                         </form>
                     @endguest
                 </div>
-                {{--                @include('user.components.user-bar_panel')--}}
+                {{--                @auth--}}
+                @include('header.components.user-bar_panel')
+                {{--                @endauth--}}
             </div>
         </div>
     </div>
-
 </section>

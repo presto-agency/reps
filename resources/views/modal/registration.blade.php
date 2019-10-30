@@ -10,35 +10,13 @@
                     </svg>
                 </a>
             </div>
-            {{--@if (!empty(Session::get('error_code')) && Session::get('error_code') > 0)
-                <div class="alert alert-danger">
-                    <strong>Error</strong><br><br>
-                    <ul>
-                        --}}{{--@foreach ($error_code->all() as $error)--}}{{--
-                            <li>{{ Session::get('error_code') }}</li>
-                        --}}{{--@endforeach--}}{{--
-                    </ul>
-                </div>
-            @endif--}}
-
-            {{--@if(count($errors) > 0)
-            <!-- класс фреймворка бутстрап -->
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif--}}
-
             <div class="modal-body">
                 <h2 class="modal-body__title night_text">Добро пожаловать!</h2>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="form-group">
                         <input type="text"
-                               class="form-control @error('name') is-invalid @enderror"
+                               class="form-control night_input @error('name') is-invalid @enderror"
                                id="registration-name"
                                placeholder={{ __('Name') }}
                                name="name"
@@ -52,7 +30,7 @@
                         @enderror
 
                         <input type="email"
-                               class="form-control @error('email') is-invalid @enderror"
+                               class="form-control night_input @error('email') is-invalid @enderror"
                                id="registration-mail"
                                placeholder={{ __('E-Mail Address') }}
                                name="email"
@@ -70,14 +48,14 @@
                             @endforeach
                         </select>
 
-                        <select name="race" id="race" class="race">
+                        <select name="race" id="race" class="race night_input">
                             @foreach($race as $item)
                                 <option value="{{ $item->code }}">{{ $item->title }}</option>
                             @endforeach
                         </select>
 
                         <input type="password"
-                               class="form-control @error('password') is-invalid @enderror"
+                               class="form-control night_input @error('password') is-invalid @enderror"
                                id="registration-password"
                                placeholder={{ __('Password') }}
                                 name="password"
@@ -90,7 +68,7 @@
                         @enderror
 
                         <input type="password"
-                               class="form-control"
+                               class="form-control night_input"
                                id="registration-rePassword"
                                placeholder={{ __('Confirm Password') }}
                                 name="password_confirmation"

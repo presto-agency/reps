@@ -1,4 +1,4 @@
-<div class="create-replay">
+<div class="create-replay border_shadow">
     <div class="create-replay__title">
 
         <svg class="title__icon"  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -15,18 +15,18 @@
 
         <p class="title__text">Создать новый Replay</p>
     </div>
-    <div class="create-replay__body">
+    <div class="create-replay__body night_modal">
         <form class="create-replay__form" action="GET">
 
             <div class="form-group">
-                <label for="create-replay-name">* Название:</label>
-                <input type="text" class="form-control" id="create-replay-name">
+                <label for="create-replay-name" class="night_text">* Название:</label>
+                <input type="text" class="form-control night_input" id="create-replay-name">
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="create-replay__user-replay">* Пользовательский/Gosu:
-                            <select id="create-replay__user-replay" class="create-replay__user-replay">
+                        <label for="create-replay__user-replay" class="night_text">* Пользовательский/Gosu:
+                            <select id="create-replay__user-replay" class="create-replay__user-replay night_input">
                                 <option>Пользовательский</option>
                                 <option>Gosu</option>
                             </select>
@@ -35,8 +35,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="create-replay__type">* Тип:
-                            <select id="create-replay__type" class="create-replay__type">
+                        <label for="create-replay__type" class="night_text">* Тип:
+                            <select id="create-replay__type night_input" class="create-replay__type night_input">
                                 <option>duel</option>
                                 <option>pack</option>
                                 <option>gotw</option>
@@ -48,8 +48,8 @@
             </div>
 
             <div class="form-group">
-                <label for="create-replay__map">* Карта:
-                    <select class="js-example-basic-single" name="map" id="create-replay__map">
+                <label for="create-replay__map" class="night_text">* Карта:
+                    <select class="js-example-basic-single night_input" name="map" id="create-replay__map">
                         <option>Andromeda</option>
                         <option>Arcadia II</option>
                         <option>Azalea</option>
@@ -64,8 +64,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="create-replay__first-race">* Первая раса:
-                            <select id="create-replay__first-race" class="create-replay__first-race">
+                        <label for="create-replay__first-race" class="night_text">* Первая раса:
+                            <select id="create-replay__first-race" class="create-replay__first-race night_input">
                                 <option>All</option>
                                 <option>Z</option>
                                 <option>T</option>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="create-replay__first-country">* Первая страна:
+                        <label for="create-replay__first-country" class="night_text">* Первая страна:
                             <select class="js-example-basic-single" name="country" id="create-replay__first-country">
                                 <option>Ukraine</option>
                                 <option>Italy</option>
@@ -91,15 +91,15 @@
             </div>
 
             <div class="form-group">
-                <label for="create-replay__second-location">* Вторая локация:</label>
-                <input type="text" class="form-control" id="create-replay__second-location">
+                <label for="create-replay__second-location" class="night_text">* Вторая локация:</label>
+                <input type="text" class="form-control night_input" id="create-replay__second-location">
             </div>
 
             <hr>
 
             <div class="form-group">
-                <label for="video_iframe">Вставить HTML код с Youtube с видео реплеем</label>
-                <textarea name="video_iframe" class="form-control " id="video_iframe" rows="16" style="display: none;"></textarea>
+                <label for="video_iframe" class="night_text">Вставить HTML код с Youtube с видео реплеем</label>
+                <textarea name="video_iframe" class="form-control" id="video_iframe" rows="16" style="display: none;"></textarea>
             </div>
 
             <div class="create-replay__button">
