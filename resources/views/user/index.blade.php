@@ -24,6 +24,6 @@
     @include('user.components.reputation-info')
 @endsection
 
-@section('sidebar-right')
-    @include('user.components.user-replays')
-@endsection
+{{--@section('sidebar-right')--}}
+{{--    @include('user.components.user-replays')--}}
+{{--@endsection--}}
