@@ -1335,6 +1335,165 @@
     }
 
     /*ТУРНИРЫ*/
+    .Page_tournamentDetail-content{
+        & .title_block{
+            height: 4.392vw;
+            padding: 1.464vw;
+            & .left_content{
+                & svg{
+                    margin-right: 0.732vw;
+                }
+            }
+            & .right_content{
+                & svg{
+                    margin-left: 0.732vw;
+                }
+                & .title_text{
+                    font-size: 1.025vw;
+                }
+            }
+            & img,svg{
+                width: 1.464vw;
+                margin-right: 0.732vw;
+            }
+            & .title_text{
+                font-size: 16px;
+            }
+        }
+        & .block_replay_content{
+            padding: 30px 1.464vw;
+            & .block_left{
+                & .description_left{
+                    font-size: 12px;
+                }
+                & .container_block{
+                    & .replay-desc-right{
+                        & p{
+                            font-size: 12px;
+                        }
+                    }
+                    & .replay-desc-left{
+                        & p{
+                            font-size: 12px;
+                        }
+                        & .gray{
+                            font-size: 1.025vw;
+                        }
+                        & .blue{
+                            font-size: 1.025vw;
+                        }
+                    }
+                }
+            }
+            & .block_right{
+                & .container_block{
+                    margin-top: 1.464vw;
+                    & p{
+                        font-size: 12px;
+                    }
+                    & .right{
+                        & p{
+                            font-size: 1.025vw;
+                        }
+                        & svg{
+                            width: 15px;
+                            margin-left: 0.732vw;
+                        }
+                    }
+                }
+            }
+        }
+        & .title_players{
+            height: 4.392vw;
+            padding: 0 1.464vw;
+            & .title_playersText{
+                font-size: 16px;
+            }
+            & a{
+                font-size: 12px;
+            }
+        }
+        & .container_players{
+            max-height: 220px;
+            padding: 1.464vw 0;
+            & .players_content{
+                padding: 0.732vw 45px 5px 1.464vw;
+                & .left_block{
+                    span{
+                        font-size: 1.025vw;
+                    }
+                    & img{
+                        margin: 0 0.732vw 0 15px;
+                    }
+                    & a{
+
+                        width: 170px;
+                        height: 28px;
+                        & .name_player{
+                            font-size: 1.025vw;
+                        }
+                    }
+                }
+                & .center_block{
+                    & img{
+                        margin: 0 5px;
+                    }
+                }
+                & .right_block{
+                    & svg{
+                        width: 1.464vw;
+                    }
+                }
+            }
+        }
+        & .container_round{
+            padding: 1.464vw 1.464vw 0.732vw;
+            & .winner_round{
+                padding-bottom: 0.732vw;
+                & .left_block{
+                    span{
+                        font-size: 1.025vw;
+                    }
+                    & img{
+                        margin: 0 0.732vw 0 15px;
+                    }
+                    & a{
+                        & .name_player{
+                            font-size: 1.025vw;
+                        }
+                    }
+                }
+                & .center_block{
+                    & .one_player{
+                        width: 110px;
+                        height: 28px;
+                    }
+                    & img{
+                        margin: 0 5px;
+                    }
+                    & .blue_span{
+                        margin: 0 25px 0 1.464vw;
+                    }
+                }
+                & .right_block{
+                    & a{
+                        margin-right: 0.732vw;
+                    }
+                    & svg{
+                        width: 1.464vw;
+                    }
+                }
+            }
+        }
+
+        .container_players::-webkit-scrollbar {
+            width: 0.732vw;
+        }
+        .container_players::-webkit-scrollbar-thumb {
+            height: 25px;
+        }
+    }
+
 
     //Предстоящие турниры
     .Page_tournament-content{
@@ -2493,13 +2652,6 @@
             }
         }
     }
-
-
-
-
-
-
-
 }
 
 
@@ -2700,6 +2852,20 @@
         }
 
     }
+    .mob_menu{
+        & .nav-wrapper{
+            & .nav_item{
+                font-size: 1.615vw;
+            }
+        }
+    }
+
+
+
+
+
+
+
     //Твич
     .block_chat-twitch{
         padding-bottom: 4vw;
@@ -3946,6 +4112,165 @@
     }
 
     /*ТУРНИРЫ*/
+    .Page_tournamentDetail-content{
+        & .title_block{
+            height: 6.054vw;
+            padding: 2.018vw;
+            & .left_content{
+                & svg{
+                    margin-right: 1.009vw;
+                }
+            }
+            & .right_content{
+                & svg{
+                    margin-left: 1.009vw;
+                }
+                & .title_text{
+                    font-size: 1.413vw;
+                }
+            }
+            & img,svg{
+                width: 2.018vw;
+                margin-right: 1.009vw;
+            }
+            & .title_text{
+                font-size: 1.615vw;
+            }
+        }
+        & .block_replay_content{
+            padding: 3.027vw 2.018vw;
+            & .block_left{
+                & .description_left{
+                    font-size: 1.211vw;
+                }
+                & .container_block{
+                    & .replay-desc-right{
+                        & p{
+                            font-size: 1.211vw;
+                        }
+                    }
+                    & .replay-desc-left{
+                        & p{
+                            font-size: 1.211vw;
+                        }
+                        & .gray{
+                            font-size: 1.413vw;
+                        }
+                        & .blue{
+                            font-size: 1.413vw;
+                        }
+                    }
+                }
+            }
+            & .block_right{
+                & .container_block{
+                    margin-top: 2.018vw;
+                    & p{
+                        font-size: 1.211vw;
+                    }
+                    & .right{
+                        & p{
+                            font-size: 1.413vw;
+                        }
+                        & svg{
+                            width: 1.514vw;
+                            margin-left: 1.009vw;
+                        }
+                    }
+                }
+            }
+        }
+        & .title_players{
+            height: 6.054vw;
+            padding: 0 2.018vw;
+            & .title_playersText{
+                font-size: 1.615vw;
+            }
+            & a{
+                font-size: 1.211vw;
+            }
+        }
+        & .container_players{
+            max-height: 22.200vw;
+            padding: 2.018vw 0;
+            & .players_content{
+                padding: 1.009vw 4.541vw 0.505vw 2.018vw;
+                & .left_block{
+                    span{
+                        font-size: 1.413vw;
+                    }
+                    & img{
+                        margin: 0 1.009vw 0 1.514vw;
+                    }
+                    & a{
+
+                        width: 17.154vw;
+                        height: 2.825vw;
+                        & .name_player{
+                            font-size: 1.413vw;
+                        }
+                    }
+                }
+                & .center_block{
+                    & img{
+                        margin: 0 0.505vw;
+                    }
+                }
+                & .right_block{
+                    & svg{
+                        width: 2.018vw;
+                    }
+                }
+            }
+        }
+        & .container_round{
+            padding: 2.018vw 2.018vw 1.009vw;
+            & .winner_round{
+                padding-bottom: 1.009vw;
+                & .left_block{
+                    span{
+                        font-size: 1.413vw;
+                    }
+                    & img{
+                        margin: 0 1.009vw 0 1.514vw;
+                    }
+                    & a{
+                        & .name_player{
+                            font-size: 1.413vw;
+                        }
+                    }
+                }
+                & .center_block{
+                    & .one_player{
+                        width: 11.100vw;
+                        height: 2.825vw;
+                    }
+                    & img{
+                        margin: 0 0.505vw;
+                    }
+                    & .blue_span{
+                        margin: 0 2.523vw 0 2.018vw;
+                    }
+                }
+                & .right_block{
+                    & a{
+                        margin-right: 1.009vw;
+                    }
+                    & svg{
+                        width: 2.018vw;
+                    }
+                }
+            }
+        }
+
+        .container_players::-webkit-scrollbar {
+            width: 1.009vw;
+        }
+        .container_players::-webkit-scrollbar-thumb {
+            height: 2.523vw;
+        }
+    }
+
 
     //Предстоящие турниры
     .Page_tournament-content{
