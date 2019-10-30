@@ -30,33 +30,13 @@
         padding: 25px;
 
 
-        .upload-avatar {
-            display: flex;
-            align-items: flex-end;
-            width: 100%;
-            .avatar__input-upload {
-                flex-grow: 1;
-            }
-            .avatar__button-upload {
-                margin-left: 5px;
-                label {
-                    border: 1px solid #0567cc;
-                    display: inline-block;
-                    cursor: pointer;
-                    background-color: #0567cc;
-                    margin-bottom: 0;
-                    height: 37px;
-                    padding-left: 10px;
-                    padding-right: 10px;
-                    padding-top: 5px;
-                    padding-bottom: 5px;
-                    color: #fff;
-                    border-radius: 4px;
-                }
+        .upload-image {
+            margin-bottom: 16px;
+            p {
+                color: #495057;
+                font-size: 16px;
+                margin-bottom: 8px;
 
-                input[type="file"] {
-                    display: none;
-                }
             }
         }
 

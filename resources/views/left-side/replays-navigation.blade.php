@@ -18,9 +18,9 @@
         @if($pro)
             <div class="accordion__topic card">
                 <div class="topic__header card-header">
-                    <p class="header__title">
+                    <a class="header__title">
                         {{$replayTypeName}}
-                    </p>
+                    </a>
                 </div>
             </div>
             <div class="accordion__topic card">
@@ -65,9 +65,9 @@
         @else
             <div class="accordion__topic card">
                 <div class="topic__header card-header">
-                    <p class="header__title">
+                    <a class="header__title">
                         {{$replayTypeName}}
-                    </p>
+                    </a>
                 </div>
                 <div class="topic__header card-header">
                     <a class="header__title" href="{{route('replay.index')}}">

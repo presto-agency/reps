@@ -112,6 +112,7 @@
             }
 
             .items__slide-button {
+                display: flex;
                 a {
                     text-decoration: none;
                     background-color: #fff;
@@ -122,6 +123,7 @@
                     justify-content: center;
                     border: 1px solid #0567cc;
                     border-radius: 3px;
+                    margin-left: 10px;
 
                     i {
                         color: #0567cc;
