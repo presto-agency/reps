@@ -21,6 +21,9 @@
         <form class="gallery__form" action="{{ route('gallery.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="upload-avatar">
+                {{--                <div class="avatar__input-upload">--}}
+                {{--                    <input type="file" class="form-control" id="user-settings-email-avatar"  name="picture">--}}
+                {{--                </div>--}}
                 <div class="avatar__button-upload">
                     <label for="avatar__button-upload">Выбрать файл
                         <input id="avatar__button-upload" type="file" class="form-control" name="picture"
@@ -58,8 +61,10 @@
         </form>
     </div>
 </div>
-<script type="text/javascript">
-    $('#gallery__for-adults').on('change', function () {
-        this.value = this.checked ? 1 : 0;
-    }).change();
-</script>
+@push('ess21-custom-script')
+    <script type="text/javascript">
+        $('#gallery__for-adults').on('change', function () {
+            this.value = this.checked ? 1 : 0;
+        }).change();
+    </script>
+@endpush

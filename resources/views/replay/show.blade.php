@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    @include('replay.showSingle')
+    @include('replay.components.showSingle')
     @include('content.comments', ['comments' => $replay->comments])
     @include('content.add-comment', [
         'route' => route('replay.send_comment', ['id' =>$replay->id])

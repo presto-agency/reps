@@ -3,11 +3,11 @@
 namespace App\Providers;
 
 
-use App\Http\ViewComposers\{DashboardCountComposer,
+use App\Http\ViewComposers\{admin\DashboardCountComposer,
     Footer\FooterComposer,
     ForumNavigationComposer,
     HeadlineComposer,
-    InterviewVariantAnswerComposer,
+    admin\InterviewVariantAnswerComposer,
     LeftSide\ReplaysNavigationComposer,
     LeftSide\ReplaysShowInHomeComposer,
     Registration\RegistrationComposer,

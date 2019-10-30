@@ -6,6 +6,6 @@
 @endsection
 
 @section('content')
-        @include('replay.showAll')
+        @include('replay.components.showAll')
 @endsection
 

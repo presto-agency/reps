@@ -7,7 +7,7 @@ use AdminColumnEditable;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
-use App\Http\ViewComposers\InterviewVariantAnswerComposer;
+use App\Http\ViewComposers\admin\InterviewVariantAnswerComposer;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Section;
 

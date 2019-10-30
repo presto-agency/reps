@@ -61,10 +61,12 @@
                 @csrf
                 <div class="form-group">
                     <label for="gallery-name">Подпись:</label>
-                    <input type="text" class="form-control" id="gallery-name" name="sign" placeholder="Подпись" value="{{old('sign',$userImage->sign)}}">
+                    <input type="text" class="form-control" id="gallery-name" name="sign" placeholder="Подпись"
+                           value="{{old('sign',$userImage->sign)}}">
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{old('for_adults',$userImage->for_adults)}}" name="for_adults" id="gallery__for-adults">
+                    <input class="form-check-input" type="checkbox" value="{{old('for_adults',$userImage->for_adults)}}"
+                           name="for_adults" id="gallery__for-adults">
                     <label class="form-check-label" for="gallery__for-adults">
                         18+
                     </label>
@@ -78,9 +80,10 @@
         </div>
     @endisset
 </div>
-<script type="text/javascript">
-    $('#gallery__for-adults').on('change', function () {
-        this.value = this.checked ? 1 : 0;
-    }).change();
-</script>
-
+@push('ess21-custom-script')
+    <script type="text/javascript">
+        $('#gallery__for-adults').on('change', function () {
+            this.value = this.checked ? 1 : 0;
+        }).change();
+    </script>
+@endpush
