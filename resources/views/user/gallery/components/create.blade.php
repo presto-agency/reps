@@ -29,6 +29,13 @@
                         <input id="avatar__button-upload" type="file" class="form-control" name="picture"
                                value="{{old('picture')}}" accept="image/*">
                     </label>
+
+
+            <div class="upload-image">
+                <input id="uploadFile" class="f-input" readonly/>
+                <div class="fileUpload btn btn--browse">
+                    <span>Выбрать файл</span>
+                    <input id="uploadBtn" type="file"  class="upload"/>
                 </div>
             </div>
             @if ($errors->has('picture'))
@@ -61,10 +68,4 @@
         </form>
     </div>
 </div>
-@push('ess21-custom-script')
-    <script type="text/javascript">
-        $('#gallery__for-adults').on('change', function () {
-            this.value = this.checked ? 1 : 0;
-        }).change();
-    </script>
-@endpush
+
