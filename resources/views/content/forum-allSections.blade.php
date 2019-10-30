@@ -1,7 +1,7 @@
 @if(!$sections->isEmpty())
 <section class="forum_allSections">
     @foreach($sections as $section)
-    <div class="wrapper">
+    <div class="wrapper border_shadow">
         <div class="title_block">
             <div class="left_section">
                 <a href="{{ route('forum.show', $section->id) }}">
@@ -10,11 +10,11 @@
                 </a>
             </div>
             <div class="right_section">
-                <div class="block_text">
+                <div class="block_text night_text">
                     <span>Темы: </span>
                     <span>{{ $section->topics_count }} </span>
                 </div>
-                <div class="block_text">
+                <div class="block_text night_text">
                     <span>Комментариев: </span>
                     <span>{{ $section->section_comments_count }}</span>
                 </div>
@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="content_allArticle">
-            <p class="text_descrArticle">{{ $section->description }}</p>
+            <p class="text_descrArticle night_text">{{ $section->description }}</p>
         </div>
     </div>
     @endforeach
@@ -82,5 +82,5 @@
     </div>--}}
 </section>
 @else
-    <h2>No Sections</h2>
+    <h2 class="night_text">No Sections</h2>
 @endif

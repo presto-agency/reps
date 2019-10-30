@@ -1,4 +1,4 @@
-<div class="gocu-replays">
+<div class="gocu-replays border_shadow">
     <div class="gocu-replays__title">
         <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -26,7 +26,7 @@
 			l34.4,5.5c0.9,0.3,1.3,0.6,1.4,0.7C186.9,189.1,186.8,189.7,186.2,190.4z"/>
         </svg>
 
-        <p class="title__text">ПОЛЬЗОВАТЕЛЬСКИЕ реплеи</p>
+        <p class="title__text night_text">ПОЛЬЗОВАТЕЛЬСКИЕ реплеи</p>
 
         <label class="title__game-period" for="game-period" name="game-period">
             <select id="game-period">
@@ -38,26 +38,26 @@
     </div>
     @isset($replay)
         @foreach($replay as $item)
-            <div class="gocu-replays__subtitle">
+            <div class="gocu-replays__subtitle change_gray">
                 @if($proRout)
                     @if($proRoutType)
-                        <a class="subtitle__name"
+                        <a class="subtitle__name night_text"
                            href="{{ route('replay_pro.type.show',['type' => $type,'replay_pro'=>$item->id])}}">
                             {{$item->title}}
                         </a>
                     @else
-                        <a class="subtitle__name"
+                        <a class="subtitle__name night_text"
                            href="{{ route('replay_pro.show',['replay_pro' =>$item->id])}}">
                             {{$item->title}}
                         </a>
                     @endif
                 @else
-                    <a class="subtitle__name"
+                    <a class="subtitle__name night_text"
                        href="{{ route('replay.show',['replay' =>$item->id])}}">
                         {{$item->title}}
                     </a>
                 @endif
-                <p class="subtitle__date">{{$item->created_at}}</p>
+                <p class="subtitle__date night_text">{{$item->created_at}}</p>
             </div>
             <div class="gocu-replays__match">
                 <div class="match__author">
@@ -65,27 +65,27 @@
                         src="{{\File::exists($item->users->avatar) === true ? asset($item->users->avatar) : asset($item->users->avatar_url_or_blank)}}"
                         alt="avatar">
                     <span class="comment-author__nickname">{{$item->users->name}}</span>
-                    <span class="comment-author__replay-item">Видео реплай</span>
-                    <span class="comment-author__date">{{$item->created_at}}</span>
+                    <span class="comment-author__replay-item night_text">Видео реплай</span>
+                    <span class="comment-author__date night_text">{{$item->created_at}}</span>
                 </div>
                 <p class="match__comment"></p>
                 <div class="match__info">
                     <div class="info__country">
-                        <span class="country__text">Страны:</span>
+                        <span class="country__text night_text">Страны:</span>
                         <img class="country__img country-first" src="{{$item->firstCountries->flag}}"
                              alt="flag" title="{{$item->firstCountries->name}}">
-                        <span class="country__text">vs</span>
+                        <span class="country__text night_text">vs</span>
                         <img src="{{$item->secondCountries->flag}}"
                              alt="flag" title="{{$item->secondCountries->name}}">
                     </div>
                     <div class="info__match-up">
-                        <span class="match-up__text">Матчап: </span>
+                        <span class="match-up__text night_text">Матчап: </span>
                         <span class="match-up__name name__first"  title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</span>
-                        <span class="match-up__text match-up__versus">vs</span>
+                        <span class="match-up__text match-up__versus night_text">vs</span>
                         <span class="match-up__name name__second"  title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</span>
                     </div>
                     <div class="info__maps">
-                        <span class="maps__text">Карта:</span>
+                        <span class="maps__text night_text">Карта:</span>
                         <span class="maps__name">{{$item->maps->name}}</span>
                     </div>
                     <div class="info__wins">
@@ -101,7 +101,7 @@
                     c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                     C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
-                        <span class="wins__text">{{$item->positive_count - $item->negative_count}}</span>
+                        <span class="wins__text night_text">{{$item->positive_count - $item->negative_count}}</span>
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@
 <div class="gocu-replays__numb-pages">
     <p class="numb-pages">10 из 240</p>
 </div>
-<div class="gocu-replays__button">
+<div class="gocu-replays__button night_modal">
     <button class="button button__download-more">
         Загрузить еще
     </button>
