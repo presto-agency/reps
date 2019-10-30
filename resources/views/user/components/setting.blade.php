@@ -31,8 +31,14 @@
                 <label for="avatar__button-upload">Загрузить фото
                     <input id="avatar__button-upload night_input" type="file" class="form-control" accept="image/*">
                 </label>
+        <div class="upload-image">
+            <input id="uploadFile-2" class="f-input" readonly/>
+            <div class="fileUpload btn btn--browse">
+                <span>Выбрать файл</span>
+                <input id="uploadBtn-2" type="file"  class="upload"/>
             </div>
         </div>
+
         <div class="form-group">
             <label for="user-settings__country" class="night_text">*Страна:
                 <select class="js-example-basic-single night_input" name="country" id="user-settings__country">
