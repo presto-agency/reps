@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\GravatarTrait;
 use App\Traits\ModelRelations\UserRelation;
 use App\Traits\ModelSetAttributes\UserSetAttribute;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -68,9 +69,72 @@ class User extends Authenticatable
     public static function getUserDataById($id)
     {
         return User::where('id',$id)
-            ->with('roles')
+            ->with('roles', 'countries', 'races')
+            ->withCount( 'topics', 'comments', 'user_replay', 'gosu_replay')
 //            ->withCount( 'positive', 'negative', 'comments')
 //            ->withCount('user_galleries', 'topics', 'replay', 'gosu_replay', 'topic_comments', 'replay_comments', 'gallery_comments')
             ->first();
+    }
+
+    public function isOnline()
+    {
+        if (is_null($this->activity_at)) {
+            return false;
+        }
+        $time = Carbon::now()->diffInMinutes(Carbon::parse($this->activity_at));
+        return $time <= 15;
+    }
+
+    /**
+     * Gets from OLD reps.ru files
+     */
+    public function getUserStatus($cs)
+    {
+        if ($cs < 1000) {
+            return "Zim";
+        } elseif ($cs < 2000) {
+            return "Fan of Barbie";
+        } elseif ($cs < 3000) {
+            return "Zagoogli";
+        } elseif ($cs < 4000) {
+            return "BIG SCV";
+        } elseif ($cs < 5000) {
+            return "Hasu";
+        } elseif ($cs < 6000) {
+            return "XaKaC";
+        } elseif ($cs < 7000) {
+            return "Idra";
+        } elseif ($cs < 8000) {
+            return "Trener";
+        } elseif ($cs < 9000) {
+            return "[СО!]";
+        } elseif ($cs < 10000) {
+            return "SuperHero";
+        } elseif ($cs < 15000) {
+            return "Gosu";
+        } elseif ($cs < 20000) {
+            return "IPXZerg";
+        } elseif ($cs < 40000) {
+            return "Savior";
+        } elseif ($cs < 70000) {
+            return "Lutshii";
+        } elseif ($cs < 100000) {
+            return "Bonjva";
+        } elseif ($cs >= 100000) {
+            return "Ebanutyi";
+        }
+    }
+
+    public function checkUserLink($str)
+    {
+        if (preg_match('/^(http|https):\/\//i', $str)) {
+            $url = $str;
+        } else {
+            $url = 'http://' . $str;
+        }
+        if (filter_var($url, FILTER_VALIDATE_URL)) {
+            return $url;
+        }
+        return false;
     }
 }

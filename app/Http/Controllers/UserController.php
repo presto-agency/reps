@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserFriend;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -57,7 +58,12 @@ class UserController extends Controller
             abort(404);
         }
 
+        $friends = UserFriend::getFriends($user);
+        $friendly = UserFriend::getFriendlies($user);
+
         return view('user.index')->with([
+            'friends' => $friends,
+            'friendly' => $friendly,
             'user' => $user
         ]);
     }

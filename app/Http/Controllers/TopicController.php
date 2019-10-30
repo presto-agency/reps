@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\ForumSection;
 use App\Models\ForumTopic;
+use Auth;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
@@ -95,5 +97,18 @@ class TopicController extends Controller
         ]);
         $topic->comments()->save($comment);
         return back();
+    }
+
+    public function getUserTopic($user_id = 0)
+    {
+        if ($user_id == 0){
+            $user_id = Auth::id();
+        }
+
+        $data = ForumSection::getUserTopics($user_id);//TODO: remove
+
+        return view('user.forum.my_topics')->with([
+            'topics' => $data, //TODO: remove
+            'user_id' => $user_id]);
     }
 }

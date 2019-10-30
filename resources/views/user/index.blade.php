@@ -17,7 +17,7 @@
 {{--    @include('user.gallery.gallery-add-comment')--}}
     @include('user.components.create-new-replay')
     @include('user.components.user-reputation-history')
-    @include('user.components.my-topics')
+{{--    @include('user.components.my-topics')--}}
     @include('user.components.password-recovery')
     @include('user.components.get-recovery-link')
     @include('user.components.my-posts')

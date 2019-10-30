@@ -58,10 +58,18 @@ Route::resource("tournament", 'Tournament\TournamentController');
     return view('user.index');
 });*/
 
-Route::group(['prefix' => 'user'], function () {
+Route::group(['prefix' => 'user','middleware' => 'auth'], function () {
 
     Route::get('/{id}', 'UserController@show')->name('user_profile');
+    Route::get('{id}/topic', 'TopicController@getUserTopic')->name('user.forum_topic');
 
+
+
+
+
+    /*Route::get('{id}/topic', function (){
+        echo 'dsaf';
+    });*/
 });
 
 
