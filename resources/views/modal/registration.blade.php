@@ -10,28 +10,6 @@
                     </svg>
                 </a>
             </div>
-            {{--@if (!empty(Session::get('error_code')) && Session::get('error_code') > 0)
-                <div class="alert alert-danger">
-                    <strong>Error</strong><br><br>
-                    <ul>
-                        --}}{{--@foreach ($error_code->all() as $error)--}}{{--
-                            <li>{{ Session::get('error_code') }}</li>
-                        --}}{{--@endforeach--}}{{--
-                    </ul>
-                </div>
-            @endif--}}
-
-            {{--@if(count($errors) > 0)
-            <!-- класс фреймворка бутстрап -->
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif--}}
-
             <div class="modal-body">
                 <h2 class="modal-body__title night_text">Добро пожаловать!</h2>
                 <form method="POST" action="{{ route('register') }}">
