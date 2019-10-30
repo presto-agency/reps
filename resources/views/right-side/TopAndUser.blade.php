@@ -29,7 +29,7 @@
                 @foreach($newUsers as $item)
                     <div class="row">
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
-                            <p>#{{$item['id']}}</p>
+                            <p class="night_text">#{{$item['id']}}</p>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
                             <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="flag"
@@ -52,7 +52,7 @@
                 @foreach($top10Rating as $item)
                     <div class="row">
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
-                            <p>{{$item['max']}} кг</p>
+                            <p class="night_text">{{$item['max']}} кг</p>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
                             <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="flag"
@@ -61,7 +61,7 @@
                                  title="{{$item['raceTitle']}}"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                            <p>{{$item['name']}}</p>
+                            <p >{{$item['name']}}</p>
                         </div>
                     </div>
                 @endforeach
@@ -75,7 +75,7 @@
                 @foreach($top10Points as $item)
                     <div class="row">
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
-                            <p>{{$item['max']}} pts</p>
+                            <p class="night_text">{{$item['max']}} pts</p>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
                             <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="flag"

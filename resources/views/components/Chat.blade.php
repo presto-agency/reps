@@ -22,7 +22,7 @@
                                 </svg>
                             </button>
                             <!-- Modal -->
-                            <div class=" modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="  modal  fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content ">
                                         <div class="modal-header title_block">
@@ -32,7 +32,7 @@
                                                 <span class="btn_close" aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body popup_contant">
+                                        <div class="modal-body popup_contant night_modal">
                                             <div class=" messanger">
                                                 <div class="row_contentChat">
                                                     <div class=" block_user_akk">

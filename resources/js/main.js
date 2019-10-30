@@ -19,6 +19,33 @@ $('#nav').click(function(event) {
         $('.mob_menu').css({"display":"none"});
 
 });
+$('.btn-round').click(function(event) {
+    event.preventDefault();
+    $('.mob_menu').css({"display":"none"});
+
+});
+$(function() {
+    //do something
+
+    $(".btn-round").click({animateIn: "closeButton", animateOut: "plusButton"}, animate_function);
+    $(".btn-square").click({animateIn: "circleShape", animateOut: "squareShape"}, animate_function);
+
+
+    function animate_function(event){
+        if( $(this).hasClass(event.data.animateIn) ) {
+            $(this).removeClass(event.data.animateIn).addClass(event.data.animateOut);
+        }
+        else if( $(this).hasClass(event.data.animateOut) ) {
+            $(this).removeClass(event.data.animateOut).addClass(event.data.animateIn);
+        }
+        else {
+            $(this).addClass('animated ' + event.data.animateIn);
+        }
+    }
+
+    //end do something
+});
+//end mob_menu
 
 
 
