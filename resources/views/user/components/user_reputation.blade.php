@@ -1,5 +1,5 @@
 <section class="user_reputation user_profile">
-    <div class="wrapper">
+    <div class="wrapper border_shadow">
         <div class="title_block tb_reputation">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
                 <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
@@ -14,17 +14,17 @@
                 </div>
                 <div class="col-xl-8 col-8 container_information">
                     <div class="userText_block">
-                        <span class="title">Rus_Brain</span>
+                        <span class="title night_text">Rus_Brain</span>
                         <span class="date">last seen 6 h ago</span>
                     </div>
 
                     <div class="information_block">
                         <div class="left_block"><span>Имя:</span></div>
-                        <div class="right_block"><span>Лена 0306</span></div>
+                        <div class="right_block"><span class="night_text">Лена 0306</span></div>
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>Страна:</span></div>
-                        <div class="right_block"><span>Russia</span></div>
+                        <div class="right_block"><span class="night_text">Russia</span></div>
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>Репутация:</span></div>
