@@ -62,6 +62,8 @@ Route::get('user', function () {
 Route::group(['prefix' => 'user'], function () {
     Route::resource("gallery", 'User\UserGalleryController');
 });
+/*Galleries*/
+Route::resource("galleries", 'User\GalleriesController');
 
 
 Auth::routes();
