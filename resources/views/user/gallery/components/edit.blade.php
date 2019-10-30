@@ -49,6 +49,9 @@
                     <a href="#">рейтинг лист</a>
                 </div>
                 <div class="items__slide-button">
+                    <a href="{{route('gallery.edit',['gallery'=>$previous])}}">
+                        <i class="fas fa-angle-double-left"></i>
+                    </a>
                     <a href="{{route('gallery.edit',['gallery'=>$next])}}">
                         <i class="fas fa-angle-double-right"></i>
                     </a>

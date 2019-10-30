@@ -64,7 +64,10 @@ class ReplayType extends Section
 
         $display->setItems([
             $title = AdminFormElement::text('title', 'Title')
-                ->setValidationRules(['required', 'string', 'max:255']),
+                ->setHtmlAttribute('placeholder', 'Название')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setHtmlAttribute('minlength', '1')
+                ->setValidationRules(['required', 'string', 'between:1,255'])
         ]);
 
         return $display;

@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\User;
 
 
+use App\Models\Comment;
 use App\Models\UserGallery;
 
 class GalleryHelper
@@ -82,4 +83,16 @@ class GalleryHelper
         return \Str::contains(self::getUrl(), 'galleries');
     }
 
+    public function saveComments()
+    {
+        $request = request();
+        $replay = UserGallery::find($request->id);
+        $comment = new Comment([
+            'user_id' => auth()->user()->id,
+            'content' => $request->input('content')
+        ]);
+        $replay->comments()->save($comment);
+
+        return back();
+    }
 }

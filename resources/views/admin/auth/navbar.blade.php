@@ -1,19 +1,13 @@
 @if ($user)
     <li class="dropdown user user-menu" style="margin-right: 20px;">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-            @if(file_exists($user->avatar) === true)
-                <img src="{{asset($user->avatar)}}"
-                     class="user-image"/>
-                <span class="hidden-xs">{{ $user->name }}</span>
-            @else
-                <img src="{{asset($user->avatar_url_or_blank) }}"
-                     class="user-image"/>
-                <span class="hidden-xs">{{ $user->name }}</span>
-            @endif
+            <img src="{{asset($user->avatar)}}"
+                 class="user-image"/>
+            <span class="hidden-xs">{{ $user->name }}</span>
         </a>
         <ul class="dropdown-menu">
             <li class="user-header">
-                <img src="{{asset($user->avatar_url_or_blank) }}" class="img-circle"/>
+                <img src="{{asset($user->avatar) }}" class="img-circle"/>
                 <p>
                     {{ $user->name }} <small>({{ $user->roles->title }})</small>
                     <small>@lang('sleeping_owl::lang.auth.since', ['date' => $user->created_at->format('d.m.Y')])</small>

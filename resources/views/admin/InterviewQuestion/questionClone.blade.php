@@ -7,8 +7,8 @@
             @if($method != 'edit')
                 <tr>
                     <td>
-                        <input type="text" name="answer[]" placeholder="Enter your Answer"
-                               class="form-control name_list"/>
+                        <input type="text" name="answer[]" placeholder="Ответ на вопрос"
+                               minlength="1" maxlength="255" class="form-control name_list"/>
                     </td>
                     <td>
                         <button type="button" name="add" id="add" class="btn btn-success">+</button>
@@ -21,7 +21,7 @@
                         <tr id="row" class="dynamic-added">
                             <td>
                                 <input id='{{$answer->id}}' type="text" name="answer[{{$answer->id}}]"
-                                       placeholder="Enter your Answer"
+                                       minlength="1" maxlength="10" placeholder="Ответ на вопрос"
                                        class="form-control name_list" value="{{$answer->answer}}"/>
                             </td>
                             <td>
@@ -49,7 +49,7 @@
 
         $('#add').click(function () {
             i++;
-            $('#dynamic_field').append('<tr id="row' + i + '" class="dynamic-added"><td><input type="text" name="answer[]" placeholder="Enter your Answer" class="form-control name_list" /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+            $('#dynamic_field').append('<tr id="row' + i + '" class="dynamic-added"><td><input type="text" name="answer[]" placeholder="Ответ на вопрос"   class="form-control name_list" /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
         });
 
         $(document).on('click', '.btn_remove', function () {

@@ -100,23 +100,22 @@ class InterviewQuestion extends Section
 
                         $question = AdminFormElement::text('question', 'Вопрос')
                             ->setHtmlAttribute('placeholder', 'Вопрос')
-                            ->setValidationRules(['required', 'string', 'max:255']),
+                            ->setHtmlAttribute('maxlength', '255')
+                            ->setHtmlAttribute('minlength', '1')
+                            ->setValidationRules(['required', 'string', 'between:1,255']),
 
-                        $active = AdminFormElement::checkbox('active', 'Активный'),
+                        $active = AdminFormElement::checkbox('active', 'Активный')
+                            ->setValidationRules(['nullable', 'boolean']),
 
                         $active = AdminFormElement::checkbox('for_login', 'Только для авторизированных'),
-
                     ];
                 })->addColumn(function () {
                     return [
-
                         $answer = AdminFormElement::hidden('answer'),
-                        view('admin.InterviewQuestion.questionClone'),
-
+                        \View::make('admin.InterviewQuestion.questionClone')->render(),
                     ];
                 })
         );
-
 
         return $form;
     }
@@ -128,7 +127,36 @@ class InterviewQuestion extends Section
     public function onCreate()
     {
 
-        return $this->onEdit('');
+        $form = AdminForm::panel();
+        $form->setItems(
+            AdminFormElement::columns()
+                ->addColumn(function () {
+                    return [
+
+                        $question = AdminFormElement::text('question', 'Вопрос')
+                            ->setHtmlAttribute('placeholder', 'Вопрос')
+                            ->setHtmlAttribute('maxlength', '255')
+                            ->setHtmlAttribute('minlength', '1')
+                            ->setValidationRules(['required', 'string', 'between:1,255']),
+
+                        $active = AdminFormElement::checkbox('active', 'Активный')
+                            ->setHtmlAttribute('checked', 'checked')
+                            ->setDefaultValue(true)
+                            ->setValidationRules(['nullable', 'boolean']),
+
+                        $active = AdminFormElement::checkbox('for_login', 'Только для авторизированных')
+                            ->setDefaultValue(false)
+                            ->setValidationRules(['nullable', 'boolean']),
+                    ];
+                })->addColumn(function () {
+                    return [
+                        $answer = AdminFormElement::hidden('answer'),
+                        \View::make('admin.InterviewQuestion.questionClone')->render(),
+                    ];
+                })
+        );
+
+        return $form;
 
     }
 
