@@ -264,3 +264,7 @@ document.getElementById("uploadBtn2").onchange = function () {
 };
 
 
+$('#gallery__for-adults').on('change', function () {
+    this.value = this.checked ? 1 : 0;
+}).change();
+
