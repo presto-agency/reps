@@ -22,15 +22,13 @@
         <!-- small card User Replays-count -->
         <div class="small-box bg-success">
             <div class="inner">
-                <h3>{{$data['userReplays'] ?? ''}}</h3>
-
+                <h3>{{$data['countUser'] ?? ''}}</h3>
                 <p>Количество пользовательский Replays</p>
             </div>
             <div class="icon">
                 <i class="fas fa-file-video"></i>
             </div>
-
-            <a href="{{!empty($data['userReplaysTypeId']) ? url('admin\replays'.'?type_id='.$data['userReplaysTypeId']) : url('admin\replays')}}" class="small-box-footer">
+            <a href="{{url('admin\replays'.'?user_replay='.$data['userId'])}}" class="small-box-footer">
                 Список <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
@@ -40,15 +38,13 @@
         <!-- small card Gosu Replays-count -->
         <div class="small-box bg-danger">
             <div class="inner">
-                <h3>{{$data['gosuReplays'] ?? ''}}</h3>
-
+                <h3>{{$data['countGosu'] ?? ''}}</h3>
                 <p>Количество профисиональных Replays</p>
             </div>
             <div class="icon">
                 <i class="fas fa-file-video"></i>
             </div>
-
-            <a href="{{!empty($data['gosuReplaysTypeId']) ?  url('admin\replays'.'?type_id='.$data['gosuReplaysTypeId']) : url('admin\replays')}}" class="small-box-footer">
+            <a href="{{url('admin\replays'.'?user_replay='.$data['gosuId'])}}" class="small-box-footer">
                 Список <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
@@ -59,13 +55,11 @@
         <div class="small-box bg-info">
             <div class="inner">
                 <h3>{{$data['forumTopics'] ?? ''}}</h3>
-
                 <p>Количество Forum Topics</p>
             </div>
             <div class="icon">
                 <i class="far fa-newspaper"></i>
             </div>
-
             <a href="{{url('admin\forum_topics')}}" class="small-box-footer">
                 Список <i class="fas fa-arrow-circle-right"></i>
             </a>

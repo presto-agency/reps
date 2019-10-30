@@ -64,7 +64,7 @@
                     <img
                         src="{{\File::exists($item->users->avatar) === true ? asset($item->users->avatar) : asset($item->users->avatar_url_or_blank)}}"
                         alt="avatar">
-                    <span class="comment-author__nickname">{{$item->users->name}}</span>
+                    <span class="comment-author__nickname" title="{{$item->users->name}}">{{$item->users->name}}</span>
                     <span class="comment-author__replay-item night_text">Видео реплай</span>
                     <span class="comment-author__date night_text">{{$item->created_at}}</span>
                 </div>

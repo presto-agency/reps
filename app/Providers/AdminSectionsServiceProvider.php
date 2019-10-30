@@ -98,7 +98,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
             [
                 'title' => 'ФОРУМ',
                 'icon' => 'fas fa-user',
-                'priority' => 1,
+                'priority' => 4,
                 'pages' => [
                     (new Page(\App\Models\ForumSection::class))->setPriority(1),
                     (new Page(\App\Models\ForumTopic::class))->setPriority(2),

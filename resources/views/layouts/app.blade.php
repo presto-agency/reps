@@ -27,13 +27,6 @@
 
 </head>
 <body>
-{{--    <div id="app">--}}
-
-{{--@include('components.Chat')--}}
-{{--@include('components.block-tournament')--}}
-{{--@include('components.block-replay')--}}
-{{--@include('components.block-lastNews')--}}
-
 <!--SECTION HEADER-->
 <header>
     @include('header.index')
@@ -57,34 +50,22 @@
 <!--SECTION CONTENT-->
 <section class="container">
     <div class="row">
+
         <!--SIDEBAR LEFT-->
         <div id="left-sidebar" class="col-xl-3 col-lg-3 col-md-6 col-12">
             <button id="pulse-button-info" class="pulse-button">Информация</button>
             <div id="left-sidebar-wrap" class="left-sidebar-wrap no-height">
                 @yield('sidebar-left')
-                {{--@include('components.block-tournament')--}}
-                {{--@include('components.block-replay')--}}
-                {{--@include('components.block-lastNews')--}}
-                {{--@include('left-side.replays')--}}
-                {{--@include('left-side.search')--}}
-                {{--@include('left-side.forum-topics')--}}
             </div>
-
         </div>
         <!--END SIDEBAR LEFT-->
+
         <!--CONTENT-->
         <div id="content" class="col-xl-6 col-lg-6 col-md-12 col-12 content">
             @yield('content')
-            {{--@include('content.Page_gameBest')--}}
-            {{--@include('content.detailed-news')--}}
-            {{--@include('content.forum-allSections')--}}
-            {{--@include('content.forum-article')--}}
-            {{--@include('content.gocu-replays')--}}
-            {{--@include('content.comments')--}}
-            {{--@include('content.add-comment')--}}
-            {{--@include('content.detailed-forum')--}}
         </div>
         <!--END CONTENT-->
+
         <!-- RIGHT SIDEBAR-->
         <div id="right-sidebar" class="col-xl-3 col-lg-3 col-md-6 col-12">
             <button id="pulse-button-top" class="pulse-button">Топ</button>
@@ -110,6 +91,7 @@
 
 
 {{--    </div>--}}
+
 @section('custom-script')
     <script>
         $(document).ready(function () {

@@ -105,15 +105,13 @@ class User extends Section
             $email_verified_at = AdminColumn::custom('<small>Почта</small>', function ($model) {
                 return !empty($model->email_verified_at) ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
             })->setFilterCallback(function ($column, $query, $search) {
-                if ($search == 1) {
+                if ($search == 'yes') {
                     $query->whereNotNull('email_verified_at');
                 }
-                if ($search == 0) {
+                if ($search == 'no') {
                     $query->whereNull('email_verified_at');
                 }
-                if (empty($search)) {
-                    $query->get();
-                }
+
 
             })->setWidth(10),
 
@@ -159,7 +157,6 @@ class User extends Section
             $email_verified_at = AdminColumnFilter::select()
                 ->setOptions($this->emailVr())
                 ->setOperator(FilterInterface::EQUAL)
-                ->setPlaceholder('Все')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
         ]);
         $display->getColumnFilters()->setPlacement('table.header');
@@ -299,8 +296,10 @@ class User extends Section
     public function emailVr()
     {
         $this->emailVr = [
-            1 => 'Да',
-            0 => 'Нет',
+            'all' => 'Все',
+            'yes' => 'Да',
+            'no' => 'Нет',
+
         ];
         return $this->emailVr;
     }
