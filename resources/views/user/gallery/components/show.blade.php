@@ -48,14 +48,19 @@
                 <div class="items__reputation-button">
                     <a href="#">рейтинг лист</a>
                 </div>
-                <div class="items__slide-button">
-                    <a href="#">
-                        <i class="fas fa-angle-double-left"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fas fa-angle-double-right"></i>
-                    </a>
-                </div>
+                @if($routCheck)
+                    <div class="items__slide-button">
+                        <a href="{{route('galleries.show',['gallery'=> $next])}}">
+                            <i class="fas fa-angle-double-right"></i>
+                        </a>
+                    </div>
+                @else
+                    <div class="items__slide-button">
+                        <a href="{{route('gallery.show',['gallery'=> $next])}}">
+                            <i class="fas fa-angle-double-right"></i>
+                        </a>
+                    </div>
+                @endif
             </div>
             <div class="body__img">
 {{--                <img src="{{ asset($userImage->picture) }}" alt="image">--}}
