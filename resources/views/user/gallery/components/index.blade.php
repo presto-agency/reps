@@ -26,9 +26,9 @@
             @endforeach
         @endisset
     </div>
-    <div class="gallery__numb-pages">
-        <p class="numb-pages">10 из 240</p>
-    </div>
+{{--    <div class="gallery__numb-pages">--}}
+{{--        <p class="numb-pages">10 из 240</p>--}}
+{{--    </div>--}}
     <div class="gallery__button">
         <button class="button button__download-more">
             Загрузить еще

@@ -49,7 +49,7 @@
                     <a href="#">рейтинг лист</a>
                 </div>
                 <div class="items__slide-button">
-                    <a href="{{route('gallery.show',['gallery'=>$next])}}">
+                    <a href="{{route('gallery.edit',['gallery'=>$next])}}">
                         <i class="fas fa-angle-double-right"></i>
                     </a>
                 </div>
@@ -57,6 +57,26 @@
             <div class="body__img">
                 <img src="{{ asset($userImage->picture) }}" alt="image">
             </div>
+            <form action="" class="body__edit-image-form">
+                @csrf
+                <div class="form-group">
+                    <label for="gallery-name">Подпись:</label>
+                    <input type="text" class="form-control" id="gallery-name" name="sign" placeholder="Подпись"
+                           value="{{old('sign',$userImage->sign)}}">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="{{old('for_adults',$userImage->for_adults)}}"
+                           name="for_adults" id="gallery__for-adults">
+                    <label class="form-check-label" for="gallery__for-adults">
+                        18+
+                    </label>
+                </div>
+                <div class="modal-body__add-btn">
+                    <button class="button button__download-more">
+                        Обновить
+                    </button>
+                </div>
+            </form>
         </div>
     @endisset
 </div>
