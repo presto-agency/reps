@@ -3,9 +3,9 @@
 
 namespace App\Http\ViewComposers;
 
+use App\Models\Replay;
 use App\User;
 use App\Models\ForumTopic;
-use App\Models\ReplayType;
 use Illuminate\View\View;
 
 class DashboardCountComposer
@@ -15,21 +15,16 @@ class DashboardCountComposer
 
     public function __construct()
     {
-        $this->category = collect();
-
         $data['users'] = User::count();
         $data['forumTopics'] = ForumTopic::count();
 
-        $getUserReplay = ReplayType::withCount('replays')->where('title', 'Пользовательский')->first();
-        if (!(empty($getUserReplay))) {
-            $data['userReplaysTypeId'] = $getUserReplay->id;
-            $data['userReplays'] = $getUserReplay->replays_count;
-        }
-        $getProReplay = ReplayType::withCount('replays')->where('title', 'Профессиональный')->first();
-        if (!(empty($getProReplay))) {
-            $data['gosuReplaysTypeId'] = $getProReplay->id;
-            $data['gosuReplays'] = $getProReplay->replays_count;
-        }
+        $getUserReplay = Replay::all(['id', 'user_replay']);
+        $data['gosuReplays'] = $getUserReplay->where('user_replay', Replay::REPLAY_PRO)->count();
+        $data['userReplays'] = $getUserReplay->where('user_replay', '!=', Replay::REPLAY_PRO)->count();
+        $getGosuID = $getUserReplay->where('user_replay', Replay::REPLAY_PRO)->toArray();
+        $data['gosuReplaysTypeId'] = reset($getGosuID)['id'];
+        $getUserID = $getUserReplay->where('user_replay', '!=', Replay::REPLAY_PRO)->toArray();
+        $data['userReplaysTypeId'] = reset($getUserID)['id'];
         $this->category = $data;
 
     }

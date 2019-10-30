@@ -1,7 +1,7 @@
 <div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="registrationModalTitle"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content night_modal">
             <div class="modal-header">
                 <h5 class="modal-title" id="registrationModalTitle">Регистрация</h5>
                 <a href="#" class="modal-header__close" data-dismiss="modal">
@@ -33,7 +33,7 @@
             @endif--}}
 
             <div class="modal-body">
-                <h2 class="modal-body__title">Добро пожаловать!</h2>
+                <h2 class="modal-body__title night_text">Добро пожаловать!</h2>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="form-group">

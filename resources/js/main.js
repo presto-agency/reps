@@ -19,6 +19,33 @@ $('#nav').click(function(event) {
         $('.mob_menu').css({"display":"none"});
 
 });
+$('.btn-round').click(function(event) {
+    event.preventDefault();
+    $('.mob_menu').css({"display":"none"});
+
+});
+$(function() {
+    //do something
+
+    $(".btn-round").click({animateIn: "closeButton", animateOut: "plusButton"}, animate_function);
+    $(".btn-square").click({animateIn: "circleShape", animateOut: "squareShape"}, animate_function);
+
+
+    function animate_function(event){
+        if( $(this).hasClass(event.data.animateIn) ) {
+            $(this).removeClass(event.data.animateIn).addClass(event.data.animateOut);
+        }
+        else if( $(this).hasClass(event.data.animateOut) ) {
+            $(this).removeClass(event.data.animateOut).addClass(event.data.animateIn);
+        }
+        else {
+            $(this).addClass('animated ' + event.data.animateIn);
+        }
+    }
+
+    //end do something
+});
+//end mob_menu
 
 
 
@@ -56,8 +83,19 @@ $('.btn_streams_close').click(function(event) {
     $('.btn_streams_list').css({"width":"50px"});
     $('.btn_streams_close').css({"width":"0"});
 });
-
-
+//big_video
+$('.big_video_right').click(function(event) {
+    event.preventDefault();
+    $('.main_container').addClass("active_big_video");
+    $('.big_video_left').css({"display":"block"});
+    $('.big_video_right').css({"display":"none"});
+});
+$('.big_video_left').click(function(event) {
+    event.preventDefault();
+    $('.main_container').removeClass("active_big_video");
+    $('.big_video_right').css({"display":"block"});
+    $('.big_video_left').css({"display":"none"});
+});
  jQuery(function($){
      $(document).mouseup(function (e){ // событие клика по веб-документу
 
@@ -72,9 +110,29 @@ $('.btn_streams_close').click(function(event) {
 
      });
  });
+if(localStorage.getItem('nightMode')==1){
+    $('body').addClass('nightMode');
+}
+else $('body').removeClass('nightMode');
+//day-night
+$('#night').click(function(event) {
+    event.preventDefault();
+    console.log("11");
+    $('body').addClass('nightMode');
+     //localStorage.setItem('nightMode', theme);
+    localStorage.setItem('nightMode', 1);
+
+    // $(':root').css('--blue', 'red');
+    // document.documentElement.style.setProperty('--blue', 'green');
 
 
-//
+});
+$('#day').click(function(event) {
+    event.preventDefault();
+    console.log("21");
+    $('body').removeClass('nightMode');
+    localStorage.setItem('nightMode', 2);
+});
 
 /*accordion replays script   start*/
 /*const accordionState = JSON.parse(localStorage.getItem('accordionState')) || {};
@@ -173,4 +231,22 @@ let bubblyButtons = document.getElementsByClassName("pulse-button");
 
 for (let i = 0; i < bubblyButtons.length; i++) {
     bubblyButtons[i].addEventListener('click', animateButton, false);
+}
+
+
+
+/*accordion my topics script*/
+let acc = document.getElementsByClassName("accordion-button");
+let i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        let panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+        } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+    });
 }

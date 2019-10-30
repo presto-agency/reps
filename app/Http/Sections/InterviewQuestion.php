@@ -7,6 +7,7 @@ use AdminColumnEditable;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
+use App\Http\ViewComposers\InterviewVariantAnswerComposer;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Section;
 
@@ -89,9 +90,9 @@ class InterviewQuestion extends Section
      */
     public function onEdit($id)
     {
+        self::setIVAAttributes($id, "edit");
+
         $form = AdminForm::panel();
-
-
         $form->setItems(
             AdminFormElement::columns()
                 ->addColumn(function () {
@@ -155,8 +156,9 @@ class InterviewQuestion extends Section
     {
 
         $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $url = url('admin/interview_questions/show');
-            return $url . '/' . $model->getKey();
+            $id = $model->getKey();
+            $url = url("admin/interview_questions/$id/show");
+            return $url;
         }, function (\Illuminate\Database\Eloquent\Model $model) {
             return 'Просмотреть';
         }, 50);
@@ -165,5 +167,11 @@ class InterviewQuestion extends Section
         $link->setHtmlAttribute('class', 'btn-info');
 
         return $link;
+    }
+
+    public static function setIVAAttributes($id, $method)
+    {
+        InterviewVariantAnswerComposer::$id = $id;
+        InterviewVariantAnswerComposer::$method = $method;
     }
 }

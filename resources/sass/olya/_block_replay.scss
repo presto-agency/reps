@@ -4,6 +4,10 @@
     }
     & .container_btn{
         display: flex;
+        justify-content: center;
+        a{
+            display: flex;
+        }
         & .button{
             margin: 20px auto 40px;
             padding: 5px;
@@ -13,8 +17,18 @@
             margin-bottom: 25px;
         }
     & .row_game{
-        //padding: 0 10px;
+        display: flex;
+        padding: 0;
+        margin: 5px;
         margin-bottom: 15px;
+        .game_oneSection{
+            padding: 0px;
+        }
+        .wrapper_game{
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
         & .name_game{
             color: $blue;
             & p{

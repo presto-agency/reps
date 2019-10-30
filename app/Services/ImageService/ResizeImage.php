@@ -33,6 +33,6 @@ class ResizeImage
      */
     public static function checkUploadPath($save_path)
     {
-        return !file_exists($save_path) === true ? mkdir($save_path, 666, true) : null;
+        return !\File::exists($save_path) === true ? mkdir($save_path, 666, true) : null;
     }
 }

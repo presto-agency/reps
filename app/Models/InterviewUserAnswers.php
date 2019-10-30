@@ -8,8 +8,12 @@ class InterviewUserAnswers extends Model
 {
 
     protected $fillable = [
-        'question_id', 'answer_id', 'user_id'
+        'answer_id'
     ];
 
+    protected $hidden = [
+        'question_id',
+        'user_id',
+    ];
 
 }

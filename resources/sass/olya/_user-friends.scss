@@ -8,11 +8,15 @@
         border-bottom: 1px solid $gray;
         margin: 0;
         & span{
+            font-size: 14px;
             color: $gray;
         }
         & .user_block{
             display: flex;
             justify-content: space-between;
+            & span{
+                font-size: 14px;
+            }
         }
     }
     & .wrapper_table{
@@ -25,6 +29,7 @@
             display: flex;
             align-items: center;
             & span{
+                font-size: 14px;
                 color: $gray;
             }
             & .block_action{
@@ -43,6 +48,7 @@
 
                 & .name_user{
                     color: $blue;
+                    font-size: 14px;
                     font-weight: 600;
                     max-width: 98px;
                     display: inline-block;

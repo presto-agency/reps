@@ -62,7 +62,7 @@
                     <p>Файл:</p>
                 </div>
                 <div class="col-md-10">
-                    <a href="{{route('replay.download', ['id' => $replay->id])}}">Скачать Replay</a>
+                    <a href="{{route('admin.replay.download', ['id' => $replay->id])}}">Скачать Replay</a>
                 </div>
                 <div class="col-md-2">
                     <p>Контент:</p>
@@ -85,8 +85,13 @@
                 <div class="box-body">
                     @foreach($replay->comments as $comment)
                         <div class="item row">
-                            <img src="{{$comment->user->avatar_url_or_blank}}"
-                                 class="img-circle img-bordered-sm" alt="User avatar"/>
+                            @if(file_exists($comment->user->avatar) === true)
+                                <img src="{{asset($comment->user->avatar)}}"
+                                     class="img-circle img-bordered-sm" alt="User avatar"/>
+                            @else
+                                <img src="{{asset($comment->user->avatar_url_or_blank)}}"
+                                     class="img-circle img-bordered-sm" alt="User avatar"/>
+                            @endif
                             <p class="message">
                                 <a href="#" class="name">
                                     <small class="text-muted pull-right"><i
@@ -106,5 +111,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

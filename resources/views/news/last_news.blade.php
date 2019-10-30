@@ -1,14 +1,14 @@
 @php
     $last_id = '';
 @endphp
-<div class="breaking-news">
+<div class="breaking-news border_shadow">
     @if($visible_title)
         <div class="breaking-news__title">
             <svg class="title__icon" viewBox="-96 0 512 512" xmlns="http://www.w3.org/2000/svg">
                 <path
                         d="m160 512c-88.234375 0-160-71.765625-160-160v-229.332031c0-8.832031 7.167969-16 16-16s16 7.167969 16 16v229.332031c0 70.59375 57.40625 128 128 128s128-57.40625 128-128v-234.667969c0-47.058593-38.273438-85.332031-85.332031-85.332031-47.0625 0-85.335938 38.273438-85.335938 85.332031v213.335938c0 23.53125 19.136719 42.664062 42.667969 42.664062s42.667969-19.132812 42.667969-42.664062v-208c0-8.832031 7.167969-16 16-16s16 7.167969 16 16v208c0 41.171875-33.496094 74.664062-74.667969 74.664062s-74.667969-33.492187-74.667969-74.664062v-213.335938c0-64.679687 52.628907-117.332031 117.335938-117.332031 64.703125 0 117.332031 52.652344 117.332031 117.332031v234.667969c0 88.234375-71.765625 160-160 160zm0 0"/>
             </svg>
-            <p class="title__text">Последние новости</p>
+            <p class="title__text ">Последние новости</p>
         </div>
     @endif
 
@@ -89,7 +89,8 @@
                     </a>
                 </div>
 
-                <form class="card-body__comment-form" method="POST" action="{{route('news.comment_send', ['id' => $single_news->id])}}" method="post">
+
+                {{--<form class="card-body__comment-form" method="POST" action="{{route('news.comment_send', ['id' => $single_news->id])}}" method="post">
                     @csrf
                     <div class="comment-form__group form-group">
                         <label class="comment" for="comment">
@@ -124,7 +125,7 @@
                                 </g>
                         </svg>
                     </button>
-                </form>
+                </form>--}}
 
                 <hr class="card-body__horizontal-line">
             </div>
@@ -146,6 +147,6 @@
 
     @else
         <div id="load_more" class="breaking-news__button">
-            <button type="button" name="load_more_button" class="btn btn-info form-control">No Data Found</button>
+            <button type="button" name="load_more_button" class="btn btn-info form-control night_text">No Data Found</button>
         </div>
     @endif

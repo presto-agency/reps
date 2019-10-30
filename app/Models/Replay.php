@@ -5,9 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\ModelRelations\ReplayRelationTrait;
 
+
 class Replay extends Model
 {
     use ReplayRelationTrait;
+
+    const REPLAY_PRO = 0;
+    const REPLAY_USER = 1;
+
+    public static $userReplaysType = [
+        Replay::REPLAY_PRO => 'Профессиональный',
+        Replay::REPLAY_USER => 'Пользовательский',
+    ];
 
     protected $fillable = [
 
@@ -17,7 +26,7 @@ class Replay extends Model
         'first_country_id', 'second_country_id',
         'first_race', 'second_race',
         'type_id',
-        'comments_count',
+        'user_replay',
         'user_rating',
         'negative_count', 'rating', 'positive_count',
         'approved',

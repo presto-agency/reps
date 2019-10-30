@@ -1,0 +1,30 @@
+.popup_chat{
+    .title_block{
+        .btn_close{
+            font-size: 25px;
+            color: $gray;
+        }
+
+    }
+    .popup_contant{
+        max-height: calc(100vh - 140px) !important;
+        min-height: calc(100vh - 140px) !important;
+        overflow: scroll;
+    }
+    .modal-content{
+        border: 0;
+        .row_contentChat{
+            padding: 15px 10px 0;
+        }
+    }
+
+}
+.popup_contant::-webkit-scrollbar {
+    width: 10px;
+}
+.popup_contant::-webkit-scrollbar-thumb {
+    background-color: #e2e5e9;
+    opacity: 0.8;
+    border-radius: 4px;
+    height: 227px;
+}

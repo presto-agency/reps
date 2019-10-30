@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('sidebar-left')
-    @include('left-side.replays')
+    @include('left-side.replays-navigation')
     @include('left-side.search')
 @endsection
 
 @section('content')
-    @include('content.gocu-replays')
-    @include('content.user-replays')
+        @include('replay.showAll')
 @endsection
+
