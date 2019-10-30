@@ -22,17 +22,14 @@
             <label for="user-settings-email-name">*Имя:</label>
             <input type="text" class="form-control" id="user-settings-email-name">
         </div>
-        <div class="upload-avatar form-group">
-            <div class="avatar__input-upload">
-                <label for="user-settings-email-avatar">Аватар:</label>
-                <input type="text" class="form-control" id="user-settings-email-avatar" placeholder disabled>
-            </div>
-            <div class="avatar__button-upload">
-                <label for="avatar__button-upload">Загрузить фото
-                    <input id="avatar__button-upload" type="file" class="form-control" accept="image/*">
-                </label>
+        <div class="upload-image">
+            <input id="uploadFile-2" class="f-input" readonly/>
+            <div class="fileUpload btn btn--browse">
+                <span>Выбрать файл</span>
+                <input id="uploadBtn-2" type="file"  class="upload"/>
             </div>
         </div>
+
         <div class="form-group">
             <label for="user-settings__country">*Страна:
                 <select class="js-example-basic-single" name="country" id="user-settings__country">

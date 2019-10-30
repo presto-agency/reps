@@ -28,33 +28,6 @@
     .gallery-download__body {
         padding: 25px;
         .gallery__form {
-            .upload-avatar {
-                display: flex;
-                align-items: flex-end;
-                width: 100%;
-                margin-bottom: 20px;
-                .avatar__input-upload {
-                    flex-grow: 1;
-                }
-                .avatar__button-upload {
-                    margin-left: 5px;
-                    label {
-                        border: 1px solid #0567cc;
-                        display: inline-block;
-                        cursor: pointer;
-                        background-color: #0567cc;
-                        margin-bottom: 0;
-                        height: 37px;
-                        padding: 5px 10px;
-                        color: #fff;
-                        border-radius: 4px;
-                    }
-
-                    input[type="file"] {
-                        display: none;
-                    }
-                }
-            }
             .form-group {
                 label {
                     width: 100%;

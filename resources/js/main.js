@@ -250,3 +250,15 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
+
+
+/*script upload image on gallery download page*/
+document.getElementById("uploadBtn").onchange = function () {
+    document.getElementById("uploadFile").value = this.value.replace("C:\\fakepath\\", "");
+};
+
+document.getElementById("uploadBtn2").onchange = function () {
+    document.getElementById("uploadFile2").value = this.value.replace("C:\\fakepath\\", "");
+};
+
+

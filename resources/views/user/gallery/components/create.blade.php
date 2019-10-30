@@ -18,16 +18,17 @@
     </div>
     <div class="gallery-download__body">
         <form class="gallery__form" action="{{ route('gallery.store') }}" method="POST" enctype="multipart/form-data">
-            <div class="upload-avatar">
-                <div class="avatar__input-upload">
-                    <input type="file" class="form-control" id="user-settings-email-avatar"  name="picture">
-                </div>
-                <div class="avatar__button-upload">
-                    <label for="avatar__button-upload">Выбрать файл
-                        <input id="avatar__button-upload" type="file" class="form-control" accept="image/*">
-                    </label>
+
+
+            <div class="upload-image">
+                <input id="uploadFile" class="f-input" readonly/>
+                <div class="fileUpload btn btn--browse">
+                    <span>Выбрать файл</span>
+                    <input id="uploadBtn" type="file"  class="upload"/>
                 </div>
             </div>
+
+
             <div class="form-group">
                 <label class="label_group" for="gallery-name">Подпись:</label>
                 <input type="text" class="form-control" id="gallery-name">

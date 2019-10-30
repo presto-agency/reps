@@ -248,6 +248,21 @@
     .popup_contant::-webkit-scrollbar-thumb {
         height: 16.618vw;
     }       //+
+    .streams_list{
+        padding: 1.098vw;
+        width: 18.668vw;
+        right: -18.668vw;
+        & .widget-stream-lists{
+            margin: 0.366vw 0;
+            & span{
+                margin-left: 20px;
+            }
+        }
+    }
+    .open{
+        right: 6px;
+    }
+
 
     //Банер
     .banner{
@@ -1358,24 +1373,24 @@
                 margin-right: 0.732vw;
             }
             & .title_text{
-                font-size: 16px;
+                font-size: 1.171vw;
             }
         }
         & .block_replay_content{
-            padding: 30px 1.464vw;
+            padding: 2.196vw 1.464vw;
             & .block_left{
                 & .description_left{
-                    font-size: 12px;
+                    font-size: 0.878vw;
                 }
                 & .container_block{
                     & .replay-desc-right{
                         & p{
-                            font-size: 12px;
+                            font-size: 0.878vw;
                         }
                     }
                     & .replay-desc-left{
                         & p{
-                            font-size: 12px;
+                            font-size: 0.878vw;
                         }
                         & .gray{
                             font-size: 1.025vw;
@@ -1390,14 +1405,14 @@
                 & .container_block{
                     margin-top: 1.464vw;
                     & p{
-                        font-size: 12px;
+                        font-size: 0.878vw;
                     }
                     & .right{
                         & p{
                             font-size: 1.025vw;
                         }
                         & svg{
-                            width: 15px;
+                            width: 1.098vw;
                             margin-left: 0.732vw;
                         }
                     }
@@ -1408,28 +1423,28 @@
             height: 4.392vw;
             padding: 0 1.464vw;
             & .title_playersText{
-                font-size: 16px;
+                font-size: 1.171vw;
             }
             & a{
-                font-size: 12px;
+                font-size: 0.878vw;
             }
         }
         & .container_players{
-            max-height: 220px;
+            max-height: 16.105vw;
             padding: 1.464vw 0;
             & .players_content{
-                padding: 0.732vw 45px 5px 1.464vw;
+                padding: 0.732vw 3.294vw 0.366vw 1.464vw;
                 & .left_block{
                     span{
                         font-size: 1.025vw;
                     }
                     & img{
-                        margin: 0 0.732vw 0 15px;
+                        margin: 0 0.732vw 0 1.098vw;
                     }
                     & a{
 
-                        width: 170px;
-                        height: 28px;
+                        width: 12.445vw;
+                        height: 2.050vw;
                         & .name_player{
                             font-size: 1.025vw;
                         }
@@ -1437,7 +1452,7 @@
                 }
                 & .center_block{
                     & img{
-                        margin: 0 5px;
+                        margin: 0 0.366vw;
                     }
                 }
                 & .right_block{
@@ -1456,7 +1471,7 @@
                         font-size: 1.025vw;
                     }
                     & img{
-                        margin: 0 0.732vw 0 15px;
+                        margin: 0 0.732vw 0 1.098vw;
                     }
                     & a{
                         & .name_player{
@@ -1466,14 +1481,14 @@
                 }
                 & .center_block{
                     & .one_player{
-                        width: 110px;
-                        height: 28px;
+                        width: 8.053vw;
+                        height: 2.050vw;
                     }
                     & img{
-                        margin: 0 5px;
+                        margin: 0 0.366vw;
                     }
                     & .blue_span{
-                        margin: 0 25px 0 1.464vw;
+                        margin: 0 1.830vw 0 1.464vw;
                     }
                 }
                 & .right_block{
@@ -1491,7 +1506,7 @@
             width: 0.732vw;
         }
         .container_players::-webkit-scrollbar-thumb {
-            height: 25px;
+            height: 1.830vw;
         }
     }
 
@@ -2861,12 +2876,6 @@
         }
     }
 
-
-
-
-
-
-
     //Твич
     .block_chat-twitch{
         padding-bottom: 4vw;
@@ -3022,6 +3031,44 @@
     .popup_contant::-webkit-scrollbar-thumb {
         height: 22.906vw;
     }
+    .streams_list{
+        padding: 15px;
+        top: 7.2%;
+        width: 255px;
+        position: absolute;
+        height: 92%;
+        overflow: hidden;
+        right: -255px;
+        transition-duration: 0.3s;
+        z-index: 9;
+        background: white;
+        background: transparent;
+        & .widget-stream-lists{
+            visibility: hidden;
+            margin: 5px 0;
+            & span{
+                margin-left: 20px;
+            }
+        }
+    }
+    .open{
+        right: 6px;
+        transition-duration: 0.3s;
+        background: white;
+        & .widget-stream-lists{
+            visibility: visible;
+            color: $blue;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            & span{
+                font-weight: 400;
+
+            }
+
+        }
+    }
+
 
     //Банер
     .banner{
