@@ -1,13 +1,14 @@
 <div class="user-settings border_shadow">
     <div class="user-settings__title">
-        <svg class="title__icon"  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
             <path d="M437.019,74.98C388.667,26.629,324.38,0,256,0C187.619,0,123.331,26.629,74.98,74.98C26.628,123.332,0,187.62,0,256
                 s26.628,132.667,74.98,181.019C123.332,485.371,187.619,512,256,512c68.38,0,132.667-26.629,181.019-74.981
                 C485.371,388.667,512,324.38,512,256S485.371,123.333,437.019,74.98z M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30
                 s226,101.383,226,226S380.617,482,256,482z"/>
 
-                <path d="M378.305,173.859c-5.857-5.856-15.355-5.856-21.212,0.001L224.634,306.319l-69.727-69.727
+            <path d="M378.305,173.859c-5.857-5.856-15.355-5.856-21.212,0.001L224.634,306.319l-69.727-69.727
                 c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
                 c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
         </svg>
@@ -23,22 +24,24 @@
             <input type="text" class="form-control night_input" id="user-settings-email-name">
         </div>
         <div class="upload-avatar form-group">
-            <div class="avatar__input-upload">
-                <label for="user-settings-email-avatar" class="night_text">Аватар:</label>
-                <input type="text" class="form-control night_input" id="user-settings-email-avatar" placeholder disabled>
-            </div>
-            <div class="avatar__button-upload">
-                <label for="avatar__button-upload">Загрузить фото
-                    <input id="avatar__button-upload night_input" type="file" class="form-control" accept="image/*">
-                </label>
-        <div class="upload-image">
-            <input id="uploadFile-2" class="f-input" readonly/>
-            <div class="fileUpload btn btn--browse">
-                <span>Выбрать файл</span>
-                <input id="uploadBtn-2" type="file"  class="upload"/>
-            </div>
+{{--            <div class="avatar__input-upload">--}}
+{{--                <label for="user-settings-email-avatar" class="night_text">Аватар:</label>--}}
+{{--                <input type="text" class="form-control night_input" id="user-settings-email-avatar" placeholder--}}
+{{--                       disabled>--}}
+{{--            </div>--}}
+{{--            <div class="avatar__button-upload">--}}
+{{--                <label for="avatar__button-upload">Загрузить фото--}}
+{{--                    <input id="avatar__button-upload night_input" type="file" class="form-control" accept="image/*">--}}
+{{--                </label>--}}
+{{--            </div>--}}
+{{--            <div class="upload-image">--}}
+{{--                <input id="uploadFile-2" class="f-input" readonly/>--}}
+{{--                <div class="fileUpload btn btn--browse">--}}
+{{--                    <span>Выбрать файл</span>--}}
+{{--                    <input id="uploadBtn-2" type="file" class="upload"/>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
-
         <div class="form-group">
             <label for="user-settings__country" class="night_text">*Страна:
                 <select class="js-example-basic-single night_input" name="country" id="user-settings__country">
@@ -78,18 +81,22 @@
             <label class="form-check-label night_text" for="user-settings-view-signs">
                 Просматривать подписи на форуме:
             </label>
-            <input class="form-check-input night_input" type="checkbox" value="" id="user-settings-view-signs" checked="">
+            <input class="form-check-input night_input" type="checkbox" value="" id="user-settings-view-signs"
+                   checked="">
         </div>
         <div class="form-check">
             <label class="form-check-label night_text" for="user-settings-view-avatar">
                 Просматривать аватары на форуме:
             </label>
-            <input class="form-check-input night_input" type="checkbox" value="" id="user-settings-view-avatar" checked="">
+            <input class="form-check-input night_input" type="checkbox" value="" id="user-settings-view-avatar"
+                   checked="">
         </div>
         <div class="modal-body__enter-btn">
             <button class="button button__download-more">
                 Сохранить
             </button>
         </div>
+
     </form>
 </div>
+<
