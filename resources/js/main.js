@@ -19,6 +19,33 @@ $('#nav').click(function(event) {
         $('.mob_menu').css({"display":"none"});
 
 });
+$('.btn-round').click(function(event) {
+    event.preventDefault();
+    $('.mob_menu').css({"display":"none"});
+
+});
+$(function() {
+    //do something
+
+    $(".btn-round").click({animateIn: "closeButton", animateOut: "plusButton"}, animate_function);
+    $(".btn-square").click({animateIn: "circleShape", animateOut: "squareShape"}, animate_function);
+
+
+    function animate_function(event){
+        if( $(this).hasClass(event.data.animateIn) ) {
+            $(this).removeClass(event.data.animateIn).addClass(event.data.animateOut);
+        }
+        else if( $(this).hasClass(event.data.animateOut) ) {
+            $(this).removeClass(event.data.animateOut).addClass(event.data.animateIn);
+        }
+        else {
+            $(this).addClass('animated ' + event.data.animateIn);
+        }
+    }
+
+    //end do something
+});
+//end mob_menu
 
 
 
@@ -83,13 +110,28 @@ $('.big_video_left').click(function(event) {
 
      });
  });
-
-
+if(localStorage.getItem('nightMode')==1){
+    $('body').addClass('nightMode');
+}
+else $('body').removeClass('nightMode');
 //day-night
 $('#night').click(function(event) {
     event.preventDefault();
+    console.log("11");
+    $('body').addClass('nightMode');
+     //localStorage.setItem('nightMode', theme);
+    localStorage.setItem('nightMode', 1);
+
+    // $(':root').css('--blue', 'red');
+    // document.documentElement.style.setProperty('--blue', 'green');
 
 
+});
+$('#day').click(function(event) {
+    event.preventDefault();
+    console.log("21");
+    $('body').removeClass('nightMode');
+    localStorage.setItem('nightMode', 2);
 });
 
 /*accordion replays script   start*/

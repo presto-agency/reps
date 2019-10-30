@@ -62,7 +62,7 @@
                     <p>Файл:</p>
                 </div>
                 <div class="col-md-10">
-                    <a href="{{route('replay.download', ['id' => $replay->id])}}">Скачать Replay</a>
+                    <a href="{{route('admin.replay.download', ['id' => $replay->id])}}">Скачать Replay</a>
                 </div>
                 <div class="col-md-2">
                     <p>Контент:</p>
@@ -111,5 +111,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

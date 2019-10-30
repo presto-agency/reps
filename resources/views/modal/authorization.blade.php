@@ -1,7 +1,7 @@
 <div class="modal fade" id="authorizationModal" tabindex="-1" role="dialog" aria-labelledby="authorizationModalTitle"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content night_modal">
             <div class="modal-header">
                 <h5 class="modal-title" id="authorizationModalTitle">Вход</h5>
                 <a href="#" class="modal-header__close" data-dismiss="modal">
@@ -11,7 +11,7 @@
                 </a>
             </div>
             <div class="modal-body">
-                <h2 class="modal-body__title">Добро пожаловать!</h2>
+                <h2 class="modal-body__title night_text">Добро пожаловать!</h2>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
@@ -52,7 +52,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                <label class="form-check-label" for="remember">
+                                <label class="form-check-label night_text" for="remember">
                                     {{ __('Remember Me') }}
                                 </label>
                             </div>
@@ -66,7 +66,7 @@
                     </div>
 
                     @if (Route::has('password.request'))
-                        <a class="modal-body__forgot-password" href="{{ route('password.request') }}">
+                        <a class="modal-body__forgot-password night_text" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
                     @endif

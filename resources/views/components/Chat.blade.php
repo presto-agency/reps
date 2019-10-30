@@ -1,12 +1,12 @@
 <section class="block_chat-twitch">
     @foreach($headlineData as $item)
-        <div class="text_support">
+        <div class="text_support night_text">
             {!! $item['title']!!}
         </div>
     @endforeach
     <div class="row">
         <div class="col-12 main_container">
-            <div class="wrapper block_chat">
+            <div class="wrapper  block_chat border_shadow">
                 <div class="container_titleChat">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_left">
                         <img id="img_menuMob" class="icon_bars" src="{{url('/images\speech-bubble.png')}}"/>
@@ -22,7 +22,7 @@
                                 </svg>
                             </button>
                             <!-- Modal -->
-                            <div class=" modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="  modal  fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content ">
                                         <div class="modal-header title_block">
@@ -32,7 +32,7 @@
                                                 <span class="btn_close" aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body popup_contant">
+                                        <div class="modal-body popup_contant night_modal">
                                             <div class=" messanger">
                                                 <div class="row_contentChat">
                                                     <div class=" block_user_akk">
@@ -41,7 +41,7 @@
                                                             <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                                             <a href="#">
                                                                 <span class="blue_text">Rus_Brain</span>
-                                                                <span class="number_mess">#3797</span>
+                                                                <span class="number_mess night_text">#3797</span>
                                                             </a>
                                                         </div>
                                                         <div class=" block_close">
@@ -60,7 +60,7 @@
                                                     </div>
                                                     <div class=" block_userMessage">
                                                         <span class="user_nick">@45554</span>
-                                                        <span class="user_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
+                                                        <span class="user_text night_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -72,7 +72,7 @@
                                                             <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                                             <a href="#">
                                                                 <span class="blue_text">Rus_Brain</span>
-                                                                <span class="number_mess">#3797</span>
+                                                                <span class="number_mess night_text">#3797</span>
                                                             </a>
                                                         </div>
                                                         <div class=" block_close">
@@ -91,7 +91,7 @@
                                                     </div>
                                                     <div class=" block_userMessage">
                                                         <span class="user_nick">@45554</span>
-                                                        <span class="user_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
+                                                        <span class="user_text night_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
                                                     </div>
 
                                                 </div>
@@ -104,7 +104,7 @@
                                                             <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                                             <a href="#">
                                                                 <span class="blue_text">Rus_Brain</span>
-                                                                <span class="number_mess">#3797</span>
+                                                                <span class="number_mess night_text">#3797</span>
                                                             </a>
                                                         </div>
                                                         <div class=" block_close">
@@ -121,9 +121,9 @@
                                                             <span>1.01</span>
                                                         </div>
                                                     </div>
-                                                    <div class=" block_userMessage">
+                                                    <div class=" block_userMessage ">
                                                         <span class="user_nick">@45554</span>
-                                                        <span class="user_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
+                                                        <span class="user_text night_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
                                                     </div>
 
                                                 </div>
@@ -136,7 +136,7 @@
                                                             <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                                             <a href="#">
                                                                 <span class="blue_text">Rus_Brain</span>
-                                                                <span class="number_mess">#3797</span>
+                                                                <span class="number_mess night_text">#3797</span>
                                                             </a>
                                                         </div>
                                                         <div class=" block_close">
@@ -155,7 +155,7 @@
                                                     </div>
                                                     <div class=" block_userMessage">
                                                         <span class="user_nick">@45554</span>
-                                                        <span class="user_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
+                                                        <span class="user_text night_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
                                                     </div>
 
                                                 </div>
@@ -168,7 +168,7 @@
                                                             <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                                             <a href="#">
                                                                 <span class="blue_text">Rus_Brain</span>
-                                                                <span class="number_mess">#3797</span>
+                                                                <span class="number_mess night_text">#3797</span>
                                                             </a>
                                                         </div>
                                                         <div class=" block_close">
@@ -187,7 +187,7 @@
                                                     </div>
                                                     <div class=" block_userMessage">
                                                         <span class="user_nick">@45554</span>
-                                                        <span class="user_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
+                                                        <span class="user_text night_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
                                                     </div>
 
                                                 </div>
@@ -200,7 +200,7 @@
                                                             <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                                             <a href="#">
                                                                 <span class="blue_text">Rus_Brain</span>
-                                                                <span class="number_mess">#3797</span>
+                                                                <span class="number_mess night_text">#3797</span>
                                                             </a>
                                                         </div>
                                                         <div class=" block_close">
@@ -219,7 +219,7 @@
                                                     </div>
                                                     <div class=" block_userMessage">
                                                         <span class="user_nick">@45554</span>
-                                                        <span class="user_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
+                                                        <span class="user_text night_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
                                                     </div>
 
                                                 </div>
@@ -244,7 +244,7 @@
                                 <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
-                                    <span class="number_mess">#3797</span>
+                                    <span class="number_mess night_text">#3797</span>
                                 </a>
                             </div>
                             <div class=" block_close">
@@ -263,7 +263,7 @@
                         </div>
                         <div class=" block_userMessage">
                             <span class="user_nick">@45554</span>
-                            <span class="user_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
+                            <span class="user_text night_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
                         </div>
 
                     </div>
@@ -274,7 +274,7 @@
                                 <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
-                                    <span class="number_mess">#3797</span>
+                                    <span class="number_mess night_text">#3797</span>
                                 </a>
                             </div>
                             <div class=" block_close">
@@ -293,7 +293,7 @@
                         </div>
                         <div class=" block_userMessage">
                             <span class="user_nick">@45554</span>
-                            <span class="user_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
+                            <span class="user_text night_text">,но учитывая, что у нас разница год, на фоне десятилетней истории уже ничего не значит</span>
                         </div>
                     </div>
                     <div class="row_contentChat">
@@ -303,7 +303,7 @@
                                 <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
-                                    <span class="number_mess">#3797</span>
+                                    <span class="number_mess night_text">#3797</span>
                                 </a>
                             </div>
                             <div class=" block_close">
@@ -322,7 +322,7 @@
                         </div>
                         <div class=" block_userMessage">
                             <span class="user_nick">@45554</span>
-                            <span class="user_text">      <img class="icon_bars"
+                            <span class="user_text night_text">      <img class="icon_bars"
                                                                src="{{url('images\Layer_6.png')}}"/></span>
                         </div>
                     </div>
@@ -333,7 +333,7 @@
                                 <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
-                                    <span class="number_mess">#3797</span>
+                                    <span class="number_mess night_text">#3797</span>
                                 </a>
                             </div>
                             <div class=" block_close">
@@ -352,7 +352,7 @@
                         </div>
                         <div class=" block_userMessage">
                             <span class="user_nick">@45554</span>
-                            <span class="user_text">      <img class="icon_bars"
+                            <span class="user_text night_text">      <img class="icon_bars"
                                                                src="{{url('/images\Layer_6.png')}}"/></span>
                         </div>
                     </div>
@@ -363,7 +363,7 @@
                                 <img class="icon_bars" src="{{url('/images\ava.png')}}"/>
                                 <a href="#">
                                     <span class="blue_text">Rus_Brain</span>
-                                    <span class="number_mess">#3797</span>
+                                    <span class="number_mess night_text">#3797</span>
                                 </a>
                             </div>
                             <div class=" block_close">
@@ -382,7 +382,7 @@
                         </div>
                         <div class=" block_userMessage">
                             <span class="user_nick">@45554</span>
-                            <span class="user_text">      <img class="icon_bars"
+                            <span class="user_text night_text">      <img class="icon_bars"
                                                                src="{{url('images\Layer_6.png')}}"/></span>
                         </div>
                     </div>

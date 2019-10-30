@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('sidebar-left')
-    @include('user.components.vote')
+    @include('components.vote')
     @include('user.components.create-replay')
 @endsection
 
@@ -10,11 +10,11 @@
     @include('user.components.user_profile')
     @include('user.components.user_reputation')
     @include('user.components.setting')
-    @include('user.components.gallery-download')
-    @include('user.components.gallery')
-    @include('user.components.gallery-img-detail')
-    @include('user.components.gallery-comments')
-    @include('user.components.gallery-add-comment')
+{{--    @include('user.gallery.gallery-download')--}}
+{{--    @include('user.gallery.gallery')--}}
+{{--    @include('user.gallery.gallery-img-detail')--}}
+{{--    @include('user.gallery.gallery-comments')--}}
+{{--    @include('user.gallery.gallery-add-comment')--}}
     @include('user.components.create-new-replay')
     @include('user.components.user-reputation-history')
     @include('user.components.my-topics')
