@@ -18,9 +18,9 @@
         @if($pro)
             <div class="accordion__topic card night_modal ">
                 <div class="topic__header card-header change_gray">
-                    <p class="header__title night_text">
+                    <a class="header__title night_text">
                         {{$replayTypeName}}
-                    </p>
+                    </a>
                 </div>
             </div>
             <div class="accordion__topic card night_modal">
@@ -65,9 +65,9 @@
         @else
             <div class="accordion__topic card night_modal">
                 <div class="topic__header card-header change_gray">
-                    <p class="header__title night_text">
+                    <a class="header__title night_text">
                         {{$replayTypeName}}
-                    </p>
+                    </a>
                 </div>
                 <div class="topic__header card-header change_gray">
                     <a class="header__title night_text" href="{{route('replay.index')}}">

@@ -24,12 +24,21 @@
             <input type="text" class="form-control night_input" id="user-settings-email-name">
         </div>
         <div class="upload-image">
-            <input id="uploadFile" class="f-input" readonly/>
-            <div class="fileUpload btn btn--browse">
-                <span>Выбрать файл</span>
-                <input id="uploadBtn" type="file" class="upload" value="{{old('avatar')}}" accept="image/*"
-                       name="avatar"/>
+            <p>Аватар:</p>
+            <div class="row">
+                <div class="col-8">
+                    <input id="uploadFile" class="f-input" readonly/>
+                </div>
+                <div class="col-4 pl-0">
+                    <div class="fileUpload btn btn--browse">
+                        <span>Выбрать файл</span>
+                        <input id="uploadBtn" type="file" class="upload" value="{{old('avatar')}}" accept="image/*"
+                               name="avatar"/>
+                    </div>
+                </div>
             </div>
+
+
         </div>
         <div class="form-group">
             <label for="user-settings__country" class="night_text">*Страна:
@@ -88,4 +97,3 @@
 
     </form>
 </div>
-<

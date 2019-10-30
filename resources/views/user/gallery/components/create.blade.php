@@ -21,11 +21,12 @@
         <form class="gallery__form" action="{{ route('gallery.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="upload-image">
-                <input id="uploadFile" class="f-input" readonly/>
-                <div class="fileUpload btn btn--browse">
-                    <span>Выбрать файл</span>
-                    <input id="uploadBtn" type="file" class="upload" value="{{old('picture')}}" accept="image/*"
-                           name="picture"/>
+                <div class="col-4 pl-0">
+                    <div class="fileUpload btn btn--browse">
+                        <span>Выбрать файл</span>
+                        <input id="uploadBtn" type="file" class="upload" value="{{old('picture')}}" accept="image/*"
+                               name="avatar"/>
+                    </div>
                 </div>
             </div>
             @if ($errors->has('picture'))
