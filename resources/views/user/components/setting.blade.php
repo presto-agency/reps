@@ -1,4 +1,4 @@
-<div class="user-settings">
+<div class="user-settings border_shadow">
     <div class="user-settings__title">
         <svg class="title__icon"  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -15,70 +15,70 @@
     </div>
     <form class="user-settings__form">
         <div class="form-group">
-            <label for="user-settings-email">*Email:</label>
-            <input type="text" class="form-control" id="user-settings-email">
+            <label for="user-settings-email" class="night_text">*Email:</label>
+            <input type="text" class="form-control night_input" id="user-settings-email">
         </div>
         <div class="form-group">
-            <label for="user-settings-email-name">*Имя:</label>
-            <input type="text" class="form-control" id="user-settings-email-name">
+            <label for="user-settings-email-name" class="night_text">*Имя:</label>
+            <input type="text" class="form-control night_input" id="user-settings-email-name">
         </div>
         <div class="upload-avatar form-group">
             <div class="avatar__input-upload">
-                <label for="user-settings-email-avatar">Аватар:</label>
-                <input type="text" class="form-control" id="user-settings-email-avatar" placeholder disabled>
+                <label for="user-settings-email-avatar" class="night_text">Аватар:</label>
+                <input type="text" class="form-control night_input" id="user-settings-email-avatar" placeholder disabled>
             </div>
             <div class="avatar__button-upload">
                 <label for="avatar__button-upload">Загрузить фото
-                    <input id="avatar__button-upload" type="file" class="form-control" accept="image/*">
+                    <input id="avatar__button-upload night_input" type="file" class="form-control" accept="image/*">
                 </label>
             </div>
         </div>
         <div class="form-group">
-            <label for="user-settings__country">*Страна:
-                <select class="js-example-basic-single" name="country" id="user-settings__country">
-                    <option value="UK">Ukraine</option>
-                    <option value="IT">Italy</option>
-                    <option value="FR">France</option>
+            <label for="user-settings__country" class="night_text">*Страна:
+                <select class="js-example-basic-single night_input" name="country" id="user-settings__country">
+                    <option class="night_input" value="UK">Ukraine</option>
+                    <option class="night_input" value="IT">Italy</option>
+                    <option class="night_input" value="FR">France</option>
                 </select>
             </label>
         </div>
         <div class="form-group">
-            <label for="user-settings__race">*Раса:
-                <select name="race" id="user-settings__race" class="race">
-                    <option>All</option>
-                    <option>Z</option>
-                    <option>T</option>
-                    <option>P</option>
+            <label for="user-settings__race" class="night_text">*Раса:
+                <select name="race" id="user-settings__race" class="race night_input">
+                    <option class="night_input">All</option>
+                    <option class="night_input">Z</option>
+                    <option class="night_input">T</option>
+                    <option class="night_input">P</option>
                 </select>
             </label>
         </div>
         <div class="form-group">
-            <label for="user-settings-date">Дата рождения:</label>
-            <input type="date" class="form-control" id="user-settings-date">
+            <label for="user-settings-date" class="night_text">Дата рождения:</label>
+            <input type="date" class="form-control night_input" id="user-settings-date">
         </div>
         <div class="form-group">
-            <label for="user-settings-site">Сайт:</label>
-            <input type="text" class="form-control" id="user-settings-site">
+            <label for="user-settings-site" class="night_text">Сайт:</label>
+            <input type="text" class="form-control night_input" id="user-settings-site">
         </div>
         <div class="form-group">
-            <label for="user-settings-discord">Discord:</label>
-            <input type="text" class="form-control" id="user-settings-discord">
+            <label for="user-settings-discord" class="night_text">Discord:</label>
+            <input type="text" class="form-control night_input" id="user-settings-discord">
         </div>
         <div class="form-group">
-            <label for="user-settings-skype">Skype:</label>
-            <input type="text" class="form-control" id="user-settings-skype">
+            <label for="user-settings-skype" class="night_text">Skype:</label>
+            <input type="text" class="form-control night_input" id="user-settings-skype">
         </div>
         <div class="form-check">
-            <label class="form-check-label" for="user-settings-view-signs">
+            <label class="form-check-label night_text" for="user-settings-view-signs">
                 Просматривать подписи на форуме:
             </label>
-            <input class="form-check-input" type="checkbox" value="" id="user-settings-view-signs" checked="">
+            <input class="form-check-input night_input" type="checkbox" value="" id="user-settings-view-signs" checked="">
         </div>
         <div class="form-check">
-            <label class="form-check-label" for="user-settings-view-avatar">
+            <label class="form-check-label night_text" for="user-settings-view-avatar">
                 Просматривать аватары на форуме:
             </label>
-            <input class="form-check-input" type="checkbox" value="" id="user-settings-view-avatar" checked="">
+            <input class="form-check-input night_input" type="checkbox" value="" id="user-settings-view-avatar" checked="">
         </div>
         <div class="modal-body__enter-btn">
             <button class="button button__download-more">
