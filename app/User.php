@@ -60,4 +60,17 @@ class User extends Authenticatable
     {
         return $this->roles->name == 'super-admin' ? true : false;
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function getUserDataById($id)
+    {
+        return User::where('id',$id)
+            ->with('roles')
+//            ->withCount( 'positive', 'negative', 'comments')
+//            ->withCount('user_galleries', 'topics', 'replay', 'gosu_replay', 'topic_comments', 'replay_comments', 'gallery_comments')
+            ->first();
+    }
 }

@@ -43,9 +43,16 @@ Route::get('tournament/{id}', function (){
     return view('tournament.show');
 });
 
-Route::get('user', function (){
+/*Route::get('user', function (){
     return view('user.index');
+});*/
+
+Route::group(['prefix' => 'user'], function () {
+
+    Route::get('/{id}', 'UserController@show')->name('user_profile');
+
 });
+
 
 Auth::routes();
 
