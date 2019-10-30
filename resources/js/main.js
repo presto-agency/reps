@@ -10,8 +10,10 @@ $('.burger_menu').click(function(event) {
 function close_mob_menu() {
     if(document.getElementById('nav_menu_check').checked) {
         $('.nav_item').addClass("nav_item_act");
+
     } else {
         console.log(2);
+
     }
 }
 $('#nav').click(function(event) {

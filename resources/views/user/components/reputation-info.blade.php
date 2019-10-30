@@ -1,11 +1,11 @@
-<div class="reputation-info">
+<div class="reputation-info border_shadow">
     <div class="reputation-info__title">
         <p class="title__text">Мои темы</p>
     </div>
 
     <div class="reputation-info__body">
 
-        <div class="panel">
+        <div class="panel night_modal">
                 <div class="panel__header">
                     <div class="header__items">
                         <a class="items__link" href="#">Поставте расы</a>
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="panel__body">
-                    <p class="body__comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, quidem.</p>
+                    <p class="body__comment night_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, quidem.</p>
                 </div>
                 <div class="panel__footer">
                     <div class="footer__item">

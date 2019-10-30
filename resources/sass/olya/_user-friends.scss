@@ -21,7 +21,7 @@
     }
     & .wrapper_table{
         max-height: 320px;
-        overflow: scroll;
+        overflow: auto;
         & .row_users{
             padding: 10px 0;
             border-bottom: 1px solid $gray;

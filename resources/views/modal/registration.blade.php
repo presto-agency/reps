@@ -38,7 +38,7 @@
                     @csrf
                     <div class="form-group">
                         <input type="text"
-                               class="form-control @error('name') is-invalid @enderror"
+                               class="form-control night_input @error('name') is-invalid @enderror"
                                id="registration-name"
                                placeholder={{ __('Name') }}
                                name="name"
@@ -52,7 +52,7 @@
                         @enderror
 
                         <input type="email"
-                               class="form-control @error('email') is-invalid @enderror"
+                               class="form-control night_input @error('email') is-invalid @enderror"
                                id="registration-mail"
                                placeholder={{ __('E-Mail Address') }}
                                name="email"
@@ -70,14 +70,14 @@
                             @endforeach
                         </select>
 
-                        <select name="race" id="race" class="race">
+                        <select name="race" id="race" class="race night_input">
                             @foreach($race as $item)
                                 <option value="{{ $item->code }}">{{ $item->title }}</option>
                             @endforeach
                         </select>
 
                         <input type="password"
-                               class="form-control @error('password') is-invalid @enderror"
+                               class="form-control night_input @error('password') is-invalid @enderror"
                                id="registration-password"
                                placeholder={{ __('Password') }}
                                 name="password"
@@ -90,7 +90,7 @@
                         @enderror
 
                         <input type="password"
-                               class="form-control"
+                               class="form-control night_input"
                                id="registration-rePassword"
                                placeholder={{ __('Confirm Password') }}
                                 name="password_confirmation"
