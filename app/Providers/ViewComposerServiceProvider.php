@@ -30,7 +30,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         $this->views = $viewFactory;
 
         $this->compose('admin.dashboard', DashboardCountComposer::class);
-        $this->compose('admin.InterviewQuestion.questionClone', InterviewVariantAnswerComposer::class);
+        $this->compose('admin.interviewQuestion.answers', InterviewVariantAnswerComposer::class);
 //        $this->compose('components.streams_list', OnlineStreamListComposer::class);
         $this->compose('components.Chat', HeadlineComposer::class);
         /*left-side*/

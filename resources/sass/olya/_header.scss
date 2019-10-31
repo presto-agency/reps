@@ -1,9 +1,13 @@
 .header{
     background: $blue;
     position: relative;
-    & .header_container{
+    .autorization_user{
+    display: none!important;
+    }
+     .header_container{
         overflow: hidden;
         padding: 10px 15px;
+
         & .header_row{
             min-height: 125px;
             & .logotype{

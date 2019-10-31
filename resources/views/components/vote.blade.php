@@ -1,4 +1,4 @@
-<div class="vote">
+<div class="vote border_shadow">
     <div class="vote__title">
         <svg class="title__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
              x="0px"
@@ -28,8 +28,8 @@
     @if(!$votes->isEmpty())
         @foreach($votes as $item)
             <div class="vote__content">
-                <div class="content__header">
-                    <p class="header__title">{{$item->question}}</p>
+                <div class="content__header change_gray">
+                    <p class="header__title night_text">{{$item->question}}</p>
                 </div>
                 <div class="content__body">
                     @auth
@@ -65,17 +65,17 @@
                         @if(!$item->answers->isEmpty())
                             @foreach($item->answers as $answer)
                                 <div class="results">
-                                    <span>{{$answer->answer}}</span>
-                                    <span>({{$answer->users_count}})</span>
+                                    <span class="night_text">{{$answer->answer}}</span>
+                                    <span class="night_text">({{$answer->users_count}})</span>
                                 </div>
                             @endforeach
                         @endif
                         <div class="result__total">
-                            <span>Total votes: {{$item->user_answers_count}}</span>
+                            <span class="night_text">Total votes: {{$item->user_answers_count}}</span>
                         </div>
                     </div>
                     <div id="view-results__1" class="body__view-results js-body__view-results">
-                        <button class="view-results__button">
+                        <button class="view-results__button night_text">
                             Посмотреть результаты
                         </button>
                     </div>

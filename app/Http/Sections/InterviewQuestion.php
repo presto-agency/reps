@@ -90,12 +90,11 @@ class InterviewQuestion extends Section
      */
     public function onEdit($id)
     {
-        self::setIVAAttributes($id, true);
+        self::setIVAAttributes($id, 'edit');
 
         $form = AdminForm::panel();
 
         $form->setItems(
-//            AdminFormElement::html("<div>hi</div>"),
             AdminFormElement::columns()
                 ->addColumn(function () {
                     return [
@@ -105,35 +104,19 @@ class InterviewQuestion extends Section
                             ->setHtmlAttribute('minlength', '1')
                             ->setValidationRules(['required', 'string', 'between:1,255']),
                         $active = AdminFormElement::checkbox('active', 'Активный')
-                            ->setValidationRules(['nullable', 'boolean']),
-                        $active = AdminFormElement::checkbox('for_login', 'Только для авторизированных'),
+                            ->setValidationRules(['boolean']),
+                        $active = AdminFormElement::checkbox('for_login', 'Только для авторизированных')
+                            ->setValidationRules(['boolean']),
                     ];
                 })->addColumn(function () {
                     return [
-//                        AdminFormElement::html('<div id="div-clone">'),
-                        $answer = AdminFormElement::text('answers[]')
-                            ->setHtmlAttributes([
-                                'placeholder' => 'Ответ на вопрос',
-                                'minlength' => '1',
-                                'maxlength' => '255',
-                                'class' => 'input-clone',
-                            ]),
-//                        AdminFormElement::html('<br>'),
-//                        AdminFormElement::html('</div>'),
-                        AdminFormElement::view('admin.interviewQuestion.answers', $data = ['answers' => 'hi'], function ($instance) {
-                            \Log::info($instance->toArray());
-//                             $store = new InterviewVariantAnswerController;
+                        $answer = AdminFormElement::hidden('answers')
+                            ->setValidationRules(['nullable', 'string', 'max:255']),
+                        AdminFormElement::view('admin.interviewQuestion.answers', $data = [], function () {
                         })
-
-//                        \View::make('admin.interviewQuestion.answers')->render(),
-//                        $content = 'admin.InterviewQuestion.questionClone',
-//                        \AdminFormElement::view($content)
                     ];
                 })
-
         );
-
-//        return view('admin.interviewQuestion.questionClone');
         return $form;
     }
 
@@ -143,38 +126,37 @@ class InterviewQuestion extends Section
      */
     public function onCreate()
     {
-        return $this->onEdit('');
-//        $form = AdminForm::panel();
-//        $form->setItems(
-//            AdminFormElement::columns()
-//                ->addColumn(function () {
-//                    return [
-//
-//                        $question = AdminFormElement::text('question', 'Вопрос')
-//                            ->setHtmlAttribute('placeholder', 'Вопрос')
-//                            ->setHtmlAttribute('maxlength', '255')
-//                            ->setHtmlAttribute('minlength', '1')
-//                            ->setValidationRules(['required', 'string', 'between:1,255']),
-//
-//                        $active = AdminFormElement::checkbox('active', 'Активный')
-//                            ->setHtmlAttribute('checked', 'checked')
-//                            ->setDefaultValue(true)
-//                            ->setValidationRules(['nullable', 'boolean']),
-//
-//                        $active = AdminFormElement::checkbox('for_login', 'Только для авторизированных')
-//                            ->setDefaultValue(false)
-//                            ->setValidationRules(['nullable', 'boolean']),
-//                    ];
-//                })->addColumn(function () {
-//                    return [
-//                        $answer = AdminFormElement::hidden('answer'),
-////                        \View::make('admin.InterviewQuestion.questionClone')->render(),
-//                    ];
-//                })
-//        );
-//
-//        return $form;
+        self::setIVAAttributes($id, 'edit');
 
+        $form = AdminForm::panel();
+
+        $form->setItems(
+            AdminFormElement::columns()
+                ->addColumn(function () {
+                    return [
+                        $question = AdminFormElement::text('question', 'Вопрос')
+                            ->setHtmlAttribute('placeholder', 'Вопрос')
+                            ->setHtmlAttribute('maxlength', '255')
+                            ->setHtmlAttribute('minlength', '1')
+                            ->setValidationRules(['required', 'string', 'between:1,255']),
+                        $active = AdminFormElement::checkbox('active', 'Активный')
+                            ->setValidationRules(['boolean'])
+                            ->setHtmlAttribute('checked', 'checked')
+                            ->setDefaultValue(true),
+                        $for_login = AdminFormElement::checkbox('for_login', 'Только для авторизированных')
+                            ->setValidationRules(['boolean'])
+                            ->setDefaultValue(false),
+                    ];
+                })->addColumn(function () {
+                    return [
+                        $answer = AdminFormElement::hidden('answers')
+                            ->setValidationRules(['nullable', 'string', 'max:255']),
+                        AdminFormElement::view('admin.interviewQuestion.answers', $data = [], function () {
+                        })
+                    ];
+                })
+        );
+        return $form;
     }
 
     /**
@@ -214,9 +196,9 @@ class InterviewQuestion extends Section
         return $link;
     }
 
-    public static function setIVAAttributes($id, $edit)
+    public static function setIVAAttributes($id, $method)
     {
         InterviewVariantAnswerComposer::$id = $id;
-        InterviewVariantAnswerComposer::$method = $edit;
+        InterviewVariantAnswerComposer::$method = $method;
     }
 }
