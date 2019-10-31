@@ -7,24 +7,30 @@ use Illuminate\Http\Request;
 
 trait GravatarTrait
 {
-/*avatar_url_or_blank*/
-    public function getAvatarUrlOrBlankAttribute()
+/*$user->avatar*/
+    public function getAvatarAttribute($value)
     {
-        $url = 'images/avatar.jpg';
-        $url = 'images/newsAvatar.png';
-        return $url;
+        if ($value) {
+            return asset($value);
+        } else {
+            return asset('images/newsAvatar.png');
+        }
     }
+
+/*$user->avatar_url_or_blank*/
+//    public function getAvatarUrlOrBlankAttribute()
+//    {
+//        if (empty($url = $this->avatar)) {
+//            $s = 200;
+//            $d = '404';
+//            $url = 'https://www.gravatar.com/avatar/';
+//            $url .= md5(strtolower(trim($this->email)));
+//            $url .= "?s=$s&d=$d";
+//            if (!@fopen($url, 'r')) {
+//                $url = '/images/avatar.jpg';
+//            }
+//        }
+//    }
 }
 
-//    if (empty($url = $this->avatar)) {
-////      $s = 200;
-////      $d = '404';
-////      $url = 'https://www.gravatar.com/avatar/';
-////      $url .= md5(strtolower(trim($this->email)));
-////      $url .= "?s=$s&d=$d";
-////
-////      if (!@fopen($url,'r')) {
-////        $url = '/images/avatar.jpg';
-////      }
-//
-//    }
+

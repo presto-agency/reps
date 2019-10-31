@@ -82,7 +82,7 @@
                     @endguest
                 </div>
                 {{--                @auth--}}
-                @include('header.components.user-bar_panel')
+{{--                @include('header.components.user-bar_panel')--}}
                 {{--                @endauth--}}
             </div>
         </div>

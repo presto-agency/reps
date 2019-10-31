@@ -4,17 +4,18 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Requests\UserGalleryRequests;
 use App\Models\UserGallery;
+use App\Services\ServiceAssistants\PathHelper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class UserGalleryController extends Controller
 {
 
-    public static $routCheck;
+    public $routCheck;
 
     public function __construct()
     {
-        self::$routCheck = GalleryHelper::checkUrlUsers();
+        $this->routCheck = GalleryHelper::checkUrlGalleries();
     }
 
     /**
@@ -26,7 +27,7 @@ class UserGalleryController extends Controller
     {
         $row = ['id', 'picture'];
         $images = GalleryHelper::getAllUserImages($row);
-        $routCheck = self::$routCheck;
+        $routCheck = $this->routCheck;
         return view('user.gallery.index', compact('images', 'routCheck'));
     }
 
@@ -60,6 +61,8 @@ class UserGalleryController extends Controller
         if ($request->hasFile('picture')) {
             // Check if upload file Successful Uploads
             if ($request->file('picture')->isValid()) {
+                // Check path
+                PathHelper::checkUploadStoragePath("image/user/gallery");
                 // Upload file on server
                 $image = $request->file('picture');
                 $filePath = $image->store('image/user/gallery', 'public');
@@ -93,7 +96,7 @@ class UserGalleryController extends Controller
         // get next user id
         $next = GalleryHelper::nextUserImage($id, $relation, $row);
 
-        $routCheck = self::$routCheck;
+        $routCheck = $this->routCheck;
         return view('user.gallery.show', compact('userImage', 'previous', 'next', 'routCheck'));
 
     }

@@ -6,6 +6,7 @@ use AdminColumn;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
+use App\Services\ServiceAssistants\PathHelper;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Section;
@@ -46,7 +47,7 @@ class Country extends Section
         $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
 
         $display->setApply(function ($query) {
-            $query->orderBy('id', 'asc');
+            $query->orderByDesc('id');
         });
 
         $display->with('using');
@@ -95,16 +96,12 @@ class Country extends Section
                     return [
                         AdminFormElement::image('flag', 'Флаг')
                             ->setUploadPath(function (UploadedFile $file) {
-                                $save_path = "storage/image/county/flag";
-                                $this->checkUploadPath($save_path);
-                                return $save_path;
+                                return PathHelper::checkUploadStoragePath("/image/county/flag");
                             })
-                            ->setUploadFileName(function (UploadedFile $file) {
-                                return $this->creatUploadName($file);
-                            })
+                            ->setValidationRules(['required', 'max:5120'])
                             ->setUploadSettings([
                                 'orientate' => [],
-                                'resize' => [25, 20, function ($constraint) {
+                                'resize' => [50, null, function ($constraint) {
                                     $constraint->upsize();
                                     $constraint->aspectRatio();
                                 }],
