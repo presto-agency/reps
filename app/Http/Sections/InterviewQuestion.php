@@ -110,17 +110,8 @@ class InterviewQuestion extends Section
                     ];
                 })->addColumn(function () {
                     return [
-//                        AdminFormElement::html('<div id="div-clone">'),
-                        $answer = AdminFormElement::text('answers[]')
-                            ->setHtmlAttributes([
-                                'placeholder' => 'Ответ на вопрос',
-                                'minlength' => '1',
-                                'maxlength' => '255',
-                                'class' => 'input-clone',
-                            ]),
-//                        AdminFormElement::html('<br>'),
-//                        AdminFormElement::html('</div>'),
-                        AdminFormElement::view('admin.interviewQuestion.answers', $data = ['answers' => 'hi'], function ($instance) {
+                        $answer = AdminFormElement::hidden('answers'),
+                        AdminFormElement::view('admin.interviewQuestion.answers', $data = [], function ($instance) {
                             \Log::info($instance->toArray());
 //                             $store = new InterviewVariantAnswerController;
                         })

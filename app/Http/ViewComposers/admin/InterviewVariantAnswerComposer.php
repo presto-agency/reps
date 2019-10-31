@@ -21,6 +21,8 @@ class InterviewVariantAnswerComposer
 
     public function compose(View $view)
     {
+        $view->with('edit', !empty(self::$method) === true ? self::$method : false);
+        $view->with('id', self::$id);
 //        $view->with([
 ////            'vote' => self::getInterviewQuestion(),
 //            'edit' => self::$method,
