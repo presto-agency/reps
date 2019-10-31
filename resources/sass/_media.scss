@@ -930,6 +930,16 @@
             }
         }
 
+        .gocu-replays__subtitle {
+            padding: 1.464vw;
+            .subtitle__name {
+                font-size: 1.171vw;
+            }
+            .subtitle__date {
+                font-size: 0.878vw;
+            }
+        }
+
         .gocu-replays__match {
             .match__author {
                 padding: 1.464vw;
@@ -3735,6 +3745,16 @@
                     padding-right: 1.413vw;
                     font-size: 1.211vw;
                 }
+            }
+        }
+
+        .gocu-replays__subtitle {
+            padding: 2.018vw;
+            .subtitle__name {
+                font-size: 1.615vw;
+            }
+            .subtitle__date {
+                font-size: 1.211vw;
             }
         }
 
