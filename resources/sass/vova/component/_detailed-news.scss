@@ -151,21 +151,6 @@
                             }
                         }
                     }
-                    .items__share {
-                        text-decoration: none;
-                        margin-left: 21px;
-                        svg {
-                            width: 18px;
-                            height: 20px;
-                            fill: #c7c9d7;
-                            transition: .3s;
-                        }
-                        &:hover {
-                            & svg {
-                                fill: #0567cc;
-                            }
-                        }
-                    }
                 }
                 .card-body__items-wrap {
                     .items__like {
