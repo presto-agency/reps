@@ -8,21 +8,29 @@ use App\Models\InterviewVariantAnswer;
 class InterviewVariantAnswerController extends Controller
 {
 
-
-    public function store($questionId, $answer)
+    /**
+     * @param $question_id
+     * @param $answer
+     */
+    public function store($question_id, $answer)
     {
         $store = new InterviewVariantAnswer;
-        $store->question_id = $questionId;
+        $store->question_id = $question_id;
         $store->answer = $answer;
         $store->save();
 
     }
 
-    public function update($id, $answer, $questionId)
+    /**
+     * @param $id
+     * @param $answer
+     * @param $question_id
+     */
+    public function update($id, $answer, $question_id)
     {
         $update = InterviewVariantAnswer::where('id', $id)->first();
         if (!$update) {
-            $this->store($questionId, $answer);
+            $this->store($question_id, $answer);
         }
         if (!empty($update)) {
             if ($update->answer != $answer) {
