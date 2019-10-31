@@ -130,9 +130,6 @@
                     text-decoration: underline;
                 }
             }
-            .card-body__banner {
-                margin-bottom: 39px;
-            }
             .card-body__items {
                 width: 100%;
                 display: flex;
@@ -144,21 +141,6 @@
                         text-decoration: none;
                         svg {
                             width: 20px;
-                            height: 20px;
-                            fill: #c7c9d7;
-                            transition: .3s;
-                        }
-                        &:hover {
-                            & svg {
-                                fill: #0567cc;
-                            }
-                        }
-                    }
-                    .items__share {
-                        text-decoration: none;
-                        margin-left: 21px;
-                        svg {
-                            width: 18px;
                             height: 20px;
                             fill: #c7c9d7;
                             transition: .3s;
