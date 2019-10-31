@@ -28,7 +28,7 @@
     @if(!$votes->isEmpty())
         @foreach($votes as $item)
             <div class="vote__content">
-                <div class="content__header">
+                <div class="content__header change_gray">
                     <p class="header__title night_text">{{$item->question}}</p>
                 </div>
                 <div class="content__body">
@@ -71,11 +71,11 @@
                             @endforeach
                         @endif
                         <div class="result__total">
-                            <span>Total votes: {{$item->user_answers_count}}</span>
+                            <span class="night_text">Total votes: {{$item->user_answers_count}}</span>
                         </div>
                     </div>
                     <div id="view-results__1" class="body__view-results js-body__view-results">
-                        <button class="view-results__button">
+                        <button class="view-results__button night_text">
                             Посмотреть результаты
                         </button>
                     </div>
