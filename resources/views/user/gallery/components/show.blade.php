@@ -48,21 +48,17 @@
                 <div class="items__reputation-button">
                     <a href="#">рейтинг лист</a>
                 </div>
-                @if(isset($routCheck))
+                @if($routCheck)
                     <div class="items__slide-button">
-                        @if(isset($next))
                         <a href="{{route('galleries.show',['gallery'=> $next])}}">
                             <i class="fas fa-angle-double-right"></i>
                         </a>
-                        @endif
                     </div>
                 @else
                     <div class="items__slide-button">
-                        @if(isset($next))
                         <a href="{{route('gallery.show',['gallery'=> $next])}}">
                             <i class="fas fa-angle-double-right"></i>
                         </a>
-                        @endif
                     </div>
                 @endif
             </div>

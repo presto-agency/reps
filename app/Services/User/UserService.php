@@ -15,6 +15,53 @@ use Illuminate\Support\Facades\Auth;
 
 class UserService
 {
+    /**
+     * Update user data profile
+     *
+     * @param Request $request
+     * @param $user_id
+     * @return mixed
+     */
+    public static function updateData(Request $request, $user_id)
+    {
+        $user = User::find($user_id);
+        $user_data = $request->all();
+
+        foreach ($user_data as $key => $item) {
+            if (is_null($item)) {
+                unset($user_data[$key]);
+            }
+        }
+
+        if (isset($user_data['country'])) { // country_id
+            $user_data['country_id'] = $user_data['country'];
+            unset($user_data['country']);
+        }
+
+        if (isset($user_data['userbar'])) {
+            $user_data['userbar_id'] = $user_data['userbar'];
+            unset($user_data['userbar']);
+        }
+
+        /*if ($request->file('avatar')) {
+            $title = 'Аватар ' . $user->name;
+            $file = File::storeFile($request->file('avatar'), 'avatars', $title);
+
+            $user_data['file_id'] = $file->id;
+        }*/
+
+        if (isset($user_data['signature'])) {
+            $signature = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $user_data['signature']);
+            $user_data['signature'] = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $signature );
+        }
+
+        if (Auth::user()->roles ? (Auth::user()->roles->name != 'super admin') : true) {
+            unset($user_data['role_id']);
+        }
+
+        $user->update($user_data);
+        return User::find($user_id);
+    }
 
     public static function isFriendExists($user_id, $friend_user_id)
     {

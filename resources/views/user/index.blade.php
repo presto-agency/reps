@@ -9,7 +9,7 @@
     @include('user.components.user_friends')
     @include('user.components.user_profile')
     @include('user.components.user_reputation')
-    @include('user.components.setting')
+{{--    @include('user.components.setting')--}}
     @include('user.components.create-new-replay')
     @include('user.components.user-reputation-history')
 {{--    @include('user.components.my-topics')--}}

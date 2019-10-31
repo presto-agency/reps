@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProfileRequest;
+use App\Models\Country;
+use App\Models\Race;
 use App\Models\UserFriend;
+use App\Services\User\UserService;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -76,7 +80,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('user.edit_profile')->with(['user' => Auth::user(), 'countries' => Country::all(), 'races' => Race::all()]);
     }
 
     /**
@@ -86,9 +90,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProfileRequest $request, $id)
     {
-        //
+        UserService::updateData($request, Auth::id());
+        return redirect()->route('user_profile', ['id' => Auth::id()]);
     }
 
     /**
