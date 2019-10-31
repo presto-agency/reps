@@ -63,6 +63,7 @@
             font-weight: 400;
             transition: .3s;
             margin-bottom: 0;
+            text-decoration: none;
             &:hover {
                 color: #0567cc;
             }
@@ -83,30 +84,58 @@
             align-items: center;
             padding: 20px;
 
-            .comment-author__nickname {
-                color: #0567cc;
-                font-size: 14px;
-                font-weight: 400;
-                margin-bottom: 0; //отмена стандартного margin
-                margin-left: 13px;
+            .subtitle__info {
+                .comment-author__nickname {
+                    color: #0567cc;
+                    font-size: 14px;
+                    font-weight: 400;
+                    margin-bottom: 0; //отмена стандартного margin
+                    margin-left: 13px;
+                }
+
+                .comment-author__replay-item {
+                    color: #9ca0b6;
+                    font-size: 12px;
+                    font-weight: 300;
+                    line-height: 30px;
+                    margin-bottom: 0; //отмена стандартного margin
+                    margin-left: 12px;
+                }
+
+                .comment-author__date {
+                    color: #9ca0b6;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 19px;
+                    margin-bottom: 0; //отмена стандартного margin
+                    margin-left: auto;
+                }
             }
 
-            .comment-author__replay-item {
-                color: #9ca0b6;
-                font-size: 12px;
-                font-weight: 300;
-                line-height: 30px;
-                margin-bottom: 0; //отмена стандартного margin
-                margin-left: 12px;
-            }
-
-            .comment-author__date {
-                color: #9ca0b6;
-                font-size: 12px;
-                font-weight: 400;
-                line-height: 19px;
-                margin-bottom: 0; //отмена стандартного margin
-                margin-left: auto;
+            .subtitle__icons {
+                .items__comment,
+                .items__download {
+                    text-decoration: none;
+                    svg {
+                        width: 21px;
+                        height: 21px;
+                        fill: #9ca0b6;
+                        transition: .3s;
+                    }
+                    span {
+                        color: #9ca0b6;
+                        font-size: 12px;
+                        font-weight: 400;
+                        line-height: 19px;
+                        margin-left: 10px;
+                    }
+                    &:hover svg {
+                        fill: #0567cc;
+                    }
+                }
+                .items__download {
+                    margin-left: 25px;
+                }
             }
         }
 

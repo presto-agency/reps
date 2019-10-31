@@ -66,7 +66,7 @@ class Footer extends Section
             })->setHtmlAttribute('class', 'text-left'),
 
             $approved = AdminColumnEditable::checkbox('approved')
-                ->setLabel('Approved')
+                ->setLabel('Подтвердить')
                 ->setWidth(100),
         ]);
 
@@ -88,7 +88,8 @@ class Footer extends Section
                 ->setHtmlAttributes(['placeholder' => 'Текст'])
                 ->setValidationRules(['required', 'string', 'between:1,1000']),
 
-            $approved = AdminFormElement::checkbox('approved', 'Approved'),
+            $approved = AdminFormElement::checkbox('approved', 'Подтвердить'),
+
 
         ]);
 

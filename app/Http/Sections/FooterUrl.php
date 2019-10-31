@@ -56,6 +56,9 @@ class FooterUrl extends Section
             ->setHtmlAttribute('class', 'table-info text-center ')
             ->paginate(10);
 
+        $display->setApply(function ($query) {
+            $query->orderByDesc('id');
+        });
 
         $display->setColumns([
 
@@ -86,12 +89,18 @@ class FooterUrl extends Section
         $display->setItems([
 
             $title = AdminFormElement::text('title', 'Title')
-                ->setValidationRules(['required', 'string', 'max:255']),
+                ->setHtmlAttribute('placeholder', 'Title')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setHtmlAttribute('minlength', '1')
+                ->setValidationRules(['required', 'string', 'between:1,255']),
 
             $url = AdminFormElement::text('url', 'Url')
-                ->setValidationRules(['required', 'string', 'max:255']),
+                ->setHtmlAttribute('placeholder', 'Url')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setHtmlAttribute('minlength', '1')
+                ->setValidationRules(['required', 'string', 'between:1,255']),
 
-            $approved = AdminFormElement::checkbox('approved', 'Approved'),
+            $approved = AdminFormElement::checkbox('approved', 'Подтвердить'),
 
         ]);
 
@@ -103,7 +112,29 @@ class FooterUrl extends Section
      */
     public function onCreate()
     {
-        return $this->onEdit(null);
+        $display = AdminForm::panel();
+
+        $display->setItems([
+
+            $title = AdminFormElement::text('title', 'Title')
+                ->setHtmlAttribute('placeholder', 'Title')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setHtmlAttribute('minlength', '1')
+                ->setValidationRules(['required', 'string', 'between:1,255']),
+
+            $url = AdminFormElement::text('url', 'Url')
+                ->setHtmlAttribute('placeholder', 'Url')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setHtmlAttribute('minlength', '1')
+                ->setValidationRules(['required', 'string', 'between:1,255']),
+
+            $approved = AdminFormElement::checkbox('approved', 'Подтвердить')
+                ->setHtmlAttribute('checked', 'checked')
+                ->setDefaultValue(true),
+
+        ]);
+
+        return $display;
     }
 
     /**

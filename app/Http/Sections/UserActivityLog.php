@@ -49,12 +49,11 @@ class UserActivityLog extends Section
     {
         $display = AdminDisplay::datatablesAsync()
             ->setHtmlAttribute('class', 'table-info table-sm text-center')
-            ->paginate(10);
+            ->paginate(25);
 
         $display->with('types', 'users');
-
         $display->setApply(function ($query) {
-            $query->orderBy('id', 'desc');
+            $query->orderByDesc('id');
         });
 
         $display->setColumns([
@@ -68,10 +67,10 @@ class UserActivityLog extends Section
             $ip = AdminColumn::text('ip', 'IP'),
 
 
-            $parameters = AdminColumn::custom('Описание', function ($model) {
-                return $this->getEventTitle($model);
-            })->setHtmlAttribute('class', 'text-left')
-                ->setWidth(500),
+//            $parameters = AdminColumn::custom('Описание', function ($model) {
+//                return $this->getEventTitle($model);
+//            })->setHtmlAttribute('class', 'text-left')
+//                ->setWidth(500),
         ]);
 
         $display->setColumnFilters([
