@@ -5772,7 +5772,6 @@
                 margin-left: 2.951vw;
             }
         }
-
         .breaking-news__news-card {
             padding-left: 3.819vw;
             padding-right: 3.819vw;
@@ -7785,7 +7784,167 @@
             }
         }
     }
-//gallery-download
+    //create-new-replay
+    .create-replay {
+        margin-bottom: 5.903vw;
+        .create-replay__title {
+            border-radius: 0.868vw 0.868vw 0 0;
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+        .create-replay__form {
+            padding: 20.868vw;
+            .form-group {
+                label {
+                    select {
+                        height: 6.424vw;
+                        margin-top: 0.868vw;
+                    }
+                }
+
+                .select2 {
+                    height: 6.424vw;
+                    .select2-selection {
+                        height: 6.424vw;
+                        margin-top: 0.868vw;
+                        .select2-selection__rendered {
+                            padding-top: 0.694vw;
+                        }
+                        .select2-selection__arrow {
+                            top: 0.868vw;
+                        }
+                    }
+                }
+            }
+            hr {
+                margin-top: 3.472vw;
+                margin-bottom: 3.472vw;
+            }
+        }
+    }
+    //upload_image
+    .upload-image {
+        .btn--browse{
+            padding: 1.736vw 1.736vw;
+            border-radius: 1.736vw;
+            height: 7.292vw;
+        }
+        .f-input{
+            height: 7.292vw;
+            padding: 0 11.736vw;
+            border-radius: 1.736vw;
+        }
+    }
+    //user_replays
+    .user-replays {
+        margin-bottom: 34px;
+        .user-replays__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+        .user-replays__body {
+            padding: 3.472vw;
+            .body__wrap {
+                margin-bottom: 4.340vw;
+                .body__title {
+                    font-size: 4.340vw;
+                    width: 90%;
+                }
+                .body__numb {
+                    font-size: 4.340vw;
+                }
+            }
+        }
+        .user-replays__button {
+            padding-left: 3.472vw;
+            padding-right: 3.472vw;
+            padding-bottom: 3.472vw;
+        }
+    }
+    //vote
+    .vote {
+        .vote__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.646vw;
+                height: 3.646vw;
+            }
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+        .vote__content {
+            .content__header {
+                padding-top: 2.778vw;
+                padding-bottom: 2.951vw;
+                padding-left: 3.472vw;
+                padding-right: 3.472vw;
+                .header__title {
+                    font-size: 3.778vw;
+                }
+            }
+            .content__body {
+                padding-top: 2.778vw;
+                padding-bottom: 2.951vw;
+                padding-left: 3.472vw;
+                padding-right: 3.472vw;
+                .vote-form {
+                    .form-check {
+                        margin-bottom: 2.604vw;
+                        label {
+                            margin-left: 10px;
+                        }
+                    }
+                    .body__button-vote {
+                        margin-bottom: 2.604vw;
+                    }
+                }
+                .view-results {
+                    display: none;
+                    .results {
+                        margin-bottom: 2.604vw;
+                        span {
+                            font-size: 2.431vw;
+                        }
+                    }
+                    .result__total {
+                        margin-bottom: 2.604vw;
+                        span {
+                            font-size: 2.431vw;
+                        }
+                    }
+                }
+                .body__view-results {
+                    .view-results__button {
+                        font-size: 2.431vw;
+                    }
+                }
+            }
+        }
+    }
+
+    //gallery-download
     .gallery-download {
          .form-check-label{
             font-size: 2.615vw;
@@ -8332,7 +8491,13 @@
         }
     }
 }
-
+.banner{
+    padding: 0 0 3.472vw;
+    .block_content{
+        margin-bottom: 0.868vw;
+        padding: 0 3.472vw;
+    }
+}
 
 
 }
