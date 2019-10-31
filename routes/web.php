@@ -54,12 +54,29 @@ Route::group(['prefix' => 'replay_pro'], function () {
 /*Tournament*/
 Route::resource("tournament", 'Tournament\TournamentController');
 
-Route::get('user', function () {
+/*Route::get('user', function (){
     return view('user.index');
+});*/
+
+Route::group(['prefix' => 'user','middleware' => 'auth'], function () {
+
+    Route::get('/{id}', 'UserController@show')->name('user_profile');
+    Route::get('{id}/topic', 'TopicController@getUserTopic')->name('user.forum_topic');
+    Route::get('{id}/edit', 'UserController@edit')->name('edit_profile');
+    Route::post('{id}/save', 'UserController@update')->name('save_profile');
+
+
+
+
+
+    /*Route::get('{id}/topic', function (){
+        echo 'dsaf';
+    });*/
 });
 /*Galleries*/
 Route::resource("galleries", 'User\GalleriesController');
 Route::post('galleries/{id}/send_comment', 'User\GalleryHelper@saveComments')->name('galleries.send.comment');
+
 
 /*User Gallery*/
 Route::group(['prefix' => 'user'], function () {

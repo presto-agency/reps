@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-use App\Models\ForumSection;
-use App\Models\ForumTopic;
+use App\Http\Requests\UpdateProfileRequest;
+use App\Models\Country;
+use App\Models\Race;
+use App\Models\UserFriend;
+use App\Services\User\UserService;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 
-class TopicController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,6 +31,7 @@ class TopicController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -49,9 +53,23 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        $topic = ForumTopic::with('author','comments')->where('id', $id)->withCount('comments')->first();
 
-        return view('forum.topic')->with('topic', $topic);
+        /*if (Auth::user()) {
+            return abort(403);
+        }*/
+        $user = User::getUserDataById($id);
+        if (!$user) {
+            abort(404);
+        }
+
+//        $friends = UserFriend::getFriends($user);
+//        $friendly = UserFriend::getFriendlies($user);
+
+        return view('user.index')->with([
+//            'friends' => $friends,
+//            'friendly' => $friendly,
+            'user' => $user
+        ]);
     }
 
     /**
@@ -62,7 +80,7 @@ class TopicController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('user.edit_profile')->with(['user' => Auth::user(), 'countries' => Country::all(), 'races' => Race::all()]);
     }
 
     /**
@@ -72,9 +90,10 @@ class TopicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProfileRequest $request, $id)
     {
-        //
+        UserService::updateData($request, Auth::id());
+        return redirect()->route('user_profile', ['id' => Auth::id()]);
     }
 
     /**
@@ -86,29 +105,5 @@ class TopicController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function comment_send(Request $request, $id)
-    {
-        $topic = ForumTopic::find($id);
-        $comment = new Comment([
-            'user_id' => auth()->user()->id,
-            'content' => $request->input('content')
-        ]);
-        $topic->comments()->save($comment);
-        return back();
-    }
-
-    public function getUserTopic($user_id = 0)
-    {
-        if ($user_id == 0){
-            $user_id = Auth::id();
-        }
-
-        $data = ForumSection::getUserTopics($user_id);//TODO: remove
-
-        return view('user.forum.my_topics')->with([
-            'topics' => $data, //TODO: remove
-            'user_id' => $user_id]);
     }
 }
