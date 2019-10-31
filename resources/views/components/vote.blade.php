@@ -25,7 +25,7 @@
 
         <p class="title__text">Голосование</p>
     </div>
-    @isset($votes)
+    @if(!$votes->isEmpty())
         @foreach($votes as $item)
             <div class="vote__content">
                 <div class="content__header">
@@ -33,24 +33,26 @@
                 </div>
                 <div class="content__body">
                     @auth
-                        @if($item->userAlreadyAnswer->isEmpty())
+                        @if($item->users->isEmpty())
                             <form class="vote-form" id="vote-form" action="{{ route('interview.store')}}" method="POST"
                                   enctype="multipart/form-data">
                                 @csrf
-                                @foreach($item->answers as $answer)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="answer_id"
-                                               id="{{$answer->id}}"
-                                               value="{{$answer->id}}"
-                                               checked>
-                                        <input class="form-check-input" type="hidden" name="question_id"
-                                               id="{{$answer->question_id}}"
-                                               value="{{$answer->question_id}}">
-                                        <label class="form-check-label" for="{{$answer->id}}">
-                                            {{$answer->answer}}
-                                        </label>
-                                    </div>
-                                @endforeach
+                                @if(!$item->answers->isEmpty())
+                                    @foreach($item->answers as $answer)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="answer_id"
+                                                   id="{{$answer->id}}"
+                                                   value="{{$answer->id}}"
+                                                   checked>
+                                            <input class="form-check-input" type="hidden" name="question_id"
+                                                   id="{{$answer->question_id}}"
+                                                   value="{{$answer->question_id}}">
+                                            <label class="form-check-label" for="{{$answer->id}}">
+                                                {{$answer->answer}}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                @endif
                                 <div class="body__button-vote">
                                     <button class="button button__download-more">
                                         Проголосовать
@@ -60,16 +62,14 @@
                         @endif
                     @endauth
                     <div class="view-results" id="view-results">
-                        @isset($answersCount)
-                            @foreach($answersCount as $answerCount)
-                                @if($item->id == $answerCount['question_id'])
-                                    <div class="results">
-                                        <span>{{$answerCount['answer']}}</span>
-                                        <span>({{$answerCount['answer_count']}})</span>
-                                    </div>
-                                @endif
+                        @if(!$item->answers->isEmpty())
+                            @foreach($item->answers as $answer)
+                                <div class="results">
+                                    <span>{{$answer->answer}}</span>
+                                    <span>({{$answer->users_count}})</span>
+                                </div>
                             @endforeach
-                        @endisset
+                        @endif
                         <div class="result__total">
                             <span>Total votes: {{$item->user_answers_count}}</span>
                         </div>
@@ -82,5 +82,5 @@
                 </div>
             </div>
         @endforeach
-    @endisset
+    @endif
 </div>

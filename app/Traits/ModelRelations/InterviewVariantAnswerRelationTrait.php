@@ -2,16 +2,18 @@
 
 namespace App\Traits\ModelRelations;
 
+use App\User;
+
 trait InterviewVariantAnswerRelationTrait
 {
 
-    public function userAnswers()
+    public function users()
     {
-        return $this->hasMany(\App\Models\InterviewUserAnswers::class,'answer_id');
-    }
-    public function question()
-    {
-        return $this->belongsTo(\App\Models\InterviewQuestion::class,'question_id');
+        return $this->belongsToMany(User::class,
+            'interview_user_answers',
+            'answer_id',
+            'user_id'
+        );
     }
 
 }

@@ -67,10 +67,10 @@ class UserActivityLog extends Section
             $ip = AdminColumn::text('ip', 'IP'),
 
 
-            $parameters = AdminColumn::custom('Описание', function ($model) {
-                return $this->getEventTitle($model);
-            })->setHtmlAttribute('class', 'text-left')
-                ->setWidth(500),
+//            $parameters = AdminColumn::custom('Описание', function ($model) {
+//                return $this->getEventTitle($model);
+//            })->setHtmlAttribute('class', 'text-left')
+//                ->setWidth(500),
         ]);
 
         $display->setColumnFilters([
