@@ -3,13 +3,12 @@
 
 namespace App\Http\ViewComposers\admin;
 
-use App\Models\InterviewVariantAnswer;
+use App\Models\InterviewQuestion;
 use Illuminate\View\View;
 
 class InterviewVariantAnswerComposer
 {
 
-    private $category;
     /**
      * From Section->InterviewQuestion
      * @var $id ;
@@ -17,25 +16,27 @@ class InterviewVariantAnswerComposer
      */
     public static $id;
     public static $method;
+    public static $callback;
     public static $count;
-
-    public function __construct()
-    {
-
-        $data = InterviewVariantAnswer::where('question_id', self::$id)->get(['id', 'question_id', 'answer',]);
-
-        self::$count = $data->count();
-
-        $this->category = $data;
-
-    }
 
     public function compose(View $view)
     {
-        $view->with([
-            'answers' => $this->category,
-            'method' => self::$method,
-            'questionsLeft' => self::$count > 1 ? true : false,
-        ]);
+        $view->with('method', self::$method);
+        $view->with('id', self::$id);
+//        $view->with([
+////            'vote' => self::getInterviewQuestion(),
+//            'edit' => self::$method,
+////            'questionsLeft' => self::$count > 1 ? true : false,
+//        ]);
     }
+
+//    public static function getInterviewQuestion()
+//    {
+//        return InterviewQuestion::with(['users' => function ($query) {
+//            $query->where('users.id', auth()->id());
+//        }, 'answers' => function ($query) {
+//            $query->withCount('users');
+//        }])->withCount('userAnswers')
+//            ->firstOrFail(self::$id);
+//    }
 }

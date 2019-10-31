@@ -18,5 +18,5 @@
     @include('user.components.my-posts')
     @include('user.components.reputation-info')
 
-    @include('user.gallery.components.show')
+{{--    @include('user.gallery.components.show')--}}
 @endsection

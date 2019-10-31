@@ -73,14 +73,15 @@ Route::group(['prefix' => 'user','middleware' => 'auth'], function () {
         echo 'dsaf';
     });*/
 });
+/*Galleries*/
+Route::resource("galleries", 'User\GalleriesController');
+Route::post('galleries/{id}/send_comment', 'User\GalleryHelper@saveComments')->name('galleries.send.comment');
 
 
 /*User Gallery*/
 Route::group(['prefix' => 'user'], function () {
     Route::resource("gallery", 'User\UserGalleryController');
 });
-/*Galleries*/
-Route::resource("galleries", 'User\GalleriesController');
 
 
 Auth::routes();

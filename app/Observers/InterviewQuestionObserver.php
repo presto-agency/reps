@@ -17,9 +17,8 @@ class InterviewQuestionObserver
 
     public function creating(InterviewQuestion $poll)
     {
-        InterviewQuestionObserver::$answers = $poll->getAttribute('answer');
-        unset($poll['answer']);
-
+        InterviewQuestionObserver::$answers = $poll->getAttribute('answers');
+        unset($poll['answers']);
     }
 
     /**
@@ -36,7 +35,7 @@ class InterviewQuestionObserver
     public function updating(InterviewQuestion $poll)
     {
         InterviewQuestionObserver::$answersEdit = $poll->getAttribute('answer');
-        unset($poll['answer']);
+        unset($poll['answers']);
     }
 
     /**
@@ -73,14 +72,14 @@ class InterviewQuestionObserver
 
     /**
      * Store InterviewVariantAnswer
-     * @param $getAnswers
+     * @param $answers
      * @param $id
      */
-    public static function storeIVA($getAnswers, $id)
+    public static function storeIVA($answers, $id)
     {
-        if (!empty($getAnswers)) {
-            foreach ($getAnswers as $answer) {
-                if (!empty($answer)) {
+        if (!empty($answers)) {
+            foreach ($answers as $answer) {
+                if (!empty($answer) && strlen($answer) <= 255) {
                     $addAnswer = new InterviewVariantAnswerController;
                     $addAnswer->store($id, $answer);
                 }
@@ -97,7 +96,7 @@ class InterviewQuestionObserver
     {
         if (!empty($answersEdit)) {
             foreach ($answersEdit as $id => $answerEdit) {
-                if (!empty($answerEdit)) {
+                if (!empty($answerEdit) && strlen($answerEdit) <= 255) {
                     $addAnswers = new InterviewVariantAnswerController;
                     $addAnswers->update($id, $answerEdit, $questionId);
                 }

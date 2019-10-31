@@ -8,7 +8,7 @@ use AdminDisplay;
 use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
-use Carbon\Carbon;
+use App\Services\ServiceAssistants\PathHelper;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
@@ -118,8 +118,14 @@ class UserGallery extends Section
         $display = AdminForm::panel();
 
         $display->setItems([
+            $picture = AdminColumn::image('picture', 'Изображение')
+                ->setImageWidth('500'),
+
             $sign = AdminFormElement::text('sign', 'Подпись')
-                ->setValidationRules(['nullable', 'string', 'max:255']),
+                ->setHtmlAttribute('placeholder', 'Подпись')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setHtmlAttribute('minlength', '1')
+                ->setValidationRules(['nullable', 'string', 'between:1,255']),
         ]);
         return $display;
     }
@@ -134,13 +140,18 @@ class UserGallery extends Section
 
             $picture = AdminFormElement::image('picture', 'Картинка')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage/image/user/gallery';
+                    return PathHelper::checkUploadStoragePath("/image/user/gallery");
                 })
-                ->setValidationRules(['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:8192']),
-            $sign = AdminFormElement::text('sign', 'Подпись')
-                ->setValidationRules(['nullable', 'string', 'max:255']),
+                ->setValidationRules(['required', 'max:5120']),
 
-            $for_adults = AdminFormElement::checkbox('for_adults', '18+'),
+            $sign = AdminFormElement::text('sign', 'Подпись')
+                ->setHtmlAttribute('placeholder', 'Подпись')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setHtmlAttribute('minlength', '1')
+                ->setValidationRules(['nullable', 'string', 'between:1,255']),
+
+            $for_adults = AdminFormElement::checkbox('for_adults', '18+')
+                ->setDefaultValue(false),
         ]);
         return $display;
     }

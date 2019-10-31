@@ -7,6 +7,7 @@ use AdminColumnFilter;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
+use App\Services\ServiceAssistants\PathHelper;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
@@ -46,27 +47,23 @@ class ReplayMap extends Section
         $this->addToNavigation(3);
     }
 
-    /**
-     * @return DisplayInterface
-     */
+
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
             ->setHtmlAttribute('class', 'table-info table-sm text-center ')
             ->paginate(10);
-
         $display->setApply(function ($query) {
-            $query->orderBy('id', 'desc');
+            $query->orderByDesc('id');
         });
-
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')
                 ->setWidth(50),
 
-            $url = AdminColumn::image('url', 'Image'),
+            $url = AdminColumn::image('url', 'Картинка карты'),
 
-            $name = AdminColumn::text('name', 'Map name'),
+            $name = AdminColumn::text('name', 'Название карты'),
 
         ]);
         $display->setColumnFilters([
@@ -74,7 +71,7 @@ class ReplayMap extends Section
             $id = null,
             $url = null,
             $name = AdminColumnFilter::text()->setOperator('contains')
-                ->setPlaceholder('Map name'),
+                ->setPlaceholder('Название карты'),
         ]);
         $display->getColumnFilters()->setPlacement('table.header');
 
@@ -99,17 +96,17 @@ class ReplayMap extends Section
         $display = AdminForm::panel();
         $display->setItems([
 
-            $picture = AdminFormElement::image('url', 'Url')
+            $picture = AdminFormElement::image('url', 'Картинка карты')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage/image/replay/map';
+                    return PathHelper::checkUploadStoragePath("/image/replay/map");
                 })
-                ->setUploadFileName(function (UploadedFile $file) {
-                    return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
-                })
-                ->setValidationRules(['required']),
+                ->setValidationRules(['required', 'max:5120']),
 
-            $name = AdminFormElement::text('name', 'Name')
-                ->setValidationRules(['required', 'string', 'max:255']),
+            $name = AdminFormElement::text('name', 'Название карты')
+                ->setHtmlAttribute('placeholder', 'Название карты')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setHtmlAttribute('minlength', '1')
+                ->setValidationRules(['required', 'string', 'between:1,255']),
         ]);
         return $display;
     }

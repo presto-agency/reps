@@ -17,19 +17,21 @@
         @isset($images)
             @foreach($images as $items)
                 <div class="img-wrapper">
-                    @if($routCheck)
-                        <a class="img-link" href="{{route('galleries.show',['gallery'=> $items->id])}}">
-                            @if(file_exists($items->picture))
-                                <img src="{{asset($items->picture) }}" alt="image">
-                            @endif
-                        </a>
-                    @else
-                        <a class="img-link" href="{{route('gallery.show',['gallery'=> $items->id])}}">
-                            @if(file_exists($items->picture))
-                                <img src="{{asset($items->picture) }}" alt="image">
-                            @endif
-                        </a>
-                    @endif
+                    @isset($routCheck)
+                        @if($routCheck)
+                            <a class="img-link" href="{{route('galleries.show',['gallery'=> $items->id])}}">
+                                @if(file_exists($items->picture))
+                                    <img src="{{asset($items->picture) }}" alt="image">
+                                @endif
+                            </a>
+                        @else
+                            <a class="img-link" href="{{route('gallery.show',['gallery'=> $items->id])}}">
+                                @if(file_exists($items->picture))
+                                    <img src="{{asset($items->picture) }}" alt="image">
+                                @endif
+                            </a>
+                        @endif
+                    @endisset
                 </div>
             @endforeach
         @endisset

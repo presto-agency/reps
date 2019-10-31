@@ -47,7 +47,7 @@ class InterviewQuestion extends Section
         $display = AdminDisplay::datatablesAsync();
         $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
         $display->paginate(10);
-        $display->with('answers', 'userAnswers');
+//        $display->with('answers', 'userAnswers');
 
         $display->setApply(function ($query) {
             $query->orderBy('id', 'asc');
@@ -90,34 +90,33 @@ class InterviewQuestion extends Section
      */
     public function onEdit($id)
     {
-        self::setIVAAttributes($id, "edit");
+        self::setIVAAttributes($id, 'edit');
 
         $form = AdminForm::panel();
+
         $form->setItems(
             AdminFormElement::columns()
                 ->addColumn(function () {
                     return [
-
                         $question = AdminFormElement::text('question', 'Вопрос')
                             ->setHtmlAttribute('placeholder', 'Вопрос')
-                            ->setValidationRules(['required', 'string', 'max:255']),
-
-                        $active = AdminFormElement::checkbox('active', 'Активный'),
-
-                        $active = AdminFormElement::checkbox('for_login', 'Только для авторизированных'),
-
+                            ->setHtmlAttribute('maxlength', '255')
+                            ->setHtmlAttribute('minlength', '1')
+                            ->setValidationRules(['required', 'string', 'between:1,255']),
+                        $active = AdminFormElement::checkbox('active', 'Активный')
+                            ->setValidationRules(['boolean']),
+                        $active = AdminFormElement::checkbox('for_login', 'Только для авторизированных')
+                            ->setValidationRules(['boolean']),
                     ];
                 })->addColumn(function () {
                     return [
-
-                        $answer = AdminFormElement::hidden('answer'),
-                        view('admin.InterviewQuestion.questionClone'),
-
+                        $answer = AdminFormElement::hidden('answers')
+                            ->setValidationRules(['nullable', 'string', 'max:255']),
+                        AdminFormElement::view('admin.interviewQuestion.answers', $data = [], function () {
+                        })
                     ];
                 })
         );
-
-
         return $form;
     }
 
@@ -127,9 +126,37 @@ class InterviewQuestion extends Section
      */
     public function onCreate()
     {
+        self::setIVAAttributes($id, 'edit');
 
-        return $this->onEdit('');
+        $form = AdminForm::panel();
 
+        $form->setItems(
+            AdminFormElement::columns()
+                ->addColumn(function () {
+                    return [
+                        $question = AdminFormElement::text('question', 'Вопрос')
+                            ->setHtmlAttribute('placeholder', 'Вопрос')
+                            ->setHtmlAttribute('maxlength', '255')
+                            ->setHtmlAttribute('minlength', '1')
+                            ->setValidationRules(['required', 'string', 'between:1,255']),
+                        $active = AdminFormElement::checkbox('active', 'Активный')
+                            ->setValidationRules(['boolean'])
+                            ->setHtmlAttribute('checked', 'checked')
+                            ->setDefaultValue(true),
+                        $for_login = AdminFormElement::checkbox('for_login', 'Только для авторизированных')
+                            ->setValidationRules(['boolean'])
+                            ->setDefaultValue(false),
+                    ];
+                })->addColumn(function () {
+                    return [
+                        $answer = AdminFormElement::hidden('answers')
+                            ->setValidationRules(['nullable', 'string', 'max:255']),
+                        AdminFormElement::view('admin.interviewQuestion.answers', $data = [], function () {
+                        })
+                    ];
+                })
+        );
+        return $form;
     }
 
     /**

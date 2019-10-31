@@ -7,11 +7,11 @@ use App\Http\Controllers\Controller;
 
 class GalleriesController extends Controller
 {
-    public static $routCheck;
+    public  $routCheck;
 
     public function __construct()
     {
-        self::$routCheck = GalleryHelper::checkUrlGalleries();
+        $this->routCheck = GalleryHelper::checkUrlGalleries();
     }
 
     /**
@@ -24,7 +24,7 @@ class GalleriesController extends Controller
         $row = ['id', 'picture'];
         $images = GalleryHelper::getGalleriesImages($row);
 
-        $routCheck = self::$routCheck;
+        $routCheck = $this->routCheck;
 
         return view('user.gallery.index', compact('images', 'routCheck'));
     }
@@ -69,7 +69,7 @@ class GalleriesController extends Controller
         // get next user id
         $next = GalleryHelper::nextGalleriesImage($id, $relation, $row);
 
-        $routCheck = self::$routCheck;
+        $routCheck = $this->routCheck;
 
         return view('user.gallery.show', compact('userImage', 'previous', 'next','routCheck'));
     }
@@ -109,6 +109,4 @@ class GalleriesController extends Controller
         return back();
 
     }
-
-
 }

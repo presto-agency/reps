@@ -9,6 +9,7 @@ use AdminDisplay;
 use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
+use App\Services\ServiceAssistants\PathHelper;
 use App\Models\{Country, Race, ReplayMap, ReplayType};
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
@@ -64,11 +65,9 @@ class Replay extends Section
             AdminDisplayFilter::related('approved')->setModel(\App\Models\Replay::class),
             AdminDisplayFilter::related('user_replay')->setModel(\App\Models\Replay::class),
         ]);
-
         $display->setApply(function ($query) {
-            $query->orderBy('id', 'desc');
+            $query->orderByDesc('id');
         });
-
         $display->with('users', 'maps', 'types');
 
         $display->setColumns([
@@ -197,8 +196,10 @@ class Replay extends Section
             AdminFormElement::columns()
                 ->addColumn([
                     $user_replay = AdminFormElement::text('title', 'Название')
-                        ->setHtmlAttributes(['placeholder' => 'Название'])
-                        ->setValidationRules(['required', 'string', 'between:4,255'])
+                        ->setHtmlAttribute('placeholder', 'Название')
+                        ->setHtmlAttribute('maxlength', '255')
+                        ->setHtmlAttribute('minlength', '1')
+                        ->setValidationRules(['required', 'string', 'between:1,255'])
                 ], 3)
                 ->addColumn([
                     $type_id = AdminFormElement::select('type_id', 'Тип')
@@ -232,54 +233,47 @@ class Replay extends Section
                             ->setDisplay('name')
                             ->setValidationRules(['required', 'string']),
                         $first_location = AdminFormElement::text('first_location', 'Первая локация')
-                            ->setHtmlAttributes(['placeholder' => 'Первая локация'])
-                            ->setValidationRules(['nullable', 'numeric', 'max:255'])
+                            ->setHtmlAttribute('placeholder', 'Первая локация')
+                            ->setHtmlAttribute('maxlength', '255')
+                            ->setHtmlAttribute('minlength', '1')
+                            ->setValidationRules(['nullable', 'numeric', 'between:1,255'])
                             ->setValueSkipped(function () {
                                 return is_null(request('first_location'));
                             }),
                         $first_name = AdminFormElement::text('first_name', 'Первое имя')
-                            ->setHtmlAttributes(['placeholder' => 'Первое имя'])
-                            ->setValidationRules(['nullable', 'string', 'alpha_dash', 'max:255']),
-
-//                        $first_apm = AdminFormElement::text('first_apm', 'Первый APM')
-//                            ->setHtmlAttributes(['placeholder' => 'Первый APM'])
-//                            ->setValidationRules(['nullable', 'numeric', 'between:1,255']),
-
+                            ->setHtmlAttribute('placeholder', 'Первое имя')
+                            ->setHtmlAttribute('maxlength', '255')
+                            ->setHtmlAttribute('minlength', '1')
+                            ->setValidationRules(['nullable', 'string', 'between:1,255']),
                     ];
                 })->addColumn(function () {
                     return [
-
                         $first_race = AdminFormElement::select('second_race', 'Вторая раса')
                             ->setOptions((new Race())->pluck('title', 'id')->toArray())
                             ->setDisplay('name')
                             ->setValidationRules(['required', 'string']),
-
                         $first_country_id = AdminFormElement::select('second_country_id', 'Вторая страна')
                             ->setOptions((new Country())->pluck('name', 'id')->toArray())
                             ->setDisplay('name')
                             ->setValidationRules(['required', 'string']),
-
                         $first_location = AdminFormElement::text('second_location', 'Вторая локация')
-                            ->setHtmlAttributes(['placeholder' => 'Вторая локация'])
-                            ->setValidationRules(['nullable', 'numeric', 'min:1'])
+                            ->setHtmlAttribute('placeholder', 'Вторая локация')
+                            ->setHtmlAttribute('maxlength', '255')
+                            ->setHtmlAttribute('minlength', '1')
+                            ->setValidationRules(['nullable', 'numeric', 'between:1,255'])
                             ->setValueSkipped(function () {
                                 return is_null(request('second_location'));
                             }),
-
                         $first_name = AdminFormElement::text('second_name', 'Второе имя')
-                            ->setHtmlAttributes(['placeholder' => 'Второе имя'])
-                            ->setValidationRules(['nullable', 'string', 'alpha_dash', 'max:255']),
-
-//                        $first_apm = AdminFormElement::text('second_apm', 'Второй APM')
-//                            ->setHtmlAttributes(['placeholder' => 'Второй APM'])
-//                            ->setValidationRules(['nullable', 'numeric', 'between:1,255']),
-
+                            ->setHtmlAttribute('placeholder', 'Второе имя')
+                            ->setHtmlAttribute('maxlength', '255')
+                            ->setHtmlAttribute('minlength', '1')
+                            ->setValidationRules(['nullable', 'string', 'between:1,255']),
                     ];
                 })
         );
 
         $form->addBody([
-
             $content = AdminFormElement::wysiwyg('content', 'Контент')
                 ->setHtmlAttributes(['placeholder' => 'Контент'])
                 ->setValidationRules(['nullable', 'string', 'between:1,1000']),
@@ -287,10 +281,10 @@ class Replay extends Section
                 ->addColumn(function () {
                     return [
                         $file = AdminFormElement::file('file', 'Файл')
-                            ->setValidationRules(['required', 'file', 'max:10000', 'mimes:zip,rep,jar,7z,rar,gz'])
+                            ->setValidationRules(['required', 'file', 'max:5120'])
                             ->setUploadPath(function (UploadedFile $file) {
-                                return 'storage/file/replay';
-                            })
+                                return PathHelper::checkUploadStoragePath("/file/replay");
+                            }),
                     ];
                 })
                 ->addColumn(function () {
@@ -298,13 +292,9 @@ class Replay extends Section
                         $date = AdminFormElement::date('start_date', 'Дата начала')
                             ->setHtmlAttributes(['placeholder' => Carbon::now()->format('Y-m-d')])
                             ->setFormat('Y-m-d'),
-
-                        $approved = AdminFormElement::checkbox('approved', 'Подтвержден')
-
+                        $approved = AdminFormElement::checkbox('approved', 'Подтвержден'),
                     ];
                 })
-
-
         ]);
 
         return $form;
@@ -316,7 +306,116 @@ class Replay extends Section
      */
     public function onCreate()
     {
-        return $this->onEdit(null);
+        $form = AdminForm::panel();
+
+        $form->addHeader([
+            AdminFormElement::columns()
+                ->addColumn([
+                    $user_replay = AdminFormElement::text('title', 'Название')
+                        ->setHtmlAttribute('placeholder', 'Название')
+                        ->setHtmlAttribute('maxlength', '255')
+                        ->setHtmlAttribute('minlength', '1')
+                        ->setValidationRules(['required', 'string', 'between:1,255'])
+                ], 3)
+                ->addColumn([
+                    $type_id = AdminFormElement::select('type_id', 'Тип')
+                        ->setOptions((new ReplayType())->pluck('title', 'id')->toArray())
+                        ->setDisplay('title')
+                        ->setValidationRules(['required', 'string'])
+                ], 3)
+                ->addColumn([
+                    $map_id = AdminFormElement::select('map_id', 'Карта')
+                        ->setOptions((new ReplayMap())->pluck('name', 'id')->toArray())
+                        ->setDisplay('name')
+                        ->setValidationRules(['required', 'string'])
+
+                ], 3)
+                ->addColumn([
+                    $map_id = AdminFormElement::select('user_replay', 'Профессиональный/Пользовательский')
+                        ->setOptions(\App\Models\Replay::$userReplaysType)
+                        ->setValidationRules(['required', 'string'])
+                ], 3)
+        ]);
+        $form->setItems(
+            AdminFormElement::columns()
+                ->addColumn(function () {
+                    return [
+                        $first_race = AdminFormElement::select('first_race', 'Перва раса')
+                            ->setOptions((new Race())->pluck('title', 'id')->toArray())
+                            ->setDisplay('name')
+                            ->setValidationRules(['required', 'string']),
+                        $first_country_id = AdminFormElement::select('first_country_id', 'Первая страна')
+                            ->setOptions((new Country())->pluck('name', 'id')->toArray())
+                            ->setDisplay('name')
+                            ->setValidationRules(['required', 'string']),
+                        $first_location = AdminFormElement::text('first_location', 'Первая локация')
+                            ->setHtmlAttribute('placeholder', 'Первая локация')
+                            ->setHtmlAttribute('maxlength', '255')
+                            ->setHtmlAttribute('minlength', '1')
+                            ->setValidationRules(['nullable', 'numeric', 'between:1,255'])
+                            ->setValueSkipped(function () {
+                                return is_null(request('first_location'));
+                            }),
+                        $first_name = AdminFormElement::text('first_name', 'Первое имя')
+                            ->setHtmlAttribute('placeholder', 'Первое имя')
+                            ->setHtmlAttribute('maxlength', '255')
+                            ->setHtmlAttribute('minlength', '1')
+                            ->setValidationRules(['nullable', 'string', 'between:1,255']),
+                    ];
+                })->addColumn(function () {
+                    return [
+                        $first_race = AdminFormElement::select('second_race', 'Вторая раса')
+                            ->setOptions((new Race())->pluck('title', 'id')->toArray())
+                            ->setDisplay('name')
+                            ->setValidationRules(['required', 'string']),
+                        $first_country_id = AdminFormElement::select('second_country_id', 'Вторая страна')
+                            ->setOptions((new Country())->pluck('name', 'id')->toArray())
+                            ->setDisplay('name')
+                            ->setValidationRules(['required', 'string']),
+                        $first_location = AdminFormElement::text('second_location', 'Вторая локация')
+                            ->setHtmlAttribute('placeholder', 'Вторая локация')
+                            ->setHtmlAttribute('maxlength', '255')
+                            ->setHtmlAttribute('minlength', '1')
+                            ->setValidationRules(['nullable', 'numeric', 'between:1,255'])
+                            ->setValueSkipped(function () {
+                                return is_null(request('second_location'));
+                            }),
+                        $first_name = AdminFormElement::text('second_name', 'Второе имя')
+                            ->setHtmlAttribute('placeholder', 'Второе имя')
+                            ->setHtmlAttribute('maxlength', '255')
+                            ->setHtmlAttribute('minlength', '1')
+                            ->setValidationRules(['nullable', 'string', 'between:1,255']),
+                    ];
+                })
+        );
+
+        $form->addBody([
+            $content = AdminFormElement::wysiwyg('content', 'Контент')
+                ->setHtmlAttributes(['placeholder' => 'Контент'])
+                ->setValidationRules(['nullable', 'string', 'between:1,1000']),
+            AdminFormElement::columns()
+                ->addColumn(function () {
+                    return [
+                        $file = AdminFormElement::file('file', 'Файл')
+                            ->setValidationRules(['required', 'file', 'max:5120'])
+                            ->setUploadPath(function (UploadedFile $file) {
+                                return PathHelper::checkUploadStoragePath("/file/replay");
+                            }),
+                    ];
+                })
+                ->addColumn(function () {
+                    return [
+                        $date = AdminFormElement::date('start_date', 'Дата начала')
+                            ->setHtmlAttributes(['placeholder' => Carbon::now()->format('Y-m-d')])
+                            ->setFormat('Y-m-d'),
+                        $approved = AdminFormElement::checkbox('approved', 'Подтвержден')
+                            ->setHtmlAttribute('checked', 'checked')
+                            ->setDefaultValue(true),
+                    ];
+                })
+        ]);
+
+        return $form;
     }
 
     /**
