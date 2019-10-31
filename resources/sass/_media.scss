@@ -7879,6 +7879,71 @@
             padding-bottom: 3.472vw;
         }
     }
+    //vote
+    .vote {
+        .vote__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.646vw;
+                height: 3.646vw;
+            }
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+        .vote__content {
+            .content__header {
+                padding-top: 2.778vw;
+                padding-bottom: 2.951vw;
+                padding-left: 3.472vw;
+                padding-right: 3.472vw;
+                .header__title {
+                    font-size: 3.778vw;
+                }
+            }
+            .content__body {
+                padding-top: 2.778vw;
+                padding-bottom: 2.951vw;
+                padding-left: 3.472vw;
+                padding-right: 3.472vw;
+                .vote-form {
+                    .form-check {
+                        margin-bottom: 2.604vw;
+                        label {
+                            margin-left: 10px;
+                        }
+                    }
+                    .body__button-vote {
+                        margin-bottom: 2.604vw;
+                    }
+                }
+                .view-results {
+                    display: none;
+                    .results {
+                        margin-bottom: 2.604vw;
+                        span {
+                            font-size: 2.431vw;
+                        }
+                    }
+                    .result__total {
+                        margin-bottom: 2.604vw;
+                        span {
+                            font-size: 2.431vw;
+                        }
+                    }
+                }
+                .body__view-results {
+                    .view-results__button {
+                        font-size: 2.431vw;
+                    }
+                }
+            }
+        }
+    }
+
     //gallery-download
     .gallery-download {
          .form-check-label{
