@@ -68,7 +68,7 @@
                     <button><img class="search_img" src="{{ url('/images/search.png') }}" title="Поиск"></button>
                     <input id="inp" class="search_input" placeholder="Поиск">
                 </div>
-                <div class="autorization">
+                <div class="autorization autorization_user">
                     @guest
                         <button type="button" data-toggle="modal"
                                 data-target="#authorizationModal">{{ __('Login') }}</button>
