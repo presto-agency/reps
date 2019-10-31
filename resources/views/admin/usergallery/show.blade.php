@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-3 text-center">
             <span class="username">
-                <img src="{{$userGallery->users->avatar ?? $userGallery->users->avatar_url_or_blank }}"
+                <img src="{{$userGallery->users->avatar}}"
                      class="img-circle img-bordered-sm" alt="User avatar"/>
             </span>
         </div>
@@ -55,7 +55,7 @@
         <div class="box-body">
             @foreach($userGallery->comments as $comment)
                 <div class="item row">
-                    <img src="{{$comment->user->avatar ?? $comment->user->avatar_url_or_blank }}"
+                    <img src="{{$comment->user->avatar}}"
                          class="img-circle img-bordered-sm" alt="User avatar"/>
                     <p class="message">
                         <a href="#" class="name">

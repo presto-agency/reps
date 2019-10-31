@@ -9,8 +9,8 @@
                     <p>Название:</p>
                 </div>
                 <div class="col-md-10">
-                    <a href="#">
-                        <p>{{$replay->user_replay}}</p>
+                    <a href="{{route('replay.show',['replay'=>$replay->id])}}">
+                        <p>{{$replay->title}}</p>
                     </a>
                 </div>
                 <div class="col-md-2">
@@ -85,20 +85,15 @@
                 <div class="box-body">
                     @foreach($replay->comments as $comment)
                         <div class="item row">
-                            @if(file_exists($comment->user->avatar) === true)
-                                <img src="{{asset($comment->user->avatar)}}"
-                                     class="img-circle img-bordered-sm" alt="User avatar"/>
-                            @else
-                                <img src="{{asset($comment->user->avatar_url_or_blank)}}"
-                                     class="img-circle img-bordered-sm" alt="User avatar"/>
-                            @endif
+                            <img src="{{asset($comment->user->avatar)}}"
+                                 class="img-circle img-bordered-sm" alt="Avatar"/>
                             <p class="message">
-                                <a href="#" class="name">
+{{--                                <a href="{{route('user.show',['user'=>$comment->user->id])}}" class="name">--}}
                                     <small class="text-muted pull-right"><i
                                             class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d-m-Y')}}
                                     </small>
                                     {{$comment->user->name}}
-                                </a>
+{{--                                </a>--}}
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['admin.replays.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
                                 <button class="btn btn-default text-red" title="Удалить запись"><i
                                         class="fa fa-trash"></i></button>

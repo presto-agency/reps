@@ -45,7 +45,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
     public function isAdmin()
     {
         return $this->roles->name == 'super-admin' || $this->roles->name == 'admin';
@@ -60,4 +59,6 @@ class User extends Authenticatable
     {
         return $this->roles->name == 'super-admin' ? true : false;
     }
+
+
 }

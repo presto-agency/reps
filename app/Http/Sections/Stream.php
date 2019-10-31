@@ -62,9 +62,8 @@ class Stream extends Section implements Initializable
         $display->with('users');
 
         $display->setApply(function ($query) {
-            $query->orderBy('id', 'desc');
+            $query->orderByDesc('id');
         });
-
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'ID'),
@@ -103,7 +102,10 @@ class Stream extends Section implements Initializable
         $display->setItems([
 
             $title = AdminFormElement::text('title', 'Название')
-                ->setValidationRules(['required', 'max:255', 'string']),
+                ->setHtmlAttribute('placeholder', 'Название')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setHtmlAttribute('minlength', '1')
+                ->setValidationRules(['required', 'string', 'between:1,255']),
 
             $race_id = AdminFormElement::select('race_id', 'Первая раса')
                 ->setOptions((new Race())->pluck('title', 'id')->toArray())
@@ -116,14 +118,14 @@ class Stream extends Section implements Initializable
                 ->setValidationRules(['required']),
 
             $content = AdminFormElement::textarea('content', 'Комментарий')
-                ->setValidationRules(['nullable']),
+                ->setValidationRules(['nullable', 'string', 'max:1000'])
+                ->setHtmlAttribute('placeholder', 'Комментарий'),
 
             $approved = AdminFormElement::checkbox('approved', 'Подтвердить'),
 
             $stream_url = AdminFormElement::text('stream_url', 'Вставить url')
-                ->setHtmlAttribute('title', 'http:// or https://')
                 ->setHtmlAttribute('placeholder', 'Вставить url')
-                ->setValidationRules(['required', 'max:255', 'string', 'url']),
+                ->setValidationRules(['required', 'max:1000', 'url']),
 
 
         ]);
@@ -131,7 +133,7 @@ class Stream extends Section implements Initializable
         if (!empty($id)) {
             $getStreamUrl = \App\Models\Stream::where('id', $id)->value('stream_url');
             $display->setItems([
-                view('admin.stream.iframeInput', compact('getStreamUrl'))->render(),
+                \View::make('admin.stream.iframeInput', compact('getStreamUrl'))->render(),
             ]);
         }
 
@@ -144,7 +146,46 @@ class Stream extends Section implements Initializable
      */
     public function onCreate()
     {
-        return $this->onEdit('');
+        $display = AdminForm::panel();
+        $display->setItems([
+
+            $title = AdminFormElement::text('title', 'Название')
+                ->setHtmlAttribute('placeholder', 'Название')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setHtmlAttribute('minlength', '1')
+                ->setValidationRules(['required', 'string', 'between:1,255']),
+
+            $race_id = AdminFormElement::select('race_id', 'Первая раса')
+                ->setOptions((new Race())->pluck('title', 'id')->toArray())
+                ->setDisplay('title')
+                ->setValidationRules(['required']),
+
+            $country_id = AdminFormElement::select('country_id', 'Первая страна')
+                ->setOptions((new Country())->pluck('name', 'id')->toArray())
+                ->setDisplay('name')
+                ->setValidationRules(['required']),
+
+            $content = AdminFormElement::textarea('content', 'Комментарий')
+                ->setValidationRules(['nullable', 'string', 'max:1000'])
+                ->setHtmlAttribute('placeholder', 'Комментарий'),
+
+            $approved = AdminFormElement::checkbox('approved', 'Подтвердить')
+                ->setHtmlAttribute('checked', 'checked')
+                ->setDefaultValue(true),
+
+            $stream_url = AdminFormElement::text('stream_url', 'Вставить url')
+                ->setHtmlAttribute('placeholder', 'Вставить url')
+                ->setValidationRules(['required', 'max:1000', 'url']),
+        ]);
+
+        if (!empty($id)) {
+            $getStreamUrl = \App\Models\Stream::where('id', $id)->value('stream_url');
+            $display->setItems([
+                \View::make('admin.stream.iframeInput', compact('getStreamUrl'))->render(),
+            ]);
+        }
+
+        return $display;
     }
 
     /**
