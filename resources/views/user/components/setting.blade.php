@@ -14,17 +14,33 @@
         </svg>
         <p class="title__text">Настройки пользователя</p>
     </div>
-    <form class="user-settings__form">
+    <form class="user-settings__form" action="{{route('save_profile', $user->id)}}" enctype="multipart/form-data" method="POST">
+        @csrf
         <div class="form-group">
             <label for="user-settings-email" class="night_text">*Email:</label>
-            <input type="text" class="form-control night_input" id="user-settings-email">
+            <input type="email" class="form-control night_input {{ $errors->has('email') ? ' is-invalid' : '' }}" id="user-settings-email" name="email" value="{{old('email')??$user->email}}">
+            @if ($errors->has('email'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="form-group">
             <label for="user-settings-email-name" class="night_text">*Имя:</label>
-            <input type="text" class="form-control night_input" id="user-settings-email-name">
+            <input type="text" class="form-control night_input {{ $errors->has('name') ? ' is-invalid' : '' }}" id="user-settings-email-name" name="name" value="{{old('name')??$user->name}}">
+            @if ($errors->has('name'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('name') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="upload-image">
             <p>Аватар:</p>
+            @if($user->avatar)
+                <div class="preview-image-wrapper">
+                    <img class="" src="{{$user->avatar}}" alt="">
+                </div>
+            @endif
             <div class="row">
                 <div class="col-8">
                     <input id="uploadFile" class="f-input night_input" readonly/>
@@ -32,8 +48,13 @@
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
                         <span>Выбрать файл</span>
-                        <input id="uploadBtn" type="file" class="upload" value="{{old('avatar')}}" accept="image/*"
+                        <input id="uploadBtn" type="file" class="upload {{ $errors->has('avatar') ? ' is-invalid' : '' }}" value="{{old('avatar')}}" accept="image/*"
                                name="avatar"/>
+                        @if ($errors->has('avatar'))
+                            <span class="invalid-feedback">
+                                <strong>{{ $errors->first('avatar') }}</strong>
+                            </span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -42,38 +63,75 @@
         </div>
         <div class="form-group">
             <label for="user-settings__country" class="night_text">*Страна:
-                <select class="js-example-basic-single night_input" name="country" id="user-settings__country">
-                    <option class="night_input" value="UK">Ukraine</option>
-                    <option class="night_input" value="IT">Italy</option>
-                    <option class="night_input" value="FR">France</option>
+                <select class="js-example-basic-single night_input {{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" id="user-settings__country">
+                    @foreach($countries as $country)
+                        <option class="night_input" value="{{$country->id}}" {{($country->id == old('country')||$country->id == $user->country_id) ? ' selected' : '' }}>{{$country->name}}</option>
+                    @endforeach
                 </select>
+                @if ($errors->has('country'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('country') }}</strong>
+                    </span>
+                @endif
             </label>
         </div>
         <div class="form-group">
             <label for="user-settings__race" class="night_text">*Раса:
-                <select name="race" id="user-settings__race" class="race night_input">
-                    <option class="night_input">All</option>
-                    <option class="night_input">Z</option>
-                    <option class="night_input">T</option>
-                    <option class="night_input">P</option>
+                <select name="race" id="user-settings__race" class="race night_input {{ $errors->has('race') ? ' is-invalid' : '' }}">
+                    @foreach($races as $race)
+                        <option class="night_input" value="{{$race->id}}" {{($race->id == $user->race_id || $race->id == old('race')) ? ' selected':''}}>
+                            {{$race->title}}
+                        </option>
+                    @endforeach
                 </select>
+                @if ($errors->has('first_race'))
+                    <span class="invalid-feedback">
+                                <strong>{{ $errors->first('race') }}</strong>
+                            </span>
+                @endif
             </label>
         </div>
         <div class="form-group">
             <label for="user-settings-date" class="night_text">Дата рождения:</label>
-            <input type="date" class="form-control night_input" id="user-settings-date">
+            <input type="date" name="birthday" class="form-control night_input {{ $errors->has('birthday') ? ' is-invalid' : '' }}" id="user-settings-date" value="{{old('birthday')??$user->birthday}}">
+            @if ($errors->has('birthday'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('birthday') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="form-group">
             <label for="user-settings-site" class="night_text">Сайт:</label>
-            <input type="text" class="form-control night_input" id="user-settings-site">
+            <input type="text" class="form-control night_input {{ $errors->has('homepage') ? ' is-invalid' : '' }}" id="user-settings-site"
+                   name="homepage"
+                   value="{{old('homepage')??$user->homepage}}">
+            @if ($errors->has('homepage'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('homepage') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="form-group">
             <label for="user-settings-discord" class="night_text">Discord:</label>
-            <input type="text" class="form-control night_input" id="user-settings-discord">
+            <input type="text" class="form-control night_input {{ $errors->has('isq') ? ' is-invalid' : '' }}" id="user-settings-discord"
+                   name="isq"
+                   value="{{old('isq')??$user->isq}}">
+            @if ($errors->has('isq'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('isq') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="form-group">
             <label for="user-settings-skype" class="night_text">Skype:</label>
-            <input type="text" class="form-control night_input" id="user-settings-skype">
+            <input type="text" class="form-control night_input {{ $errors->has('skype') ? ' is-invalid' : '' }}" id="user-settings-skype"
+                   name="skype"
+                   value="{{old('skype')??$user->skype}}">
+            @if ($errors->has('skype'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('skype') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="form-check">
             <label class="form-check-label night_text" for="user-settings-view-signs">
@@ -86,11 +144,17 @@
             <label class="form-check-label night_text" for="user-settings-view-avatar">
                 Просматривать аватары на форуме:
             </label>
-            <input class="form-check-input night_input" type="checkbox" value="" id="user-settings-view-avatar"
-                   checked="">
+            <input class="form-check-input night_input {{ $errors->has('view_avatars') ? ' is-invalid' : '' }}" type="checkbox" id="user-settings-view-avatar"
+                   name="view_avatars"
+                   value="1" @if((old('view_avatars')??$user->view_avatars)) checked @endif>
+            @if ($errors->has('view_avatars'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('view_avatars') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="modal-body__enter-btn">
-            <button class="button button__download-more">
+            <button type="submit" class="button button__download-more">
                 Сохранить
             </button>
         </div>

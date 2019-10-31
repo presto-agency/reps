@@ -48,25 +48,35 @@
                 <div class="items__reputation-button">
                     <a href="#">рейтинг лист</a>
                 </div>
-                @if($routCheck)
-                    <div class="items__slide-button">
-                        <a href="{{route('galleries.show',['gallery'=> $previous])}}">
-                            <i class="fas fa-angle-double-left"></i>
-                        </a>
-                        <a href="{{route('galleries.show',['gallery'=> $next])}}">
-                            <i class="fas fa-angle-double-right"></i>
-                        </a>
-                    </div>
-                @else
-                    <div class="items__slide-button">
-                        <a href="{{route('gallery.show',['gallery'=> $previous])}}">
-                            <i class="fas fa-angle-double-left"></i>
-                        </a>
-                        <a href="{{route('gallery.show',['gallery'=> $next])}}">
-                            <i class="fas fa-angle-double-right"></i>
-                        </a>
-                    </div>
-                @endif
+                @isset($routCheck)
+                    @if($routCheck)
+                        <div class="items__slide-button">
+                            @isset($previous)
+                                <a href="{{route('galleries.show',['gallery'=> $previous])}}">
+                                    <i class="fas fa-angle-double-left"></i>
+                                </a>
+                            @endisset
+                            @isset($next)
+                                <a href="{{route('galleries.show',['gallery'=> $next])}}">
+                                    <i class="fas fa-angle-double-right"></i>
+                                </a>
+                            @endisset
+                        </div>
+                    @else
+                        <div class="items__slide-button">
+                            @isset($previous)
+                                <a href="{{route('gallery.show',['gallery'=> $previous])}}">
+                                    <i class="fas fa-angle-double-left"></i>
+                                </a>
+                            @endisset
+                            @isset($next)
+                                <a href="{{route('gallery.show',['gallery'=> $next])}}">
+                                    <i class="fas fa-angle-double-right"></i>
+                                </a>
+                            @endisset
+                        </div>
+                    @endif
+                @endisset
             </div>
             <div class="body__img">
                 <img src="{{ asset($userImage->picture) }}" alt="image">
