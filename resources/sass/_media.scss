@@ -1595,7 +1595,6 @@
         }
     }
 
-
     /*ЛУЧШИЕ*/
     .Page_gameBest{
         & .title_block{
@@ -2383,7 +2382,6 @@
             }
         }
     }
-
     .my-topics {
         margin-bottom: 1.464vw;
         .my-topics__title {
@@ -2682,6 +2680,42 @@
             }
         }
     }
+    .create-topic{
+        .create-topic__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.464vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+        .create-topic__form {
+            padding: 1.830vw;
+            .upload-image {
+                margin-bottom: 1.171vw;
+                p {
+                    font-size: 1.171vw;
+                    margin-bottom: 0.586vw;
+
+                }
+            }
+
+            .form-group {
+                #create-topic__section {
+                    height: 2.709vw;
+                    margin-top: 0.586vw;
+                }
+            }
+        }
+    }
+
 }
 
 
@@ -2814,18 +2848,6 @@
             .useful__link {
                 font-size: 1.211vw;
                 margin-bottom: 2.018vw;
-            }
-        }
-        .produced {
-            margin-top: 3.027vw;
-            & p {
-                font-size: 1.413vw;
-                line-height: 2.422vw;
-            }
-            & a {
-                font-size: 1.413vw;
-                line-height: 2.422vw;
-                margin-left: 0.505vw;
             }
         }
 
@@ -4344,7 +4366,6 @@
         }
     }
 
-
     //Предстоящие турниры
     .Page_tournament-content{
         & .title_block{
@@ -5529,9 +5550,41 @@
             }
         }
     }
+    .create-topic{
+        .create-topic__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 2.018vw;
 
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
 
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+        .create-topic__form {
+            padding: 2.523vw;
+            .upload-image {
+                margin-bottom: 1.615vw;
+                p {
+                    font-size: 1.615vw;
+                    margin-bottom: 0.807vw;
 
+                }
+            }
+
+            .form-group {
+                #create-topic__section {
+                    height: 3.734vw;
+                    margin-top: 0.807vw;
+                }
+            }
+        }
+    }
 
 }
 
@@ -8353,7 +8406,40 @@
     }
 }
 
+    .create-topic{
+        .create-topic__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.472vw;
 
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+        .create-topic__form {
+            padding: 4.340vw;
+            .upload-image {
+                margin-bottom: 2.778vw;
+                p {
+                    font-size: 2.778vw;
+                    margin-bottom: 1.389vw;
+                }
+            }
+
+            .form-group {
+                #create-topic__section {
+                    height: 6.424vw;
+                    margin-top: 1.389vw;
+                }
+            }
+        }
+    }
 
 }
 

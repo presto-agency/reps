@@ -1,0 +1,61 @@
+.create-topic{
+    box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
+    border-radius: 5px;
+    background-color: #ffffff;
+    .create-topic__title {
+        border-radius: 5px 5px 0 0;
+        background-color: #0567cc;
+        display: flex;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 19px;
+
+        .title__icon {
+            width: 20px;
+            height: 20px;
+            fill: #ffffff;
+        }
+
+        .title__text {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 0; //отмена стандартного margin
+            margin-left: 17px;
+        }
+    }
+    .create-topic__form {
+        padding: 25px;
+        .upload-image {
+            margin-bottom: 16px;
+            p {
+                color: #495057;
+                font-size: 16px;
+                margin-bottom: 8px;
+
+            }
+        }
+
+        .form-group {
+            label {
+                width: 100%;
+            }
+
+            #create-topic__section {
+                width: 100%;
+                height: 37px;
+                background-color: #fff;
+                color: #495057;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+                margin-top: 8px;
+            }
+        }
+
+        .modal-body__enter-btn {
+            .button {
+                width: 100%;
+            }
+        }
+    }
+}
