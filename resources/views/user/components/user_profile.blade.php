@@ -90,7 +90,7 @@
                         <p class="title_Text">Список друзей</p>
                     </div>
 
-                        @if(count($friends) > 0)
+                        @if(isset($friends) && count($friends) > 0)
                         <div class="friends_block">
                             @foreach($friends as $friend)
                                 @if(!empty($friend))
@@ -127,11 +127,11 @@
 
 
 
-                    <div class="title_top_userProfile">
+                    <div class="title_top_userProfile change_gray">
                         <p class="title_Text">В друзьях</p>
                     </div>
 
-                    @if(count($friendly) > 0)
+                    @if(isset($friendly) && count($friendly) > 0)
                         <div class="friends_block">
                             @foreach($friendly as $friend)
                                 @if(!empty($friend))
