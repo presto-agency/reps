@@ -144,11 +144,16 @@
         </form>
     </div>
 </div>
-<script>
 
-    CKEDITOR.replace( 'replay_iframe' );
-
-</script>
+{{--<script src="minified/formats/xhtml.min.js"></script>--}}
+{{--<script>--}}
+{{--    // Replace the textarea #example with SCEditor--}}
+{{--    var textarea = document.getElementById('replay_iframe');--}}
+{{--    sceditor.create(textarea, {--}}
+{{--        format: 'xhtml',--}}
+{{--        style: 'minified/themes/content/default.min.css'--}}
+{{--    });--}}
+{{--</script>--}}
 {{--<!--SCEditor -  WYSIWYG BBCode editor -->--}}
 {{--<script src="{{route('home.index')}}/js/sceditor/minified/jquery.sceditor.min.js"></script>--}}
 {{--<script src="{{route('home.index')}}/js/sceditor/minified/jquery.sceditor.xhtml.min.js"></script>--}}
