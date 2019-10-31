@@ -27,7 +27,7 @@
             <p>Аватар:</p>
             <div class="row">
                 <div class="col-8">
-                    <input id="uploadFile" class="f-input" readonly/>
+                    <input id="uploadFile" class="f-input night_input" readonly/>
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
