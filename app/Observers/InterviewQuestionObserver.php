@@ -17,9 +17,8 @@ class InterviewQuestionObserver
 
     public function creating(InterviewQuestion $poll)
     {
-        dd($poll,$poll->getAttributes());
-//        InterviewQuestionObserver::$answers = $poll->getAttribute('answer');
-//        unset($poll['answer']);
+        InterviewQuestionObserver::$answers = $poll->getAttribute('answers');
+        unset($poll['answers']);
     }
 
     /**
@@ -27,7 +26,7 @@ class InterviewQuestionObserver
      */
     public function created(InterviewQuestion $poll)
     {
-//        self::storeIVA(InterviewQuestionObserver::$answers, $poll->getAttribute('id'));
+        self::storeIVA(InterviewQuestionObserver::$answers, $poll->getAttribute('id'));
     }
 
     /**
@@ -35,8 +34,8 @@ class InterviewQuestionObserver
      */
     public function updating(InterviewQuestion $poll)
     {
-//        InterviewQuestionObserver::$answersEdit = $poll->getAttribute('answer');
-//        unset($poll['answer']);
+        InterviewQuestionObserver::$answersEdit = $poll->getAttribute('answer');
+        unset($poll['answers']);
     }
 
     /**
@@ -44,7 +43,7 @@ class InterviewQuestionObserver
      */
     public function updated(InterviewQuestion $poll)
     {
-//        self::updateIVA(InterviewQuestionObserver::$answersEdit, $poll->getAttribute('id'));
+        self::updateIVA(InterviewQuestionObserver::$answersEdit, $poll->getAttribute('id'));
     }
 
     /**
@@ -73,35 +72,35 @@ class InterviewQuestionObserver
 
     /**
      * Store InterviewVariantAnswer
-     * @param $getAnswers
+     * @param $answers
      * @param $id
      */
-//    public static function storeIVA($getAnswers, $id)
-//    {
-//        if (!empty($getAnswers)) {
-//            foreach ($getAnswers as $answer) {
-//                if (!empty($answer) && strlen($answer) <= 255) {
-//                    $addAnswer = new InterviewVariantAnswerController;
-//                    $addAnswer->store($id, $answer);
-//                }
-//            }
-//        }
-//    }
+    public static function storeIVA($answers, $id)
+    {
+        if (!empty($answers)) {
+            foreach ($answers as $answer) {
+                if (!empty($answer) && strlen($answer) <= 255) {
+                    $addAnswer = new InterviewVariantAnswerController;
+                    $addAnswer->store($id, $answer);
+                }
+            }
+        }
+    }
 
     /**
      * Update InterviewVariantAnswer
      * @param $answersEdit
      * @param $questionId
      */
-//    public static function updateIVA($answersEdit, $questionId)
-//    {
-//        if (!empty($answersEdit)) {
-//            foreach ($answersEdit as $id => $answerEdit) {
-//                if (!empty($answerEdit) && strlen($answerEdit) <= 255) {
-//                    $addAnswers = new InterviewVariantAnswerController;
-//                    $addAnswers->update($id, $answerEdit, $questionId);
-//                }
-//            }
-//        }
-//    }
+    public static function updateIVA($answersEdit, $questionId)
+    {
+        if (!empty($answersEdit)) {
+            foreach ($answersEdit as $id => $answerEdit) {
+                if (!empty($answerEdit) && strlen($answerEdit) <= 255) {
+                    $addAnswers = new InterviewVariantAnswerController;
+                    $addAnswers->update($id, $answerEdit, $questionId);
+                }
+            }
+        }
+    }
 }
