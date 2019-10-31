@@ -1,6 +1,6 @@
  .user_bar{
      position: absolute;
-     bottom: 10px;
+     bottom: -50px;
      right: 10px;
      max-width: 130px;
      & .user_panel{
@@ -11,6 +11,7 @@
          & svg{
              width: 30px;
              color: white;
+             margin: 5px;
          }
         & .user-nickname{
             overflow: hidden;
@@ -19,8 +20,8 @@
             color: white;
         }
          & .user-avatar{
-             width: 50px;
-             height: 50px;
+             width: 37px;
+             height: 37px;
              background: #dadada;
              color: #4890af !important;
              font-size: 24px;
@@ -29,6 +30,7 @@
              align-items: center;
              justify-content: center;
              border: 1px solid #4890af;
+             margin-right: 10px;
          }
 
      }
