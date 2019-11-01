@@ -395,7 +395,7 @@
             </div>
             <div class="block_stream_list">
                 <div class="title_video ">
-                    @include('components.streams-list')
+                    @include('home.components.chat.components.streams-list')
                     <div class="video_header">
                         <div class="left_block">
                             <button class="big_video_right">

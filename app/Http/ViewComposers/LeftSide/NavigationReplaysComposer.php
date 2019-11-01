@@ -8,7 +8,7 @@ use App\Http\Controllers\Replay\ReplayController;
 use App\Models\Replay;
 use Illuminate\View\View;
 
-class ReplaysNavigationComposer
+class NavigationReplaysComposer
 {
 
     public static $pro;
@@ -28,7 +28,6 @@ class ReplaysNavigationComposer
         self::$pro = ReplayController::checkUrlPro() === false ? true : false;
         self::$replayTypeName = ReplayController::checkUrlPro() === true ? $replayTypeName = "Профессиональные" : $replayTypeName = "Пользовательские";
         self::$replayTypeName = ReplayController::checkUrlTournament() === true ? $replayTypeName = "Профессиональные" : self::$replayTypeName;
-
         if (ReplayController::checkUrlPro() === false) {
             $data1 = self::getCacheReplayProDuel('replayProDuel')->toArray();
             $data2 = self::getCacheReplayProPack('replayProPack')->toArray();
@@ -42,6 +41,7 @@ class ReplaysNavigationComposer
 
     public function compose(View $view)
     {
+
         $view->with("pro", self::$pro);
         $view->with("replayTypes", self::$replayTypes);
         $view->with("replayNav", self::$replayNav);

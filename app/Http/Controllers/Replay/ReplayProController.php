@@ -75,7 +75,7 @@ class ReplayProController extends Controller
             'secondRaces:id,title,code',
             'comments',
         ];
-        $replay = ReplayController::findReplay($relations, $id);
+        $replay = ReplayController::findReplayWithType2($relations, $id,Replay::REPLAY_PRO);
         $countUserPts = $replay->users->totalComments->count();
         $proRout = ReplayController::checkUrlPro() === true ? ReplayController::$REPLAY_PRO : false;
         $proRoutType = false;

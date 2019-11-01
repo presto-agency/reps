@@ -19,9 +19,11 @@ class Mod2UserReplayTable extends Migration
         Schema::table('replays', function (Blueprint $table) {
             $table->integer('user_replay')->default(1)->change();
         });
+
         Schema::table('replay_types', function (Blueprint $table) {
             $table->string('name')->after('id');
         });
+
         Artisan::call('db:seed', array('--class' => 'ReplayTypesSeeder'));
 
     }

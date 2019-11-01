@@ -31,7 +31,8 @@
 <body>
 <!--SECTION HEADER-->
 <header>
-    @include('header.index')
+    {{--    @include('header.index')--}}
+    @include('layouts.components.header.index')
 </header>
 <!--END SECTION HEADER-->
 
@@ -84,7 +85,8 @@
 <!--END SECTION CONTENT-->
 
 <footer>
-    @include('footer.index')
+    {{--    @include('footer.index')--}}
+    @include('layouts.components.footer.index')
 </footer>
 
 <!--SCEditor-->

@@ -7,7 +7,7 @@ namespace App\Http\ViewComposers\LeftSide;
 use App\Models\Replay;
 use Illuminate\View\View;
 
-class ReplaysShowInHomeComposer
+class LastUserProReplaysComposer
 {
 
     private static $column = ['id', 'title', 'first_race', 'second_race', 'first_country_id', 'second_country_id'];

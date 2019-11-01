@@ -13,7 +13,7 @@ trait GravatarTrait
         if ($value) {
             return asset($value);
         } else {
-            return asset('images/newsAvatar.png');
+            return asset('images/default/avatar/avatar.png');
         }
     }
 

@@ -54,7 +54,7 @@
                     <button><img class="search_img" src="{{ url('/images/search.png') }}"></button>
                     <input id="inp"class="search_input " placeholder="поиск">
                 </div>
-                                @include('header.components.user-bar_panel')
+                                @include('header.components.navigation-panel.components.user-bar-panel')
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@ namespace App\Http\ViewComposers\RightSide;
 use App\User;
 use Illuminate\View\View;
 
-class Top10Composer
+class Top10KgPtsComposer
 {
     private static $ttl = 300;
 
@@ -97,7 +97,7 @@ class Top10Composer
                 'id' => $item->id,
                 'name' => $item->name,
                 'avatar' => self::checkAvatar($item),
-                'raceIcon' => "images\\" . $item->races->title . ".png",
+                'raceIcon' => "images/default/game-races/" . $item->races->title . ".png",
                 'raceTitle' => $item->races->title,
                 'countryFlag25x20' => $item->countries->flag,
                 'countryName' => $item->countries->name,

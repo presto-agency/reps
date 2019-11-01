@@ -7,7 +7,7 @@
                         <button class="streamEvent" id="{{$item['id']}}" data-src="{{$item['streamUrl']}}">
                             <img class="margin-left-5" src="{{asset($item['countryFlag25x20'])}}" alt="CountriesFlag">
                             <img class="margin-left-5"
-                                 src="{{asset($item['racesTitle'])}}" alt="Races">
+                                 src="{{asset('images/default/game-races/'.$item['racesTitle'].'png')}}" alt="Races">
                             <span class="color-blue night_text">{{$item['streamTitle']}}</span>
                         </button>
                     </div>

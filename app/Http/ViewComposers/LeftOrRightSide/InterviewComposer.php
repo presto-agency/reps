@@ -9,7 +9,7 @@ use App\Models\{InterviewQuestion};
 use Illuminate\View\View;
 
 
-class VoteComposer
+class InterviewComposer
 {
 
     public function compose(View $view)

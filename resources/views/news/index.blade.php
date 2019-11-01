@@ -10,5 +10,6 @@
 @endsection
 
 @section('right-side')
-    @include('components.block-last-5-news-or-replay')
+    @parent
+    @include('right-side.components.last-replay')
 @endsection
