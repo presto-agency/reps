@@ -2867,34 +2867,39 @@
     //header
     .header{
         position: relative;
-        & .icon_bars{
+         .icon_bars{
             display: block!important;
             width: 50px;
         }
-        & .logo{
+         .logo{
             & img{
                 width: 70% !important;
             }
         }
-        & .menu_navigation{
+         .menu_navigation{
             display: none!important;
         }
-        & .autorization{
+         .autorization{
             display:none!important;
         }
-        & .main_menu{
+         .main_menu{
             position: absolute;
             right: 0;
             bottom: 30%;
         }
-        & .search{
+         .search{
             justify-content: flex-start;
         }
-        & .button_input{
+         .button_input{
             width: 100% !important;
             & .search_input{
                 min-width: 40vw !important;
             }
+        }
+        .header_search_autorization{
+              .button_input {
+                  margin-right: -10px!important;
+              }
         }
         & .burger_menu{
             display: block!important;
@@ -2902,7 +2907,6 @@
                 width: 50px!important;
             }
         }
-
     }
     .mob_menu{
         & .nav-wrapper{
