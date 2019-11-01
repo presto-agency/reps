@@ -8,12 +8,13 @@ use App\Http\ViewComposers\{admin\DashboardCountComposer,
     ForumNavigationComposer,
     HeadlineComposer,
     admin\InterviewVariantAnswerComposer,
+    LeftOrRightSide\LastNewsOrReplayComposer,
+    LeftOrRightSide\VoteComposer,
     LeftSide\ReplaysNavigationComposer,
     LeftSide\ReplaysShowInHomeComposer,
     Registration\RegistrationComposer,
     RightSide\LastRegisteredUsersComposer,
-    RightSide\Top10Composer,
-    Vote\VoteComposer};
+    RightSide\Top10Composer};
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
@@ -40,6 +41,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         /*right-side*/
         $this->compose('right-side.index', LastRegisteredUsersComposer::class);
         $this->compose('right-side.index', Top10Composer::class);
+        $this->compose('components.block-last-5-news-or-replay', LastNewsOrReplayComposer::class);
         $this->compose('components.vote', VoteComposer::class);
 
         $this->compose('modal.registration', RegistrationComposer::class);

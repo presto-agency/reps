@@ -11,3 +11,7 @@
         'route' => route('comment.store', $topic->id)
     ])
 @endsection
+
+@section('right-side')
+    @include('components.block-last-5-news-or-replay')
+@endsection

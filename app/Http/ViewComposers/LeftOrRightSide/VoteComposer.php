@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\ViewComposers\Vote;
+namespace App\Http\ViewComposers\LeftOrRightSide;
 
 
 use App\Http\Controllers\Interview\InterviewController;

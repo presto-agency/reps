@@ -5,5 +5,9 @@
 @endsection
 
 @section('content')
-    @include('best.showAll')
+    @include('best.components.index')
+@endsection
+
+@section('right-side')
+    @include('components.block-last-5-news-or-replay')
 @endsection

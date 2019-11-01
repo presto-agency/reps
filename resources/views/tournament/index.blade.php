@@ -6,5 +6,5 @@
 @endsection
 
 @section('content')
-    @include('tournament.showAll')
+    @include('tournament.components.index')
 @endsection

@@ -12,19 +12,27 @@
                                title="{{$item->title}}"><p>{{$item->title}}</p></a>
                             <div class="content_game">
                                 <p class="text">Страны:</p>
-                                <img class="icon_bars" src="{{asset($item->firstCountries->flag)}}" alt="flag"
-                                     title="{{$item->firstCountries->name}}"/>
+                                @isset($item->firstCountries)
+                                    <img class="icon_bars" src="{{asset($item->firstCountries->flag)}}" alt="flag"
+                                         title="{{$item->firstCountries->name}}"/>
+                                @endisset
                                 <p class="text">vs</p>
-                                <img class="icon_bars" src="{{asset($item->secondCountries->flag)}}"
-                                     alt="flag" title="{{$item->firstCountries->name}}"/>
+                                @isset($item->secondCountries)
+                                    <img class="icon_bars" src="{{asset($item->secondCountries->flag)}}"
+                                         alt="flag" title="{{$item->firstCountries->name}}"/>
+                                @endisset
                             </div>
                             <div class="content_game">
                                 <p class="text">Матчап:</p>
-                                <p class="text_matchap"
-                                   title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</p>
+                                @isset($item->firstRaces)
+                                    <p class="text_matchap"
+                                       title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</p>
+                                @endisset
                                 <p class="text">vs</p>
-                                <p class="text_matchap"
-                                   title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</p>
+                                @isset($item->secondRaces)
+                                    <p class="text_matchap"
+                                       title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</p>
+                                @endisset
                             </div>
                         </div>
                     </div>
@@ -45,19 +53,27 @@
                                title="{{$item->title}}"><p>{{$item->title}}</p></a>
                             <div class="content_game">
                                 <p class="text">Страны:</p>
-                                <img class="icon_bars" src="{{asset($item->firstCountries->flag)}}"
-                                     alt="flag" title="{{$item->firstCountries->name}}"/>
+                                @isset($item->firstCountries)
+                                    <img class="icon_bars" src="{{asset($item->firstCountries->flag)}}"
+                                         alt="flag" title="{{$item->firstCountries->name}}"/>
+                                @endisset
                                 <p class="text">vs</p>
-                                <img class="icon_bars" src="{{asset($item->secondCountries->flag)}}"
-                                     alt="flag" title="{{$item->secondCountries->name}}"/>
+                                @isset($item->secondCountries)
+                                    <img class="icon_bars" src="{{asset($item->secondCountries->flag)}}"
+                                         alt="flag" title="{{$item->secondCountries->name}}"/>
+                                @endisset
                             </div>
                             <div class="content_game">
                                 <p class="text">Матчап:</p>
-                                <p class="text_matchap"
-                                   title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</p>
+                                @isset($item->firstRaces)
+                                    <p class="text_matchap"
+                                       title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</p>
+                                @endisset
                                 <p class="text">vs</p>
-                                <p class="text_matchap"
-                                   title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</p>
+                                @isset($item->secondRaces)
+                                    <p class="text_matchap"
+                                       title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</p>
+                                @endisset
                             </div>
                         </div>
                     </div>

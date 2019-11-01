@@ -1,6 +1,5 @@
 <div class="create-replay border_shadow">
     <div class="create-replay__title">
-
         <svg class="title__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -13,7 +12,6 @@
                 c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                 C479.3,122.6,463.9,174.4,437.6,213.9z"/>
         </svg>
-
         <p class="title__text">Создать новый Replay</p>
     </div>
     <div class="create-replay__body night_modal">
@@ -36,9 +34,11 @@
                         <label for="create-replay__user-replay" class="night_text">* Пользовательский/Gosu:
                             <select name="user_replay" id="create-replay__user-replay"
                                     class="create-replay__user-replay night_input">
-                                @foreach($userReplay as $key => $items)
-                                    <option value="{{$key}}">{{$items}}</option>
-                                @endforeach
+                                @isset($userReplay)
+                                    @foreach($userReplay as $key => $items)
+                                        <option value="{{$key}}">{{$items}}</option>
+                                    @endforeach
+                                @endisset
                             </select>
                         </label>
                     </div>
@@ -53,9 +53,11 @@
                         <label for="create-replay__type" class="night_text">* Тип:
                             <select name="type_id" id="create-replay__type night_input"
                                     class="create-replay__type night_input">
-                                @foreach($types as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach
+                                @isset($types)
+                                    @foreach($types as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                @endisset
                             </select>
                         </label>
                     </div>
@@ -69,9 +71,11 @@
             <div class="form-group">
                 <label for="create-replay__map" class="night_text">* Карта:
                     <select name="map_id" class="js-example-basic-single night_input" id="create-replay__map">
-                        @foreach($maps as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
-                        @endforeach
+                        @isset($maps)
+                            @foreach($maps as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                        @endisset
                     </select>
                 </label>
             </div>
@@ -87,9 +91,11 @@
                         <label for="create-replay__first-race" class="night_text">* Первая раса:
                             <select name="race_id" id="create-replay__first-race"
                                     class="create-replay__first-race night_input">
-                                @foreach($races as $item)
-                                    <option value="{{$item->id}}">{{$item->title}}</option>
-                                @endforeach
+                                @isset($races)
+                                    @foreach($races as $item)
+                                        <option value="{{$item->id}}">{{$item->title}}</option>
+                                    @endforeach
+                                @endisset
                             </select>
                         </label>
                     </div>
@@ -104,9 +110,11 @@
                         <label for="create-replay__first-country" class="night_text">* Первая страна:
                             <select name="first_country_id" class="js-example-basic-single" name="country"
                                     id="create-replay__first-country">
-                                @foreach($countries as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach
+                                @isset($countries)
+                                    @foreach($countries as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                @endisset
                             </select>
                         </label>
                     </div>
@@ -134,15 +142,15 @@
                     {{old('content')}}
                 </textarea>
                 <script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
-{{--                <script src="http://reps.dev/packages/sleepingowl/ckeditor/ckeditor.js">--}}
-{{--                    Admin.WYSIWYG.switchOn('replay_content', 'ckeditor')--}}
-{{--                </script>--}}
+                {{--                <script src="http://reps.dev/packages/sleepingowl/ckeditor/ckeditor.js">--}}
+                {{--                    Admin.WYSIWYG.switchOn('replay_content', 'ckeditor')--}}
+                {{--                </script>--}}
                 <script>
                     ClassicEditor
-                        .create( document.querySelector( '#replay_content' ) )
-                        .catch( error => {
-                            console.error( error );
-                        } );
+                        .create(document.querySelector('#replay_content'))
+                        .catch(error => {
+                            console.error(error);
+                        });
                 </script>
             </div>
 

@@ -9,3 +9,7 @@
     @include('content.comments')
     @include('content.add-comment')
 @endsection
+
+@section('right-side')
+    @include('components.block-last-5-news-or-replay')
+@endsection

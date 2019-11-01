@@ -8,3 +8,4 @@
 @section('content')
     @include('tournament.showSingle.php')
 @endsection
+

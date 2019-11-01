@@ -30,7 +30,7 @@ class LastRegisteredUsersComposer
         $data = null;
 
         $getData = User::with('countries:id,flag,name', 'races:id,code,title')
-            ->orderBy('id', 'desc')
+            ->orderByDesc('created_at')
             ->take(self::$userTake)
             ->get(['id', 'name', 'race_id', 'country_id']);
 

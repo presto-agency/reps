@@ -12,8 +12,8 @@
 
 @section('sidebar-left')
     @include('components.block-tournament')
-    @include('left-side.replays-show-in-home')
-    @include('components.block-lastNews')
+    @include('left-side.last-replay-list')
+    @include('components.block-last-5-news-or-replay')
 @endsection
 
 @section('content')

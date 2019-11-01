@@ -13,7 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <link rel="stylesheet" href="minified/themes/default.min.css" />
+    <link rel="stylesheet" href="minified/themes/default.min.css"/>
     <script src="minified/sceditor.min.js"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
@@ -72,7 +72,9 @@
         <div id="right-sidebar" class="col-xl-3 col-lg-3 col-md-6 col-12">
             <button id="pulse-button-top" class="pulse-button">Топ</button>
             <div id="right-sidebar-wrap" class="right-sidebar-wrap no-height">
-                @include('right-side.index')
+                @section('right-side')
+                    @include('right-side.index')
+                @show
             </div>
         </div>
         <!--END SIDEBAR RIGHT-->
