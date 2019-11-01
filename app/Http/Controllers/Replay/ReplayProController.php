@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class ReplayProController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -15,32 +16,18 @@ class ReplayProController extends Controller
      */
     public function index()
     {
-        $ArrRelations = [
+        $relations = [
             'users:id,name,avatar',
             'maps:id,name',
             'firstCountries:id,flag,name',
             'secondCountries:id,flag,name',
             'firstRaces:id,title,code',
             'secondRaces:id,title,code',
-        ];
-        $ArrColumn = [
-            'id',
-            'title',
-            'user_id',
-            'map_id',
-            'first_name',
-            'second_name',
-            'first_country_id',
-            'second_country_id',
-            'first_race',
-            'second_race',
-            'positive_count',
-            'negative_count',
-            'created_at',
+            'comments',
         ];
 
-        $replay = ReplayController::getReplays($ArrRelations, $ArrColumn, Replay::REPLAY_PRO);
-        $proRout = ReplayController::checkUrlPro() === true ? true : false;
+        $replay = ReplayController::getReplays($relations, Replay::REPLAY_PRO);
+        $proRout = ReplayController::checkUrlPro() === true ? ReplayController::$REPLAY_PRO : false;
         $proRoutType = false;
 
         return view('replay.index',
@@ -77,7 +64,7 @@ class ReplayProController extends Controller
      */
     public function show($id)
     {
-        $ArrRelations = [
+        $relations = [
             'users:id,name,avatar,count_positive,count_negative',
             'users.totalComments',
             'maps:id,name,url',
@@ -88,9 +75,9 @@ class ReplayProController extends Controller
             'secondRaces:id,title,code',
             'comments',
         ];
-        $replay = ReplayController::findReplay($ArrRelations, $id);
+        $replay = ReplayController::findReplay($relations, $id);
         $countUserPts = $replay->users->totalComments->count();
-        $proRout = ReplayController::checkUrlPro() === true ? true : false;
+        $proRout = ReplayController::checkUrlPro() === true ? ReplayController::$REPLAY_PRO : false;
         $proRoutType = false;
         return view('replay.show',
             compact('replay', 'countUserPts', 'proRout', 'proRoutType')

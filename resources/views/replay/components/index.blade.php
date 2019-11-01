@@ -39,37 +39,47 @@
     @isset($replay)
         @foreach($replay as $item)
             <div class="gocu-replays__subtitle change_gray">
-                @if($proRout)
-                    @if($proRoutType)
+                @isset($proRout)
+                    @if($proRout == 'user-replay')
                         <a class="subtitle__name night_text"
-                           href="{{ route('replay_pro.type.show',['type' => $type,'replay_pro'=>$item->id])}}">
+                           href="{{ route('user-replay.show',['user_replay'=>$item->id])}}">
                             {{$item->title}}
                         </a>
+                    @elseif($proRout == 'replay_pro')
+                        @isset($proRoutType)
+                            @if($proRoutType)
+                                <a class="subtitle__name night_text"
+                                   href="{{ route('replay_pro.type.show',['type' => $type,'replay_pro'=>$item->id])}}">
+                                    {{$item->title}}
+                                </a>
+                            @else
+                                <a class="subtitle__name night_text"
+                                   href="{{ route('replay_pro.show',['replay_pro' =>$item->id])}}">
+                                    {{$item->title}}
+                                </a>
+                            @endif
+                        @endisset
                     @else
                         <a class="subtitle__name night_text"
-                           href="{{ route('replay_pro.show',['replay_pro' =>$item->id])}}">
+                           href="{{ route('replay.show',['replay' =>$item->id])}}">
                             {{$item->title}}
                         </a>
                     @endif
-                @else
-                    <a class="subtitle__name night_text"
-                       href="{{ route('replay.show',['replay' =>$item->id])}}">
-                        {{$item->title}}
-                    </a>
-                @endif
+                @endisset
                 <p class="subtitle__date night_text">{{$item->created_at}}</p>
             </div>
             <div class="gocu-replays__match">
                 <div class="match__author">
                     <div class="subtitle__info">
-                        <img
-                            src="{{\File::exists($item->users->avatar) === true ? asset($item->users->avatar) : asset($item->users->avatar_url_or_blank)}}"
-                            alt="avatar">
-                        <span class="comment-author__nickname" title="{{$item->users->name}}">{{$item->users->name}}</span>
+                        @isset($item->users)
+                            <img
+                                src="{{$item->users->avatar}}"
+                                alt="avatar">
+                            <span class="comment-author__nickname"
+                                  title="{{$item->users->name}}">{{$item->users->name}}</span>
+                        @endisset
                         <span class="comment-author__replay-item night_text">Видео реплай</span>
                     </div>
-
-
                     <div class="subtitle__icons">
                         <a class="items__comment night_text" href="#">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -88,40 +98,54 @@
                                 <path
                                     d="M44,37.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,37.015,44,37.015z"/>
                         </svg>
-                            <span class="night_text">2</span>
+                            <span class="night_text">{{$item->comments_count}}</span>
 
                         </a>
                         <a class="items__download night_text" href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 version="1.1"
                                  id="Capa_1" x="0px" y="0px" viewBox="0 0 471.2 471.2"
                                  style="enable-background:new 0 0 471.2 471.2;" xml:space="preserve">
-                            <path d="M457.7,230.1c-7.5,0-13.5,6-13.5,13.5v122.8c0,33.4-27.2,60.5-60.5,60.5H87.5C54.1,427,27,399.8,27,366.5V241.7    c0-7.5-6-13.5-13.5-13.5S0,234.2,0,241.7v124.8C0,414.8,39.3,454,87.5,454h296.2c48.3,0,87.5-39.3,87.5-87.5V243.7    C471.2,236.2,465.2,230.1,457.7,230.1z"/>
-                                <path d="M226.1,346.8c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-62.7,62.8V30.8    c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"/>
+                            <path
+                                d="M457.7,230.1c-7.5,0-13.5,6-13.5,13.5v122.8c0,33.4-27.2,60.5-60.5,60.5H87.5C54.1,427,27,399.8,27,366.5V241.7    c0-7.5-6-13.5-13.5-13.5S0,234.2,0,241.7v124.8C0,414.8,39.3,454,87.5,454h296.2c48.3,0,87.5-39.3,87.5-87.5V243.7    C471.2,236.2,465.2,230.1,457.7,230.1z"/>
+                                <path
+                                    d="M226.1,346.8c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-62.7,62.8V30.8    c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"/>
                         </svg>
-                            <span class="night_text">3</span>
+                            <span class="night_text">{{$item->downloaded}}</span>
                         </a>
-
                     </div>
                 </div>
                 <p class="match__comment"></p>
                 <div class="match__info">
                     <div class="info__country">
                         <span class="country__text night_text">Страны:</span>
-                        <img class="country__img country-first" src="{{$item->firstCountries->flag}}"
-                             alt="flag" title="{{$item->firstCountries->name}}">
+                        @isset($item->firstCountries)
+                            <img class="country__img country-first" src="{{$item->firstCountries->flag}}"
+                                 alt="flag" title="{{$item->firstCountries->name}}">
+                        @endisset
                         <span class="country__text night_text">vs</span>
-                        <img src="{{$item->secondCountries->flag}}"
-                             alt="flag" title="{{$item->secondCountries->name}}">
+                        @isset($item->secondCountries)
+                            <img src="{{$item->secondCountries->flag}}"
+                                 alt="flag" title="{{$item->secondCountries->name}}">
+                        @endisset
                     </div>
                     <div class="info__match-up">
                         <span class="match-up__text night_text">Матчап: </span>
-                        <span class="match-up__name name__first"  title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</span>
+                        @isset($item->firstRaces)
+                            <span class="match-up__name name__first"
+                                  title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</span>
+                        @endisset
                         <span class="match-up__text match-up__versus night_text">vs</span>
-                        <span class="match-up__name name__second"  title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</span>
+                        @isset($item->secondRaces)
+                            <span class="match-up__name name__second"
+                                  title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</span>
+                        @endisset
                     </div>
                     <div class="info__maps">
                         <span class="maps__text night_text">Карта:</span>
-                        <span class="maps__name">{{$item->maps->name}}</span>
+                        @isset($item->maps)
+                            <span class="maps__name">{{$item->maps->name}}</span>
+                        @endisset
                     </div>
                     <div class="info__wins">
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -143,9 +167,6 @@
             <hr>
         @endforeach
     @endisset
-</div>
-<div class="gocu-replays__numb-pages">
-    <p class="numb-pages">10 из 240</p>
 </div>
 <div class="gocu-replays__button night_modal">
     <button class="button button__download-more">

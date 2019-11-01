@@ -64,7 +64,7 @@ class ReplayController extends Controller
     {
         $topic = Replay::find($id);
         $comment = new Comment([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'content' => $request->input('content'),
         ]);
         $topic->comments()->save($comment);

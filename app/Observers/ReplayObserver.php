@@ -57,7 +57,7 @@ class ReplayObserver
 
     private function setUserIdAttribute($data)
     {
-        return $data['user_id'] = auth()->user()->id;
+        return $data['user_id'] = auth()->id();
 
     }
 }
