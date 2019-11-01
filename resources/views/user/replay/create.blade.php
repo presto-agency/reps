@@ -6,5 +6,5 @@
 @endsection
 
 @section('content')
-    @include('user.gallery.components.index')
+    @include('user.replay.components.create')
 @endsection

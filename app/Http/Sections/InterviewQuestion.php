@@ -47,10 +47,9 @@ class InterviewQuestion extends Section
         $display = AdminDisplay::datatablesAsync();
         $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
         $display->paginate(10);
-//        $display->with('answers', 'userAnswers');
 
         $display->setApply(function ($query) {
-            $query->orderBy('id', 'asc');
+            $query->orderByDesc('id');
         });
 
         $display->setColumns([
@@ -90,7 +89,8 @@ class InterviewQuestion extends Section
      */
     public function onEdit($id)
     {
-        self::setIVAAttributes($id, 'edit');
+        InterviewVariantAnswerComposer::$method = 'edit';
+        InterviewVariantAnswerComposer::$id = $id;
 
         $form = AdminForm::panel();
 
@@ -106,14 +106,14 @@ class InterviewQuestion extends Section
                         $active = AdminFormElement::checkbox('active', 'Активный')
                             ->setValidationRules(['boolean']),
                         $active = AdminFormElement::checkbox('for_login', 'Только для авторизированных')
-                            ->setValidationRules(['boolean']),
+                        ,
                     ];
                 })->addColumn(function () {
                     return [
                         $answer = AdminFormElement::hidden('answers')
-                            ->setValidationRules(['nullable', 'string', 'max:255']),
+                            ->setValidationRules(['nullable']),
                         AdminFormElement::view('admin.interviewQuestion.answers', $data = [], function () {
-                        })
+                        })->render()
                     ];
                 })
         );
@@ -126,8 +126,7 @@ class InterviewQuestion extends Section
      */
     public function onCreate()
     {
-        self::setIVAAttributes($id, 'edit');
-
+        InterviewVariantAnswerComposer::$method = 'create';
         $form = AdminForm::panel();
 
         $form->setItems(
@@ -150,9 +149,10 @@ class InterviewQuestion extends Section
                 })->addColumn(function () {
                     return [
                         $answer = AdminFormElement::hidden('answers')
-                            ->setValidationRules(['nullable', 'string', 'max:255']),
+                            ->setValidationRules(['nullable']),
+
                         AdminFormElement::view('admin.interviewQuestion.answers', $data = [], function () {
-                        })
+                        })->render()
                     ];
                 })
         );
@@ -194,11 +194,5 @@ class InterviewQuestion extends Section
         $link->setHtmlAttribute('class', 'btn-info');
 
         return $link;
-    }
-
-    public static function setIVAAttributes($id, $method)
-    {
-        InterviewVariantAnswerComposer::$id = $id;
-        InterviewVariantAnswerComposer::$method = $method;
     }
 }

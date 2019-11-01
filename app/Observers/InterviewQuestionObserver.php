@@ -34,7 +34,7 @@ class InterviewQuestionObserver
      */
     public function updating(InterviewQuestion $poll)
     {
-        InterviewQuestionObserver::$answersEdit = $poll->getAttribute('answer');
+        InterviewQuestionObserver::$answersEdit = $poll->getAttribute('answers');
         unset($poll['answers']);
     }
 
@@ -80,6 +80,7 @@ class InterviewQuestionObserver
         if (!empty($answers)) {
             foreach ($answers as $answer) {
                 if (!empty($answer) && strlen($answer) <= 255) {
+
                     $addAnswer = new InterviewVariantAnswerController;
                     $addAnswer->store($id, $answer);
                 }
