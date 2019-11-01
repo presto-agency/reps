@@ -19,4 +19,6 @@
     @include('user.components.reputation-info')
 
 {{--    @include('user.gallery.components.show')--}}
+    @include('user.gallery.components.show')
+    @include('user.components.create-topic')
 @endsection
