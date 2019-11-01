@@ -2,10 +2,10 @@
     background: $blue;
     position: relative;
     .autorization_user{
-    display: none!important;
+   // display: none!important;
     }
      .header_container{
-        overflow: hidden;
+       // overflow: hidden;
         padding: 10px 15px;
 
         & .header_row{
@@ -79,6 +79,7 @@
                     display: flex;
                     width: 218px;
                     transition: 1.5s;
+
                 }
                 & .active_button_input{
                     width: 170px;
@@ -110,18 +111,26 @@
                  }
 
             }
-            & .header_search{
+            .header_search_autorization{
+                .button_input{
+                    margin-right: 160px;
+
+                }
+            }
+             .header_search{
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
-                & button{
+                 button{
                     background: none;
                     border: 0;
                 }
                 .button_input{
                     display: flex;
-                    width: 24px;
+                   // width: 24px;
                     transition: 1.5s;
+                    width: 20px;
+
                 }
                 & .active_button_input{
                     //width: 170px;
