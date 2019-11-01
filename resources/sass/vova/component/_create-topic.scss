@@ -1,9 +1,8 @@
-.user-settings {
+.create-topic{
     box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
     border-radius: 5px;
     background-color: #ffffff;
-
-    .user-settings__title {
+    .create-topic__title {
         border-radius: 5px 5px 0 0;
         background-color: #0567cc;
         display: flex;
@@ -25,8 +24,7 @@
             margin-left: 17px;
         }
     }
-
-    .user-settings__form {
+    .create-topic__form {
         padding: 25px;
         .upload-image {
             margin-bottom: 16px;
@@ -34,6 +32,7 @@
                 color: #495057;
                 font-size: 16px;
                 margin-bottom: 8px;
+
             }
         }
 
@@ -41,25 +40,8 @@
             label {
                 width: 100%;
             }
-            .select2 {
-                width: 100%!important;
-                height: 37px;
 
-                .select2-selection {
-                    height: 37px;
-                    color: #495057;
-                    background-color: #fff;
-                    border: 1px solid #ced4da;
-                    margin-top: 8px;
-                    .select2-selection__rendered {
-                        padding-top: 4px;
-                    }
-                    .select2-selection__arrow {
-                        top: 5px;
-                    }
-                }
-            }
-            #user-settings__race {
+            #create-topic__section {
                 width: 100%;
                 height: 37px;
                 background-color: #fff;
@@ -69,13 +51,7 @@
                 margin-top: 8px;
             }
         }
-        .form-check {
-            padding-left: 0;
-            margin-bottom: 20px;
-            .form-check-input {
-                margin-left: 10px;
-            }
-        }
+
         .modal-body__enter-btn {
             .button {
                 width: 100%;
