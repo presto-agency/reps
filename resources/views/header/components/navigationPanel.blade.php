@@ -63,28 +63,30 @@
                     </svg>
                 </button>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search">
+{{--            не залогінений користувач--}}
+{{--            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search ">--}}
+            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search header_search_autorization">
                 <div class="button_input">
                     <button><img class="search_img" src="{{ url('/images/search.png') }}" title="Поиск"></button>
                     <input id="inp" class="search_input" placeholder="Поиск">
                 </div>
                 <div class="autorization autorization_user">
+{{--                <div class="autorization">--}}
                     @guest
                         <button type="button" data-toggle="modal"
                                 data-target="#authorizationModal">{{ __('Login') }}</button>
                         <button class="registration" type="button" data-toggle="modal"
                                 data-target="#registrationModal">{{ __('Register') }}</button>
                     @else
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit">{{ __('Logout') }}</button>
-                        </form>
+                        @include('header.components.user-bar_panel')
+{{--                        <form id="logout-form" action="{{ route('logout') }}" method="POST">--}}
+{{--                            @csrf--}}
+{{--                            <button type="submit">{{ __('Logout') }}</button>--}}
+{{--                        </form>--}}
                     @endguest
                 </div>
-                {{--                @auth--}}
-{{--                @include('header.components.user-bar_panel')--}}
-                {{--                @endauth--}}
             </div>
+
         </div>
     </div>
 </section>
