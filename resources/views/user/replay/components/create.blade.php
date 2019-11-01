@@ -124,11 +124,26 @@
             </div>
             <hr>
             <div class="form-group">
-                <label for="replay_iframe" class="night_text">Вставить HTML код с Youtube с видео реплеем</label>
-                <textarea name="content"
-                          class="form-control night_input"
-                          id="replay_iframe" rows="16"
-                          placeholder="Вставить HTML код с Youtube с видео реплеем">{{old('content')}}</textarea>
+                <label for="replay_content" class="night_text">Вставить HTML код с видео реплеем</label>
+                <textarea
+                    name="content"
+                    class="form-control night_input"
+                    id="replay_content"
+                    rows="16"
+                    placeholder="Вставить HTML код с Youtube с видео реплеем">
+                    {{old('content')}}
+                </textarea>
+                <script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
+{{--                <script src="http://reps.dev/packages/sleepingowl/ckeditor/ckeditor.js">--}}
+{{--                    Admin.WYSIWYG.switchOn('replay_content', 'ckeditor')--}}
+{{--                </script>--}}
+                <script>
+                    ClassicEditor
+                        .create( document.querySelector( '#replay_content' ) )
+                        .catch( error => {
+                            console.error( error );
+                        } );
+                </script>
             </div>
 
             @if ($errors->has('content'))
@@ -144,20 +159,4 @@
         </form>
     </div>
 </div>
-
-{{--<script src="minified/formats/xhtml.min.js"></script>--}}
-{{--<script>--}}
-{{--    // Replace the textarea #example with SCEditor--}}
-{{--    var textarea = document.getElementById('replay_iframe');--}}
-{{--    sceditor.create(textarea, {--}}
-{{--        format: 'xhtml',--}}
-{{--        style: 'minified/themes/content/default.min.css'--}}
-{{--    });--}}
-{{--</script>--}}
-{{--<!--SCEditor -  WYSIWYG BBCode editor -->--}}
-{{--<script src="{{route('home.index')}}/js/sceditor/minified/jquery.sceditor.min.js"></script>--}}
-{{--<script src="{{route('home.index')}}/js/sceditor/minified/jquery.sceditor.xhtml.min.js"></script>--}}
-{{--<script src="{{route('home.index')}}/js/sceditor/languages/ru.js"></script>--}}
-{{--<!--JS plugin Select2 - autocomplete -->--}}
-{{--<script src="{{route('home.index')}}/js/select2.full.min.js"></script>--}}
 
