@@ -16,31 +16,18 @@ class ReplayUserController extends Controller
      */
     public function index()
     {
-        $ArrRelations = [
+        $relations = [
             'users:id,name,avatar',
             'maps:id,name',
             'firstCountries:id,flag,name',
             'secondCountries:id,flag,name',
             'firstRaces:id,title,code',
             'secondRaces:id,title,code',
+            'comments',
         ];
-        $ArrColumn = [
-            'id',
-            'title',
-            'user_id',
-            'map_id',
-            'first_name',
-            'second_name',
-            'first_country_id',
-            'second_country_id',
-            'first_race',
-            'second_race',
-            'positive_count',
-            'negative_count',
-            'created_at',
-        ];
-        $replay = ReplayController::getReplays($ArrRelations, $ArrColumn, Replay::REPLAY_USER);
-        $proRout = ReplayController::checkUrlPro() === true ? true : false;
+
+        $replay = ReplayController::getReplays($relations, Replay::REPLAY_USER);
+        $proRout = ReplayController::checkUrlPro() === true ? ReplayController::$REPLAY_PRO : false;
         return view('replay.index', compact('proRout', 'replay'));
     }
 
@@ -73,7 +60,7 @@ class ReplayUserController extends Controller
      */
     public function show($id)
     {
-        $ArrRelations = [
+        $relations = [
             'users:id,name,avatar,count_positive,count_negative',
             'users.totalComments',
             'maps:id,name,url',
@@ -85,9 +72,9 @@ class ReplayUserController extends Controller
             'comments',
         ];
 
-        $replay = ReplayController::findReplay($ArrRelations, $id);
+        $replay = ReplayController::findReplay($relations, $id);
         $countUserPts = $replay->users->totalComments->count();
-        $proRout = ReplayController::checkUrlPro() === true ? true : false;
+        $proRout = ReplayController::checkUrlPro() === true ? ReplayController::$REPLAY_PRO : false;
 
         return view('replay.show',
             compact('replay', 'countUserPts', 'proRout')
@@ -130,31 +117,16 @@ class ReplayUserController extends Controller
 
     public function indexLoad()
     {
-        $ArrRelations = [
+        $relations = [
             'users:id,name,avatar',
             'maps:id,name',
             'firstCountries:id,flag,name',
             'secondCountries:id,flag,name',
             'firstRaces:id,title,code',
             'secondRaces:id,title,code',
-        ];
-        $ArrColumn = [
-            'id',
-            'title',
-            'user_id',
-            'map_id',
-            'first_name',
-            'second_name',
-            'first_country_id',
-            'second_country_id',
-            'first_race',
-            'second_race',
-            'positive_count',
-            'negative_count',
-            'created_at',
+            'comments',
         ];
 
-
-        ReplayController::loadReplay($ArrRelations, $ArrColumn, Replay::REPLAY_USER);
+        ReplayController::loadReplay($relations, Replay::REPLAY_USER);
     }
 }
