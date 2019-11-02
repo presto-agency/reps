@@ -14,7 +14,10 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <link rel="stylesheet" href="minified/themes/default.min.css" />
-    <script src="minified/sceditor.min.js"></script>
+{{--    <script src="minified/sceditor.min.js"></script>--}}
+{{--    <script src="//cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>--}}
+{{--    <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>--}}
+    <script src="https://cdn.ckeditor.com/4.13.0/full-all/ckeditor.js"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
 {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}

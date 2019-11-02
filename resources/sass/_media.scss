@@ -273,6 +273,12 @@
             padding: 0 1.464vw;
         }
     }
+    //header
+    .search_input{
+    }
+    ::placeholder {
+        font-size: 1.2vw;
+    }
 
     //Предстоящие турниры
     .block_tournament{
@@ -2915,6 +2921,7 @@
             }
         }
     }
+
 
     //Твич
     .block_chat-twitch{
