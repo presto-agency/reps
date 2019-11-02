@@ -42,7 +42,7 @@ class UserGalleryController extends Controller
 
         $topic = UserGallery::find($id);
         $comment = new Comment([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'content' => $request->input('content'),
         ]);
         $topic->comments()->save($comment);

@@ -37,7 +37,6 @@
                 </a>
                 <p class="card-body__text">
                     {!! $single_news->preview_content !!}
-                    <a href="{{ route('news.show', $single_news->id) }}">читать</a>
                 </p>
                 <div class="card-body__items">
                     <a class="items__comment" href="#">

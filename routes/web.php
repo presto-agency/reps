@@ -59,8 +59,8 @@ Route::resource("tournament", 'Tournament\TournamentController');
 });*/
 
 Route::group(['prefix' => 'user','middleware' => 'auth'], function () {
-    Route::resource("gallery", 'User\UserGalleryController');
-    Route::resource("replay", 'User\UserReplayController');
+    Route::resource("user-gallery", 'User\UserGalleryController');
+    Route::resource("user-replay", 'User\UserReplayController');
 
     Route::get('{id}', 'UserController@show')->name('user_profile');
     Route::get('{id}/topic', 'TopicController@getUserTopic')->name('user.forum_topic');
