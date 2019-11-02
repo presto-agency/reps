@@ -23,6 +23,11 @@ body {
     font-family: 'Montserrat', sans-serif !important;
     background-color: #ffffff;
 }
+
+body.theatre {
+    overflow: hidden
+}
+
 button:focus,
 input:focus,
 select:focus {

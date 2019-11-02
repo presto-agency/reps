@@ -277,3 +277,27 @@ if (document.getElementById("uploadBtn3")) {
 /////////////////////////////////////////////////////////////////////////////
 
 
+
+
+
+
+
+/* Theatre Mode */
+$('#btn_theatre_mode').click(function (e) {
+    theatre_mode(e);
+});
+
+function theatre_mode(e) {
+    console.log('ця хуйня запустилась')
+    e.preventDefault();
+    let streamArea = $("#block_chat-twitch");
+    if(streamArea.hasClass('theatre-on') == true) {
+        streamArea.removeClass('theatre-on')
+        streamArea.addClass('theatre-off')
+        $("body").removeClass('theatre');
+    }else {
+        streamArea.removeClass('theatre-off')
+        streamArea.addClass('theatre-on')
+        $("body").addClass('theatre');
+    }
+}
