@@ -6,14 +6,10 @@
 @endsection
 
 @section('content')
-    @include('user.topics.components.index')
+    @include('user.rating-list.components.index')
 @endsection
-
 
 @section('right-side')
     @parent
     @include('right-side.components.last-replay')
-
-{{--    @include('user.components.user-replays')--}}
-
 @endsection

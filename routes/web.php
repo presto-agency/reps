@@ -62,6 +62,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::resource("user-gallery", 'User\UserGalleryController');
     Route::resource("user-replay", 'User\UserReplayController');
     Route::resource("user-comments", 'User\UserCommentsController');
+    Route::resource("user-topics", 'User\UserTopicsController');
+    Route::resource("user-rating-list", 'User\UserRatingListController');
 
     Route::get("user-replay_pro", 'User\UserReplayController@indexPro')->name('user-replay_pro.index');
     Route::get("user-replay_pro/{user_replay}", 'User\UserReplayController@showPro')->name('user-replay_pro.show');

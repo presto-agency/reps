@@ -9,11 +9,7 @@
     @include('user.topics.components.index')
 @endsection
 
-
 @section('right-side')
     @parent
     @include('right-side.components.last-replay')
-
-{{--    @include('user.components.user-replays')--}}
-
 @endsection

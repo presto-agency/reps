@@ -311,7 +311,7 @@
                     <div class="wrapper_information">
                         <div class="block_inform">
                             <div class="left_block"><span>Темы:</span></div>
-                            <div class="right_block"><a href="{{route('user.forum_topic',['id' => $user->id])}}"><span
+                            <div class="right_block"><a href="{{route('user-topics.index')}}"><span
                                         class="blue" title="Темы">{{$user->topics_count}}</span></a></div>
                         </div>
                         <div class="block_inform">
