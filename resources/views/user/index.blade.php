@@ -22,9 +22,7 @@
     #####################################################
     @include('user.components.get-recovery-link')
     #####################################################
-    @include('user.components.my-posts')
-    #####################################################
-    @include('user.components.reputation-info')
+{{--    @include('user.components.topik-show') --}}
     #####################################################
     @include('user.components.create-topic')
 @endsection

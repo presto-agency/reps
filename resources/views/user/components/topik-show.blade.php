@@ -1,6 +1,6 @@
 <div class="reputation-info border_shadow">
     <div class="reputation-info__title">
-        <p class="title__text">Мои темы</p>
+        <p class="title__text">Моя тема</p>
     </div>
 
     <div class="reputation-info__body">

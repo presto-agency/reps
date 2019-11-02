@@ -153,7 +153,6 @@
                         <div class="friends_block">
                             @foreach($friendly as $friend)
                                 @if(!empty($friend))
-
                                     <div class="friends">
                                         <div class="left_block">
                                             <a href="{{route('user_profile',['id' => $friend->id])}}">
@@ -163,16 +162,16 @@
                                             </a>
                                         </div>
                                         <div class="right_block">
-                                            @if($friend->countries->flag)
+                                            @isset($friend->countries)
                                                 <img src="{{ asset($friend->countries->flag) }}" class="info__flag"
-                                                     alt="flag">
-                                            @else
-                                                <img src="http://reps.dev.devloop.pro/images/flag-russia.png"
-                                                     class="info__flag" alt="flag">
-                                            @endif
-
-                                            <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube"
-                                                 alt="game">
+                                                     title="{{$friend->countries->name}}" alt="flag">
+                                            @endisset
+                                            @isset($friend->races)
+                                                <img
+                                                    src="{{asset('images/default/game-races/'.$friend->races->title.'.png') }}"
+                                                    class="info__cube"
+                                                    title="{{$friend->races->title}}" alt="race">
+                                            @endisset
                                         </div>
                                     </div>
 
@@ -317,7 +316,7 @@
                         </div>
                         <div class="block_inform">
                             <div class="left_block"><span>Посты:</span></div>
-                            <div class="right_block"><a href="{{route('user.forum_topic',['id'=> $user->id])}}"><span
+                            <div class="right_block"><a href="{{route('user-comments.index')}}"><span
                                         class="blue" title="Посты">{{$user->comments_count}}</span></a>
                             </div>
                         </div>
