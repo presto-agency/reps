@@ -1,4 +1,4 @@
-<section class="block_chat-twitch">
+<section id="block_chat-twitch" class="block_chat-twitch theatre-off">
     @foreach($headlineData as $item)
         <div class="text_support night_text">
             {!! $item['title']!!}
@@ -6,7 +6,7 @@
     @endforeach
     <div class="row">
         <div class="col-12 main_container">
-            <div class="wrapper  block_chat border_shadow">
+            <div class="wrapper block_chat border_shadow ">
                 <div class="container_titleChat">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_left">
                         <img id="img_menuMob" class="icon_bars" src="{{url('/images\speech-bubble.png')}}"/>
@@ -409,7 +409,7 @@
                             <p class="title_text">Guest</p>
                         </div>
                         <div class="right_block">
-                            <button class="btn_theatre_mode">
+                            <button id="btn_theatre_mode" class="btn_theatre_mode">
                                 <svg viewBox="0 0 59 55" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect x="8" y="12" width="42" height="31" stroke="white" stroke-width="2"/>
                                     <line x1="37" y1="43" x2="37" y2="11" stroke="white" stroke-width="2"/>
