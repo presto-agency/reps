@@ -3,6 +3,9 @@
 }
 .block_chat-twitch{
     padding-bottom: 40px;
+    .main_row{
+       height: 100%;
+    }
     .active_big_video{
         .block_chat{
             display: none;
@@ -23,6 +26,7 @@
      .block_chat{
         padding-bottom: 20px;
         width: 25%;
+         background: white;
     }
     & .title_text{
         font-size: 16px;
@@ -213,7 +217,7 @@
         background: black;
         justify-content: center;
         align-items: center;
-        height: 770px;
+        height: calc(100% - 60px);
 
     }
 

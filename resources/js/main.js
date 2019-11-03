@@ -301,3 +301,5 @@ function theatre_mode(e) {
         $("body").addClass('theatre');
     }
 }
+
+

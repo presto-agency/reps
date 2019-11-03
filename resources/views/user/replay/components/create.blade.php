@@ -127,27 +127,6 @@
                 <label for="replay_content" class="night_text">Вставить HTML код с видео реплеем</label>
                 <textarea name="editor1" class="form-control night_input"
                           id="editor1"></textarea>
-{{--                <script>--}}
-{{--                    CKEDITOR.replace('editor1', {--}}
-{{--                        extraPlugins: 'embed,autoembed,image2',--}}
-{{--                        removePlugins: 'Image',--}}
-{{--                        height: 500,--}}
-
-{{--                        // Load the default contents.css file plus customizations for this sample.--}}
-{{--                        contentsCss: [--}}
-{{--                            'http://cdn.ckeditor.com/4.13.0/full-all/contents.css',--}}
-{{--                            'https://ckeditor.com/docs/vendors/4.13.0/ckeditor/assets/css/widgetstyles.css'--}}
-{{--                        ],--}}
-{{--                        // Setup content provider. See https://ckeditor.com/docs/ckeditor4/latest/features/media_embed--}}
-{{--                        embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}',--}}
-
-{{--                        // Configure the Enhanced Image plugin to use classes instead of styles and to disable the--}}
-{{--                        // resizer (because image size is controlled by widget styles or the image takes maximum--}}
-{{--                        // 100% of the editor width).--}}
-{{--                        image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],--}}
-{{--                        image2_disableResizer: true--}}
-{{--                    });--}}
-{{--                </script>--}}
                 <script>
                     CKEDITOR.replace('editor1', {
                         // Define the toolbar groups as it is a more accessible solution.
