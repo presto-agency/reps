@@ -149,7 +149,8 @@
             }
         }
         & .messanger{
-            max-height: 45.388vw;
+
+            max-height: 34.388vw;
         }
         & .login_block{
             padding: 2.928vw 0;
@@ -214,7 +215,7 @@
         }
         & .video_twitch{
             padding: 2.928vw 0;
-            height: 56.369vw;
+            height: calc(100% - 4.392vw);
 
         }
     }
@@ -272,6 +273,12 @@
             margin-bottom: 0.366vw;
             padding: 0 1.464vw;
         }
+    }
+    //header
+    .search_input{
+    }
+    ::placeholder {
+        font-size: 1.2vw;
     }
 
     //Предстоящие турниры
@@ -2916,6 +2923,7 @@
         }
     }
 
+
     //Твич
     .block_chat-twitch{
         padding-bottom: 4vw;
@@ -3035,7 +3043,7 @@
         }
         & .video_twitch{
             padding: 4vw 0;
-            height: 77vw;
+            height:calc(100% - 6vw);
 
         }
 

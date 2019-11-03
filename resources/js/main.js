@@ -274,6 +274,9 @@ if (document.getElementById("uploadBtn3")) {
 // $("#gallery__for-adults").on('change', function () {
 //     this.value = this.checked ? 1 : 0;
 // }).change();
+/////////////////////////////////////////////////////////////////////////////
+
+
 
 
 
@@ -298,3 +301,5 @@ function theatre_mode(e) {
         $("body").addClass('theatre');
     }
 }
+
+
