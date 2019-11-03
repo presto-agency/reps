@@ -20,7 +20,7 @@
                     <img src="{{ asset($single_news->preview_img) }}" class="card-img-top" alt="news">
                 </a>
             @endif
-            <div class="card-body">
+            <div class="card-body night_text">
                 <div class="card-body__author">
                     @if($single_news->author->avatar)
                         <img src="{{ asset($single_news->author->avatar) }}" alt="avatar" class="author__avatar img-fluid">
