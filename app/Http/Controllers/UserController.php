@@ -62,12 +62,12 @@ class UserController extends Controller
             abort(404);
         }
 
-//        $friends = UserFriend::getFriends($user);
-//        $friendly = UserFriend::getFriendlies($user);
+        $friends = UserFriend::getFriends($user);
+        $friendly = UserFriend::getFriendlies($user);
 
         return view('user.index')->with([
-//            'friends' => $friends,
-//            'friendly' => $friendly,
+            'friends' => $friends,
+            'friendly' => $friendly,
             'user' => $user
         ]);
     }
