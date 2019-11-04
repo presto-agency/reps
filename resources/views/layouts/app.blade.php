@@ -13,6 +13,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <link rel="stylesheet" href="minified/themes/default.min.css" />
+{{--    <script src="minified/sceditor.min.js"></script>--}}
+{{--    <script src="//cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>--}}
+{{--    <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>--}}
+    <script src="https://cdn.ckeditor.com/4.13.0/full-all/ckeditor.js"></script>
     <link rel="stylesheet" href="minified/themes/default.min.css"/>
     <script src="minified/sceditor.min.js"></script>
     <!-- Fonts -->

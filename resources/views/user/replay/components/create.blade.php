@@ -1,5 +1,6 @@
 <div class="create-replay border_shadow">
     <div class="create-replay__title">
+
         <svg class="title__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -12,6 +13,7 @@
                 c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                 C479.3,122.6,463.9,174.4,437.6,213.9z"/>
         </svg>
+
         <p class="title__text">Создать новый Replay</p>
     </div>
     <div class="create-replay__body night_modal">
@@ -133,24 +135,33 @@
             <hr>
             <div class="form-group">
                 <label for="replay_content" class="night_text">Вставить HTML код с видео реплеем</label>
-                <textarea
-                    name="content"
-                    class="form-control night_input"
-                    id="replay_content"
-                    rows="16"
-                    placeholder="Вставить HTML код с Youtube с видео реплеем">
-                    {{old('content')}}
-                </textarea>
-                <script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
-                {{--                <script src="http://reps.dev/packages/sleepingowl/ckeditor/ckeditor.js">--}}
-                {{--                    Admin.WYSIWYG.switchOn('replay_content', 'ckeditor')--}}
-                {{--                </script>--}}
+                <textarea name="editor1" class="form-control night_input"
+                          id="editor1"></textarea>
                 <script>
-                    ClassicEditor
-                        .create(document.querySelector('#replay_content'))
-                        .catch(error => {
-                            console.error(error);
-                        });
+                    CKEDITOR.replace('editor1', {
+                        // Define the toolbar groups as it is a more accessible solution.
+                        extraPlugins: 'embed,autoembed',
+                        toolbarGroups: [
+                            { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+                            '/',
+                            { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+                            { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+                            { name: 'forms', groups: [ 'forms' ] },
+                            '/',
+                            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+                            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+                            { name: 'links', groups: [ 'links' ] },
+                            { name: 'insert', groups: [ 'insert' ] },
+                            '/',
+                            { name: 'styles', groups: [ 'styles' ] },
+                            { name: 'colors', groups: [ 'colors' ] },
+                            { name: 'tools', groups: [ 'tools' ] },
+                            { name: 'others', groups: [ 'others' ] },
+                            { name: 'about', groups: [ 'about' ] }
+                        ],
+                        // Remove the redundant buttons from toolbar groups defined above.
+                        removeButtons: 'Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Find,Replace,SelectAll,Scayt,Form,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,Strike,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Unlink,Image,Flash,Table,HorizontalRule,SpecialChar,PageBreak,ShowBlocks,Maximize,About,Checkbox'
+                    });
                 </script>
             </div>
 

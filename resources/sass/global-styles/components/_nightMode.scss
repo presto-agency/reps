@@ -2,6 +2,12 @@
     background:#01093b;
     .night_text{
             color: white!important;
+        p{
+            color: white!important;
+        }
+        span{
+            color: white!important;
+        }
     }
     .night_footer{
         background-color: #000524;
@@ -31,6 +37,15 @@
         &::placeholder{
         color:white!important;
         }
+    }
+    .cke_top, .cke_bottom{
+        background: #0567cc!important;
+    }
+    .cke_combo_text{
+        color:white!important;;
+    }
+    .cke_chrome{
+        border: 0!important;
     }
 
     .accordion-button{
