@@ -67,6 +67,11 @@
                     align-items: center;
                     justify-content: center;
                     border: 1px solid #4890af;
+                    svg{
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                    }
                 }
             }
         }

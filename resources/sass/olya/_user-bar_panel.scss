@@ -1,6 +1,6 @@
  .user_bar{
      position: absolute;
-     bottom: -60px;
+     bottom: -22px;
      right: 16px;
      max-width: 130px;
      & .user_panel{
@@ -31,6 +31,12 @@
              justify-content: center;
              border: 1px solid #4890af;
              margin-right: 10px;
+             img{
+                 width: 37px;
+                 height: 37px;
+                 border-radius: 50%;
+
+             }
          }
 
      }
@@ -40,7 +46,7 @@
          flex-direction: column;
          background: #fff;
          border-radius: 3px;
-         width: 131px;
+          width: 170px;
          z-index: 2;
          right: 0;
          bottom: 5px;
@@ -54,6 +60,7 @@
              width: 22px;
              fill:$gray;
              margin: 2px;
+             margin-right: 15px;
          }
          :hover{
              fill: blue;
@@ -62,7 +69,7 @@
      & .logged_links{
          position: absolute;
          background: white;
-         width: 100%;
+         width: 170px;
          z-index:3;
          & ul{
              position: absolute;
@@ -83,12 +90,12 @@
          }
      }
      & .active{
-         height: 200px;
+         height: 500px;
          border-left: 2px solid #efefef;
          border-right: 2px solid #efefef;
          border-bottom: 2px solid #efefef;
          & ul{
-             height: 190px;
+             height: 490px;
          }
      }
 
