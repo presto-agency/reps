@@ -3,6 +3,8 @@
 @section('sidebar-left')
     @include('components.interview')
     @include('left-side.search-replays')
+{{--    @include('user.components.search-replay')--}}
+    @include('user.components.my-chat')
 @endsection
 
 @section('content')
@@ -29,6 +31,7 @@
     @include('user.components.get-recovery-link')
 {{--    #####################################################--}}
 {{--    @include('user.topics.components.create')--}}
+    @include('user.messenger')
 @endsection
 
 @section('right-side')
