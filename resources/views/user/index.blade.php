@@ -3,6 +3,7 @@
 @section('sidebar-left')
     @include('components.vote')
     @include('user.components.search-replay')
+    @include('user.components.my-chat')
 @endsection
 
 @section('content')
@@ -20,4 +21,5 @@
 {{--    @include('user.gallery.components.show')--}}
     @include('user.gallery.components.show')
     @include('user.components.create-topic')
+    @include('user.messenger')
 @endsection
