@@ -124,8 +124,6 @@
                 <span class="info__date">2006/10/16 11:10:57</span>
             </div>
         </div>
-
-
     </div>
 
 </div>
