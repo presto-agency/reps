@@ -12,6 +12,16 @@ class Country extends Model
 
     public function using()
     {
-        return $this->hasMany(\App\User::class,'country_id');
+        return $this->hasMany(\App\User::class, 'country_id');
+    }
+
+    /*$user->avatar*/
+    public function getFlagAttribute($value)
+    {
+        if ($value) {
+            return asset($value);
+        } else {
+            return asset('images/default/flag/country.png');
+        }
     }
 }

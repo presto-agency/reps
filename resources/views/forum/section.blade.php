@@ -7,3 +7,7 @@
 @section('content')
     @include('content.forum-article')
 @endsection
+
+@section('right-side')
+    @include('right-side.components.last-replay')
+@endsection

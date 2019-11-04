@@ -30,7 +30,7 @@ class LastRegisteredUsersComposer
         $data = null;
 
         $getData = User::with('countries:id,flag,name', 'races:id,code,title')
-            ->orderBy('id', 'desc')
+            ->orderByDesc('created_at')
             ->take(self::$userTake)
             ->get(['id', 'name', 'race_id', 'country_id']);
 
@@ -39,7 +39,7 @@ class LastRegisteredUsersComposer
                 $data[] = [
                     'id' => $item->id,
                     'name' => $item->name,
-                    'raceIcon' => $item->races->title,
+                    'raceIcon' => "images/default/game-races/" . $item->races->title . ".png",
                     'raceTitle' => $item->races->title,
                     'countryFlag25x20' => $item->countries->flag,
                     'countryName' => $item->countries->name,

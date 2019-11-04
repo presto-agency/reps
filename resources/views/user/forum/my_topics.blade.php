@@ -1,14 +1,19 @@
 @extends('layouts.app')
 
 @section('sidebar-left')
-    @include('components.vote')
-    @include('user.components.search-replay')
+    @include('components.interview')
+    @include('left-side.search-replays')
 @endsection
 
 @section('content')
-    @include('user.components.my-topics')
+    @include('user.topics.components.index')
 @endsection
 
-@section('sidebar-right')
-    @include('user.components.user-replays')
+
+@section('right-side')
+    @parent
+    @include('right-side.components.last-replay')
+
+{{--    @include('user.components.user-replays')--}}
+
 @endsection

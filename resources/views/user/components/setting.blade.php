@@ -38,7 +38,7 @@
             <p>Аватар:</p>
             @if($user->avatar)
                 <div class="preview-image-wrapper">
-                    <img class="" src="{{$user->avatar}}" alt="">
+                    <img class="" src="{{$user->avatar}}" alt="avatar">
                 </div>
             @endif
             <div class="row">

@@ -13,7 +13,7 @@ use App\Http\Controllers\Controller;
 class UserReplayController extends Controller
 {
     private static $ttl = 300;
-    private static $USER_REPLAY = 'user-replay';
+    private static $USER_REPLAY_URL = 'user-replay';
 
     /**
      * Display a listing of the resource.
@@ -31,9 +31,28 @@ class UserReplayController extends Controller
             'secondRaces:id,title,code',
         ];
 
-        $replay = ReplayController::findUserReplays($relations, auth()->id());
+        $replay = ReplayController::findUserReplaysWithType2($relations, auth()->id(), Replay::REPLAY_USER);
 
-        $proRout = self::$USER_REPLAY;
+
+        $proRout = self::$USER_REPLAY_URL;
+
+        return view('user.replay.index', compact('proRout', 'replay'));
+    }
+
+    public function indexPro()
+    {
+        $relations = [
+            'users:id,name,avatar',
+            'maps:id,name',
+            'firstCountries:id,flag,name',
+            'secondCountries:id,flag,name',
+            'firstRaces:id,title,code',
+            'secondRaces:id,title,code',
+        ];
+
+        $replay = ReplayController::findUserReplaysWithType2($relations, auth()->id(), Replay::REPLAY_PRO);
+
+        $proRout = 'user-replay_pro';
         return view('user.replay.index', compact('proRout', 'replay'));
     }
 
@@ -89,10 +108,16 @@ class UserReplayController extends Controller
             'secondRaces:id,title,code',
             'comments',
         ];
-        $replay = ReplayController::findReplay($relations, $id);
+        $proRout = self::$USER_REPLAY_URL;
+        $user_replay = Replay::REPLAY_USER;
+        if (\Str::contains(collect(request()->segments()), 'user-replay_pro') === true) {
+            $user_replay = Replay::REPLAY_PRO;
+            $proRout = 'user-replay_pro';
+        }
+
+        $replay = ReplayController::findUserReplayWithType2($relations, auth()->id(), $id, $user_replay);
         $countUserPts = $replay->users->totalComments->count();
 
-        $proRout = self::$USER_REPLAY;
 
         $proRoutType = false;
 
@@ -100,6 +125,15 @@ class UserReplayController extends Controller
             compact('replay', 'countUserPts', 'proRout', 'proRoutType')
         );
 
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showPro($id)
+    {
+        return $this->show($id);
     }
 
     /**
