@@ -64,6 +64,8 @@ Route::group(['prefix' => 'user','middleware' => 'auth'], function () {
     Route::get('{id}/topic', 'TopicController@getUserTopic')->name('user.forum_topic');
     Route::get('{id}/edit', 'UserController@edit')->name('edit_profile');
     Route::post('{id}/save', 'UserController@update')->name('save_profile');
+    Route::get('{id}/add_friend', 'UserFriendController@addFriend')->name('user.add_friend');
+    Route::get('{id}/friends_list', 'UserFriendController@getFriendsList')->name('user.friends_list');
 
 
 
