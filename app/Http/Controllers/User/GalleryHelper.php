@@ -21,7 +21,7 @@ class GalleryHelper
      */
     public static function getAllUserImages($row)
     {
-        return UserGallery::where('user_id', auth()->user()->id)->get($row);
+        return UserGallery::where('user_id', auth()->id())->get($row);
     }
 
     public static function getUserImage($id, $relation, $row)
@@ -33,7 +33,7 @@ class GalleryHelper
     {
         return UserGallery::with($relation)
             ->select($row)
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id', auth()->id())
             ->where('id', '<', $id)
             ->max('id');
     }
@@ -42,7 +42,7 @@ class GalleryHelper
     {
         return UserGallery::with($relation)
             ->select($row)
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id', auth()->id())
             ->where('id', '>', $id)
             ->min('id');
     }
@@ -88,7 +88,7 @@ class GalleryHelper
         $request = request();
         $replay = UserGallery::find($request->id);
         $comment = new Comment([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'content' => $request->input('content')
         ]);
         $replay->comments()->save($comment);

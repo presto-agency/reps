@@ -2,7 +2,7 @@
 
 @section('sidebar-left')
     @include('components.vote')
-    @include('user.components.create-replay')
+    @include('user.components.search-replay')
 @endsection
 
 @section('content')

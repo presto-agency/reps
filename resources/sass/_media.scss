@@ -149,7 +149,8 @@
             }
         }
         & .messanger{
-            max-height: 45.388vw;
+
+            max-height: 34.388vw;
         }
         & .login_block{
             padding: 2.928vw 0;
@@ -214,7 +215,7 @@
         }
         & .video_twitch{
             padding: 2.928vw 0;
-            height: 56.369vw;
+            height: calc(100% - 4.392vw);
 
         }
     }
@@ -272,6 +273,12 @@
             margin-bottom: 0.366vw;
             padding: 0 1.464vw;
         }
+    }
+    //header
+    .search_input{
+    }
+    ::placeholder {
+        font-size: 1.2vw;
     }
 
     //Предстоящие турниры
@@ -930,6 +937,16 @@
             }
         }
 
+        .gocu-replays__subtitle {
+            padding: 1.464vw;
+            .subtitle__name {
+                font-size: 1.171vw;
+            }
+            .subtitle__date {
+                font-size: 0.878vw;
+            }
+        }
+
         .gocu-replays__match {
             .match__author {
                 padding: 1.464vw;
@@ -1584,7 +1601,6 @@
             }
         }
     }
-
 
     /*ЛУЧШИЕ*/
     .Page_gameBest{
@@ -2373,7 +2389,6 @@
             }
         }
     }
-
     .my-topics {
         margin-bottom: 1.464vw;
         .my-topics__title {
@@ -2672,6 +2687,42 @@
             }
         }
     }
+    .create-topic{
+        .create-topic__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.464vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+        .create-topic__form {
+            padding: 1.830vw;
+            .upload-image {
+                margin-bottom: 1.171vw;
+                p {
+                    font-size: 1.171vw;
+                    margin-bottom: 0.586vw;
+
+                }
+            }
+
+            .form-group {
+                #create-topic__section {
+                    height: 2.709vw;
+                    margin-top: 0.586vw;
+                }
+            }
+        }
+    }
+
 }
 
 
@@ -2806,18 +2857,6 @@
                 margin-bottom: 2.018vw;
             }
         }
-        .produced {
-            margin-top: 3.027vw;
-            & p {
-                font-size: 1.413vw;
-                line-height: 2.422vw;
-            }
-            & a {
-                font-size: 1.413vw;
-                line-height: 2.422vw;
-                margin-left: 0.505vw;
-            }
-        }
 
     }
     .footer__copyright {
@@ -2835,34 +2874,39 @@
     //header
     .header{
         position: relative;
-        & .icon_bars{
+         .icon_bars{
             display: block!important;
             width: 50px;
         }
-        & .logo{
+         .logo{
             & img{
                 width: 70% !important;
             }
         }
-        & .menu_navigation{
+         .menu_navigation{
             display: none!important;
         }
-        & .autorization{
+         .autorization{
             display:none!important;
         }
-        & .main_menu{
+         .main_menu{
             position: absolute;
             right: 0;
             bottom: 30%;
         }
-        & .search{
+         .search{
             justify-content: flex-start;
         }
-        & .button_input{
+         .button_input{
             width: 100% !important;
             & .search_input{
                 min-width: 40vw !important;
             }
+        }
+        .header_search_autorization{
+              .button_input {
+                  margin-right: -10px!important;
+              }
         }
         & .burger_menu{
             display: block!important;
@@ -2870,7 +2914,6 @@
                 width: 50px!important;
             }
         }
-
     }
     .mob_menu{
         & .nav-wrapper{
@@ -2879,6 +2922,7 @@
             }
         }
     }
+
 
     //Твич
     .block_chat-twitch{
@@ -2999,7 +3043,7 @@
         }
         & .video_twitch{
             padding: 4vw 0;
-            height: 77vw;
+            height:calc(100% - 6vw);
 
         }
 
@@ -3194,9 +3238,6 @@
                     font-size: 1.413vw;
                 }
 
-                a {
-                    font-size: 1.413vw;
-                }
                 .card-body__items {
                     margin-bottom: 1.816vw;
                     .items__comment {
@@ -3735,6 +3776,16 @@
                     padding-right: 1.413vw;
                     font-size: 1.211vw;
                 }
+            }
+        }
+
+        .gocu-replays__subtitle {
+            padding: 2.018vw;
+            .subtitle__name {
+                font-size: 1.615vw;
+            }
+            .subtitle__date {
+                font-size: 1.211vw;
             }
         }
 
@@ -4323,7 +4374,6 @@
             height: 2.523vw;
         }
     }
-
 
     //Предстоящие турниры
     .Page_tournament-content{
@@ -5509,9 +5559,41 @@
             }
         }
     }
+    .create-topic{
+        .create-topic__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 2.018vw;
 
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
 
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+        .create-topic__form {
+            padding: 2.523vw;
+            .upload-image {
+                margin-bottom: 1.615vw;
+                p {
+                    font-size: 1.615vw;
+                    margin-bottom: 0.807vw;
 
+                }
+            }
+
+            .form-group {
+                #create-topic__section {
+                    height: 3.734vw;
+                    margin-top: 0.807vw;
+                }
+            }
+        }
+    }
 
 }
 
@@ -5804,10 +5886,7 @@
                 p {
                     font-size: 3.431vw;
                 }
-                //p - styles for text "читать" isert from admin
-                a {
-                    font-size: 3.431vw;
-                }
+
                 .card-body__items {
                     margin-bottom: 3.125vw;
                     .items__comment {
@@ -7943,7 +8022,12 @@
             }
         }
     }
-
+// pluse-button
+    .pulse-button {
+        font-size: 2.778vw;
+        padding: 2.778vw 5.556vw;
+        margin: 0 auto 3.472vw;
+    }
     //gallery-download
     .gallery-download {
          .form-check-label{
@@ -8499,6 +8583,41 @@
     }
 }
 
+
+    .create-topic{
+        .create-topic__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.472vw;
+
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+        .create-topic__form {
+            padding: 4.340vw;
+            .upload-image {
+                margin-bottom: 2.778vw;
+                p {
+                    font-size: 2.778vw;
+                    margin-bottom: 1.389vw;
+                }
+            }
+
+            .form-group {
+                #create-topic__section {
+                    height: 6.424vw;
+                    margin-top: 1.389vw;
+                }
+            }
+        }
+    }
 
 }
 

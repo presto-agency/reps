@@ -1,12 +1,12 @@
-<section class="block_chat-twitch">
-    @foreach($headlineData as $item)
-        <div class="text_support night_text">
-            {!! $item['title']!!}
-        </div>
-    @endforeach
-    <div class="row">
+@foreach($headlineData as $item)
+    <div class="text_support night_text">
+        {!! $item['title']!!}
+    </div>
+@endforeach
+<section id="block_chat-twitch" class="block_chat-twitch theatre-off">
+    <div class="row main_row">
         <div class="col-12 main_container">
-            <div class="wrapper  block_chat border_shadow">
+            <div class="wrapper block_chat border_shadow ">
                 <div class="container_titleChat">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_left">
                         <img id="img_menuMob" class="icon_bars" src="{{url('/images\speech-bubble.png')}}"/>
@@ -224,11 +224,6 @@
 
                                                 </div>
                                             </div>
-                                            <div class="login_block">
-                                                <a href="#">Please
-                                                    <span>LOGIN</span> to chat!
-                                                </a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -387,11 +382,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="login_block">
-                    <a href="#">Please
-                        <span>LOGIN</span> to chat!
-                    </a>
+                <div class="login_block autorization">
+                    <div class="form-group">
+                        <textarea name="editor2" class="form-control night_input"
+                                  id="editor2"></textarea>
+                        <script>
+                            CKEDITOR.replace('editor2', {
+                                // Define the toolbar groups as it is a more accessible solution.
+                                extraPlugins: 'embed,autoembed',
+                                toolbarGroups: [
+                                    { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+                                    { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+                                    { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+                                    { name: 'forms', groups: [ 'forms' ] },
+                                    '/',
+                                    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+                                    { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+                                    { name: 'links', groups: [ 'links' ] },
+                                    { name: 'insert', groups: [ 'insert' ] },
+                                    '/',
+                                    { name: 'styles', groups: [ 'styles' ] },
+                                    { name: 'colors', groups: [ 'colors' ] },
+                                    { name: 'tools', groups: [ 'tools' ] },
+                                    { name: 'others', groups: [ 'others' ] },
+                                    { name: 'about', groups: [ 'about' ] }
+                                ],
+                                // Remove the redundant buttons from toolbar groups defined above.
+                                removeButtons: 'Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Find,Replace,SelectAll,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Strike,Subscript,Superscript,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,JustifyLeft,JustifyCenter,JustifyRight,JustifyBlock,Language,BidiRtl,BidiLtr,Unlink,Anchor,Flash,Table,HorizontalRule,SpecialChar,PageBreak,Iframe,Styles,Format,FontSize,About,ShowBlocks,Maximize'
+                            });
+                        </script>
+                    </div>
                 </div>
+{{--                <div class="login_block">--}}
+
+{{--                    <a href="#">Please--}}
+{{--                        <span>LOGIN</span> to chat!--}}
+{{--                    </a>--}}
+{{--                </div>--}}
             </div>
             <div class="block_stream_list">
                 <div class="title_video ">
@@ -409,7 +436,7 @@
                             <p class="title_text">Guest</p>
                         </div>
                         <div class="right_block">
-                            <button class="btn_theatre_mode">
+                            <button id="btn_theatre_mode" class="btn_theatre_mode">
                                 <svg viewBox="0 0 59 55" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect x="8" y="12" width="42" height="31" stroke="white" stroke-width="2"/>
                                     <line x1="37" y1="43" x2="37" y2="11" stroke="white" stroke-width="2"/>

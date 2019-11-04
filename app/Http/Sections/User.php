@@ -246,18 +246,18 @@ class User extends Section
                 ->setOptions((new Race())->pluck('title', 'id')->toArray())
                 ->setDisplay('title'),
 
-            $password = AdminFormElement::password('password', 'Пароль')
-                ->setHtmlAttribute('placeholder', 'Пароль')
-                ->setHtmlAttribute('title', 'Оставьте поле пароль пустым если не хотите редактировать')
-                ->setHtmlAttribute('autocomplete', 'off')
-                ->setValidationRules(['between:8,50', empty($id) ? 'required' : 'nullable'])
-                ->allowEmptyValue(),
-
-            $passwordConfirm = AdminFormElement::password('password_confirmation', 'Подтвердите пароль')
-                ->setHtmlAttribute('placeholder', 'Подтвердите пароль')
-                ->setHtmlAttribute('autocomplete', 'off')
-                ->setValueSkipped(true)
-                ->setValidationRules(['same:password', empty($id) ? 'required' : 'nullable']),
+//            $password = AdminFormElement::password('password', 'Пароль')
+//                ->setHtmlAttribute('placeholder', 'Пароль')
+//                ->setHtmlAttribute('title', 'Оставьте поле пароль пустым если не хотите редактировать')
+//                ->setHtmlAttribute('autocomplete', 'off')
+//                ->setValidationRules(['between:8,50', empty($id) ? 'required' : 'nullable'])
+//                ->allowEmptyValue(),
+//
+//            $passwordConfirm = AdminFormElement::password('password_confirmation', 'Подтвердите пароль')
+//                ->setHtmlAttribute('placeholder', 'Подтвердите пароль')
+//                ->setHtmlAttribute('autocomplete', 'off')
+//                ->setValueSkipped(true)
+//                ->setValidationRules(['same:password', empty($id) ? 'required' : 'nullable']),
 
             $ban = AdminFormElement::checkbox('ban', 'Ban')
                 ->setHtmlAttribute('title', 'Внимание! Если пользователь в бане он не может залогиниться.'),

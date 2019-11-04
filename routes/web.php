@@ -59,13 +59,16 @@ Route::resource("tournament", 'Tournament\TournamentController');
 });*/
 
 Route::group(['prefix' => 'user','middleware' => 'auth'], function () {
+    Route::resource("user-gallery", 'User\UserGalleryController');
+    Route::resource("user-replay", 'User\UserReplayController');
 
-    Route::get('/{id}', 'UserController@show')->name('user_profile');
+    Route::get('{id}', 'UserController@show')->name('user_profile');
     Route::get('{id}/topic', 'TopicController@getUserTopic')->name('user.forum_topic');
     Route::get('{id}/edit', 'UserController@edit')->name('edit_profile');
     Route::post('{id}/save', 'UserController@update')->name('save_profile');
     Route::get('{id}/add_friend', 'UserFriendController@addFriend')->name('user.add_friend');
     Route::get('{id}/friends_list', 'UserFriendController@getFriendsList')->name('user.friends_list');
+
 
 
 
@@ -78,12 +81,6 @@ Route::group(['prefix' => 'user','middleware' => 'auth'], function () {
 /*Galleries*/
 Route::resource("galleries", 'User\GalleriesController');
 Route::post('galleries/{id}/send_comment', 'User\GalleryHelper@saveComments')->name('galleries.send.comment');
-
-
-/*User Gallery*/
-Route::group(['prefix' => 'user'], function () {
-    Route::resource("gallery", 'User\UserGalleryController');
-});
 
 
 Auth::routes();

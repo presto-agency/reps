@@ -1,17 +1,18 @@
  .user_bar{
      position: absolute;
-     bottom: 10px;
-     right: 10px;
+     bottom: -60px;
+     right: 16px;
      max-width: 130px;
      & .user_panel{
          display: flex;
          align-items: center;
          justify-content: space-around;
          padding: 10px 0;
-         & svg{
+          svg{
              width: 30px;
              color: white;
          }
+
         & .user-nickname{
             overflow: hidden;
             text-overflow: ellipsis;
@@ -19,8 +20,8 @@
             color: white;
         }
          & .user-avatar{
-             width: 50px;
-             height: 50px;
+             width: 37px;
+             height: 37px;
              background: #dadada;
              color: #4890af !important;
              font-size: 24px;
@@ -29,25 +30,30 @@
              align-items: center;
              justify-content: center;
              border: 1px solid #4890af;
+             margin-right: 10px;
          }
 
      }
-     & .panel{
+      .panel{
          display: flex;
-         justify-content: space-around;
+         justify-content: space-between;
          flex-direction: column;
-         align-items: center;
          background: #fff;
          border-radius: 3px;
-         width: 80px;
+         width: 131px;
          z-index: 2;
          right: 0;
          bottom: 5px;
          border: 0.5px solid #e5e6eb;
-
+         padding: 5px 15px;
+          .block_svg{
+              display: flex;
+              justify-content: space-between;
+          }
          svg{
              width: 22px;
              fill:$gray;
+             margin: 2px;
          }
          :hover{
              fill: blue;
@@ -77,12 +83,12 @@
          }
      }
      & .active{
-         height: 190px;
+         height: 200px;
          border-left: 2px solid #efefef;
          border-right: 2px solid #efefef;
          border-bottom: 2px solid #efefef;
          & ul{
-             height: 180px;
+             height: 190px;
          }
      }
 
