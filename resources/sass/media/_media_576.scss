@@ -116,6 +116,14 @@
             line-height: 3.299vw;
         }
     }
+    //mob_menu
+    .mob_menu{
+        & .nav-wrapper{
+            & .nav_item{
+                font-size: 4.615vw;
+            }
+        }
+    }
     //popup_chat
     .popup_chat{
         .title_block{
