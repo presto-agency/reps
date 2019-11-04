@@ -9,3 +9,7 @@
     @include('content.comments')
     @include('content.add-comment')
 @endsection
+
+@section('right-side')
+    @include('right-side.components.last-replay')
+@endsection

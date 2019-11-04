@@ -18,7 +18,7 @@ class CreateBannersTable extends Migration
             $table->string('title')     ->nullable();
             $table->string('image');
             $table->string('url_redirect');
-            $table->boolean('is_active')->default(1);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
 
             $table->index('is_active');

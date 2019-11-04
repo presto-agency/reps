@@ -23,15 +23,18 @@
         @foreach($comments as $comment)
             <div class="comments__wrapp">
                 <div class="comments__info">
-                    <img src="{{ url('/images/newsAvatar3.png') }}" class="info__avatar" alt="avatar">
-                    <p class="info__nickname">Rus_Brain</p>
-                    <img src="{{ url('/images/flag-russia.png') }}" class="info__flag" alt="flag">
-                    <img src="{{ url('/images/cube.png') }}" class="info__cube" alt="game">
-                    <p class="info__text">16826 pts | 675 кг</p>
-                    <span class="info__date">09.09.2019</span>
+
+                    <img src="{{$comment->user->avatar}}" class="info__avatar" alt="avatar">
+                    <p class="info__nickname">{{$comment->user->name}}</p>
+                    <img src="{{$comment->user->countries->flag}}" class="info__flag" alt="flag">
+                    <img src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
+                         class="info__cube" alt="race">
+                    <p class="info__text">{{$comment->user->comments->count()}} pts
+                        | {{$comment->user->count_positive - $comment->user->count_negative}} кг</p>
+                    <span class="info__date">{{$comment->created_at->format('d.m.y')}}</span>
                 </div>
                 <div class="comments__content">
-                    <p class="content__title">{{ $comment->content }}</p>
+                    <p class="content__title">{{$comment->content }}</p>
                 </div>
                 <div class="comments__items">
                     <div class="items__wrap">
@@ -73,7 +76,7 @@
                                 c-7.1,1.8-13.3,6.5-17,12.8c-4.3,7.2-3.8,15.7-5.4,23.7c-3.9,20.3-13.5,39.7-28.4,54.2c-26,25.3-106.6,98.3-106.6,98.3v267.5
                                 h278.6c37.6,0,62.2-42,43.7-74.7c22.1-14.2,29.7-44,16.7-66.9c22.1-14.2,29.7-44,16.7-66.9C527.6,235.2,514.8,174.8,470.3,167.3z"/>
                         </svg>
-                            <span>3</span>
+                            <span>{{$comment->positive_count }}</span>
                         </a>
                         <a class="items__dislike" href="#">
                             <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +85,7 @@
                                 <path
                                     d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"/>
                             </svg>
-                            <span>3</span>
+                            <span>{{$comment->negative_count }}</span>
                         </a>
                     </div>
                 </div>

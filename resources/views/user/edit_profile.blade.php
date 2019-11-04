@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('sidebar-left')
-    @include('components.vote')
-    @include('user.components.search-replay')
+    @include('components.interview')
+    @include('left-side.search-replays')
 @endsection
 
 @section('content')

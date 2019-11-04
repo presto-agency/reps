@@ -152,64 +152,68 @@
                             <path d="M226.1,346.8c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-62.7,62.8V30.8
                                 c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"></path>
                             </svg>
-                        @isset($proRout)
-                            @if($proRout == 'replay_pro')
-                                @isset($proRoutType)
-                                    @if($proRoutType)
-                                        @isset($type)
-                                            <a href="{{route('replay_pro.type.download',['type' =>$type,'id' =>$replay->id])}}">
-                                                <span class="download" data-id="{{$replay->id}}"
-                                                      data-url="{{url("replay_pro/$type/show/$replay->id/download_count")}}">Скачать</span>
-                                                <span id="downloadCount" data-count="{{$replay->downloaded}}">({{$replay->downloaded}})</span>
-                                            </a>
-                                        @endisset
-                                    @else
-                                        @isset($type)
-                                            <a href="{{route('replay_pro.download',['id' =>$replay->id])}}">
-                                                <span class="download" data-id="{{$replay->id}}"
-                                                      data-url="{{url("replay_pro/$replay->id/download_count")}}">Скачать</span>
-                                                <span id="downloadCount" data-count="{{$replay->downloaded}}">({{$replay->downloaded}})</span>
-                                            </a>
-                                        @endisset
-                                    @endif
-                                @endisset
-                            @else
-                                <a href="{{route('replay.user.download',['id' =>$replay->id])}}">
-                                    <span class="download" data-id="{{$replay->id}}"
-                                          data-url="{{url("replay/$replay->id/download_count")}}">Скачать</span>
-                                    <span id="downloadCount" data-count="{{$replay->downloaded}}">({{$replay->downloaded}})</span>
-                                </a>
-                            @endif
-                        @endisset
+                        {{--                        @isset($proRout)--}}
+                        {{--                            @if($proRout == 'replay_pro')--}}
+                        {{--                                @isset($proRoutType)--}}
+                        {{--                                    @if($proRoutType)--}}
+                        {{--                                        @isset($type)--}}
+                        {{--                                            <a href="{{route('replay_pro.type.download',['type' =>$type,'id' =>$replay->id])}}">--}}
+                        {{--                                                <span class="download" data-id="{{$replay->id}}"--}}
+                        {{--                                                      data-url="{{url("replay_pro/$type/show/$replay->id/download_count")}}">Скачать</span>--}}
+                        {{--                                                <span id="downloadCount" data-count="{{$replay->downloaded}}">({{$replay->downloaded}})</span>--}}
+                        {{--                                            </a>--}}
+                        {{--                                        @endisset--}}
+                        {{--                                    @else--}}
+                        {{--                                        @isset($type)--}}
+                        {{--                                            <a href="{{route('replay_pro.download',['id' =>$replay->id])}}">--}}
+                        {{--                                                <span class="download" data-id="{{$replay->id}}"--}}
+                        {{--                                                      data-url="{{url("replay_pro/$replay->id/download_count")}}">Скачать</span>--}}
+                        {{--                                                <span id="downloadCount" data-count="{{$replay->downloaded}}">({{$replay->downloaded}})</span>--}}
+                        {{--                                            </a>--}}
+                        {{--                                        @endisset--}}
+                        {{--                                    @endif--}}
+                        {{--                                @endisset--}}
+                        {{--                            @else--}}
+                        {{--                                <a href="{{route('replay.user.download',['id' =>$replay->id])}}">--}}
+                        {{--                                    <span class="download" data-id="{{$replay->id}}"--}}
+                        {{--                                          data-url="{{url("replay/$replay->id/download_count")}}">Скачать</span>--}}
+                        {{--                                    <span id="downloadCount" data-count="{{$replay->downloaded}}">({{$replay->downloaded}})</span>--}}
+                        {{--                                </a>--}}
+                        {{--                            @endif--}}
+                        {{--                        @endisset--}}
+                        <a href="{{route('replay.user.download',['id' =>$replay->id])}}">
+                            <span class="download" data-id="{{$replay->id}}"
+                                  data-url="{{url("replay/$replay->id/download_count")}}">Скачать</span>
+                            <span id="downloadCount"
+                                  data-count="{{$replay->downloaded}}">{{$replay->downloaded}}</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 @endisset
-@push('ess21-custom-script')
-    <script type="text/javascript">
-        $('.download').click(function () {
-            let id = $(this).data('id');
-            let token = $('meta[name="csrf-token"]').attr('content');
-            let url = $(this).data('url');
-            $.ajax({
-                method: 'POST',
-                url: url,
-                dataType: 'json',
-                async: false,
-                data: {
-                    _token: token,
-                    id: id,
-                },
-                success: function (data) {
-                    $('#downloadCount').html(data.downloaded);
-                    console.log(data.downloaded);
-                },
-                error: function (request, status, error) {
-                    console.log('code: ' + request.status + "\n" + 'message: ' + request.responseText + "\n" + 'error: ' + error);
-                }
-            });
+<script type="text/javascript">
+    $('.download').click(function () {
+        let id = $(this).data('id');
+        let token = $('meta[name="csrf-token"]').attr('content');
+        let url = $(this).data('url');
+        $.ajax({
+            method: 'POST',
+            url: url,
+            dataType: 'json',
+            async: false,
+            data: {
+                _token: token,
+                id: id,
+            },
+            success: function (data) {
+                $('#downloadCount').html(data.downloaded);
+                console.log(data.downloaded);
+            },
+            error: function (request, status, error) {
+                console.log('code: ' + request.status + "\n" + 'message: ' + request.responseText + "\n" + 'error: ' + error);
+            }
         });
-    </script>
-@endpush
+    });
+</script>

@@ -1,9 +1,6 @@
-@if($voteRight)
-    @include('components.vote')
-@endif
-@include('right-side.TopAndUser')
-
-
-
-
-
+@isset($voteRight)
+    @if($voteRight)
+        @include('components.interview')
+    @endif
+@endisset
+@include('right-side.components.top-and-user')
