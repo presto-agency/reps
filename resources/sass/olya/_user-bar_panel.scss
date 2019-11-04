@@ -1,17 +1,17 @@
- .user_bar{
-     position: absolute;
-     bottom: -60px;
-     right: 16px;
-     max-width: 130px;
-     & .user_panel{
-         display: flex;
-         align-items: center;
-         justify-content: space-around;
-         padding: 10px 0;
-          svg{
-             width: 30px;
-             color: white;
-         }
+.user_bar{
+    position: absolute;
+    bottom: -22px;
+    right: 16px;
+    max-width: 130px;
+    & .user_panel{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px 0;
+        svg{
+            width: 30px;
+            color: white;
+        }
 
         & .user-nickname{
             overflow: hidden;
@@ -19,77 +19,84 @@
             max-width: 50%;
             color: white;
         }
-         & .user-avatar{
-             width: 37px;
-             height: 37px;
-             background: #dadada;
-             color: #4890af !important;
-             font-size: 24px;
-             border-radius: 50%;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             border: 1px solid #4890af;
-             margin-right: 10px;
-         }
+        & .user-avatar{
+            width: 37px;
+            height: 37px;
+            background: #dadada;
+            color: #4890af !important;
+            font-size: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #4890af;
+            margin-right: 10px;
+            img{
+                width: 37px;
+                height: 37px;
+                border-radius: 50%;
 
-     }
-      .panel{
-         display: flex;
-         justify-content: space-between;
-         flex-direction: column;
-         background: #fff;
-         border-radius: 3px;
-         width: 131px;
-         z-index: 2;
-         right: 0;
-         bottom: 5px;
-         border: 0.5px solid #e5e6eb;
-         padding: 5px 15px;
-          .block_svg{
-              display: flex;
-              justify-content: space-between;
-          }
-         svg{
-             width: 22px;
-             fill:$gray;
-             margin: 2px;
-         }
-         :hover{
-             fill: blue;
-         }
-     }
-     & .logged_links{
-         position: absolute;
-         background: white;
-         width: 100%;
-         z-index:3;
-         & ul{
-             position: absolute;
-             height: 0;
-             overflow: hidden;
-             & li {
-             list-style-type: none;
             }
-         }
+        }
 
-         a{
-             display: flex;
-             padding: 6px 15px;
-             align-items: center;
-             color: #4d4d4d;
-             font-size: 14px;
-             justify-content: left;
-         }
-     }
-     & .active{
-         height: 200px;
-         border-left: 2px solid #efefef;
-         border-right: 2px solid #efefef;
-         border-bottom: 2px solid #efefef;
-         & ul{
-             height: 190px;
-         }
-     }
+    }
+    .panel{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        background: #fff;
+        border-radius: 3px;
+        width: 170px;
+        z-index: 2;
+        right: 0;
+        bottom: 5px;
+        border: 0.5px solid #e5e6eb;
+        padding: 5px 15px;
+        .block_svg{
+            display: flex;
+            justify-content: space-between;
+        }
+        svg{
+            width: 22px;
+            fill:$gray;
+            margin: 2px;
+            margin-right: 15px;
+        }
+        :hover{
+            fill: blue;
+        }
+    }
+    & .logged_links{
+        position: absolute;
+        background: white;
+        width: 170px;
+        z-index:28;
+        & ul{
+            position: absolute;
+            height: 0;
+            overflow: hidden;
+            & li {
+                list-style-type: none;
+            }
+        }
+
+        a{
+            display: flex;
+            padding: 6px 15px;
+            align-items: center;
+            color: #4d4d4d;
+            font-size: 14px;
+            justify-content: left;
+        }
+    }
+    & .active{
+        height: 500px;
+        border-left: 2px solid #efefef;
+        border-right: 2px solid #efefef;
+        border-bottom: 2px solid #efefef;
+        & ul{
+            height: 490px;
+        }
+    }
 
 }

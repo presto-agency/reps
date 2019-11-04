@@ -58,13 +58,18 @@ Route::resource("tournament", 'Tournament\TournamentController');
     return view('user.index');
 });*/
 
-Route::group(['prefix' => 'user','middleware' => 'auth'], function () {
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
     Route::get('/friends_list', 'UserFriendController@getFriendsList')->name('user.friends_list');
 
     Route::resource("user-gallery", 'User\UserGalleryController');
     Route::resource("user-replay", 'User\UserReplayController');
+    Route::resource("user-comments", 'User\UserCommentsController');
+    Route::resource("user-topics", 'User\UserTopicsController');
+    Route::resource("user-rating-list", 'User\UserRatingListController');
 
+    Route::get("user-replay_pro", 'User\UserReplayController@indexPro')->name('user-replay_pro.index');
+    Route::get("user-replay_pro/{user_replay}", 'User\UserReplayController@showPro')->name('user-replay_pro.show');
     Route::get('{id}', 'UserController@show')->name('user_profile');
     Route::get('{id}/topic', 'TopicController@getUserTopic')->name('user.forum_topic');
     Route::get('{id}/edit', 'UserController@edit')->name('edit_profile');
@@ -72,10 +77,6 @@ Route::group(['prefix' => 'user','middleware' => 'auth'], function () {
     Route::get('{id}/add_friend', 'UserFriendController@addFriend')->name('user.add_friend');
     Route::get('{id}/remove_friend', 'UserFriendController@removeFriend')->name('user.remove_friend');
     Route::get('{id}/friends_list', 'UserFriendController@getFriendsList')->name('user.friends_list.by_id');
-
-
-
-
 
 
     /*Route::get('{id}/topic', function (){

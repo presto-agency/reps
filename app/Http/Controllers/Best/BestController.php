@@ -174,8 +174,8 @@ class BestController extends Controller
             $data[] = [
                 'id' => $item->id,
                 'name' => $item->name,
-                'avatar' => self::checkAvatar($item),
-                'raceIcon' => "images\\" . $item->races->title . ".png",
+                'avatar' => $item->avatar,
+                'raceIcon' => "images/default/game-races/" . $item->races->title . ".png",
                 'raceTitle' => $item->races->title,
                 'countryFlag25x20' => $item->countries->flag,
                 'countryName' => $item->countries->name,
@@ -184,15 +184,6 @@ class BestController extends Controller
         }
         return $data;
 
-    }
-
-    /**
-     * @param $item
-     * @return mixed
-     */
-    public static function checkAvatar($item)
-    {
-        return \File::exists($item->avatar) === true ? $item->avatar : $item->avatar_url_or_blank;
     }
 
     /**

@@ -17,7 +17,7 @@ class CreateFooterUrlsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('url');
-            $table->boolean('approved')->default(1);
+            $table->boolean('approved')->default(true);
             $table->timestamps();
         });
     }

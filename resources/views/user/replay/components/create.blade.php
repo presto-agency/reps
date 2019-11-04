@@ -36,9 +36,11 @@
                         <label for="create-replay__user-replay" class="night_text">* Пользовательский/Gosu:
                             <select name="user_replay" id="create-replay__user-replay"
                                     class="create-replay__user-replay night_input">
-                                @foreach($userReplay as $key => $items)
-                                    <option value="{{$key}}">{{$items}}</option>
-                                @endforeach
+                                @isset($userReplay)
+                                    @foreach($userReplay as $key => $items)
+                                        <option value="{{$key}}">{{$items}}</option>
+                                    @endforeach
+                                @endisset
                             </select>
                         </label>
                     </div>
@@ -53,9 +55,11 @@
                         <label for="create-replay__type" class="night_text">* Тип:
                             <select name="type_id" id="create-replay__type night_input"
                                     class="create-replay__type night_input">
-                                @foreach($types as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach
+                                @isset($types)
+                                    @foreach($types as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                @endisset
                             </select>
                         </label>
                     </div>
@@ -69,9 +73,11 @@
             <div class="form-group">
                 <label for="create-replay__map" class="night_text">* Карта:
                     <select name="map_id" class="js-example-basic-single night_input" id="create-replay__map">
-                        @foreach($maps as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
-                        @endforeach
+                        @isset($maps)
+                            @foreach($maps as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                        @endisset
                     </select>
                 </label>
             </div>
@@ -87,9 +93,11 @@
                         <label for="create-replay__first-race" class="night_text">* Первая раса:
                             <select name="race_id" id="create-replay__first-race"
                                     class="create-replay__first-race night_input">
-                                @foreach($races as $item)
-                                    <option value="{{$item->id}}">{{$item->title}}</option>
-                                @endforeach
+                                @isset($races)
+                                    @foreach($races as $item)
+                                        <option value="{{$item->id}}">{{$item->title}}</option>
+                                    @endforeach
+                                @endisset
                             </select>
                         </label>
                     </div>
@@ -104,9 +112,11 @@
                         <label for="create-replay__first-country" class="night_text">* Первая страна:
                             <select name="first_country_id" class="js-example-basic-single" name="country"
                                     id="create-replay__first-country">
-                                @foreach($countries as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach
+                                @isset($countries)
+                                    @foreach($countries as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                @endisset
                             </select>
                         </label>
                     </div>
