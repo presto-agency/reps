@@ -3,26 +3,11 @@
 $('.burger_menu').click(function (event) {
     event.preventDefault();
     $('.mob_menu').css({"display": "block"});
-    $('.nav_item').css({"transform": "translateX(0)"});
+   // $('.nav_item').css({"transform": "translateX(0)"});
     $('.nav_item').css({"opacity": "1"});
-    if (document.getElementById('#nav').checked) {
-        $('.nav_item').addClass("nav_item_act");
-        console.log(3);
-
-    } else {
-        console.log(2);
-    }
 
 });
-function close_mob_menu() {
-    if (document.getElementById('#nav').checked) {
-        $('.nav_item').addClass("nav_item_act");
-        console.log(3);
 
-    } else {
-        console.log(2);
-    }
-}
 
 $('.closeButton').click(function (event) {
     event.preventDefault();
