@@ -45,10 +45,10 @@
                 </svg>
             </a>
         </div>
-{{--        <div class="block_svg">--}}
-{{--            --}}
+        {{--        <div class="block_svg">--}}
+        {{--            --}}
 
-{{--        </div>--}}
+        {{--        </div>--}}
     </div>
     <div id="settings_div" class="logged_links">
         <ul class="logged_active">
