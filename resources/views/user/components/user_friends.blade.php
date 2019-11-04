@@ -21,7 +21,7 @@
             <div class="col-3"><span class="night_text">Действие</span></div>
         </div>
         <div class="wrapper_table">
-            @foreach($friends as $friend)
+            @foreach($friends as $item)
                 <div class="row row_users">
                     <div class="col-5  user_block">
                         <div class="col-3">
@@ -31,15 +31,16 @@
                             <a href="#" class="user-avatar">A</a>
                         </div>
                         <div class="col-4">
-                            <a href="#" title="name_user"><span class="name_user">genoiza</span></a>
+                            <a href="{{route('user_profile',['id'=>$item->id])}}" title="name_user"><span class="name_user">{{ $item->name }}</span></a>
                         </div>
                     </div>
                     <div class="col-3 offset-1"><span class="night_text">2019-05-15 11:48:45</span></div>
                     <div class="col-3 block_action">
-                        <a href="#"> <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        <a href="{{route('user.remove_friend',['id' => $item->id])}}">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                           viewBox="0 0 729.837 729.838" style="enable-background:new 0 0 729.837 729.838;"
                                           xml:space="preserve">
-                    <path d="M589.193,222.04c0-6.296,5.106-11.404,11.402-11.404S612,215.767,612,222.04v437.476c0,19.314-7.936,36.896-20.67,49.653
+                                <path d="M589.193,222.04c0-6.296,5.106-11.404,11.402-11.404S612,215.767,612,222.04v437.476c0,19.314-7.936,36.896-20.67,49.653
                             c-12.733,12.734-30.339,20.669-49.653,20.669H188.162c-19.315,0-36.943-7.935-49.654-20.669
                             c-12.734-12.734-20.669-30.313-20.669-49.653V222.04c0-6.296,5.108-11.404,11.403-11.404c6.296,0,11.404,5.131,11.404,11.404
                             v437.476c0,13.02,5.37,24.922,13.97,33.521c8.6,8.601,20.503,13.993,33.522,13.993h353.517c13.019,0,24.896-5.394,33.498-13.993
@@ -324,7 +325,7 @@
             <div class="col-3"><span class="night_text">Действие</span></div>
         </div>
         <div class="wrapper_table">
-            @foreach($friendly as $friend)
+            @foreach($friendly as $item)
             <div class="row row_users">
                 <div class="col-5  user_block">
                     <div class="col-3">
@@ -334,15 +335,16 @@
                         <a href="#" class="user-avatar">A</a>
                     </div>
                     <div class="col-4">
-                        <a href="#" title="name_user"><span class="name_user">genoiza</span></a>
+                        <a href="{{route('user_profile',['id'=>$item->id])}}" title="name_user"><span class="name_user">{{ $item->name }}</span></a>
                     </div>
                 </div>
                 <div class="col-3 offset-1"><span class="night_text">2019-05-15 11:48:45</span></div>
                 <div class="col-3 block_action">
-                    <a href="#"> <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    <a href="{{route('user.add_friend',['id' => $item->id])}}">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                       viewBox="0 0 729.837 729.838" style="enable-background:new 0 0 729.837 729.838;"
                                       xml:space="preserve">
-                    <path d="M589.193,222.04c0-6.296,5.106-11.404,11.402-11.404S612,215.767,612,222.04v437.476c0,19.314-7.936,36.896-20.67,49.653
+                            <path d="M589.193,222.04c0-6.296,5.106-11.404,11.402-11.404S612,215.767,612,222.04v437.476c0,19.314-7.936,36.896-20.67,49.653
                             c-12.733,12.734-30.339,20.669-49.653,20.669H188.162c-19.315,0-36.943-7.935-49.654-20.669
                             c-12.734-12.734-20.669-30.313-20.669-49.653V222.04c0-6.296,5.108-11.404,11.403-11.404c6.296,0,11.404,5.131,11.404,11.404
                             v437.476c0,13.02,5.37,24.922,13.97,33.521c8.6,8.601,20.503,13.993,33.522,13.993h353.517c13.019,0,24.896-5.394,33.498-13.993

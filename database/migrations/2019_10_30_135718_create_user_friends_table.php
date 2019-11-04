@@ -23,6 +23,7 @@ class CreateUserFriendsTable extends Migration
             $table->index('user_id');
             $table->index('friend_user_id');
         });
+
     }
 
     /**

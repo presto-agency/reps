@@ -27,9 +27,23 @@ class UserFriendController extends Controller
             return back();
 
         } catch (\DomainException $e) {
-            return redirect()->route('error',['error' => $e->getMessage()]);
+//            return redirect()->route('error',['error' => $e->getMessage()]);
+            return redirect()->route('user_profile', $user_id)->withErrors($e->getMessage());
         }
     }
+
+    /**
+     * Remove user from friends list
+     *
+     * @param $user_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeFriend($user_id)
+    {
+        UserFriend::removeFriend($user_id);
+        return back();
+    }
+
     /**
      * Get user friend list
      *
@@ -47,6 +61,6 @@ class UserFriendController extends Controller
         $friends = UserFriend::getFriends($user);
         $friendly = UserFriend::getFriendlies($user);
 
-        return view('user.friends')->with(['friends'=>$friends, 'friendly' => $friendly]);
+        return view('user.friends')->with(['friends' => $friends, 'friendly' => $friendly]);
     }
 }
