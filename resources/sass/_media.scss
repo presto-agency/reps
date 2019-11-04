@@ -2736,9 +2736,178 @@
             }
         }
     }
+    .messenger {
+        .messenger__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.464vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+
+        .messenger__head {
+            padding: 1.464vw;
+
+            .head__avatar {
+                width: 3.660vw;
+                height: 3.660vw;
+            }
+
+            .head__nickname {
+                font-size: 1.025vw;
+                margin-left: 1.464vw;
+            }
+
+            .head__date {
+                font-size: 0.878vw;
+                line-height: 1.391vw;
+                margin-left: 2.196vw;
+            }
+        }
+
+        .messenger__body {
+            max-height: 41.728vw;
+            padding: 1.464vw;
+
+            .messenger__load-more {
+                width: 13.909vw;
+                border-radius: 0.439vw;
+                font-size: 0.732vw;
+                margin: 0.732vw auto;
+
+            }
+
+            .my-message {
+                margin-bottom: 1.098vw;
+
+                .message-content {
+                    .content__text {
+                        max-width: 14.641vw;
+                        padding: 0.732vw 1.098vw;
+                        border-radius: 0.732vw;
+                        line-height: 1.318vw;
+
+                        .content__img {
+                            max-width: 14.641vw;
+                            margin-top: 0.732vw;
+                        }
+                    }
+
+                    .content__date {
+                        margin-top: 0.366vw;
+                        font-size: 0.732vw;
+                    }
+                }
+
+                .message-info {
+                    margin-left: 1.098vw;
+                    .user-name {
+                        max-width: 10.981vw;
+                        font-size: 0.878vw;
+                    }
+
+                    .head__avatar {
+                        width: 3.660vw;
+                        height: 3.660vw;
+                    }
+                }
+            }
+
+            .user-message {
+                margin-bottom: 1.098vw;
+                .message-info {
+                    margin-right: 1.098vw;
+                    .user-name {
+                        max-width: 10.981vw;
+                        font-size: 0.878vw;
+                    }
+
+                    .head__avatar {
+                        width: 3.660vw;
+                        height: 3.660vw;
+                    }
+                }
+
+                .message-content {
+                    .content__text {
+                        max-width: 14.641vw;
+                        padding: 0.732vw 1.098vw;
+                        border-radius: 0.732vw;
+                        line-height: 1.318vw;
+
+                        .content__img {
+                            max-width: 14.641vw;
+                            margin-top: 0.732vw;
+                        }
+                    }
+
+                    .content__date {
+                        margin-top: 0.366vw;
+                        font-size: 0.732vw;
+                    }
+                }
+            }
+
+        }
+
+    }
+    .my-chat {
+        .my-chat__title {
+            padding-top: 1.464vw;
+            padding-bottom: 1.464vw;
+            padding-left: 1.464vw;
+
+            .title__icon {
+                width: 1.464vw;
+                height: 1.464vw;
+            }
+
+            .title__text {
+                font-size: 1.171vw;
+                margin-left: 1.245vw;
+            }
+        }
+
+        .my-chat__body {
+            padding: 1.464vw;
+            max-height: 41.728vw;
+        }
+
+        .body__user {
+            padding-top: 0.805vw;
+            padding-bottom: 0.586vw;
+            .user__avatar {
+                a {
+                    .avatar__image {
+                        margin-right: 1.098vw;
+                        flex: 0 0 3.660vw;
+                        width: 3.660vw;
+                    }
+                }
+            }
+
+            .user__info {
+                .info__nickname {
+                    font-size: 1.025vw;
+                }
+
+                .info__date {
+                    font-size: 0.878vw;
+                    line-height: 1.391vw;
+                }
+            }
+        }
+    }
 
 }
-
 
 @media (max-width: 991px) {
     /*global styles START*/
@@ -5612,7 +5781,174 @@
             }
         }
     }
+    .messenger {
+        .messenger__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 2.018vw;
 
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .messenger__head {
+            padding: 2.018vw;
+
+            .head__avatar {
+                width: 5.045vw;
+                height: 5.045vw;
+            }
+
+            .head__nickname {
+                font-size: 1.413vw;
+                margin-left: 2.018vw;
+            }
+
+            .head__date {
+                font-size: 1.211vw;
+                line-height: 1.917vw;
+                margin-left: 3.027vw;
+            }
+        }
+
+        .messenger__body {
+            max-height: 57.518vw;
+            padding: 2.018vw;
+            .messenger__load-more {
+                width: 19.173vw;
+                border-radius: 0.605vw;
+                font-size: 1.009vw;
+                margin: 1.009vw auto;
+            }
+
+            .my-message {
+                margin-bottom: 1.514vw;
+
+                .message-content {
+                    .content__text {
+                        max-width: 20.182vw;
+                        padding: 1.009vw 1.514vw;
+                        border-radius: 1.009vw;
+                        line-height: 1.816vw;
+
+                        .content__img {
+                            max-width: 20.182vw;
+                            margin-top: 1.009vw;
+                        }
+                    }
+
+                    .content__date {
+                        margin-top: 0.505vw;
+                        font-size: 1.009vw;
+                    }
+                }
+
+                .message-info {
+                    margin-left: 1.514vw;
+                    .user-name {
+                        max-width: 15.136vw;
+                        font-size: 1.211vw;
+                    }
+
+                    .head__avatar {
+                        width: 5.045vw;
+                        height: 5.045vw;
+                    }
+                }
+            }
+
+            .user-message {
+                margin-bottom: 1.514vw;
+                .message-info {
+                    margin-right: 1.514vw;
+                    .user-name {
+                        max-width: 15.136vw;
+                        font-size: 1.211vw;
+                    }
+
+                    .head__avatar {
+                        width: 5.045vw;
+                        height: 5.045vw;
+                    }
+                }
+
+                .message-content {
+                    .content__text {
+                        max-width: 20.182vw;
+                        padding: 1.009vw 1.514vw;
+                        border-radius: 1.009vw;
+                        line-height: 1.816vw;
+
+                        .content__img {
+                            max-width: 20.182vw;
+                            margin-top: 1.009vw;
+                        }
+                    }
+
+                    .content__date {
+                        margin-top: 0.505vw;
+                        font-size: 1.009vw;
+                    }
+                }
+            }
+
+        }
+
+    }
+    .my-chat {
+        .my-chat__title {
+            padding-top: 2.018vw;
+            padding-bottom: 2.018vw;
+            padding-left: 2.018vw;
+
+            .title__icon {
+                width: 2.018vw;
+                height: 2.018vw;
+            }
+
+            .title__text {
+                font-size: 1.615vw;
+                margin-left: 1.715vw;
+            }
+        }
+
+        .my-chat__body {
+            padding: 2.018vw;
+            max-height: 57.518vw;
+        }
+
+        .body__user {
+            padding-top: 1.110vw;
+            padding-bottom: 0.807vw;
+            .user__avatar {
+                a {
+                    .avatar__image {
+                        margin-right: 1.514vw;
+                        flex: 0 0 5.045vw;
+                        width: 5.045vw;
+                    }
+                }
+            }
+
+            .user__info {
+                .info__nickname {
+                    font-size: 1.413vw;
+                }
+
+                .info__date {
+                    font-size: 1.211vw;
+                    line-height: 1.917vw;
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 576px) {
@@ -8649,6 +8985,175 @@
             }
         }
     }
+    .messenger {
+        .messenger__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.472vw;
+
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+
+        .messenger__head {
+            padding: 3.472vw;
+
+            .head__avatar {
+                width: 8.681vw;
+                height: 8.681vw;
+            }
+
+            .head__nickname {
+                font-size: 2.431vw;
+                margin-left: 3.472vw;
+            }
+
+            .head__date {
+                font-size: 2.083vw;
+                line-height: 3.299vw;
+                margin-left: 5.208vw;
+            }
+        }
+
+        .messenger__body {
+            max-height: 98.958vw;
+            padding: 3.472vw;
+
+            .messenger__load-more {
+                width: 32.986vw;
+                border-radius: 1.042vw;
+                font-size: 1.736vw;
+                margin: 1.736vw auto;
+            }
+
+            .my-message {
+                margin-bottom: 2.604vw;
+
+                .message-content {
+                    .content__text {
+                        max-width: 34.722vw;
+                        padding: 1.736vw 2.604vw;
+                        border-radius: 1.736vw;
+                        line-height: 3.125vw;
+
+                        .content__img {
+                            max-width: 34.722vw;
+                            margin-top: 1.736vw;
+                        }
+                    }
+
+                    .content__date {
+                        margin-top: 0.868vw;
+                        font-size: 1.736vw;
+                    }
+                }
+
+                .message-info {
+                    margin-left: 2.604vw;
+                    .user-name {
+                        max-width: 26.042vw;
+                        font-size: 2.083vw;
+                    }
+
+                    .head__avatar {
+                        width: 8.681vw;
+                        height: 8.681vw;
+                    }
+                }
+            }
+
+            .user-message {
+                margin-bottom: 2.604vw;
+                .message-info {
+                    margin-right: 2.604vw;
+                    .user-name {
+                        max-width: 26.042vw;
+                        font-size: 2.083vw;
+                    }
+
+                    .head__avatar {
+                        width: 8.681vw;
+                        height: 8.681vw;
+                    }
+                }
+
+                .message-content {
+                    .content__text {
+                        max-width: 34.722vw;
+                        padding: 1.736vw 2.604vw;
+                        border-radius: 1.736vw;
+                        line-height: 3.125vw;
+
+                        .content__img {
+                            max-width: 34.722vw;
+                            margin-top: 1.736vw;
+                        }
+                    }
+
+                    .content__date {
+                        margin-top: 0.868vw;
+                        font-size: 1.736vw;
+                    }
+                }
+            }
+        }
+    }
+    .my-chat {
+        .my-chat__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.472vw;
+
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
+        }
+
+        .my-chat__body {
+            padding: 3.472vw;
+            max-height: 98.958vw;
+        }
+
+        .body__user {
+            padding-top: 1.910vw;
+            padding-bottom: 1.389vw;
+            .user__avatar {
+                a {
+                    .avatar__image {
+                        margin-right: 2.604vw;
+                        flex: 0 0 8.681vw;
+                        width: 8.681vw;
+                    }
+                }
+            }
+
+            .user__info {
+                .info__nickname {
+                    font-size: 2.431vw;
+                }
+
+                .info__date {
+                    font-size: 2.083vw;
+                    line-height: 3.299vw;
+                }
+            }
+        }
+    }
+
+
 
 }
 
