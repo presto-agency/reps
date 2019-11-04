@@ -13,9 +13,9 @@
                 c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                 C479.3,122.6,463.9,174.4,437.6,213.9z"/>
         </svg>
-
-        <p class="title__text">История репутации {{Auth::user()->name}}</p>
-
+        @isset($user)
+            <p class="title__text">История репутации {{$user->name}}</p>
+        @endisset
         <div class="title__reputation">
             <a class="icon__like" href="#">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,9 @@
                                 c-7.1,1.8-13.3,6.5-17,12.8c-4.3,7.2-3.8,15.7-5.4,23.7c-3.9,20.3-13.5,39.7-28.4,54.2c-26,25.3-106.6,98.3-106.6,98.3v267.5
                                 h278.6c37.6,0,62.2-42,43.7-74.7c22.1-14.2,29.7-44,16.7-66.9c22.1-14.2,29.7-44,16.7-66.9C527.6,235.2,514.8,174.8,470.3,167.3z"/>
                         </svg>
-                <span>{{Auth::user()->count_positive}}</span>
+                @isset($user)
+                    <span>{{$user->count_positive}}</span>
+                @endisset
             </a>
             <a class="icon__dislike" href="#">
                 <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
@@ -36,8 +38,9 @@
                     <path
                         d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"/>
                 </svg>
-
-                <span>{{Auth::user()->count_negative}}</span>
+                @isset($user)
+                    <span>{{$user->count_negative}}</span>
+                @endisset
             </a>
         </div>
     </div>
@@ -47,10 +50,10 @@
             @foreach($userReputations as $item)
                 <div class="body__wrap">
                     <div class="body__info change_gray">
-                        <p class="info__nickname night_text">Rus_Brain</p>
+                        <p class="info__nickname night_text"> name</p>
                         <img src="{{ asset($item->users->avatar) }}" class="info__flag" alt="flag">
-                        <img src="{{ asset('images/default/game-races'.$item->races->title.'.png') }}"
-                             class="info__cube" alt="race">
+                        <img src="{{ asset('images/default/game-races'.$item->races->title.'.png') }}" class="info__cube"
+                             alt="race">
                         <p class="info__text night_text">16826 pts | 675 кг</p>
                         <span class="info__date night_text">09.09.2019</span>
                     </div>

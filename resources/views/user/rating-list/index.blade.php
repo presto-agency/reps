@@ -6,6 +6,7 @@
 @endsection
 
 @section('content')
+    @include('user.rating-list.components.block-user-reputation-info.index')
     @include('user.rating-list.components.index')
 @endsection
 

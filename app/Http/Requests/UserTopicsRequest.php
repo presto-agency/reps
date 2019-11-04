@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserGalleryRequests extends FormRequest
+class UserTopicsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,11 @@ class UserGalleryRequests extends FormRequest
     public function rules()
     {
         return [
-            'picture' => 'required|image|max:2048',
-            'sign' => 'nullable|string|between:1,255',
-            'for_adults' => 'boolean',
+            'forum_section_id' => 'required|string|exists:forum_topics,id',
+            'title' => 'required|string|between:1,255',
+            'preview_content' => 'nullable|string|max:1000',
+            'content' => 'required|string|min:3|max:50000',
+            'preview_img' => 'nullable|image|max:2048',
         ];
     }
 }

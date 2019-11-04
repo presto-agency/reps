@@ -10,21 +10,15 @@
     #####################################################
     @include('user.components.user_friends')
     #####################################################
-    @include('user.components.user_reputation')
-    #####################################################
 {{--    @include('user.components.setting')--}}
 {{--    #####################################################--}}
 {{--    @include('user.rating-list.components.index')--}}
 {{--    #####################################################--}}
-{{--    @include('user.topics.components.index')--}}
-{{--    #####################################################--}}
     @include('user.components.password-recovery')
     #####################################################
     @include('user.components.get-recovery-link')
-    #####################################################
-{{--    @include('user.components.topik-show') --}}
 {{--    #####################################################--}}
-    @include('user.components.create-topic')
+{{--    @include('user.topics.components.create')--}}
 @endsection
 
 @section('right-side')

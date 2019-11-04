@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,8 @@ class UserRatingListController extends Controller
      */
     public function index()
     {
-        return view('user.rating-list.index');
+        $userReputations = null;
+        return view('user.rating-list.index', compact('userReputations'));
     }
 
     /**
@@ -46,7 +48,9 @@ class UserRatingListController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $userReputations = null;
+        return view('user.rating-list.show', compact('user', 'userReputations'));
     }
 
     /**

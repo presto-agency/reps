@@ -39,17 +39,18 @@
                 <div class="col-xl-8 col-8 container_information">
                     <div class="userText_block">
                         <span class="title night_text">{{ $user->name }}</span>
-
                     @if($user->isOnline())
                         <!-- if online displays this -->
-                            <span class="date">online</span>
+                            <span class="date">
+                                online
+                            </span>
                     @else
                         <!-- if INACTIVE displays this -->
-                            <div class="date">{{ \Carbon\Carbon::parse($user->activity_at)->diffForHumans() }}</div>
-                        @endif
-
+                            <div class="date">
+                                {{\Carbon\Carbon::parse($user->activity_at)->diffForHumans()}}
+                            </div>
+                    @endif
                     </div>
-
                     <div class="information_block">
                         <div class="left_block"><span>Статус:</span></div>
                         <div class="right_block night_text">
@@ -88,7 +89,8 @@
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>Репутация:</span></div>
-                        <div class="right_block night_text"><a href="#" title="Репутация"><span class="blue">{{$user->positive_count - $user->negative_count}} кг</span></a>
+                        <div class="right_block night_text"><a href="{{route('user-rating-list.index')}}"
+                                                               title="Репутация"><span class="blue">{{$user->positive_count - $user->negative_count}} кг</span></a>
                         </div>
                     </div>
                 </div>
@@ -105,12 +107,10 @@
                     <div class="title_top_userProfile change_gray">
                         <p class="title_Text">Список друзей</p>
                     </div>
-
                     @if(isset($friends) && count($friends) > 0)
                         <div class="friends_block">
                             @foreach($friends as $friend)
                                 @if(!empty($friend))
-
                                     <div class="friends">
                                         <div class="left_block">
                                             <a href="{{route('user_profile',['id' => $friend->id])}}">
@@ -120,15 +120,14 @@
                                             </a>
                                         </div>
                                         <div class="right_block">
-                                            <img src="http://reps.dev.devloop.pro/images/flag-russia.png"
+                                            <img src="{{asset($friend->countries->flag)}}"
                                                  class="info__flag" alt="flag">
-                                            <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube"
-                                                 alt="game">
+                                            <img
+                                                src="{{asset('images/default.game-races/'.$friend->races->title.'.png')}}"
+                                                class="info__cube"
+                                                alt="race">
                                         </div>
                                     </div>
-
-
-
                                     {{--<a href="{{route('user_profile',['id' => $friend->id])}}">
                                         @if($friend->country_id)
                                             <span class="flag-icon flag-icon-{{mb_strtolower($countries[$friend->country_id]->code)}}"></span>
@@ -181,128 +180,6 @@
                     @else
                         <p>Список пуст</p>
                     @endif
-                    {{--<div class="friends_block">
-                        <div class="friends">
-                            <div class="left_block">
-                                <a href="#">
-                                    <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                                    <span class="name_player">Rus Brain</span>
-                                </a>
-                            </div>
-                            <div class="right_block">
-                                <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                                <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                            </div>
-                        </div>
-                        <div class="friends">
-                            <div class="left_block">
-                                <a href="#">
-                                    <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                                    <span class="name_player">Rus Brain</span>
-                                </a>
-                            </div>
-                            <div class="right_block">
-                                <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                                <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                            </div>
-                        </div>
-                        <div class="friends">
-                            <div class="left_block">
-                                <a href="#">
-                                    <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                                    <span class="name_player">Rus Brain</span>
-                                </a>
-                            </div>
-                            <div class="right_block">
-                                <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                                <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                            </div>
-                        </div>
-                        <div class="friends">
-                            <div class="left_block">
-                                <a href="#">
-                                    <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                                    <span class="name_player">Rus Brain</span>
-                                </a>
-                            </div>
-                            <div class="right_block">
-                                <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                                <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                            </div>
-                        </div>
-                        <div class="friends">
-                            <div class="left_block">
-                                <a href="#">
-                                    <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                                    <span class="name_player">Rus Brain</span>
-                                </a>
-                            </div>
-                            <div class="right_block">
-                                <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                                <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                            </div>
-                        </div>
-                        <div class="friends">
-                            <div class="left_block">
-                                <a href="#">
-                                    <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                                    <span class="name_player">Rus Brain</span>
-                                </a>
-                            </div>
-                            <div class="right_block">
-                                <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                                <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                            </div>
-                        </div>
-                        <div class="friends">
-                            <div class="left_block">
-                                <a href="#">
-                                    <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                                    <span class="name_player">Rus Brain</span>
-                                </a>
-                            </div>
-                            <div class="right_block">
-                                <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                                <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                            </div>
-                        </div>
-                        <div class="friends">
-                            <div class="left_block">
-                                <a href="#">
-                                    <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                                    <span class="name_player">Rus Brain</span>
-                                </a>
-                            </div>
-                            <div class="right_block">
-                                <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                                <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                            </div>
-                        </div>
-                        <div class="friends">
-                            <div class="left_block">
-                                <a href="#">
-                                    <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                                    <span class="name_player">Rus Brain</span>
-                                </a>
-                            </div>
-                            <div class="right_block">
-                                <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                                <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                            </div>
-                        </div>
-                        <div class="friends">
-                            <div class="left_block">
-                                <a href="#">
-                                    <img src="http://reps.loc/images/newsAvatar.png" alt="avatar" class="author__avatar img-fluid">
-                                    <span class="name_player">Rus Brain</span>
-                                </a>
-                            </div>
-                            <div class="right_block">
-                                <img src="http://reps.dev.devloop.pro/images/flag-russia.png" class="info__flag" alt="flag">
-                                <img src="http://reps.dev.devloop.pro/images/cube.png" class="info__cube" alt="game">
-                            </div>
-                        </div>
-                    </div>--}}
                 </div>
                 <div class="col-xl-6 col-lg-6  col-md-6 col-12  container_right">
                     <div class="title_top_userProfile change_gray">
@@ -333,54 +210,6 @@
                             </div>
                         </div>
                     </div>
-                    {{--                    <div class="title_top_userProfile">--}}
-                    {{--                        <p class="title_Text">Доспехи</p>--}}
-                    {{--                    </div>--}}
-                    {{--                    <div class="block_armor">--}}
-                    {{--                        <div class="armor_info">--}}
-                    {{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"--}}
-                    {{--                                 viewBox="0 0 416.031 416.031" style="enable-background:new 0 0 416.031 416.031;" xml:space="preserve">--}}
-                    {{--                            <path d="M221.605,0h-31.913C123.743,0,72.083,53.745,72.083,122.356v171.306c0,68.618,51.66,122.369,117.609,122.369h31.913--}}
-                    {{--                                c67.46,0,122.343-54.894,122.343-122.369V122.356C343.948,54.889,289.065,0,221.605,0z M206.781,64.12h2.469c3.859,0,7,3.14,7,7--}}
-                    {{--                                v49.833c0,3.86-3.141,7-7,7h-2.469c-3.859,0-7-3.14-7-7V71.12C199.781,67.26,202.922,64.12,206.781,64.12z M327.948,293.662--}}
-                    {{--                                c0,58.652-47.705,106.369-106.343,106.369h-31.913c-56.978,0-101.609-46.723-101.609-106.369V122.356--}}
-                    {{--                                C88.083,62.718,132.715,16,189.692,16h10.225v33.167c-9.34,2.927-16.136,11.661-16.136,21.954v49.833--}}
-                    {{--                                c0,10.292,6.796,19.027,16.136,21.953v41.166c0,4.418,3.582,8,8,8s8-3.582,8-8v-41.108c9.441-2.865,16.333-11.647,16.333-22.011--}}
-                    {{--                                V71.12c0-10.364-6.892-19.146-16.333-22.012V16h5.688c58.638,0,106.343,47.711,106.343,106.356V293.662z"/>--}}
-                    {{--                            </svg>--}}
-                    {{--                            <span>Logi G102</span>--}}
-                    {{--                        </div>--}}
-                    {{--                        <div class="armor_info">--}}
-                    {{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"--}}
-                    {{--                                 viewBox="0 0 416.031 416.031" style="enable-background:new 0 0 416.031 416.031;" xml:space="preserve">--}}
-                    {{--                            <path d="M221.605,0h-31.913C123.743,0,72.083,53.745,72.083,122.356v171.306c0,68.618,51.66,122.369,117.609,122.369h31.913--}}
-                    {{--                                c67.46,0,122.343-54.894,122.343-122.369V122.356C343.948,54.889,289.065,0,221.605,0z M206.781,64.12h2.469c3.859,0,7,3.14,7,7--}}
-                    {{--                                v49.833c0,3.86-3.141,7-7,7h-2.469c-3.859,0-7-3.14-7-7V71.12C199.781,67.26,202.922,64.12,206.781,64.12z M327.948,293.662--}}
-                    {{--                                c0,58.652-47.705,106.369-106.343,106.369h-31.913c-56.978,0-101.609-46.723-101.609-106.369V122.356--}}
-                    {{--                                C88.083,62.718,132.715,16,189.692,16h10.225v33.167c-9.34,2.927-16.136,11.661-16.136,21.954v49.833--}}
-                    {{--                                c0,10.292,6.796,19.027,16.136,21.953v41.166c0,4.418,3.582,8,8,8s8-3.582,8-8v-41.108c9.441-2.865,16.333-11.647,16.333-22.011--}}
-                    {{--                                V71.12c0-10.364-6.892-19.146-16.333-22.012V16h5.688c58.638,0,106.343,47.711,106.343,106.356V293.662z"/>--}}
-                    {{--                            </svg>--}}
-                    {{--                            <span>Logi G102</span>--}}
-                    {{--                        </div>--}}
-                    {{--                        <div class="armor_info">--}}
-                    {{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"--}}
-                    {{--                                 viewBox="0 0 416.031 416.031" style="enable-background:new 0 0 416.031 416.031;" xml:space="preserve">--}}
-                    {{--                            <path d="M221.605,0h-31.913C123.743,0,72.083,53.745,72.083,122.356v171.306c0,68.618,51.66,122.369,117.609,122.369h31.913--}}
-                    {{--                                c67.46,0,122.343-54.894,122.343-122.369V122.356C343.948,54.889,289.065,0,221.605,0z M206.781,64.12h2.469c3.859,0,7,3.14,7,7--}}
-                    {{--                                v49.833c0,3.86-3.141,7-7,7h-2.469c-3.859,0-7-3.14-7-7V71.12C199.781,67.26,202.922,64.12,206.781,64.12z M327.948,293.662--}}
-                    {{--                                c0,58.652-47.705,106.369-106.343,106.369h-31.913c-56.978,0-101.609-46.723-101.609-106.369V122.356--}}
-                    {{--                                C88.083,62.718,132.715,16,189.692,16h10.225v33.167c-9.34,2.927-16.136,11.661-16.136,21.954v49.833--}}
-                    {{--                                c0,10.292,6.796,19.027,16.136,21.953v41.166c0,4.418,3.582,8,8,8s8-3.582,8-8v-41.108c9.441-2.865,16.333-11.647,16.333-22.011--}}
-                    {{--                                V71.12c0-10.364-6.892-19.146-16.333-22.012V16h5.688c58.638,0,106.343,47.711,106.343,106.356V293.662z"/>--}}
-                    {{--                            </svg>--}}
-                    {{--                            <span>Logi G102</span>--}}
-                    {{--                        </div>--}}
-                    {{--                        <div class="armor_info">--}}
-                    {{--                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="headphones" class="svg-inline--fa fa-headphones fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32C114.52 32 0 146.496 0 288v48a32 32 0 0 0 17.689 28.622l14.383 7.191C34.083 431.903 83.421 480 144 480h24c13.255 0 24-10.745 24-24V280c0-13.255-10.745-24-24-24h-24c-31.342 0-59.671 12.879-80 33.627V288c0-105.869 86.131-192 192-192s192 86.131 192 192v1.627C427.671 268.879 399.342 256 368 256h-24c-13.255 0-24 10.745-24 24v176c0 13.255 10.745 24 24 24h24c60.579 0 109.917-48.098 111.928-108.187l14.382-7.191A32 32 0 0 0 512 336v-48c0-141.479-114.496-256-256-256z"></path></svg>--}}
-                    {{--                            <span>Logi G102</span>--}}
-                    {{--                        </div>--}}
-                    {{--                    </div>--}}
                     <div class="title_top_userProfile change_gray">
                         <p class="title_Text">Контакты</p>
                     </div>

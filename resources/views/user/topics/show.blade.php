@@ -6,8 +6,7 @@
 @endsection
 
 @section('content')
-    @include('user.topics.components.create')
-    @include('user.topics.components.index')
+    @include('user.topics.components.show')
 @endsection
 
 @section('right-side')

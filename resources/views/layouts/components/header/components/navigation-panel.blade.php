@@ -77,7 +77,7 @@
                         <button class="registration" type="button" data-toggle="modal"
                                 data-target="#registrationModal">{{ __('Register') }}</button>
                     @else
-                                                @include('header.components.navigation-panel.components.user-bar-panel')
+                        @include('layouts.components.header.components.user-bar-panel')
 {{--                        <form id="logout-form" action="{{ route('logout') }}" method="POST">--}}
 {{--                            @csrf--}}
 {{--                            <button type="submit">{{ __('Logout') }}</button>--}}

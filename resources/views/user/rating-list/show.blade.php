@@ -6,8 +6,8 @@
 @endsection
 
 @section('content')
-    @include('user.topics.components.create')
-    @include('user.topics.components.index')
+    @include('user.rating-list.components.block-user-reputation-info.show')
+    @include('user.rating-list.components.show')
 @endsection
 
 @section('right-side')
