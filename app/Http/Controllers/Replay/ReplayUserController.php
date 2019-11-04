@@ -72,7 +72,7 @@ class ReplayUserController extends Controller
             'comments',
         ];
 
-        $replay = ReplayController::findReplay($relations, $id);
+        $replay = ReplayController::findReplayWithType2($relations, $id,Replay::REPLAY_USER);
         $countUserPts = $replay->users->totalComments->count();
         $proRout = ReplayController::checkUrlPro() === true ? ReplayController::$REPLAY_PRO : false;
 

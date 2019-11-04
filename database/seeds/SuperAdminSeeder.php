@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Role;
+
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +14,7 @@ class SuperAdminSeeder extends Seeder
     public function run()
     {
         User::query()->create([
-            'role_id' => Role::where('title','super-admin')->value('id'),
+            'role_id' => 1,
             'name' => 'super-admin',
             'email' => 'super-admin@reps.com',
             'password' => \Hash::make('12345678')

@@ -18,6 +18,8 @@
 {{--    <script src="//cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>--}}
 {{--    <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>--}}
     <script src="https://cdn.ckeditor.com/4.13.0/full-all/ckeditor.js"></script>
+    <link rel="stylesheet" href="minified/themes/default.min.css"/>
+    <script src="minified/sceditor.min.js"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
 {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
@@ -34,7 +36,8 @@
 <body>
 <!--SECTION HEADER-->
 <header>
-    @include('header.index')
+    {{--    @include('header.index')--}}
+    @include('layouts.components.header.index')
 </header>
 <!--END SECTION HEADER-->
 
@@ -75,7 +78,9 @@
         <div id="right-sidebar" class="col-xl-3 col-lg-3 col-md-6 col-12">
             <button id="pulse-button-top" class="pulse-button">Топ</button>
             <div id="right-sidebar-wrap" class="right-sidebar-wrap no-height">
-                @include('right-side.index')
+                @section('right-side')
+                    @include('right-side.index')
+                @show
             </div>
         </div>
         <!--END SIDEBAR RIGHT-->
@@ -85,7 +90,8 @@
 <!--END SECTION CONTENT-->
 
 <footer>
-    @include('footer.index')
+    {{--    @include('footer.index')--}}
+    @include('layouts.components.footer.index')
 </footer>
 
 <!--SCEditor-->

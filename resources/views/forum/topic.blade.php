@@ -11,3 +11,7 @@
         'route' => route('comment.store', $topic->id)
     ])
 @endsection
+
+@section('right-side')
+    @include('right-side.components.last-replay')
+@endsection

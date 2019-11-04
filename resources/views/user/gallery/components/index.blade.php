@@ -25,7 +25,7 @@
                                 @endif
                             </a>
                         @else
-                            <a class="img-link" href="{{route('gallery.show',['gallery'=> $items->id])}}">
+                            <a class="img-link" href="{{route('user-gallery.show',['gallery'=> $items->id])}}">
                                 @if(file_exists($items->picture))
                                     <img src="{{asset($items->picture) }}" alt="image">
                                 @endif

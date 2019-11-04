@@ -20,10 +20,9 @@ class CreateFootersTable extends Migration
             $table->integer('position')->default(1);
             $table->string('email')->nullable();
             $table->string('icq')->nullable();
-            $table->boolean('approved')->default(1);
+            $table->boolean('approved')->default(true);
             $table->timestamps();
         });
-        Artisan::call('db:seed', array('--class' => 'FooterSeeder'));
     }
 
     /**

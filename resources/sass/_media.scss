@@ -1,9 +1,19 @@
+
 @media (max-width: 3840px) {
     #pulse-button-top,
     #pulse-button-info {
         display: none;
     }
+
 }
+//@media (max-width: 1920px) {
+//    .block_chat-twitch{
+//            .messanger{
+//                max-height: 700px!important;
+//            }
+//
+//    }
+//}
 
 @media (max-width: 1366px) {
     //Глобальныйе стили(папка global-styles)
@@ -33,7 +43,7 @@
         font-size: 0.878vw;
         padding-top: 0.952vw;
         padding-bottom: 1.098vw;
-            }
+    }
     .breadcrumb {
         padding-top: 1.903vw;
         padding-bottom: 1.830vw;
@@ -2140,6 +2150,10 @@
                         width: 3.660vw;
                         height: 3.660vw;
                         font-size: 1.757vw;
+                        img{
+                            width: 3.660vw;
+                            height: 3.660vw;
+                        }
                     }
                 }
             }
@@ -2874,39 +2888,39 @@
     //header
     .header{
         position: relative;
-         .icon_bars{
+        .icon_bars{
             display: block!important;
             width: 50px;
         }
-         .logo{
+        .logo{
             & img{
                 width: 70% !important;
             }
         }
-         .menu_navigation{
+        .menu_navigation{
             display: none!important;
         }
-         .autorization{
+        .autorization{
             display:none!important;
         }
-         .main_menu{
+        .main_menu{
             position: absolute;
             right: 0;
             bottom: 30%;
         }
-         .search{
+        .search{
             justify-content: flex-start;
         }
-         .button_input{
+        .button_input{
             width: 100% !important;
             & .search_input{
                 min-width: 40vw !important;
             }
         }
         .header_search_autorization{
-              .button_input {
-                  margin-right: -10px!important;
-              }
+            .button_input {
+                margin-right: -10px!important;
+            }
         }
         & .burger_menu{
             display: block!important;
@@ -2934,11 +2948,11 @@
             font-size: 1.6vw;
             padding: 0 0 0 2vw;
         }
-         .block_chat{
+        .block_chat{
             padding-bottom: 2.016vw;
             width: 40%;
         }
-         .block_stream_list{
+        .block_stream_list{
             width: 60%;
 
         }
@@ -5018,6 +5032,10 @@
                         width: 5.045vw;
                         height: 5.045vw;
                         font-size: 2.422vw;
+                        img{
+                            width: 5.045vw;
+                            height: 5.045vw;
+                        }
                     }
                 }
             }
@@ -6309,7 +6327,8 @@
 
                 .info__wins {
                     svg {
-                        width: 10.868vw;
+                        width: 5.5vw;
+                        height: 5.5vw;
                     }
                     .wins__text {
                         margin-left: 1.736vw;
@@ -6320,7 +6339,7 @@
                 .match-up__text,
                 .maps__text,
                 .wins__text {
-                    font-size: 4.083vw;
+                    font-size: 4.583vw;
                     line-height: 2.257vw;
                 }
             }
@@ -6826,22 +6845,22 @@
             }
         }
     }
-        //page_game
+    //page_game
     .Page_gameBest{
         .title_block{
             min-height: 10.417vw;
             padding: 3.472vw;
             display: flex;
             align-items: center;
-             .left_content{
-                 .title_text{
-                     font-size: 3.5vw;
-                 }
+            .left_content{
+                .title_text{
+                    font-size: 3.5vw;
+                }
                 & svg{
                     margin-right: 1.736vw;
                 }
             }
-             .right_content{
+            .right_content{
                 & svg{
                     margin-left: 1.736vw;
                 }
@@ -7303,7 +7322,7 @@
             }
         }
     }
-//detailed-forum
+    //detailed-forum
     .detailed-forum {
         .detailed-forum__title {
             padding: 3.472vw;
@@ -7549,7 +7568,7 @@
         }
 
     }
-// add_comments
+    // add_comments
     .add-comment {
         .add-comment__title {
             padding-top: 3.472vw;
@@ -7626,11 +7645,11 @@
         & .title_top_userProfile{
             height: 10.417vw;
             padding: 3.472vw;
-          .title_Text{
-              font-size: 3vw;
-          }
-             .more{
-                 p{
+            .title_Text{
+                font-size: 3vw;
+            }
+            .more{
+                p{
                     font-size: 6.944vw;
                 }
             }
@@ -7722,9 +7741,9 @@
                     padding-bottom: 1.736vw;
                     & .left_block{
                         & img{
-                        width: 5.125vw;
-                        height: 5.125vw;
-                    }
+                            width: 5.125vw;
+                            height: 5.125vw;
+                        }
                         & .name_player{
                             margin-left: 1.736vw;
                             max-width: 17.361vw;
@@ -7750,7 +7769,7 @@
     }
     //user_profile
     .user_friends{
-         .row_title{
+        .row_title{
             padding: 2.604vw 0;
             & span{
                 font-size: 2.431vw;
@@ -7761,27 +7780,31 @@
                 }
             }
         }
-         .wrapper_table{
+        .wrapper_table{
             max-height: 55.556vw;
-             .row_users{
+            .row_users{
                 padding: 1.736vw 0;
-                 span{
+                span{
                     font-size: 2.431vw;
                 }
-                 .block_action{
+                .block_action{
                     & svg{
                         width: 3.472vw;
                     }
                 }
-                 .user_block{
-                     .name_user{
+                .user_block{
+                    .name_user{
                         font-size: 2.431vw;
                         max-width: 17.014vw;
                     }
-                     .user-avatar{
+                    .user-avatar{
                         width: 8.681vw;
                         height: 8.681vw;
                         font-size: 4.167vw;
+                        img{
+                            width: 8.681vw;
+                            height: 8.681vw;
+                        }
                     }
                 }
             }
@@ -7820,7 +7843,7 @@
                     display: flex;
                     margin-left: 0.868vw;
                     label {
-                       // height: 6.424vw;
+                        // height: 6.424vw;
                         font-size: 3vw;
                         padding-right: 1.736vw;
                         padding-top: 0.868vw;
@@ -7831,7 +7854,7 @@
             }
 
             .form-group {
-                 label{
+                label{
                     font-size: 3.5vw;
                 }
                 .select2 {
@@ -7854,7 +7877,7 @@
             }
             .form-check {
                 margin-bottom: 3.472vw;
-                 .form-check-label{
+                .form-check-label{
                     font-size: 2.615vw;
                 }
                 .form-check-input {
@@ -8022,7 +8045,7 @@
             }
         }
     }
-// pluse-button
+    // pluse-button
     .pulse-button {
         font-size: 2.778vw;
         padding: 2.778vw 5.556vw;
@@ -8030,7 +8053,7 @@
     }
     //gallery-download
     .gallery-download {
-         .form-check-label{
+        .form-check-label{
             font-size: 2.615vw;
         }
         .gallery-download__title {
@@ -8108,7 +8131,7 @@
             }
         }
     }
-// gallery-detail
+    // gallery-detail
     .gallery-detail {
 
         .gallery-detail__title {
@@ -8337,7 +8360,7 @@
         }
     }
 
-//modal_autorization
+    //modal_autorization
     #authorizationModal {
         .modal-header {
             .modal-header__close {
@@ -8371,7 +8394,7 @@
             }
         }
     }
-//modal_registration
+    //modal_registration
     #registrationModal {
         .modal-header {
             .modal-header__close {
@@ -8425,37 +8448,101 @@
         }
     }
     //my-posts
-.my-post {
-    margin-bottom: 3.472vw;
-    .my-post__title {
-        padding-top: 3.472vw;
-        padding-bottom: 3.472vw;
-        padding-left: 3.299vw;
-        .title__icon {
-            width: 3.472vw;
-            height: 3.472vw;
+    .my-post {
+        margin-bottom: 3.472vw;
+        .my-post__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+            .title__text {
+                font-size: 2.778vw;
+                margin-left: 2.951vw;
+            }
         }
-        .title__text {
-            font-size: 2.778vw;
-            margin-left: 2.951vw;
+        .my-post__accordion {
+            .accordion-button {
+                padding: 3.125vw;
+                font-size: 2.604vw;
+            }
+            .accordion-button:after {
+                margin-left: 0.868vw;
+            }
+            /* Style the accordion panel. Note: hidden by default */
+            .panel {
+                padding: 0 3.125vw;
+                .panel__wrap {
+                    .panel__header {
+                        margin-top: 2.604vw;
+                        padding-bottom: 1.736vw;
+                        .header__items {
+                            .items__icon {
+                                width: 2.604vw;
+                                height: 2.257vw;
+                                margin-right: 0.868vw;
+                            }
+                            .items__info {
+                                margin-left: 1.736vw;
+                                font-size: 2.083vw;
+                                line-height: 3.299vw;
+                            }
+                        }
+                    }
+                    .panel__body {
+                        margin-bottom: 2.604vw;
+                        padding-bottom: 2.604vw;
+                        padding-top: 2.604vw;
+                        .body__numb {
+                            font-size: 2.431vw;
+                        }
+                        .body__nick {
+                            font-size: 2.431vw;
+                            margin-left: 1.736vw;
+                        }
+                        .body__text {
+                            font-size: 2.778vw;
+                        }
+                    }
+                }
+            }
         }
     }
-    .my-post__accordion {
-        .accordion-button {
-            padding: 3.125vw;
-            font-size: 2.604vw;
+    //reputation-info
+    .reputation-info {
+        margin-bottom: 3.472vw;
+        .reputation-info__title {
+            padding-top: 3.472vw;
+            padding-bottom: 3.472vw;
+            padding-left: 3.299vw;
+            .title__icon {
+                width: 3.472vw;
+                height: 3.472vw;
+            }
+            .title__text {
+                font-size: 3.778vw;
+                margin-left: 2.951vw;
+            }
         }
-        .accordion-button:after {
-            margin-left: 0.868vw;
-        }
-        /* Style the accordion panel. Note: hidden by default */
-        .panel {
-            padding: 0 3.125vw;
-            .panel__wrap {
+        .reputation-info__body {
+            /* Style the accordion panel. Note: hidden by default */
+            .panel {
+                padding: 0 3.125vw;
                 .panel__header {
                     margin-top: 2.604vw;
                     padding-bottom: 1.736vw;
                     .header__items {
+                        .items__link {
+                            font-size: 2.083vw;
+                        }
+                        span {
+                            font-size: 2.083vw;
+                            line-height: 3.299vw;
+                            margin-right: 0.868vw;
+                            margin-left: 0.868vw;
+                        }
                         .items__icon {
                             width: 2.604vw;
                             height: 2.257vw;
@@ -8470,118 +8557,54 @@
                 }
                 .panel__body {
                     margin-bottom: 2.604vw;
-                    padding-bottom: 2.604vw;
-                    padding-top: 2.604vw;
-                    .body__numb {
-                        font-size: 2.431vw;
-                    }
-                    .body__nick {
-                        font-size: 2.431vw;
-                        margin-left: 1.736vw;
-                    }
-                    .body__text {
+                    .body__comment {
                         font-size: 2.778vw;
+                        line-height: 4.167vw;
+                        margin-bottom: 2.604vw;
+                        margin-top: 2.604vw;
                     }
                 }
-            }
-        }
-    }
-}
-//reputation-info
-.reputation-info {
-    margin-bottom: 3.472vw;
-    .reputation-info__title {
-        padding-top: 3.472vw;
-        padding-bottom: 3.472vw;
-        padding-left: 3.299vw;
-        .title__icon {
-            width: 3.472vw;
-            height: 3.472vw;
-        }
-        .title__text {
-            font-size: 3.778vw;
-            margin-left: 2.951vw;
-        }
-    }
-    .reputation-info__body {
-        /* Style the accordion panel. Note: hidden by default */
-        .panel {
-            padding: 0 3.125vw;
-            .panel__header {
-                margin-top: 2.604vw;
-                padding-bottom: 1.736vw;
-                .header__items {
-                    .items__link {
-                        font-size: 2.083vw;
-                    }
-                    span {
-                        font-size: 2.083vw;
-                        line-height: 3.299vw;
-                        margin-right: 0.868vw;
-                        margin-left: 0.868vw;
-                    }
-                    .items__icon {
-                        width: 2.604vw;
-                        height: 2.257vw;
-                        margin-right: 0.868vw;
-                    }
-                    .items__info {
-                        margin-left: 1.736vw;
-                        font-size: 2.083vw;
-                        line-height: 3.299vw;
-                    }
-                }
-            }
-            .panel__body {
-                margin-bottom: 2.604vw;
-                .body__comment {
-                    font-size: 2.778vw;
-                    line-height: 4.167vw;
-                    margin-bottom: 2.604vw;
-                    margin-top: 2.604vw;
-                }
-            }
-            .panel__footer {
-                margin-bottom: 1.736vw;
-                padding-bottom: 2.604vw;
-                .footer__item {
-                    display: flex;
-                    .items__items {
-                        margin-right: 2.604vw;
-                        svg {
-                            width: 2.778vw;
-                            height: 2.778vw;
-                            margin-right: 1.215vw;
+                .panel__footer {
+                    margin-bottom: 1.736vw;
+                    padding-bottom: 2.604vw;
+                    .footer__item {
+                        display: flex;
+                        .items__items {
+                            margin-right: 2.604vw;
+                            svg {
+                                width: 2.778vw;
+                                height: 2.778vw;
+                                margin-right: 1.215vw;
+                            }
+                            span {
+                                font-size: 2.083vw;
+                                line-height: 3.299vw;
+                            }
                         }
-                        span {
+                        .rate {
+                            border-radius: 0.694vw;
+                            width: 26.042vw;
+                            padding: 0.868vw 1.736vw;
                             font-size: 2.083vw;
-                            line-height: 3.299vw;
                         }
-                    }
-                    .rate {
-                        border-radius: 0.694vw;
-                        width: 26.042vw;
-                        padding: 0.868vw 1.736vw;
-                        font-size: 2.083vw;
-                    }
-                    .item__later {
-                        svg {
-                            width: 3.472vw;
-                            height: 3.472vw;
+                        .item__later {
+                            svg {
+                                width: 3.472vw;
+                                height: 3.472vw;
+                            }
                         }
                     }
                 }
             }
         }
     }
-}
-.banner{
-    padding: 0 0 3.472vw;
-    .block_content{
-        margin-bottom: 0.868vw;
-        padding: 0 3.472vw;
+    .banner{
+        padding: 0 0 3.472vw;
+        .block_content{
+            margin-bottom: 0.868vw;
+            padding: 0 3.472vw;
+        }
     }
-}
 
 
     .create-topic{

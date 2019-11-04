@@ -7,17 +7,17 @@ use Illuminate\Http\Request;
 
 trait GravatarTrait
 {
-/*$user->avatar*/
+    /*$user->avatar*/
     public function getAvatarAttribute($value)
     {
         if ($value) {
             return asset($value);
         } else {
-            return asset('images/newsAvatar.png');
+            return asset('images/default/avatar/avatar.png');
         }
     }
 
-/*$user->avatar_url_or_blank*/
+    /*$user->avatar_url_or_blank*/
 //    public function getAvatarUrlOrBlankAttribute()
 //    {
 //        if (empty($url = $this->avatar)) {

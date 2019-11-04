@@ -85,12 +85,18 @@
             padding: 20px;
 
             .subtitle__info {
+                img{
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                }
                 .comment-author__nickname {
                     color: #0567cc;
                     font-size: 14px;
                     font-weight: 400;
                     margin-bottom: 0; //отмена стандартного margin
                     margin-left: 13px;
+
                 }
 
                 .comment-author__replay-item {

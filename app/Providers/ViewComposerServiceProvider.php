@@ -8,12 +8,15 @@ use App\Http\ViewComposers\{admin\DashboardCountComposer,
     ForumNavigationComposer,
     HeadlineComposer,
     admin\InterviewVariantAnswerComposer,
-    LeftSide\ReplaysNavigationComposer,
-    LeftSide\ReplaysShowInHomeComposer,
+    LeftOrRightSide\InterviewComposer,
+    LeftSide\LastNewsComposer,
+    LeftSide\NavigationReplaysComposer,
+    LeftSide\LastUserProReplaysComposer,
+    OnlineStreamListComposer,
     Registration\RegistrationComposer,
     RightSide\LastRegisteredUsersComposer,
-    RightSide\Top10Composer,
-    Vote\VoteComposer};
+    RightSide\Top10KgPtsComposer,
+    RightSide\LastReplayComposer};
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,20 +34,25 @@ class ViewComposerServiceProvider extends ServiceProvider
 
         $this->compose('admin.dashboard', DashboardCountComposer::class);
         $this->compose('admin.interviewQuestion.answers', InterviewVariantAnswerComposer::class);
-//        $this->compose('components.streams_list', OnlineStreamListComposer::class);
-        $this->compose('components.Chat', HeadlineComposer::class);
+        /*header*/
+        $this->compose('home.components.chat.index', HeadlineComposer::class);
+        $this->compose('home.components.chat.components.streams-list', OnlineStreamListComposer::class);
         /*left-side*/
         $this->compose('left-side.forum-topics', ForumNavigationComposer::class);
-        $this->compose('left-side.replays-navigation', ReplaysNavigationComposer::class);
-        $this->compose('left-side.replays-show-in-home', ReplaysShowInHomeComposer::class);
+        $this->compose('left-side.navigation-replays', NavigationReplaysComposer::class);
+        $this->compose('left-side.last-replays', LastUserProReplaysComposer::class);
+        $this->compose('left-side.last-news', LastNewsComposer::class);
         /*right-side*/
+
         $this->compose('right-side.index', LastRegisteredUsersComposer::class);
-        $this->compose('right-side.index', Top10Composer::class);
-        $this->compose('components.vote', VoteComposer::class);
-
+        $this->compose('right-side.index', Top10KgPtsComposer::class);
+        $this->compose('right-side.components.last-replay', LastReplayComposer::class);
+        /*left-or-right-side*/
+        $this->compose('components.interview', InterviewComposer::class);
+        /*modal*/
         $this->compose('modal.registration', RegistrationComposer::class);
-
-        $this->compose('footer.index', FooterComposer::class);
+        /*footer*/
+        $this->compose('layouts.components.footer.index', FooterComposer::class);
 
     }
 

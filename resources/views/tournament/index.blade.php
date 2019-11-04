@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('sidebar-left')
-    @include('left-side.replays-navigation')
+    @include('left-side.navigation-replays')
     @include('left-side.search')
 @endsection
 
 @section('content')
-    @include('tournament.showAll')
+    @include('tournament.components.index')
 @endsection

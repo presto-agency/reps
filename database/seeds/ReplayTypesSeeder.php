@@ -15,12 +15,14 @@ class ReplayTypesSeeder extends Seeder
         $replayType = ReplayType::query()->firstOrNew(['title' => 'Gosu']);
         if (!$replayType->exists) {
             $replayType->fill([
+                'name' => 'duel',
                 'title' => 'Gosu',
             ])->save();
         }
         $replayType = ReplayType::query()->firstOrNew(['title' => 'Пользовательский']);
         if (!$replayType->exists) {
             $replayType->fill([
+                'name' => 'pack',
                 'title' => 'Пользовательский',
             ])->save();
         }

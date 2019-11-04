@@ -1,25 +1,40 @@
 @extends('layouts.app')
 
 @section('sidebar-left')
-    @include('components.vote')
+    @include('components.interview')
+    @include('left-side.search-replays')
     @include('user.components.search-replay')
     @include('user.components.my-chat')
 @endsection
 
 @section('content')
-    @include('user.components.user_friends')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+{{--    @include('user.components.user_friends')--}}
     @include('user.components.user_profile')
-    @include('user.components.user_reputation')
+    #####################################################
+    @include('user.components.user_friends')
+    #####################################################
 {{--    @include('user.components.setting')--}}
-    @include('user.components.user-reputation-history')
-{{--    @include('user.components.my-topics')--}}
+{{--    #####################################################--}}
+{{--    @include('user.rating-list.components.index')--}}
+{{--    #####################################################--}}
     @include('user.components.password-recovery')
+    #####################################################
     @include('user.components.get-recovery-link')
-    @include('user.components.my-posts')
-    @include('user.components.reputation-info')
+{{--    #####################################################--}}
+{{--    @include('user.topics.components.create')--}}
+@endsection
 
-{{--    @include('user.gallery.components.show')--}}
-    @include('user.gallery.components.show')
-    @include('user.components.create-topic')
+@section('right-side')
+    @parent
+    @include('right-side.components.last-replay')
     @include('user.messenger')
 @endsection

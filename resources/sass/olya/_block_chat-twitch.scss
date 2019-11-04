@@ -67,8 +67,8 @@
         }
     }
     & .messanger{
-        max-height:620px;
-        overflow:scroll;
+        max-height:385px;
+        overflow:auto;
 
     }
     & .login_block{
@@ -82,6 +82,16 @@
                 border-bottom: 1px solid;
                 font-weight: bold;
             }
+        }
+        .form-group{
+            width: 100%;
+            .cke_contents{
+                height: 60px!important;
+            }
+
+        }
+        #cke_1_bottom{
+              display: none!important;
         }
     }
     .row_contentChat{

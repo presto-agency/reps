@@ -9,8 +9,14 @@ class ReplayController
 {
     public static $REPLAY_PRO = 'replay_pro';
 
-    public static $type;
 
+    /**
+     * Get All Replays WithType2
+     *
+     * @param $relations
+     * @param $user_replay
+     * @return Replay[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
     public static function getReplays($relations, $user_replay)
     {
         return Replay::with($relations)
@@ -21,29 +27,78 @@ class ReplayController
             ->get();
     }
 
-    public static function findUserReplays($relations, $user_id)
+    /**
+     * Get All Auth User Replays WithType2
+     *
+     * @param $relations
+     * @param $user_id
+     * @param $user_replay
+     * @return Replay[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public static function findUserReplaysWithType2($relations, $user_id, $user_replay)
     {
         return Replay::with($relations)
             ->withCount('comments')
-            ->where('approved', 1)
+            ->where('user_replay', $user_replay)
             ->where('user_id', $user_id)
             ->orderByDesc('created_at')
             ->get();
     }
 
-    public static function findReplay($relations, $id)
+    /**
+     * Get Auth user replay withType2
+     *
+     * @param $relations
+     * @param $user_id
+     * @param $id
+     * @param $user_replay
+     * @return Replay|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     */
+    public static function findUserReplayWithType2($relations, $user_id, $id, $user_replay)
     {
-        return Replay::with($relations)->withCount('comments')->where('approved', 1)->findOrFail($id);
+        return Replay::with($relations)
+            ->withCount('comments')
+            ->where('user_replay', $user_replay)
+            ->where('user_id', $user_id)
+            ->where('id', $id)
+            ->firstOrFail();
     }
 
+    /**
+     * Get user replay withType2
+     *
+     * @param $relations
+     * @param $id
+     * @param $user_replay
+     * @return Replay|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     */
+    public static function findReplayWithType2($relations, $id, $user_replay)
+    {
+        return Replay::with($relations)
+            ->withCount('comments')
+            ->where('user_replay', $user_replay)
+            ->where('approved', 1)
+            ->where('id', $id)
+            ->firstOrFail();
+
+    }
+
+    /**
+     * Get All replays withType1 and withType2
+     *
+     * @param $relations
+     * @param $user_replay
+     * @param $type
+     * @return Replay[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
     public static function getReplaysWithType($relations, $user_replay, $type)
     {
-        self::$type = $type;
+
         return Replay::with($relations)
             ->withCount('comments')
             ->where('approved', 1)
-            ->whereHas('types', function ($query) {
-                $query->where('name', self::$type);
+            ->whereHas('types', function ($query) use($type) {
+                $query->where('name', $type);
             })
             ->orderByDesc('created_at')
             ->where('user_replay', $user_replay)

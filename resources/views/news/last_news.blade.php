@@ -22,9 +22,9 @@
             @endif
             <div class="card-body night_text">
                 <div class="card-body__author">
-                    @if($single_news->author->avatar)
+{{--                    @if($single_news->author->avatar)--}}
                         <img src="{{ asset($single_news->author->avatar) }}" alt="avatar" class="author__avatar img-fluid">
-                    @endif
+{{--                    @endif--}}
                     @if($single_news->author->name)
                         <p class="author__nickname">{{ $single_news->author->name }}</p>
                     @endif
