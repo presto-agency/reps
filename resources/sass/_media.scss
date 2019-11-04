@@ -5706,6 +5706,14 @@
         }
     }
     //end header
+    //mob_menu
+    .mob_menu{
+        & .nav-wrapper{
+            & .nav_item{
+                font-size: 3.615vw;
+            }
+        }
+    }
     // breadcrumb
     .breadcrumb {
         padding-top: 4.514vw;

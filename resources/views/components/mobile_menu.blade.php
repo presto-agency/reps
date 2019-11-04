@@ -1,4 +1,4 @@
-<section class="mob_menu">
+<section class="mob_menu" >
     <nav class=" nav-wrapper" id="nav-mobile">
         <div class="btn-round">
             <span class="close"></span>
