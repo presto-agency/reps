@@ -15,6 +15,7 @@ $('.closeButton').click(function (event) {
 
 
 });
+
 $('.btn-round').click(function (event) {
     event.preventDefault();
     $('.mob_menu').css({"display": "none"});
