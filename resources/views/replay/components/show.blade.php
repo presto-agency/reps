@@ -23,7 +23,7 @@
                     @endisset
                 </div>
             </div>
-            <div class="title_block_gray">
+            <div class="title_block_gray change_gray">
                 <div class="title_top left_block">
                     <span class="title_text">{{$replay->title}}</span>
                 </div>
