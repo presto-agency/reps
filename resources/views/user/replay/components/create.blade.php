@@ -119,9 +119,10 @@
                 <textarea name="editor1" class="form-control night_input"
                           id="editor1"></textarea>
                 <script>
+
                     CKEDITOR.replace('editor1', {
                         // Define the toolbar groups as it is a more accessible solution.
-                        extraPlugins: 'embed,autoembed',
+                        extraPlugins: 'autoembed',
                         toolbarGroups: [
                             {name: 'document', groups: ['mode', 'document', 'doctools']},
                             '/',

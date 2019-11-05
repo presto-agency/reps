@@ -61,12 +61,12 @@ class UserController extends Controller
             abort(404);
         }
 
-//        $friends = UserFriend::getFriends($user);
-//        $friendly = UserFriend::getFriendlies($user);
+        $friends = UserFriend::getFriends($user);
+        $friendly = UserFriend::getFriendlies($user);
 
-        return view('user.show')->with([
-//            'friends' => $friends,
-//            'friendly' => $friendly,
+        return view('user.index')->with([
+            'friends' => $friends,
+            'friendly' => $friendly,
             'user' => $user
         ]);
     }
@@ -79,7 +79,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('user.edit')->with(['user' => Auth::user(), 'countries' => Country::all(), 'races' => Race::all()]);
+        return view('user.edit_profile')->with(['user' => Auth::user(), 'countries' => Country::all(), 'races' => Race::all()]);
     }
 
     /**

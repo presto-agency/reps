@@ -37,7 +37,10 @@ select:focus {
 @import "vova/main_vova";
 @import "olya/main_olya";
 @import "global-styles/main-global";
-@import "media";
+@import "media/media_3840";
+@import "media/media_1366";
+@import "media/media_991";
+@import "media/media_576";
 
 @media (min-width: 1920px) {
     .container {

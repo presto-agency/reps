@@ -48,6 +48,7 @@
                 .author__avatar {
                     width: 28px;
                     height: 28px;
+                    border-radius: 50%;
                 }
 
                 .author__nickname {
@@ -56,6 +57,7 @@
                     font-weight: 400;
                     margin-left: 13px;
                     margin-bottom: 0; //отмена стандартного margin
+                    border-radius: 50%;
                 }
 
                 .author__date {

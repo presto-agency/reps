@@ -67,7 +67,7 @@ class UserFriend extends Model
      */
     public static function getFriendlies(User $user)
     {
-        return $user->user_friendly()->with('user')->get()->transform(function ($friend){
+        return $user->user_friendly()->with('user.countries')->get()->transform(function ($friend){
             if (isset($friend) && !empty($friend->user)) {
                 $friend->user->friendly_data = $friend->created_at;
                 return $friend->user;
