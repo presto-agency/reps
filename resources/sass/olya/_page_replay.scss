@@ -2,6 +2,21 @@
     .wrapper{
         box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     }
+    .replay-edit{
+        padding-top: 10px;
+        svg{
+            width: 20px;
+            height: 20px;
+            fill:$gray;
+        }
+        .edit_text{
+            font-size: 14px;
+        }
+        span{
+            font-size: 14px;
+        }
+    }
+
     .title_block{
         justify-content: space-between;
         align-items: center;
@@ -54,9 +69,7 @@
         display: flex;
         .content_left{
             display: flex;
-            span{
-                font-size: 14px;
-            }
+
             .left_block{
                 width: 50%;
                 border-right: 1px solid grey;

@@ -47,7 +47,9 @@
             @endisset
         </div>
         <div class="title_block_gray change_gray">
-            <a href="{{route('best.index')}}"><p class="title_text night_text">Top 10 кг</a>
+            <a href="{{route('best.index')}}">
+                <p class="title_text night_text">Top 10 кг</p>
+            </a>
         </div>
         <div class="block_topUsers">
             @isset($top10Rating)
