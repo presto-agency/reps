@@ -119,6 +119,12 @@
             }
 
             .subtitle__icons {
+                svg {
+                    width: 21px;
+                    height: 21px;
+                    fill: #9ca0b6;
+                    transition: .3s;
+                }
                 .items__comment,
                 .items__download {
                     text-decoration: none;
