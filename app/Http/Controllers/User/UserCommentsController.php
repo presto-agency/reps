@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Comment;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,20 +12,21 @@ class UserCommentsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-
-        $comments = self::getUserComments();
-
+        User::findOrFail($id);
+        $comments = self::getUserComments($id);
         return view('user.comments.index', compact('comments'));
     }
 
     /**
+     * @param $id
      * @return mixed
      */
-    private static function getUserComments()
+    private static function getUserComments($id)
     {
         $columns = [
             'id',
@@ -38,19 +40,22 @@ class UserCommentsController extends Controller
             'positive_count',
             'created_at',
         ];
-        $data = Comment::where('user_id', auth()->id())->get($columns);
-        foreach ($data as $item) {
-            if (self::convertModelClassName($item->commentable_type) == 'Реплеи') {
-                $route = route('replay.show', ['replay' => $item->commentable_id]);
-                $comments['Реплеи'][] = self::getData($item, $route);
-            }
-            if (self::convertModelClassName($item->commentable_type) == 'Галерея') {
-                $route = route('galleries.show', ['gallery' => $item->commentable_id]);
-                $comments['Галерея'][] = self::getData($item, $route);
-            }
-            if (self::convertModelClassName($item->commentable_type) == 'Форум') {
-                $route = route('topic.show', ['topic' => $item->commentable_id]);
-                $comments['Форум'][] = self::getData($item, $route);
+        $comments = null;
+        $data = Comment::where('user_id', $id)->get($columns);
+        if (!$data->isEmpty()) {
+            foreach ($data as $item) {
+                if (self::convertModelClassName($item->commentable_type) == 'Реплеи') {
+                    $route = route('replay.show', ['replay' => $item->commentable_id]);
+                    $comments['Реплеи'][] = self::getData($item, $route);
+                }
+                if (self::convertModelClassName($item->commentable_type) == 'Галерея') {
+                    $route = route('galleries.show', ['gallery' => $item->commentable_id]);
+                    $comments['Галерея'][] = self::getData($item, $route);
+                }
+                if (self::convertModelClassName($item->commentable_type) == 'Форум') {
+                    $route = route('topic.show', ['topic' => $item->commentable_id]);
+                    $comments['Форум'][] = self::getData($item, $route);
+                }
             }
         }
         return $comments;

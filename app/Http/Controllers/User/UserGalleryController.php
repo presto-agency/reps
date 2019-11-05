@@ -5,30 +5,37 @@ namespace App\Http\Controllers\User;
 use App\Http\Requests\UserGalleryRequests;
 use App\Models\UserGallery;
 use App\Services\ServiceAssistants\PathHelper;
+use App\Services\User\UserService;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class UserGalleryController extends Controller
 {
 
-    public $routCheck;
+    private $routCheck;
 
     public function __construct()
     {
         $this->routCheck = GalleryHelper::checkUrlGalleries();
     }
 
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index($id)
     {
-        $row = ['id', 'picture'];
-        $images = GalleryHelper::getAllUserImages($row);
+        User::findOrFail($id);
+        $row = ['id', 'picture','user_id'];
+        $images = GalleryHelper::getAllUserImages($row,$id);
         $routCheck = $this->routCheck;
         return view('user.gallery.index', compact('images', 'routCheck'));
+
+
     }
 
     /**
@@ -50,7 +57,7 @@ class UserGalleryController extends Controller
     public function store(UserGalleryRequests $request)
     {
         $userGallery = new UserGallery;
-        $userGallery->user_id =
+        $userGallery->user_id = auth()->id();
         $userGallery->sign = $request->get('sign');
         if ($request->has('for_adults')) {
             $userGallery->for_adults = $request->get('for_adults');
@@ -78,26 +85,31 @@ class UserGalleryController extends Controller
         return back();
     }
 
+
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @param $user_gallery
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id)
+    public function show($id,$user_gallery)
     {
+        User::findOrFail($id);
         $relation = ['comments'];
-        $row = ['id', 'sign', 'positive_count', 'negative_count', 'picture',];
-        $userImage = GalleryHelper::getUserImage($id, $relation, $row);
+        $row = ['id', 'sign', 'positive_count', 'negative_count', 'picture','user_id'];
 
+        $userImage = GalleryHelper::getUserImage($user_gallery, $relation, $row);
         // get previous user id
-        $previous = GalleryHelper::previousUserImage($id, $relation, $row);
+        $previous = GalleryHelper::previousUserImage($user_gallery, $relation, $row);
 
         // get next user id
-        $next = GalleryHelper::nextUserImage($id, $relation, $row);
+        $next = GalleryHelper::nextUserImage($user_gallery, $relation, $row);
 
         $routCheck = $this->routCheck;
-        return view('user.gallery.show', compact('userImage', 'previous', 'next', 'routCheck'));
+        $user_id = UserService::getUserId();
+
+        return view('user.gallery.show', compact('userImage', 'previous', 'next', 'routCheck','user_id'));
 
     }
 
@@ -105,29 +117,28 @@ class UserGalleryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
+     * @param int $user_gallery
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,$user_gallery)
     {
+        User::findOrFail($id);
         $relation = [];
         $row = ['id', 'sign', 'positive_count', 'negative_count', 'picture', 'sign', 'for_adults'];
-        $userImage = GalleryHelper::getUserImage($id, $relation, $row);
+        $userImage = GalleryHelper::getUserImage($user_gallery, $relation, $row);
 
         // get previous user id
-        $previous = GalleryHelper::previousUserImage($id, $relation, $row);
+        $previous = GalleryHelper::previousUserImage($user_gallery, $relation, $row);
 
         // get next user id
-        $next = GalleryHelper::nextUserImage($id, $relation, $row);
-
-        return view('user.gallery.edit', compact('userImage', 'previous', 'next'));
+        $next = GalleryHelper::nextUserImage($user_gallery, $relation, $row);
+        $user_id = UserService::getUserId();
+        return view('user.gallery.edit', compact('userImage', 'previous', 'next','user_id'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -137,12 +148,9 @@ class UserGalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         return back();
     }
-
 }

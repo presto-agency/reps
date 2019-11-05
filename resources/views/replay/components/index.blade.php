@@ -25,9 +25,12 @@
 			c-0.6-0.9-0.6-1.4-0.6-1.5c0-0.1,0.4-0.5,1.4-0.8l31.4-5.3l17.4-30.6c0.7-0.9,1.2-1,1.3-1c0.1,0,0.6,0.2,1.3,1.1l15.2,30.5
 			l34.4,5.5c0.9,0.3,1.3,0.6,1.4,0.7C186.9,189.1,186.8,189.7,186.2,190.4z"/>
         </svg>
-
-        <p class="title__text night_text">ПОЛЬЗОВАТЕЛЬСКИЕ реплеи</p>
-
+        @if($type == "user")
+            <p class="title__text night_text">{{__('Пользовательские реплеи')}}</p>
+        @endif
+        @if($type == "pro")
+            <p class="title__text night_text">{{__('Профессиональные реплеи')}}</p>
+        @endif
         <label class="title__game-period" for="game-period" name="game-period">
             <select id="game-period">
                 <option>GAME OF THE WEEK</option>
@@ -39,38 +42,56 @@
     @isset($replay)
         @foreach($replay as $item)
             <div class="gocu-replays__subtitle change_gray">
-                @isset($proRout)
-                    @if($proRout == 'user-replay')
-                        <a class="subtitle__name night_text"
-                           href="{{ route('user-replay.show',['user_replay'=>$item->id])}}">
-                            {{$item->title}}
-                        </a>
-                    @elseif($proRout == 'user-replay_pro')
-                        <a class="subtitle__name night_text"
-                           href="{{ route('user-replay_pro.show',['user_replay'=>$item->id])}}">
-                            {{$item->title}}
-                        </a>
-                    @elseif($proRout == 'replay_pro')
-                        @isset($proRoutType)
-                            @if($proRoutType)
-                                <a class="subtitle__name night_text"
-                                   href="{{ route('replay_pro.type.show',['type' => $type,'replay_pro'=>$item->id])}}">
-                                    {{$item->title}}
-                                </a>
-                            @else
-                                <a class="subtitle__name night_text"
-                                   href="{{ route('replay_pro.show',['replay_pro' =>$item->id])}}">
-                                    {{$item->title}}
-                                </a>
-                            @endif
+                @isset($userReplayRout)
+                    @if($userReplayRout)
+                        @isset($type)
+                            <a class="subtitle__name night_text"
+                               href="{{ asset(url("user/{$item->users->id}/user-replay/{$item->id}"."?type={$type}"))}}">
+                                {{$item->title}}
+                            </a>
                         @endisset
                     @else
-                        <a class="subtitle__name night_text"
-                           href="{{ route('replay.show',['replay' =>$item->id])}}">
-                            {{$item->title}}
-                        </a>
+                        @isset($type)
+                            <a class="subtitle__name night_text"
+                               href="{{ asset(url("replay/{$item->id}"."?type={$type}"))}}">
+                                {{$item->title}}
+                            </a>
+                        @endisset
                     @endif
                 @endisset
+
+                {{--                @isset($proRout)--}}
+                {{--                    @if($proRout == 'user-replay')--}}
+                {{--                        <a class="subtitle__name night_text"--}}
+                {{--                           href="{{ route('user-replay.show',['user_replay'=>$item->id])}}">--}}
+                {{--                            {{$item->title}}--}}
+                {{--                        </a>--}}
+                {{--                    @elseif($proRout == 'user-replay_pro')--}}
+                {{--                        <a class="subtitle__name night_text"--}}
+                {{--                           href="{{ route('user-replay_pro.show',['user_replay'=>$item->id])}}">--}}
+                {{--                            {{$item->title}}--}}
+                {{--                        </a>--}}
+                {{--                    @elseif($proRout == 'replay_pro')--}}
+                {{--                        @isset($proRoutType)--}}
+                {{--                            @if($proRoutType)--}}
+                {{--                                <a class="subtitle__name night_text"--}}
+                {{--                                   href="{{ route('replay_pro.type.show',['type' => $type,'replay_pro'=>$item->id])}}">--}}
+                {{--                                    {{$item->title}}--}}
+                {{--                                </a>--}}
+                {{--                            @else--}}
+                {{--                                <a class="subtitle__name night_text"--}}
+                {{--                                   href="{{ route('replay_pro.show',['replay_pro' =>$item->id])}}">--}}
+                {{--                                    {{$item->title}}--}}
+                {{--                                </a>--}}
+                {{--                            @endif--}}
+                {{--                        @endisset--}}
+                {{--                    @else--}}
+                {{--                        <a class="subtitle__name night_text"--}}
+                {{--                           href="{{ route('replay.show',['replay' =>$item->id])}}">--}}
+                {{--                            {{$item->title}}--}}
+                {{--                        </a>--}}
+                {{--                    @endif--}}
+                {{--                @endisset--}}
                 <p class="subtitle__date night_text">{{$item->created_at}}</p>
             </div>
             <div class="gocu-replays__match">

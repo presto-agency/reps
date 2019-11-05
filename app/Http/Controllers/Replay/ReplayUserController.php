@@ -26,8 +26,8 @@ class ReplayUserController extends Controller
             'comments',
         ];
 
-        $replay = ReplayController::getReplays($relations, Replay::REPLAY_USER);
-        $proRout = ReplayController::checkUrlPro() === true ? ReplayController::$REPLAY_PRO : false;
+        $replay = ReplayHelper::getReplays($relations, Replay::REPLAY_USER);
+        $proRout = ReplayHelper::checkUrlPro() === true ? ReplayHelper::$REPLAY_PRO : false;
         return view('replay.index', compact('proRout', 'replay'));
     }
 
@@ -72,9 +72,9 @@ class ReplayUserController extends Controller
             'comments',
         ];
 
-        $replay = ReplayController::findReplayWithType2($relations, $id,Replay::REPLAY_USER);
+        $replay = ReplayHelper::findReplayWithType2($relations, $id,Replay::REPLAY_USER);
         $countUserPts = $replay->users->totalComments->count();
-        $proRout = ReplayController::checkUrlPro() === true ? ReplayController::$REPLAY_PRO : false;
+        $proRout = ReplayHelper::checkUrlPro() === true ? ReplayHelper::$REPLAY_PRO : false;
 
         return view('replay.show',
             compact('replay', 'countUserPts', 'proRout')
@@ -127,6 +127,6 @@ class ReplayUserController extends Controller
             'comments',
         ];
 
-        ReplayController::loadReplay($relations, Replay::REPLAY_USER);
+        ReplayHelper::loadReplay($relations, Replay::REPLAY_USER);
     }
 }

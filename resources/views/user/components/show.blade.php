@@ -49,7 +49,7 @@
                             <div class="date">
                                 {{\Carbon\Carbon::parse($user->activity_at)->diffForHumans()}}
                             </div>
-                    @endif
+                        @endif
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>Статус:</span></div>
@@ -89,8 +89,9 @@
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>Репутация:</span></div>
-                        <div class="right_block night_text"><a href="{{route('user-rating-list.index')}}"
-                                                               title="Репутация"><span class="blue">{{$user->positive_count - $user->negative_count}} кг</span></a>
+                        <div class="right_block night_text"><a
+                                href="{{route('user-rating-list.index',['id'=>$user->id])}}"
+                                title="Репутация"><span class="blue">{{$user->positive_count - $user->negative_count}} кг</span></a>
                         </div>
                     </div>
                 </div>
@@ -188,24 +189,27 @@
                     <div class="wrapper_information">
                         <div class="block_inform">
                             <div class="left_block"><span>Темы:</span></div>
-                            <div class="right_block"><a href="{{route('user-topics.index')}}"><span
+                            <div class="right_block"><a href="{{route('user-topics.index',['id' => $user->id])}}"><span
                                         class="blue" title="Темы">{{$user->topics_count}}</span></a></div>
                         </div>
                         <div class="block_inform">
                             <div class="left_block"><span>Посты:</span></div>
-                            <div class="right_block"><a href="{{route('user-comments.index')}}"><span
+                            <div class="right_block"><a
+                                    href="{{route('user-comments.index',['id' => $user->id])}}"><span
                                         class="blue" title="Посты">{{$user->comments_count}}</span></a>
                             </div>
                         </div>
                         <div class="block_inform">
                             <div class="left_block"><span>Профессиональные реплеи:</span></div>
-                            <div class="right_block"><a href="{{route('user-replay_pro.index')}}"><span
+                            <div class="right_block"><a
+                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}"><span
                                         class="blue" title="Профессиональные реплеи">{{$user->gosu_replay_count}}</span></a>
                             </div>
                         </div>
                         <div class="block_inform">
                             <div class="left_block"><span>Пользовательские реплеи:</span></div>
-                            <div class="right_block"><a href="{{route('user-replay.index')}}"><span
+                            <div class="right_block"><a
+                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'pro'])}}"><span
                                         class="blue" title="Пользовательские реплеи">{{$user->user_replay_count}}</span></a>
                             </div>
                         </div>

@@ -19,24 +19,7 @@ class LastUserProReplaysComposer
      */
     public function compose(View $view)
     {
-        $view->with('replaysProLsHome', self::getCacheReplaysPro('replaysProLsHome'));
         $view->with('replaysUserLsHome', self::getCacheReplaysUser('replaysUserLsHome'));
-    }
-
-    /**
-     * @param $cache_name
-     * @return mixed
-     */
-    public static function getCacheReplaysPro($cache_name)
-    {
-        if (\Cache::has($cache_name) && !\Cache::get($cache_name)->isEmpty()) {
-            $data_cache = \Cache::get($cache_name);
-        } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
-                return self::getReplaysPro();
-            });
-        }
-        return $data_cache;
     }
 
     /**
@@ -53,18 +36,6 @@ class LastUserProReplaysComposer
             });
         }
         return $data_cache;
-    }
-
-
-    public static function getReplaysPro()
-    {
-        $data = null;
-        $data = Replay::with(self::$relation)
-            ->where('approved', 1)
-            ->where('user_replay', Replay::REPLAY_PRO)
-            ->take(8)
-            ->get(self::$column);
-        return collect($data);
     }
 
     public static function getReplaysUser()

@@ -6,7 +6,10 @@
 @endsection
 
 @section('content')
-    @include('user.topics.components.show')
+    @include('user.components.show')
+    @include('user.components.user_friends')
+    @include('user.components.password-recovery')
+    @include('user.components.get-recovery-link')
 @endsection
 
 @section('right-side')

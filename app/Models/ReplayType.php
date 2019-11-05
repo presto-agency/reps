@@ -12,6 +12,6 @@ class ReplayType extends Model
 
     public function replays()
     {
-        return $this->hasMany(\App\Models\Replay::class,'type_id');
+        return $this->hasMany(\App\Models\Replay::class,'type_id','id');
     }
 }

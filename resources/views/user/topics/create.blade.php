@@ -6,5 +6,10 @@
 @endsection
 
 @section('content')
-    @include('user.components.setting')
+    @include('user.topics.components.create')
+@endsection
+
+@section('right-side')
+    @parent
+    @include('right-side.components.last-replay')
 @endsection

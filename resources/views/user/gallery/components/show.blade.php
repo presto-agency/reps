@@ -48,12 +48,12 @@
                     @if($routCheck)
                         <div class="items__slide-button">
                             @isset($previous)
-                                <a href="{{route('galleries.show',['gallery'=> $previous])}}">
+                                <a href="{{route('galleries.show',['gallery' => $previous])}}">
                                     <i class="fas fa-angle-double-left"></i>
                                 </a>
                             @endisset
                             @isset($next)
-                                <a href="{{route('galleries.show',['gallery'=> $next])}}">
+                                <a href="{{route('galleries.show',['gallery' => $next])}}">
                                     <i class="fas fa-angle-double-right"></i>
                                 </a>
                             @endisset
@@ -61,12 +61,12 @@
                     @else
                         <div class="items__slide-button">
                             @isset($previous)
-                                <a href="{{route('gallery.show',['gallery'=> $previous])}}">
+                                <a href="{{route('user-gallery.show',['id'=> $userImage->user_id,'user_gallery'=> $previous])}}">
                                     <i class="fas fa-angle-double-left"></i>
                                 </a>
                             @endisset
                             @isset($next)
-                                <a href="{{route('gallery.show',['gallery'=> $next])}}">
+                                <a href="{{route('user-gallery.show',['id'=> $userImage->user_id,'user_gallery'=> $next])}}">
                                     <i class="fas fa-angle-double-right"></i>
                                 </a>
                             @endisset

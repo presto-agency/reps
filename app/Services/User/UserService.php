@@ -52,7 +52,7 @@ class UserService
 
         if (isset($user_data['signature'])) {
             $signature = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $user_data['signature']);
-            $user_data['signature'] = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $signature );
+            $user_data['signature'] = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $signature);
         }
 
         if (Auth::user()->roles ? (Auth::user()->roles->name != 'super admin') : true) {
@@ -69,5 +69,12 @@ class UserService
             return true;
         }
         return false;
+    }
+
+
+    public static function getUserId()
+    {
+        return request('id') === null ?  auth()->id() :  request('id');
+
     }
 }

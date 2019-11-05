@@ -17,11 +17,12 @@ class GalleryHelper
 
     /**
      * @param $row
+     * @param $user_id
      * @return mixed
      */
-    public static function getAllUserImages($row)
+    public static function getAllUserImages($row,$user_id)
     {
-        return UserGallery::where('user_id', auth()->id())->get($row);
+        return UserGallery::where('user_id', $user_id)->get($row);
     }
 
     public static function getUserImage($id, $relation, $row)
