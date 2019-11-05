@@ -44,9 +44,10 @@ class BroadcastCheck extends Command
                     $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
                     if ($getResult['status'] !== config('streams.status')) {
                         Stream::where('id', $getResult['id'])->update(['active' => false]);
+                        \Log::info('Успешно обновлен список стримов');
                     }
                 } catch (\Exception $e) {
-                    \Log::info($item->stream_url, $item->id);
+                    \Log::info('Ошибка при обновлен списка стримов');
                 }
             }
         }

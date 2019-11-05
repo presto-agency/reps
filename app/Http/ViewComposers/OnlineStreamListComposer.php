@@ -13,23 +13,12 @@ class OnlineStreamListComposer
 
     public function __construct()
     {
-        $data = [];
+        $data = null;
 
-        $getData = Stream::with('races:id,title', 'countries:id,flag')
+        $data = Stream::with('races:id,title', 'countries:id,flag,name')
             ->where('approved', 1)
             ->where('active', 1)
             ->get(['id', 'race_id', 'country_id', 'title', 'stream_url']);
-        if (!$getData->isEmpty()) {
-            foreach ($getData as $item) {
-                $data[] = [
-                    'id' => $item->id,
-                    'countryFlag25x20' => $item->countries->flag,
-                    'racesTitle' => $item->races->title,
-                    'streamTitle' => $item->title,
-                    'streamUrl' => $item->stream_url,
-                ];
-            }
-        }
 
         $this->category = $data;
 

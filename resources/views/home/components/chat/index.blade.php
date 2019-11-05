@@ -457,7 +457,9 @@
                     </div>
                 </div>
                 <div class="video_twitch">
-                    <iframe id="streamOnline" style="width: 99%; height: 100%;" allowfullscreen="true" scrolling="no" frameborder="0" src=""></iframe>
+                    <iframe id="streamOnline" style="width: 99%; height: 100%;" allowfullscreen="true" scrolling="no" frameborder="0" src="">
+
+                    </iframe>
                 </div>
             </div>
         </div>
