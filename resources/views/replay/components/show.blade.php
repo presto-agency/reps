@@ -114,7 +114,7 @@
                 <div class="col-xl-4 content_right">
                     <p class="title">{{$replay->title}}</p>
                     @isset($replay->maps)
-                        <img class="img-fluid" src="{{ asset($replay->maps->url) }}" alt="{{$replay->maps->name}}">
+                        <img class="img-fluid" src="{{asset($replay->maps->url)}}" alt="map" title="{{$replay->maps->name}}">
                     @endisset
                     <div class="replay-rating">
                         <a href="#vote-modal" class="positive-vote vote-replay-up" data-toggle="modal" data-rating="1"

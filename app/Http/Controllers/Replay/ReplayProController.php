@@ -26,8 +26,8 @@ class ReplayProController extends Controller
             'comments',
         ];
 
-        $replay = ReplayController::getReplays($relations, Replay::REPLAY_PRO);
-        $proRout = ReplayController::checkUrlPro() === true ? ReplayController::$REPLAY_PRO : false;
+        $replay = ReplayHelper::getReplays($relations, Replay::REPLAY_PRO);
+        $proRout = ReplayHelper::checkUrlPro() === true ? ReplayHelper::$REPLAY_PRO : false;
         $proRoutType = false;
 
         return view('replay.index',
@@ -75,9 +75,9 @@ class ReplayProController extends Controller
             'secondRaces:id,title,code',
             'comments',
         ];
-        $replay = ReplayController::findReplayWithType2($relations, $id,Replay::REPLAY_PRO);
+        $replay = ReplayHelper::findReplayWithType2($relations, $id,Replay::REPLAY_PRO);
         $countUserPts = $replay->users->totalComments->count();
-        $proRout = ReplayController::checkUrlPro() === true ? ReplayController::$REPLAY_PRO : false;
+        $proRout = ReplayHelper::checkUrlPro() === true ? ReplayHelper::$REPLAY_PRO : false;
         $proRoutType = false;
         return view('replay.show',
             compact('replay', 'countUserPts', 'proRout', 'proRoutType')

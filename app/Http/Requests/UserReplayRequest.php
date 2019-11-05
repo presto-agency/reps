@@ -26,7 +26,6 @@ class UserReplayRequest extends FormRequest
         return [
             'title' => 'required|string|between:1,255',
 
-            'user_replay' => 'required|string|in:0,1',
             'type_id' => 'required|string|exists:replay_types,id',
             'map_id' => 'required|string|exists:replay_maps,id',
 

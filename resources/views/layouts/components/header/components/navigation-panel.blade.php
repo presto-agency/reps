@@ -47,7 +47,7 @@
                 <nav class="menu_navigation">
                     <a href="{{route('home.index')}}" title="Главная">ГЛАВНАЯ </a>
                     <a href="{{route('forum.index')}}" title="Форум">ФОРУМ</a>
-                    <a href="{{route('replay.index')}}" title="Реплеи">РЕПЛЕИ</a>
+                    <a href="{{route('replay.index',['type' => 'user'])}}" title="Реплеи">РЕПЛЕИ</a>
                     <a href="{{route('news.index')}}" title="Новости">НОВОСТИ</a>
                     <a href="{{route('tournament.index')}}" title="Турниры">ТУРНИРЫ</a>
                     <a href="{{route('best.index')}}" title="Лучшие">ЛУЧШИЕ</a>
@@ -78,10 +78,10 @@
                                 data-target="#registrationModal">{{ __('Register') }}</button>
                     @else
                         @include('layouts.components.header.components.user-bar-panel')
-{{--                        <form id="logout-form" action="{{ route('logout') }}" method="POST">--}}
-{{--                            @csrf--}}
-{{--                            <button type="submit">{{ __('Logout') }}</button>--}}
-{{--                        </form>--}}
+                        {{--                        <form id="logout-form" action="{{ route('logout') }}" method="POST">--}}
+                        {{--                            @csrf--}}
+                        {{--                            <button type="submit">{{ __('Logout') }}</button>--}}
+                        {{--                        </form>--}}
                     @endguest
                 </div>
             </div>

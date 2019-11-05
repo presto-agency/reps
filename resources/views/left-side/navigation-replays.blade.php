@@ -26,33 +26,32 @@
                 </div>
                 <div class="accordion__topic card night_modal">
                     <div class="topic__header card-header change_gray">
-                        <a class="header__title night_text" href="{{route('replay_pro.index')}}">
+                        <a class="header__title night_text" href="{{route('replay.index',['type' => $type])}}">
                             Профессиональные реплеи
                         </a>
                     </div>
-                    @isset($replayTypes)
-                        @foreach($replayTypes as $replayTitle => $replayName)
+                    @isset($replayNav)
+                        @foreach($replayNav as $replayName)
                             <div class="topic__body">
                                 <div class="card-body">
                                     <div class="subtopic__topic card night_modal border_shadow">
                                         <div class="subtopic__header card-header change_gray">
                                             <a class="header__title night_text"
-                                               href="{{route("replay_pro.type.index",['type'=>$replayName])}}">
-                                                {{$replayTitle}}
+                                               href="{{route('replay.index',['type' => !isset($type) ? $type : 'pro', 'subtype'=> $replayName->name])}}">
+                                                {{$replayName->title}}
                                             </a>
                                         </div>
                                         <div class="subtopic__body">
                                             <div class="card-body">
-                                                @isset($replayNav)
-                                                    @foreach($replayNav as $replayNavitem)
-                                                        @if($replayNavitem['types']['name'] == $replayName)
-                                                            <div class="body__wrap">
-                                                                <a href="{{route('replay_pro.type.show',['type' =>$replayName, 'replay_pro'=>$replayNavitem['id']])}}"
-                                                                   class="body__title night_text">{{$replayNavitem['title']}}</a>
-                                                                <span
-                                                                    class="body__numb">{{$replayNavitem['positive_count'] - $replayNavitem['negative_count']}}</span>
-                                                            </div>
-                                                        @endif
+
+                                                @isset($replayName->replays)
+                                                    @foreach($replayName->replays as $replayNavItem)
+                                                        <div class="body__wrap">
+                                                            <a href="{{route('replay.show',['replay'=>$replayNavItem->id, 'type' => !isset($type) ? $type : 'pro', 'subtype'=> $replayName->name])}}"
+                                                               class="body__title night_text">{{$replayNavItem->title}}</a>
+                                                            <span
+                                                                class="body__numb">{{$replayNavItem->positive_count - $replayNavItem->negative_count}}</span>
+                                                        </div>
                                                     @endforeach
                                                 @endisset
                                             </div>
@@ -71,19 +70,20 @@
                         </a>
                     </div>
                     <div class="topic__header card-header change_gray">
-                        <a class="header__title night_text" href="{{route('replay.index')}}">
+                        <a class="header__title night_text"
+                           href="{{route('replay.index',['type' => !isset($type) ? $type : 'user'])}}">
                             Пользовательские реплеи
                         </a>
                     </div>
                     @isset($replayNav)
-                        @foreach($replayNav as $replayNavitem)
+                        @foreach($replayNav as $replayNavItem)
                             <div class="topic__body">
                                 <div class="card-body">
                                     <div class="body__wrap">
-                                        <a href="{{route('replay.show',['replay' => $replayNavitem['id']])}}"
-                                           class="body__title night_text">{{$replayNavitem['title']}}</a>
+                                        <a href="{{route('replay.show',['replay'=>$replayNavItem->id, 'type' => !isset($type) ? $type : 'user'])}}"
+                                           class="body__title night_text">{{$replayNavItem->title}}</a>
                                         <span
-                                            class="body__numb">{{$replayNavitem['positive_count'] - $replayNavitem['negative_count']}}</span>
+                                            class="body__numb">{{$replayNavItem->positive_count - $replayNavItem->negative_count}}</span>
                                     </div>
                                 </div>
                             </div>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\User;
 
-use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,11 +10,12 @@ class UserRatingListController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $userReputations = null;
+       $userReputations = null;
         return view('user.rating-list.index', compact('userReputations'));
     }
 
@@ -26,7 +26,7 @@ class UserRatingListController extends Controller
      */
     public function create()
     {
-        //
+        return back();
     }
 
     /**
@@ -37,20 +37,19 @@ class UserRatingListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
      * @param int $id
+     * @param int $user_rating_list
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,$user_rating_list)
     {
-        $user = User::findOrFail($id);
-        $userReputations = null;
-        return view('user.rating-list.show', compact('user', 'userReputations'));
+        return back();
     }
 
     /**
@@ -61,7 +60,7 @@ class UserRatingListController extends Controller
      */
     public function edit($id)
     {
-        //
+        return back();
     }
 
     /**
@@ -73,7 +72,7 @@ class UserRatingListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return back();
     }
 
     /**
@@ -84,6 +83,6 @@ class UserRatingListController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return back();
     }
 }

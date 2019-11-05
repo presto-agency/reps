@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Replay\ReplayController;
+use App\Http\Controllers\Replay\ReplayHelper;
 use App\Http\Requests\UserReplayRequest;
 use App\Services\ServiceAssistants\PathHelper;
+use App\User;
+use foo\bar;
 use App\Models\{Replay, ReplayMap, Country, Race, ReplayType};
 
 use Illuminate\Http\Request;
@@ -13,15 +15,19 @@ use App\Http\Controllers\Controller;
 class UserReplayController extends Controller
 {
     private static $ttl = 300;
-    private static $USER_REPLAY_URL = 'user-replay';
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
+     * @param $id
+     * @param $type
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index($id, $type = null)
     {
+
+        User::findOrFail($id);
         $relations = [
             'users:id,name,avatar',
             'maps:id,name',
@@ -31,29 +37,12 @@ class UserReplayController extends Controller
             'secondRaces:id,title,code',
         ];
 
-        $replay = ReplayController::findUserReplaysWithType2($relations, auth()->id(), Replay::REPLAY_USER);
+        $type = ReplayHelper::getReplayType();
 
-
-        $proRout = self::$USER_REPLAY_URL;
-
-        return view('user.replay.index', compact('proRout', 'replay'));
-    }
-
-    public function indexPro()
-    {
-        $relations = [
-            'users:id,name,avatar',
-            'maps:id,name',
-            'firstCountries:id,flag,name',
-            'secondCountries:id,flag,name',
-            'firstRaces:id,title,code',
-            'secondRaces:id,title,code',
-        ];
-
-        $replay = ReplayController::findUserReplaysWithType2($relations, auth()->id(), Replay::REPLAY_PRO);
-
-        $proRout = 'user-replay_pro';
-        return view('user.replay.index', compact('proRout', 'replay'));
+        $replay = ReplayHelper::findUserReplaysWithType2($relations, $id, $type);
+        $type = $type == Replay::REPLAY_USER ? 'user' : 'pro';
+        $userReplayRout = ReplayHelper::checkUrl() === true ? true : false;
+        return view('user.replay.index', compact('replay', 'type', 'userReplayRout'));
     }
 
     /**
@@ -93,9 +82,11 @@ class UserReplayController extends Controller
      * Display the specified resource.
      *
      * @param int $id
+     * @param int $user_replay
+     * @param int $type
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $user_replay, $type = null)
     {
         $relations = [
             'users:id,name,avatar,count_positive,count_negative',
@@ -108,32 +99,21 @@ class UserReplayController extends Controller
             'secondRaces:id,title,code',
             'comments',
         ];
-        $proRout = self::$USER_REPLAY_URL;
-        $user_replay = Replay::REPLAY_USER;
-        if (\Str::contains(collect(request()->segments()), 'user-replay_pro') === true) {
-            $user_replay = Replay::REPLAY_PRO;
-            $proRout = 'user-replay_pro';
-        }
 
-        $replay = ReplayController::findUserReplayWithType2($relations, auth()->id(), $id, $user_replay);
+        $type = ReplayHelper::getReplayType();
+
+        $replay = ReplayHelper::findUserReplayWithType2($relations, $id, $user_replay, $type);
+
         $countUserPts = $replay->users->totalComments->count();
 
+        $userReplayRout = ReplayHelper::checkUrl() === true ? true : false;
 
-        $proRoutType = false;
+        $type = $type == Replay::REPLAY_USER ? 'user' : 'pro';
 
         return view('user.replay.show',
-            compact('replay', 'countUserPts', 'proRout', 'proRoutType')
+            compact('replay', 'countUserPts', 'type', 'userReplayRout')
         );
 
-    }
-
-    /**
-     * @param $id
-     * @return \Illuminate\Http\Response
-     */
-    public function showPro($id)
-    {
-        return $this->show($id);
     }
 
     /**
@@ -144,7 +124,7 @@ class UserReplayController extends Controller
      */
     public function edit($id)
     {
-        //
+        return back();
     }
 
     /**
@@ -156,7 +136,8 @@ class UserReplayController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return back();
+
     }
 
     /**
@@ -251,7 +232,7 @@ class UserReplayController extends Controller
         $data->first_race = $request->first_race;
         $data->second_race = $request->second_race;
         $data->type_id = $request->type_id;
-        $data->user_replay = $request->user_replay;
+        $data->user_replay = Replay::REPLAY_USER;
         $data->first_location = $request->first_location;
         $data->second_location = $request->second_location;
         $data->content = $request->content;

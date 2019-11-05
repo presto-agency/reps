@@ -3,10 +3,11 @@
 @section('sidebar-left')
     @include('components.interview')
     @include('left-side.search-replays')
+    @include('user.components.my-chat')
 @endsection
 
 @section('content')
-    @include('user.topics.components.show')
+    @include('user.components.edit')
 @endsection
 
 @section('right-side')

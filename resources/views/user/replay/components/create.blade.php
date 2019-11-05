@@ -17,7 +17,7 @@
         <p class="title__text">Создать новый Replay</p>
     </div>
     <div class="create-replay__body night_modal">
-        <form class="create-replay__form" action="{{ route('replay.store') }}" method="POST"
+        <form class="create-replay__form" action="{{ route('user-replay.store',['id' => auth()->id()]) }}" method="POST"
               enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -31,25 +31,6 @@
                 </div>
             @endif
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="create-replay__user-replay" class="night_text">* Пользовательский/Gosu:
-                            <select name="user_replay" id="create-replay__user-replay"
-                                    class="create-replay__user-replay night_input">
-                                @isset($userReplay)
-                                    @foreach($userReplay as $key => $items)
-                                        <option value="{{$key}}">{{$items}}</option>
-                                    @endforeach
-                                @endisset
-                            </select>
-                        </label>
-                    </div>
-                </div>
-                @if ($errors->has('user_replay'))
-                    <div class="alert alert-danger">
-                        {{ $errors->first('user_replay') }}
-                    </div>
-                @endif
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="create-replay__type" class="night_text">* Тип:
@@ -143,22 +124,22 @@
                         // Define the toolbar groups as it is a more accessible solution.
                         extraPlugins: 'autoembed',
                         toolbarGroups: [
-                            { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+                            {name: 'document', groups: ['mode', 'document', 'doctools']},
                             '/',
-                            { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-                            { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-                            { name: 'forms', groups: [ 'forms' ] },
+                            {name: 'clipboard', groups: ['clipboard', 'undo']},
+                            {name: 'editing', groups: ['find', 'selection', 'spellchecker', 'editing']},
+                            {name: 'forms', groups: ['forms']},
                             '/',
-                            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-                            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-                            { name: 'links', groups: [ 'links' ] },
-                            { name: 'insert', groups: [ 'insert' ] },
+                            {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
+                            {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']},
+                            {name: 'links', groups: ['links']},
+                            {name: 'insert', groups: ['insert']},
                             '/',
-                            { name: 'styles', groups: [ 'styles' ] },
-                            { name: 'colors', groups: [ 'colors' ] },
-                            { name: 'tools', groups: [ 'tools' ] },
-                            { name: 'others', groups: [ 'others' ] },
-                            { name: 'about', groups: [ 'about' ] }
+                            {name: 'styles', groups: ['styles']},
+                            {name: 'colors', groups: ['colors']},
+                            {name: 'tools', groups: ['tools']},
+                            {name: 'others', groups: ['others']},
+                            {name: 'about', groups: ['about']}
                         ],
                         // Remove the redundant buttons from toolbar groups defined above.
                         removeButtons: 'Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Find,Replace,SelectAll,Scayt,Form,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,Strike,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Unlink,Image,Flash,Table,HorizontalRule,SpecialChar,PageBreak,ShowBlocks,Maximize,About,Checkbox'

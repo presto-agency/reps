@@ -53,39 +53,39 @@
     <div id="settings_div" class="logged_links">
         <ul class="logged_active">
             <li>
-                <a href="{{route('user_profile',['id' => Auth::id()])}}" title="Мой аккаунт">Мой аккаунт</a>
+                <a href="{{route('user_profile',['id' => auth()->id()])}}" title="Мой аккаунт">Мой аккаунт</a>
             </li>
             <li>
-                <a href="{{route('user-gallery.index')}}" title="Моя галерея">Моя галерея</a>
+                <a href="{{route('user-gallery.index',['id' => auth()->id()])}}" title="Моя галерея">Моя галерея</a>
             </li>
             <li>
                 <a href="#" title="Мои стримы">Мои стримы</a>
             </li>
             <li>
-                <a href="{{route('user-topics.index')}}" title="Моя темы">Мои темы</a>
+                <a href="{{route('user-topics.index',['id' => auth()->id()])}}" title="Моя темы">Мои темы</a>
             </li>
             <li>
-                <a href="{{route('user-comments.index')}}" title="Мои комментарии">Мои комментарии</a>
+                {{--                <a href="{{route('my-comments.index')}}" title="Мои комментарии">Мои комментарии</a>--}}
             </li>
             <li>
-                <a href="{{route('user-rating-list.index')}}" title="Моя репутация">Моя репутация</a>
+                {{--                <a href="{{route('my-rating-list.index')}}" title="Моя репутация">Моя репутация</a>--}}
             </li>
             <li>
-                <a href="{{route('user-replay.index')}}" title="Мои пользовательские реплеи">Мои пользовательские
-                    реплеи</a>
+                {{--                <a href="{{route('my-replay.index')}}" title="Мои пользовательские реплеи">Мои пользовательские--}}
+                {{--                    реплеи</a>--}}
             </li>
             <li>
-                <a href="{{route('user-replay_pro.index')}}" title="Мои профессиональные реплеи">Мои профессиональные
-                    реплеи</a>
+                {{--                <a href="{{route('my-replay_pro.index')}}" title="Мои профессиональные реплеи">Мои профессиональные--}}
+                {{--                    реплеи</a>--}}
             </li>
             <li>
-                <a href="{{route('user-replay.create')}}" title="Отправить реплей">Отправить реплей</a>
+                {{--                <a href="{{route('my-replay.create')}}" title="Отправить реплей">Отправить реплей</a>--}}
             </li>
             <li>
-                <a href="{{route('galleries.index')}}" title="Галерея">Галерея</a>
+                {{--                <a href="{{route('galleries.index')}}" title="Галерея">Галерея</a>--}}
             </li>
             <li>
-                <a href="{{route('edit_profile',['id' => Auth::id()])}}" title="Настройки">Настройки</a>
+                {{--                <a href="{{route('edit_profile',['id' => Auth::id()])}}" title="Настройки">Настройки</a>--}}
             </li>
         </ul>
     </div>

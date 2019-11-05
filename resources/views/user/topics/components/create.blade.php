@@ -2,7 +2,7 @@
     <div class="create-topic__title">
         <p class="title__text">Создание темы</p>
     </div>
-    <form class="create-topic__form" method="POST" action="{{route('user-topics.store')}}"
+    <form class="create-topic__form" method="POST" action="{{route('user-topics.store',['id' => auth()->id()])}}"
           enctype="multipart/form-data">
         @csrf
         <div class="form-group">
@@ -38,9 +38,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="preview_content" class="night_text">Краткое содержание</label>
+            <label for="preview_content" class="night_text">*Краткое содержание</label>
             <textarea type="text" class="form-control create-topic__name night_input" id="preview_content"
-                      name="preview_content" minlength="1" maxlength="1000" rows="16">
+                      name="preview_content" minlength="1" maxlength="1000" rows="16" required>
             </textarea>
         </div>
         <div class="form-group">

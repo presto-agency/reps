@@ -35,42 +35,28 @@ Route::resource('interview', 'Interview\InterviewController');
 Route::resource('best', 'Best\BestController');
 
 /*Replay*/
-Route::resource("replay", 'Replay\ReplayUserController');
-Route::post('/loadmore/load_replays', 'Replay\ReplayController@loadNews')->name('load.more.replays');
-Route::post('replay/{id}/send_comment', 'Replay\ReplayController@saveComments')->name('replay.send_comment');
+Route::resource("replay", 'Replay\ReplayController');
+//Route::post('/loadmore/load_replays', 'Replay\ReplayHelper@loadNews')->name('load.more.replays');
 Route::group(['prefix' => 'replay'], function () {
-    Route::get('{id}/download', 'Replay\ReplayController@download')->name('replay.user.download');
-    Route::post('{id}/download_count', 'Replay\ReplayController@downloadCount')->name('replay.user.download.count');
-});
-Route::resource("replay_pro", 'Replay\ReplayProController');
-Route::group(['prefix' => 'replay_pro'], function () {
-    Route::get('{id}/download', 'Replay\ReplayController@download')->name('replay_pro.download');
-    Route::post('{id}/download_count', 'Replay\ReplayController@downloadCount')->name('replay.pro.download.count');
-    Route::get("{type}/show", 'Replay\ReplayProTypeController@index')->name('replay_pro.type.index');
-    Route::get("{type}/show/{replay_pro}", 'Replay\ReplayProTypeController@show')->name('replay_pro.type.show');
-    Route::get('{type}/show/{id}/download', 'Replay\ReplayController@download')->name('replay_pro.type.download');
-    Route::post('{type}/show/{id}/download_count', 'Replay\ReplayController@downloadCount')->name('replay_pro.type.download.count');
+    Route::get('{id}/download', 'Replay\ReplayHelper@download')->name('replay.user.download');
+    Route::post('{id}/download_count', 'Replay\ReplayHelper@downloadCount')->name('replay.user.download.count');
+    Route::post('{id}/send_comment', 'Replay\ReplayHelper@saveComments')->name('replay.send_comment');
+
 });
 /*Tournament*/
 Route::resource("tournament", 'Tournament\TournamentController');
-
-/*Route::get('user', function (){
-    return view('user.index');
-});*/
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
     Route::get('/friends_list', 'UserFriendController@getFriendsList')->name('user.friends_list');
 
-    Route::resource("user-gallery", 'User\UserGalleryController');
-    Route::resource("user-replay", 'User\UserReplayController');
-    Route::resource("user-comments", 'User\UserCommentsController');
-    Route::resource("user-topics", 'User\UserTopicsController');
-    Route::resource("user-rating-list", 'User\UserRatingListController');
-
-    Route::get("user-replay_pro", 'User\UserReplayController@indexPro')->name('user-replay_pro.index');
-    Route::get("user-replay_pro/{user_replay}", 'User\UserReplayController@showPro')->name('user-replay_pro.show');
     Route::get('{id}', 'UserController@show')->name('user_profile');
+    Route::resource("{id}/user-gallery", 'User\UserGalleryController');
+    Route::resource("{id}/user-topics", 'User\UserTopicsController');
+    Route::resource("{id}/user-replay", 'User\UserReplayController');
+    Route::resource("{id}/user-comments", 'User\UserCommentsController');
+    Route::resource("{id}/user-rating-list", 'User\UserRatingListController');
+
     Route::get('{id}/topic', 'TopicController@getUserTopic')->name('user.forum_topic');
     Route::get('{id}/edit', 'UserController@edit')->name('edit_profile');
     Route::post('{id}/save', 'UserController@update')->name('save_profile');
@@ -78,10 +64,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('{id}/remove_friend', 'UserFriendController@removeFriend')->name('user.remove_friend');
     Route::get('{id}/friends_list', 'UserFriendController@getFriendsList')->name('user.friends_list.by_id');
 
-
-    /*Route::get('{id}/topic', function (){
-        echo 'dsaf';
-    });*/
 });
 /*Galleries*/
 Route::resource("galleries", 'User\GalleriesController');

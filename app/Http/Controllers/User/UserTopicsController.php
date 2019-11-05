@@ -6,42 +6,53 @@ use App\Http\Requests\UserTopicsRequest;
 use App\Models\ForumSection;
 use App\Models\ForumTopic;
 use App\Services\ServiceAssistants\PathHelper;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class UserTopicsController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $topics = ForumTopic::with('forumSection:id,title')
-            ->withCount('comments')
-            ->where('user_id', auth()->id())
+        User::findOrFail(\request('id'));
+        $topics = ForumSection::with('topics.forumSection')
+            ->with(['topics' => function ($query) use ($id) {
+                $query->where('user_id', $id);
+                $query->withCount('comments');
+            }])
             ->get();
-        $forumSection = ForumSection::where('is_active', 1)->where('user_can_add_topics', 1)->get(['id', 'title', 'description']);
 
-        return view('user.topics.index', compact('topics', 'forumSection'));
+        return view('user.topics.index', compact('topics'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return $this->index();
+        $forumSection = ForumSection::where('is_active', 1)->where('user_can_add_topics', 1)->get(['id', 'title', 'description']);
+
+        return view('user.topics.create', compact('forumSection'));
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param UserTopicsRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(UserTopicsRequest $request)
     {
@@ -83,7 +94,7 @@ class UserTopicsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -94,7 +105,7 @@ class UserTopicsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return back();
     }
 
     /**
@@ -106,7 +117,7 @@ class UserTopicsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return back();
     }
 
     /**
@@ -117,6 +128,6 @@ class UserTopicsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return back();
     }
 }

@@ -26,7 +26,7 @@ class UserTopicsRequest extends FormRequest
         return [
             'forum_section_id' => 'required|string|exists:forum_topics,id',
             'title' => 'required|string|between:1,255',
-            'preview_content' => 'nullable|string|max:1000',
+            'preview_content' => 'required|string|max:1000',
             'content' => 'required|string|min:3|max:50000',
             'preview_img' => 'nullable|image|max:2048',
         ];
