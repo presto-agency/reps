@@ -38,14 +38,16 @@
                                  title="{{$item['raceTitle']}}"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                            <p title="{{$item['name']}}">{{$item['name']}}</p>
+                            <a href="#">
+                                <p title="{{$item['name']}}">{{$item['name']}}</p>
+                            </a>
                         </div>
                     </div>
                 @endforeach
             @endisset
         </div>
-        <div class="title_top">
-            <a href="{{route('best.index')}}"><p class="title_Text">Top 10 кг</a>
+        <div class="title_block_gray change_gray">
+            <a href="{{route('best.index')}}"><p class="title_text night_text">Top 10 кг</a>
         </div>
         <div class="block_topUsers">
             @isset($top10Rating)
@@ -61,14 +63,16 @@
                                  title="{{$item['raceTitle']}}"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                            <p title="{{$item['name']}}">{{$item['name']}}</p>
+                            <a href="#">
+                                <p title="{{$item['name']}}">{{$item['name']}}</p>
+                            </a>
                         </div>
                     </div>
                 @endforeach
             @endisset
         </div>
-        <div class="title_top">
-            <a href="{{route('best.index')}}"><p class="title_Text">TOP 10 pts</p></a>
+        <div class="title_block_gray change_gray">
+            <a href="{{route('best.index')}}"><p class="title_text night_text">TOP 10 pts</p></a>
         </div>
         <div class="block_topUsers">
             @isset($top10Points)
@@ -84,7 +88,9 @@
                                  title="{{$item['raceTitle']}}"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                            <p title="{{$item['name']}}">{{$item['name']}}</p>
+                            <a href="#">
+                                <p title="{{$item['name']}}">{{$item['name']}}</p>
+                            </a>
                         </div>
                     </div>
                 @endforeach

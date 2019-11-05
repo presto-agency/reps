@@ -2,8 +2,12 @@
     .wrapper{
         box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     }
+
     & .block_topUsers{
         padding: 25px;
+        .title_block_gray{
+            justify-content: flex-start;
+        }
         & .content_code{
             & p{
                 font-size: 14px;
