@@ -2,7 +2,7 @@
 
 @section('sidebar-left')
     @include('left-side.navigation-replays')
-    @include('left-side.search')
+    @include('left-side.search-replays')
 @endsection
 
 @section('content')

@@ -64,7 +64,7 @@ class UserController extends Controller
         $friends = UserFriend::getFriends($user);
         $friendly = UserFriend::getFriendlies($user);
 
-        return view('user.index')->with([
+        return view('user.profile-show')->with([
             'friends' => $friends,
             'friendly' => $friendly,
             'user' => $user
@@ -79,7 +79,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('user.edit_profile')->with(['user' => Auth::user(), 'countries' => Country::all(), 'races' => Race::all()]);
+        return view('user.profile-edit')->with(['user' => Auth::user(), 'countries' => Country::all(), 'races' => Race::all()]);
     }
 
     /**

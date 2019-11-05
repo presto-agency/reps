@@ -3,13 +3,11 @@
 @section('sidebar-left')
     @include('components.interview')
     @include('left-side.search-replays')
+    @include('user.components.my-chat')
 @endsection
 
 @section('content')
-    @include('user.components.show')
-    @include('user.components.user_friends')
-    @include('user.components.password-recovery')
-    @include('user.components.get-recovery-link')
+    @include('user.components.edit')
 @endsection
 
 @section('right-side')

@@ -7,7 +7,6 @@
         </svg>
         <p class="title__text">Поиск реплеев</p>
     </div>
-
     <div class="search__body night_modal">
         <form>
             <label class="body__name" for="name">

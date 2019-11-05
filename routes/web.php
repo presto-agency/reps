@@ -50,12 +50,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
     Route::get('/friends_list', 'UserFriendController@getFriendsList')->name('user.friends_list');
 
-    Route::resource("user-gallery", 'User\UserGalleryController');
-    Route::resource("user-replay", 'User\UserReplayController');
-    Route::resource("user-comments", 'User\UserCommentsController');
-    Route::resource("user-topics", 'User\UserTopicsController');
-    Route::resource("user-rating-list", 'User\UserRatingListController');
-
     Route::get('{id}', 'UserController@show')->name('user_profile');
     Route::resource("{id}/user-gallery", 'User\UserGalleryController');
     Route::resource("{id}/user-topics", 'User\UserTopicsController');

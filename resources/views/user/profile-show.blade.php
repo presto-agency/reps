@@ -3,7 +3,6 @@
 @section('sidebar-left')
     @include('components.interview')
     @include('left-side.search-replays')
-{{--    @include('user.components.search-replay')--}}
     @include('user.components.my-chat')
 @endsection
 
@@ -17,20 +16,10 @@
             </ul>
         </div>
     @endif
-{{--    @include('user.components.user_friends')--}}
-    @include('user.components.user_profile')
-    #####################################################
+    @include('user.components.show')
     @include('user.components.user_friends')
-    #####################################################
-{{--    @include('user.components.setting')--}}
-{{--    #####################################################--}}
-{{--    @include('user.rating-list.components.index')--}}
-{{--    #####################################################--}}
     @include('user.components.password-recovery')
-    #####################################################
     @include('user.components.get-recovery-link')
-{{--    #####################################################--}}
-{{--    @include('user.topics.components.create')--}}
     @include('user.messenger')
 @endsection
 
