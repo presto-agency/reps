@@ -1,14 +1,14 @@
 .nightMode{
     background:#01093b;
+    p, span, a{
+        color: white!important;
+    }
+    svg{
+        fill: white!important;
+    }
     .night_text{
             color: white!important;
-        p{
-            color: white!important;
-        }
-        span{
-            color: white!important;
-        }
-        a{
+        p, span, a{
             color: white!important;
         }
     }
@@ -27,6 +27,9 @@
         background-color: #0567cc!important;
         opacity: 0.5;
         color: white;
+        p{
+            color: white!important;
+        }
     }
     .darck_gray_color{
         background: rgb(24,24,27)!important;
