@@ -4,6 +4,10 @@
     @include('left-side.forum-topics')
 @endsection
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('news') }}
+@endsection
+
 @section('content')
     {{--@include('content.last_news')--}}
     <div id="last_news"></div>

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('user-replay-show',request('id'),request('user_replay'),request('type')) }}
+@endsection
+
 @section('sidebar-left')
     @include('components.interview')
     @include('left-side.search-replays')

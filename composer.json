@@ -10,16 +10,17 @@
     "require": {
         "php": "^7.2",
         "ext-curl": "*",
+        "ext-gd": "*",
         "ext-json": "*",
         "barryvdh/laravel-debugbar": "^3.2",
         "barryvdh/laravel-translation-manager": "^0.5.5",
+        "davejamesmiller/laravel-breadcrumbs": "^5.3",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "laravelrus/sleepingowl": "dev-bs4",
-        "ext-gd": "*"
+        "laravelrus/sleepingowl": "dev-bs4"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
