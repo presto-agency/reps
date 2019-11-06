@@ -450,7 +450,6 @@
         }
     }
     .block_lastNews {
-        margin: 3vw 0 4vw 0;
         & .block_futureTournament{
             padding: 2.5vw 1.5vw 0;
             & .href_tournament{
@@ -681,6 +680,14 @@
                 }
                 & .date{
                     font-size: 1.211vw;
+                }
+                .right{
+                    svg{
+                        width: 2.018vw;
+                    }
+                    span{
+                        font-size:1.413vw;
+                    }
                 }
             }
         }

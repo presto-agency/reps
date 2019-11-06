@@ -7,6 +7,7 @@
 
 @section('content')
     @include('replay.components.index')
+
 @endsection
 
 @section('right-side')
