@@ -18,7 +18,7 @@
 
 @section('content')
     {{--    <div id="search-result"></div>--}}
-    @include('replay.components.index')
+    @include('search.components.index')
 {{--    @include('topics')--}}
 {{--    @include('replay.components.index')--}}
 @endsection

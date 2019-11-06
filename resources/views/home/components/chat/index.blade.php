@@ -502,7 +502,7 @@
                 </div>
                 <div class="video_twitch">
                     <iframe id="streamOnline" style="width: 99%; height: 100%;" allowfullscreen="true" scrolling="no"
-                            frameborder="0" src="{{$stream->stream_url_iframe}}"></iframe>
+                            autoplay="1" frameborder="0" src="{{$stream->stream_url_iframe}}"></iframe>
                 </div>
             </div>
         </div>

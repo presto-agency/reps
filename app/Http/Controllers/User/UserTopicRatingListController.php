@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers\User;
 
-
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class UserRatingListController extends Controller
+class UserTopicRatingListController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param int $id
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
     public function index($id)
     {
         $userReputations = null;
         $user = User::findOrFail($id);
-        return view('user.rating-list.index', compact('userReputations', 'user'));
+        return view('user.rating-list.index-topic', compact('userReputations', 'user'));
     }
 
     /**
@@ -47,10 +46,9 @@ class UserRatingListController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @param int $user_rating_list
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $user_rating_list)
+    public function show($id)
     {
         return back();
     }

@@ -89,7 +89,7 @@
                                             <span>{{$item->negative_count}}</span>
                                         </button>
                                         <a class="rate"
-                                           href="{{route('user-rating-list.index',['id' => Auth::id()])}}">
+                                           href="{{route('user-topic-rating-list.index',['id' => Auth::id()])}}">
                                             рейтинг лист</a>
                                     </div>
 
