@@ -1,6 +1,6 @@
 <section class="block_lastNews">
     <div class="wrapper border_shadow">
-        <div class=" title_block change_gray">
+        <div class=" title_block">
             <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="check-circle"
                  class="svg-inline--fa fa-check-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 512 512">

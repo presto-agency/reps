@@ -11,4 +11,5 @@
 
 @section('content')
     @include('replay.components.index')
+    @include('replay.components.video')
 @endsection

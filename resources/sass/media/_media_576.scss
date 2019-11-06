@@ -585,7 +585,6 @@
     }
     //last_news
     .block_lastNews{
-        margin: 5.208vw 0 6.944vw 0;
         & .block_futureTournament{
             padding: 4.340vw 2.604vw 0;
             & .href_tournament{
@@ -1583,13 +1582,21 @@
         & .content_article{
             padding: 1.736vw 3.472vw 0;
             & .block_nameArticle{
-                & .name{
+                 .name{
                     margin: 0.868vw 0;
                     font-size: 3.778vw;
                 }
-                & .date{
+                 .date{
                     font-size: 2.5vw;
                     margin: 0.868vw 0;
+                }
+                .right{
+                    svg{
+                        width: 3.472vw;
+                    }
+                    span{
+                        font-size:2.431vw;
+                    }
                 }
             }
         }
@@ -1926,7 +1933,7 @@
             }
 
             .title__text {
-                font-size: 2.778vw;
+                font-size: 3.778vw;
                 margin-left: 2.951vw;
             }
         }
