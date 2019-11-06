@@ -56,6 +56,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::resource("{id}/user-replay", 'User\UserReplayController');
     Route::resource("{id}/user-comments", 'User\UserCommentsController');
     Route::resource("{id}/user-rating-list", 'User\UserRatingListController');
+    Route::resource("{id}/user-topic-rating-list", 'User\UserTopicRatingListController');
 
     Route::get('{id}/topic', 'TopicController@getUserTopic')->name('user.forum_topic');
     Route::get('{id}/edit', 'UserController@edit')->name('edit_profile');
@@ -68,6 +69,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 /*Galleries*/
 Route::resource("galleries", 'User\GalleriesController');
 Route::post('galleries/{id}/send_comment', 'User\GalleryHelper@saveComments')->name('galleries.send.comment');
+/*Search*/
+Route::get('search', 'SearchController@index')->name('search');
 
 
 Auth::routes();

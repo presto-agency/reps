@@ -37,18 +37,19 @@ class BroadcastCheck extends Command
      */
     public function handle()
     {
-        $getStreams = Stream::all(['id', 'stream_url']);
-        if (!empty($getStreams)) {
-            foreach ($getStreams as $item) {
-                try {
+        try {
+            $getStreams = Stream::where('approved', 1)->get();
+            if (!empty($getStreams)) {
+                foreach ($getStreams as $item) {
+
                     $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
-                    if ($getResult['status'] !== config('streams.status')) {
-                        Stream::where('id', $getResult['id'])->update(['active' => false]);
-                    }
-                } catch (\Exception $e) {
-                    \Log::info($item->stream_url, $item->id);
+                    $getResult['status'] == config('streams.status') ? $active = true : $active = false;
+                    Stream::where('id', $getResult['id'])->update(['active' => $active]);
                 }
             }
+            \Log::info('Успешно обновлен список стримов');
+        } catch (\Exception $e) {
+            \Log::info('Ошибка при обновлен списка стримов');
         }
     }
 

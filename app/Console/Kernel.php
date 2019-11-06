@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\Broadcasting\BroadcastCheck::class,/*broadcast:check*/
+        \App\Console\Commands\Broadcasting\BroadcastCheck::class,
     ];
 
     /**
@@ -26,8 +26,8 @@ class Kernel extends ConsoleKernel
     {
 
         $schedule->command('broadcast:check')
-            ->everyFiveMinutes()
-            ->timezone(config('app.timezone'));
+            ->everyMinute();
+//            ->everyFiveMinutes();
 
     }
 

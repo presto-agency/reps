@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('user-gallery-show',request('id')) }}
+    {{ Breadcrumbs::render('user-topic-rating-list',request('id')) }}
 @endsection
 
 @section('sidebar-left')
@@ -10,11 +10,8 @@
 @endsection
 
 @section('content')
-    @include('user.gallery.components.show')
-    @include('content.comments', ['comments' => $userImage->comments])
-    @include('content.add-comment', [
-        'route' => route('galleries.send.comment', ['id' =>$userImage->id])
-    ])
+    @include('user.rating-list.components.block-user-topic-reputation-info.index')
+    @include('user.rating-list.components.index-topic')
 @endsection
 
 @section('right-side')

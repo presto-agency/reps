@@ -72,7 +72,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="create-replay__first-race" class="night_text">* Первая раса:
-                            <select name="race_id" id="create-replay__first-race"
+                            <select name="first_race" id="create-replay__first-race"
                                     class="create-replay__first-race night_input">
                                 @isset($races)
                                     @foreach($races as $item)
@@ -83,15 +83,15 @@
                         </label>
                     </div>
                 </div>
-                @if ($errors->has('race_id'))
+                @if ($errors->has('first_race'))
                     <div class="alert alert-danger">
-                        {{ $errors->first('race_id') }}
+                        {{ $errors->first('first_race') }}
                     </div>
                 @endif
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="create-replay__first-country" class="night_text">* Первая страна:
-                            <select name="first_country_id" class="js-example-basic-single" name="country"
+                            <select name="first_country_id" class="js-example-basic-single"
                                     id="create-replay__first-country">
                                 @isset($countries)
                                     @foreach($countries as $item)
@@ -107,20 +107,77 @@
                         {{ $errors->first('first_country_id') }}
                     </div>
                 @endif
+                <div class="form-group">
+                    <label for="create-replay__second-location" class="night_text">Первая локация:</label>
+                    <input type="text" name="first_location" class="form-control night_input"
+                           id="create-replay__second-location" minlength="1"
+                           maxlength="255" value="{{old('first_location')}}" placeholder="Первая локация">
+                </div>
+                @if ($errors->has('first_location'))
+                    <div class="alert alert-danger">
+                        {{ $errors->first('first_location') }}
+                    </div>
+                @endif
             </div>
-            <div class="form-group">
-                <label for="create-replay__second-location" class="night_text">* Вторая локация:</label>
-                <input type="text" class="form-control night_input" id="create-replay__second-location" minlength="1"
-                       maxlength="255" placeholder="Вторая локация">
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="create-replay__first-race" class="night_text">* Вторая раса:
+                            <select name="second_race" id="create-replay__first-race"
+                                    class="create-replay__first-race night_input">
+                                @isset($races)
+                                    @foreach($races as $item)
+                                        <option value="{{$item->id}}">{{$item->title}}</option>
+                                    @endforeach
+                                @endisset
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                @if ($errors->has('second_race'))
+                    <div class="alert alert-danger">
+                        {{ $errors->first('second_race') }}
+                    </div>
+                @endif
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="create-replay__first-country" class="night_text">* Вторая страна:
+                            <select name="second_country_id" class="js-example-basic-single"
+                                    id="create-replay__first-country">
+                                @isset($countries)
+                                    @foreach($countries as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                @endisset
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                @if ($errors->has('second_country_id'))
+                    <div class="alert alert-danger">
+                        {{ $errors->first('second_country_id') }}
+                    </div>
+                @endif
+                <div class="form-group">
+                    <label for="create-replay__second-location" class="night_text">Вторая локация:</label>
+                    <input type="text" name="second_location" class="form-control night_input"
+                           id="create-replay__second-location" minlength="1"
+                           maxlength="255" value="{{old('second_location')}}" placeholder="Вторая локация">
+                </div>
+                @if ($errors->has('second_location'))
+                    <div class="alert alert-danger">
+                        {{ $errors->first('second_location') }}
+                    </div>
+                @endif
             </div>
             <hr>
             <div class="form-group">
-                <label for="replay_content" class="night_text">Вставить HTML код с видео реплеем</label>
-                <textarea name="editor1" class="form-control night_input"
-                          id="editor1"></textarea>
+                <label for="replay_content1" class="night_text">Вставить HTML код с видео реплеем</label>
+                <textarea name="content" class="form-control night_input"
+                          id="replay_content1"></textarea>
                 <script>
-
-                    CKEDITOR.replace('editor1', {
+                    CKEDITOR.replace('replay_content1', {
                         // Define the toolbar groups as it is a more accessible solution.
                         extraPlugins: 'autoembed',
                         toolbarGroups: [
@@ -146,10 +203,26 @@
                     });
                 </script>
             </div>
-
             @if ($errors->has('content'))
                 <div class="alert alert-danger">
                     {{ $errors->first('content') }}
+                </div>
+            @endif
+            <div class="row">
+                <div class="col-8">
+                    <input id="uploadFile" class="f-input" readonly/>
+                </div>
+                <div class="col-4 pl-0">
+                    <div class="fileUpload btn btn--browse">
+                        <span>* Выбрать файл</span>
+                        <input id="uploadBtn" type="file" class="upload"
+                               name="file"/>
+                    </div>
+                </div>
+            </div>
+            @if ($errors->has('file'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('file') }}
                 </div>
             @endif
             <div class="create-replay__button">

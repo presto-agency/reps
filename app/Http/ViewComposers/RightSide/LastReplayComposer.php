@@ -16,9 +16,9 @@ class LastReplayComposer
      */
     public function compose(View $view)
     {
-//        dd('Последние реплеи');
-        $view->with('lastReplaysTitleRight', 'Последние реплеи');
-        $view->with('lastReplaysRight', self::getCacheLastReplay('lastReplaysRight'));
+        $view->with('lastReplaysTitleRight', 'Пользовательские реплеи');
+
+        $view->with('lastReplaysRight', self::getCacheLastReplay('last5ReplaysRight'));
     }
 
     /**
@@ -27,9 +27,10 @@ class LastReplayComposer
     private static function getLastReplay()
     {
         return Replay::withCount('comments')
-            ->orderByDesc('created_at')
+            ->where('user_replay', Replay::REPLAY_USER)
             ->take(5)
-            ->get(['id', 'title']);
+            ->orderByDesc('created_at')
+            ->get();
     }
 
     /**

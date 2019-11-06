@@ -63,13 +63,16 @@
                     </svg>
                 </button>
             </div>
-            {{--            не залогінений користувач--}}
-            {{--            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search ">--}}
             <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search header_search_autorization">
-                <div class="button_input">
-                    <button><img class="search_img" src="{{ url('/images/search.png') }}" title="Поиск"></button>
-                    <input id="inp" class="search_input" placeholder="Поиск">
-                </div>
+                <form action="{{ route('search') }}" method="GET">
+                    <div class="button_input">
+                        <button>
+                            <img class="search_img" src="{{ url('/images/search.png') }}" title="Поиск">
+                        </button>
+                        <input id="search-title" name="search" value="{{ old('search') }}" class="search_input"
+                               placeholder="Поиск...">
+                    </div>
+                </form>
                 <div class="autorization autorization_user">
                     @guest
                         <button type="button" data-toggle="modal"

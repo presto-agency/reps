@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('best') }}
+@endsection
+
 @section('sidebar-left')
     @include('left-side.forum-topics')
 @endsection

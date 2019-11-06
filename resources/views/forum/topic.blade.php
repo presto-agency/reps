@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('topic-show', request('topic')) }}
+@endsection
+
 @section('sidebar-left')
     @include('left-side.forum-topics')
 @endsection

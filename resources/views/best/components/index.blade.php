@@ -24,7 +24,7 @@
                     <div class="players_content">
                         <div class="left_block">
                             <span class="number night_text">#{{$item['id']}}</span>
-                            <a href="#">
+                            <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <img src="{{asset($item['avatar'])}}" alt="avatar"
                                      class="author__avatar img-fluid">
                                 <span class="name_player" title="{{$item['name']}}">{{$item['name']}}</span>
@@ -53,7 +53,7 @@
                     <div class="players_content">
                         <div class="left_block">
                             <span class="number night_text">#{{$item['id']}}</span>
-                            <a href="#">
+                            <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <img src="{{asset($item['avatar'])}}" alt="avatar"
                                      class="author__avatar img-fluid">
                                 <span class="name_player" title="{{$item['name']}}">{{$item['name']}}</span>
@@ -82,7 +82,7 @@
                     <div class="players_content">
                         <div class="left_block">
                             <span class="number night_text">#{{$item['id']}}</span>
-                            <a href="#">
+                            <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <img src="{{asset($item['avatar'])}}" alt="avatar"
                                      class="author__avatar img-fluid">
                                 <span class="name_player" title="{{$item['name']}}"
@@ -112,7 +112,7 @@
                     <div class="players_content">
                         <div class="left_block">
                             <span class="number night_text">#{{$item['id']}}</span>
-                            <a href="#">
+                            <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <img src="{{asset($item['avatar'])}}" alt="avatar"
                                      class="author__avatar img-fluid">
                                 <span class="name_player" title="{{$item['name']}}">{{$item['name']}}</span>
