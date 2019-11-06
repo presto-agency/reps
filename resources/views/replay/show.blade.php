@@ -12,7 +12,7 @@
 
 @section('content')
     @include('replay.components.show')
-    @include('replay.components.video')
+{{--    @include('replay.components.video')--}}
     @include('content.comments', ['comments' => $replay->comments])
     @include('content.add-comment', [
         'route' => route('replay.send_comment', ['id' =>$replay->id])

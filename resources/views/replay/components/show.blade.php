@@ -166,7 +166,8 @@
                                   data-count="{{$replay->downloaded}}">{{$replay->downloaded}}</span>
                         </a>
                     </div>
-
+{{--тут контетн реплея: відео  та або короткий --}}
+{{--                    @include('replay.components.video')--}}
                     <div>
                         <div>
                             <span>Контент:</span>
@@ -175,7 +176,7 @@
                             <span>{!!$replay->content!!}</span>
                         </div>
                     </div>
-
+{{--тут кунець--}}
                 </div>
             </div>
         </div>
