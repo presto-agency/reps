@@ -7,6 +7,7 @@
 
 @section('content')
     @include('replay.components.show')
+    @include('replay.components.video')
 @endsection
 
 @section('right-side')

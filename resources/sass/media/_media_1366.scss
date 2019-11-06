@@ -324,7 +324,6 @@
         }
     }
     .block_lastNews{
-        margin: 2.196vw 0 2.928vw 0;
         & .block_futureTournament{
             padding: 1.830vw 1.098vw 0;
             & .href_tournament{
@@ -500,7 +499,6 @@
 
     //Последние темы
     .block_lastNews{
-        margin: 2.196vw 0 2.928vw 0;
         & .block_futureTournament{
             padding: 1.830vw 1.098vw 0;
             & .href_tournament{
@@ -521,7 +519,6 @@
 
     /*Форум*/
     .forum_acticle{
-        margin: 2.928vw 0 0 0;
         & .title_block{
             height: 4.392vw;
             padding: 0 1.464vw;
@@ -556,14 +553,22 @@
         }
         & .content_article{
             padding: 0.732vw 1.464vw 0;
-            & .block_nameArticle{
-                & .name{
+             .block_nameArticle{
+                 .name{
                     margin: 0.366vw 0;
                     font-size: 1.171vw;
                 }
-                & .date{
+                 .date{
                     font-size: 0.878vw;
                 }
+                 .right{
+                     svg{
+                         width: 1.464vw;
+                     }
+                     span{
+                         font-size:1.025vw;
+                     }
+                 }
             }
         }
         & .counter_autorization{
