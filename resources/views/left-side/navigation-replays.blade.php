@@ -15,8 +15,8 @@
         <p class="title__text">Реплеи</p>
     </div>
     <div class="replays__accordion accordion" id="replaysAccordion">
-        @isset($pro)
-            @if($pro)
+{{--        @isset($pro)--}}
+{{--            @if($pro)--}}
                 <div class="accordion__topic card night_modal ">
                     <div class="topic__header card-header change_gray">
                         <a class="header__title night_text">
@@ -62,35 +62,35 @@
                         @endforeach
                     @endisset
                 </div>
-            @else
-                <div class="accordion__topic card night_modal">
-                    <div class="topic__header card-header change_gray">
-                        <a class="header__title night_text">
-                            {{$replayTypeName}}
-                        </a>
-                    </div>
-                    <div class="topic__header card-header change_gray">
-                        <a class="header__title night_text"
-                           href="{{route('replay.index',['type' => !isset($type) ? $type : 'user'])}}">
-                            Пользовательские реплеи
-                        </a>
-                    </div>
-                    @isset($replayNav)
-                        @foreach($replayNav as $replayNavItem)
-                            <div class="topic__body">
-                                <div class="card-body">
-                                    <div class="body__wrap">
-                                        <a href="{{route('replay.show',['replay'=>$replayNavItem->id, 'type' => !isset($type) ? $type : 'user'])}}"
-                                           class="body__title night_text">{{$replayNavItem->title}}</a>
-                                        <span
-                                            class="body__numb">{{$replayNavItem->positive_count - $replayNavItem->negative_count}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endisset
-                </div>
-            @endif
-        @endisset
+{{--            @else--}}
+{{--                <div class="accordion__topic card night_modal">--}}
+{{--                    <div class="topic__header card-header change_gray">--}}
+{{--                        <a class="header__title night_text">--}}
+{{--                            {{$replayTypeName}}--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                    <div class="topic__header card-header change_gray">--}}
+{{--                        <a class="header__title night_text"--}}
+{{--                           href="{{route('replay.index',['type' => !isset($type) ? $type : 'user'])}}">--}}
+{{--                            Пользовательские реплеи--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                    @isset($replayNav)--}}
+{{--                        @foreach($replayNav as $replayNavItem)--}}
+{{--                            <div class="topic__body">--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <div class="body__wrap">--}}
+{{--                                        <a href="{{route('replay.show',['replay'=>$replayNavItem->id, 'type' => !isset($type) ? $type : 'user'])}}"--}}
+{{--                                           class="body__title night_text">{{$replayNavItem->title}}</a>--}}
+{{--                                        <span--}}
+{{--                                            class="body__numb">{{$replayNavItem->positive_count - $replayNavItem->negative_count}}</span>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
+{{--                    @endisset--}}
+{{--                </div>--}}
+{{--            @endif--}}
+{{--        @endisset--}}
     </div>
 </div>

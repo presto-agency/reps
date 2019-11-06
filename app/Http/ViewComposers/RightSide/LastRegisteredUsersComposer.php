@@ -27,27 +27,10 @@ class LastRegisteredUsersComposer
      */
     private static function getNewUsers()
     {
-        $data = null;
-
-        $getData = User::with('countries:id,flag,name', 'races:id,code,title')
+        return User::with('countries:id,flag,name', 'races:id,code,title')
             ->orderByDesc('created_at')
             ->take(self::$userTake)
             ->get(['id', 'name', 'race_id', 'country_id']);
-
-        if (!$getData->isEmpty()) {
-            foreach ($getData as $item) {
-                $data[] = [
-                    'id' => $item->id,
-                    'name' => $item->name,
-                    'raceIcon' => "images/default/game-races/" . $item->races->title . ".png",
-                    'raceTitle' => $item->races->title,
-                    'countryFlag25x20' => $item->countries->flag,
-                    'countryName' => $item->countries->name,
-                ];
-            }
-        }
-
-        return collect($data);
     }
 
     /**

@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Modes\Tournament;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TournamentList extends Model
+class TourneyList extends Model
 {
-
     /**
      * var array
      */
@@ -55,4 +54,29 @@ class TournamentList extends Model
      */
     public $timestamps = true;
 
+
+    /**
+     * Relations.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function players()
+    {
+        return $this->hasMany('App\Models\TourneyPlayer', 'tourney_id');
+    }
+
+    public function admin_user()
+    {
+        return $this->belongsTo('App\User', 'admin_id');
+    }
+
+    public function checkin_players()
+    {
+        return $this->hasMany('App\Models\TourneyPlayer', 'tourney_id')->where('check_in', 1);
+    }
+
+    public function win_player()
+    {
+        return $this->hasMany('App\Models\TourneyPlayer', 'tourney_id')->where('place_result', 1);
+    }
 }

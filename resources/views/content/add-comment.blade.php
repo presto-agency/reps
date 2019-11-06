@@ -19,7 +19,6 @@
         </svg>
             <p class="title__text">Добавить комментарий</p>
         </div>
-
         <form class="add-comment__form" action="{{$route}}" method="POST">
             @csrf
             <div class="form__group form-group">

@@ -6,6 +6,6 @@
 @endsection
 
 @section('content')
-    @include('tournament.show')
+    @include('tournament.components.show')
 @endsection
 

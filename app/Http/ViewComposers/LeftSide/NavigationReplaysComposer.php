@@ -30,11 +30,11 @@ class NavigationReplaysComposer
         self::$pro = ReplayHelper::checkUrlType() === 1 ? true : false;
         self::$type = ReplayHelper::checkUrlType() == Replay::REPLAY_USER ? 'pro' : 'user';
         self::$replayTypeName = ReplayHelper::checkUrlType() === 1 ? 'Пользовательские' : 'Профессиональные';
-        if (ReplayHelper::checkUrlType() == 1) {
+//        if (ReplayHelper::checkUrlType() == 1) {
             $this->replayNav = self::getCacheReplayPro('proReplayNav');
-        } else {
-            $this->replayNav = self::getCacheReplayUser('userReplayNav');
-        }
+//        } else {
+//            $this->replayNav = self::getCacheReplayUser('userReplayNav');
+//        }
     }
 
     public function compose(View $view)

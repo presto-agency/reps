@@ -1,6 +1,5 @@
 <?php
 
-use App\Modes\Tournament\TournamentList;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -50,7 +49,7 @@ class TourneyTableSeeder extends Seeder
                     'created_at' => date('Y-m-d H:i:s', $tourney->time_reg),
                     'updated_at' => date('Y-m-d H:i:s', $tourney->time_reg),
                 );
-                TournamentList::create($insert_tourneys);
+                \App\Models\TourneyList::create($insert_tourneys);
 
             } catch (\Exception $e) {
                 dd($e,$insert_tourneys );

@@ -25,21 +25,15 @@ class UserReplayRequest extends FormRequest
     {
         return [
             'title' => 'required|string|between:1,255',
-
-            'type_id' => 'required|string|exists:replay_types,id',
-            'map_id' => 'required|string|exists:replay_maps,id',
-
-
-            'first_race_id' => 'required|string|exists:races,id',
+            'type_id' => 'required|exists:replay_types,id',
+            'map_id' => 'required|exists:replay_maps,id',
+            'first_race' => 'required|exists:races,id',
             'first_country_id' => 'required|string|exists:countries,id',
             'first_location' => 'nullable|integer|min:1|max:20',
-
-            'second_race_id' => 'required|string|exists:races,id',
+            'second_race' => 'required|string|exists:races,id',
             'second_country_id' => 'required|string|exists:countries,id',
             'second_location' => 'nullable|integer|min:1|max:20',
-
             'content' => 'required|string|between:1,2000',
-
             'file' => 'required|file|max:5120',
         ];
     }

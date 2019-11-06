@@ -7,7 +7,7 @@
 
 @section('content')
     @include('tournament.components.index')
-    #####################################################
-    @include('tournament.components.show')
+{{--    #####################################################--}}
+{{--    @include('tournament.components.show')--}}
 
 @endsection

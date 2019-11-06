@@ -1,7 +1,7 @@
 <section class="block_replay">
     <div class="wrapper border_shadow">
         <div class="title_block_gray change_gray">
-            <p class="title_text">Последние Ппользовательские реплеи</p>
+            <p class="title_text">Последние пользовательские реплеи</p>
         </div>
         <div class="row row_game">
             @isset($replaysUserLsHome)

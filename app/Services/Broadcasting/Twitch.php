@@ -54,8 +54,6 @@ class Twitch
         $data['status'] = !empty($getStream->stream_type) ? ($getStream->stream_type == 'live' ? config('streams.status') : null) : null;
         $data['id'] = $id;
 
-//        $getGameTitle = !empty($getStream->game) ? $getStream->game : null;
-//        $data['game'] = $getGameTitle;
 
         return $data;
 

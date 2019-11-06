@@ -12,11 +12,12 @@ use App\Http\ViewComposers\{admin\DashboardCountComposer,
     LeftSide\LastNewsComposer,
     LeftSide\NavigationReplaysComposer,
     LeftSide\LastUserProReplaysComposer,
-    OnlineStreamListComposer,
+    Stream\OnlineStreamListComposer,
     Registration\RegistrationComposer,
     RightSide\LastRegisteredUsersComposer,
     RightSide\Top10KgPtsComposer,
-    RightSide\LastReplayComposer};
+    RightSide\LastReplayComposer,
+    Stream\StreamComposer};
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
@@ -37,6 +38,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         /*header*/
         $this->compose('home.components.chat.index', HeadlineComposer::class);
         $this->compose('home.components.chat.components.streams-list', OnlineStreamListComposer::class);
+        $this->compose('home.components.chat.index', StreamComposer::class);
         /*left-side*/
         $this->compose('left-side.forum-topics', ForumNavigationComposer::class);
         $this->compose('left-side.navigation-replays', NavigationReplaysComposer::class);

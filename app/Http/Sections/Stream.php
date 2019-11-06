@@ -131,9 +131,9 @@ class Stream extends Section implements Initializable
         ]);
 
         if (!empty($id)) {
-            $getStreamUrl = \App\Models\Stream::where('id', $id)->value('stream_url');
+            $streamUrlIframe = \App\Models\Stream::where('id', $id)->value('stream_url_iframe');
             $display->setItems([
-                \View::make('admin.stream.iframeInput', compact('getStreamUrl'))->render(),
+                \View::make('admin.stream.iframeInput', compact('streamUrlIframe'))->render(),
             ]);
         }
 
@@ -177,13 +177,9 @@ class Stream extends Section implements Initializable
                 ->setHtmlAttribute('placeholder', 'Вставить url')
                 ->setValidationRules(['required', 'max:1000', 'url']),
         ]);
-
-        if (!empty($id)) {
-            $getStreamUrl = \App\Models\Stream::where('id', $id)->value('stream_url');
-            $display->setItems([
-                \View::make('admin.stream.iframeInput', compact('getStreamUrl'))->render(),
-            ]);
-        }
+        $display->setItems([
+            \View::make('admin.stream.iframeInput')->render(),
+        ]);
 
         return $display;
     }
@@ -224,10 +220,6 @@ class Stream extends Section implements Initializable
         return $link;
     }
 
-    /**
-     * @param $url
-     * @return mixed
-     */
     public function parse_stream_url($url)
     {
         return parse_url(htmlspecialchars_decode($url));

@@ -68,6 +68,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 /*Galleries*/
 Route::resource("galleries", 'User\GalleriesController');
 Route::post('galleries/{id}/send_comment', 'User\GalleryHelper@saveComments')->name('galleries.send.comment');
+/*Search*/
+Route::get('search', 'SearchController@index')->name('search');
 
 
 Auth::routes();

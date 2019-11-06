@@ -29,17 +29,18 @@
                 @foreach($newUsers as $item)
                     <div class="row">
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
-                            <p class="night_text">#{{$item['id']}}</p>
+                            <p class="night_text">#{{$item->id}}</p>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
-                            <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="flag"
-                                 title="{{$item['countryName']}}"/>
-                            <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race"
-                                 title="{{$item['raceTitle']}}"/>
+                            <img class="icon_bars" src="{{asset($item->countries->flag)}}" alt="flag"
+                                 title="{{$item->countries->name}}"/>
+                            <img class="icon_bars"
+                                 src="{{asset("images/default/game-races/" . $item->races->title . ".png")}}" alt="race"
+                                 title="{{$item->races->title}}"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                            <a href="#">
-                                <p title="{{$item['name']}}">{{$item['name']}}</p>
+                            <a href="{{route('user_profile',['id'=>$item->id])}}">
+                                <p title="{{$item->name}}">{{$item->name}}</p>
                             </a>
                         </div>
                     </div>
@@ -63,7 +64,7 @@
                                  title="{{$item['raceTitle']}}"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                            <a href="#">
+                            <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <p title="{{$item['name']}}">{{$item['name']}}</p>
                             </a>
                         </div>
@@ -88,7 +89,7 @@
                                  title="{{$item['raceTitle']}}"/>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
-                            <a href="#">
+                            <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <p title="{{$item['name']}}">{{$item['name']}}</p>
                             </a>
                         </div>

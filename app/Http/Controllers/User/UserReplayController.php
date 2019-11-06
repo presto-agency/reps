@@ -72,10 +72,9 @@ class UserReplayController extends Controller
      */
     public function store(UserReplayRequest $request)
     {
+        $replay = $this->replayDataSave($request);
 
-        $this->replayDataSave($request);
-
-        return back();
+        return redirect()->route('user-replay.show', ['id' => auth()->id(), 'user_replay' => $replay]);
     }
 
     /**
@@ -223,6 +222,7 @@ class UserReplayController extends Controller
 
     public function replayDataSave($request)
     {
+
         $data = new Replay;
         $data->user_id = auth()->id();
         $data->title = $request->title;
@@ -254,6 +254,6 @@ class UserReplayController extends Controller
         }
 
         $data->save();
-
+        return $data->id;
     }
 }

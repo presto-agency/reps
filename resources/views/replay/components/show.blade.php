@@ -114,7 +114,8 @@
                 <div class="col-xl-4 content_right">
                     <p class="title">{{$replay->title}}</p>
                     @isset($replay->maps)
-                        <img class="img-fluid" src="{{asset($replay->maps->url)}}" alt="map" title="{{$replay->maps->name}}">
+                        <img class="img-fluid" src="{{asset($replay->maps->url)}}" alt="map"
+                             title="{{$replay->maps->name}}">
                     @endisset
                     <div class="replay-rating">
                         <a href="#vote-modal" class="positive-vote vote-replay-up" data-toggle="modal" data-rating="1"
@@ -152,35 +153,6 @@
                             <path d="M226.1,346.8c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-62.7,62.8V30.8
                                 c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"></path>
                             </svg>
-                        {{--                        @isset($proRout)--}}
-                        {{--                            @if($proRout == 'replay_pro')--}}
-                        {{--                                @isset($proRoutType)--}}
-                        {{--                                    @if($proRoutType)--}}
-                        {{--                                        @isset($type)--}}
-                        {{--                                            <a href="{{route('replay_pro.type.download',['type' =>$type,'id' =>$replay->id])}}">--}}
-                        {{--                                                <span class="download" data-id="{{$replay->id}}"--}}
-                        {{--                                                      data-url="{{url("replay_pro/$type/show/$replay->id/download_count")}}">Скачать</span>--}}
-                        {{--                                                <span id="downloadCount" data-count="{{$replay->downloaded}}">({{$replay->downloaded}})</span>--}}
-                        {{--                                            </a>--}}
-                        {{--                                        @endisset--}}
-                        {{--                                    @else--}}
-                        {{--                                        @isset($type)--}}
-                        {{--                                            <a href="{{route('replay_pro.download',['id' =>$replay->id])}}">--}}
-                        {{--                                                <span class="download" data-id="{{$replay->id}}"--}}
-                        {{--                                                      data-url="{{url("replay_pro/$replay->id/download_count")}}">Скачать</span>--}}
-                        {{--                                                <span id="downloadCount" data-count="{{$replay->downloaded}}">({{$replay->downloaded}})</span>--}}
-                        {{--                                            </a>--}}
-                        {{--                                        @endisset--}}
-                        {{--                                    @endif--}}
-                        {{--                                @endisset--}}
-                        {{--                            @else--}}
-                        {{--                                <a href="{{route('replay.user.download',['id' =>$replay->id])}}">--}}
-                        {{--                                    <span class="download" data-id="{{$replay->id}}"--}}
-                        {{--                                          data-url="{{url("replay/$replay->id/download_count")}}">Скачать</span>--}}
-                        {{--                                    <span id="downloadCount" data-count="{{$replay->downloaded}}">({{$replay->downloaded}})</span>--}}
-                        {{--                                </a>--}}
-                        {{--                            @endif--}}
-                        {{--                        @endisset--}}
                         <a href="{{route('replay.user.download',['id' =>$replay->id])}}">
                             <span class="download" data-id="{{$replay->id}}"
                                   data-url="{{url("replay/$replay->id/download_count")}}">Скачать</span>
@@ -188,6 +160,16 @@
                                   data-count="{{$replay->downloaded}}">{{$replay->downloaded}}</span>
                         </a>
                     </div>
+
+                    <div>
+                        <div>
+                            <span>Контент:</span>
+                        </div>
+                        <div>
+                            <span>{!!$replay->content!!}</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
