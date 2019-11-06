@@ -1,0 +1,262 @@
+.mob_menu{
+        display: none;
+    .nav-wrapper{
+        position: fixed;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        z-index: 99;
+        padding: 20px;
+        background: #0567cc;
+        justify-content: space-between;
+        ul{
+            list-style: none;
+            li{
+                margin-top: 15px;
+                a{
+                    color: white;
+                }
+            }
+        }
+        .bottom_menu{
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            button{
+                background: transparent;
+                border: 0;
+                color: white;
+            }
+        }
+        .main_punkt{
+
+        }
+    }
+
+    .mob_menu_active{
+        display: block!important;
+    }
+    $btn-round-size:50px;
+    $btn-round-rotate:135deg;
+    $btn-default-color:$blue;
+    //$btn-close-color:red;
+
+    //Styles
+    body {
+        font-family: sans-serif;
+    }
+
+    .btn-round {
+        width:$btn-round-size;
+        height:$btn-round-size;
+        border-radius:$btn-round-size;
+        background-color:$btn-default-color;
+        border: 1px solid white;
+    }
+
+    .btn-square {
+        width:$btn-round-size;
+        height:$btn-round-size;
+        background-color:blue;
+    }
+
+    .close{
+        position: relative;
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        top:11px;
+        left:-11px;
+        overflow: hidden;
+
+        &::before, &::after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            margin-top: -1px;
+            background: #fff;
+        }
+        &::before {
+            transform:rotate(0deg);
+        }
+        &::after {
+            transform:rotate(90deg);
+        }
+    }
+
+
+
+    //Animations
+    .animated {
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+    }
+
+    @-webkit-keyframes plusButton {
+        from {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            -webkit-transform: rotate3d(0, 0, 1, -$btn-round-rotate);
+            transform: rotate3d(0, 0, 1, -$btn-round-rotate);
+        }
+
+        to {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            -webkit-transform: none;
+            transform: none;
+            background-color:$btn-default-color;
+        }
+    }
+
+    @keyframes plusButton {
+        from {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            -webkit-transform: rotate3d(0, 0, 1, $btn-round-rotate);
+            transform: rotate3d(0, 0, 1, $btn-round-rotate);
+
+        }
+
+        to {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            -webkit-transform: none;
+            transform: none;
+            background-color:$btn-default-color;
+        }
+    }
+
+    .plusButton {
+        -webkit-animation-name: plusButton;
+        animation-name: plusButton;
+    }
+
+
+    @-webkit-keyframes closeButton {
+        from {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            -webkit-transform: none;
+            transform: none;
+            background-color:$btn-default-color;
+        }
+
+        to {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            -webkit-transform: rotate3d(0, 0, 1, $btn-round-rotate);
+            transform: rotate3d(0, 0, 1, $btn-round-rotate);
+
+        }
+    }
+
+    @keyframes closeButton {
+        from {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            -webkit-transform: none;
+            transform: none;
+            background-color:$btn-default-color;
+        }
+
+        to {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            -webkit-transform: rotate3d(0, 0, 1, $btn-round-rotate);
+            transform: rotate3d(0, 0, 1, $btn-round-rotate);
+
+        }
+    }
+
+    .closeButton {
+        -webkit-animation-name: closeButton;
+        animation-name: closeButton;
+    }
+
+    @-webkit-keyframes circleShape {
+        from {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            background-color:$btn-default-color;
+        }
+
+        to {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            -webkit-transform: rotate3d(0, 0, 1, $btn-round-rotate);
+            transform: rotate3d(0, 0, 1, $btn-round-rotate);
+
+            border-radius: $btn-round-size;
+        }
+    }
+
+    @keyframes circleShape {
+        from {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            background-color:$btn-default-color;
+        }
+
+        to {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            -webkit-transform: rotate3d(0, 0, 1, $btn-round-rotate);
+            transform: rotate3d(0, 0, 1, $btn-round-rotate);
+
+            border-radius: $btn-round-size;
+        }
+    }
+
+    .circleShape {
+        -webkit-animation-name: circleShape;
+        animation-name: circleShape;
+    }
+
+    @-webkit-keyframes squareShape {
+        from {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            -webkit-transform: rotate3d(0, 0, 1, $btn-round-rotate);
+            transform: rotate3d(0, 0, 1, $btn-round-rotate);
+            border-radius: $btn-round-size;
+        }
+
+        to {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            background-color:$btn-default-color;
+            border-radius: 0px;
+        }
+    }
+
+    @keyframes squareShape {
+        from {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            -webkit-transform: rotate3d(0, 0, 1, $btn-round-rotate);
+            transform: rotate3d(0, 0, 1, $btn-round-rotate);
+            border-radius: $btn-round-size;
+        }
+
+        to {
+            -webkit-transform-origin: center;
+            transform-origin: center;
+            background-color:$btn-default-color;
+            border-radius: 0px;
+        }
+    }
+
+    .squareShape {
+        -webkit-animation-name: squareShape;
+        animation-name: squareShape;
+    }
+
+}
