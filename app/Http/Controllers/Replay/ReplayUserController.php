@@ -27,8 +27,7 @@ class ReplayUserController extends Controller
         ];
 
         $replay = ReplayHelper::getReplays($relations, Replay::REPLAY_USER);
-        $proRout = ReplayHelper::checkUrlPro() === true ? ReplayHelper::$REPLAY_PRO : false;
-        return view('replay.index', compact('proRout', 'replay'));
+        return view('replay.index', compact('replay'));
     }
 
     /**
@@ -74,10 +73,9 @@ class ReplayUserController extends Controller
 
         $replay = ReplayHelper::findReplayWithType2($relations, $id,Replay::REPLAY_USER);
         $countUserPts = $replay->users->totalComments->count();
-        $proRout = ReplayHelper::checkUrlPro() === true ? ReplayHelper::$REPLAY_PRO : false;
 
         return view('replay.show',
-            compact('replay', 'countUserPts', 'proRout')
+            compact('replay', 'countUserPts')
         );
     }
 

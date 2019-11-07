@@ -123,7 +123,7 @@
                         </a>
                     </div>
                 </div>
-                <p class="match__comment"></p>
+                <p class="match__comment">{!!$item->content!!}</p>
                 <div class="match__info">
                     <div class="info__country">
                         <span class="country__text night_text">Страны:</span>
