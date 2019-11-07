@@ -94,6 +94,7 @@ class UserTopicsController extends Controller
      */
     public function show($id)
     {
+        return redirect()->to('/');
 
     }
 
@@ -105,7 +106,7 @@ class UserTopicsController extends Controller
      */
     public function edit($id)
     {
-        return back();
+        return redirect()->to('/');
     }
 
     /**
@@ -117,7 +118,7 @@ class UserTopicsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return back();
+        return redirect()->to('/');
     }
 
     /**
@@ -128,6 +129,6 @@ class UserTopicsController extends Controller
      */
     public function destroy($id)
     {
-        return back();
+        return redirect()->to('/');
     }
 }

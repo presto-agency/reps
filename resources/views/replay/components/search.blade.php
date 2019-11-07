@@ -25,9 +25,9 @@
 			c-0.6-0.9-0.6-1.4-0.6-1.5c0-0.1,0.4-0.5,1.4-0.8l31.4-5.3l17.4-30.6c0.7-0.9,1.2-1,1.3-1c0.1,0,0.6,0.2,1.3,1.1l15.2,30.5
 			l34.4,5.5c0.9,0.3,1.3,0.6,1.4,0.7C186.9,189.1,186.8,189.7,186.2,190.4z"/>
         </svg>
-        @if(request('user_replay') == "user")
+        @if(request('user_replay') == "1")
             <p class="title__text night_text">{{__('Пользовательские реплеи')}}</p>
-        @elseif(request('user_replay') == "pro")
+        @elseif(request('user_replay') == "0")
             <p class="title__text night_text">{{__('Профессиональные реплеи')}}</p>
         @else
             <p class="title__text night_text">{{__('Все реплеи')}}</p>
@@ -44,14 +44,14 @@
     @isset($replay)
         @foreach($replay as $item)
             <div class="gocu-replays__subtitle change_gray">
-                @if(request('user_replay') == "user")
+                @if(request('user_replay') == "1")
                     <a class="subtitle__name night_text"
-                       href="{{ asset(url("replay/$item->id"."?type=".request('user_replay')))}}">
+                       href="{{ asset(url("replay/$item->id"."?type=user"))}}">
                         {{$item->title}}
                     </a>
-                @elseif(request('user_replay') == "pro")
+                @elseif(request('user_replay') == "0")
                     <a class="subtitle__name night_text"
-                       href="{{ asset(url("replay/$item->id"."?type=".request('user_replay')))}}">
+                       href="{{ asset(url("replay/$item->id"."?type=pro"))}}">
                         {{$item->title}}
                     </a>
                 @else
@@ -118,7 +118,7 @@
                                 <path
                                     d="M226.1,346.8c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-62.7,62.8V30.8    c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"/>
                         </svg>
-                            <span class="night_text" id="downloadCount"
+                            <span class="night_text" id="{{'downloadCount'.$item->id}}"
                                   data-count="{{$item->downloaded}}">{{$item->downloaded}}</span>
                         </a>
                     </div>
@@ -182,9 +182,10 @@
     </button>
 </div>
 <script type="text/javascript">
+
     $('.download').click(function () {
-        let id = $(this).data('id');
         let token = $('meta[name="csrf-token"]').attr('content');
+        let id = $(this).data('id');
         let url = $(this).data('url');
         $.ajax({
             method: 'POST',
@@ -196,7 +197,8 @@
                 id: id,
             },
             success: function (data) {
-                $('#downloadCount').html(data.downloaded);
+                let it = "#downloadCount"+id;
+                $(it).html(data.downloaded);
                 console.log(data.downloaded);
             },
             error: function (request, status, error) {

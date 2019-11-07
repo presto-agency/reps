@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Replay\ReplayHelper;
-use App\Http\Requests\UserReplayRequest;
+use App\Http\Requests\ReplayEditRequest;
+use App\Http\Requests\ReplayStoreRequest;
+use App\Http\Requests\ReplayUpdateRequest;
 use App\Services\ServiceAssistants\PathHelper;
 use App\User;
-use foo\bar;
 use App\Models\{Replay, ReplayMap, Country, Race, ReplayType};
 
 use Illuminate\Http\Request;
@@ -52,6 +53,7 @@ class UserReplayController extends Controller
      */
     public function create()
     {
+
         $userReplay = Replay::$userReplaysType;
         $types = self::getCacheTypes('replayUserTypes');
         $maps = self::getCacheMaps('replayUserMaps');
@@ -67,14 +69,16 @@ class UserReplayController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param UserReplayRequest $request
+     * @param ReplayStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserReplayRequest $request)
+    public function store(ReplayStoreRequest $request)
     {
-        $replay = $this->replayDataSave($request);
+        $data = new Replay;
+        $this->replayDataSave($data, $request);
+        $data->save();
 
-        return redirect()->route('user-replay.show', ['id' => auth()->id(), 'user_replay' => $replay]);
+        return redirect()->route('user-replay.show', ['id' => auth()->id(), 'user_replay' => $data->id]);
     }
 
     /**
@@ -119,23 +123,40 @@ class UserReplayController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
+     * @param int $user_replay
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $user_replay)
     {
-        return back();
+        if ((auth()->user() != null && auth()->user()->role_id != 4) === false) {
+            return redirect()->to('/');
+        }
+        $replay = Replay::findOrfail($user_replay);
+        $userReplay = Replay::$userReplaysType;
+        $types = self::getCacheTypes('replayUserTypes');
+        $maps = self::getCacheMaps('replayUserMaps');
+        $countries = self::getCacheCountries('replayUserCountries');
+        $races = self::getCacheRaces('replayUserRaces');
+
+        return view('user.replay.edit',
+            compact('types', 'maps', 'countries', 'races', 'userReplay', 'replay')
+        );
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param ReplayUpdateRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(ReplayUpdateRequest $request, $id, $user_replay)
     {
-        return back();
+        $data = Replay::find($user_replay);
+        $this->replayDataUpdate($data, $request);
+        $data->save();
+
+        return redirect()->route('user-replay.edit', ['id' => auth()->id(), 'user_replay' => $user_replay]);
 
     }
 
@@ -147,7 +168,7 @@ class UserReplayController extends Controller
      */
     public function destroy($id)
     {
-        return back();
+        return redirect()->to('/');
     }
 
 
@@ -220,10 +241,8 @@ class UserReplayController extends Controller
         return ReplayMap::all(['id', 'name', 'url']);
     }
 
-    public function replayDataSave($request)
+    private function replayDataSave($data, $request)
     {
-
-        $data = new Replay;
         $data->user_id = auth()->id();
         $data->title = $request->title;
         $data->map_id = $request->map_id;
@@ -236,7 +255,8 @@ class UserReplayController extends Controller
         $data->first_location = $request->first_location;
         $data->second_location = $request->second_location;
         $data->content = $request->content;
-        // Check have upload file
+        $data->video_iframe = $request->video_iframe;
+        // Check have input file
         if ($request->hasFile('file')) {
             // Check if upload file Successful Uploads
             if ($request->file('file')->isValid()) {
@@ -249,11 +269,38 @@ class UserReplayController extends Controller
             } else {
                 back();
             }
-        } else {
-            back();
         }
+        return $data;
+    }
 
-        $data->save();
-        return $data->id;
+    private function replayDataUpdate($data, $request)
+    {
+        $data->title = $request->title;
+        $data->map_id = $request->map_id;
+        $data->first_country_id = $request->first_country_id;
+        $data->second_country_id = $request->second_country_id;
+        $data->first_race = $request->first_race;
+        $data->second_race = $request->second_race;
+        $data->type_id = $request->type_id;
+        $data->user_replay = $request->user_replay;
+        $data->first_location = $request->first_location;
+        $data->second_location = $request->second_location;
+        $data->content = $request->content;
+        $data->video_iframe = $request->video_iframe;
+        // Check have input file
+        if ($request->hasFile('file')) {
+            // Check if upload file Successful Uploads
+            if ($request->file('file')->isValid()) {
+                // Check path
+                PathHelper::checkUploadStoragePath("file/replay");
+                // Upload file on server
+                $image = $request->file('file');
+                $filePath = $image->store('file/replay', 'public');
+                $data->file = 'storage/' . $filePath;
+            } else {
+                back();
+            }
+        }
+        return $data;
     }
 }

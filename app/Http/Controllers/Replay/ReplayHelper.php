@@ -133,7 +133,7 @@ class ReplayHelper
         $request = request();
 
         if ($request->ajax()) {
-            $replay = Replay::findOrFail($request->id);
+            $replay = Replay::find($request->id);
             $replay->increment('downloaded', 1);
             $replay->save();
 

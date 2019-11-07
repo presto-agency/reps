@@ -28,7 +28,7 @@ class UserTopicRatingListController extends Controller
      */
     public function create()
     {
-        return back();
+        return redirect()->to('/');
     }
 
     /**
@@ -39,7 +39,7 @@ class UserTopicRatingListController extends Controller
      */
     public function store(Request $request)
     {
-        return back();
+        return redirect()->to('/');
     }
 
     /**
@@ -50,7 +50,7 @@ class UserTopicRatingListController extends Controller
      */
     public function show($id)
     {
-        return back();
+        return redirect()->to('/');
     }
 
     /**
@@ -61,7 +61,7 @@ class UserTopicRatingListController extends Controller
      */
     public function edit($id)
     {
-        return back();
+        return redirect()->to('/');
     }
 
     /**
@@ -73,7 +73,7 @@ class UserTopicRatingListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return back();
+        return redirect()->to('/');
     }
 
     /**
@@ -84,6 +84,6 @@ class UserTopicRatingListController extends Controller
      */
     public function destroy($id)
     {
-        return back();
+        return redirect()->to('/');
     }
 }
