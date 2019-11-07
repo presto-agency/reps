@@ -45,6 +45,12 @@
     //header
     .header_row{
         flex-direction: row-reverse;
+        //.header_search{
+        //    justify-content: flex-start!important;
+        //}
+        //.header_search_autorization{
+        //    justify-content: flex-start!important;
+        //}
         & .logotype{
             display: flex;
             align-items: center;
@@ -152,6 +158,9 @@
     //Твич
     .block_chat-twitch{
         padding-bottom: 6.944vw;
+        .btn_theatre_mode{
+            display: none;
+        }
         & .block_chat{
             padding-bottom: 3.472vw;
         }
