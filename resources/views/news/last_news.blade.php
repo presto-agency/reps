@@ -133,23 +133,23 @@
                 $last_id = $single_news->id;
             @endphp
         @endforeach
-</div>
 
 
 
 
-        <div id="load_more" class="breaking-news__button">
+
+        <div id="load_more" class="breaking-news__button night_modal">
             <button type="button" name="load_more_button" class="button button__download-more" data-id="{{ $last_id }}" id="load_more_button">
                 Загрузить еще
             </button>
         </div>
 
     @else
-        <div id="load_more" class="breaking-news__button">
+        <div id="load_more" class="breaking-news__button night_modal">
             <button type="button" name="load_more_button" class="btn btn-info form-control night_text">No Data Found</button>
         </div>
     @endif
-
+</div>
 
 
 
