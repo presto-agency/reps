@@ -175,7 +175,11 @@
                 min-width: 40vw !important;
             }
         }
+        .header_search{
+            justify-content: flex-start!important;
+        }
         .header_search_autorization{
+            justify-content: flex-start!important;
             .button_input {
                 margin-right: -10px!important;
             }
