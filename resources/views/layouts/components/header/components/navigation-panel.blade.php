@@ -63,8 +63,10 @@
                     </svg>
                 </button>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search header_search_autorization">
-                <form action="{{ route('search') }}" method="GET">
+                        <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search header_search_autorization">
+
+{{--            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search ">--}}
+                <form  class="header_search" action="{{ route('search') }}" method="GET">
                     <div class="button_input">
                         <button>
                             <img class="search_img" src="{{ url('/images/search.png') }}" title="Поиск">
@@ -74,6 +76,7 @@
                     </div>
                 </form>
                 <div class="autorization autorization_user">
+{{--                <div class="autorization">--}}
                     @guest
                         <button type="button" data-toggle="modal"
                                 data-target="#authorizationModal">{{ __('Login') }}</button>
