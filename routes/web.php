@@ -70,7 +70,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 Route::resource("galleries", 'User\GalleriesController');
 Route::post('galleries/{id}/send_comment', 'User\GalleryHelper@saveComments')->name('galleries.send.comment');
 /*Search*/
-Route::get('search', 'SearchController@index')->name('search');
+Route::any('search', 'SearchController@index')->name('search');
+/*Search Replay*/
+Route::any('replay-search', 'Replay\ReplaySearchController@index')->name('replay.search');
 
 
 Auth::routes();

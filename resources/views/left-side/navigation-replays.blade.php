@@ -12,11 +12,9 @@
                 c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                 C479.3,122.6,463.9,174.4,437.6,213.9z"/>
         </svg>
-        <p class="title__text">Реплеи</p>
+        <p class="title__text">{{__('Реплеи')}}</p>
     </div>
     <div class="replays__accordion accordion" id="replaysAccordion">
-{{--        @isset($pro)--}}
-{{--            @if($pro)--}}
                 <div class="accordion__topic card night_modal ">
                     <div class="topic__header card-header change_gray">
                         <a class="header__title night_text">
@@ -26,7 +24,7 @@
                 </div>
                 <div class="accordion__topic card night_modal">
                     <div class="topic__header card-header change_gray">
-                        <a class="header__title night_text" href="{{route('replay.index',['type' => $type])}}">
+                        <a class="header__title night_text" href="{{route('replay.index',['type' => 'pro'])}}">
                             Профессиональные реплеи
                         </a>
                     </div>
@@ -37,13 +35,12 @@
                                     <div class="subtopic__topic card night_modal border_shadow">
                                         <div class="subtopic__header card-header change_gray">
                                             <a class="header__title night_text"
-                                               href="{{route('replay.index',['type' => !isset($type) ? $type : 'pro', 'subtype'=> $replayName->name])}}">
+                                               href="{{route('replay.index',['type' => 'pro', 'subtype'=> $replayName->name])}}">
                                                 {{$replayName->title}}
                                             </a>
                                         </div>
                                         <div class="subtopic__body">
                                             <div class="card-body">
-
                                                 @isset($replayName->replays)
                                                     @foreach($replayName->replays as $replayNavItem)
                                                         <div class="body__wrap">

@@ -173,11 +173,21 @@
             </div>
             <hr>
             <div class="form-group">
-                <label for="replay_content1" class="night_text">Вставить HTML код с видео реплеем</label>
+                <label for="content" class="night_text">Краткое описание</label>
                 <textarea name="content" class="form-control night_input"
-                          id="replay_content1"></textarea>
+                          id="content"></textarea>
+            </div>
+            @if ($errors->has('content'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('content') }}
+                </div>
+            @endif
+            <div class="form-group">
+                <label for="replay_video_iframe" class="night_text">Вставить HTML код с видео реплеем</label>
+                <textarea name="video_iframe" class="form-control night_input"
+                          id="replay_video_iframe"></textarea>
                 <script>
-                    CKEDITOR.replace('replay_content1', {
+                    CKEDITOR.replace('replay_video_iframe', {
                         // Define the toolbar groups as it is a more accessible solution.
                         extraPlugins: 'autoembed',
                         toolbarGroups: [
@@ -203,9 +213,9 @@
                     });
                 </script>
             </div>
-            @if ($errors->has('content'))
+            @if ($errors->has('replay_video_iframe'))
                 <div class="alert alert-danger">
-                    {{ $errors->first('content') }}
+                    {{ $errors->first('replay_video_iframe') }}
                 </div>
             @endif
             <div class="row">

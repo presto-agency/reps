@@ -8,74 +8,73 @@
         <p class="title__text">Поиск реплеев</p>
     </div>
     <div class="search__body night_modal">
-        <form>
-            <label class="body__name" for="name">
-                <input class="night_input" id="name" placeholder="Имя / Описание..." type="text" name="name">
+        <form method="GET" action="{{route('replay.search')}}">
+            <label class="body__name" for="text">
+                <input class="night_input" id="text" placeholder="Имя / Описание..." type="text" name="text"
+                       maxlength="255"
+                       value="{{old('text')}}">
             </label>
 
-            <label class="body__country-winner" for="country-winner" name="country-winner">
-                Победившая страна:
-                <select class="night_input" id="country-winner">
-                    <option>Все</option>
-                    <option>Lorem ipsum.</option>
-                    <option>Lorem ipsum.</option>
+            <label class="body__country-winner" for="first_country_id">Первая страна:
+                <select class="night_input" id="first_country_id" name="first_country_id">
+                    <option value="">Все</option>
+                    @foreach($searchCountry as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
                 </select>
             </label>
 
-            <label class="body__country-loser" for="country-loser" name="country-loser">
-                Проигравшая страна:
-                <select class="night_input" id="country-loser">
-                    <option>Все</option>
-                    <option>Lorem ipsum.</option>
-                    <option>Lorem ipsum.</option>
+            <label class="body__country-loser" for="second_country_id">Вторая страна:
+                <select class="night_input" id="second_country_id" name="second_country_id">
+                    <option value="">Все</option>
+                    @foreach($searchCountry as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
                 </select>
             </label>
 
-            <label class="body__winning-race" for="winning-race" name="winning-race">
-                Победившая раса:
-                <select class="night_input" id="winning-race">
-                    <option>Все</option>
-                    <option>Lorem ipsum.</option>
-                    <option>Lorem ipsum.</option>
+            <label class="body__winning-race" for="first_race">Первая раса:
+                <select class="night_input" id="first_race" name="first_race">
+                    <option value="">Все</option>
+                    @foreach($searchRace as $item)
+                        <option value="{{$item->id}}">{{$item->title}}</option>
+                    @endforeach
                 </select>
             </label>
 
-            <label class="body__losing-race" for="losing-race" name="losing-race">
-                Проигравшая раса:
-                <select class="night_input" id="losing-race">
-                    <option>Все</option>
-                    <option>Lorem ipsum.</option>
-                    <option>Lorem ipsum.</option>
+            <label class="body__losing-race" for="second_race">Вторая раса:
+                <select class="night_input" id="second_race" name="second_race">
+                    <option value="">Все</option>
+                    @foreach($searchRace as $item)
+                        <option value="{{$item->id}}">{{$item->title}}</option>
+                    @endforeach
                 </select>
             </label>
 
-            <label class="body__map" for="map" name="map">
-                Карта:
-                <select class="night_input" id="map">
-                    <option>Все</option>
-                    <option>Lorem ipsum.</option>
-                    <option>Lorem ipsum.</option>
+            <label class="body__map" for="map_id">Карта:
+                <select class="night_input" id="map_id" name="map_id">
+                    <option value="">Все</option>
+                    @foreach($searchMap as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
                 </select>
             </label>
-
-            <label class="body__type" for="type" name="type">
-                Тип:
-                <select class="night_input" id="type">
-                    <option>Все</option>
-                    <option>Lorem ipsum.</option>
-                    <option>Lorem ipsum.</option>
+            <label class="body__type" for="type_id">Тип:
+                <select class="night_input" id="type_id" name="type_id">
+                    <option value="">Все</option>
+                    @foreach($searchType as $item)
+                        <option value="{{$item->id}}">{{$item->title}}</option>
+                    @endforeach
                 </select>
             </label>
-
-            <label class="body__sorting" for="sorting" name="sorting">
-                Сортировка:
-                <select class="night_input" id="sorting">
-                    <option>Все</option>
-                    <option>Lorem ipsum.</option>
-                    <option>Lorem ipsum.</option>
+            <label class="body__sorting" for="user_replay">Сортировка:
+                <select class="night_input" id="user_replay" name="user_replay">
+                    <option value="">Все</option>
+                    @foreach($searchType2 as $key => $item)
+                        <option value="{{$key}}">{{$item}}</option>
+                    @endforeach
                 </select>
             </label>
-
             <div class="body__button-search">
                 <button class="button button__download-more">
                     Поиск

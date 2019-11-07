@@ -12,6 +12,7 @@ use App\Http\ViewComposers\{admin\DashboardCountComposer,
     LeftSide\LastNewsComposer,
     LeftSide\NavigationReplaysComposer,
     LeftSide\LastUserProReplaysComposer,
+    LeftSide\SearchReplaysComposer,
     Stream\OnlineStreamListComposer,
     Registration\RegistrationComposer,
     RightSide\LastRegisteredUsersComposer,
@@ -44,6 +45,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         $this->compose('left-side.navigation-replays', NavigationReplaysComposer::class);
         $this->compose('left-side.last-replays', LastUserProReplaysComposer::class);
         $this->compose('left-side.last-news', LastNewsComposer::class);
+        $this->compose('left-side.search-replays', SearchReplaysComposer::class);
         /*right-side*/
 
         $this->compose('right-side.index', LastRegisteredUsersComposer::class);
