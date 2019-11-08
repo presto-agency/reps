@@ -20,7 +20,7 @@
             <p class="title__text">Добавить комментарий</p>
         </div>
         <form class="add-comment__form" action="{{$route}}" method="POST">
-{{--            @csrf--}}
+            @csrf
 {{--            <div class="form__group form-group">--}}
 {{--                <label class="comment" for="comment">--}}
 {{--                    <input name="content" type="text" class="comment__input form-control" id="comment"--}}

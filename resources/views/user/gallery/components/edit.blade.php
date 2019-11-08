@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="body__img">
-                <img src="{{ asset($userImage->picture) }}" alt="image">
+                <img src="{{$userImage->picture}}" alt="image">
             </div>
             <form action="" class="body__edit-image-form">
                 @csrf

@@ -30,9 +30,10 @@ class UserGalleryController extends Controller
     public function index($id)
     {
         User::findOrFail($id);
-        $row = ['id', 'picture','user_id'];
-        $images = GalleryHelper::getAllUserImages($row,$id);
+        $row = ['id', 'picture', 'user_id'];
+        $images = GalleryHelper::getAllUserImages($row, $id);
         $routCheck = $this->routCheck;
+
         return view('user.gallery.index', compact('images', 'routCheck'));
 
 
@@ -52,10 +53,12 @@ class UserGalleryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param UserGalleryRequests $request
+     * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserGalleryRequests $request)
+    public function store(UserGalleryRequests $request, $id)
     {
+
         $userGallery = new UserGallery;
         $userGallery->user_id = auth()->id();
         $userGallery->sign = $request->get('sign');
@@ -93,11 +96,11 @@ class UserGalleryController extends Controller
      * @param $user_gallery
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id,$user_gallery)
+    public function show($id, $user_gallery)
     {
         User::findOrFail($id);
         $relation = ['comments'];
-        $row = ['id', 'sign', 'positive_count', 'negative_count', 'picture','user_id'];
+        $row = ['id', 'sign', 'positive_count', 'negative_count', 'picture', 'user_id'];
 
         $userImage = GalleryHelper::getUserImage($user_gallery, $relation, $row);
         // get previous user id
@@ -109,7 +112,7 @@ class UserGalleryController extends Controller
         $routCheck = $this->routCheck;
         $user_id = UserService::getUserId();
 
-        return view('user.gallery.show', compact('userImage', 'previous', 'next', 'routCheck','user_id'));
+        return view('user.gallery.show', compact('userImage', 'previous', 'next', 'routCheck', 'user_id'));
 
     }
 
@@ -120,7 +123,7 @@ class UserGalleryController extends Controller
      * @param int $user_gallery
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,$user_gallery)
+    public function edit($id, $user_gallery)
     {
         User::findOrFail($id);
         $relation = [];
@@ -133,7 +136,7 @@ class UserGalleryController extends Controller
         // get next user id
         $next = GalleryHelper::nextUserImage($user_gallery, $relation, $row);
         $user_id = UserService::getUserId();
-        return view('user.gallery.edit', compact('userImage', 'previous', 'next','user_id'));
+        return view('user.gallery.edit', compact('userImage', 'previous', 'next', 'user_id'));
     }
 
     /**

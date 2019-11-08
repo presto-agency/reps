@@ -6,7 +6,7 @@
             <div class="inner">
                 <h3>{{$data['users'] ?? ''}}</h3>
 
-                <p>Количество пользователей</p>
+                <p>Пользователи</p>
             </div>
             <div class="icon">
                 <i class="fas fa-user-plus"></i>
@@ -23,7 +23,7 @@
         <div class="small-box bg-success">
             <div class="inner">
                 <h3>{{$data['countUser'] ?? ''}}</h3>
-                <p>Количество пользовательский Replays</p>
+                <p>Пользовательские реплеи</p>
             </div>
             <div class="icon">
                 <i class="fas fa-file-video"></i>
@@ -39,7 +39,7 @@
         <div class="small-box bg-danger">
             <div class="inner">
                 <h3>{{$data['countGosu'] ?? ''}}</h3>
-                <p>Количество профисиональных Replays</p>
+                <p>Профессиональные реплеи</p>
             </div>
             <div class="icon">
                 <i class="fas fa-file-video"></i>
@@ -55,7 +55,7 @@
         <div class="small-box bg-info">
             <div class="inner">
                 <h3>{{$data['forumTopics'] ?? ''}}</h3>
-                <p>Количество Forum Topics</p>
+                <p>Темы форума</p>
             </div>
             <div class="icon">
                 <i class="far fa-newspaper"></i>

@@ -43,7 +43,8 @@ class UserActivityLog extends Section
     }
 
     /**
-     * @return DisplayInterface
+     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
+     * @throws \SleepingOwl\Admin\Exceptions\FilterOperatorException
      */
     public function onDisplay()
     {
@@ -57,15 +58,17 @@ class UserActivityLog extends Section
         });
 
         $display->setColumns([
-            $type = AdminColumn::relatedLink('types.name', 'Событие'),
+            $type = AdminColumn::text('types.name', 'Событие')
+            ->setWidth(150),
+            $user_id = AdminColumn::relatedLink('users.name', 'Пользователь')
+            ->setWidth(200),
+            $time = AdminColumn::datetime('time', 'Время')
+            ->setWidth(250),
 
-            $user_id = AdminColumn::relatedLink('users.name', 'Пользователь'),
+            $ip = AdminColumn::text('ip',   'IP')
+                ->setWidth(150),
 
-            $time = AdminColumn::datetime('time', 'Время')->setFormat('Y-m-d H:m:s')
-                ->setWidth(85),
-
-            $ip = AdminColumn::text('ip', 'IP'),
-
+            $parameters = AdminColumn::text('Описание', 'Описание'),
 
 //            $parameters = AdminColumn::custom('Описание', function ($model) {
 //                return $this->getEventTitle($model);
@@ -84,8 +87,10 @@ class UserActivityLog extends Section
                 ->setPlaceholder('Пользователь')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
             $time = AdminColumnFilter::range()
-                ->setFrom(AdminColumnFilter::date()->setPlaceholder('С')->setFormat('Y-m-d'))
-                ->setTo(AdminColumnFilter::date()->setPlaceholder('По')->setFormat('Y-m-d'))
+                ->setFrom(AdminColumnFilter::date()->setPlaceholder('С')
+                    ->setFormat('y-m-d '))
+                ->setTo(AdminColumnFilter::date()->setPlaceholder('По')
+                    ->setFormat('y-m-d'))
                 ->setHtmlAttributes(['style' => 'width: 100%']),
             $ip = AdminColumnFilter::text()
                 ->setOperator(FilterInterface::CONTAINS)
