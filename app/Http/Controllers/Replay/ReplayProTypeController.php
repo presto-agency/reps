@@ -22,10 +22,9 @@ class ReplayProTypeController extends Controller
         ];
 
         $replay = ReplayHelper::getReplaysWithType($relations, Replay::REPLAY_PRO, $type);
-        $proRout = ReplayHelper::checkUrlPro() === true ? ReplayHelper::$REPLAY_PRO : false;
-        $proRoutType = ReplayHelper::checkUrlProType($type) === true ? true : false;
+//        $proRoutType = ReplayHelper::checkUrlProType($type) === true ? true : false;
         return view('replay.index',
-            compact('replay', 'proRout', 'proRoutType', 'type')
+            compact('replay', 'type')
         );
     }
 
@@ -44,10 +43,9 @@ class ReplayProTypeController extends Controller
         ];
         $replay = ReplayHelper::findReplayWithType2($relations, $id,Replay::REPLAY_PRO);
         $countUserPts = $replay->users->totalComments->count();
-        $proRout = ReplayHelper::checkUrlPro() === true ? ReplayHelper::$REPLAY_PRO : false;
-        $proRoutType = ReplayHelper::checkUrlProType($type) === true ? ReplayHelper::$REPLAY_PRO : false;
+//        $proRoutType = ReplayHelper::checkUrlProType($type) === true ? ReplayHelper::$REPLAY_PRO : false;
         return view('replay.show',
-            compact('replay', 'proRout', 'countUserPts', 'proRoutType', 'type')
+            compact('replay','countUserPts', 'type')
         );
     }
 

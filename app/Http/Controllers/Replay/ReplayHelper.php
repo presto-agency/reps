@@ -20,10 +20,10 @@ class ReplayHelper
     public static function getReplays($relations, $user_replay)
     {
         return Replay::with($relations)
+            ->orderByDesc('created_at')
             ->withCount('comments')
             ->where('approved', 1)
             ->where('user_replay', $user_replay)
-            ->orderByDesc('created_at')
             ->get();
     }
 
@@ -38,10 +38,10 @@ class ReplayHelper
     public static function findUserReplaysWithType2($relations, $user_id, $user_replay)
     {
         return Replay::with($relations)
+            ->orderByDesc('created_at')
             ->withCount('comments')
             ->where('user_replay', $user_replay)
             ->where('user_id', $user_id)
-            ->orderByDesc('created_at')
             ->get();
     }
 
@@ -94,12 +94,12 @@ class ReplayHelper
     {
 
         return Replay::with($relations)
+            ->orderByDesc('created_at')
             ->withCount('comments')
             ->where('approved', 1)
             ->whereHas('types', function ($query) use ($type) {
                 $query->where('name', $type);
             })
-            ->orderByDesc('created_at')
             ->where('user_replay', $user_replay)
             ->get();
     }
@@ -113,7 +113,6 @@ class ReplayHelper
             ->whereHas('types', function ($query) use ($type) {
                 $query->where('name', $type);
             })
-            ->orderByDesc('created_at')
             ->where('user_replay', $user_replay)
             ->findOrFail($id);
     }
@@ -134,7 +133,7 @@ class ReplayHelper
         $request = request();
 
         if ($request->ajax()) {
-            $replay = Replay::findOrFail($request->id);
+            $replay = Replay::find($request->id);
             $replay->increment('downloaded', 1);
             $replay->save();
 
@@ -163,18 +162,18 @@ class ReplayHelper
             $visible_title = false;
             if ($request->id > 0) {
                 $data = Replay::with($relations)
+                    ->orderByDesc('created_at')
                     ->where('approved', 1)
                     ->where('user_replay', $user_replay)
                     ->where('id', '<', $request->id)
-                    ->orderByDesc('created_at')
                     ->limit(5)
                     ->get();
             } else {
                 $data = Replay::with($relations)
+                    ->orderByDesc('created_at')
                     ->where('approved', 1)
                     ->where('user_replay', $user_replay)
                     ->where('id', '<', $request->id)
-                    ->orderByDesc('created_at')
                     ->limit(5)
                     ->get();
 

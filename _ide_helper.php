@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.0.3 on 2019-09-21.
+ * Generated for Laravel 6.4.0 on 2019-11-07.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1645,6 +1645,17 @@ namespace Illuminate\Support\Facades {
         public static function provider($name, $callback)
         {
             return \Illuminate\Auth\AuthManager::provider($name, $callback);
+        }
+        
+        /**
+         * Determines if any guards have already been resolved.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasResolvedGuards()
+        {
+            return \Illuminate\Auth\AuthManager::hasResolvedGuards();
         }
         
         /**
@@ -5957,6 +5968,17 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * 
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getChannels()
+        {
+            return \Illuminate\Log\LogManager::getChannels();
+        }
+        
+        /**
          * Get the default log driver name.
          *
          * @return string 
@@ -5990,6 +6012,18 @@ namespace Illuminate\Support\Facades {
         public static function extend($driver, $callback)
         {
             return \Illuminate\Log\LogManager::extend($driver, $callback);
+        }
+        
+        /**
+         * Unset the given channel instance.
+         *
+         * @param string|null $name
+         * @return \Illuminate\Log\LogManager 
+         * @static 
+         */ 
+        public static function forgetChannel($driver = null)
+        {
+            return \Illuminate\Log\LogManager::forgetChannel($driver);
         }
         
         /**
@@ -7310,7 +7344,7 @@ namespace Illuminate\Support\Facades {
     class Redirect {
         
         /**
-         * Create a new redirect response to the "news" route.
+         * Create a new redirect response to the "home" route.
          *
          * @param int $status
          * @return \Illuminate\Http\RedirectResponse 
@@ -8379,7 +8413,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Returns the root path from which this request is executed.
          * 
-         * Suppose that an index.blade.php file instantiates this request object:
+         * Suppose that an index.php file instantiates this request object:
          * 
          *  * http://localhost/index.php         returns an empty string
          *  * http://localhost/index.php/page    returns an empty string
@@ -8401,7 +8435,7 @@ namespace Illuminate\Support\Facades {
          * The base URL never ends with a /.
          * 
          * This is similar to getBasePath(), except that it also includes the
-         * script filename (e.g. index.blade.php) if one exists.
+         * script filename (e.g. index.php) if one exists.
          *
          * @return string The raw URL (i.e. not urldecoded)
          * @static 
@@ -9289,6 +9323,18 @@ namespace Illuminate\Support\Facades {
         public static function anyFilled($keys)
         {
             return \Illuminate\Http\Request::anyFilled($keys);
+        }
+        
+        /**
+         * Determine if the request is missing a given input item key.
+         *
+         * @param string|array $key
+         * @return bool 
+         * @static 
+         */ 
+        public static function missing($key)
+        {
+            return \Illuminate\Http\Request::missing($key);
         }
         
         /**
@@ -10459,6 +10505,17 @@ namespace Illuminate\Support\Facades {
         public static function resetPassword()
         {
             \Illuminate\Routing\Router::resetPassword();
+        }
+        
+        /**
+         * Register the typical confirm password routes for an application.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function confirmPassword()
+        {
+            \Illuminate\Routing\Router::confirmPassword();
         }
         
         /**
@@ -11861,7 +11918,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $path
          * @return resource|null The path resource or null on failure.
-         * @throws FileNotFoundException
+         * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
          * @static 
          */ 
         public static function readStream($path)
@@ -11877,7 +11934,7 @@ namespace Illuminate\Support\Facades {
          * @param array $options
          * @return bool 
          * @throws \InvalidArgumentException If $resource is not a file handle.
-         * @throws FileExistsException
+         * @throws \Illuminate\Contracts\Filesystem\FileExistsException
          * @static 
          */ 
         public static function writeStream($path, $resource, $options = array())
@@ -12168,6 +12225,31 @@ namespace Illuminate\Support\Facades {
         public static function hasValidSignature($request, $absolute = true)
         {
             return \Illuminate\Routing\UrlGenerator::hasValidSignature($request, $absolute);
+        }
+        
+        /**
+         * Determine if the signature from the given request matches the URL.
+         *
+         * @param \Illuminate\Http\Request $request
+         * @param bool $absolute
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasCorrectSignature($request, $absolute = true)
+        {
+            return \Illuminate\Routing\UrlGenerator::hasCorrectSignature($request, $absolute);
+        }
+        
+        /**
+         * Determine if the expires timestamp from the given request is not from the past.
+         *
+         * @param \Illuminate\Http\Request $request
+         * @return bool 
+         * @static 
+         */ 
+        public static function signatureHasNotExpired($request)
+        {
+            return \Illuminate\Routing\UrlGenerator::signatureHasNotExpired($request);
         }
         
         /**
@@ -14282,6 +14364,16 @@ namespace Facade\Ignition\Facades {
          *
          * @static 
          */ 
+        public static function reportMessage($message, $logLevel, $callback = null)
+        {
+            return \Facade\FlareClient\Flare::reportMessage($message, $logLevel, $callback);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
         public static function sendTestReport($throwable)
         {
             return \Facade\FlareClient\Flare::sendTestReport($throwable);
@@ -14315,6 +14407,16 @@ namespace Facade\Ignition\Facades {
         public static function createReport($throwable)
         {
             return \Facade\FlareClient\Flare::createReport($throwable);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function createReportFromMessage($message, $logLevel)
+        {
+            return \Facade\FlareClient\Flare::createReportFromMessage($message, $logLevel);
         }
         
         /**
@@ -14365,6 +14467,67 @@ namespace Facade\Ignition\Facades {
         public static function group($groupName, $properties)
         {
             return \Facade\FlareClient\Flare::group($groupName, $properties);
+        }
+         
+    }
+ 
+}
+
+namespace Intervention\Image\Facades { 
+
+    class Image {
+        
+        /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @return self 
+         * @static 
+         */ 
+        public static function configure($config = array())
+        {
+            return \Intervention\Image\ImageManager::configure($config);
+        }
+        
+        /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function make($data)
+        {
+            return \Intervention\Image\ImageManager::make($data);
+        }
+        
+        /**
+         * Creates an empty image canvas
+         *
+         * @param int $width
+         * @param int $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function canvas($width, $height, $background = null)
+        {
+            return \Intervention\Image\ImageManager::canvas($width, $height, $background);
+        }
+        
+        /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param int $lifetime
+         * @param boolean $returnObj
+         * @return \Image 
+         * @static 
+         */ 
+        public static function cache($callback, $lifetime = null, $returnObj = false)
+        {
+            return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
         }
          
     }
@@ -16034,7 +16197,7 @@ namespace KodiCMS\Assets\Facades {
         }
         
         /**
-         * Get the items in the collection that are not present in the given items.
+         * Get the items in the collection that are not present in the given items, using the callback.
          *
          * @param mixed $items
          * @param callable $callback
@@ -16061,7 +16224,7 @@ namespace KodiCMS\Assets\Facades {
         }
         
         /**
-         * Get the items in the collection whose keys and values are not present in the given items.
+         * Get the items in the collection whose keys and values are not present in the given items, using the callback.
          *
          * @param mixed $items
          * @param callable $callback
@@ -16088,7 +16251,7 @@ namespace KodiCMS\Assets\Facades {
         }
         
         /**
-         * Get the items in the collection whose keys are not present in the given items.
+         * Get the items in the collection whose keys are not present in the given items, using the callback.
          *
          * @param mixed $items
          * @param callable $callback
@@ -17100,7 +17263,7 @@ namespace KodiCMS\Assets\Facades {
         }
         
         /**
-         * Determine if all items pass the given test.
+         * Determine if all items pass the given truth test.
          *
          * @param string|callable $key
          * @param mixed $operator
@@ -18031,7 +18194,7 @@ namespace  {
              * Create and return an un-saved model instance.
              *
              * @param array $attributes
-             * @return \Illuminate\Database\Eloquent\Model 
+             * @return \Illuminate\Database\Eloquent\Model|static 
              * @static 
              */ 
             public static function make($attributes = array())
@@ -18583,6 +18746,42 @@ namespace  {
             public static function getMacro($name)
             {    
                 return \Illuminate\Database\Eloquent\Builder::getMacro($name);
+            }
+         
+            /**
+             * Checks if a macro is registered.
+             *
+             * @param string $name
+             * @return bool 
+             * @static 
+             */ 
+            public static function hasMacro($name)
+            {    
+                return \Illuminate\Database\Eloquent\Builder::hasMacro($name);
+            }
+         
+            /**
+             * Get the given global macro by name.
+             *
+             * @param string $name
+             * @return \Closure 
+             * @static 
+             */ 
+            public static function getGlobalMacro($name)
+            {    
+                return \Illuminate\Database\Eloquent\Builder::getGlobalMacro($name);
+            }
+         
+            /**
+             * Checks if a global macro is registered.
+             *
+             * @param string $name
+             * @return bool 
+             * @static 
+             */ 
+            public static function hasGlobalMacro($name)
+            {    
+                return \Illuminate\Database\Eloquent\Builder::hasGlobalMacro($name);
             }
          
             /**
@@ -19407,14 +19606,14 @@ namespace  {
             /**
              * Add a "where not null" clause to the query.
              *
-             * @param string $column
+             * @param string|array $columns
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
              */ 
-            public static function whereNotNull($column, $boolean = 'and')
+            public static function whereNotNull($columns, $boolean = 'and')
             {    
-                return \Illuminate\Database\Query\Builder::whereNotNull($column, $boolean);
+                return \Illuminate\Database\Query\Builder::whereNotNull($columns, $boolean);
             }
          
             /**
@@ -20551,18 +20750,6 @@ namespace  {
             }
          
             /**
-             * Checks if macro is registered.
-             *
-             * @param string $name
-             * @return bool 
-             * @static 
-             */ 
-            public static function hasMacro($name)
-            {    
-                return \Illuminate\Database\Query\Builder::hasMacro($name);
-            }
-         
-            /**
              * Dynamically handle calls to the class.
              *
              * @param string $method
@@ -20624,6 +20811,8 @@ namespace  {
     class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
 
     class Flare extends \Facade\Ignition\Facades\Flare {}
+
+    class Image extends \Intervention\Image\Facades\Image {}
 
     class Form extends \Collective\Html\FormFacade {}
 

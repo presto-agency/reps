@@ -39,7 +39,7 @@ Route::resource("replay", 'Replay\ReplayController');
 //Route::post('/loadmore/load_replays', 'Replay\ReplayHelper@loadNews')->name('load.more.replays');
 Route::group(['prefix' => 'replay'], function () {
     Route::get('{id}/download', 'Replay\ReplayHelper@download')->name('replay.user.download');
-    Route::post('{id}/download_count', 'Replay\ReplayHelper@downloadCount')->name('replay.user.download.count');
+    Route::any('{id}/download_count', 'Replay\ReplayHelper@downloadCount')->name('replay.user.download.count');
     Route::post('{id}/send_comment', 'Replay\ReplayHelper@saveComments')->name('replay.send_comment');
 
 });
@@ -70,7 +70,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 Route::resource("galleries", 'User\GalleriesController');
 Route::post('galleries/{id}/send_comment', 'User\GalleryHelper@saveComments')->name('galleries.send.comment');
 /*Search*/
-Route::get('search', 'SearchController@index')->name('search');
+Route::any('search', 'SearchController@index')->name('search');
+/*Search Replay*/
+Route::any('replay-search', 'Replay\ReplaySearchController@index')->name('replay.search');
 
 
 Auth::routes();

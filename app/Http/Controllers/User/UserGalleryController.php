@@ -142,7 +142,7 @@ class UserGalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return back();
+        return redirect()->to('/');
     }
 
     /**
@@ -151,6 +151,6 @@ class UserGalleryController extends Controller
      */
     public function destroy($id)
     {
-        return back();
+        return redirect()->to('/');
     }
 }

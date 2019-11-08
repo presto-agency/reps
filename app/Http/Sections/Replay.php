@@ -276,9 +276,14 @@ class Replay extends Section
         );
 
         $form->addBody([
-            $content = AdminFormElement::wysiwyg('content', 'Контент')
-                ->setHtmlAttributes(['placeholder' => 'Контент'])
-                ->setValidationRules(['nullable', 'string', 'between:1,2000']),
+            $video_iframe = AdminFormElement::wysiwyg('video_iframe', 'Видео')
+                ->setHtmlAttributes(['placeholder' => 'Видео'])
+                ->setValidationRules(['nullable', 'string', 'max:5000']),
+
+            $content = AdminFormElement::wysiwyg('content', 'Краткое описание')
+                ->setHtmlAttributes(['placeholder' => 'Краткое описание'])
+                ->setValidationRules(['required', 'string', 'between:1,2000']),
+
             AdminFormElement::columns()
                 ->addColumn(function () {
                     return [

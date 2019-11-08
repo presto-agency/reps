@@ -1,6 +1,5 @@
 <div class="create-replay border_shadow">
     <div class="create-replay__title">
-
         <svg class="title__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -13,17 +12,19 @@
                 c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                 C479.3,122.6,463.9,174.4,437.6,213.9z"/>
         </svg>
-
-        <p class="title__text">Создать новый Replay</p>
+        <p class="title__text">Редактировать Replay</p>
     </div>
     <div class="create-replay__body night_modal">
-        <form class="create-replay__form" action="{{ route('user-replay.store',['id' => auth()->id()]) }}" method="POST"
+        <form class="create-replay__form"
+              action="{{ route('user-replay.update',['id' => $replay->user_id,'user_replay'=>$replay->id]) }}"
+              method="POST"
               enctype="multipart/form-data">
+            @method('PUT')
             @csrf
             <div class="form-group">
                 <label for="create-replay-name" class="night_text">* Название:</label>
                 <input type="text" class="form-control night_input" id="create-replay-name" placeholder="Название"
-                       name="title" value="{{old("title")}}" required minlength="1" maxlength="255">
+                       name="title" value="{{ old("title", $replay->title)}}" required minlength="1" maxlength="255">
             </div>
             @if ($errors->has('title'))
                 <div class="alert alert-danger">
@@ -37,8 +38,11 @@
                             <select name="type_id" id="create-replay__type night_input"
                                     class="create-replay__type night_input">
                                 @isset($types)
-                                    @foreach($types as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @foreach ($types as $item)
+                                        <option value="{{$item->id}}"
+                                            {{ old('type_id',$replay->type_id) == $item->id ? "selected":""}}>
+                                            {{$item->name}}
+                                        </option>
                                     @endforeach
                                 @endisset
                             </select>
@@ -50,13 +54,38 @@
                         {{ $errors->first('type_id') }}
                     </div>
                 @endif
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="create-replay__type" class="night_text">* Тип2:
+                            <select name="user_replay" id="create-replay__type night_input"
+                                    class="create-replay__type night_input">
+                                @isset($userReplay)
+                                    @foreach ($userReplay as $key => $item)
+                                        <option value="{{$key}}"
+                                            {{ old('user_replay',$replay->user_replay) == $key ? "selected":""}}>
+                                            {{$item}}
+                                        </option>
+                                    @endforeach
+                                @endisset
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                @if ($errors->has('user_replay'))
+                    <div class="alert alert-danger">
+                        {{ $errors->first('user_replay') }}
+                    </div>
+                @endif
             </div>
             <div class="form-group">
                 <label for="create-replay__map" class="night_text">* Карта:
                     <select name="map_id" class="js-example-basic-single night_input" id="create-replay__map">
                         @isset($maps)
                             @foreach($maps as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                <option value="{{$item->id}}"
+                                    {{ old('type_id',$replay->map_id) == $item->id ? "selected":""}}>
+                                    {{$item->name}}
+                                </option>
                             @endforeach
                         @endisset
                     </select>
@@ -76,7 +105,10 @@
                                     class="create-replay__first-race night_input">
                                 @isset($races)
                                     @foreach($races as $item)
-                                        <option value="{{$item->id}}">{{$item->title}}</option>
+                                        <option value="{{$item->id}}"
+                                            {{ old('first_race',$replay->first_race) == $item->id ? "selected":""}}>
+                                            {{$item->title}}
+                                        </option>
                                     @endforeach
                                 @endisset
                             </select>
@@ -95,7 +127,10 @@
                                     id="create-replay__first-country">
                                 @isset($countries)
                                     @foreach($countries as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                        <option value="{{$item->id}}"
+                                            {{ old('first_country_id',$replay->first_country_id) == $item->id ? "selected":""}}>
+                                            {{$item->name}}
+                                        </option>
                                     @endforeach
                                 @endisset
                             </select>
@@ -111,7 +146,8 @@
                     <label for="create-replay__second-location" class="night_text">Первая локация:</label>
                     <input type="text" name="first_location" class="form-control night_input"
                            id="create-replay__second-location" minlength="1"
-                           maxlength="255" value="{{old('first_location')}}" placeholder="Первая локация">
+                           maxlength="255" value="{{old('first_location',$replay->first_location)}}"
+                           placeholder="Первая локация">
                 </div>
                 @if ($errors->has('first_location'))
                     <div class="alert alert-danger">
@@ -128,7 +164,10 @@
                                     class="create-replay__first-race night_input">
                                 @isset($races)
                                     @foreach($races as $item)
-                                        <option value="{{$item->id}}">{{$item->title}}</option>
+                                        <option value="{{$item->id}}"
+                                            {{ old('second_race',$replay->second_race) == $item->id ? "selected":""}}>
+                                            {{$item->title}}
+                                        </option>
                                     @endforeach
                                 @endisset
                             </select>
@@ -147,7 +186,10 @@
                                     id="create-replay__first-country">
                                 @isset($countries)
                                     @foreach($countries as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                        <option value="{{$item->id}}"
+                                            {{ old('second_country_id',$replay->second_country_id) == $item->id ? "selected":""}}>
+                                            {{$item->name}}
+                                        </option>
                                     @endforeach
                                 @endisset
                             </select>
@@ -163,7 +205,8 @@
                     <label for="create-replay__second-location" class="night_text">Вторая локация:</label>
                     <input type="text" name="second_location" class="form-control night_input"
                            id="create-replay__second-location" minlength="1"
-                           maxlength="255" value="{{old('second_location')}}" placeholder="Вторая локация">
+                           maxlength="255" value="{{old('second_location',$replay->second_location)}}"
+                           placeholder="Вторая локация">
                 </div>
                 @if ($errors->has('second_location'))
                     <div class="alert alert-danger">
@@ -175,19 +218,20 @@
             <div class="form-group">
                 <label for="content" class="night_text">Краткое описание</label>
                 <textarea name="content" class="form-control night_input"
-                          id="content"></textarea>
+                          id="content">{{old('content',$replay->content)}}</textarea>
             </div>
             @if ($errors->has('content'))
                 <div class="alert alert-danger">
                     {{ $errors->first('content') }}
                 </div>
             @endif
+
             <div class="form-group">
-                <label for="replay_video_iframe" class="night_text">Вставить HTML код с видео реплеем</label>
+                <label for="video_iframe" class="night_text">Вставить HTML код с видео реплеем</label>
                 <textarea name="video_iframe" class="form-control night_input"
-                          id="replay_video_iframe"></textarea>
+                          id="video_iframe">{{old('video_iframe',$replay->video_iframe)}}</textarea>
                 <script>
-                    CKEDITOR.replace('replay_video_iframe', {
+                    CKEDITOR.replace('video_iframe', {
                         // Define the toolbar groups as it is a more accessible solution.
                         extraPlugins: 'autoembed',
                         toolbarGroups: [

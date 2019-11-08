@@ -37,6 +37,7 @@ class Replay extends Model
         'second_name',
         'second_apm',
         'content',
+        'video_iframe',
         'downloaded',
         'start_date',
         'file',

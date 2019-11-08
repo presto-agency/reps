@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Replay;
 
+use App\Http\Requests\ReplayUpdateRequest;
 use App\Models\Replay;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -46,7 +47,7 @@ class ReplayController extends Controller
      */
     public function create()
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -57,7 +58,7 @@ class ReplayController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -106,19 +107,20 @@ class ReplayController extends Controller
      */
     public function edit($id)
     {
-        //
+        return redirect()->to('/');
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param ReplayUpdateRequest $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ReplayUpdateRequest $request, $id)
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -129,6 +131,7 @@ class ReplayController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return redirect()->to('/');
+
     }
 }

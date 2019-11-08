@@ -47,7 +47,7 @@
     <div class="row">
         <div class="col-12">
             @section('breadcrumbs')
-                {{ Breadcrumbs::render('home') }}
+{{--                {{ Breadcrumbs::render('home') }}--}}
             @show
         </div>
     </div>

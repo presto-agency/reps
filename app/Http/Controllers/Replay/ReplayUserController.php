@@ -27,8 +27,7 @@ class ReplayUserController extends Controller
         ];
 
         $replay = ReplayHelper::getReplays($relations, Replay::REPLAY_USER);
-        $proRout = ReplayHelper::checkUrlPro() === true ? ReplayHelper::$REPLAY_PRO : false;
-        return view('replay.index', compact('proRout', 'replay'));
+        return view('replay.index', compact('replay'));
     }
 
     /**
@@ -38,7 +37,7 @@ class ReplayUserController extends Controller
      */
     public function create()
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -49,7 +48,8 @@ class ReplayUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->to('/');
+
     }
 
     /**
@@ -74,10 +74,9 @@ class ReplayUserController extends Controller
 
         $replay = ReplayHelper::findReplayWithType2($relations, $id,Replay::REPLAY_USER);
         $countUserPts = $replay->users->totalComments->count();
-        $proRout = ReplayHelper::checkUrlPro() === true ? ReplayHelper::$REPLAY_PRO : false;
 
         return view('replay.show',
-            compact('replay', 'countUserPts', 'proRout')
+            compact('replay', 'countUserPts')
         );
     }
 
@@ -89,7 +88,8 @@ class ReplayUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return redirect()->to('/');
+
     }
 
     /**
@@ -101,7 +101,8 @@ class ReplayUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return redirect()->to('/');
+
     }
 
     /**
@@ -112,7 +113,8 @@ class ReplayUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return redirect()->to('/');
+
     }
 
     public function indexLoad()

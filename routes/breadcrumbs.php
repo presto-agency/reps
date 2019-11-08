@@ -91,6 +91,12 @@ Breadcrumbs::register('user-topics', function ($breadcrumbs, $id) {
         'id' => $id
     ]));
 });
+Breadcrumbs::register('user-topics-create', function ($breadcrumbs, $id) {
+    $breadcrumbs->parent('user-topics', $id);
+    $breadcrumbs->push('Создать тему', route('user-topics.create', [
+        'id' => $id
+    ]));
+});
 
 Breadcrumbs::register('user-replay', function ($breadcrumbs, $id, $type) {
     $breadcrumbs->parent('user-profile-show', $id);

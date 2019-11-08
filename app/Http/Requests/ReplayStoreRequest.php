@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserReplayRequest extends FormRequest
+class ReplayStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -34,6 +34,7 @@ class UserReplayRequest extends FormRequest
             'second_country_id' => 'required|string|exists:countries,id',
             'second_location' => 'nullable|integer|min:1|max:20',
             'content' => 'required|string|between:1,2000',
+            'video_iframe' => 'nullable|string|between:1,5000',
             'file' => 'required|file|max:5120',
         ];
     }

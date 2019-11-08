@@ -25,16 +25,16 @@
 			c-0.6-0.9-0.6-1.4-0.6-1.5c0-0.1,0.4-0.5,1.4-0.8l31.4-5.3l17.4-30.6c0.7-0.9,1.2-1,1.3-1c0.1,0,0.6,0.2,1.3,1.1l15.2,30.5
 			l34.4,5.5c0.9,0.3,1.3,0.6,1.4,0.7C186.9,189.1,186.8,189.7,186.2,190.4z"/>
         </svg>
-        @isset($type)
-            @if($type == "user")
-                <p class="title__text night_text">{{__('Пользовательские реплеи')}}</p>
-            @endif
-            @if($type == "pro")
-                <p class="title__text night_text">{{__('Профессиональные реплеи')}}</p>
-            @endif
-        @endisset
-        <label class="title__game-period" for="game-period" name="game-period">
-            <select id="game-period">
+        @if(request('user_replay') == "1")
+            <p class="title__text night_text">{{__('Пользовательские реплеи')}}</p>
+        @elseif(request('user_replay') == "0")
+            <p class="title__text night_text">{{__('Профессиональные реплеи')}}</p>
+        @else
+            <p class="title__text night_text">{{__('Все реплеи')}}</p>
+        @endif
+
+        <label class="title__game-period" for="game-period">
+            <select id="game-period" name="game-period">
                 <option>GAME OF THE WEEK</option>
                 <option>GAME OF THE MONTH</option>
                 <option>GAME OF THE YEAR</option>
@@ -44,23 +44,29 @@
     @isset($replay)
         @foreach($replay as $item)
             <div class="gocu-replays__subtitle change_gray">
-                @isset($userReplayRout)
-                    @if($userReplayRout)
-                        @isset($type)
-                            <a class="subtitle__name night_text"
-                               href="{{ asset(url("user/{$item->users->id}/user-replay/{$item->id}"."?type={$type}"))}}">
-                                {{$item->title}}
-                            </a>
-                        @endisset
+                @if(request('user_replay') == "1")
+                    <a class="subtitle__name night_text"
+                       href="{{ asset(url("replay/$item->id"."?type=user"))}}">
+                        {{$item->title}}
+                    </a>
+                @elseif(request('user_replay') == "0")
+                    <a class="subtitle__name night_text"
+                       href="{{ asset(url("replay/$item->id"."?type=pro"))}}">
+                        {{$item->title}}
+                    </a>
+                @else
+                    @if($item->user_replay == 0)
+                        <a class="subtitle__name night_text"
+                           href="{{ asset(url("replay/$item->id"."?type=pro"))}}">
+                            {{$item->title}}
+                        </a>
                     @else
-                        @isset($type)
-                            <a class="subtitle__name night_text"
-                               href="{{ asset(url("replay/{$item->id}"."?type={$type}"))}}">
-                                {{$item->title}}
-                            </a>
-                        @endisset
+                        <a class="subtitle__name night_text"
+                           href="{{ asset(url("replay/$item->id"."?type=user"))}}">
+                            {{$item->title}}
+                        </a>
                     @endif
-                @endisset
+                @endif
                 <p class="subtitle__date night_text">{{$item->created_at}}</p>
             </div>
             <div class="gocu-replays__match">
@@ -176,9 +182,10 @@
     </button>
 </div>
 <script type="text/javascript">
+
     $('.download').click(function () {
-        let id = $(this).data('id');
         let token = $('meta[name="csrf-token"]').attr('content');
+        let id = $(this).data('id');
         let url = $(this).data('url');
         $.ajax({
             method: 'POST',
