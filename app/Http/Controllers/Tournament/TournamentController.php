@@ -134,7 +134,7 @@ class TournamentController extends Controller
             ->with(['matches' => function ($query) {
                 $query->orderBy("round_id", 'ASC');
             }])
-            ->find($id);
+            ->findOrFail($id);
 
         return $tournament;
     }
