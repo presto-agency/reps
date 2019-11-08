@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use App\Services\Tournament\TourneyService;
+use App\Traits\ModelRelations\TournamentRelationTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class TourneyList extends Model
 {
+    use Notifiable, TournamentRelationTrait;
     /**
      * var array
      */
@@ -55,28 +59,13 @@ class TourneyList extends Model
     public $timestamps = true;
 
 
-    /**
-     * Relations.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function players()
+    public static function getPrizePool($value)
     {
-        return $this->hasMany('App\Models\TourneyPlayer', 'tourney_id');
+        return TourneyService::getPrizePool($value);
     }
 
-    public function admin_user()
+    public static function ImpToStars($id)
     {
-        return $this->belongsTo('App\User', 'admin_id');
-    }
-
-    public function checkin_players()
-    {
-        return $this->hasMany('App\Models\TourneyPlayer', 'tourney_id')->where('check_in', 1);
-    }
-
-    public function win_player()
-    {
-        return $this->hasMany('App\Models\TourneyPlayer', 'tourney_id')->where('place_result', 1);
+        return TourneyService::ImpToStars($id);
     }
 }

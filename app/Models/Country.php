@@ -18,7 +18,7 @@ class Country extends Model
     /*$user->avatar*/
     public function getFlagAttribute($value)
     {
-        if ($value) {
+        if (!empty($value) && \File::exists($value)) {
             return asset($value);
         } else {
             return asset('images/default/flag/country.png');
