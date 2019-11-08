@@ -49,7 +49,7 @@
                             class="night_text">{{ Carbon\Carbon::parse($item->time_start)->format('h:m d.m.Y')}}</span>
                     </div>
                     <div class="status" title="Статус">
-                        <span class="upcoming darck_gray_color">{{$item->status}}</span>
+                        <span class="upcoming darck_gray_color">{{$tournamentStatus[$item->status]}}</span>
                     </div>
                     <div class="palayers" title="Игроки: Подтверждённые/(Все)">
                         <span class="night_text">{{$item->checkin_players_count}}({{$item->players_count}})</span>

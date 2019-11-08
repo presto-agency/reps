@@ -19,32 +19,44 @@ class LastUserProReplaysComposer
      */
     public function compose(View $view)
     {
-        $view->with('replaysUserLsHome', self::getCacheReplaysUser('replaysUserLsHome'));
+        $view->with('replaysUserLsHome', self::getCacheLsReplays('replaysUserLsHome', self::getReplaysUser()));
+        $view->with('replaysProLsHome', self::getCacheLsReplays('replaysProLsHome', self::getReplaysPro()));
     }
 
     /**
      * @param $cache_name
      * @return mixed
      */
-    public static function getCacheReplaysUser($cache_name)
+    public static function getCacheLsReplays($cache_name, $data)
     {
         if (\Cache::has($cache_name) && !\Cache::get($cache_name)->isEmpty()) {
             $data_cache = \Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
-                return self::getReplaysUser();
+            $data_cache = \Cache::remember($cache_name, self::$ttl, function () use ($data) {
+                return $data;
             });
         }
         return $data_cache;
     }
 
+
     public static function getReplaysUser()
     {
-        $data = null;
         $data = Replay::with(self::$relation)
             ->where('approved', 1)
             ->where('user_replay', Replay::REPLAY_USER)
             ->take(4)
+            ->get(self::$column);
+        return collect($data);
+    }
+
+
+    public static function getReplaysPro()
+    {
+        $data = Replay::with(self::$relation)
+            ->where('approved', 1)
+            ->where('user_replay', Replay::REPLAY_PRO)
+            ->take(8)
             ->get(self::$column);
         return collect($data);
     }
