@@ -87,7 +87,7 @@ class GalleryHelper
     public function saveComments()
     {
         $request = request();
-        $replay = UserGallery::find($request->id);
+        $replay = UserGallery::findOrFail($request->id);
         $comment = new Comment([
             'user_id' => auth()->id(),
             'content' => $request->input('content')
