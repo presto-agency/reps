@@ -15,21 +15,18 @@
     </div>
     <div class="gallery__body">
         @isset($images)
+
             @foreach($images as $items)
                 <div class="img-wrapper">
                     @isset($routCheck)
                         @if($routCheck)
                             <a class="img-link" href="{{route('galleries.show',['gallery' => $items->id])}}">
-                                @if(file_exists($items->picture))
-                                    <img src="{{asset($items->picture) }}" alt="image">
-                                @endif
+                                <img src="{{$items->picture}}" alt="image">
                             </a>
                         @else
                             <a class="img-link"
                                href="{{route('user-gallery.show',['id'=> $items->user_id,'user_gallery'=> $items->id])}}">
-                                @if(file_exists($items->picture))
-                                    <img src="{{asset($items->picture)}}" alt="image">
-                                @endif
+                                <img src="{{$items->picture}}" alt="image">
                             </a>
                         @endif
                     @endisset

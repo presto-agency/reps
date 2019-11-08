@@ -18,7 +18,9 @@
         <p class="title__text">Загрузить изображение</p>
     </div>
     <div class="gallery-download__body">
-        <form class="gallery__form" action="" method="POST" enctype="multipart/form-data">
+        <form class="gallery__form" action="{{route('user-gallery.store',['id'=>request('id')])}}"
+              method="POST" enctype="multipart/form-data">
+            @method('POST')
             @csrf
             <div class="row">
                 <div class="col-8">
