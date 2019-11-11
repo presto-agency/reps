@@ -38,7 +38,7 @@
                                  src="{{asset("images/default/game-races/" . $item->races->title . ".png")}}" alt="race"
                                  title="{{$item->races->title}}"/>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_login">
                             <a href="{{route('user_profile',['id'=>$item->id])}}">
                                 <p title="{{$item->name}}">{{$item->name}}</p>
                             </a>
@@ -65,7 +65,7 @@
                             <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race"
                                  title="{{$item['raceTitle']}}"/>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_login">
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <p title="{{$item['name']}}">{{$item['name']}}</p>
                             </a>
@@ -90,7 +90,7 @@
                             <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race"
                                  title="{{$item['raceTitle']}}"/>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-3 content_login">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_login">
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <p title="{{$item['name']}}">{{$item['name']}}</p>
                             </a>
