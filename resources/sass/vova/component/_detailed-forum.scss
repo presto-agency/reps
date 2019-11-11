@@ -66,6 +66,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            .right{
+                display: flex;
+                align-items: center;
+                a{
+                    display: flex;
+                    margin-right: 10px;
+                    font-size: 14px;
+                }
+                svg{
+                    fill:$gray;
+                    width:15px;
+                }
+            }
             .items__watch,
             .items__comment {
                 text-decoration: none;
