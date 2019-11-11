@@ -111,7 +111,7 @@
                                     <path
                                         d="M226.1,346.8c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-62.7,62.8V30.8    c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"/>
                         </svg>
-                                <span class="night_text" id="{{'downloadCount'.$item->id}}"
+                                <span class="night_text" id="{{'downloadCountUser'.$item->id}}"
                                       data-count="{{$item->downloaded}}">{{$item->downloaded}}</span>
                             </a>
                         </div>
@@ -173,7 +173,7 @@
 
             <div id="load_more-replay" class="gocu-replays__button night_modal">
                 <button type="button" name="load_more-replay_button" class="btn btn-info form-control night_text"
-                        id="load_more-replay_button" data-id="{{ $last_id }}" data-subtype="{{$subtype}}">
+                        id="load_more-replay_button" data-id="{{ $last_id }}" data-user_id="{{$user_id}}">
                     {{__('Загрузить еще')}}
                 </button>
             </div>
@@ -201,7 +201,7 @@
                 id: id,
             },
             success: function (data) {
-                let it = "#downloadCount" + id;
+                let it = "#downloadCountUser" + id;
                 $(it).html(data.downloaded);
                 console.log(data.downloaded);
             },

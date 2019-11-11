@@ -36,15 +36,16 @@ Route::resource('best', 'Best\BestController');
 
 /*Replay*/
 Route::resource("replay", 'Replay\ReplayController');
-//Route::post('/loadmore/load_replays', 'Replay\ReplayHelper@loadNews')->name('load.more.replays');
+Route::post('/loadmore/load_replay', 'Replay\ReplayController@loadReplay')->name('load.more.replay');
 Route::group(['prefix' => 'replay'], function () {
-    Route::get('{id}/download', 'Replay\ReplayHelper@download')->name('replay.user.download');
-    Route::any('{id}/download_count', 'Replay\ReplayHelper@downloadCount')->name('replay.user.download.count');
+    Route::get('{id}/download', 'Replay\ReplayHelper@download')->name('replay.download');
+    Route::post('{id}/download_count', 'Replay\ReplayHelper@downloadCount')->name('replay.download.count');
     Route::post('{id}/send_comment', 'Replay\ReplayHelper@saveComments')->name('replay.send_comment');
 
 });
 /*Tournament*/
 Route::resource("tournament", 'Tournament\TournamentController');
+Route::post('/loadmore/load_tournament', 'Tournament\TournamentController@loadTournament')->name('load.more.tournament');
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
@@ -54,6 +55,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::resource("{id}/user-gallery", 'User\UserGalleryController');
     Route::resource("{id}/user-topics", 'User\UserTopicsController');
     Route::resource("{id}/user-replay", 'User\UserReplayController');
+    Route::post('{id}/loadmore/load_replay', 'User\UserReplayController@loadReplay')->name('load.more.user.replay');
+
     Route::resource("{id}/user-comments", 'User\UserCommentsController');
     Route::resource("{id}/user-rating-list", 'User\UserRatingListController');
     Route::resource("{id}/user-topic-rating-list", 'User\UserTopicRatingListController');
@@ -68,6 +71,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 });
 /*Galleries*/
 Route::resource("galleries", 'User\GalleriesController');
+//Route::post('/loadmore/load_gallery', 'User\GalleriesController@loadGallery')->name('load.more.gallery');
+
 Route::post('galleries/{id}/send_comment', 'User\GalleryHelper@saveComments')->name('galleries.send.comment');
 /*Search*/
 Route::any('search', 'SearchController@index')->name('search');

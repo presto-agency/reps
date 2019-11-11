@@ -11,6 +11,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //$this->call(RoleSeeder::clzass);
+        //$this->call(CountriesSeed::class);
+        //$this->call(FooterSeeder::class);
+        //$this->call(ReplayMapsSeeding::class);
+        //$this->call(TourneyTableSeeder::class);
+        //$this->call(TourneyMatchesTableSeeder::class);
+        //$this->call(TourneyPlayersTableSeeder::class);
+        //$this->call(TourneyUserTableUpdateSeeder::class);
+        //$this->call(UpdateTourneyMaps::class);
+
     }
 }

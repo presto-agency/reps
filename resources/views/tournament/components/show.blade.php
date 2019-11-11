@@ -117,8 +117,8 @@
                                                                 class="title_text">{{__('Приз')}}</span>
                                                         </div>
                                                     </div>
-                                                    @isset($dataArr['prizes'])
-                                                        @foreach($dataArr['prizes'] as $prize)
+                                                    @isset($prizeList)
+                                                        @foreach($prizeList as $prize)
                                                             <div class="content">
                                                                 <div class="left_content">
                                                                     <span>#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
@@ -134,7 +134,7 @@
                                                                     </svg>
                                                                 </div>
                                                                 <div class="right_content">
-                                                                    <span>{{'$'.$prize}}</span>
+                                                                    <span>{{$prize}}</span>
                                                                 </div>
                                                             </div>
                                                         @endforeach
@@ -148,20 +148,26 @@
                                                     </div>
                                                     <div class="container">
                                                         <div class="row">
-                                                            @isset( $dataArr['maps'])
+                                                            @isset($dataArr['maps'])
                                                                 @foreach($dataArr['maps'] as $map)
-
                                                                     <div class="col-xl-4 pl-1 pr-0 container_map">
                                                                         <div class="title_block_gray">
-                                                                            @isset($map)
+                                                                            @isset($map['name'])
                                                                                 <span
-                                                                                    class="title_text">{{$map->name}}</span>
+                                                                                    class="title_text">{{$map['name']}}</span>
                                                                             @endisset
                                                                         </div>
                                                                         <div class="map">
-                                                                            @isset($map)
-                                                                                <img src="{{asset($map->url)}}"
-                                                                                     onerror="this.onerror=null;this.src='/images/nominimap.png';">
+                                                                            @isset($map['name'])
+                                                                                @if(!empty($map['url']))
+                                                                                    <img src="{{$map['url']}}"
+                                                                                         alt="map">
+                                                                                @endif
+                                                                                @if(empty($map['url']))
+                                                                                    <img
+                                                                                        src="{{asset('images/default/map/nominimap.png')}}"
+                                                                                        alt="map">
+                                                                                @endif
                                                                             @endisset
                                                                         </div>
                                                                     </div>
@@ -199,12 +205,12 @@
             <p class="title_playersText">Players</p>
         </div>
         <div class="container_players">
-            @isset($tournament->checkin_players)
-                @foreach($tournament->checkin_players as $player)
+            @isset($tournament->players)
+                @foreach($tournament->players as $player)
                     @isset($player->user)
                         <div class="players_content">
                             <div class="left_block">
-                                <span>#{{$player->user->id}}</span>
+                                <span>#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
                                 <a href="{{route('user_profile',['id'=>$player->user->id])}}">
                                     <img src="{{asset($player->user->avatar)}}" class="author__avatar img-fluid"
                                          alt="avatar" title="{{$player->user->name}}">

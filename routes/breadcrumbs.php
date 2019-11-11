@@ -104,7 +104,7 @@ Breadcrumbs::register('user-topics-create', function ($breadcrumbs, $id) {
 
 Breadcrumbs::register('user-replay', function ($breadcrumbs, $id, $type) {
     $breadcrumbs->parent('user-profile-show', $id);
-    $breadcrumbs->push('Реплеи пользователя', asset(url("user/{$id}/user-replay/?type={$type}")));
+    $breadcrumbs->push('Реплеи пользователя', asset(url("user/$id/user-replay/?type=$type")));
 });
 
 Breadcrumbs::register('user-replay-show', function ($breadcrumbs, $id, $user_replay, $type) {

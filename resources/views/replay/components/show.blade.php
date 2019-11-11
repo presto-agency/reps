@@ -171,7 +171,7 @@
                             <path d="M226.1,346.8c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-62.7,62.8V30.8
                                 c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"></path>
                             </svg>
-                        <a href="{{route('replay.user.download',['id' =>$replay->id])}}">
+                        <a href="{{route('replay.download',['id' =>$replay->id])}}">
                             <span class="download" data-id="{{$replay->id}}"
                                   data-url="{{url("replay/$replay->id/download_count")}}">Скачать</span>
                             <span id="downloadCount"

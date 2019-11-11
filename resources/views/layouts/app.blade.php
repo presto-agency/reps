@@ -105,9 +105,10 @@
 
 
 {{--    </div>--}}
-@stack('ess21-custom-script')
+@yield('ess21-custom-script')
 @section('custom-script')
     <script>
+
         $(document).ready(function () {
             var _token = $('input[name="_token"]').val();
 
