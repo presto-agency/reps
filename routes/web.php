@@ -20,28 +20,30 @@ Route::resource('news', 'NewsController');
 Route::post('news/{id}/send_comment', 'NewsController@comment_send')->name('news.comment_send');
 Route::post('/loadmore/load_news', 'NewsController@load_news')->name('loadmore.load_news');
 /*Forum*/
-Route::resource('forum', 'ForumController');
-/*Forum topic*/
-Route::resource('forum/topic', 'TopicController');/*Route::get('forum/topic/{id}', function (){
-    return view('forum.topic');
-});*/
-//Route::resource('forum/topic/comment','TopicCommentController');
-Route::post('forum/topic/{id}/comment', 'TopicCommentController@store')->name('comment.store');
+Route::resource('forum', 'Forum\ForumController');
+Route::group(['prefix' => 'forum'], function () {
+    Route::post('{forum}/loadmore/load_forum_section', 'Forum\ForumController@loadForumShow')->name('load.more.forum.show');
+    Route::post('loadmore/load_forum_sections', 'Forum\ForumController@loadForumIndex')->name('load.more.forum.index');
 
+    /*Topic*/
+    Route::resource('topic', 'ForumTopic\TopicController');
+    Route::group(['prefix' => 'topic'], function () {
+        Route::post('{id}/comment', 'ForumTopic\TopicController@saveComments')->name('topic.send_comment');
+    });
+});
 /*Interview*/
 Route::resource('interview', 'Interview\InterviewController');
-
 /*Best*/
 Route::resource('best', 'Best\BestController');
-
 /*Replay*/
 Route::resource("replay", 'Replay\ReplayController');
-Route::post('/loadmore/load_replay', 'Replay\ReplayController@loadReplay')->name('load.more.replay');
 Route::group(['prefix' => 'replay'], function () {
+    Route::post('loadmore/load_replay', 'Replay\ReplayController@loadReplay')->name('load.more.replay');
     Route::get('{id}/download', 'Replay\ReplayHelper@download')->name('replay.download');
     Route::post('{id}/download_count', 'Replay\ReplayHelper@downloadCount')->name('replay.download.count');
     Route::post('{id}/send_comment', 'Replay\ReplayHelper@saveComments')->name('replay.send_comment');
-
+    /*Search Replay*/
+    Route::get('search', 'Replay\ReplaySearchController@index')->name('replay.search');
 });
 /*Tournament*/
 Route::resource("tournament", 'Tournament\TournamentController');
@@ -61,7 +63,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::resource("{id}/user-rating-list", 'User\UserRatingListController');
     Route::resource("{id}/user-topic-rating-list", 'User\UserTopicRatingListController');
 
-    Route::get('{id}/topic', 'TopicController@getUserTopic')->name('user.forum_topic');
+//    Route::get('{id}/topic', 'TopicController@getUserTopic')->name('user.forum_topic');
+
     Route::get('{id}/edit', 'UserController@edit')->name('edit_profile');
     Route::post('{id}/save', 'UserController@update')->name('save_profile');
     Route::get('{id}/add_friend', 'UserFriendController@addFriend')->name('user.add_friend');
@@ -75,9 +78,13 @@ Route::resource("galleries", 'User\GalleriesController');
 
 Route::post('galleries/{id}/send_comment', 'User\GalleryHelper@saveComments')->name('galleries.send.comment');
 /*Search*/
-Route::any('search', 'SearchController@index')->name('search');
-/*Search Replay*/
-Route::any('replay-search', 'Replay\ReplaySearchController@index')->name('replay.search');
+Route::get('search', 'Search\SearchController@index')->name('search');
+Route::group(['prefix' => 'replay'], function () {
+    Route::group(['prefix' => 'loadmore'], function () {
+        Route::post('load_search_news', 'Search\SearchController@loadNews')->name('load.more.search.news');
+        Route::post('load_search_replays', 'Search\SearchController@loadReplay')->name('load.more.search.replays');
+    });
+});
 
 
 Auth::routes();

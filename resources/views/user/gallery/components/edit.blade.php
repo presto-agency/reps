@@ -1,21 +1,17 @@
 <div class="gallery-detail">
     <div class="gallery-detail__title">
-
         <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 512 512" xml:space="preserve">
-
             <path d="M437.019,74.98C388.667,26.629,324.38,0,256,0C187.619,0,123.331,26.629,74.98,74.98C26.628,123.332,0,187.62,0,256
                 s26.628,132.667,74.98,181.019C123.332,485.371,187.619,512,256,512c68.38,0,132.667-26.629,181.019-74.981
                 C485.371,388.667,512,324.38,512,256S485.371,123.333,437.019,74.98z M256,482C131.383,482,30,380.617,30,256S131.383,30,256,30
                 s226,101.383,226,226S380.617,482,256,482z"/>
-
             <path d="M378.305,173.859c-5.857-5.856-15.355-5.856-21.212,0.001L224.634,306.319l-69.727-69.727
                 c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
                 c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
         </svg>
-
-        <p class="title__text">Галерея</p>
+        <p class="title__text">{{__('Галерея')}}</p>
     </div>
     @isset($userImage)
         <div class="gallery-detail__body">
@@ -46,7 +42,7 @@
                     </a>
                 </div>
                 <div class="items__reputation-button">
-                    <a href="#">рейтинг лист</a>
+                    <a href="#">{{__('Рейтинг лист')}}</a>
                 </div>
                 <div class="items__slide-button">
                     <a href="{{route('gallery.edit',['gallery'=>$previous])}}">
@@ -63,20 +59,30 @@
             <form action="" class="body__edit-image-form">
                 @csrf
                 <div class="form-group">
-                    <label for="gallery-name">Подпись:</label>
+                    <label for="gallery-name"> {{__('Подпись:')}}</label>
                     <input type="text" class="form-control" id="gallery-name" name="sign" placeholder="Подпись"
                            value="{{old('sign',$userImage->sign)}}">
                 </div>
+                @if ($errors->has('sign'))
+                    <div class="alert alert-danger">
+                        {{ $errors->first('sign') }}
+                    </div>
+                @endif
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="{{old('for_adults',$userImage->for_adults)}}"
                            name="for_adults" id="gallery__for-adults">
                     <label class="form-check-label" for="gallery__for-adults">
-                        18+
+                        {{__('18+')}}
                     </label>
                 </div>
+                @if ($errors->has('for_adults'))
+                    <div class="alert alert-danger">
+                        {{ $errors->first('for_adults') }}
+                    </div>
+                @endif
                 <div class="modal-body__add-btn">
                     <button class="button button__download-more">
-                        Обновить
+                        {{__('Обновить')}}
                     </button>
                 </div>
             </form>

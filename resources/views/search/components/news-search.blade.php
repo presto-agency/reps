@@ -8,10 +8,9 @@
                 <path
                     d="m160 512c-88.234375 0-160-71.765625-160-160v-229.332031c0-8.832031 7.167969-16 16-16s16 7.167969 16 16v229.332031c0 70.59375 57.40625 128 128 128s128-57.40625 128-128v-234.667969c0-47.058593-38.273438-85.332031-85.332031-85.332031-47.0625 0-85.335938 38.273438-85.335938 85.332031v213.335938c0 23.53125 19.136719 42.664062 42.667969 42.664062s42.667969-19.132812 42.667969-42.664062v-208c0-8.832031 7.167969-16 16-16s16 7.167969 16 16v208c0 41.171875-33.496094 74.664062-74.667969 74.664062s-74.667969-33.492187-74.667969-74.664062v-213.335938c0-64.679687 52.628907-117.332031 117.335938-117.332031 64.703125 0 117.332031 52.652344 117.332031 117.332031v234.667969c0 88.234375-71.765625 160-160 160zm0 0"/>
             </svg>
-            <p class="title__text ">{{__('Последние новости')}}</p>
+            <p class="title__text ">{{__('Результаты поиска <'.request('search').'> в новостях')}}</p>
         </div>
     @endif
-
     @if(!$news->isEmpty())
         @foreach($news as $single_news)
             <div class="breaking-news__news-card card night_modal">
@@ -55,7 +54,6 @@
                                 <path
                                     d="M44,37.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,37.015,44,37.015z"/>
                         </svg>
-
                             <span>{{ $single_news->comments_count }}</span>
                         </a>
                         <a class="items__watch" href="#">
@@ -76,15 +74,15 @@
                 $last_id = $single_news->id;
             @endphp
         @endforeach
-        <div id="load_more" class="breaking-news__button night_modal">
-            <button type="button" name="load_more_button" class="button button__download-more" data-id="{{ $last_id }}"
-                    id="load_more_button">
+        <div id="load_more_news_search" class="breaking-news__button night_modal">
+            <button type="button" name="load_more_news_search" class="button button__download-more" data-id="{{ $last_id }}"
+                    id="load_more_news_search_button">
                 {{__('Загрузить еще')}}
             </button>
         </div>
     @else
-        <div id="load_more" class="breaking-news__button night_modal">
-            <button type="button" name="load_more_button" class="btn btn-info form-control night_text">
+        <div id="load_more_news_search" class="breaking-news__button night_modal">
+            <button type="button" name="load_more_news_search" class="btn btn-info form-control night_text">
                 {{__('Пусто')}}
             </button>
         </div>

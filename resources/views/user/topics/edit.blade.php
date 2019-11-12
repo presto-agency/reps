@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('user-replay-create',request('id'),request('user_replay'),request('type','user')) }}
+    {{ Breadcrumbs::render('user-topics-edit',request('id'),request('user_topic')) }}
 @endsection
 
 @section('sidebar-left')
@@ -10,8 +10,7 @@
 @endsection
 
 @section('content')
-    @include('user.replay.components.create')
-
+    @include('user.topics.components.edit')
 @endsection
 
 @section('right-side')

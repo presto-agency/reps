@@ -105,7 +105,7 @@
                         <a class="items__download night_text download"
                            data-id="{{$item->id}}"
                            data-url="{{url("replay/$item->id/download_count")}}"
-                           href="{{route('replay.user.download',['id' =>$item->id])}}">
+                           href="{{route('replay.download',['id' =>$item->id])}}">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink"
                                  version="1.1"

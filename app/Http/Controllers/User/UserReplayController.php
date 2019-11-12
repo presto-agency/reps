@@ -48,10 +48,10 @@ class UserReplayController extends Controller
     {
 
         $userReplay = Replay::$userReplaysType;
-        $types = self::getCacheTypes('replayUserTypes');
-        $maps = self::getCacheMaps('replayUserMaps');
-        $countries = self::getCacheCountries('replayUserCountries');
-        $races = self::getCacheRaces('replayUserRaces');
+        $types = self::getCacheData('replayUserTypes', self::getTypes());
+        $maps = self::getCacheData('replayUserMaps', self::getMaps());
+        $countries = self::getCacheData('replayUserCountries', self::getCountries());
+        $races = self::getCacheData('replayUserRaces', self::getRaces());
 
         return view('user.replay.create',
             compact('types', 'maps', 'countries', 'races', 'userReplay')
@@ -121,10 +121,10 @@ class UserReplayController extends Controller
         }
         $replay = Replay::findOrfail($user_replay);
         $userReplay = Replay::$userReplaysType;
-        $types = self::getCacheData('replayUserTypes', self::getRaces());
-        $maps = self::getCacheData('replayUserMaps', self::getCountries());
-        $countries = self::getCacheData('replayUserCountries', self::getTypes());
-        $races = self::getCacheData('replayUserRaces', self::getMaps());
+        $types = self::getCacheData('replayUserTypes', self::getTypes());
+        $maps = self::getCacheData('replayUserMaps', self::getMaps());
+        $countries = self::getCacheData('replayUserCountries', self::getCountries());
+        $races = self::getCacheData('replayUserRaces', self::getRaces());
 
         return view('user.replay.edit',
             compact('types', 'maps', 'countries', 'races', 'userReplay', 'replay')
@@ -231,45 +231,20 @@ class UserReplayController extends Controller
     {
         $data->user_id = auth()->id();
         $data->user_replay = Replay::REPLAY_USER;
-
         $this->columns($data, $request);
-
-//        $data->title = $request->title;
-//        $data->map_id = $request->map_id;
-//        $data->first_country_id = $request->first_country_id;
-//        $data->second_country_id = $request->second_country_id;
-//        $data->first_race = $request->first_race;
-//        $data->second_race = $request->second_race;
-//        $data->type_id = $request->type_id;
-//        $data->first_location = $request->first_location;
-//        $data->second_location = $request->second_location;
-//        $data->content = $request->content;
-//        $data->video_iframe = $request->video_iframe;
-//        // Check have input file
-//        if ($request->hasFile('file')) {
-//            // Check if upload file Successful Uploads
-//            if ($request->file('file')->isValid()) {
-//                // Check path
-//                PathHelper::checkUploadStoragePath("file/replay");
-//                // Upload file on server
-//                $image = $request->file('file');
-//                $filePath = $image->store('file/replay', 'public');
-//                $data->file = 'storage/' . $filePath;
-//            } else {
-//                back();
-//            }
-//        }
-//        return $data;
+        $this->saveFile($request, $data);
     }
 
     private function replayDataUpdate($data, $request)
     {
         $data->user_replay = $request->user_replay;
         $this->columns($data, $request);
+        $this->saveFile($request, $data);
+
 
     }
 
-    private function columns($data, $request)
+    public function columns($data, $request)
     {
         $data->title = $request->title;
         $data->map_id = $request->map_id;
@@ -282,12 +257,18 @@ class UserReplayController extends Controller
         $data->second_location = $request->second_location;
         $data->content = $request->content;
         $data->video_iframe = $request->video_iframe;
+    }
+
+    public function saveFile($request, $data)
+    {
         // Check have input file
         if ($request->hasFile('file')) {
             // Check if upload file Successful Uploads
             if ($request->file('file')->isValid()) {
                 // Check path
                 PathHelper::checkUploadStoragePath("file/replay");
+                // Check old file
+                PathHelper::checkFileAndDelete($data->file);
                 // Upload file on server
                 $image = $request->file('file');
                 $filePath = $image->store('file/replay', 'public');
@@ -296,7 +277,6 @@ class UserReplayController extends Controller
                 back();
             }
         }
-        return $data;
     }
 
     private static function getRaces()

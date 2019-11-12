@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ForumTopic;
 
+use App\Http\Controllers\Controller;
 use App\Models\Comment;
-use App\Models\ForumSection;
 use App\Models\ForumTopic;
-use Auth;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
@@ -17,7 +16,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -27,7 +26,7 @@ class TopicController extends Controller
      */
     public function create()
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -38,7 +37,7 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -49,9 +48,17 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        $topic = ForumTopic::with('author','comments')->where('id', $id)->withCount('comments')->first();
-
-        return view('forum.topic')->with('topic', $topic);
+        $topic = ForumTopic::with(
+            'author',
+            'author.countries:id,name,flag',
+            'author.races:id,title',
+            'comments'
+        )
+            ->with(['author' =>function ($query){
+                $query->withCount('comments');
+            }])
+            ->where('id', $id)->withCount('comments')->first();
+        return view('forumTopic.show')->with('topic', $topic);
     }
 
     /**
@@ -62,7 +69,7 @@ class TopicController extends Controller
      */
     public function edit($id)
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -74,7 +81,7 @@ class TopicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -85,30 +92,31 @@ class TopicController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return redirect()->to('/');
     }
 
-    public function comment_send(Request $request, $id)
+    public function saveComments()
     {
-        $topic = ForumTopic::find($id);
+        $replay = ForumTopic::find(request('id'));
         $comment = new Comment([
-            'user_id' => auth()->user()->id,
-            'content' => $request->input('content')
+            'user_id' => auth()->id(),
+            'content' => request('content'),
         ]);
-        $topic->comments()->save($comment);
+        $replay->comments()->save($comment);
         return back();
     }
 
-    public function getUserTopic($user_id = 0)
-    {
-//        if ($user_id == 0){
-//            $user_id = Auth::id();
-//        }
-//
-//        $data = ForumSection::getUserTopics($user_id);//TODO: remove
-//
-//        return view('user.forum.my_topics')->with([
-//            'topics' => $data, //TODO: remove
-//            'user_id' => $user_id]);
-    }
+
+//    public function getUserTopic($user_id = 0)
+//    {
+////        if ($user_id == 0){
+////            $user_id = Auth::id();
+////        }
+////
+////        $data = ForumSection::getUserTopics($user_id);//TODO: remove
+////
+////        return view('user.forum.my_topics')->with([
+////            'topics' => $data, //TODO: remove
+////            'user_id' => $user_id]);
+//    }
 }

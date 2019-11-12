@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserTopicsRequest extends FormRequest
+class UserTopicsUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UserTopicsRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return  auth()->user() && auth()->user()->role_id != 4;
     }
 
     /**
@@ -24,10 +24,10 @@ class UserTopicsRequest extends FormRequest
     public function rules()
     {
         return [
-            'forum_section_id' => 'required|string|exists:forum_topics,id',
-            'title' => 'required|string|between:1,255',
-            'preview_content' => 'required|string|max:1000',
-            'content' => 'required|string|min:3|max:50000',
+            'forum_section_id' => 'exists:forum_topics,id',
+            'title' => 'between:1,255|string',
+            'preview_content' => 'between:1,1000|string',
+            'content' => 'between:1,50000|string',
             'preview_img' => 'nullable|image|max:2048',
         ];
     }

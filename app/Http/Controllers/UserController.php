@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return back();
+        return redirect()->to('/');
     }
 
     /**
@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return back();
+        return redirect()->to('/');
     }
 
     /**
@@ -41,7 +41,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -103,6 +103,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return back();
+        return redirect()->to('/');
     }
 }

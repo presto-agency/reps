@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('user-edit', auth()->id()) }}
+@endsection
+
 @section('sidebar-left')
     @include('components.interview')
     @include('left-side.search-replays')
