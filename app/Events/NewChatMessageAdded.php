@@ -26,7 +26,7 @@ class NewChatMessageAdded implements ShouldBroadcast
         $this->data = $data;
 
         //блокируем отправку текущему пользователю
-        $this->dontBroadcastToCurrentUser();
+//        $this->dontBroadcastToCurrentUser();
     }
 
     /**

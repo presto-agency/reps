@@ -4,6 +4,14 @@
         <div class="row">
             <div class="col-sm-12">
                 <textarea rows="10" class="form-control" readonly="">{{ messages.join('\n')}}</textarea>
+
+                <!--<ul class="chat" v-for="message as messages">
+                    <li>
+                        <b>{{ message }}</b>
+                        &lt;!&ndash;<p>{{ message.message }}</p>&ndash;&gt;
+                    </li>
+                </ul>-->
+
                 <hr>
                 <input type="text" class="form-control" v-model="textMessage" @keyup.enter="sendMessage">
             </div>
@@ -26,7 +34,7 @@
         mounted() {
             console.log('Component mounted.');
 
-
+            // this.getMessages();
 
             //в момент монтирования компонента
             // добавляем код для прослушивания
@@ -39,17 +47,36 @@
                this.messages.push(data.message);
             });
         },
+        /*created(){
+            console.log('Component created.');
+
+            this.getMessages();
+        },*/
         methods: {
+            getMessages(){
+
+                axios.get('/chat/get_messages').then((response) => {
+                    console.log('Полученые список сообщений GET: ');
+                    console.log(response.data);
+                    // this.messages = response.data;
+                });
+
+            },
             sendMessage(){
-                console.log(this.auth);
+                // console.log(this.auth);
                 axios.post('/chat/insert_message', {
                     user_id: this.auth.id,
                     file_path: "",
                     message: this.textMessage,
-                    imo: ""});
+                    imo: ""})
+                        /*.then((response) => {
+                            console.log('Полученые данные методом POST: ');
+                            console.log(response);
+                            // this.messages = response.data;
+                        })*/;
 
                 //после отправки добавляем текст в массив
-                this.messages.push(this.textMessage);
+                // this.messages.push(this.textMessage);
 
                 // очищаем поле для ввода сообщения
                 this.textMessage = '';

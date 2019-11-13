@@ -21,7 +21,8 @@ class ChatController extends Controller
             ->limit(100)
             ->get();
 
-        return view('stream-section.test-chat', compact('messages'));
+        return $messages;
+//        return view('stream-section.test-chat', compact('messages'));
 
         /*$result = array();
         foreach ($messages as $msg) {
@@ -46,9 +47,10 @@ class ChatController extends Controller
             $message_data['to'] = $this->selected_user;
             $insert = PublicChat::create($message_data);
 
+//            \Log::info($insert);
             if ($insert) {
 
-                event(new NewChatMessageAdded($message_data));
+                event(new NewChatMessageAdded($insert));
 
                 return redirect()->back();
                 /*return response()->json([

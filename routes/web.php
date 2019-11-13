@@ -69,6 +69,10 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'chat'], function () {
 
+    Route::get('/', function (){
+        return view('stream-section.test-chat');
+    });
+
 //    Route::group(['middleware' => 'auth'], function () {
         Route::post('/insert_message', 'ChatController@insert_message')->name('chat.add_message');
 //    });
