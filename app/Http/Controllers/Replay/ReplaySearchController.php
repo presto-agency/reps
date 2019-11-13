@@ -15,13 +15,21 @@ class ReplaySearchController extends Controller
 
     public function loadReplay()
     {
-        dump(\request()->all());
+
         if (request()->ajax()) {
             $visible_title = false;
             if (request('id') > 0) {
-                $replay = $this->searchReplayQuery()->orderByDesc('id')->limit(5)->get();
+
+                $replay = $this->searchReplayQuery()
+                    ->orderByDesc('id')
+                    ->where('id', '<', request('id'))
+                    ->limit(5)
+                    ->get();
             } else {
-                $replay = $this->searchReplayQuery()->orderByDesc('id')->limit(5)->get();
+                $replay = $this->searchReplayQuery()
+                    ->orderByDesc('id')
+                    ->limit(5)
+                    ->get();
 
                 $visible_title = true;
             }
@@ -30,6 +38,13 @@ class ReplaySearchController extends Controller
     }
 
     public function searchReplayQuery()
+    {
+        $query = $this->replayQuery();
+        $this->searchReplayColumn($query);
+        return $query;
+    }
+
+    public function replayQuery()
     {
         $relations = [
             'users:id,name,avatar',
@@ -40,8 +55,11 @@ class ReplaySearchController extends Controller
             'secondRaces:id,title,code',
             'comments',
         ];
-        $query = Replay::with($relations)->where('approved', 1);
+        return Replay::with($relations)->where('approved', 1);
+    }
 
+    public function searchReplayColumn($query)
+    {
         if (request()->has('text') && request()->filled('text')) {
             $query->where(function ($que) {
                 $que->orWhere('title', 'like', '%' . request('text') . '%')
@@ -69,8 +87,6 @@ class ReplaySearchController extends Controller
         if (request()->has('user_replay') && request()->filled('user_replay')) {
             $query->where('user_replay', 'like', '%' . request('user_replay') . '%');
         }
-
-        return $query;
     }
 
 }

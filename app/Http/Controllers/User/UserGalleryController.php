@@ -65,7 +65,7 @@ class UserGalleryController extends Controller
             // Check if upload file Successful Uploads
             if ($request->file('picture')->isValid()) {
                 // Check path
-                PathHelper::checkUploadStoragePath("image/user/gallery");
+                PathHelper::checkUploadStoragePath("/images/users/galleries");
                 // Upload file on server
                 $image = $request->file('picture');
                 $filePath = $image->store('image/user/gallery', 'public');

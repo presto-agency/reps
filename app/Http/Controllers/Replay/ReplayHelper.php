@@ -68,9 +68,8 @@ class ReplayHelper
 
         if (\File::exists($filePath)) {
             return response()->download($filePath);
-        } else {
-            return 'Файл отсутствует';
         }
+        return back();
     }
 
     public function downloadCount()

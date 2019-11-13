@@ -12,14 +12,17 @@
             <label class="body__name" for="text">
                 <input class="night_input" id="text" placeholder="{{__('Имя / Описание...')}}" type="text" name="text"
                        maxlength="255"
-                       value="{{old('text')}}">
+                       value="{{old('text',request('text'))}}">
             </label>
 
             <label class="body__country-winner" for="first_country_id">{{__('Первая страна:')}}
                 <select class="night_input" id="first_country_id" name="first_country_id">
-                    <option value="">Все</option>
+                    <option value="">{{__('Все')}}</option>
                     @foreach($searchCountry as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>
+                        <option
+                            value="{{$item->id}}"
+                            {{ old('first_country_id',request('first_country_id')) == $item->id ??  "selected"}}
+                        >{{$item->name}}</option>
                     @endforeach
                 </select>
             </label>
@@ -28,56 +31,68 @@
                 <select class="night_input" id="second_country_id" name="second_country_id">
                     <option value="">{{__('Все')}}</option>
                     @foreach($searchCountry as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>
+                        <option value="{{$item->id}}"
+                            {{ old('second_country_id',request('second_country_id')) == $item->id ??  "selected"}}
+                        >{{$item->name}}</option>
                     @endforeach
                 </select>
             </label>
 
-            <label class="body__winning-race" for="first_race">Первая раса:
+            <label class="body__winning-race" for="first_race">{{__('Первая раса:')}}
                 <select class="night_input" id="first_race" name="first_race">
-                    <option value="">Все</option>
+                    <option value="">{{__('Все')}}</option>
                     @foreach($searchRace as $item)
-                        <option value="{{$item->id}}">{{$item->title}}</option>
+                        <option value="{{$item->id}}"
+                            {{ old('first_race',request('first_race')) == $item->id ??  "selected"}}
+                        >{{$item->title}}</option>
                     @endforeach
                 </select>
             </label>
 
-            <label class="body__losing-race" for="second_race">Вторая раса:
+            <label class="body__losing-race" for="second_race">{{__('Вторая раса:')}}
                 <select class="night_input" id="second_race" name="second_race">
-                    <option value="">Все</option>
+                    <option value="">{{__('Все')}}</option>
                     @foreach($searchRace as $item)
-                        <option value="{{$item->id}}">{{$item->title}}</option>
+                        <option value="{{$item->id}}"
+                            {{ old('second_race',request('second_race')) == $item->id ??  "selected"}}
+                        >{{$item->title}}</option>
                     @endforeach
                 </select>
             </label>
 
-            <label class="body__map" for="map_id">Карта:
+            <label class="body__map" for="map_id">{{__('Карта:')}}
                 <select class="night_input" id="map_id" name="map_id">
-                    <option value="">Все</option>
+                    <option value="">{{__('Все')}}</option>
                     @foreach($searchMap as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>
+                        <option value="{{$item->id}}"
+                            {{ old('map_id',request('map_id')) == $item->id ??  "selected"}}
+                        >{{$item->name}}</option>
                     @endforeach
                 </select>
             </label>
-            <label class="body__type" for="type_id">Тип:
+            <label class="body__type" for="type_id">{{__('Тип:')}}
                 <select class="night_input" id="type_id" name="type_id">
-                    <option value="">Все</option>
+                    <option value="">{{__('Все')}}</option>
                     @foreach($searchType as $item)
-                        <option value="{{$item->id}}">{{$item->title}}</option>
+                        <option value="{{$item->id}}"
+                            {{ old('type_id',request('type_id')) == $item->id ?? "selected"}}
+                        >{{$item->title}}</option>
                     @endforeach
                 </select>
             </label>
-            <label class="body__sorting" for="user_replay">Сортировка:
+            <label class="body__sorting" for="user_replay"> {{__('Сортировка:')}}
                 <select class="night_input" id="user_replay" name="user_replay">
-                    <option value="">Все</option>
+                    <option value="">{{__('Все')}}</option>
                     @foreach($searchType2 as $key => $item)
-                        <option value="{{$key}}">{{$item}}</option>
+                        <option value="{{$key}}"
+                            {{ old('user_replay',request('user_replay')) == $key ?? "selected"}}
+                        >{{$item}}</option>
                     @endforeach
                 </select>
             </label>
             <div class="body__button-search">
                 <button class="button button__download-more">
-                    Поиск
+                    {{__('Поиск')}}
                 </button>
             </div>
 

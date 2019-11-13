@@ -266,7 +266,7 @@ class UserReplayController extends Controller
             // Check if upload file Successful Uploads
             if ($request->file('file')->isValid()) {
                 // Check path
-                PathHelper::checkUploadStoragePath("file/replay");
+                PathHelper::checkUploadStoragePath("/files/replays");
                 // Check old file
                 PathHelper::checkFileAndDelete($data->file);
                 // Upload file on server

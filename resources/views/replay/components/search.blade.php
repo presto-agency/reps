@@ -29,37 +29,19 @@
 			c-0.6-0.9-0.6-1.4-0.6-1.5c0-0.1,0.4-0.5,1.4-0.8l31.4-5.3l17.4-30.6c0.7-0.9,1.2-1,1.3-1c0.1,0,0.6,0.2,1.3,1.1l15.2,30.5
 			l34.4,5.5c0.9,0.3,1.3,0.6,1.4,0.7C186.9,189.1,186.8,189.7,186.2,190.4z"/>
         </svg>
-{{--            @isset($type)--}}
-{{--                @if($type == "user")--}}
-{{--                    <p class="title__text night_text">{{__('Пользовательские реплеи')}}</p>--}}
-{{--                @endif--}}
-{{--                @if($type == "pro")--}}
-{{--                    <p class="title__text night_text">{{__('Профессиональные реплеи')}}</p>--}}
-{{--                @endif--}}
-{{--            @endisset--}}
+
+            <p class="title__text night_text">{{__('Поиск в  реплеях')}}</p>
+
         </div>
     @endif
     @isset($replay)
         @if(!$replay->isEmpty())
             @foreach($replay as $item)
                 <div class="gocu-replays__subtitle change_gray">
-{{--                    @isset($userReplayRout)--}}
-{{--                        @if($userReplayRout)--}}
-{{--                            @isset($type)--}}
-{{--                                <a class="subtitle__name night_text"--}}
-{{--                                   href="{{ asset(url("user/{$item->users->id}/user-replay/{$item->id}"."?type={$type}"))}}">--}}
-{{--                                    {{$item->title}}--}}
-{{--                                </a>--}}
-{{--                            @endisset--}}
-{{--                        @else--}}
-{{--                            @isset($type)--}}
-{{--                                <a class="subtitle__name night_text"--}}
-{{--                                   href="{{ asset(url("replay/{$item->id}"."?type={$type}"))}}">--}}
-{{--                                    {{$item->title}}--}}
-{{--                                </a>--}}
-{{--                            @endisset--}}
-{{--                        @endif--}}
-{{--                    @endisset--}}
+                    <a class="subtitle__name night_text"
+                       href="{{ asset(url("replay/{$item->id}"."?type={$item::$type[$item->user_replay]}"))}}">
+                        {{$item->title}}
+                    </a>
                     <p class="subtitle__date night_text">{{$item->created_at}}</p>
                 </div>
                 <div class="gocu-replays__match">
@@ -171,15 +153,16 @@
                 @endphp
             @endforeach
 
-            <div id="load_more-replay" class="gocu-replays__button night_modal">
-                <button type="button" name="load_more-replay_button" class="btn btn-info form-control night_text"
-                        id="load_more-replay_button" data-id="{{ $last_id }}">
+            <div id="load_replay_only_search" class="gocu-replays__button night_modal">
+                <button type="button" name="load_replay_only_search_button" class="btn btn-info form-control night_text"
+                        id="load_replay_only_search_button" data-id="{{ $last_id }}">
                     {{__('Загрузить еще')}}
                 </button>
             </div>
         @else
-            <div id="load_more-replay" class="gocu-replays__button night_modal">
-                <button type="button" name="load_more-replay_button" class="btn btn-info form-control night_text">
+            <div id="load_replay_only_search" class="gocu-replays__button night_modal">
+                <button type="button" name="load_replay_only_search_button"
+                        class="btn btn-info form-control night_text">
                     {{__('Пусто')}}
                 </button>
             </div>

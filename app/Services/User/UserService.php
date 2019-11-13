@@ -88,7 +88,7 @@ class UserService
             if ($request->file('avatar')->isValid()) {
                 // Check path
 
-                PathHelper::checkUploadStoragePath("/image/user/avatar");
+                PathHelper::checkUploadStoragePath("/images/users/avatars");
                 // Check old file
                 PathHelper::checkAvatarAndDelete($data->avatar);
 

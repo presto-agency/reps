@@ -24,7 +24,18 @@
                 $.ajax({
                     url: "{{ route('load.more.replay.only.search') }}",
                     method: "POST",
-                    data: {id: id, _token: _token},
+                    data: {
+                        id: id,
+                        _token: _token,
+                        text: "{{request('text')}}",
+                        first_country_id: "{{request('first_country_id')}}",
+                        second_country_id: "{{request('second_country_id')}}",
+                        first_race: "{{request('first_race')}}",
+                        second_race: "{{request('second_race')}}",
+                        map_id: "{{request('map_id')}}",
+                        type_id: "{{request('type_id')}}",
+                        user_replay: "{{request('user_replay')}}",
+                    },
                     success: function (data) {
                         $('#load_replay_only_search_button').remove();
                         $('#load_replay_only_search').append(data);

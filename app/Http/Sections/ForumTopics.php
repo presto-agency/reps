@@ -11,8 +11,10 @@ use AdminDisplayFilter;
 use AdminColumnFilter;
 use App\Models\ForumSection;
 use App\Models\ForumTopic;
+use App\Services\ServiceAssistants\PathHelper;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 //use SleepingOwl\Admin\Contracts\Initializable;
@@ -131,6 +133,9 @@ class ForumTopics extends Section
                 ->setValidationRules(['required', 'exists:forum_topics,id'])
                 ->setDisplay('title'),
             $preview_img = AdminFormElement::image('preview_img', 'Preview images')
+                ->setUploadPath(function (UploadedFile $file) {
+                    return PathHelper::checkUploadStoragePath("/images/topics");
+                })
                 ->setValidationRules(['nullable', 'max:2048']),
             $preview_content = AdminFormElement::wysiwyg('preview_content', 'Preview')
                 ->setValidationRules(['required', 'string', 'between:1,1000'])

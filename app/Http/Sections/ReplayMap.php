@@ -98,9 +98,9 @@ class ReplayMap extends Section
 
             $picture = AdminFormElement::image('url', 'Картинка карты')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return PathHelper::checkUploadStoragePath("/image/replay/map");
+                    return PathHelper::checkUploadStoragePath("/images/replays/maps");
                 })
-                ->setValidationRules(['required', 'max:5120']),
+                ->setValidationRules(['required', 'max:2048']),
 
             $name = AdminFormElement::text('name', 'Название карты')
                 ->setHtmlAttribute('placeholder', 'Название карты')
