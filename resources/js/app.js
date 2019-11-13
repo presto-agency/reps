@@ -9,6 +9,7 @@ require('./bootstrap');
 require('select2');
 
 require('./main');
+require('../views/home/components/chat/js/chat');
 
 
 /**

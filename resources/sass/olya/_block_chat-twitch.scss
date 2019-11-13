@@ -1,6 +1,9 @@
 .chat_overflow{
     overflow-x: hidden;
 }
+#appchat {
+    width: 25%;
+}
 .block_chat-twitch{
     padding-bottom: 40px;
     .main_row{
@@ -25,7 +28,7 @@
     }
      .block_chat{
         padding-bottom: 20px;
-        width: 25%;
+        width: 100%;
          background: white;
     }
     & .title_text{
@@ -143,6 +146,9 @@
                 max-width: 40%;
                 display: block;
                 padding: 10px 0;
+            }
+            & .user_text {
+                word-wrap: break-word;
             }
 
         }
