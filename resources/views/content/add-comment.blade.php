@@ -20,32 +20,14 @@
             <p class="title__text">Добавить комментарий</p>
         </div>
         <form class="add-comment__form" action="{{$route}}" method="POST">
-{{--            @csrf--}}
-{{--            <div class="form__group form-group">--}}
-{{--                <label class="comment" for="comment">--}}
-{{--                    <input name="content" type="text" class="comment__input form-control" id="comment"--}}
-{{--                           placeholder="Написать комментарий...">--}}
-{{--                </label>--}}
-{{--                <div class="buttons-upload">--}}
-{{--                    <label class="custom-img-upload">--}}
-{{--                        <input type="file" accept="image/*"/>--}}
-{{--                        <i class="fas fa-camera"></i>--}}
-{{--                    </label>--}}
-{{--                    <label class="custom-file-upload">--}}
-{{--                        <input type="file"/>--}}
-{{--                        <i class="fas fa-paperclip"></i>--}}
-{{--                    </label>--}}
-{{--                    <button class="smile-upload">--}}
-{{--                        <i class="far fa-smile"></i>--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            @method('POST')
+            @csrf
             <div class="form-group">
-                <label for="add-comment" class="night_text">Коментарий</label>
-                <textarea name="editor_comment" class="form-control night_input"
-                          id="editor_comment"></textarea>
+                <label for="content-comment" class="night_text">Коментарий</label>
+                <textarea name="content" class="form-control night_input"
+                         id="content-comment">{{old('content')}}</textarea>
                 <script>
-                    CKEDITOR.replace('editor_comment', {
+                    CKEDITOR.replace('content-comment', {
                         // Define the toolbar groups as it is a more accessible solution.
                         extraPlugins: 'autoembed',
                         toolbarGroups: [
@@ -69,7 +51,7 @@
                         // Remove the redundant buttons from toolbar groups defined above.
                         removeButtons: 'Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Find,Replace,SelectAll,Scayt,Form,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,Strike,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Unlink,Image,Flash,Table,HorizontalRule,SpecialChar,PageBreak,ShowBlocks,Maximize,About,Checkbox'
                     });
-                    </script>
+                </script>
                 <div class="messenger__button add-comment__btn">
                     <button class="button button__download-more">
                         Отправить

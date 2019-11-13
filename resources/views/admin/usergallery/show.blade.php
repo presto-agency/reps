@@ -3,7 +3,7 @@
     <br>
     <div class="row">
         <div class="col-md-3 text-center">
-            <img class="img-bordered-sm" src="{{asset($userGallery->picture)}}" alt="picture">
+            <img class="img-bordered-sm" src="{{$userGallery->picture}}" alt="picture">
         </div>
     </div>
     <div class="row">

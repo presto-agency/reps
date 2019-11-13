@@ -66,6 +66,24 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('{id}/friends_list', 'UserFriendController@getFriendsList')->name('user.friends_list.by_id');
 
 });
+
+Route::group(['prefix' => 'chat'], function () {
+
+    Route::get('/', function (){
+        return view('stream-section.test-chat');
+    });
+
+//    Route::group(['middleware' => 'auth'], function () {
+        Route::post('/insert_message', 'ChatController@insert_message')->name('chat.add_message');
+//    });
+
+    Route::get('/get_messages', 'ChatController@get_messages')->name('chat.get_messages');
+//    Route::post('/get_message', 'ChatController@get_message')->name('chat.get_message');
+
+//    Route::get('/get_externalsmiles','ChatController@get_externalsmiles')->name('chat.get_smiles');
+//    Route::get('/get_externalimages','ChatController@get_externalimages')->name('chat.get_images');
+});
+
 /*Galleries*/
 Route::resource("galleries", 'User\GalleriesController');
 Route::post('galleries/{id}/send_comment', 'User\GalleryHelper@saveComments')->name('galleries.send.comment');

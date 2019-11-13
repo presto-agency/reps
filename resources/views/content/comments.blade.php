@@ -31,10 +31,10 @@
                          class="info__cube" alt="race">
                     <p class="info__text">{{$comment->user->comments->count()}} pts
                         | {{$comment->user->count_positive - $comment->user->count_negative}} кг</p>
-                    <span class="info__date">{{$comment->created_at->format('d.m.y')}}</span>
+                    <span class="info__date">{{$comment->created_at->format('Y-m-d H:m:s')}}</span>
                 </div>
                 <div class="comments__content">
-                    <p class="content__title">{{$comment->content }}</p>
+                    <div class="content__title"> {!! $comment->content !!}</div>
                 </div>
                 <div class="comments__items">
                     <div class="items__wrap">

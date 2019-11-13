@@ -1,8 +1,9 @@
 <?php
 
-use App\TourneyPlayer;
-use App\TourneyMatch;
-use App\TourneyList;
+use App\Models\TourneyList;
+use App\Models\TourneyPlayer;
+use App\Models\TourneyMatch;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -20,17 +21,17 @@ class TourneyMatchesTableSeeder extends Seeder
         $defiler_matches = DB::connection('mysql2')->table('lis_tourney_match')->get();
         foreach ($defiler_matches as $match) {
             try {
-                $tourney = TourneyList::where('tourney_id', $match->id_tourney)->first();
-                $player1 = TourneyPlayer::where('defiler_player_id', $match->id_player1)->first();
-                $player2 = TourneyPlayer::where('defiler_player_id', $match->id_player2)->first();
-                if (!empty($match) && !empty($tourney)) {
+                $tourney_id = TourneyList::where('tourney_id', $match->id_tourney)->value('id');
+                $player1_id = TourneyPlayer::where('defiler_player_id', $match->id_player1)->value('id');
+                $player2_id = TourneyPlayer::where('defiler_player_id', $match->id_player2)->value('id');
+                if (!empty($match) && !empty($tourney_id)) {
                     $insert_match = array(
-                        'tourney_id' => $tourney->id,
+                        'tourney_id' => $tourney_id,
                         'match_id' => $match->id_match,
                         'round' => $match->round,
                         'round_id' => $match->round_id,
-                        'player1_id' => !empty($player1) ? $player1->id : 0,
-                        'player2_id' => !empty($player2) ? $player2->id : 0,
+                        'player1_id' => !empty($player1_id) ? $player1_id : 0,
+                        'player2_id' => !empty($player2_id) ? $player2_id : 0,
                         'player1_score' => $match->score_player1,
                         'player2_score' => $match->score_player2,
                         'win_score' => $match->score_win,
