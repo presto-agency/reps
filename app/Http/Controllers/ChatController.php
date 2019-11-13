@@ -16,7 +16,7 @@ class ChatController extends Controller
      */
     public function get_messages()
     {
-        $messages = PublicChat::select('user_id', 'user_name', 'message', 'to', 'file_path', 'imo', 'created_at')->with('user')
+        $messages = PublicChat::select('id', 'user_id', 'user_name', 'message', 'to', 'file_path', 'imo', 'created_at')->with('user')
             ->orderBy('created_at', 'desc')
             ->limit(100)
             ->get();
@@ -49,7 +49,7 @@ class ChatController extends Controller
 
 //            \Log::info($insert);
             if ($insert) {
-
+                $insert->load('user');
                 event(new NewChatMessageAdded($insert));
 
                 return redirect()->back();
