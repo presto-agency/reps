@@ -9,6 +9,7 @@
 namespace App\Services\User;
 
 use App\Models\UserFriend;
+use App\Services\ServiceAssistants\PathHelper;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,7 @@ class UserService
             unset($user_data['userbar']);
         }
 
+        $user_data['avatar'] = self::saveFile($request, $user, $user_data);
         /*if ($request->file('avatar')) {
             $title = 'Аватар ' . $user->name;
             $file = File::storeFile($request->file('avatar'), 'avatars', $title);
@@ -55,7 +57,7 @@ class UserService
             $user_data['signature'] = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $signature);
         }
 
-        if (Auth::user()->roles ? (Auth::user()->roles->name != 'super admin') : true) {
+        if (Auth::user()->roles ? (Auth::user()->roles->name != 'super-admin') : true) {
             unset($user_data['role_id']);
         }
 
@@ -74,7 +76,30 @@ class UserService
 
     public static function getUserId()
     {
-        return request('id') === null ?  auth()->id() :  request('id');
+        return request('id') === null ? auth()->id() : request('id');
 
+    }
+
+    public static function saveFile($request, $data, $user_data)
+    {
+        // Check have input file
+        if ($request->hasFile('avatar')) {
+            // Check if upload file Successful Uploads
+            if ($request->file('avatar')->isValid()) {
+                // Check path
+
+                PathHelper::checkUploadStoragePath("/image/user/avatar");
+                // Check old file
+                PathHelper::checkAvatarAndDelete($data->avatar);
+
+                // Upload file on server
+                $image = $request->file('avatar');
+                $filePath = $image->store('/image/user/avatar', 'public');
+                return 'storage/' . $filePath;
+            } else {
+                back();
+            }
+        }
+        return null;
     }
 }

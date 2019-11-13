@@ -177,7 +177,7 @@ class User extends Section
                 ->setUploadPath(function (UploadedFile $file) {
                     return PathHelper::checkUploadStoragePath("/image/user/avatar");
                 })
-                ->setValidationRules(['nullable', 'max:5120'])
+                ->setValidationRules(['nullable', 'max:2048'])
                 ->setUploadSettings([
                     'orientate' => [],
                     'resize' => [120, 120, function ($constraint) {
@@ -190,7 +190,7 @@ class User extends Section
                 ->setHtmlAttribute('autocomplete', 'off')
                 ->setHtmlAttribute('maxlength', '30')
                 ->setHtmlAttribute('type', 'email')
-                ->setValidationRules(['required', 'email', 'max:30', 'unique:users,email,' . $id]),
+                ->setValidationRules(['required', 'string', 'email', 'max:255', 'unique:users,email,' . $id]),
 
             $name = AdminFormElement::text('name', 'Имя')
                 ->setHtmlAttribute('placeholder', 'Имя')

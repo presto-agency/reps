@@ -20,6 +20,7 @@ class PathHelper
     {
         $getStorageFilePath = \Str::replaceFirst('storage', '', $file_path);
         $checkFiles = \Storage::disk('public')->exists($getStorageFilePath);
+
         if ($checkFiles === true) {
             \Storage::disk('public')->delete($getStorageFilePath);
             return true;
@@ -27,5 +28,15 @@ class PathHelper
         return false;
     }
 
+    public static function checkAvatarAndDelete($file_path)
+    {
+        $getStorageFilePath = \Str::replaceFirst(asset('storage'), '', $file_path);
+        $checkFiles = \Storage::disk('public')->exists($getStorageFilePath);
+        if ($checkFiles === true) {
+            \Storage::disk('public')->delete($getStorageFilePath);
+            return true;
+        }
+        return false;
+    }
 
 }

@@ -15,6 +15,7 @@
         <p class="title__text">Настройки пользователя</p>
     </div>
     <form class="user-settings__form" action="{{route('save_profile', $user->id)}}" enctype="multipart/form-data" method="POST">
+        @method('PUT')
         @csrf
         <div class="form-group">
             <label for="user-settings-email" class="night_text">*Email:</label>
