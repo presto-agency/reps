@@ -37,9 +37,8 @@
         "express": "^4.17.1",
         "select2": "^4.0.10",
         "socket.io": "^2.3.0",
-        "vue-socket.io": "^3.0.7"
+        "vue-socket.io": "^3.0.7",
         "laravel-echo": "^1.6.1",
-        "select2": "^4.0.10",
         "socket.io-client": "^2.3.0"
     }
 }

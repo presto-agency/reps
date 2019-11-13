@@ -1,17 +1,17 @@
 <template>
     <div class="messanger">
-        <div class="row_contentChat" v-for="item in messagearray" :key="item.message">
+        <div class="row_contentChat" v-for="(item,index) in messagearray" :key="item.message" v-if="item.visible">
             <div class=" block_user_akk">
                 <div class="user" >
                     <img class="icon_bars" :src="item.flag">
-                    <img class="icon_bars" :src="item.ava"/>
+                    <img class="icon_bars icon_avatar" :src="item.ava"/>
                     <a href="#">
-                        <span class="blue_text">Rus_Brain</span>
-                        <span class="number_mess night_text">#3797</span>
+                        <span class="blue_text">{{item.usernick}}</span>
+                        <span class="number_mess night_text">#{{item.user_id}}</span>
                     </a>
                 </div>
                 <div class=" block_close">
-                    <button>
+                    <button @click="IgnoreUser(item.usernick)">
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times"
                              class="svg-inline--fa fa-times fa-w-11" role="img"
                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512">
@@ -34,6 +34,21 @@
 </template>
 <script>
 export default {
-    props: ['messagearray']
+    props: ['messagearray'],
+    data: ()=>({
+        ignored_users: [{}],
+    }),
+    methods: {
+        IgnoreUser(usernick) {
+            this.messagearray.forEach((item)=>{
+                if(item.user===usernick) {
+                    item.visible=false;
+                    console.log('have')
+                }
+
+            })
+        }
+    }
 }
+
 </script>

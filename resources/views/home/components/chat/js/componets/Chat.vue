@@ -3,7 +3,7 @@
         <div class="container_titleChat">
             <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_left">
                 <img id="img_menuMob" class="icon_bars" src="/images/speech-bubble.png"/>
-                <p class="title_text">{{test}}</p>
+                <p class="title_text">Guest</p>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_right">
                 <div class="popup_chat">
@@ -39,7 +39,7 @@
         </div>
             <chat-message :messagearray="messagearray" />
         <div class="form-group" v-if="isUser">
-            <textarea v-model="message" v-on:keyup.enter="sendMessage($event)" class="form-control night_input"></textarea>
+            <textarea v-model="textMessage" @keyup.enter="sendMessage" class="form-control night_input"></textarea>
 
         </div>
 
@@ -56,25 +56,59 @@
 
     export default {
         name: "Chat",
+        props: ['auth'],
         data: ()=>({
             isUser: true,
             messagearray: [],
-            message: '',
-            test: 'qweqwe'
+            textMessage: ''
         }),
-        methods: {
-            sendMessage(event) {
-                event.preventDefault();
+        created(){
+            axios.get('/chat/get_messages').then((response) => {
+                let number= response.data.length;
+                response.data.forEach((item,index)=> {
+                    this.messagearray.push({
+                        flag: '/images/country_flag.png',
+                        ava: item.user.avatar,
+                        usernick: item.user_name,
+                        date: '13.11',
+                        message: item.message,
+                        user_id: item.user_id,
+                        visible: true
+                    })
+                })
+            })
+        },
+        mounted() {
+            window.Echo.channel('chat').listen('NewChatMessageAdded', ({data}) => {
+                console.log('Полученые данные через сокет: ');
+                console.log(data);
                 this.messagearray.unshift({
-                flag: '/images/country_flag.png',
-                ava: '/images/ava.png',
-                usernick: 'hetman',
-                date: '11.11',
-                message: this.message
+                    flag: '/images/country_flag.png',
+                    ava: data.user.avatar,
+                    usernick: data.user_name,
+                    date: '13.11',
+                    message: data.message,
+                    user_id: data.user.id,
+                    visible: true
                 });
-                this.message = ''
-
-            },
+                console.log(this.messagearray)
+            });
+        },
+        methods: {
+            sendMessage(){
+                    // console.log(this.auth); this.auth.id
+                    axios.post('/chat/insert_message', {
+                        user_id: this.auth.id,
+                        file_path: "",
+                        message: this.textMessage,
+                        imo: ""})
+                        /*.then((response) => {
+                            console.log('Полученые данные методом POST: ');
+                            console.log(response.data);
+                            // this.messages = response.data;
+                        })*/;
+                    this.textMessage = '';
+            }
 
         }
     }
