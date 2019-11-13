@@ -53,6 +53,14 @@ Breadcrumbs::register('best', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Лучшие', route('best.index'));
 });
+Breadcrumbs::register('gallery-index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Все галереи', route('galleries.index'));
+});
+Breadcrumbs::register('gallery-show', function ($breadcrumbs, $gallery) {
+    $breadcrumbs->parent('gallery-index');
+    $breadcrumbs->push('Картинка', route('galleries.show', ['gallery' => $gallery]));
+});
 
 
 /***

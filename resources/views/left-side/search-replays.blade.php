@@ -8,7 +8,7 @@
         <p class="title__text">{{__('Поиск реплеев')}}</p>
     </div>
     <div class="search__body night_modal">
-        <form method="GET" action="{{route('replay.search')}}">
+        <form method="GET" action="{{route('replay.only.search')}}">
             <label class="body__name" for="text">
                 <input class="night_input" id="text" placeholder="{{__('Имя / Описание...')}}" type="text" name="text"
                        maxlength="255"

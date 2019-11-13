@@ -18,9 +18,9 @@
             <p class="title__text">{{__('Галерея')}}</p>
         </div>
     @endif
-    <div class="gallery__body">
-        @isset($images)
-            @if(!$images->isEmpty())
+    @isset($images)
+        @if(!$images->isEmpty())
+            <div class="gallery__body">
                 @foreach($images as $item)
                     <div class="img-wrapper">
                         @isset($routCheck)
@@ -40,19 +40,19 @@
                         $last_id = $item->id;
                     @endphp
                 @endforeach
-                <div id="load_more_user_gallery" class="gocu-replays__button night_modal">
-                    <button type="button" name="load_more_user_gallery_button" class="btn btn-info form-control night_text"
-                            id="load_more_user_gallery_button" data-id="{{ $last_id }}">
-                        {{__('Загрузить еще')}}
-                    </button>
-                </div>
-            @else
-                <div id="load_more_user_gallery" class="gocu-replays__button night_modal">
-                    <button type="button" name="load_more_user_gallery_button" class="btn btn-info form-control night_text">
-                        {{__('Пусто')}}
-                    </button>
-                </div>
-            @endif
+            </div>
+            <div id="load_more_galleries" class="gocu-replays__button night_modal">
+                <button type="button" name="load_more_galleries" class="btn btn-info form-control night_text"
+                        id="load_more_galleries_button" data-id="{{ $last_id }}">
+                    {{__('Загрузить еще')}}
+                </button>
+            </div>
+        @else
+            <div id="load_more_galleries" class="gocu-replays__button night_modal">
+                <button type="button" name="load_more_galleries" class="btn btn-info form-control night_text">
+                    {{__('Пусто')}}
+                </button>
+            </div>
+        @endif
         @endisset
-    </div>
 </div>

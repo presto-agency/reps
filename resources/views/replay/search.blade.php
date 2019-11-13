@@ -10,35 +10,33 @@
 @endsection
 
 @section('content')
-{{--    @include('replay.components.search')--}}
-{{--<div id="last_replay_search"></div>--}}
+    <div id="load_replay_only_search"></div>
 @endsection
 @section('ess21-custom-script')
     <script type="text/javascript">
-        {{--$(document).ready(function () {--}}
-        {{--    let _token = $('input[name="_token"]').val();--}}
-        {{--    let subtype = "{{$subtype}}";--}}
-        {{--    let type = "{{$type}}";--}}
-        {{--    last_replay('', _token, subtype);--}}
+        $(document).ready(function () {
 
-        {{--    function last_replay(id = "", _token, subtype) {--}}
-        {{--        $.ajax({--}}
-        {{--            url: "{{ route('load.more.replay') }}",--}}
-        {{--            method: "POST",--}}
-        {{--            data: {id: id, _token: _token, subtype: subtype, type: type},--}}
-        {{--            success: function (data) {--}}
-        {{--                $('#load_more-replay_button').remove();--}}
-        {{--                $('#last_replay').append(data);--}}
-        {{--            }--}}
-        {{--        })--}}
-        {{--    }--}}
+            let _token = $('input[name="_token"]').val();
 
-        {{--    $(document).on('click', '#load_more-replay_button', function () {--}}
-        {{--        let id = $(this).data('id');--}}
-        {{--        let subtype = $(this).data('subtype');--}}
-        {{--        $('#load_more-replay_button').html('<b>Загрузка...</b>');--}}
-        {{--        last_replay(id, _token, subtype);--}}
-        {{--    });--}}
-        {{--});--}}
+            load_replay_only_search('', _token);
+
+            function load_replay_only_search(id = "", _token) {
+                $.ajax({
+                    url: "{{ route('load.more.replay.only.search') }}",
+                    method: "POST",
+                    data: {id: id, _token: _token},
+                    success: function (data) {
+                        $('#load_replay_only_search_button').remove();
+                        $('#load_replay_only_search').append(data);
+                    }
+                })
+            }
+
+            $(document).on('click', '#load_replay_only_search_button', function () {
+                let id = $(this).data('id');
+                $('#load_replay_only_search_button').html('<b>Загрузка...</b>');
+                load_replay_only_search(id, _token);
+            });
+        });
     </script>
 @endsection

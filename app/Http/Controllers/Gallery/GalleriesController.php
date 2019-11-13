@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Gallery;
 
+use App\Http\Controllers\User\GalleryHelper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class GalleriesController extends Controller
 {
-    public  $routCheck;
+    public $routCheck;
 
     public function __construct()
     {
@@ -21,12 +22,7 @@ class GalleriesController extends Controller
      */
     public function index()
     {
-        $row = ['id', 'picture'];
-        $images = GalleryHelper::getGalleriesImages($row);
-
-        $routCheck = $this->routCheck;
-
-        return view('user.gallery.index', compact('images', 'routCheck'));
+        return view('gallery.index');
     }
 
     /**
@@ -71,7 +67,7 @@ class GalleriesController extends Controller
 
         $routCheck = $this->routCheck;
 
-        return view('user.gallery.show', compact('userImage', 'previous', 'next','routCheck'));
+        return view('gallery.show', compact('userImage', 'previous', 'next', 'routCheck'));
     }
 
     /**
@@ -108,5 +104,21 @@ class GalleriesController extends Controller
     {
         return redirect()->to('/');
 
+    }
+
+    public function loadGalleries()
+    {
+        $row = ['id', 'picture', 'user_id'];
+        if (request()->ajax()) {
+            $visible_title = false;
+            $routCheck = $this->routCheck;
+            if (request('id') > 0) {
+                $images = GalleryHelper::getGalleriesImagesAjaxId($row,request('id'));
+            } else {
+                $images = GalleryHelper::getGalleriesImagesAjax($row);
+                $visible_title = true;
+            }
+            echo view('gallery.components.index', compact('images', 'routCheck', 'visible_title'));
+        }
     }
 }

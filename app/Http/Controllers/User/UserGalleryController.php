@@ -29,14 +29,7 @@ class UserGalleryController extends Controller
      */
     public function index($id)
     {
-        User::findOrFail($id);
-        $row = ['id', 'picture', 'user_id'];
-        $images = GalleryHelper::getAllUserImages($row, $id);
-        $routCheck = $this->routCheck;
-
-        return view('user.gallery.index', compact('images', 'routCheck'));
-
-
+        return view('user.gallery.index');
     }
 
     /**
@@ -155,5 +148,26 @@ class UserGalleryController extends Controller
     public function destroy($id)
     {
         return redirect()->to('/');
+    }
+
+    public function loadGallery()
+    {
+        User::findOrFail(request('id'));
+        $row = ['id', 'picture', 'user_id'];
+
+        if (request()->ajax()) {
+            $visible_title = false;
+            $routCheck = $this->routCheck;
+            if (request('find_id') > 0) {
+                $images = GalleryHelper::getAllUserImagesAjaxId($row, request('id'), request('find_id'));
+            } else {
+                $images = GalleryHelper::getAllUserImagesAjax($row, request('id'));
+
+                $visible_title = true;
+            }
+            echo view('user.gallery.components.index',
+                compact('images', 'routCheck', 'visible_title')
+            );
+        }
     }
 }
