@@ -165,7 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
-        Intervention\Image\ImageServiceProviderLaravel5::class,
+        //Intervention\Image\ImageServiceProviderLaravel5::class,
+        Intervention\Image\ImageServiceProvider::class,
         SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
