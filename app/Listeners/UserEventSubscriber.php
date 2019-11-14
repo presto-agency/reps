@@ -4,9 +4,8 @@
 namespace App\Listeners;
 
 
-use App\Models\Replay;
 use App\Models\UserActivityLog;
-use App\Models\UserActivityType;
+use App\Services\User\UserActivityLogService;
 use App\User;
 use Carbon\Carbon;
 
@@ -17,7 +16,7 @@ class UserEventSubscriber
      */
     public function onUserLogin($event)
     {
-        $this->saveLog($event->user->id, $this->getIdTypeLog('Login'), null);
+        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGIN, null);
     }
 
     /**
@@ -25,7 +24,7 @@ class UserEventSubscriber
      */
     public function onUserLogout($event)
     {
-        $this->saveLog($event->user->id, $this->getIdTypeLog('Logout'), null);
+        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGOUT, null);
     }
 
     /**
@@ -33,7 +32,7 @@ class UserEventSubscriber
      */
     public function onUserRegistered($event)
     {
-        $this->saveLog($event->user->id, $this->getIdTypeLog('Register'), null);
+        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_REGISTER, null);
     }
 
     /**
@@ -41,7 +40,7 @@ class UserEventSubscriber
      */
     public function onUserUploadImage($event)
     {
-        $this->saveLog($event->userGallery->user_id, $this->getIdTypeLog('Upload Image'), $event->userGallery->id);
+        $this->saveLog($event->userGallery->user_id, UserActivityLog::EVENT_CREATE_IMAGE, UserActivityLogService::parametersForCreateImage($event->userGallery));
     }
 
     /**
@@ -49,7 +48,7 @@ class UserEventSubscriber
      */
     public function onUserUploadReplay($event)
     {
-        $this->saveLog($event->userReplay->user_id, $this->getIdTypeLog('Upload Replay'), $event->userReplay->id);
+        $this->saveLog($event->userReplay->user_id, UserActivityLog::EVENT_CREATE_REPLAY, UserActivityLogService::parametersForCreateReplay($event->userReplay));
     }
 
     /**
@@ -57,7 +56,7 @@ class UserEventSubscriber
      */
     public function onUserUploadForumTopic($event)
     {
-        $this->saveLog($event->userForumTopic->user_id, $this->getIdTypeLog('Create Post'), $event->userForumTopic->id);
+        $this->saveLog($event->userForumTopic->user_id, UserActivityLog::EVENT_CREATE_POST, UserActivityLogService::parametersForCreateTopic($event->userForumTopic));
     }
 
     /**
@@ -65,7 +64,7 @@ class UserEventSubscriber
      */
     public function onUserComment($event)
     {
-        $this->saveLog($event->userComment->user_id, $this->getIdTypeLog('Comment'), $event->userComment->id);
+        $this->saveLog($event->userComment->user_id, UserActivityLog::EVENT_USER_COMMENT, $event->userComment->id);
     }
 
     /**
@@ -113,18 +112,18 @@ class UserEventSubscriber
 
     /**
      * @param $user_id
-     * @param $type_id
-     * @param $parameters_id -> id of event
+     * @param $type
+     * @param $parameters
      */
-    private function saveLog($user_id, $type_id, $parameters_id)
+    private function saveLog($user_id, $type, $parameters)
     {
 
         $log = new UserActivityLog;
-        $log->type_id = $type_id;
+        $log->type = $type;
         $log->user_id = $user_id;
         $log->time = Carbon::now();
-        $log->ip = \Request::getClientIp();
-        $log->parameters = $parameters_id;
+        $log->ip = !empty(\Request::getClientIp()) ? \Request::getClientIp() : '';
+        $log->parameters = $parameters;
         $log->save();
 
         $this->updateUserLastActivity($user_id);
@@ -141,12 +140,4 @@ class UserEventSubscriber
         ]);
     }
 
-    /**
-     * @param $name
-     * @return mixed
-     */
-    private function getIdTypeLog($name)
-    {
-        return UserActivityType::where('name', $name)->value('id');
-    }
 }

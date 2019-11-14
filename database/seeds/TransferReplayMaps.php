@@ -44,23 +44,25 @@ class TransferReplayMaps extends Seeder
         foreach ($repsReplayMap as $item) {
             try {
                 $insertItem = [
-                    'id'   => $item->id,
-                    'name' => $item->name,
-                    'url'  => $item->url,
+                    'id'         => $item->id,
+                    'name'       => $item->name,
+                    'url'        => $item->url,
+                    'created_at' => $item->created_at,
+                    'updated_at' => $item->updated_at,
                 ];
-                ReplayMap::create($insertItem);
+                DB::table("replay_maps")->insert($insertItem);
             } catch (\Exception $e) {
                 dd($e, $item);
             }
         }
         /**
-         * Add PrimKey
+         * Add autoIncr
          */
         Schema::table('replay_maps', function (Blueprint $table) {
             $table->unsignedBigInteger('id', true)->change();
         });
         /**
-         * Add NewForKeys
+         * Add NewForKeys and columns
          */
         Schema::table('replays', function (Blueprint $table) {
 
@@ -71,7 +73,7 @@ class TransferReplayMaps extends Seeder
             $table->unsignedBigInteger('first_race')->nullable()->change();
             $table->unsignedBigInteger('second_race')->nullable()->change();
             $table->unsignedBigInteger('type_id')->nullable()->change();
-            
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->foreign('map_id')->references('id')->on('replay_maps')->onDelete('SET NULL');
             $table->foreign('first_country_id')->references('id')->on('countries')->onDelete('SET NULL');

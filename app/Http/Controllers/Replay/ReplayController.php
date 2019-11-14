@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Replay;
 
 use App\Http\Requests\ReplayUpdateRequest;
 use App\Models\Replay;
+use App\Models\UserActivityLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -82,8 +83,8 @@ class ReplayController extends Controller
         } else {
             $replay = ReplayHelper::findReplayWithType2($relations, $id, $type);
         }
+        $countUserPts = !empty($replay->users) === true ? $replay->users->totalComments->count() : null;
 
-        $countUserPts = $replay->users->totalComments->count();
         $type = $type == Replay::REPLAY_USER ? 'user' : 'pro';
         return view('replay.show',
             compact('replay', 'countUserPts', 'type', 'userReplayRout')
@@ -161,10 +162,9 @@ class ReplayController extends Controller
             }
             $type = $type == Replay::REPLAY_USER ? 'user' : 'pro';
             $userReplayRout = ReplayHelper::checkUrl() === true ? true : false;
-            $output = view('replay.components.index',
+            echo view('replay.components.index',
                 compact('replay', 'visible_title', 'type', 'subtype', 'userReplayRout')
             );
-            echo $output;
         }
     }
 

@@ -44,7 +44,9 @@ class UserTopicsController extends Controller
     {
         $forumSection = ForumSection::where('is_active', 1)
             ->where('user_can_add_topics', 1)
-            ->get(['id', 'title', 'description']);
+            ->get(['id',
+                   'title',
+                   'description']);
 
         return view('user.topics.create', compact('forumSection'));
 
@@ -58,7 +60,10 @@ class UserTopicsController extends Controller
      */
     public function store(UserTopicsStoreRequest $request)
     {
-
+        $check = ForumSection::find($request->get('forum_section_id'))->value('user_can_add_topics');
+        if ($check != 1) {
+            return redirect()->to('/');
+        }
         $topic = new ForumTopic;
         $topic->forum_section_id = $request->get('forum_section_id');
         $topic->title = $request->get('title');
@@ -95,7 +100,9 @@ class UserTopicsController extends Controller
     {
         $forumSection = ForumSection::where('is_active', 1)
             ->where('user_can_add_topics', 1)
-            ->get(['id', 'title', 'description']);
+            ->get(['id',
+                   'title',
+                   'description']);
 
         $topic = ForumTopic::where('id', $user_topic)->where('user_id', $id)->firstOrFail();
 

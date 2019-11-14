@@ -13,6 +13,7 @@ class Replay extends Model
     const REPLAY_PRO = 0;
     const REPLAY_USER = 1;
 
+
     public static $userReplaysType = [
         Replay::REPLAY_PRO => 'Профессиональный',
         Replay::REPLAY_USER => 'Пользовательский',

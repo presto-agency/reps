@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\TourneyMatch;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
 
 class TransferTournamentsMatches extends Seeder
@@ -12,6 +13,19 @@ class TransferTournamentsMatches extends Seeder
      */
     public function run()
     {
+        /**
+         * Clear table
+         */
+        TourneyMatch::query()->whereNotNull('id')->delete();
+        /**
+         * Remove autoIncr
+         */
+        Schema::table('tourney_matches', function (Blueprint $table) {
+            $table->unsignedBigInteger('id', false)->change();
+        });
+        /**
+         * Get and Insert data
+         */
         $repsTournamentsMatches = DB::connection("mysql2")->table("tourney_matches")->get();
         foreach ($repsTournamentsMatches as $item) {
             $rep1 = DB::connection("mysql2")->table("files")->where('id', $item->rep1)->value('link');
@@ -23,6 +37,7 @@ class TransferTournamentsMatches extends Seeder
             $rep7 = DB::connection("mysql2")->table("files")->where('id', $item->rep7)->value('link');
             try {
                 $insertItem = [
+                    'id'            => $item->id,
                     'tourney_id'    => $item->tourney_id,
                     'match_id'      => $item->match_id,
                     'round'         => $item->round,
@@ -44,12 +59,20 @@ class TransferTournamentsMatches extends Seeder
                     'rep5'          => !empty($rep5) === true ? $rep5 : '',
                     'rep6'          => !empty($rep6) === true ? $rep6 : '',
                     'rep7'          => !empty($rep7) === true ? $rep7 : '',
+                    'created_at'        => $item->created_at,
+                    'updated_at'        => $item->updated_at,
                 ];
-                TourneyMatch::create($insertItem);
-            } catch (\Exception $e) {
-                dd($e, $insertItem);
-            }
 
+                DB::table("tourney_matches")->insert($insertItem);
+            } catch (\Exception $e) {
+                dd($e, $item);
+            }
         }
+        /**
+         * Add autoIncr
+         */
+        Schema::table('tourney_matches', function (Blueprint $table) {
+            $table->unsignedBigInteger('id', true)->change();
+        });
     }
 }
