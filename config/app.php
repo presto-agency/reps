@@ -165,7 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
-        Intervention\Image\ImageServiceProviderLaravel5::class,
+        //Intervention\Image\ImageServiceProviderLaravel5::class,
+        Intervention\Image\ImageServiceProvider::class,
         SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
@@ -174,7 +175,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
@@ -230,6 +231,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 
