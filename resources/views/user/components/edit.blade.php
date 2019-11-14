@@ -12,12 +12,13 @@
                 c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
                 c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
         </svg>
-        <p class="title__text">Настройки пользователя</p>
+        <p class="title__text">{{__('Настройки пользователя')}}</p>
     </div>
     <form class="user-settings__form" action="{{route('save_profile', $user->id)}}" enctype="multipart/form-data" method="POST">
+        @method('PUT')
         @csrf
         <div class="form-group">
-            <label for="user-settings-email" class="night_text">*Email:</label>
+            <label for="user-settings-email" class="night_text">{{__('*Email:')}}</label>
             <input type="email" class="form-control night_input {{ $errors->has('email') ? ' is-invalid' : '' }}" id="user-settings-email" name="email" value="{{old('email')??$user->email}}">
             @if ($errors->has('email'))
                 <span class="invalid-feedback">
@@ -26,7 +27,7 @@
             @endif
         </div>
         <div class="form-group">
-            <label for="user-settings-email-name" class="night_text">*Имя:</label>
+            <label for="user-settings-email-name" class="night_text">{{__('*Имя:')}}</label>
             <input type="text" class="form-control night_input {{ $errors->has('name') ? ' is-invalid' : '' }}" id="user-settings-email-name" name="name" value="{{old('name')??$user->name}}">
             @if ($errors->has('name'))
                 <span class="invalid-feedback">
@@ -35,7 +36,7 @@
             @endif
         </div>
         <div class="upload-image">
-            <p>Аватар:</p>
+            <p>{{__('Аватар:')}}</p>
             @if($user->avatar)
                 <div class="preview-image-wrapper">
                     <img class="" src="{{$user->avatar}}" alt="avatar">
@@ -47,7 +48,7 @@
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
-                        <span>Выбрать файл</span>
+                        <span>{{__('Выбрать файл')}}</span>
                         <input id="uploadBtn" type="file" class="upload {{ $errors->has('avatar') ? ' is-invalid' : '' }}" value="{{old('avatar')}}" accept="image/*"
                                name="avatar"/>
                         @if ($errors->has('avatar'))

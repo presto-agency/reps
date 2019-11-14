@@ -290,7 +290,7 @@ class Replay extends Section
                         $file = AdminFormElement::file('file', 'Файл')
                             ->setValidationRules(['required', 'file', 'max:5120'])
                             ->setUploadPath(function (UploadedFile $file) {
-                                return PathHelper::checkUploadStoragePath("/file/replay");
+                                return PathHelper::checkUploadStoragePath("/files/replays");
                             }),
                     ];
                 })
@@ -408,7 +408,7 @@ class Replay extends Section
                         $file = AdminFormElement::file('file', 'Файл')
                             ->setValidationRules(['required', 'file', 'max:5120'])
                             ->setUploadPath(function (UploadedFile $file) {
-                                return PathHelper::checkUploadStoragePath("/file/replay");
+                                return PathHelper::checkUploadStoragePath("/files/replays");
                             }),
                     ];
                 })

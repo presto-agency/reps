@@ -48,7 +48,8 @@ class TourneyList extends Model
         'importance',
         'is_ranking',
         'password',
-        'checkin_time'
+        'checkin_time',
+        'start_time',
     ];
 
     /**

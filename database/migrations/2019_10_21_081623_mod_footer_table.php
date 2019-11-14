@@ -18,7 +18,7 @@ class ModFooterTable extends Migration
             $table->text('text')->change();
 
         });
-        Artisan::call('db:seed', array('--class' => 'FooterSeeder'));
+        Artisan::call('db:seed', array('--class' => 'SeederFooter'));
     }
 
     /**

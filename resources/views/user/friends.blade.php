@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('user-friends', auth()->id()) }}
+@endsection
+
 @section('sidebar-left')
-    <p>sidebar-left</p>
+    @include('components.interview')
+    @include('left-side.search-replays')
+    @include('user.components.my-chat')
 @endsection
 
 @section('content')

@@ -15,10 +15,10 @@
                 c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
         </svg>
 
-        <p class="title__text">Загрузить изображение</p>
+        <p class="title__text">{{__('Загрузить изображение')}}</p>
     </div>
     <div class="gallery-download__body">
-        <form class="gallery__form" action="{{route('user-gallery.store',['id'=>request('id')])}}"
+        <form class="gallery__form" action="{{route('user-gallery.store',['id'=>auth()->id()])}}"
               method="POST" enctype="multipart/form-data">
             @method('POST')
             @csrf
@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
-                        <span>Выбрать файл</span>
+                        <span>{{__('Выбрать файл')}}</span>
                         <input id="uploadBtn" type="file" class="upload" value="{{old('picture')}}" accept="image/*"
                                name="picture"/>
                     </div>
@@ -40,7 +40,7 @@
                 </div>
             @endif
             <div class="form-group">
-                <label class="label_group" for="gallery-name">Подпись:</label>
+                <label class="label_group" for="gallery-name">{{__('Подпись:')}}</label>
                 <input type="text" name="sign" class="form-control" id="gallery-name"
                        value="{{old('sign')}}" placeholder="Подпись">
             </div>
@@ -53,12 +53,12 @@
                 <input class="form-check-input" type="checkbox" value="{{old('for_adults')}}" id="gallery__for-adults"
                        name='for_adults'>
                 <label class="label_group" class="form-check-label" for="gallery__for-adults">
-                    18+
+                    {{__('18+')}}
                 </label>
             </div>
             <div class="modal-body__add-btn">
                 <button class="button button__download-more">
-                    Добавить
+                    {{__('Добавить')}}
                 </button>
             </div>
         </form>

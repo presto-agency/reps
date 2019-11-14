@@ -11,11 +11,11 @@ Breadcrumbs::register('forum-index', function ($breadcrumbs) {
 
 Breadcrumbs::register('forum-show', function ($breadcrumbs, $forum) {
     $breadcrumbs->parent('forum-index');
-    $breadcrumbs->push('Темы', route('forum.show', $forum));
+    $breadcrumbs->push('Раздел', route('forum.show', $forum));
 });
 
-Breadcrumbs::register('topic-show', function ($breadcrumbs, $topic) {
-    $breadcrumbs->parent('forum-index');
+Breadcrumbs::register('topic-show', function ($breadcrumbs, $topic, $forumId) {
+    $breadcrumbs->parent('forum-show', $forumId);
     $breadcrumbs->push('Тема', route('topic.show', $topic));
 });
 
@@ -53,6 +53,14 @@ Breadcrumbs::register('best', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Лучшие', route('best.index'));
 });
+Breadcrumbs::register('gallery-index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Все галереи', route('galleries.index'));
+});
+Breadcrumbs::register('gallery-show', function ($breadcrumbs, $gallery) {
+    $breadcrumbs->parent('gallery-index');
+    $breadcrumbs->push('Картинка', route('galleries.show', ['gallery' => $gallery]));
+});
 
 
 /***
@@ -64,6 +72,18 @@ Breadcrumbs::register('best', function ($breadcrumbs) {
 Breadcrumbs::register('user-profile-show', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Личный кабинет', route('user_profile', [
+        'id' => $id
+    ]));
+});
+Breadcrumbs::register('user-friends', function ($breadcrumbs, $id) {
+    $breadcrumbs->parent('user-profile-show', $id);
+    $breadcrumbs->push('Мои друзья', route('user.friends_list.by_id', [
+        'id' => $id
+    ]));
+});
+Breadcrumbs::register('user-edit', function ($breadcrumbs, $id) {
+    $breadcrumbs->parent('user-profile-show', $id);
+    $breadcrumbs->push('Мой профайл', route('edit_profile', [
         'id' => $id
     ]));
 });
@@ -101,10 +121,33 @@ Breadcrumbs::register('user-topics-create', function ($breadcrumbs, $id) {
         'id' => $id
     ]));
 });
+Breadcrumbs::register('user-topics-edit', function ($breadcrumbs, $id, $user_topic) {
+    $breadcrumbs->parent('user-topics', $user_topic);
+    $breadcrumbs->push('Редактировать тему пользователя', route('user-topics.edit', [
+        'id' => $id,
+        'user_topic' => $user_topic
+    ]));
+});
 
 Breadcrumbs::register('user-replay', function ($breadcrumbs, $id, $type) {
     $breadcrumbs->parent('user-profile-show', $id);
-    $breadcrumbs->push('Реплеи пользователя', asset(url("user/{$id}/user-replay/?type={$type}")));
+    $breadcrumbs->push('Реплеи пользователя', asset(url("user/$id/user-replay/?type=$type")));
+});
+
+Breadcrumbs::register('user-replay-create', function ($breadcrumbs, $id, $user_replay, $type) {
+    $breadcrumbs->parent('user-replay', $id, $type);
+    $breadcrumbs->push('Реплей пользователя', route('user-replay.create', [
+        'id' => $id,
+        'user_replay' => $user_replay
+    ]));
+});
+
+Breadcrumbs::register('user-replay-edit', function ($breadcrumbs, $id, $user_replay, $type) {
+    $breadcrumbs->parent('user-replay', $id, $type);
+    $breadcrumbs->push('Реплей пользователя', route('user-replay.edit', [
+        'id' => $id,
+        'user_replay' => $user_replay
+    ]));
 });
 
 Breadcrumbs::register('user-replay-show', function ($breadcrumbs, $id, $user_replay, $type) {

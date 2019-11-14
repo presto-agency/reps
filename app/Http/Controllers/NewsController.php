@@ -28,7 +28,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -39,7 +39,7 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -79,7 +79,7 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -91,7 +91,7 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return redirect()->to('/');
     }
 
     /**
@@ -102,7 +102,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return redirect()->to('/');
     }
 
     public function load_news(Request $request)

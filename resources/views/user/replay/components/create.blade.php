@@ -50,6 +50,29 @@
                         {{ $errors->first('type_id') }}
                     </div>
                 @endif
+                @if(Auth::user()->role_id != 4 )
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="create-replay__type" class="night_text">* Тип2:
+                                <select name="user_replay" id="create-replay__type night_input"
+                                        class="create-replay__type night_input">
+                                    @isset($userReplay)
+                                        @foreach ($userReplay as $key => $item)
+                                            <option value="{{$key}}"{{old('user_replay')}}>
+                                                {{$item}}
+                                            </option>
+                                        @endforeach
+                                    @endisset
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                @endif
+                @if ($errors->has('user_replay'))
+                    <div class="alert alert-danger">
+                        {{ $errors->first('user_replay') }}
+                    </div>
+                @endif
             </div>
             <div class="form-group">
                 <label for="create-replay__map" class="night_text">* Карта:
