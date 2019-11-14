@@ -18,7 +18,7 @@ class CreateUserActivityTypesTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
-        Artisan::call('db:seed', array('--class' => 'UserActivityTypeSeeder'));
+        Artisan::call('db:seed', array('--class' => 'SeederUserActivityType'));
     }
 
     /**

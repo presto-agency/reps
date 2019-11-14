@@ -105,9 +105,10 @@
 
 
 {{--    </div>--}}
-@stack('ess21-custom-script')
+@yield('ess21-custom-script')
 @section('custom-script')
     <script>
+
         $(document).ready(function () {
             var _token = $('input[name="_token"]').val();
 
@@ -127,7 +128,7 @@
 
             $(document).on('click', '#load_more_button', function () {
                 let id = $(this).data('id');
-                $('#load_more_button').html('<b>Loading...</b>');
+                $('#load_more_button').html('<b>Загрузка...</b>');
                 load_news(id, _token);
             });
 

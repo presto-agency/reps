@@ -21,10 +21,9 @@
         </div>
     @endif
     @include('user.components.show')
-    @include('user.components.user_friends')
-    @include('user.components.password-recovery')
-    @include('user.components.get-recovery-link')
-    @include('user.messenger')
+{{--    @include('user.components.password-recovery')--}}
+{{--    @include('user.components.get-recovery-link')--}}
+{{--    @include('user.messenger')--}}
 @endsection
 
 @section('right-side')

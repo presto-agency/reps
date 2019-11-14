@@ -203,14 +203,14 @@
                         <div class="block_inform">
                             <div class="left_block"><span>Профессиональные реплеи:</span></div>
                             <div class="right_block"><a
-                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}"><span
+                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'pro'])}}"><span
                                         class="blue" title="Профессиональные реплеи">{{$user->gosu_replay_count}}</span></a>
                             </div>
                         </div>
                         <div class="block_inform">
                             <div class="left_block"><span>Пользовательские реплеи:</span></div>
                             <div class="right_block"><a
-                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'pro'])}}"><span
+                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}"><span
                                         class="blue" title="Пользовательские реплеи">{{$user->user_replay_count}}</span></a>
                             </div>
                         </div>

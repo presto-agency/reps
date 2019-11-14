@@ -21,7 +21,7 @@ class CreateCountriesTable extends Migration
             $table->string('flag')->nullable();
             $table->timestamps();
         });
-        Artisan::call('db:seed', array('--class' => 'CountriesSeed'));
+        Artisan::call('db:seed', array('--class' => 'SeederCountries'));
     }
 
     /**

@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-        Artisan::call('db:seed', array('--class' => 'SuperAdminSeeder'));
+        Artisan::call('db:seed', array('--class' => 'SeederSuperAdmin'));
     }
 
     /**

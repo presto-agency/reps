@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 class ReplayController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,28 +18,17 @@ class ReplayController extends Controller
      * @param $subtype
      * @return \Illuminate\Http\Response
      */
-    public function index($type = null, $subtype = null)
+    public function index($type = '')
     {
-        $relations = [
-            'users:id,name,avatar',
-            'maps:id,name',
-            'firstCountries:id,flag,name',
-            'secondCountries:id,flag,name',
-            'firstRaces:id,title,code',
-            'secondRaces:id,title,code',
-            'comments',
-        ];
-
-        $type = ReplayHelper::getReplayType();
+        $type = ReplayHelper::getReplayType() == Replay::REPLAY_USER ? 'user' : 'pro';
+        $userReplayRout = ReplayHelper::checkUrl() === true ? true : false;
         if (request()->has('subtype') && request()->filled('subtype')) {
-            $replay = ReplayHelper::getReplaysWithType($relations, $type, request()->subtype);
+            $subtype = request('subtype');
         } else {
-            $replay = ReplayHelper::getReplays($relations, $type);
+            $subtype = '';
         }
 
-        $type = $type == Replay::REPLAY_USER ? 'user' : 'pro';
-        $userReplayRout = ReplayHelper::checkUrl() === true ? true : false;
-        return view('replay.index', compact('replay', 'type', 'userReplayRout'));
+        return view('replay.index', compact('type', 'subtype', 'userReplayRout'));
     }
 
     /**
@@ -133,5 +124,101 @@ class ReplayController extends Controller
     {
         return redirect()->to('/');
 
+    }
+
+    public function loadReplay()
+    {
+        $relations = [
+            'users:id,name,avatar',
+            'maps:id,name',
+            'firstCountries:id,flag,name',
+            'secondCountries:id,flag,name',
+            'firstRaces:id,title,code',
+            'secondRaces:id,title,code',
+            'comments',
+        ];
+
+        if (request()->ajax()) {
+            $visible_title = false;
+            $type = ReplayHelper::getReplayType();
+            if (request('id') > 0) {
+                if (request()->has('subtype') && request()->filled('subtype')) {
+                    $replay = self::getReplayWithTypeAjaxId($relations, $type, request('subtype'), request('id'));
+                    $subtype = request('subtype');
+                } else {
+                    $replay = self::getReplayAjaxId($relations, $type, request('id'));
+                    $subtype = '';
+                }
+            } else {
+                if (request()->has('subtype') && request()->filled('subtype')) {
+                    $replay = self::getReplayWithTypeAjax($relations, $type, request('subtype'));
+                    $subtype = request('subtype');
+                } else {
+                    $replay = self::getReplayAjax($relations, $type);
+                    $subtype = '';
+                }
+                $visible_title = true;
+            }
+            $type = $type == Replay::REPLAY_USER ? 'user' : 'pro';
+            $userReplayRout = ReplayHelper::checkUrl() === true ? true : false;
+            $output = view('replay.components.index',
+                compact('replay', 'visible_title', 'type', 'subtype', 'userReplayRout')
+            );
+            echo $output;
+        }
+    }
+
+
+    public static function getReplayWithTypeAjaxId($relations, $user_replay, $type, $id)
+    {
+        return Replay::with($relations)
+            ->orderByDesc('id')
+            ->withCount('comments')
+            ->where('id', '<', $id)
+            ->where('approved', 1)
+            ->where('user_replay', $user_replay)
+            ->whereHas('types', function ($query) use ($type) {
+                $query->where('name', $type);
+            })
+            ->limit(5)
+            ->get();
+    }
+
+    public static function getReplayAjaxId($relations, $user_replay, $id)
+    {
+        return Replay::with($relations)
+            ->orderByDesc('id')
+            ->withCount('comments')
+            ->where('approved', 1)
+            ->where('user_replay', $user_replay)
+            ->where('id', '<', $id)
+            ->limit(5)
+            ->get();
+    }
+
+
+    public static function getReplayWithTypeAjax($relations, $user_replay, $type)
+    {
+        return Replay::with($relations)
+            ->orderByDesc('id')
+            ->withCount('comments')
+            ->where('approved', 1)
+            ->where('user_replay', $user_replay)
+            ->whereHas('types', function ($query) use ($type) {
+                $query->where('name', $type);
+            })
+            ->limit(5)
+            ->get();
+    }
+
+    public static function getReplayAjax($relations, $user_replay)
+    {
+        return Replay::with($relations)
+            ->orderByDesc('id')
+            ->withCount('comments')
+            ->where('approved', 1)
+            ->where('user_replay', $user_replay)
+            ->limit(5)
+            ->get();
     }
 }

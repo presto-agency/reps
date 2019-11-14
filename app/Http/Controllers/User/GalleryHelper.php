@@ -20,9 +20,22 @@ class GalleryHelper
      * @param $user_id
      * @return mixed
      */
-    public static function getAllUserImages($row,$user_id)
+    public static function getAllUserImagesAjax($row, $user_id)
     {
-        return UserGallery::where('user_id', $user_id)->get($row);
+        return UserGallery::
+        where('user_id', $user_id)
+            ->orderByDesc('id')
+            ->limit(8)
+            ->get($row);
+    }
+
+    public static function getAllUserImagesAjaxId($row, $user_id, $id)
+    {
+        return UserGallery::where('user_id', $user_id)
+            ->where('id', '<', $id)
+            ->orderByDesc('id')
+            ->limit(8)
+            ->get($row);
     }
 
     public static function getUserImage($id, $relation, $row)
@@ -49,12 +62,17 @@ class GalleryHelper
     }
 
     /**
-     * GalleriesImages
+     * @param $row
+     * @return mixed
      */
-
-    public static function getGalleriesImages($row)
+    public static function getGalleriesImagesAjax($row)
     {
-        return UserGallery::all($row);
+        return UserGallery::orderByDesc('id')->limit(8)->get($row);
+    }
+
+    public static function getGalleriesImagesAjaxId($row, $id)
+    {
+        return UserGallery::orderByDesc('id')->where('id', '<', $id)->limit(8)->get($row);
     }
 
     public static function previousGalleriesImage($id, $relation, $row)

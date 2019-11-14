@@ -18,17 +18,25 @@ class Replay extends Model
         Replay::REPLAY_USER => 'Пользовательский',
     ];
 
+    public static $type = [
+        Replay::REPLAY_PRO => 'pro',
+        Replay::REPLAY_USER => 'user',
+    ];
     protected $fillable = [
 
         'user_id',
         'title',
         'map_id',
-        'first_country_id', 'second_country_id',
-        'first_race', 'second_race',
+        'first_country_id',
+        'second_country_id',
+        'first_race',
+        'second_race',
         'type_id',
         'user_replay',
         'user_rating',
-        'negative_count', 'rating', 'positive_count',
+        'negative_count',
+        'rating',
+        'positive_count',
         'approved',
         'first_location',
         'first_name',

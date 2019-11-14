@@ -57,6 +57,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "post-update-cmd": [
+            "php artisan sleepingowl:update"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

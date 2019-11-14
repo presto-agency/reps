@@ -96,9 +96,9 @@ class Country extends Section
                     return [
                         AdminFormElement::image('flag', 'Флаг')
                             ->setUploadPath(function (UploadedFile $file) {
-                                return PathHelper::checkUploadStoragePath("/image/county/flag");
+                                return PathHelper::checkUploadStoragePath("/images/countries/flags");
                             })
-                            ->setValidationRules(['required', 'max:5120'])
+                            ->setValidationRules(['required', 'max:2048'])
                             ->setUploadSettings([
                                 'orientate' => [],
                                 'resize' => [50, null, function ($constraint) {

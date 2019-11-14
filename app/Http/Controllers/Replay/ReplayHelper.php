@@ -4,46 +4,12 @@ namespace App\Http\Controllers\Replay;
 
 use App\Models\Comment;
 use App\Models\Replay;
+use Illuminate\Http\Request;
 
 class ReplayHelper
 {
     public static $USER_REPLAY_URL = 'user-replay';
 
-
-    /**
-     * Get All Replays WithType2
-     *
-     * @param $relations
-     * @param $user_replay
-     * @return Replay[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
-    public static function getReplays($relations, $user_replay)
-    {
-        return Replay::with($relations)
-            ->orderByDesc('created_at')
-            ->withCount('comments')
-            ->where('approved', 1)
-            ->where('user_replay', $user_replay)
-            ->get();
-    }
-
-    /**
-     * Get All Auth User Replays WithType2
-     *
-     * @param $relations
-     * @param $user_id
-     * @param $user_replay
-     * @return Replay[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
-    public static function findUserReplaysWithType2($relations, $user_id, $user_replay)
-    {
-        return Replay::with($relations)
-            ->orderByDesc('created_at')
-            ->withCount('comments')
-            ->where('user_replay', $user_replay)
-            ->where('user_id', $user_id)
-            ->get();
-    }
 
     /**
      * Get Auth user replay withType2
@@ -82,28 +48,6 @@ class ReplayHelper
 
     }
 
-    /**
-     * Get All replays withType1 and withType2
-     *
-     * @param $relations
-     * @param $user_replay
-     * @param $type
-     * @return Replay[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
-    public static function getReplaysWithType($relations, $user_replay, $type)
-    {
-
-        return Replay::with($relations)
-            ->orderByDesc('created_at')
-            ->withCount('comments')
-            ->where('approved', 1)
-            ->whereHas('types', function ($query) use ($type) {
-                $query->where('name', $type);
-            })
-            ->where('user_replay', $user_replay)
-            ->get();
-    }
-
     public static function findReplaysWithType($relations, $id, $user_replay, $type)
     {
 
@@ -120,78 +64,47 @@ class ReplayHelper
     public function download()
     {
         $request = request();
-        $filePath = Replay::findOrFail($request->id)->value('file');
+        $filePath = Replay::find($request->id)->value('file');
+
         if (\File::exists($filePath)) {
             return response()->download($filePath);
-        } else {
-            return 'Файл отсутствует';
         }
+        return back();
     }
 
     public function downloadCount()
     {
         $request = request();
-
         if ($request->ajax()) {
-            $replay = Replay::find($request->id);
-            $replay->increment('downloaded', 1);
-            $replay->save();
-
-            echo json_encode(array('downloaded' => $replay->downloaded));
+            $filePath = Replay::find($request->id)->value('file');
+            if (\File::exists($filePath)) {
+                $replay = Replay::find($request->id);
+                $replay->increment('downloaded', 1);
+                $replay->save();
+                echo json_encode(array('downloaded' => $replay->downloaded));
+            }
         }
     }
 
     public function saveComments()
     {
-        $request = request();
-        $replay = Replay::find($request->id);
+        $replay = Replay::find(request('id'));
         $comment = new Comment([
             'user_id' => auth()->id(),
-            'content' => $request->input('content')
+            'content' => request('content'),
         ]);
         $replay->comments()->save($comment);
 
         return back();
     }
 
-    public static function loadReplay($relations, $user_replay)
-    {
-        $request = request();
-
-        if ($request->ajax()) {
-            $visible_title = false;
-            if ($request->id > 0) {
-                $data = Replay::with($relations)
-                    ->orderByDesc('created_at')
-                    ->where('approved', 1)
-                    ->where('user_replay', $user_replay)
-                    ->where('id', '<', $request->id)
-                    ->limit(5)
-                    ->get();
-            } else {
-                $data = Replay::with($relations)
-                    ->orderByDesc('created_at')
-                    ->where('approved', 1)
-                    ->where('user_replay', $user_replay)
-                    ->where('id', '<', $request->id)
-                    ->limit(5)
-                    ->get();
-
-                $visible_title = true;
-            }
-
-            $output = view('replay.index', ['replay' => $data]);
-            echo $output;
-        }
-    }
-
     public static function getReplayType()
     {
 
         if (request()->has('type') && request()->filled('type')) {
-            if (request()->type === 'user') {
+            if (request('type') === 'user') {
                 return $type = Replay::REPLAY_USER;
-            } elseif (request()->type === 'pro') {
+            } elseif (request('type') === 'pro') {
                 return $type = Replay::REPLAY_PRO;
             } else {
                 return $type = Replay::REPLAY_USER;
@@ -206,11 +119,6 @@ class ReplayHelper
         return collect(request()->segments());
     }
 
-    public static function checkUrlTournament()
-    {
-        return \Str::contains(self::getUrl(), 'tournament');
-    }
-
     public static function checkUrl()
     {
         return \Str::contains(self::getUrl(), "user-replay");
@@ -219,10 +127,5 @@ class ReplayHelper
     public static function checkUrlType()
     {
         return self::getReplayType();
-    }
-
-    public static function checkUrlProType($type)
-    {
-        return \Str::contains(self::getUrl(), "$type");
     }
 }

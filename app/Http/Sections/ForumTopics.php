@@ -11,7 +11,10 @@ use AdminDisplayFilter;
 use AdminColumnFilter;
 use App\Models\ForumSection;
 use App\Models\ForumTopic;
+use App\Services\ServiceAssistants\PathHelper;
 use App\User;
+use Carbon\Carbon;
+use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 //use SleepingOwl\Admin\Contracts\Initializable;
@@ -89,7 +92,7 @@ class ForumTopics extends Section
                 ->setWidth('15px'),
             $reviews = AdminColumn::text('reviews', 'Reviews')
                 ->setWidth('30px'),
-            $news = AdminColumnEditable::checkbox('news','Yes', 'No')->setLabel('News'),
+            $news = AdminColumnEditable::checkbox('news', 'Yes', 'No')->setLabel('News'),
 
         ]);
 
@@ -123,15 +126,27 @@ class ForumTopics extends Section
 
         $form->setItems([
             /*Init FormElement*/
-
-            $sections = AdminFormElement::select('forum_section_id', 'Section', ForumSection::class)->setDisplay('title')->required(),
-
             $title = AdminFormElement::text('title', 'Title')
-                ->setValidationRules(['required', 'max:255']),
-            $preview_img = AdminFormElement::image('preview_img', 'Preview images'),
-            $preview_content = AdminFormElement::wysiwyg('preview_content', 'Preview')->disableFilter(),
-            $content = AdminFormElement::wysiwyg('content', 'Content')->disableFilter(),
-            $start_on = AdminFormElement::date('start_on', 'Publish from')->setFormat('Y-m-d')->required(),
+                ->setHtmlAttribute('placeholder', 'Title')
+                ->setValidationRules(['required', 'between:1,255', 'string']),
+            $sections = AdminFormElement::select('forum_section_id', 'Section', ForumSection::class)
+                ->setValidationRules(['required', 'exists:forum_topics,id'])
+                ->setDisplay('title'),
+            $preview_img = AdminFormElement::image('preview_img', 'Preview images')
+                ->setUploadPath(function (UploadedFile $file) {
+                    return PathHelper::checkUploadStoragePath("/images/topics");
+                })
+                ->setValidationRules(['nullable', 'max:2048']),
+            $preview_content = AdminFormElement::wysiwyg('preview_content', 'Preview')
+                ->setValidationRules(['required', 'string', 'between:1,1000'])
+                ->disableFilter(),
+            $content = AdminFormElement::wysiwyg('content', 'Content')
+                ->setValidationRules(['required', 'string', 'between:3,50000'])
+                ->disableFilter(),
+            $start_on = AdminFormElement::date('start_on', 'Publish from')
+                ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d'))
+                ->setValidationRules(['required'])
+                ->setFormat('Y-m-d'),
             $news = AdminFormElement::checkbox('news', 'Display in the news'),
             $author = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
         ]);
@@ -161,6 +176,7 @@ class ForumTopics extends Section
     {
         // remove if unused
     }
+
     /**
      * @param $display
      * @return \SleepingOwl\Admin\Display\ControlLink

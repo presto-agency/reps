@@ -49,10 +49,6 @@
                 </svg>
             </a>
         </div>
-        {{--        <div class="block_svg">--}}
-        {{--            --}}
-
-        {{--        </div>--}}
     </div>
     <div id="settings_div" class="logged_links">
         <ul class="logged_active">
@@ -60,10 +56,6 @@
                 <a href="{{route('user_profile',['id' => auth()->id()])}}"
                    title="Мой аккаунт">Мой аккаунт</a>
             </li>
-            {{--            <li>--}}
-            {{--                <a href="{{route('user-gallery.index',['id' => auth()->id()]) }}"--}}
-            {{--                   title="Моя галерея">Моя галерея</a>--}}
-            {{--            </li>--}}
             <li>
                 <a href="{{route('user-gallery.index',['id' => auth()->id()]) }}"
                    title="Галерея">Галерея</a>
@@ -76,33 +68,10 @@
                 <a href="{{route('user-replay.create',['id' => auth()->id()])}}"
                    title="Отправить реплей">Отправить реплей</a>
             </li>
-            {{--            <li>--}}
-            {{--                <a href="{{route('galleries.index')}}"--}}
-            {{--                   title="Галерея">Галерея</a>--}}
-            {{--            </li>--}}
             <li>
                 <a href="{{route('edit_profile',['id' => auth()->id()])}}"
                    title="Настройки">Настройки</a>
             </li>
-            {{--            <li>--}}
-            {{--                <a href="#" title="Мои стримы">Мои стримы</a>--}}
-            {{--            </li>--}}
-            {{--            <li>--}}
-            {{--                <a href="{{route('user-topics.index',['id' => auth()->id()]) }}"--}}
-            {{--                   title="Моя темы">Мои темы</a>--}}
-            {{--            </li>--}}
-            {{--            <li>--}}
-            {{--                <a href="{{route('user-comments.index',['id' => auth()->id()]) }}"--}}
-            {{--                   title="Мои комментарии">Мои комментарии</a>--}}
-            {{--            </li>--}}
-            {{--            <li>--}}
-            {{--                <a href="{{route('user-replay.index',['id' => auth()->id(),'type'=>'user'])}}"--}}
-            {{--                   title="Мои пользовательские реплеи">Мои пользовательские реплеи</a>--}}
-            {{--            </li>--}}
-            {{--            <li>--}}
-            {{--                <a href="{{route('user-replay.index',['id' => auth()->id(),'type'=>'pro'])}}"--}}
-            {{--                   title="Мои профессиональные реплеи">Мои профессиональные реплеи</a>--}}
-            {{--            </li>--}}
         </ul>
     </div>
 
