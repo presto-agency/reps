@@ -144,7 +144,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<forum_topics>,<files>)
          * loc.(<forum_topics>).
          */
-        $this->call(TransferForumTopics::class);
+//        $this->call(TransferForumTopics::class);
 
 
 //        $this->call(SeederSuperAdmin::class);
