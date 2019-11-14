@@ -75,6 +75,7 @@ class ChatController extends Controller
         }
     }
 
+
     public function setFullMessage($msg)
     {
         $countries = $this->general_helper->getCountries();
