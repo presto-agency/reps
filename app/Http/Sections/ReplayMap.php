@@ -11,6 +11,7 @@ use App\Services\ServiceAssistants\PathHelper;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
+use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 
@@ -70,8 +71,12 @@ class ReplayMap extends Section
 
             $id = null,
             $url = null,
-            $name = AdminColumnFilter::text()->setOperator('contains')
-                ->setPlaceholder('Название карты'),
+            $name = AdminColumnFilter::select()
+                ->setOptions((new \App\Models\ReplayMap())->pluck('name', 'name')->toArray())
+                ->setOperator(FilterInterface::CONTAINS)
+                ->setPlaceholder('Название карты')
+                ->setHtmlAttributes(['style' => 'width: 100%']),
+
         ]);
         $display->getColumnFilters()->setPlacement('table.header');
 
@@ -100,13 +105,16 @@ class ReplayMap extends Section
                 ->setUploadPath(function (UploadedFile $file) {
                     return PathHelper::checkUploadStoragePath("/images/replays/maps");
                 })
-                ->setValidationRules(['required', 'max:2048']),
+                ->setValidationRules(['required',
+                                      'max:2048']),
 
             $name = AdminFormElement::text('name', 'Название карты')
                 ->setHtmlAttribute('placeholder', 'Название карты')
                 ->setHtmlAttribute('maxlength', '255')
                 ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules(['required', 'string', 'between:1,255']),
+                ->setValidationRules(['required',
+                                      'string',
+                                      'between:1,255']),
         ]);
         return $display;
     }

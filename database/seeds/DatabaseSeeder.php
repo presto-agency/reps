@@ -14,9 +14,12 @@ class DatabaseSeeder extends Seeder
         /**
          * Transfer data from reps
          */
-//        $this->call(ReplayMapsTransfer::class);
-//        $this->call(TournamentsListTransfer::class);
-//        $this->call(TournamentsMatchesTransfer::class);
+//        $this->call(TransferReplayMaps::class);  /*Disable auto increment for Id*/
+//        $this->call(TransferTournamentsList::class);
+//        $this->call(TransferTournamentsMatches::class);
+//        $this->call(TransferTournamentsPlayers::class);
+
+//        $this->call(TransferReplays::class);
 
         //$this->call(CountriesSeed::class);
         //$this->call(FooterSeeder::class);

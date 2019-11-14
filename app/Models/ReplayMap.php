@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReplayMap extends Model
 {
-    protected $fillable = ['name', 'url'];
+    protected $fillable = [
+        'name',
+        'url'
+    ];
 
     /*$replayMap->url*/
     public function getUrlAttribute($value)

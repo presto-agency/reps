@@ -3,7 +3,7 @@
 use App\Models\Race;
 use Illuminate\Database\Seeder;
 
-class RaceSeeder extends Seeder
+class SeederRace extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,28 +16,28 @@ class RaceSeeder extends Seeder
         if (!$race->exists) {
             $race->fill([
                 'title' => 'All',
-                'code' => 'All',
+                'code'  => 'All',
             ])->save();
         }
         $race = Race::query()->firstOrNew(['title' => 'Zerg']);
         if (!$race->exists) {
             $race->fill([
                 'title' => 'Zerg',
-                'code' => 'Z',
+                'code'  => 'Z',
             ])->save();
         }
         $race = Race::query()->firstOrNew(['title' => 'Protoss']);
         if (!$race->exists) {
             $race->fill([
                 'title' => 'Protoss',
-                'code' => 'P',
+                'code'  => 'P',
             ])->save();
         }
         $race = Race::query()->firstOrNew(['title' => 'Terran']);
         if (!$race->exists) {
             $race->fill([
                 'title' => 'Terran',
-                'code' => 'T',
+                'code'  => 'T',
             ])->save();
         }
     }

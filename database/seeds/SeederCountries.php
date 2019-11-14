@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CountriesSeed extends Seeder
+class SeederCountries extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,8 @@ class CountriesSeed extends Seeder
      */
     public function run()
     {
-        $countries = [["id" => 1, "name" => "Afghanistan", "code" => "AF"],
+        $countries = [
+            ["id" => 1, "name" => "Afghanistan", "code" => "AF"],
             ["id" => 2, "name" => "African Rep.", "code" => 'CF'],
             ["id" => 3, "name" => "Albania", "code" => "AL"],
             ["id" => 4, "name" => "Algeria", "code" => "DZ"],

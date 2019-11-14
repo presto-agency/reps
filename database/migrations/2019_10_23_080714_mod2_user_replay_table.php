@@ -24,7 +24,7 @@ class Mod2UserReplayTable extends Migration
             $table->string('name')->after('id');
         });
 
-        Artisan::call('db:seed', array('--class' => 'ReplayTypesSeeder'));
+        Artisan::call('db:seed', array('--class' => 'SeederReplayTypes'));
 
     }
 

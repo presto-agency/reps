@@ -19,7 +19,7 @@ class CreateRacesTable extends Migration
             $table->string('code');
             $table->timestamps();
         });
-        Artisan::call('db:seed', array('--class' => 'RaceSeeder'));
+        Artisan::call('db:seed', array('--class' => 'SeederRace'));
     }
 
     /**

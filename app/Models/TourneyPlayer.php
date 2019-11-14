@@ -14,7 +14,7 @@ class TourneyPlayer extends Model
      *
      * @var string
      */
-    protected $table='tourney_players';
+    protected $table = 'tourney_players';
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +22,7 @@ class TourneyPlayer extends Model
      * @var array
      */
     protected $fillable = [
+        'defiler_player_id',
         'tourney_id',
         'user_id',
         'check_in',

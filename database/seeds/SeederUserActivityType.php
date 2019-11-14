@@ -3,7 +3,7 @@
 use App\Models\UserActivityType;
 use Illuminate\Database\Seeder;
 
-class UserActivityTypeSeeder extends Seeder
+class SeederUserActivityType extends Seeder
 {
     /**
      * Run the database seeds.

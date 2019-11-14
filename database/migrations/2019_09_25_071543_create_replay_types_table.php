@@ -18,7 +18,7 @@ class CreateReplayTypesTable extends Migration
             $table->string('title');
             $table->timestamps();
         });
-//        Artisan::call('db:seed', array('--class' => 'ReplayTypesSeeder'));
+
     }
 
     /**

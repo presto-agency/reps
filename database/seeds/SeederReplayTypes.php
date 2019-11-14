@@ -3,7 +3,7 @@
 use App\Models\ReplayType;
 use Illuminate\Database\Seeder;
 
-class ReplayTypesSeeder extends Seeder
+class SeederReplayTypes extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,14 +15,14 @@ class ReplayTypesSeeder extends Seeder
         $replayType = ReplayType::query()->firstOrNew(['title' => 'Gosu']);
         if (!$replayType->exists) {
             $replayType->fill([
-                'name' => 'duel',
+                'name'  => 'duel',
                 'title' => 'Gosu',
             ])->save();
         }
         $replayType = ReplayType::query()->firstOrNew(['title' => 'Пользовательский']);
         if (!$replayType->exists) {
             $replayType->fill([
-                'name' => 'pack',
+                'name'  => 'pack',
                 'title' => 'Пользовательский',
             ])->save();
         }
@@ -30,28 +30,28 @@ class ReplayTypesSeeder extends Seeder
         $replayType = ReplayType::query()->firstOrNew(['title' => 'Gosu']);
         if ($replayType->exists) {
             $replayType->fill([
-                'name' => 'duel',
+                'name'  => 'duel',
                 'title' => '1x1',
             ])->save();
         }
         $replayType = ReplayType::query()->firstOrNew(['title' => 'Пользовательский']);
         if ($replayType->exists) {
             $replayType->fill([
-                'name' => 'pack',
+                'name'  => 'pack',
                 'title' => 'Park / Archive',
             ])->save();
         }
         $replayType = ReplayType::query()->firstOrNew(['title' => 'Game of the Week']);
         if (!$replayType->exists) {
             $replayType->fill([
-                'name' => 'gotw',
+                'name'  => 'gotw',
                 'title' => 'Game of the Week',
             ])->save();
         }
         $replayType = ReplayType::query()->firstOrNew(['title' => '2x2, 3x3, 4x4']);
         if (!$replayType->exists) {
             $replayType->fill([
-                'name' => 'team',
+                'name'  => 'team',
                 'title' => '2x2, 3x3, 4x4',
             ])->save();
         }
