@@ -28,10 +28,10 @@ class ReplayHelper
             ->with(['users' => function ($query) {
                 $query->withCount('comments');
             }])
-            ->where('user_replay', $user_replay)
             ->where('approved', 1)
-            ->findOrFail($id);
-
+            ->where('user_replay', $user_replay)
+            ->where('id', $id)
+            ->firstOrFail();
     }
 
     public static function findReplaysWithType($relations, $id, $user_replay, $type)
@@ -50,14 +50,15 @@ class ReplayHelper
                 $query->where('name', $type);
             })
             ->where('user_replay', $user_replay)
-            ->findOrFail($id);
+            ->where('id', $id)
+            ->firstOrFail();
     }
 
     public function download()
     {
         $request = request();
-        $filePath = Replay::find($request->id)->value('file');
 
+        $filePath = Replay::where('id', $request->id)->value('file');
         if (\File::exists($filePath)) {
             return response()->download($filePath);
         }
@@ -68,7 +69,7 @@ class ReplayHelper
     {
         $request = request();
         if ($request->ajax()) {
-            $filePath = Replay::find($request->id)->value('file');
+            $filePath = Replay::where('id', $request->id)->value('file');
             if (\File::exists($filePath)) {
                 $replay = Replay::find($request->id);
                 $replay->increment('downloaded', 1);

@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<replay_maps>)
          * loc.(<replays>,<replay_maps>).
          */
-//        $this->call(TransferReplayMaps::class);
+        $this->call(TransferReplayMaps::class);
 
         /**
          *
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<tourney_lists>,<files>)
          * loc.(<tourney_lists>).
          */
-//        $this->call(TransferTournamentsList::class);
+        $this->call(TransferTournamentsList::class);
 
         /**
          *
@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<tourney_matches>,<files>)
          * loc.(<tourney_matches>).
          */
-//        $this->call(TransferTournamentsMatches::class);
+        $this->call(TransferTournamentsMatches::class);
 
         /**
          *
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<tourney_players>)
          * loc.(<tourney_players>).
          */
-//        $this->call(TransferTournamentsPlayers::class);
+        $this->call(TransferTournamentsPlayers::class);
 
         /**
          *
@@ -76,7 +76,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<countries>)
          * loc.(<countries>,<replays>,<users>,<streams>).
          */
-//        $this->call(TransferCountries::class);
+        $this->call(TransferCountries::class);
 
 
         /**
@@ -91,7 +91,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<user_activity_logs>)
          * loc.(<user_activity_logs>,<users>).
          */
-//        $this->call(TransferUserActivityLogs::class);
+        $this->call(TransferUserActivityLogs::class);
 
         /**
          *
@@ -104,7 +104,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<replays>,<files>)
          * loc.(<replays>,<races>).
          */
-//        $this->call(TransferReplays::class);
+        $this->call(TransferReplays::class);
 
         /**
          *
@@ -118,7 +118,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<streams>)
          * loc.(<streams>,<races>).
          */
-//        $this->call(TransferStreams::class);
+        $this->call(TransferStreams::class);
 
         /**
          *
@@ -131,7 +131,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<forum_sections>)
          * loc.(<forum_sections>).
          */
-//        $this->call(TransferForumSections::class);
+        $this->call(TransferForumSections::class);
 
         /**
          *
@@ -144,7 +144,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<forum_topics>,<files>)
          * loc.(<forum_topics>).
          */
-//        $this->call(TransferForumTopics::class);
+        $this->call(TransferForumTopics::class);
 
         /**
          *
@@ -157,8 +157,8 @@ class DatabaseSeeder extends Seeder
          * reps.(<users>,<files>)
          * loc.(<users>,<races>,<countries>,<roles>).
          */
-//        $this->call(TransferUsers::class);
-//        $this->call(SeederSuperAdmin::class);
+        $this->call(TransferUsers::class);
+        $this->call(SeederSuperAdmin::class);
 
         /**
          *
@@ -171,7 +171,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<comments>)
          * loc.(<comments>).
          */
-//        $this->call(TransferComments::class);
+        $this->call(TransferComments::class);
 
         /**
          *
@@ -188,7 +188,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<interview_questions>,<interview_user_answers>,<interview_variants_answers>)
          * loc.(<interview_questions>,<interview_user_answers>,<interview_variants_answers>).
          */
-//        $this->call(TransferInterview::class);
+        $this->call(TransferInterview::class);
         /**
          *
          * Transfer data from reps reps.<user_reputations> in loc.<user_reputations>
@@ -200,6 +200,6 @@ class DatabaseSeeder extends Seeder
          * reps.(<user_reputations>)
          * loc.(<user_reputations>).
          */
-        $this->call(TransferUserReputations::class);
+//        $this->call(TransferUserReputations::class);
     }
 }

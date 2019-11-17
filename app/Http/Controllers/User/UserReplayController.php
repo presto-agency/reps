@@ -257,7 +257,7 @@ class UserReplayController extends Controller
                 PathHelper::checkFileAndDelete($data->file);
                 // Upload file on server
                 $image = $request->file('file');
-                $filePath = $image->store('file/replay', 'public');
+                $filePath = $image->store('/files/replays', 'public');
                 $data->file = 'storage/' . $filePath;
             } else {
                 back();
