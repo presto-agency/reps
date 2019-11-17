@@ -16,8 +16,6 @@ class NewsController extends Controller
      */
     public function index()
     {
-//        $news = ForumTopic::with('author')->where('news', 1)->latest()->get();
-//        return view('news.index', ['news' => $news]);
         return view('news.index');
     }
 
@@ -50,25 +48,26 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        /*ForumTopic::where('id', $id)
-            ->where(function ($q) {
-                $q->whereNull('start_on')
-                    ->orWhere('start_on', '<=', Carbon::now()->format('Y-m-d'));
-            })
-            ->with(User::getUserWithReputationQuery())
-            ->withCount('positive', 'negative', 'comments')
-            ->with('icon')->first();*/
+        $news = ForumTopic::with(
 
-//        $topic = ForumTopic::with('author')->where('news', 1)->latest()->get();
-//        $topic = ForumTopic::where('id', $id)->first();
-        $topics = ForumTopic::withCount('comments')->where('id', $id)->first();
-        $count = $topics->comments()->count();
-//        $topics = ForumTopic::find($id);
+            'author',
+            'author.countries:id,name,flag',
+            'author.races:id,title',
 
-        /*foreach ($topics as $topic) {
-            dump($topic->comments_count);
-        }*/
-        return view('news.show');
+            'comments',
+            'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive',
+            'comments.user.countries:id,name,flag',
+            'comments.user.races:id,title'
+        )
+            ->with(['author' => function ($query) {
+                $query->withCount('comments');
+            }])
+            ->with(['comments.user' => function ($query) {
+                $query->withCount('comments');
+            }])
+            ->findOrFail($id);
+
+        return view('news.show',compact('news'));
     }
 
     /**
@@ -110,21 +109,25 @@ class NewsController extends Controller
         if ($request->ajax()) {
             $visible_title = false;
             if ($request->id > 0) {
-                $data = ForumTopic::with('author')
+                $data = ForumTopic::with('author:id,avatar,name')
                     ->withCount('comments')
                     ->where('id', '<', $request->id)
-                    ->orderBy('id', 'DESC')
+                    ->orderByDesc('id')
                     ->limit(5)
                     ->get();
             } else {
-                $data = ForumTopic::with('author')
-                    ->orderBy('id', 'DESC')
+                $data = ForumTopic::with('author:id,avatar,name')
+                    ->withCount('comments')
+                    ->orderByDesc('id')
                     ->limit(5)
                     ->get();
                 $visible_title = true;
             }
 
-            $output = view('news.last_news', ['news' => $data, 'visible_title' => $visible_title]);
+            $output = view('news.components.index', [
+                'news'          => $data,
+                'visible_title' => $visible_title
+            ]);
             echo $output;
         }
     }

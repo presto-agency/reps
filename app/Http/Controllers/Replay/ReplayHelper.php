@@ -10,26 +10,6 @@ class ReplayHelper
 {
     public static $USER_REPLAY_URL = 'user-replay';
 
-
-    /**
-     * Get Auth user replay withType2
-     *
-     * @param $relations
-     * @param $replay_id
-     * @param $id
-     * @param $user_replay
-     * @return Replay|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
-     */
-    public static function findUserReplayWithType2($relations, $id, $replay_id, $user_replay)
-    {
-        return Replay::with($relations)
-            ->withCount('comments')
-            ->where('user_id', $id)
-            ->where('id', $replay_id)
-            ->where('user_replay', $user_replay)
-            ->firstOrFail();
-    }
-
     /**
      * Get user replay withType2
      *
@@ -42,6 +22,12 @@ class ReplayHelper
     {
         return Replay::with($relations)
             ->withCount('comments')
+            ->with(['comments.user' => function ($query) {
+                $query->withCount('comments');
+            }])
+            ->with(['users' => function ($query) {
+                $query->withCount('comments');
+            }])
             ->where('user_replay', $user_replay)
             ->where('approved', 1)
             ->findOrFail($id);
@@ -53,6 +39,12 @@ class ReplayHelper
 
         return Replay::with($relations)
             ->withCount('comments')
+            ->with(['comments.user' => function ($query) {
+                $query->withCount('comments');
+            }])
+            ->with(['users' => function ($query) {
+                $query->withCount('comments');
+            }])
             ->where('approved', 1)
             ->whereHas('types', function ($query) use ($type) {
                 $query->where('name', $type);

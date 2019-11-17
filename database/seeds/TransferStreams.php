@@ -40,11 +40,16 @@ class TransferStreams extends Seeder
          * Get and Insert data
          */
 
-        DB::connection("mysql2")->table("streams")->orderBy('id','ASC')
+        DB::connection("mysql2")->table("streams")->orderBy('id', 'ASC')
             ->chunkById(100, function ($repsStreams) {
                 try {
                     $insertItems = [];
                     foreach ($repsStreams as $item) {
+//                        preg_match('/src="([^"]+)"/', $item->stream_url, $match);
+//                        $url = $match[1];
+//                        'play.afreecatv.com';
+//                        'player.twitch.tv';
+//                        'goodgame.ru';
                         $insertItems[] = [
                             'id'                => $item->id,
                             'user_id'           => $item->user_id,

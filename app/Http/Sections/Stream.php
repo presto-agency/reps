@@ -59,7 +59,6 @@ class Stream extends Section implements Initializable
         $display->setFilters([
             AdminDisplayFilter::related('approved')->setModel(\App\Models\Stream::class),
         ]);
-        $display->with('users');
 
         $display->setApply(function ($query) {
             $query->orderByDesc('id');

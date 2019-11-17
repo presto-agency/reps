@@ -103,8 +103,8 @@ class BestController extends Controller
     public function getPoints()
     {
         $getData = User::with('countries:id,flag,name', 'races:id,title')
-            ->withCount('totalComments')
-            ->orderByDesc('total_comments_count')
+            ->withCount('comments')
+            ->orderByDesc('comments_count')
             ->limit(100)
             ->get();
         $data = null;
@@ -192,7 +192,7 @@ class BestController extends Controller
     {
         switch ($type) {
             case 'comments':
-                return $item->total_comments_count;
+                return $item->comments_count;
                 break;
             case 'rating':
                 return $item->count_positive - $item->count_negative;

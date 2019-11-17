@@ -19,7 +19,7 @@ class UserSectionModelPolicy
      */
     public function before(\App\User $user, $ability, \App\Http\Sections\User $section, \App\User $item = null)
     {
-        if ($user->hasSuperAdmin() === false) {
+        if ($user->superAdminRoles() === false) {
             if ($ability != 'display' && $ability != 'create' && !is_null($item) && $item->roles->name == 'super-admin') {
                 return false;
             }

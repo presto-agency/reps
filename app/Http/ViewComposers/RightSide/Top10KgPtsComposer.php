@@ -70,8 +70,8 @@ class Top10KgPtsComposer
     {
         $data = null;
 
-        $getData = User::withCount('totalComments')
-            ->orderByDesc('total_comments_count')
+        $getData = User::withCount('comments')
+            ->orderByDesc('comments_count')
             ->with('countries:id,flag,name', 'races:id,code,title')
             ->take(10)
             ->get();
@@ -127,7 +127,7 @@ class Top10KgPtsComposer
     {
         switch ($type) {
             case 'comments':
-                return $item->total_comments_count;
+                return $item->comments_count;
                 break;
             case 'rating':
                 return $item->count_positive - $item->count_negative;

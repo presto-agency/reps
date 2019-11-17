@@ -99,19 +99,6 @@ class ForumController extends Controller
                             'topics.author:id,name,avatar'])
                     ->where('id', request('forum'))
                     ->first();
-
-                $commentTopic = [];
-                $commentTopicCount = null;
-
-                if (!$section->topics->isEmpty()) {
-                    foreach ($section->topics as $item) {
-                        $commentTopic[] = [
-                            'comments_count' => $item->comments_count
-                        ];
-                        $commentTopicCount = collect($commentTopic)->sum('comments_count');
-                    }
-                    $section->setAttribute('topics_comments_count', $commentTopicCount);
-                }
             } else {
                 $section = ForumSection::withCount('topics')
                     ->with(['topics' => function ($query) {
@@ -122,19 +109,6 @@ class ForumController extends Controller
                             'topics.author:id,name,avatar'])
                     ->where('id', request('forum'))
                     ->first();
-
-
-                $commentTopic = [];
-                $commentTopicCount = null;
-                if (!$section->topics->isEmpty()) {
-                    foreach ($section->topics as $item) {
-                        $commentTopic[] = [
-                            'comments_count' => $item->comments_count
-                        ];
-                        $commentTopicCount = collect($commentTopic)->sum('comments_count');
-                    }
-                    $section->setAttribute('topics_comments_count', $commentTopicCount);
-                }
                 $visible_title = true;
             }
             echo view('forum.components.section-show', compact('section', 'visible_title'));

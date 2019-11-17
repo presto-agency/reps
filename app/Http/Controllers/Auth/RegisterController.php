@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\Race;
 use App\Models\Role;
+use App\Services\Base\RegexService;
 use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -55,9 +56,26 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'between:3,30', 'unique:users,name', 'regex:/^[\p{L}0-9,.)\-_\s]+$/u'],
-            'email' => ['required', 'string', 'email', 'max:30', 'unique:users,email'],
-            'password' => ['required', 'string', 'between:8,30', 'confirmed'],
+            'name'     => [
+                'regex:' . RegexService::regex('name'),
+                'required',
+                'string',
+                'between:3,30',
+                'unique:users,name'
+            ],
+            'email'    => [
+                'required',
+                'email',
+                'string',
+                'max:30',
+                'unique:users,email'
+            ],
+            'password' => [
+                'required',
+                'string',
+                'between:6,30',
+                'confirmed'
+            ],
         ]);
     }
 
@@ -70,17 +88,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $roleUserId = Role::where('name', 'user')->select('id')->first()->id;
-        $raceId = Race::where('code', $data['race'])->select('id')->first()->id;
-        $countryId = Country::where('code', $data['country'])->select('id')->first()->id;
-
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'country_id' => $countryId,
-            'race_id' => $raceId,
-            'role_id' => $roleUserId,
-            'password' => Hash::make($data['password']),
+            'name'       => $data['name'],
+            'email'      => $data['email'],
+            'country_id' => Country::where('code', $data['country'])->value('id'),
+            'race_id'    => Race::where('code', $data['race'])->value('id'),
+            'role_id'    => Role::where('name', 'user')->value('id'),
+            'password'   => Hash::make($data['password']),
         ]);
     }
 

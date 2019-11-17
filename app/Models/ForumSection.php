@@ -19,7 +19,7 @@ class ForumSection extends Model
 
     public function topics()
     {
-        return $this->hasMany('App\Models\ForumTopic');
+        return $this->hasMany('App\Models\ForumTopic','forum_section_id','id');
     }
 
     public static function active()

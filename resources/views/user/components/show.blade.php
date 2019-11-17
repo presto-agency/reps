@@ -54,7 +54,7 @@
                     <div class="information_block">
                         <div class="left_block"><span>Статус:</span></div>
                         <div class="right_block night_text">
-                            <span>{{$user->getUserStatus($user->total_comments_count)}} {{ $user->total_comments_count }} pts</span>
+                            <span>{{$user->getUserStatus($user->comments_count)}} {{ $user->comments_count.' pts' }}</span>
                         </div>
                     </div>
                     <div class="information_block">

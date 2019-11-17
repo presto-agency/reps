@@ -5,8 +5,10 @@
     <div class="my-topics__accordion">
         @isset($topics)
             @foreach($topics as $items)
-                <button class="accordion-button change_gray night_text">{{$items->title}}</button>
-                @isset($items->topics)
+                @if(!$items->topics->isEmpty())
+                    <button class="accordion-button change_gray night_text">{{$items->title}}</button>
+                @endif
+                @if(isset($items->topics) && !$items->topics->isEmpty())
                     @foreach($items->topics as $item)
                         <div class="panel night_modal">
                             <div class="panel__wrap">
@@ -114,7 +116,8 @@
                             </div>
                         </div>
                     @endforeach
-                @endisset
+
+                @endif
             @endforeach
         @endisset
     </div>

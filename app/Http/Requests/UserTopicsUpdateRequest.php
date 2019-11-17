@@ -13,7 +13,7 @@ class UserTopicsUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return  auth()->user() && auth()->user()->role_id != 4;
+        return  auth()->user() && auth()->user()->isNotUser();
     }
 
     /**
@@ -26,7 +26,7 @@ class UserTopicsUpdateRequest extends FormRequest
         return [
             'forum_section_id' => 'exists:forum_sections,id',
             'title' => 'between:1,255|string',
-            'preview_content' => 'between:1,1000|string',
+            'preview_content' => 'between:1,10000|string',
             'content' => 'between:1,50000|string',
             'preview_img' => 'nullable|image|max:2048',
         ];

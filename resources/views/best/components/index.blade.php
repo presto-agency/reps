@@ -22,7 +22,7 @@
                 @foreach($points as $item)
                     <div class="players_content">
                         <div class="left_block">
-                            <span class="number night_text">#{{$item['id']}}</span>
+                            <span class="number night_text">#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <img src="{{asset($item['avatar'])}}" alt="avatar"
                                      class="author__avatar img-fluid">
@@ -36,21 +36,21 @@
                                  title="{{$item['raceTitle']}}">
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item['max']}}</p>
+                            <p class="night_text">{{$item['max'].' pts'}}</p>
                         </div>
                     </div>
                 @endforeach
             @endif
         </div>
         <div class="title_players change_gray">
-            <p class="title_playersText">{{__('Top-100 kg')}}</p>
+            <p class="title_playersText">{{__('Top-100 кг')}}</p>
         </div>
         <div class="container_players">
             @if(isset($rating) && !empty($rating))
                 @foreach($rating as $item)
                     <div class="players_content">
                         <div class="left_block">
-                            <span class="number night_text">#{{$item['id']}}</span>
+                            <span class="number night_text">#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <img src="{{asset($item['avatar'])}}" alt="avatar"
                                      class="author__avatar img-fluid">
@@ -64,7 +64,7 @@
                                  title="{{$item['raceTitle']}}">
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item['max']}}</p>
+                            <p class="night_text">{{$item['max'].' кг'}}</p>
                         </div>
                     </div>
                 @endforeach
@@ -79,7 +79,7 @@
                 @foreach($news as $item)
                     <div class="players_content">
                         <div class="left_block">
-                            <span class="number night_text">#{{$item['id']}}</span>
+                            <span class="number night_text">#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <img src="{{asset($item['avatar'])}}" alt="avatar"
                                      class="author__avatar img-fluid">
@@ -109,7 +109,7 @@
                 @foreach($replay as $item)
                     <div class="players_content">
                         <div class="left_block">
-                            <span class="number night_text">#{{$item['id']}}</span>
+                            <span class="number night_text">#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <img src="{{asset($item['avatar'])}}" alt="avatar"
                                      class="author__avatar img-fluid">

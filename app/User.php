@@ -67,9 +67,9 @@ class User extends Authenticatable
         return $this->roles->name == 'super-admin' || $this->roles->name == 'admin';
     }
 
-    public function hasSuperAdmin()
+    public function isNotUser()
     {
-        return $this->roles->name == 'super-admin' ? true : false;
+        return $this->roles->name != 'user' ? true : false;
     }
 
     public function superAdminRoles()
@@ -83,13 +83,9 @@ class User extends Authenticatable
      */
     public static function getUserDataById($id)
     {
-        return User::where('id', $id)
-            ->with('roles', 'countries', 'races')
-            ->withCount('topics', 'comments', 'user_replay', 'gosu_replay','totalComments')
-
-//            ->withCount( 'positive', 'negative', 'comments')
-//            ->withCount('user_galleries', 'topics', 'replay', 'gosu_replay', 'topic_comments', 'replay_comments', 'gallery_comments')
-            ->firstOrFail();
+        return User::with('roles', 'countries', 'races')
+            ->withCount('topics', 'comments', 'user_replay', 'gosu_replay')
+            ->findOrFail($id);
     }
 
     public function isOnline()

@@ -17,8 +17,8 @@ class UserRatingListController extends Controller
      */
     public function index($id)
     {
-        $userReputations = null;
         $user = User::findOrFail($id);
+        $userReputations = null;
         return view('user.rating-list.index', compact('userReputations', 'user'));
     }
 

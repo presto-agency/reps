@@ -53,4 +53,19 @@ class Replay extends Model
 
     ];
 
+    /**
+     * Get all of the comments for the User Replay.
+     */
+    public function replayUserComments()
+    {
+        return $this->hasManyThrough(
+            'App\Models\Comment',
+            'App\User',
+            'id',
+            'user_id',
+            'user_id',
+            'id'
+        );
+
+    }
 }
