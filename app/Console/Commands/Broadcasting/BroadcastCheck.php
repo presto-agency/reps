@@ -49,7 +49,6 @@ class BroadcastCheck extends Command
                     } else {
                         Stream::where('id', $item->id)->update(['active' => false]);
                     }
-                    \Log::info('Успешно обновлен список стримов id=' . $item->id);
                 } catch (\Exception $e) {
                     \Log::info('Ошибка обновления стрима id=' . $item->id);
                 }
