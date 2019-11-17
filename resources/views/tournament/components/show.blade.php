@@ -152,24 +152,9 @@
                                                                 @foreach($dataArr['maps'] as $map)
                                                                     <div class="col-xl-4 pl-1 pr-0 container_map">
                                                                         <div class="title_block_gray">
-                                                                            @isset($map['name'])
-                                                                                <span
-                                                                                    class="title_text">{{$map['name']}}</span>
-                                                                            @endisset
+                                                                            {!! App\Models\TourneyMatch::getTourneyMap($map['name'])['title'] !!}
                                                                         </div>
-                                                                        <div class="map">
-                                                                            @isset($map['name'])
-                                                                                @if(!empty($map['url']))
-                                                                                    <img src="{{$map['url']}}"
-                                                                                         alt="map">
-                                                                                @endif
-                                                                                @if(empty($map['url']))
-                                                                                    <img
-                                                                                        src="{{asset('images/default/map/nominimap.png')}}"
-                                                                                        alt="map">
-                                                                                @endif
-                                                                            @endisset
-                                                                        </div>
+                                                                        {!! App\Models\TourneyMatch::getTourneyMap($map['name'])['url'] !!}
                                                                     </div>
                                                                 @endforeach
                                                             @endisset
