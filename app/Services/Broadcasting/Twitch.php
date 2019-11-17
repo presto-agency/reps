@@ -27,33 +27,24 @@ class Twitch
      * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getStatus($chanelName,$id)
+    public function getStatus($chanelName, $id)
     {
         self::$base_uri = config('streams.twitch.base_uri');
         self::$client_id = config('streams.twitch.client_id');
-
-
         $client = new  Client ([
-            'base_uri' => self::$base_uri,
             'headers' => [
                 'Client-ID' => self::$client_id,
-                'Accept' => 'application/vnd.twitchtv.v5+json',
-                'Content-Type' => 'application/json',
+                'Accept:'   => 'application/json',
             ],
         ]);
-
-        $response = $client->request('GET', "search/streams?query=" . $chanelName);
-
+        $url = self::$base_uri . 'streams/' . $chanelName;
+        $response = $client->request('GET', $url);
+        $prepareContent = json_decode($response->getBody()->getContents());
         $data = [];
         $data['host'] = config('streams.twitch.host');
         $data['chanelName'] = $chanelName;
-
-        $prepareContent = json_decode($response->getBody()->getContents());
-
-        $getStream = !empty($prepareContent->streams) ? reset($prepareContent->streams) : null;
-        $data['status'] = !empty($getStream->stream_type) ? ($getStream->stream_type == 'live' ? config('streams.status') : null) : null;
+        $data['status'] = $prepareContent->stream != null ? config('streams.status') : null;
         $data['id'] = $id;
-
 
         return $data;
 
