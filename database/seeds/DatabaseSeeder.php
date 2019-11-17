@@ -146,7 +146,48 @@ class DatabaseSeeder extends Seeder
          */
 //        $this->call(TransferForumTopics::class);
 
-
+        /**
+         *
+         * Transfer data from reps reps.<users> in loc.<users>
+         *
+         * Attention!!!
+         *
+         * 1.The table loc.<forum_topics> will be cleared.
+         * 2.This process uses the following tables:
+         * reps.(<users>,<files>)
+         * loc.(<users>,<races>,<countries>,<roles>).
+         */
+//        $this->call(TransferUsers::class);
 //        $this->call(SeederSuperAdmin::class);
+
+        /**
+         *
+         * Transfer data from reps reps.<comments> in loc.<comments>
+         *
+         * Attention!!!
+         *
+         * 1.The table loc.<forum_topics> will be cleared.
+         * 2.This process uses the following tables:
+         * reps.(<comments>)
+         * loc.(<comments>).
+         */
+//        $this->call(TransferComments::class);
+
+        /**
+         *
+         * Transfer data from reps reps.<interview_questions> in loc.<interview_questions>
+         * Transfer data from reps reps.<interview_user_answers> in loc.<interview_user_answers>
+         * Transfer data from reps reps.<interview_variants_answers> in loc.<interview_variants_answers>
+         *
+         * Attention!!!
+         *
+         * 1.The table loc.<interview_questions> will be cleared.
+         * 2.The table loc.<interview_user_answers> will be cleared.
+         * 3.The table loc.<interview_variants_answers> will be cleared.
+         * 4.This process uses the following tables:
+         * reps.(<interview_questions>,<interview_user_answers>,<interview_variants_answers>)
+         * loc.(<interview_questions>,<interview_user_answers>,<interview_variants_answers>).
+         */
+//        $this->call(TransferInterview::class);
     }
 }

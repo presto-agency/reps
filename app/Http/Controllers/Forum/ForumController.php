@@ -92,10 +92,11 @@ class ForumController extends Controller
                 $section = ForumSection::withCount('topics')
                     ->with(['topics' => function ($query) {
                         $query->orderByDesc('id')
-                            ->where('id','<', request('id'))
+                            ->where('id', '<', request('id'))
                             ->withCount('comments')
                             ->limit(5);
-                    }, 'topics.author:id,name,avatar'])
+                    },
+                            'topics.author:id,name,avatar'])
                     ->where('id', request('forum'))
                     ->first();
 
@@ -117,7 +118,8 @@ class ForumController extends Controller
                         $query->orderByDesc('id')
                             ->withCount('comments')
                             ->limit(5);
-                    }, 'topics.author:id,name,avatar'])
+                    },
+                            'topics.author:id,name,avatar'])
                     ->where('id', request('forum'))
                     ->first();
 
@@ -144,28 +146,18 @@ class ForumController extends Controller
         if (request()->ajax()) {
             if (request('id') > 0) {
                 $sections = ForumSection::orderByDesc('id')
-                    ->with(['topics' => function ($query) {
-                        $query->withCount('comments');
-                    }])
+                    ->withCount('forumSectionComments')
                     ->withCount('topics')
                     ->where('id', '<', request('id'))
-                    ->limit(5)
-                    ->get();
-                foreach ($sections as $section) {
-                    $section->section_comments_count = $section->topics->sum('comments_count');
-                }
-            } else {
-                $sections = ForumSection::orderByDesc('id')
-                    ->with(['topics' => function ($query) {
-                        $query->withCount('comments');
-                    }])
-                    ->withCount('topics')
-                    ->limit(5)
+                    ->limit(3)
                     ->get();
 
-                foreach ($sections as $section) {
-                    $section->section_comments_count = $section->topics->sum('comments_count');
-                }
+            } else {
+                $sections = ForumSection::orderByDesc('id')
+                    ->withCount('forumSectionComments')
+                    ->withCount('topics')
+                    ->limit(3)
+                    ->get();
             }
             echo view('forum.components.index', compact('sections'));
         }

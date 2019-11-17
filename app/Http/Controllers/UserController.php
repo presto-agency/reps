@@ -52,22 +52,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
-
-        /*if (Auth::user()) {
-            return abort(403);
-        }*/
         $user = User::getUserDataById($id);
-        if (!$user) {
-            abort(404);
-        }
-
         $friends = UserFriend::getFriends($user);
         $friendly = UserFriend::getFriendlies($user);
 
         return view('user.profile-show')->with([
-            'friends' => $friends,
+            'friends'  => $friends,
             'friendly' => $friendly,
-            'user' => $user
+            'user'     => $user
         ]);
     }
 
@@ -79,7 +71,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('user.profile-edit')->with(['user' => Auth::user(), 'countries' => Country::all(), 'races' => Race::all()]);
+        return view('user.profile-edit')
+            ->with(
+                [
+                    'user'      => Auth::user(),
+                    'countries' => Country::all(),
+                    'races'     => Race::all()
+                ]
+            );
     }
 
     /**

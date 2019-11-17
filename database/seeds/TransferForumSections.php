@@ -33,29 +33,28 @@ class TransferForumSections extends Seeder
         /**
          * Get and Insert data
          */
-        $repsForumSections = DB::connection('mysql2')->table("forum_sections")->get();
-
-
-        foreach ($repsForumSections as $item) {
-            try {
-
-                $insertItem = [
-                    'id'                  => $item->id,
-                    'position'            => $item->position,
-                    'name'                => $item->name,
-                    'title'               => $item->title,
-                    'description'         => $item->description,
-                    'is_active'           => $item->is_active,
-                    'is_general'          => $item->is_general,
-                    'user_can_add_topics' => $item->user_can_add_topics,
-                    'created_at'          => Carbon::now(),
-                ];
-
-                DB::table("forum_sections")->insert($insertItem);
-            } catch (\Exception $e) {
-                dd($e, $item);
-            }
-        }
+        DB::connection("mysql2")->table("forum_sections")->orderBy('id','ASC')
+            ->chunkById(100, function ($repsForumSections) {
+                try {
+                    $insertItems = [];
+                    foreach ($repsForumSections as $item) {
+                        $insertItems[] = [
+                            'id'                  => $item->id,
+                            'position'            => $item->position,
+                            'name'                => $item->name,
+                            'title'               => $item->title,
+                            'description'         => $item->description,
+                            'is_active'           => $item->is_active,
+                            'is_general'          => $item->is_general,
+                            'user_can_add_topics' => $item->user_can_add_topics,
+                            'created_at'          => Carbon::now(),
+                        ];
+                    }
+                    DB::table("forum_sections")->insertOrIgnore($insertItems);
+                } catch (\Exception $e) {
+                    dd($e, $item);
+                }
+            });
         /**
          * Add autoIncr
          */

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\UserActivityLog;
+use Carbon\Carbon;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
 
@@ -16,7 +17,7 @@ class TransferUserActivityLogs extends Seeder
         /**
          * Disable forKeys
          */
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('user_activity_logs', function (Blueprint $table) {
             Schema::disableForeignKeyConstraints();
         });
         /**
@@ -31,13 +32,20 @@ class TransferUserActivityLogs extends Seeder
          * Change columns
          */
         Schema::table('user_activity_logs', function (Blueprint $table) {
-            $table->dropColumn('type_id');
-            $table->dropColumn('parameters');
-
+            if (Schema::hasColumn('user_activity_logs', 'type_id')) {
+                $table->dropColumn('type_id');
+            }
+            if (Schema::hasColumn('user_activity_logs', 'parameters')) {
+                $table->dropColumn('parameters');
+            }
         });
         Schema::table('user_activity_logs', function (Blueprint $table) {
-            $table->string('type');
-            $table->json('parameters')->nullable();
+            if (!Schema::hasColumn('user_activity_logs', 'type')) {
+                $table->string('type');
+            }
+            if (!Schema::hasColumn('user_activity_logs', 'parameters')) {
+                $table->json('parameters')->nullable();
+            }
         });
         /**
          * Clear table
@@ -52,27 +60,27 @@ class TransferUserActivityLogs extends Seeder
         /**
          * Get and Insert data
          */
-        $repsUserActivityLogs = DB::connection('mysql2')->table("user_activity_logs")->get();
-        foreach ($repsUserActivityLogs as $item) {
-            try {
-                $insertItem = [
-                    'id'         => $item->id,
-                    'type'       => $item->type,
-                    'time'       => $item->time,
-                    'user_id'    => $item->user_id,
-                    'parameters' => $item->parameters,
-                    'ip'         => $item->ip,
-                    'created_at' => $item->created_at,
-                    'updated_at' => $item->updated_at,
-                ];
+        DB::connection("mysql2")->table("user_activity_logs")->orderBy('id','ASC')
+            ->chunkById(100, function ($repsUserActivityLogs) {
+                try {
+                    $insertItems = [];
+                    foreach ($repsUserActivityLogs as $item) {
+                        $insertItems[] = [
+                            'id'         => $item->id,
+                            'type'       => $item->type,
+                            'time'       => $item->time,
+                            'user_id'    => $item->user_id,
+                            'parameters' => $item->parameters,
+                            'ip'         => $item->ip,
+                            'created_at' => Carbon::now(),
+                        ];
 
-                DB::table("user_activity_logs")->insert($insertItem);
-
-            } catch (\Exception $e) {
-                dd($e, $item);
-            }
-        }
-
+                    }
+                    DB::table("user_activity_logs")->insertOrIgnore($insertItems);
+                } catch (\Exception $e) {
+                    dd($e, $item);
+                }
+            });
         /**
          * Add autoIncr
          */
@@ -86,7 +94,7 @@ class TransferUserActivityLogs extends Seeder
         /**
          * Enable forKeys
          */
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('user_activity_logs', function (Blueprint $table) {
             Schema::enableForeignKeyConstraints();
         });
     }

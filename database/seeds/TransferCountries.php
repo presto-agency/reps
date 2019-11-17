@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Country;
+use Carbon\Carbon;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
 
@@ -51,24 +52,24 @@ class TransferCountries extends Seeder
         /**
          * Get and Insert data
          */
-        $repsCountries = DB::connection("mysql2")->table("countries")->get();
-        foreach ($repsCountries as $item) {
-            $flag = DB::connection("mysql2")->table("files")->where('id', $item->flag_file_id)->value('link');
-
-            try {
-                $insertItem = [
-                    'id'         => $item->id,
-                    'name'       => !empty($item->name) === true ? $item->name : '',
-                    'code'       => !empty($item->code) === true ? $item->code : '',
-                    'flag'       => !empty($flag) === true ? $flag : null,
-                    'created_at' => $item->created_at,
-                    'updated_at' => $item->updated_at,
-                ];
-                DB::table("countries")->insert($insertItem);
-            } catch (\Exception $e) {
-                dd($e, $item);
-            }
-        }
+        DB::connection("mysql2")->table("countries")->orderBy('id','ASC')
+            ->chunkById(100, function ($repsCountries) {
+                try {
+                    $insertItems = [];
+                    foreach ($repsCountries as $item) {
+                        $insertItems[] = [
+                            'id'         => $item->id,
+                            'name'       => !empty($item->name) === true ? $item->name : '',
+                            'code'       => !empty($item->code) === true ? $item->code : '',
+                            'flag'       => null,
+                            'created_at' => Carbon::now(),
+                        ];
+                    }
+                    DB::table("countries")->insertOrIgnore($insertItems);
+                } catch (\Exception $e) {
+                    dd($e, $item);
+                }
+            });
 
         /**
          * Add autoIncr

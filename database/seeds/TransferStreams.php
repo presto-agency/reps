@@ -39,32 +39,32 @@ class TransferStreams extends Seeder
         /**
          * Get and Insert data
          */
-        $repsStreams = DB::connection('mysql2')->table("streams")->get();
-        foreach ($repsStreams as $item) {
-            $raceId = Race::where('code', $item->race)->value('id');
-//            preg_match('/src="([^"]+)"/', $item->stream_url, $match);
-//            $stream_url_iframe = $match[1];
-            try {
-                $insertItem = [
-                    'id'                => $item->id,
-                    'user_id'           => $item->user_id,
-                    'title'             => $item->title,
-                    'race_id'           => $raceId,
-                    'content'           => $item->content,
-                    'country_id'        => $item->country_id,
-                    'stream_url'        => null,
-                    'stream_url_iframe' => null,
-                    'active'            => $item->active,
-                    'approved'          => $item->approved,
-                    'created_at'        => $item->created_at,
-                    'updated_at'        => $item->updated_at,
-                ];
-                DB::table("streams")->insert($insertItem);
 
-            } catch (\Exception $e) {
-                dd($e, $item);
-            }
-        }
+        DB::connection("mysql2")->table("streams")->orderBy('id','ASC')
+            ->chunkById(100, function ($repsStreams) {
+                try {
+                    $insertItems = [];
+                    foreach ($repsStreams as $item) {
+                        $insertItems[] = [
+                            'id'                => $item->id,
+                            'user_id'           => $item->user_id,
+                            'title'             => $item->title,
+                            'race_id'           => Race::where('code', $item->race)->value('id'),
+                            'content'           => $item->content,
+                            'country_id'        => $item->country_id,
+                            'stream_url'        => null,
+                            'stream_url_iframe' => null,
+                            'active'            => $item->active,
+                            'approved'          => $item->approved,
+                            'created_at'        => $item->created_at,
+                            'updated_at'        => $item->updated_at,
+                        ];
+                    }
+                    DB::table("streams")->insertOrIgnore($insertItems);
+                } catch (\Exception $e) {
+                    dd($e, $item);
+                }
+            });
         /**
          * Add autoIncr
          */

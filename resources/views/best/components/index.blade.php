@@ -11,16 +11,15 @@
                         c0-2.5-0.1-4.4-0.3-5.7L364,301.4l103.6-101.1C472.6,195.3,475.1,190.8,475.1,186.6z M324.6,288.5l20.6,120.2l-107.6-56.8
                         l-107.9,56.8l20.8-120.2l-87.4-84.8L183.6,186l54-109.1l54,109.1L412,203.7L324.6,288.5z"/>
                 </svg>
-                <p class="title_text ">Лучшие</p>
+                <p class="title_text ">{{__('Лучшие')}}</p>
             </div>
         </div>
-        {{--best-100--}}
         <div class="title_players change_gray">
-            <p class="title_playersText change_gray">Top-100 pts</p>
+            <p class="title_playersText change_gray">{{__('Top-100 pts')}}</p>
         </div>
         <div class="container_players">
-            @isset($top100Points)
-                @foreach($top100Points as $item)
+            @if(isset($points) && !empty($points))
+                @foreach($points as $item)
                     <div class="players_content">
                         <div class="left_block">
                             <span class="number night_text">#{{$item['id']}}</span>
@@ -37,19 +36,18 @@
                                  title="{{$item['raceTitle']}}">
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item['max']}} pts</p>
+                            <p class="night_text">{{$item['max']}}</p>
                         </div>
                     </div>
                 @endforeach
-            @endisset
+            @endif
         </div>
-        {{--top-100-reputation--}}
         <div class="title_players change_gray">
-            <p class="title_playersText">Top-100 kg</p>
+            <p class="title_playersText">{{__('Top-100 kg')}}</p>
         </div>
         <div class="container_players">
-            @isset($top100Rating)
-                @foreach($top100Rating as $item)
+            @if(isset($rating) && !empty($rating))
+                @foreach($rating as $item)
                     <div class="players_content">
                         <div class="left_block">
                             <span class="number night_text">#{{$item['id']}}</span>
@@ -66,19 +64,19 @@
                                  title="{{$item['raceTitle']}}">
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item['max']}} kg</p>
+                            <p class="night_text">{{$item['max']}}</p>
                         </div>
                     </div>
                 @endforeach
-            @endisset
+            @endif
         </div>
         {{--top-100-news--}}
         <div class="title_players change_gray">
-            <p class="title_playersText">Top-100 news</p>
+            <p class="title_playersText">{{__('Top-100 news')}}</p>
         </div>
         <div class="container_players">
-            @isset($top100News)
-                @foreach($top100News as $item)
+            @if(isset($news) && !empty($news))
+                @foreach($news as $item)
                     <div class="players_content">
                         <div class="left_block">
                             <span class="number night_text">#{{$item['id']}}</span>
@@ -96,19 +94,19 @@
                                  title="{{$item['raceTitle']}}">
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item['max']}} news</p>
+                            <p class="night_text">{{$item['max']}}</p>
                         </div>
                     </div>
                 @endforeach
-            @endisset
+            @endif
         </div>
         {{--top-100-replays--}}
         <div class="title_players change_gray">
-            <p class="title_playersText">Top-100 replays</p>
+            <p class="title_playersText">{{__('Top-100 replays')}}</p>
         </div>
         <div class="container_players">
-            @isset($top100Replay)
-                @foreach($top100Replay as $item)
+            @if(isset($replay) && !empty($replay))
+                @foreach($replay as $item)
                     <div class="players_content">
                         <div class="left_block">
                             <span class="number night_text">#{{$item['id']}}</span>
@@ -125,11 +123,11 @@
                                  title="{{$item['raceTitle']}}">
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item['max']}} replays</p>
+                            <p class="night_text">{{$item['max']}}</p>
                         </div>
                     </div>
                 @endforeach
-            @endisset
+            @endif
         </div>
     </div>
 </section>

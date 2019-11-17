@@ -33,7 +33,7 @@ trait UserRelation
 
     public function totalComments()
     {
-        return $this->hasMany(\App\Models\Comment::class, 'user_id', 'id');
+        return $this->hasMany(\App\Models\Comment::class,'user_id', 'id');
     }
 
     /**

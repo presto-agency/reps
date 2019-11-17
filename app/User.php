@@ -19,13 +19,28 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'avatar', 'role_id', 'name', 'email', 'country_id', 'race_id', 'rating',
-        'count_topic', 'count_replay', 'count_picture', 'count_comment',
+        'avatar',
+        'role_id',
+        'name',
+        'email',
+        'country_id',
+        'race_id',
+        'rating',
         'email_verified_at',
-        'ban', 'activity_at', 'birthday', 'count_negative', 'count_positive',
-        'password', 'remember_token',
-        'homepage', 'isq', 'skype', 'vk_link', 'fb_link',
-        'last_ip', 'count_gosu_replay', 'count_comment_forum', 'count_comment_gallery', 'count_comment_replays',
+        'ban',
+        'activity_at',
+        'birthday',
+        'count_negative',
+        'count_positive',
+        'password',
+        'remember_token',
+        'homepage',
+        'isq',
+        'skype',
+        'vk_link',
+        'fb_link',
+        'last_ip',
+        'view_avatars',
     ];
 
     /**
@@ -34,7 +49,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -67,12 +83,13 @@ class User extends Authenticatable
      */
     public static function getUserDataById($id)
     {
-        return User::where('id',$id)
+        return User::where('id', $id)
             ->with('roles', 'countries', 'races')
-            ->withCount( 'topics', 'comments', 'user_replay', 'gosu_replay')
+            ->withCount('topics', 'comments', 'user_replay', 'gosu_replay','totalComments')
+
 //            ->withCount( 'positive', 'negative', 'comments')
 //            ->withCount('user_galleries', 'topics', 'replay', 'gosu_replay', 'topic_comments', 'replay_comments', 'gallery_comments')
-            ->first();
+            ->firstOrFail();
     }
 
     public function isOnline()
@@ -86,40 +103,43 @@ class User extends Authenticatable
 
     /**
      * Gets from OLD reps.ru files
+     *
+     * @param $value
+     * @return string
      */
-    public function getUserStatus($cs)
+    public function getUserStatus($value)
     {
-        if ($cs < 1000) {
+        if ($value < 1000) {
             return "Zim";
-        } elseif ($cs < 2000) {
+        } elseif ($value < 2000) {
             return "Fan of Barbie";
-        } elseif ($cs < 3000) {
+        } elseif ($value < 3000) {
             return "Zagoogli";
-        } elseif ($cs < 4000) {
+        } elseif ($value < 4000) {
             return "BIG SCV";
-        } elseif ($cs < 5000) {
+        } elseif ($value < 5000) {
             return "Hasu";
-        } elseif ($cs < 6000) {
+        } elseif ($value < 6000) {
             return "XaKaC";
-        } elseif ($cs < 7000) {
+        } elseif ($value < 7000) {
             return "Idra";
-        } elseif ($cs < 8000) {
+        } elseif ($value < 8000) {
             return "Trener";
-        } elseif ($cs < 9000) {
+        } elseif ($value < 9000) {
             return "[СО!]";
-        } elseif ($cs < 10000) {
+        } elseif ($value < 10000) {
             return "SuperHero";
-        } elseif ($cs < 15000) {
+        } elseif ($value < 15000) {
             return "Gosu";
-        } elseif ($cs < 20000) {
+        } elseif ($value < 20000) {
             return "IPXZerg";
-        } elseif ($cs < 40000) {
+        } elseif ($value < 40000) {
             return "Savior";
-        } elseif ($cs < 70000) {
+        } elseif ($value < 70000) {
             return "Lutshii";
-        } elseif ($cs < 100000) {
+        } elseif ($value < 100000) {
             return "Bonjva";
-        } elseif ($cs >= 100000) {
+        } elseif ($value >= 100000) {
             return "Ebanutyi";
         }
     }
