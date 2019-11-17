@@ -50,8 +50,6 @@ class Country extends Section
             $query->orderByDesc('id');
         });
 
-        $display->with('using');
-
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'ID'),

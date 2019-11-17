@@ -47,35 +47,32 @@ class ForumSections extends Section
     {
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
-//            ->setDisplaySearch(true)
             ->setHtmlAttribute('class', 'table-info table-hover text-center')
-            ->paginate(50);
+            ->paginate(20);
         $display->setApply(function ($query) {
-            $query->orderBy('created_at', 'asc');
+            $query->orderByDesc('id');
         });
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
                 ->setWidth('15px'),
-            $name = AdminColumn::text('name', 'Name')
+            $name = AdminColumn::text('name', 'Название')
                 ->setWidth('50px'),
-            $title = AdminColumn::text('title', 'Display Name')
+            $title = AdminColumn::text('title', 'Имя')
                 ->setWidth('60px'),
-            $position = AdminColumn::text('position', 'Position')
+            $position = AdminColumn::text('position', 'Позиция')
                 ->setWidth('50px'),
-            $description = AdminColumn::text('description', 'Description')
+            $quantity = AdminColumn::count('topics', 'Количество тем')
                 ->setWidth('50px'),
-            $quantity = AdminColumn::count('topics', 'Quantity topics')
-                ->setWidth('50px'),
-            /*$quantity = AdminColumn::custom('Quantity topics', function(\Illuminate\Database\Eloquent\Model $model) {
-                return $model->topics()->count();
-            })->setWidth('50px'),*/
-            $isActive = AdminColumnEditable::checkbox('is_active','Yes', 'No')
-                ->setLabel('Active'),
-            $isGeneral = AdminColumnEditable::checkbox('is_general','Yes', 'No')
-                ->setLabel('General'),
-            $userCanAddTopics = AdminColumnEditable::checkbox('user_can_add_topics','Yes', 'No')
-                ->setLabel('User can add'),
+            $isActive = AdminColumnEditable::checkbox('is_active', 'Да', 'Нет')
+                ->setLabel('Активный'),
+            $isGeneral = AdminColumnEditable::checkbox('is_general', 'Да', 'Нет')
+                ->setLabel('Основной'),
+            $userCanAddTopics = AdminColumnEditable::checkbox('user_can_add_topics', 'Да', 'Нет')
+                ->setLabel('Пользователь добавляет'),
+            $description = AdminColumn::text('description', 'Описание')
+                ->setHtmlAttribute('class', 'text-left')
+                ->setWidth('200px'),
 
         ]);
 
@@ -83,7 +80,7 @@ class ForumSections extends Section
 
         $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
             $url = url('admin/forum_topics');
-            return $url.'?forum_section_id='.$model->getKey(); // Генерация ссылки
+            return $url . '?forum_section_id=' . $model->getKey(); // Генерация ссылки
         }, function (\Illuminate\Database\Eloquent\Model $model) {
             return $model->title . ' (' . $model->topics()->count() . ')'; // Генерация текста на кнопке
         }, 50);
@@ -105,17 +102,29 @@ class ForumSections extends Section
     {
         $display = AdminForm::panel();
         $display->setItems([
-            $name = AdminFormElement::text('name', 'Name')
-                ->setValidationRules(['required', 'max:255']),
-            $title = AdminFormElement::text('title', 'Display Name')
-                ->setValidationRules(['required', 'max:255']),
-            $position = AdminFormElement::number('position', 'Position')
-                ->setValidationRules(['required', 'min:0']),
-            $description = AdminFormElement::textarea('description', 'Description')
-                ->setValidationRules(['required', 'max:255']),
-            $isActive = AdminFormElement::checkbox('is_active', 'Active'),
-            $isGeneral = AdminFormElement::checkbox('is_general', 'General'),
-            $userCanAddTopics = AdminFormElement::checkbox('user_can_add_topics', 'User Can Add Topics'),
+            $name = AdminFormElement::text('name', 'Название:')
+                ->setValidationRules([
+                    'required',
+                    'max:255'
+                ]),
+            $title = AdminFormElement::text('title', 'Имя:')
+                ->setValidationRules([
+                    'required',
+                    'max:255'
+                ]),
+            $position = AdminFormElement::number('position', 'Позиция:')
+                ->setValidationRules([
+                    'required',
+                    'min:0'
+                ]),
+            $description = AdminFormElement::textarea('description', 'Описание:')
+                ->setValidationRules([
+                    'required',
+                    'max:255'
+                ]),
+            $isActive = AdminFormElement::checkbox('is_active', 'Активный'),
+            $isGeneral = AdminFormElement::checkbox('is_general', 'Основной'),
+            $userCanAddTopics = AdminFormElement::checkbox('user_can_add_topics', 'Пользователь добавляет'),
 
         ]);
         return $display;

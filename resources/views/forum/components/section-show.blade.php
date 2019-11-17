@@ -33,12 +33,14 @@
                         @endisset
                     </button>
                 </div>
+
                 @auth
                     @isset($section)
                         @if($section->user_can_add_topics == 1)
                             <div class="right_section_autorization">
                                 <a href="{{ route('user-topics.create',['id'=>auth()->id()]) }}">
-                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right"
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                         data-icon="arrow-right"
                                          class="svg-inline--fa fa-arrow-right fa-w-14" role="img"
                                          xmlns="http://www.w3.org/2000/svg"
                                          viewBox="0 0 448 512">
@@ -52,18 +54,18 @@
                     @endisset
                 @endauth
             </div>
-            <div class="right_section">
-                <div class="block_nameArticle">
-                    @isset($section->topics_count)
-                        <span class="item">{{__('Темы:')}}<span
-                                class="text">{{$section->topics_count}}</span></span>
-                    @endisset
-                    @isset($section->topics_comments_count)
-                        <span class="item">{{__('Ответов:')}}<span
-                                class="text">{{$section->topics_comments_count}}</span></span>
-                    @endisset
-                </div>
-            </div>
+{{--            <div class="right_section">--}}
+{{--                <div class="block_nameArticle">--}}
+{{--                    @isset($section->topics_count)--}}
+{{--                        <span class="item">{{__('Темы:')}}<span--}}
+{{--                                class="text">{{$section->topics_count}}</span></span>--}}
+{{--                    @endisset--}}
+{{--                    @isset($section->topics_comments_count)--}}
+{{--                        <span class="item">{{__('Ответов:')}}<span--}}
+{{--                                class="text">{{$section->topics_comments_count}}</span></span>--}}
+{{--                    @endisset--}}
+{{--                </div>--}}
+{{--            </div>--}}
         @endif
         @isset($section)
             @if(!$section->topics->isEmpty())
@@ -118,11 +120,13 @@
                                         <span>{{ $topic->comments_count }}</span>
                                     </a>
                                 </div>
-                                <a class="block_account"
-                                   href="{{route('user_profile',['id'=>$topic->author->id])}}">
-                                    <img class="search_img" src="{{ asset($topic->author->avatar) }}" alt="avatar">
-                                    <span>{{ $topic->author->name }}</span>
-                                </a>
+                                @if(isset($topic->author) && !empty($topic->author))
+                                    <a class="block_account"
+                                       href="{{route('user_profile',['id'=>$topic->author->id])}}">
+                                        <img class="search_img" src="{{ $topic->author->avatar }}" alt="avatar">
+                                        <span>{{ $topic->author->name }}</span>
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>

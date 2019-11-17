@@ -63,8 +63,6 @@ class User extends Section
             AdminDisplayFilter::related('ban')->setModel(\App\User::class),
         ]);
 
-        $display->with('roles', 'countries');
-
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')

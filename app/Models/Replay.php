@@ -13,6 +13,7 @@ class Replay extends Model
     const REPLAY_PRO = 0;
     const REPLAY_USER = 1;
 
+
     public static $userReplaysType = [
         Replay::REPLAY_PRO => 'Профессиональный',
         Replay::REPLAY_USER => 'Пользовательский',
@@ -52,4 +53,19 @@ class Replay extends Model
 
     ];
 
+    /**
+     * Get all of the comments for the User Replay.
+     */
+    public function replayUserComments()
+    {
+        return $this->hasManyThrough(
+            'App\Models\Comment',
+            'App\User',
+            'id',
+            'user_id',
+            'user_id',
+            'id'
+        );
+
+    }
 }

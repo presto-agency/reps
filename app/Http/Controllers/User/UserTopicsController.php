@@ -10,6 +10,7 @@ use App\Services\ServiceAssistants\PathHelper;
 use App\User;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+use function GuzzleHttp\Promise\all;
 
 class UserTopicsController extends Controller
 {
@@ -44,7 +45,11 @@ class UserTopicsController extends Controller
     {
         $forumSection = ForumSection::where('is_active', 1)
             ->where('user_can_add_topics', 1)
-            ->get(['id', 'title', 'description']);
+            ->get([
+                'id',
+                'title',
+                'description'
+            ]);
 
         return view('user.topics.create', compact('forumSection'));
 
@@ -58,7 +63,10 @@ class UserTopicsController extends Controller
      */
     public function store(UserTopicsStoreRequest $request)
     {
-
+        $check = ForumSection::find($request->get('forum_section_id'))->value('user_can_add_topics');
+        if ($check != 1) {
+            return redirect()->to('/');
+        }
         $topic = new ForumTopic;
         $topic->forum_section_id = $request->get('forum_section_id');
         $topic->title = $request->get('title');
@@ -93,11 +101,13 @@ class UserTopicsController extends Controller
      */
     public function edit($id, $user_topic)
     {
-        $forumSection = ForumSection::where('is_active', 1)
-            ->where('user_can_add_topics', 1)
-            ->get(['id', 'title', 'description']);
+        $forumSection = ForumSection::get([
+            'id',
+            'title',
+            'description'
+        ]);
 
-        $topic = ForumTopic::where('id', $user_topic)->where('user_id', $id)->firstOrFail();
+        $topic = ForumTopic::findOrFail($user_topic);
 
         return view('user.topics.edit', compact('forumSection', 'topic'));
     }
@@ -112,7 +122,7 @@ class UserTopicsController extends Controller
      */
     public function update(UserTopicsUpdateRequest $request, $id, $user_topic)
     {
-        $topic = ForumTopic::where('id', $user_topic)->firstOrFail();
+        $topic = ForumTopic::findOrFail($user_topic);
         $topic->title = $request->get('title');
         $topic->forum_section_id = $request->get('forum_section_id');
         $topic->preview_content = $request->get('preview_content');

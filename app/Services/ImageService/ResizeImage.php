@@ -18,7 +18,7 @@ class ResizeImage
      */
     public static function resizeFlagImage25x20($fileName,$originPath)
     {
-        $newPath = "storage/image/county/flag/25x20/";
+        $newPath = "storage/images/countries/flags/25x20/";
         self::checkUploadPath($newPath);
         $ext = ".png";
         $path = $newPath . $fileName . $ext;

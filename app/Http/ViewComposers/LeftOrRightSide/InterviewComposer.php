@@ -24,7 +24,7 @@ class InterviewComposer
         }, 'answers' => function ($query) {
             $query->withCount('users');
         }])->withCount('userAnswers')
-            ->where('for_login', InterviewController::checkAuthUser())
             ->get();
+
     }
 }

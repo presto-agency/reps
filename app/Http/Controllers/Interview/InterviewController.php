@@ -113,12 +113,9 @@ class InterviewController extends Controller
         return InterviewUserAnswers::where('question_id', $question_id)->where('user_id', self::getAuthUser()->id)->value('id');
     }
 
-    public static function checkAuthUser()
-    {
-        return auth()->check() === true ? 1 : 0;
-    }
     public static function getAuthUser()
     {
         return auth()->user();
     }
+
 }

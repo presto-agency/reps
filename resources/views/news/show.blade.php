@@ -1,15 +1,22 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('topic-news-show', $news->id) }}
+@endsection
+
 @section('sidebar-left')
     @include('left-side.forum-topics')
 @endsection
 
 @section('content')
-    @include('content.detailed-news')
-    @include('content.comments')
-    @include('content.add-comment')
+    @include('news.components.show')
+    @include('content.comments', ['comments' => $news->comments])
+    @include('content.add-comment', [
+        'route' => route('news.show', ['id' =>$news->id])
+    ])
 @endsection
 
 @section('right-side')
+    @parent
     @include('right-side.components.last-replay')
 @endsection
