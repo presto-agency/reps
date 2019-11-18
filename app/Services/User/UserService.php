@@ -23,10 +23,20 @@ class UserService
      * @param $user_id
      * @return mixed
      */
-    public static function updateData(Request $request, $user_id)
+    public static function updateData($request, $user_id)
     {
-        $user = User::find($user_id);
+        $user = User::findOrFail($user_id);
+        if ($user->id != auth()->id()) {
+            return redirect()->to('/');
+        }
+
         $user_data = $request->all();
+        if ($request->exists('view_avatars') == false) {
+            $user_data['view_avatars'] = 0;
+        }
+        if ($request->exists('view_avatars') == true) {
+            $user_data['view_avatars'] = 1;
+        }
 
         foreach ($user_data as $key => $item) {
             if (is_null($item)) {
@@ -38,23 +48,19 @@ class UserService
             $user_data['country_id'] = $user_data['country'];
             unset($user_data['country']);
         }
-        if (isset($user_data['role'])) {
-            $user_data['country_id'] = $user_data['role'];
-            unset($user_data['role']);
+        if (isset($user_data['race'])) {
+            $user_data['race_id'] = $user_data['race'];
+            unset($user_data['race']);
         }
 
         $user_data['avatar'] = self::saveFile($request, $user, $user_data);
-
-        if (Auth::user()->roles ? (Auth::user()->roles->name != 'super-admin') : true) {
-            unset($user_data['role_id']);
-        }
 
         if (is_null($user_data['avatar'])) {
             unset($user_data['avatar']);
         }
 
         $user->update($user_data);
-        return User::find($user_id);
+        return true;
     }
 
     public static function isFriendExists($user_id, $friend_user_id)

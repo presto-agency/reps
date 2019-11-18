@@ -158,6 +158,9 @@
     //Твич
     .block_chat-twitch{
         padding-bottom: 6.944vw;
+        #appchat{
+            width: 100% !important;
+        }
         .btn_theatre_mode{
             display: none;
         }
@@ -255,7 +258,7 @@
         }
         & .video_twitch{
             padding: 6.944vw 0;
-            height: 133.681vw;
+            height: 100.681vw;
 
         }
     }
@@ -1418,6 +1421,7 @@
         padding: 2.604vw;
         width: 45.271vw;
         right: -45.271vw;
+        top:10.417vw;
         & .widget-stream-lists{
             margin: 0.868vw 0;
             & span{

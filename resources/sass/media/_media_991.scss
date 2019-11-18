@@ -203,6 +203,9 @@
     //Твич
     .block_chat-twitch{
         padding-bottom: 4vw;
+        #appchat{
+            width: 40%;
+        }
         & .block_chat{
             padding-bottom: 2vw;
         }
@@ -212,10 +215,10 @@
         }
         .block_chat{
             padding-bottom: 2.016vw;
-            width: 40%;
+            width: 100%;
         }
         .block_stream_list{
-            width: 60%;
+            width: 100%;
 
         }
         .big_video_left{
@@ -357,16 +360,7 @@
     }
     .streams_list{
         padding: 15px;
-        top: 7.2%;
-        width: 255px;
-        position: absolute;
-        height: 92%;
-        overflow: hidden;
-        right: -255px;
-        transition-duration: 0.3s;
-        z-index: 9;
-        background: white;
-        background: transparent;
+        top: 6vw;
         & .widget-stream-lists{
             visibility: hidden;
             margin: 5px 0;
