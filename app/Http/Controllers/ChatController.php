@@ -106,5 +106,21 @@ class ChatController extends Controller
         return $msg;
     }
 
+    public function destroy($id){
+
+        $result = PublicChat::where('id',$id)->delete();
+        if ($result){
+            $data=[
+                'status'=>'1',
+                'msg'=>'success'
+            ];
+        }else {
+            $data = [
+                'status' => '0',
+                'msg' => 'fail'
+            ];
+        }
+        return response()->json($data);
+    }
 
 }
