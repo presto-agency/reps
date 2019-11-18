@@ -165,12 +165,10 @@ return [
         /*
          * Package Service Providers...
          */
-        //Intervention\Image\ImageServiceProviderLaravel5::class,
         Intervention\Image\ImageServiceProvider::class,
         SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        PheRum\BBCode\BBCodeServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -179,9 +177,7 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
         App\Providers\ViewComposerServiceProvider::class,
-
     ],
 
     /*
@@ -233,8 +229,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'BBCode' => PheRum\BBCode\Facades\BBCode::class,
-
     ],
 
 ];

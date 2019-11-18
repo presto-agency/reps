@@ -183,8 +183,6 @@
         @endif
         @if($replay->content)
             <span>{{__('Контент:')}}</span>
-
-{{--            <div class="replay_video border_shadow">{!! BBCode::parse($replay->content) !!}</div>--}}
             <div class="replay_video border_shadow">{!! $replay->content !!}</div>
         @endif
     </section>
