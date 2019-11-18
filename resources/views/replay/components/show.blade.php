@@ -131,7 +131,7 @@
                              title="{{$replay->maps->name}}">
                     @endisset
                     <div class="replay-rating">
-                        <a href="#vote-modal" class="positive-vote vote-replay-up" data-toggle="modal" data-rating="1"
+                        <a href="#vote-modal" class="positive-vote vote-replay-up" data-toggle="modal" data-rating="1"  data-target="#likeModal"
                            data-route="http://reps.ru/replay/15980/set_rating">
                             <svg class="night_svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -141,12 +141,30 @@
                                 <path d="M470.3,167.3c-2.7-0.5-128.7,0-128.7,0l17.6-48c12.1-33.2,4.3-83.8-29.4-101.8c-11-5.9-26.3-8.8-38.7-5.7
                                 c-7.1,1.8-13.3,6.5-17,12.8c-4.3,7.2-3.8,15.7-5.4,23.7c-3.9,20.3-13.5,39.7-28.4,54.2c-26,25.3-106.6,98.3-106.6,98.3v267.5
                                 h278.6c37.6,0,62.2-42,43.7-74.7c22.1-14.2,29.7-44,16.7-66.9c22.1-14.2,29.7-44,16.7-66.9C527.6,235.2,514.8,174.8,470.3,167.3z"></path>
-                        </svg>
+                            </svg>
                             <span>{{$replay->positive_count}}</span>
                         </a>
+                        <div class="modal fade" id="likeModal" tabindex="-1" role="dialog" aria-labelledby="likeModal" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content ">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="likeModalLabel">Оставте коментарий</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true" class="close_modal">&times;</span>
+                                        </button>
+                                    </div>
+{{--                                    авторизований--}}
+
+{{--                                    @include('modal.like_autorization');--}}
+                                    {{-- не авторизований--}}
+
+                                    @include('modal.no-autorization');
+                                </div>
+                            </div>
+                        </div>
                         <a href="#vote-modal" class="negative-vote vote-replay-down" data-toggle="modal"
                            data-rating="-1"
-                           data-route="http://reps.ru/replay/15980/set_rating">
+                           data-route="http://reps.ru/replay/15980/set_rating" data-target="#diselikeModal">
                             <svg class="night_svg" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"></path>
@@ -155,6 +173,23 @@
                             </svg>
                             <span>{{$replay->negative_count}}</span>
                         </a>
+                        <div class="modal fade" id="diselikeModal" tabindex="-1" role="dialog" aria-labelledby="likeModal" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content ">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="likeModalLabel">Оставте коментарий</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true" class="close_modal">&times;</span>
+                                        </button>
+                                    </div>
+                                    {{--                                    авторизований--}}
+
+                                    {{--@include('modal.diselike_autorization');--}}
+                                    {{-- не авторизований--}}
+                                    @include('modal.no-autorization');
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="replay-download">
                         <svg class="night_svg" version="1.1" xmlns="http://www.w3.org/2000/svg"

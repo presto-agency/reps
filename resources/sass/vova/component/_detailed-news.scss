@@ -26,6 +26,7 @@
             .title__avatar {
                 width: 28px;
                 height: 28px;
+                border-radius: 50%;
             }
             .title__nickname {
                 color: #ffffff;
@@ -66,6 +67,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            .right{
+                display: flex;
+                align-items: baseline;
+                a{
+                    margin-right: 15px;
+                    svg{
+                        width: 18px;
+                        fill: $gray;
+                    }
+                }
+            }
             .items__watch,
             .items__comment {
                 text-decoration: none;
