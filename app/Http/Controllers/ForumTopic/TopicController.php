@@ -67,6 +67,8 @@ class TopicController extends Controller
             }])
             ->withCount('comments')->findOrFail($id);
 
+        event('topicHasViewed', $topic);
+
         return view('forumTopic.show')->with('topic', $topic);
     }
 
