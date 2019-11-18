@@ -152,8 +152,8 @@
             </label>
             <input class="form-check-input night_input "
                    type="checkbox" id="user-settings-view-avatar"
-                   name="view_avatars"
-                   value="1" @if((old('view_avatars',$user->view_avatars))) checked @endif>
+                   name="view_avatars" value="{{old('view_avatars')}}"
+                >
             @if ($errors->has('view_avatars'))
                 <div class="alert alert-danger" role="alert">
                     <strong>{{ $errors->first('view_avatars') }}</strong>

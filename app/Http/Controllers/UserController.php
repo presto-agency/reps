@@ -86,6 +86,7 @@ class UserController extends Controller
      */
     public function update(UpdateProfileRequest $request, $id)
     {
+
         UserService::updateData($request, Auth::id());
 
         return redirect()->route('edit_profile', ['id' => Auth::id()]);

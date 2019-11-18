@@ -116,7 +116,7 @@
                                     <div class="friends">
                                         <div class="left_block">
                                             <a href="{{route('user_profile',['id' => $friend->id])}}">
-                                                <img src="http://reps.loc/images/newsAvatar.png" alt="avatar"
+                                                <img src="{{$friend->avatar}}" alt="avatar"
                                                      class="author__avatar img-fluid">
                                                 <span class="name_player">{{$friend->name}}</span>
                                             </a>
@@ -125,7 +125,7 @@
                                             <img src="{{asset($friend->countries->flag)}}"
                                                  class="info__flag" alt="flag">
                                             <img
-                                                src="{{asset('images/default.game-races/'.$friend->races->title.'.png')}}"
+                                                src="{{asset('/images/default/game-races/'.$friend->races->title.'.png')}}"
                                                 class="info__cube"
                                                 alt="race">
                                         </div>
