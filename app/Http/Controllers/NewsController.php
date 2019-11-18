@@ -67,6 +67,8 @@ class NewsController extends Controller
             }])
             ->findOrFail($id);
 
+        event('topicHasViewed', $news);
+
         return view('news.show',compact('news'));
     }
 
