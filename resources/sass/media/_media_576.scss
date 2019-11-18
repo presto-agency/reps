@@ -2484,6 +2484,11 @@
     }
     //vote
     .vote {
+        .form-check{
+            label{
+                font-size:2.615vw;
+            }
+        }
         .vote__title {
             padding-top: 3.472vw;
             padding-bottom: 3.472vw;
@@ -2540,9 +2545,11 @@
                 }
                 .body__view-results {
                     .view-results__button {
-                        font-size: 2.431vw;
+                        font-size: 3.2vw;
                     }
+
                 }
+
             }
         }
     }
@@ -2688,6 +2695,19 @@
                             margin-left: 1.215vw;
                         }
                     }
+                    .body__edit-image-form {
+                        .form-group {
+                            label {
+                                font-size: 2.615vw;
+                            }
+                        }
+                        .form-check {
+                            margin-bottom: 2.018vw;
+                            label {
+                                font-size: 2.615vw;
+                            }
+                        }
+                    }
                 }
 
                 .items__reputation-button {
@@ -2719,14 +2739,29 @@
                         font-size: 2.5vw;
                     }
                 }
-                .form-check {
-                    margin-bottom: 3.472vw;
-                    label{
-                        font-size: 2.5vw;
+            }
+
+        }
+
+    }
+    .vote {
+        .vote__content {
+            .content__header {
+                .header__title {
+                    font-size: 2.615vw;
+                }
+            }
+            .content__body {
+                .vote-form {
+                    .form-check {
+                        margin-bottom: 1.514vw;
+                        label {
+                            margin-left: 1.009vw;
+                            font-size: 2.615vw!important;
+                        }
                     }
                 }
             }
-
         }
     }
     //create new-replay

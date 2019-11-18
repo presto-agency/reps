@@ -29,6 +29,10 @@
          white-space: nowrap;
          overflow: hidden;
          text-overflow: ellipsis;
+         button{
+             background: transparent;
+             border: 0;
+         }
          & span{
              font-weight: 400;
 
