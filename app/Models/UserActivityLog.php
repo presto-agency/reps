@@ -33,7 +33,7 @@ class UserActivityLog extends Model
     ];
 
     protected $fillable = [
-        'type_id',
+        'type',
         'user_id',
         'time',
         'ip',

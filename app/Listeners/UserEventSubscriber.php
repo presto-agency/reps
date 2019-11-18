@@ -16,6 +16,7 @@ class UserEventSubscriber
      */
     public function onUserLogin($event)
     {
+
         $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGIN, null);
     }
 
@@ -32,6 +33,7 @@ class UserEventSubscriber
      */
     public function onUserRegistered($event)
     {
+
         $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_REGISTER, null);
     }
 

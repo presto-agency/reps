@@ -32,10 +32,7 @@ class UserService
 
         $user_data = $request->all();
         if ($request->exists('view_avatars') == false) {
-            $user_data['view_avatars'] = 0;
-        }
-        if ($request->exists('view_avatars') == true) {
-            $user_data['view_avatars'] = 1;
+            $user_data['view_avatars'] = '0';
         }
 
         foreach ($user_data as $key => $item) {

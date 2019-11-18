@@ -77,7 +77,7 @@
                     @foreach($searchType as $item)
                         <option value="{{$item->id}}"
                             {{ old('type_id',request('type_id')) == $item->id ?  "selected": ''}}
-                        >{{$item->title}}</option>
+                        >{{$item->name}}</option>
                     @endforeach
                 </select>
             </label>

@@ -169,12 +169,18 @@ class User extends Section
      */
     public function onEdit($id)
     {
+
+
         $display = AdminForm::panel();
         $display->setItems([
             $avatar = AdminFormElement::image('avatar', 'Аватар')
                 ->setUploadPath(function (UploadedFile $file) {
+                    $avatar = $this->model->avatar;
+                    // Check old file
+                    PathHelper::checkAvatarAndDelete($avatar);
                     return PathHelper::checkUploadStoragePath("/images/users/avatars");
                 })
+                ->setValueSkipped(is_null(request('avatar')))
                 ->setValidationRules(['nullable', 'max:2048'])
                 ->setUploadSettings([
                     'orientate' => [],
@@ -244,19 +250,6 @@ class User extends Section
                 ->setOptions((new Race())->pluck('title', 'id')->toArray())
                 ->setDisplay('title'),
 
-//            $password = AdminFormElement::password('password', 'Пароль')
-//                ->setHtmlAttribute('placeholder', 'Пароль')
-//                ->setHtmlAttribute('title', 'Оставьте поле пароль пустым если не хотите редактировать')
-//                ->setHtmlAttribute('autocomplete', 'off')
-//                ->setValidationRules(['between:8,50', empty($id) ? 'required' : 'nullable'])
-//                ->allowEmptyValue(),
-//
-//            $passwordConfirm = AdminFormElement::password('password_confirmation', 'Подтвердите пароль')
-//                ->setHtmlAttribute('placeholder', 'Подтвердите пароль')
-//                ->setHtmlAttribute('autocomplete', 'off')
-//                ->setValueSkipped(true)
-//                ->setValidationRules(['same:password', empty($id) ? 'required' : 'nullable']),
-
             $ban = AdminFormElement::checkbox('ban', 'Ban')
                 ->setHtmlAttribute('title', 'Внимание! Если пользователь в бане он не может залогиниться.'),
         ]);
@@ -318,8 +311,11 @@ class User extends Section
             return (new Role())->pluck('title', 'id')->toArray();
         } else {
             $getData = (new Role())->pluck('title', 'id')->toArray();
-            if (($key = array_search('Супер-админ', $getData)) !== false) {
-                unset($getData[$key]);
+            if (($key1 = array_search('Супер-админ', $getData)) !== false) {
+                unset($getData[$key1]);
+            }
+            if (($key2 = array_search('админ', $getData)) !== false) {
+                unset($getData[$key2]);
             }
             return $getData;
         }
