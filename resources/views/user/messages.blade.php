@@ -219,7 +219,7 @@
             window.Echo.private('dialogue.' + '{{ $dialogue_id }}').listen('NewUserMessageAdded', ({message}) => {
             console.log('channel private started here');
             console.log(message);
-            @if($message->user_id != Auth()->id())
+            @if(isset($message) && $message->user_id != Auth()->id())
                 appendUserMessage(message);
             @endif
 
