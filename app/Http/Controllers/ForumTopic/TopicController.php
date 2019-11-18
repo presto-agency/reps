@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\ForumTopic;
 use Illuminate\Http\Request;
-
 class TopicController extends Controller
 {
     /**

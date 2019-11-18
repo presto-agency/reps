@@ -89,6 +89,8 @@ class ReplayController extends Controller
         } else {
             $replay = ReplayHelper::findReplayWithType2($relations, $id, $type);
         }
+//        $bbcode = new \PheRum\BBCode\BBCodeParser;
+//        $rcontent = $bbcode->parse($replay->content);
         $type = $type == Replay::REPLAY_USER ? 'user' : 'pro';
         return view('replay.show',
             compact('replay', 'type', 'userReplayRout')

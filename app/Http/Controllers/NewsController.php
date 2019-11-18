@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Models\ForumTopic;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
 
 class NewsController extends Controller
 {
@@ -67,9 +65,16 @@ class NewsController extends Controller
             }])
             ->findOrFail($id);
 
-        event('topicHasViewed', $news);
 
-        return view('news.show',compact('news'));
+        event('topicHasViewed', $news);
+        $bbcode = new \ChrisKonnertz\BBCode\BBCode();
+        $bbcode->ignoreTag('size');
+
+        $data = null;
+        $data['preview_content'] = $bbcode->render($news->preview_content);
+        $data['content'] = $bbcode->render($news->content);
+
+        return view('news.show', compact('news', 'data'));
     }
 
     /**
@@ -133,4 +138,5 @@ class NewsController extends Controller
             echo $output;
         }
     }
+
 }

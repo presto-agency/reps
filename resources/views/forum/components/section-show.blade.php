@@ -54,18 +54,6 @@
                     @endisset
                 @endauth
             </div>
-{{--            <div class="right_section">--}}
-{{--                <div class="block_nameArticle">--}}
-{{--                    @isset($section->topics_count)--}}
-{{--                        <span class="item">{{__('Темы:')}}<span--}}
-{{--                                class="text">{{$section->topics_count}}</span></span>--}}
-{{--                    @endisset--}}
-{{--                    @isset($section->topics_comments_count)--}}
-{{--                        <span class="item">{{__('Ответов:')}}<span--}}
-{{--                                class="text">{{$section->topics_comments_count}}</span></span>--}}
-{{--                    @endisset--}}
-{{--                </div>--}}
-{{--            </div>--}}
         @endif
         @isset($section)
             @if(!$section->topics->isEmpty())
