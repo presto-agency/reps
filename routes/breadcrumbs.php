@@ -126,7 +126,7 @@ Breadcrumbs::register('user-topics-create', function ($breadcrumbs, $id) {
     ]));
 });
 Breadcrumbs::register('user-topics-edit', function ($breadcrumbs, $id, $user_topic) {
-    $breadcrumbs->parent('user-topics', $user_topic);
+    $breadcrumbs->parent('user-topics', $id);
     $breadcrumbs->push('Редактировать тему пользователя', route('user-topics.edit', [
         'id'         => $id,
         'user_topic' => $user_topic

@@ -36,7 +36,7 @@
                         </div>
                     @endif
                     <div class="comments__content">
-                        <div class="content__title"> {!! $comment->content !!}</div>
+                        <div class="content__title"> {!! $comment->content  !!}</div>
                     </div>
                     <div class="comments__items">
                         <div class="items__wrap">
@@ -98,5 +98,5 @@
         @endif
     </div>
 @else
-    <h2>Нет комментариев</h2>
+    <h2>{{__('Нет комментариев')}}</h2>
 @endisset
