@@ -82,9 +82,10 @@ Route::group(['prefix' => 'chat'], function () {
         return view('stream-section.test-chat');
     });
 
-//    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => 'auth'], function () {
         Route::post('/insert_message', 'ChatController@insert_message')->name('chat.add_message');
-//    });
+        Route::delete('/delete/{id}', 'ChatController@destroy')->name('chat.delete_message');
+    });
 
     Route::get('/get_messages', 'ChatController@get_messages')->name('chat.get_messages');
 //    Route::post('/get_message', 'ChatController@get_message')->name('chat.get_message');
