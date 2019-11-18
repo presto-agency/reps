@@ -17,7 +17,7 @@
                     <img class="img-fluid" src="{{ asset($user->avatar) }}" alt="avatar">
                     <div class="icon_img">
                         @if(Auth::id() == $user->id)
-                            <a href="#" title="Мои сообщения">
+                            <a href="{{ route('user.messages',['id'=>$user->id]) }}" title="Мои сообщения">
                                 <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="comment-dots"
                                      class="svg-inline--fa fa-comment-dots fa-w-16" role="img"
                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -97,7 +97,7 @@
                 </div>
                 @if(Auth::id() != $user->id)
                     <a href="{{route('user.add_friend',['id'=>$user->id])}}" class="button button__download-more">ДОБАВИТЬ</a>
-                    <a href="#" class="button button__download-more">НАПИСАТЬ</a>
+                    <a href="{{ route('user.messages', ['id' => $user->id]) }}" class="button button__download-more">НАПИСАТЬ</a>
                 @endif
             </div>
         </div>

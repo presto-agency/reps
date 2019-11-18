@@ -147,5 +147,7 @@
         });
     </script>
 @show
+
+@yield('java-script')
 </body>
 </html>
