@@ -52,6 +52,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
     Route::get('/friends_list', 'UserFriendController@getFriendsList')->name('user.friends_list');
 
+    Route::get('messages', 'UserMessagingController@getUser')->name('user.messages_all');
+
     Route::get('{id}', 'UserController@show')->name('user_profile');
     Route::resource("{id}/user-gallery", 'User\UserGalleryController');
     Route::post('{id}/loadmore/load_gallery', 'User\UserGalleryController@loadGallery')->name('load.more.user.gallery');
@@ -70,6 +72,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('{id}/remove_friend', 'UserFriendController@removeFriend')->name('user.remove_friend');
     Route::get('{id}/friends_list', 'UserFriendController@getFriendsList')->name('user.friends_list.by_id');
 
+    Route::get('{id}/messages', 'UserMessagingController@getUser')->name('user.messages');
+    Route::post('send_message', 'UserMessagingController@send')->name('user.send_message');
 });
 
 Route::group(['prefix' => 'chat'], function () {
