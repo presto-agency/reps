@@ -68,8 +68,6 @@ class UserGallery extends Section
             $query->orderBy('id', 'desc');
         });
 
-        $display->with('users', 'comments');
-
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')
@@ -95,9 +93,7 @@ class UserGallery extends Section
                 return "{$thumbsUp}" . "({$positive})" . '<br/>' . "{$equals}" . "({$result})" . '<br/>' . "{$thumbsDown}" . "({$negative})";
             })->setWidth(10),
 
-            $comments_count = AdminColumn::custom('Комментариев', function ($model) {
-                return "{$model->comments->count()}";
-            })->setWidth(100),
+            $comments_count = AdminColumn::count('comments', 'Коментарии')->setWidth(100),
 
         ]);
 

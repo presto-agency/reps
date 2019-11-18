@@ -13,7 +13,7 @@ class ReplayUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user() && auth()->user()->role_id != 4;
+        return auth()->user() && auth()->user()->isNotUser();
     }
 
     /**
@@ -33,7 +33,7 @@ class ReplayUpdateRequest extends FormRequest
             'second_race' => 'string|exists:races,id',
             'second_country_id' => 'string|exists:countries,id',
             'second_location' => 'nullable|integer|min:1|max:20',
-            'content' => 'string|between:1,2000',
+            'content' => 'string|between:1,10000',
             'video_iframe' => 'nullable|string|between:1,5000',
             'file' => 'nullable|file|max:5120',
         ];

@@ -58,22 +58,21 @@ class UserActivityLog extends Section
         });
 
         $display->setColumns([
-            $type = AdminColumn::text('types.name', 'Событие')
-            ->setWidth(150),
+            $type = AdminColumn::text('type', 'Событие')
+                ->setWidth(150),
             $user_id = AdminColumn::relatedLink('users.name', 'Пользователь')
-            ->setWidth(200),
+                ->setWidth(200),
             $time = AdminColumn::datetime('time', 'Время')
-            ->setWidth(250),
+                ->setWidth(250),
 
-            $ip = AdminColumn::text('ip',   'IP')
+            $ip = AdminColumn::text('ip', 'IP')
                 ->setWidth(150),
 
-            $parameters = AdminColumn::text('Описание', 'Описание'),
+            $parameters = AdminColumn::custom('Описание', function ($model) {
 
-//            $parameters = AdminColumn::custom('Описание', function ($model) {
-//                return $this->getEventTitle($model);
-//            })->setHtmlAttribute('class', 'text-left')
-//                ->setWidth(500),
+                return $this->getEventTitle($model);
+            })->setHtmlAttribute('class', 'text-left')
+                ->setWidth(500),
         ]);
 
         $display->setColumnFilters([
@@ -107,28 +106,32 @@ class UserActivityLog extends Section
 
     private function getEventTitle($model)
     {
-        $parameters = $model->parameters;
-//        if ($model->type_id == $this->getTypeId('Like')) {
-//            /*Если лайк темы*/
-//            return 'Лайк ' . ' Ник ' . 'для ' . 'Тайл темы';
-//
-//        /*Если лайк кментария*/
-//            return 'Лайк коментария' . ' Ник ' . 'для ' . 'Тайл темы';
-//        }
-        if ($model->type_id == $this->getTypeId('Comment')) {
-            return $this->commentDescription($parameters);
-        }
-        if ($model->type_id == $this->getTypeId('Create Post')) {
-            return $this->createPostDescription($parameters);
-        }
-        if ($model->type_id == $this->getTypeId('Upload Replay')) {
-            return $this->uploadReplayDescription($parameters);
-        }
-        if ($model->type_id == $this->getTypeId('Upload Image')) {
-            return $this->uploadImageDescription($parameters);
-        }
+        $test = json_decode($model->parameters);
+        $test2 = !empty($test->description) === true ? $test->description : '';
 
-        return $parameters;
+
+//        $parameters = $model->parameters;
+////        if ($model->type_id == $this->getTypeId('Like')) {
+////            /*Если лайк темы*/
+////            return 'Лайк ' . ' Ник ' . 'для ' . 'Тайл темы';
+////
+////        /*Если лайк кментария*/
+////            return 'Лайк коментария' . ' Ник ' . 'для ' . 'Тайл темы';
+////        }
+//        if ($model->type_id == $this->getTypeId('Comment')) {
+//            return $this->commentDescription($parameters);
+//        }
+//        if ($model->type_id == $this->getTypeId('Create Post')) {
+//            return $this->createPostDescription($parameters);
+//        }
+//        if ($model->type_id == $this->getTypeId('Upload Replay')) {
+//            return $this->uploadReplayDescription($parameters);
+//        }
+//        if ($model->type_id == $this->getTypeId('Upload Image')) {
+//            return $this->uploadImageDescription($parameters);
+//        }
+
+        return $test2;
 
     }
 

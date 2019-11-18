@@ -15,7 +15,7 @@
                 c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
                 c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
             </svg>
-                <p class="title__text">{!! $topic->title !!}</p>
+                <p class="title__text">{{$topic->title }}</p>
             </div>
             <div class="title__wrap">
                 @isset($topic->author)
@@ -25,8 +25,8 @@
                          title="{{ $topic->author->countries->name }}" alt="flag">
                     <img src="{{asset("images/default/game-races/" . $topic->author->races->title . ".png")}}"
                          class="title__cube" title="{{ $topic->author->races->title }}" alt="race">
-                    <p class="title__text">{{ $topic->author->comments_count }} pts
-                        | {{ $topic->author->positive_count - $topic->author->negative_count }} кг</p>
+                    <p class="title__text">{{ $topic->author->comments_count.'  pts' }}
+                        | {{ $topic->author->count_positive - $topic->author->count_negative.' кг' }}</p>
                 @endisset
             </div>
 
@@ -71,20 +71,22 @@
                         <span>{{ $topic->comments_count }}</span>
                     </a>
                 </div>
-                <div class="right">
-                    <a href="{{route('user-topics.edit',['id' => $topic->user_id,'user_topic'=>$topic->id])}}">
-                        <svg aria-hidden=" true" focusable="false" data-prefix="far" data-icon="edit"
-                             class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 576 512">
-                            <path
-                                d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"></path>
-                        </svg>
+                @if(Auth::user() && Auth::user()->isNotUser())
+                    <div class="right">
+                        <a href="{{route('user-topics.edit',['id' => $topic->user_id,'user_topic'=>$topic->id])}}">
+                            <svg aria-hidden=" true" focusable="false" data-prefix="far" data-icon="edit"
+                                 class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 576 512">
+                                <path
+                                    d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"></path>
+                            </svg>
 
-                        <span class="edit_text">{{__('Редактировать')}}</span>
+                            <span class="edit_text">{{__('Редактировать')}}</span>
 
-                    </a>
-                    <p class="items__date">{{$topic->created_at}}</p>
-                </div>
+                        </a>
+                        <p class="items__date">{{$topic->created_at}}</p>
+                    </div>
+                @endif
             </div>
         </div>
         <hr>
@@ -93,7 +95,7 @@
                 @if(!empty($topic->preview_img) && File::exists($topic->preview_img))
                     <img src="{{ asset($topic->preview_img) }}" class="card-img-top" alt="forum image">
                 @endif
-                <div class="card-body__text">{!! $topic->preview_content !!}</div>
+                <h2 class="card-body__text">{!! $topic->preview_content !!}</h2>
                 <div class="card-body__text">{!! $topic->content !!}</div>
                 <div class="card-body__items">
                     <div class="card-body__items-wrap">

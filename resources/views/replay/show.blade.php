@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-{{--    @dump(request('replay'), request('type'))--}}
     {{ Breadcrumbs::render('replay-show', request('replay'), request('type')) }}
 @endsection
 

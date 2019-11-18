@@ -1,6 +1,7 @@
 @php
     $last_id = '';
 @endphp
+
 <div class="gocu-replays border_shadow">
     @if($visible_title)
         <div class="gocu-replays__title">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\ReplayMap;
+use Carbon\Carbon;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,15 @@ class TransferReplayMaps extends Seeder
      */
     public function run()
     {
+        /**
+         * Disable forKeys
+         */
+        Schema::table('replays', function (Blueprint $table) {
+            Schema::disableForeignKeyConstraints();
+        });
+        Schema::table('replay_maps', function (Blueprint $table) {
+            Schema::disableForeignKeyConstraints();
+        });
         /**
          * Drop forKeys
          */
@@ -40,27 +50,31 @@ class TransferReplayMaps extends Seeder
         /**
          * Get and Insert data
          */
-        $repsReplayMap = DB::connection("mysql2")->table("replay_maps")->get();
-        foreach ($repsReplayMap as $item) {
-            try {
-                $insertItem = [
-                    'id'   => $item->id,
-                    'name' => $item->name,
-                    'url'  => $item->url,
-                ];
-                ReplayMap::create($insertItem);
-            } catch (\Exception $e) {
-                dd($e, $item);
-            }
-        }
+        DB::connection("mysql2")->table("replay_maps")->orderBy('id','ASC')
+            ->chunkById(100, function ($repsReplayMap) {
+                try {
+                    $insertItems = [];
+                    foreach ($repsReplayMap as $item) {
+                        $insertItems[] = [
+                            'id'         => $item->id,
+                            'name'       => $item->name,
+                            'url'        => $item->url,
+                            'created_at' => Carbon::now(),
+                        ];
+                    }
+                    DB::table("replay_maps")->insertOrIgnore($insertItems);
+                } catch (\Exception $e) {
+                    dd($e, $item);
+                }
+            });
         /**
-         * Add PrimKey
+         * Add autoIncr
          */
         Schema::table('replay_maps', function (Blueprint $table) {
             $table->unsignedBigInteger('id', true)->change();
         });
         /**
-         * Add NewForKeys
+         * Add NewForKeys and columns
          */
         Schema::table('replays', function (Blueprint $table) {
 
@@ -71,7 +85,7 @@ class TransferReplayMaps extends Seeder
             $table->unsignedBigInteger('first_race')->nullable()->change();
             $table->unsignedBigInteger('second_race')->nullable()->change();
             $table->unsignedBigInteger('type_id')->nullable()->change();
-            
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->foreign('map_id')->references('id')->on('replay_maps')->onDelete('SET NULL');
             $table->foreign('first_country_id')->references('id')->on('countries')->onDelete('SET NULL');
@@ -79,6 +93,15 @@ class TransferReplayMaps extends Seeder
             $table->foreign('first_race')->references('id')->on('races')->onDelete('SET NULL');
             $table->foreign('second_race')->references('id')->on('races')->onDelete('SET NULL');
             $table->foreign('type_id')->references('id')->on('replay_types')->onDelete('SET NULL');
+        });
+        /**
+         * Enable forKeys
+         */
+        Schema::table('replays', function (Blueprint $table) {
+            Schema::enableForeignKeyConstraints();
+        });
+        Schema::table('replay_maps', function (Blueprint $table) {
+            Schema::enableForeignKeyConstraints();
         });
     }
 

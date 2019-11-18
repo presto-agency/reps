@@ -34,31 +34,23 @@ class UserService
             }
         }
 
-        if (isset($user_data['country'])) { // country_id
+        if (isset($user_data['country'])) {
             $user_data['country_id'] = $user_data['country'];
             unset($user_data['country']);
         }
-
-        if (isset($user_data['userbar'])) {
-            $user_data['userbar_id'] = $user_data['userbar'];
-            unset($user_data['userbar']);
+        if (isset($user_data['role'])) {
+            $user_data['country_id'] = $user_data['role'];
+            unset($user_data['role']);
         }
 
         $user_data['avatar'] = self::saveFile($request, $user, $user_data);
-        /*if ($request->file('avatar')) {
-            $title = 'Аватар ' . $user->name;
-            $file = File::storeFile($request->file('avatar'), 'avatars', $title);
-
-            $user_data['file_id'] = $file->id;
-        }*/
-
-        if (isset($user_data['signature'])) {
-            $signature = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $user_data['signature']);
-            $user_data['signature'] = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $signature);
-        }
 
         if (Auth::user()->roles ? (Auth::user()->roles->name != 'super-admin') : true) {
             unset($user_data['role_id']);
+        }
+
+        if (is_null($user_data['avatar'])) {
+            unset($user_data['avatar']);
         }
 
         $user->update($user_data);
@@ -94,7 +86,7 @@ class UserService
 
                 // Upload file on server
                 $image = $request->file('avatar');
-                $filePath = $image->store('/image/user/avatar', 'public');
+                $filePath = $image->store('/images/users/avatars', 'public');
                 return 'storage/' . $filePath;
             } else {
                 back();

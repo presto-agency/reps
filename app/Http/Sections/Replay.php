@@ -68,7 +68,7 @@ class Replay extends Section
         $display->setApply(function ($query) {
             $query->orderByDesc('id');
         });
-        $display->with('users', 'maps', 'types');
+
 
         $display->setColumns([
 
@@ -116,7 +116,7 @@ class Replay extends Section
                 ->append(AdminColumn::filter('user_replay'))
                 ->setWidth(100),
 
-            $comments_count = AdminColumn::text('comments_count', 'Коментарии')
+            $comments_count = AdminColumn::count('comments', 'Коментарии')
                 ->setWidth(105),
 
             $user_rating = AdminColumn::relatedLink('user_rating', 'Оценка <br/><small>(пользователей)</small>')

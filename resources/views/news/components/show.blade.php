@@ -1,7 +1,8 @@
 <div class="detailed-news">
     <div class="detailed-news__title">
         <div class="title__wrap">
-            <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                 <path d="M437.019,74.98C388.667,26.629,324.38,0,256,0C187.619,0,123.331,26.629,74.98,74.98C26.628,123.332,0,187.62,0,256
 			s26.628,132.667,74.98,181.019C123.332,485.371,187.619,512,256,512c68.38,0,132.667-26.629,181.019-74.981
@@ -12,25 +13,36 @@
 			c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
 			c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
             </svg>
-            <p class="title__text">Corrupted Cup 2019...</p>
+            <p class="title__text">{{$news->title }}</p>
         </div>
-        <div class="title__wrap">
-            <img src="{{ url('/images/newsAvatar3.png') }}" class="title__avatar" alt="avatar">
-            <p class="title__nickname">Rus_Brain</p>
-            <img src="{{ url('/images/flag-russia.png') }}" class="title__flag" alt="flag">
-            <img src="{{ url('/images/cube.png') }}" class="title__cube" alt="game">
-            <p class="title__text">16826 pts | 675 кг</p>
-        </div>
-
+        @if($news->author)
+            <div class="title__wrap">
+                <img src="{{asset($news->author->avatar)}}" class="title__avatar" alt="avatar">
+                <p class="title__nickname">{{ $news->author->name ? $news->author->name : 'user' }}</p>
+                <img src="{{ $news->author->countries->flag }}" title="{{ $news->author->countries->name }}"
+                     title="{{ $news->author->races->title }}" class="title__flag" alt="flag">
+                <img src="{{asset("images/default/game-races/" . $news->author->races->title . ".png")}}"
+                     class="title__cube" alt="race">
+                <p class="title__text">{{ $news->author->comments_count.'  pts' }}
+                    | {{ $news->author->count_positive - $news->author->count_negative.' кг' }}</p>
+            </div>
+        @endif
     </div>
     <div class="detailed-news__info">
         <div class="info__items">
-            <a class="items__watch" href="#">
-                <svg id="Capa_1" enable-background="new 0 0 515.556 515.556" viewBox="0 0 515.556 515.556" xmlns="http://www.w3.org/2000/svg"><path d="m257.778 64.444c-119.112 0-220.169 80.774-257.778 193.334 37.609 112.56 138.666 193.333 257.778 193.333s220.169-80.774 257.778-193.333c-37.609-112.56-138.666-193.334-257.778-193.334zm0 322.223c-71.184 0-128.889-57.706-128.889-128.889 0-71.184 57.705-128.889 128.889-128.889s128.889 57.705 128.889 128.889c0 71.182-57.705 128.889-128.889 128.889z"/><path d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"/></svg>
-                <span>32</span>
-            </a>
-            <a class="items__comment" href="#">
-                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            <span class="items__watch">
+                <svg id="Capa_1" enable-background="new 0 0 515.556 515.556" viewBox="0 0 515.556 515.556"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="m257.778 64.444c-119.112 0-220.169 80.774-257.778 193.334 37.609 112.56 138.666 193.333 257.778 193.333s220.169-80.774 257.778-193.333c-37.609-112.56-138.666-193.334-257.778-193.334zm0 322.223c-71.184 0-128.889-57.706-128.889-128.889 0-71.184 57.705-128.889 128.889-128.889s128.889 57.705 128.889 128.889c0 71.182-57.705 128.889-128.889 128.889z"/>
+                    <path
+                        d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"/>
+                </svg>
+                <span>{{$news->reviews}}</span>
+            </span>
+            <span class="items__comment">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      viewBox="0 0 511.6 511.6" style="enable-background:new 0 0 511.6 511.6;" xml:space="preserve">
                     <path d="M301.9,327.6c30.9-13,55.3-30.8,73.2-53.2C393,251.9,402,227.4,402,201c0-26.5-8.9-50.9-26.8-73.4
                             c-17.9-22.5-42.3-40.2-73.2-53.2C271,61.3,237.4,54.8,201,54.8c-36.4,0-70,6.5-100.9,19.6c-30.9,13-55.3,30.8-73.2,53.2
@@ -51,22 +63,37 @@
                             c-0.3-0.3-0.7-0.8-1.3-1.4c-0.6-0.7-1-1.1-1.1-1.3c-1-1.1-3.1-3.5-6.6-7.1c-3.4-3.6-5.9-6.4-7.4-8.4c-1.5-2-3.7-4.8-6.4-8.3
                             c-2.8-3.5-5.1-7.2-7.1-11c-2-3.8-3.9-8-5.9-12.6C459.3,374.9,477.8,358.1,491.3,338.2z"/>
                 </svg>
-                <span>3</span>
-            </a>
-            <p class="items__date">09.09.2019</p>
+                <span>{{$news->comments_count}}</span>
+            </span>
+            @if(Auth::user() && Auth::user()->isNotUser())
+                <div class="right">
+                    <a href="{{route('user-topics.edit',['id' => $news->user_id,'user_topic'=>$news->id])}}">
+                        <svg aria-hidden=" true" focusable="false" data-prefix="far" data-icon="edit"
+                             class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 576 512">
+                            <path
+                                d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"></path>
+                        </svg>
+                        <span class="edit_text">{{__('Редактировать')}}</span>
+                    </a>
+                    <p class="items__date">{{$news->created_at}}</p>
+                </div>
+            @endif
         </div>
     </div>
     <hr>
     <div class="detailed-news__card card">
         <div class="card-body">
-            <img src="{{ url('/images/news1.png') }}" class="img-fluid" alt="news">
-            <h2 class="card-body__title">Corrupted Cup 2019: Конкурс предсказателей</h2>
-            <p class="card-body__text">На <span>Teamliquid</span> анонсирован открытый конкурс с возможностью заработать до $1,200, правильно угадав участников и победителей групповых раундов и финала второго дня.Конкурс разбит на три категории- Первая категория, группы от A до F. $300 первому угадавшему результаты всех матчей.- Вторая категория, группы от W до Z. $400 первому угадавшему участников и результаты всех матчей.- Третья категория, плей-офф. $500 первому угадавшему участников и результаты всех матчей.Для участия в конкурсе необходимо-- Опубликовать прогноз через facebook или twitter.-- Продублировать прогноз <span>в теме на tl.net</span>, добавив скриншот и ссылку своего facebook/twitter сообщения.-- Учитываются прогнозы, сделанные до 24:00 30 сентября по Берлинскому времени.Частые вопросы--- Игроки тоже могут участвовать в конкурсе.--- Только один прогноз с каждого пользователя. Если пользователь опубликовал несколько прогнозов, админ выберет любой.--- Сообщения, отредактированные после срока подачи заявок в зачёт не идут.--- Можно участвовать в нескольких категориях сразу.</p>
-
+            @if(!empty($news->preview_img) && File::exists($news->preview_img))
+                <img src="{{ asset($news->preview_img) }}" class="img-fluid" alt="news">
+            @endif
+            <h2 class="card-body__title">{!! $news->preview_content !!}</h2>
+            <div class="card-body__text">{!! $news->content !!}</div>
             <div class="card-body__items">
                 <div class="card-body__items-wrap">
                     <a class="items__quote" href="#">
-                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                             <path d="M256,0C114.6,0,0,114.6,0,256s114.6,256,256,256s256-114.6,256-256S397.4,0,256,0z M256,472c-119.3,0-216-96.7-216-216
 		                    S136.7,40,256,40s216,96.7,216,216S375.3,472,256,472z"/>
@@ -76,11 +103,11 @@
 			                c0,41.6,23.3,64.6,50,64.6c24.1,0,43.5-20.4,43.5-45.9C366.4,281.5,349.5,262.8,326.9,262.8z"/>
                         </svg>
                     </a>
-
                 </div>
                 <div class="card-body__items-wrap">
                     <a class="items__like" href="#">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 		                    <path d="M83.6,167.3H16.7C7.5,167.3,0,174.7,0,184v300.9c0,9.2,7.5,16.7,16.7,16.7h66.9c9.2,0,16.7-7.5,16.7-16.7V184
 			                    C100.3,174.7,92.8,167.3,83.6,167.3z"/>
@@ -88,15 +115,16 @@
                             c-7.1,1.8-13.3,6.5-17,12.8c-4.3,7.2-3.8,15.7-5.4,23.7c-3.9,20.3-13.5,39.7-28.4,54.2c-26,25.3-106.6,98.3-106.6,98.3v267.5
                             h278.6c37.6,0,62.2-42,43.7-74.7c22.1-14.2,29.7-44,16.7-66.9c22.1-14.2,29.7-44,16.7-66.9C527.6,235.2,514.8,174.8,470.3,167.3z"/>
                         </svg>
-                        <span>3</span>
+                        <span>{{$news->positive_count}}</span>
                     </a>
                     <a class="items__dislike" href="#">
                         <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z" />
-                            <path d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"/>
+                            <path
+                                d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"/>
+                            <path
+                                d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"/>
                         </svg>
-
-                        <span>3</span>
+                        <span>{{$news->negative_count}}</span>
                     </a>
                 </div>
             </div>

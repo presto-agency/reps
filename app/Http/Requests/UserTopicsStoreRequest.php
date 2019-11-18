@@ -24,9 +24,9 @@ class UserTopicsStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'forum_section_id' => 'required|exists:forum_topics,id',
+            'forum_section_id' => 'required|exists:forum_sections,id',
             'title' => 'required|string|between:1,255',
-            'preview_content' => 'required|string|between:1,1000',
+            'preview_content' => 'required|string|between:1,10000',
             'content' => 'required|string|between:3,50000',
             'preview_img' => 'nullable|image|max:2048',
         ];

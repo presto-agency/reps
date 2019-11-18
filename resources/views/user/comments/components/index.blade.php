@@ -26,7 +26,7 @@
                                     <a class="body__numb" href="{{$item['route']}}"># {{$item['id']}}</a>
                                     <a class="body__nick"
                                        href="{{route('user_profile',['id'=>$item['user_id']])}}">{{$item['user_name']}}</a>
-                                    <p class="body__text night_text">{{$item['content']}}</p>
+                                    <p class="body__text night_text">{!! $item['content'] !!}</p>
                                 </div>
                             </div>
                         @endforeach

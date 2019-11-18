@@ -52,22 +52,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-
-        /*if (Auth::user()) {
-            return abort(403);
-        }*/
         $user = User::getUserDataById($id);
-        if (!$user) {
-            abort(404);
-        }
-
         $friends = UserFriend::getFriends($user);
         $friendly = UserFriend::getFriendlies($user);
-
         return view('user.profile-show')->with([
-            'friends' => $friends,
+            'friends'  => $friends,
             'friendly' => $friendly,
-            'user' => $user
+            'user'     => $user
         ]);
     }
 
@@ -79,7 +70,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('user.profile-edit')->with(['user' => Auth::user(), 'countries' => Country::all(), 'races' => Race::all()]);
+        $user = User::findOrFail(Auth::id());
+        $countries = self::getCacheData('userEditCountries', self::getCountries());
+        $races = self::getCacheData('userEditRaces', self::getRaces());
+
+        return view('user.profile-edit', compact('user', 'countries', 'races'));
     }
 
     /**
@@ -92,6 +87,7 @@ class UserController extends Controller
     public function update(UpdateProfileRequest $request, $id)
     {
         UserService::updateData($request, Auth::id());
+
         return redirect()->route('edit_profile', ['id' => Auth::id()]);
     }
 
@@ -104,5 +100,34 @@ class UserController extends Controller
     public function destroy($id)
     {
         return redirect()->to('/');
+    }
+
+    public static function getCacheData($cache_name, $data)
+    {
+        if (\Cache::has($cache_name) && !\Cache::get($cache_name)->isEmpty()) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, 300, function () use ($data) {
+                return $data;
+            });
+        }
+        return $data_cache;
+    }
+
+    private static function getRaces()
+    {
+        return Race::all([
+            'id',
+            'title'
+        ]);
+    }
+
+    private static function getCountries()
+    {
+        return Country::all([
+            'id',
+            'name',
+            'flag'
+        ]);
     }
 }

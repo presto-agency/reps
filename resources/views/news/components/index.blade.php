@@ -12,25 +12,28 @@
         </div>
     @endif
 
-    @if(!$news->isEmpty())
+    @if($news->isNotEmpty())
         @foreach($news as $single_news)
             <div class="breaking-news__news-card card night_modal">
-                @if($single_news->preview_img)
+                @if($single_news->preview_img && File::exists($single_news->preview_img))
                     <a href="{{ route('news.show', $single_news->id) }}">
                         <img src="{{ asset($single_news->preview_img) }}" class="card-img-top" alt="news">
                     </a>
                 @endif
                 <div class="card-body night_text">
                     <div class="card-body__author">
-                        <img src="{{ $single_news->author->avatar }}" alt="avatar" class="author__avatar img-fluid">
-                        @if($single_news->author->name)
-                            <p class="author__nickname">{{ $single_news->author->name }}</p>
+                        @if($single_news->author)
+                            <img src="{{ $single_news->author->avatar }}" alt="avatar" class="author__avatar img-fluid">
+                            @if($single_news->author->name)
+                                <p class="author__nickname">{{ $single_news->author->name }}</p>
+                            @endif
                         @endif
-                        @if($single_news->author->created_at)
+                        @if($single_news->created_at)
                             <span
-                                class="author__date">{{\Carbon\Carbon::parse($single_news->author->created_at)->format('d.m.Y')}}</span>
+                                class="author__date">{{\Carbon\Carbon::parse($single_news->created_at)->format('d.m.Y')}}</span>
                         @endif
                     </div>
+
                     <a href="{{ route('news.show', $single_news->id) }}">
                         <h2 class="card-body__title night_text">{{ $single_news->title }}</h2>
                     </a>

@@ -20,7 +20,7 @@
                             </div>
                             <div class="block_text night_text">
                                 <span>{{__('Комментариев: ')}}</span>
-                                <span>{{ $section->section_comments_count }}</span>
+                                <span>{{ $section->forum_section_comments_count }}</span>
                             </div>
                             <a href="{{ route('forum.show', $section->id) }}">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right"

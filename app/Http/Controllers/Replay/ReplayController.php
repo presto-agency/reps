@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Replay;
 
 use App\Http\Requests\ReplayUpdateRequest;
 use App\Models\Replay;
+use App\Models\UserActivityLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -63,15 +64,21 @@ class ReplayController extends Controller
     public function show($id, $type = null, $subtype = null)
     {
         $relations = [
-            'users:id,name,avatar,count_positive,count_negative',
-            'users.totalComments',
+            'users',
+            'users.countries:id,name,flag',
+            'users.races:id,title',
+
             'maps:id,name,url',
             'types:id,name,title',
             'firstCountries:id,name,flag,name',
             'secondCountries:id,name,flag,name',
             'firstRaces:id,title,code',
             'secondRaces:id,title,code',
+
             'comments',
+            'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive',
+            'comments.user.countries:id,name,flag',
+            'comments.user.races:id,title'
         ];
 
         $type = ReplayHelper::getReplayType();
@@ -82,11 +89,9 @@ class ReplayController extends Controller
         } else {
             $replay = ReplayHelper::findReplayWithType2($relations, $id, $type);
         }
-
-        $countUserPts = $replay->users->totalComments->count();
         $type = $type == Replay::REPLAY_USER ? 'user' : 'pro';
         return view('replay.show',
-            compact('replay', 'countUserPts', 'type', 'userReplayRout')
+            compact('replay', 'type', 'userReplayRout')
         );
     }
 
@@ -161,10 +166,9 @@ class ReplayController extends Controller
             }
             $type = $type == Replay::REPLAY_USER ? 'user' : 'pro';
             $userReplayRout = ReplayHelper::checkUrl() === true ? true : false;
-            $output = view('replay.components.index',
+            echo view('replay.components.index',
                 compact('replay', 'visible_title', 'type', 'subtype', 'userReplayRout')
             );
-            echo $output;
         }
     }
 

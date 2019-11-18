@@ -23,4 +23,8 @@ class UserGallery extends Model
             return asset('images/default/gallery/no-img.png');
         }
     }
+    public function getTitle()
+    {
+        return $this->sign ? : null;
+    }
 }
