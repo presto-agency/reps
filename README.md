@@ -24,7 +24,8 @@ DB_PORT2=
 DB_DATABASE2=
 DB_USERNAME2=
 DB_PASSWORD2=
-3)Run: php artisan db:seed
+3)php artisan config:cache
+4)php artisan db:seed
 ```
 
 Setting Chat:
