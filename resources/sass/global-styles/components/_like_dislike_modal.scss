@@ -1,0 +1,46 @@
+#likeModal, #diselikeModal, #diselikeModal_news, #likeModal_news{
+    .modal-content{
+        h5{
+            color: $gray;
+        }
+        .close_modal{
+            font-size: 32px;
+        }
+        .modal_like_text{
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 400;
+            color: $gray;
+            svg{
+                margin-left: 10px;
+                width: 16px;
+            }
+
+        }
+        .replay-rating{
+            span{
+                font-size: 32px!important;
+            }
+        }
+        .conteiner_btn{
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .button__download-more{
+            width: 50%;
+        }
+    }
+    .no_autorization{
+        text-align: center;
+        color: black!important;
+        .conteiner_btn{
+            justify-content: space-between!important;
+        }
+        .button__download-more{
+            width: 35%;
+        }
+    }
+}
+
