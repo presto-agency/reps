@@ -207,6 +207,9 @@
 
             & img{
                 padding-right: 20px;
+                max-width: 40px;
+                max-height: 36px;
+                border-radius: 50%;
             }
             & .left_block{
                 display: flex;

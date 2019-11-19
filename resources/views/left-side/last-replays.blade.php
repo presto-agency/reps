@@ -1,7 +1,7 @@
 <section class="block_replay">
     <div class="wrapper border_shadow">
         <div class="title_block_gray change_gray">
-            <p class="title_text">{{__('Последние профессиональные реплеи')}}</p>
+            <p class="title_text">{{__('Реплеи')}}</p>
         </div>
         <div class="row row_game">
             @isset($replaysProLsHome)
@@ -40,14 +40,9 @@
             @endisset
         </div>
         <div class="container_btn">
-            <a href="{{route('replay.index',['type' =>'pro'])}}" class="name_game" title="Профессиональные реплеи">
-                <button class="button button__download-more">{{__('Профессиональные реплеи')}}</button>
+            <a href="{{route('replay.index',['type' =>'pro'])}}" class="name_game" title="ДРУГИЕ ГОСУ РЕПЛЕИ">
+                <button class="button button__download-more">{{__('ДРУГИЕ ГОСУ РЕПЛЕИ')}}</button>
             </a>
-        </div>
-    </div>
-    <div class="wrapper border_shadow">
-        <div class="title_block_gray change_gray">
-            <p class="title_text">{{__('Последние пользовательские реплеи')}}</p>
         </div>
         <div class="row row_game">
             @isset($replaysUserLsHome)
