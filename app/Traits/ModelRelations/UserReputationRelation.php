@@ -38,7 +38,7 @@ trait UserReputationRelation
      */
     public function topic()
     {
-        return $this->belongsTo('App\ForumTopic', 'object_id');
+        return $this->belongsTo('App\Models\ForumTopic', 'object_id');
     }
 
     /**
@@ -48,7 +48,7 @@ trait UserReputationRelation
      */
     public function replay()
     {
-        return $this->belongsTo('App\Replay', 'object_id');
+        return $this->belongsTo('App\Models\Replay', 'object_id');
     }
 
     /**
@@ -58,7 +58,7 @@ trait UserReputationRelation
      */
     public function gallery()
     {
-        return $this->belongsTo('App\UserGallery', 'object_id');
+        return $this->belongsTo('App\Models\UserGallery', 'object_id');
     }
 
     /**
@@ -68,6 +68,6 @@ trait UserReputationRelation
      */
     public function comment()
     {
-        return $this->belongsTo('App\Comment', 'object_id');
+        return $this->belongsTo('App\Models\Comment', 'object_id');
     }
 }

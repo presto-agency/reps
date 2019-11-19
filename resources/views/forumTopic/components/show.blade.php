@@ -113,7 +113,7 @@
                         </a>
                     </div>
                     <div class="card-body__items-wrap">
-                        <a class="items__like" href="#">
+                        <a class="items__like vote-replay-up" href="#" data-toggle="modal" data-target="#vote-modal" data-rating="1">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -125,7 +125,7 @@
                     </svg>
                             <span>{{$topic->positive_count}}</span>
                         </a>
-                        <a class="items__dislike" href="#">
+                        <a class="items__dislike vote-replay-down" href="#" data-toggle="modal" data-target="#vote-modal" data-rating="-1">
                             <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"/>

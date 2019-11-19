@@ -97,6 +97,40 @@
     @include('layouts.components.footer.index')
 </footer>
 
+
+<!-- Start Modal Rating-->
+<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="addRatingModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addRatingModalLabel">Оставте комментарий</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @if(Auth::user() )
+                <form id="rating-vote-form" action="" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Комментарий:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+                @else
+                    <p>Данная опция доступна только авторизированным пользователям</p>
+                @endif
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary">Сохранить</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal Rating-->
+
+
 <!--SCEditor-->
 <script src="{{ asset('js/sceditor/sceditor.min.js') }}"></script>
 <script src="{{ asset('js/sceditor/formats/bbcode.js') }}"></script>
@@ -147,6 +181,60 @@
         });
     </script>
 @show
+
+<script>
+    $(function () {
+
+        /**Vote - positive / negative vote - Separate Replay Page*/
+        $('body').on('click', 'a.vote-replay-up, a.vote-replay-down', function (e) {
+            var rating = $(this).attr('data-rating');
+            var modal = $('#vote-modal');
+            var url = $(this).attr('data-route');
+            modal.find('form input#rating').val(rating);
+            modal.find('form').attr('action', url);
+            modal.find('.modal-body .unregistered-info-wrapper').removeClass('active');
+
+            if (rating === '1') {
+                modal.find('.negative').removeClass('active');
+                modal.find('.positive').addClass('active');
+            }
+            if (rating === '-1') {
+                modal.find('.negative').addClass('active');
+                modal.find('.positive').removeClass('active');
+            }
+        });
+
+        $('body').on('submit', '#rating-vote-form', function (e) {
+            e.preventDefault();
+            var url = $(this).attr('action');
+            var selectData = $('#rating-vote-form').serialize();
+            var imgClass = 'positive-vote-img';
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: selectData,
+                success: function (response) {
+                    if (response.message) {
+                        if (response.user_rating === "-1") {
+                            imgClass = 'negative-vote-img';
+                        }
+                        if (response.user_rating === undefined) {
+                            imgClass = '';
+                        }
+                        $('#vote-modal').find('.modal-body .unregistered-info-wrapper').addClass('active');
+                        $('#vote-modal').find('.modal-body .unregistered-info-wrapper .notice').html(response.message);
+                        $('#vote-modal').find('.modal-body' + ' .' + imgClass).addClass('active');
+                    } else {
+                        location.reload();
+                    }
+                },
+                error: function () {
+
+                }
+            });
+        });
+    });
+</script>
 
 @yield('java-script')
 </body>
