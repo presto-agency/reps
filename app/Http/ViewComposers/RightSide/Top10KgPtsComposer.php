@@ -96,7 +96,7 @@ class Top10KgPtsComposer
             $data[] = [
                 'id'               => $item->id,
                 'name'             => $item->name,
-                'avatar'           => self::checkAvatar($item),
+                'avatar'           => $item->avatar,
                 'raceIcon'         => "images/default/game-races/" . $item->races->title . ".png",
                 'raceTitle'        => $item->races->title,
                 'countryFlag25x20' => $item->countries->flag,
@@ -106,15 +106,6 @@ class Top10KgPtsComposer
         }
         return $data;
 
-    }
-
-    /**
-     * @param $item
-     * @return mixed
-     */
-    public static function checkAvatar($item)
-    {
-        return \File::exists($item->avatar) === true ? $item->avatar : $item->avatar_url_or_blank;
     }
 
     /**

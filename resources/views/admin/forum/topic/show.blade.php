@@ -37,12 +37,20 @@
                     </div>
                     <br>
                     <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatar)}}" alt="avatar">
+                        @if(auth()->user()->userViewAvatars())
+                            @if(!empty($topic->author->avatar) && file_exists($topic->author->avatar))
+                                <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatar)}}"
+                                     alt="avatar">
+                            @else
+                                <img class="img-circle img-bordered-sm" src="{{asset($topic->author->defaultAvatar())}}"
+                                     alt="avatar">
+                            @endif
+                        @endif
                         {{--                            <img class="img-circle img-bordered-sm" src="{{route('news').'/dist/img/avatar.png'}}" alt="User img">--}}
                         <span class="username">
 {{--                            <a href="#{{route('admin.user.profile', ['id' => $topic->author->id])}}">{{$topic->author->name}}</a>--}}
                         </span>
-                        <span class="description">{{$topic->created_at->format('h:m d-m-Y')}}</span>
+                        <span class="description">{{$topic->created_at->format('h:m d.m.Y')}}</span>
                     </div>
 
                     <ul class="list-inline">
@@ -78,16 +86,23 @@
                             <div class="table-content">
                                 @foreach($topic->comments as $comment)
                                     <div class="item row">
-                                        <img class="img-circle img-bordered-sm" src="{{asset($comment->user->avatar)}}"
-                                             alt="avatar">
+                                        @if(auth()->user()->userViewAvatars())
+                                            @if(!empty($comment->user->avatar) && file_exists($comment->user->avatar))
+                                                <img class="img-circle img-bordered-sm"
+                                                     src="{{asset($comment->user->avatar)}}" alt="avatar">
+                                            @else
+                                                <img class="img-circle img-bordered-sm"
+                                                     src="{{asset($comment->user->defaultAvatar())}}" alt="avatar">
+                                            @endif
+                                        @endif
                                         <p class="message">
                                             <a href="#" class="name">
                                                 <small class="text-muted pull-right"><i
-                                                        class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d-m-Y')}}
+                                                        class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
                                                 </small>
                                                 {{$comment->user->name}}
                                             </a>
-{{--<a type="button" class="btn btn-default text-red"  title="Удалить запись" href="#{{route('admin.comments.remove', ['id' => $comment->id])}}"><i class="fa fa-trash"></i></a>--}}
+                                            {{--<a type="button" class="btn btn-default text-red"  title="Удалить запись" href="#{{route('admin.comments.remove', ['id' => $comment->id])}}"><i class="fa fa-trash"></i></a>--}}
                                             {!! $comment->content !!}
                                         </p>
                                     </div>

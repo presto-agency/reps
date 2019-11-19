@@ -197,8 +197,15 @@
                             <div class="left_block">
                                 <span>#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
                                 <a href="{{route('user_profile',['id'=>$player->user->id])}}">
-                                    <img src="{{asset($player->user->avatar)}}" class="author__avatar img-fluid"
-                                         alt="avatar" title="{{$player->user->name}}">
+                                    @if(auth()->user()->userViewAvatars())
+                                        @if(!empty($player->user->avatar) && file_exists($player->user->avatar))
+                                            <img src="{{asset($player->user->avatar)}}" class="author__avatar img-fluid"
+                                                 alt="avatar" title="{{$player->user->name}}">
+                                        @else
+                                            <img src="{{asset($player->user->defaultAvatar())}}"
+                                                 class="author__avatar img-fluid" alt="avatar">
+                                        @endif
+                                    @endif
                                     <span class="name_player"
                                           title="{{$player->user->name}}">{{$player->user->name}}</span>
                                 </a>
@@ -246,7 +253,15 @@
                                 <div class="col-xl-8 col-lg-10 col-md-10 col-sm-8 col-7 center_block">
                                     @isset($match->player1->user)
                                         <div class="one_player">
-                                            <img class="icon_bars" src="{{asset($match->player1->user->avatar)}}">
+                                            @if(auth()->user()->userViewAvatars())
+                                                @if(!empty($match->player1->user->avatar) && file_exists($match->player1->user->avatar))
+                                                    <img class="icon_bars"
+                                                         src="{{asset($match->player1->user->avatar)}}">
+                                                @else
+                                                    <img class="icon_bars"
+                                                         src="{{asset($match->player1->user->defaultAvatar())}}">
+                                                @endif
+                                            @endif
                                             <span>{{$match->player1->user->name}}</span>
                                         </div>
                                     @else
@@ -262,7 +277,15 @@
                                     @endif
                                     @isset($match->player2->user)
                                         <div class="one_player">
-                                            <img class="icon_bars" src="{{asset($match->player2->user->avatar)}}">
+                                            @if(auth()->user()->userViewAvatars())
+                                                @if(!empty($match->player2->user->avatar) && file_exists($match->player2->user->avatar))
+                                                    <img class="icon_bars"
+                                                         src="{{asset($match->player2->user->avatar)}}">
+                                                @else
+                                                    <img class="icon_bars"
+                                                         src="{{asset($match->player2->user->defaultAvatar())}}">
+                                                @endif
+                                            @endif
                                             <span>{{$match->player2->user->name}}</span>
                                         </div>
                                     @else

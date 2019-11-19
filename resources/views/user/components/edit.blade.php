@@ -40,9 +40,15 @@
         </div>
         <div class="upload-image">
             <p>{{__('Аватар:')}}</p>
-            @if($user->avatar)
+            @if(auth()->user()->userViewAvatars())
                 <div class="preview-image-wrapper">
-                    <img class="" src="{{old('avatar',$user->avatar)}}" alt="avatar">
+                    @if(auth()->user()->userViewAvatars())
+                        @if(!empty($user->avatar) && file_exists($user->avatar))
+                            <img class="" src="{{asset(old('avatar',$user->avatar))}}" alt="avatar">
+                        @else
+                            <img class="" src="{{asset(old('avatar',$user->defaultAvatar()))}}" alt="avatar">
+                        @endif
+                    @endif
                 </div>
             @endif
             <div class="row">
@@ -52,8 +58,7 @@
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
                         <span>{{__('Выбрать файл')}}</span>
-                        <input id="uploadBtn" type="file"
-                               class="upload"
+                        <input id="uploadBtn" type="file" class="upload"
                                value="{{old('avatar',$user->avatar)}}" accept="image/*"
                                name="avatar"/>
                         @if ($errors->has('avatar'))

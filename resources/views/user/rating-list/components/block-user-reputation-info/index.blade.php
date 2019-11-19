@@ -14,7 +14,13 @@
         <div class="userInfo_block">
             <div class="row">
                 <div class="col-xl-4 col-4 container_img">
-                    <img src="{{asset($user->avatar)}}" alt="avatar">
+                    @if(auth()->user()->userViewAvatars())
+                        @if(!empty($user->avatar) && file_exists($user->avatar))
+                            <img src="{{asset($user->avatar)}}" alt="avatar">
+                        @else
+                            <img src="{{asset($user->defaultAvatar())}}" alt="avatar">
+                        @endif
+                    @endif
                 </div>
                 <div class="col-xl-8 col-8 container_information">
                     <div class="userText_block">

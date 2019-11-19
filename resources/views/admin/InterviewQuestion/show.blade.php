@@ -1,15 +1,19 @@
 <div class="container">
-{{--    <h4>{{$getQuestionName}}</h4>--}}
+    @if(!empty($data->question))
+        <h4>{{$data->question}}</h4>
+    @endif
     <br>
     <div class="row">
         <div class="col-sm-6">
             <ul class="list-group">
-{{--                @foreach($data as $item)--}}
-                    <li class="list-group-item list-group-item-info">
-{{--                        <p style="margin-top:10px">{{ $item['answer'] ." /Выбрали: " .$item['userAnswersCount'] }}</p>--}}
-                    </li>
-                    <br>
-{{--                @endforeach--}}
+                @if($data->answers->isNotEmpty())
+                    @foreach($data->answers as $item)
+                        <li class="list-group-item list-group-item-info">
+                            <p style="margin-top:10px">{{ $item->answer ." /Выбрали: " .$item->users_count }}</p>
+                        </li>
+                        <br>
+                    @endforeach
+                @endif
             </ul>
         </div>
     </div>
