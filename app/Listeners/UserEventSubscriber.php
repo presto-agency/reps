@@ -16,7 +16,8 @@ class UserEventSubscriber
      */
     public function onUserLogin($event)
     {
-        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGIN, null);
+
+//        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGIN, null);
     }
 
     /**
@@ -24,7 +25,7 @@ class UserEventSubscriber
      */
     public function onUserLogout($event)
     {
-        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGOUT, null);
+//        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGOUT, null);
     }
 
     /**
@@ -32,7 +33,8 @@ class UserEventSubscriber
      */
     public function onUserRegistered($event)
     {
-        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_REGISTER, null);
+
+//        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_REGISTER, null);
     }
 
     /**
@@ -40,7 +42,7 @@ class UserEventSubscriber
      */
     public function onUserUploadImage($event)
     {
-        $this->saveLog($event->userGallery->user_id, UserActivityLog::EVENT_CREATE_IMAGE, UserActivityLogService::parametersForCreateImage($event->userGallery));
+//        $this->saveLog($event->userGallery->user_id, UserActivityLog::EVENT_CREATE_IMAGE, UserActivityLogService::parametersForCreateImage($event->userGallery));
     }
 
     /**
@@ -48,7 +50,7 @@ class UserEventSubscriber
      */
     public function onUserUploadReplay($event)
     {
-        $this->saveLog($event->userReplay->user_id, UserActivityLog::EVENT_CREATE_REPLAY, UserActivityLogService::parametersForCreateReplay($event->userReplay));
+//        $this->saveLog($event->userReplay->user_id, UserActivityLog::EVENT_CREATE_REPLAY, UserActivityLogService::parametersForCreateReplay($event->userReplay));
     }
 
     /**
@@ -56,7 +58,7 @@ class UserEventSubscriber
      */
     public function onUserUploadForumTopic($event)
     {
-        $this->saveLog($event->userForumTopic->user_id, UserActivityLog::EVENT_CREATE_POST, UserActivityLogService::parametersForCreateTopic($event->userForumTopic));
+//        $this->saveLog($event->userForumTopic->user_id, UserActivityLog::EVENT_CREATE_POST, UserActivityLogService::parametersForCreateTopic($event->userForumTopic));
     }
 
     /**
@@ -64,7 +66,7 @@ class UserEventSubscriber
      */
     public function onUserComment($event)
     {
-        $this->saveLog($event->userComment->user_id, UserActivityLog::EVENT_USER_COMMENT, null);
+//        $this->saveLog($event->userComment->user_id, UserActivityLog::EVENT_USER_COMMENT, null);
     }
 
     /**

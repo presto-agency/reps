@@ -46,11 +46,17 @@ class MessageService
 
             }
 
-            $dialog_id = UserDialogService::getDialogUser($id)->id;
+            $dialogue = UserDialogService::getDialogUser($id);
+            $dialog_id = false;
+            $messages = '';
+            if ($dialogue){
+                $dialog_id = $dialogue->id;
+                $messages = Dialogue::getUserDialogueContent($dialog_id);
+            }
 
             return [
                 'dialogue_id' => $dialog_id,
-                'messages' => Dialogue::getUserDialogueContent($dialog_id),
+                'messages' => $messages,
                 'contacts' => $contacts,
                 'user' => User::find($id),
             ];

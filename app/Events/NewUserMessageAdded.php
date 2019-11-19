@@ -25,7 +25,7 @@ class NewUserMessageAdded implements ShouldBroadcast
     {
         $this->message = $message;
 
-//        $this->dontBroadcastToCurrentUser();
+        $this->dontBroadcastToCurrentUser();
     }
 
     /**

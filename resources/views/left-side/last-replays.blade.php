@@ -1,7 +1,7 @@
 <section class="block_replay">
     <div class="wrapper border_shadow">
         <div class="title_block_gray change_gray">
-            <p class="title_text">Последние профессиональные реплеи</p>
+            <p class="title_text">{{__('Реплеи')}}</p>
         </div>
         <div class="row row_game">
             @isset($replaysProLsHome)
@@ -40,14 +40,9 @@
             @endisset
         </div>
         <div class="container_btn">
-            <a href="{{route('replay.index',['type' =>'pro'])}}" class="name_game" title="Профессиональные реплеи">
-                <button class="button button__download-more">Профессиональные реплеи</button>
+            <a href="{{route('replay.index',['type' =>'pro'])}}" class="name_game" title="ДРУГИЕ ГОСУ РЕПЛЕИ">
+                <button class="button button__download-more">{{__('ДРУГИЕ ГОСУ РЕПЛЕИ')}}</button>
             </a>
-        </div>
-    </div>
-    <div class="wrapper border_shadow">
-        <div class="title_block_gray change_gray">
-            <p class="title_text">Последние пользовательские реплеи</p>
         </div>
         <div class="row row_game">
             @isset($replaysUserLsHome)
@@ -57,24 +52,24 @@
                             <a href="{{route('replay.show',['replay'=>$item->id, 'type' => 'user'])}}" class="name_game"
                                title="{{$item->title}}"><p>{{$item->title}}</p></a>
                             <div class="content_game">
-                                <p class="text">Страны:</p>
+                                <p class="text">{{__('Страны:')}}</p>
                                 @isset($item->firstCountries)
                                     <img class="icon_bars" src="{{asset($item->firstCountries->flag)}}"
                                          alt="flag" title="{{$item->firstCountries->name}}"/>
                                 @endisset
-                                <p class="text">vs</p>
+                                <p class="text">{{__('vs')}}</p>
                                 @isset($item->secondCountries)
                                     <img class="icon_bars" src="{{asset($item->secondCountries->flag)}}"
                                          alt="flag" title="{{$item->secondCountries->name}}"/>
                                 @endisset
                             </div>
                             <div class="content_game">
-                                <p class="text">Матчап:</p>
+                                <p class="text">{{__('Матчап:')}}</p>
                                 @isset($item->firstRaces)
                                     <p class="text_matchap"
                                        title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</p>
                                 @endisset
-                                <p class="text">vs</p>
+                                <p class="text">{{__('vs')}}</p>
                                 @isset($item->secondRaces)
                                     <p class="text_matchap"
                                        title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</p>
@@ -87,7 +82,7 @@
         </div>
         <div class="container_btn">
             <a href="{{route('replay.index',['type' =>'user'])}}" class="name_game" title="Пользовательские реплеи">
-                <button class="button button__download-more">Пользовательские реплеи</button>
+                <button class="button button__download-more">{{__('Пользовательские реплеи')}}</button>
             </a>
         </div>
     </div>

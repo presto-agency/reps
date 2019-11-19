@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use AdminSection;
 use App\Events\ReplayDownload;
 use App\Http\Controllers\Controller;
+use App\Services\ServiceAssistants\PathHelper;
 use App\Models\{Comment, Replay};
 use Illuminate\Http\Request;
 
@@ -51,13 +52,24 @@ class ReplayController extends Controller
 
     public function download($id)
     {
-        event(new ReplayDownload($id));
-        $filePath = Replay::findOrFail($id)->value('file');
-        if (\Storage::exists($filePath)) {
-            return response()->download($filePath);
-        } else {
-            return 'Файл отсутствует';
+        $replay = Replay::where('id', $id)->firstOrFail('file');
+        $filePath = $replay->file;
+        if (empty($filePath)) {
+            return back();
         }
+        if (strpos($filePath, '/storage') !== false) {
+            $filePath = \Str::replaceFirst('/storage', 'public', $filePath);
+        }
+        if (strpos($filePath, 'storage') !== false) {
+            $filePath = \Str::replaceFirst('storage', 'public', $filePath);
+        }
+
+        $checkPath = \Storage::path($filePath);
+        if (\File::exists($checkPath) === false) {
+            return back();
+        };
+        return response()->download($checkPath);
+
     }
 
     public function comment(Request $request, $id)

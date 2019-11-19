@@ -143,22 +143,13 @@
 
 @endsection
 
-@section('right-side')
-    right-side
-@endsection
-
 @section('java-script')
     <script>
 
         $(function () {
 
             function appendMyMessage(data){
-                /*$('.messenger__body').append(
-                    $('<li/>').append(
-                        $('<b/>').text(data.author),
-                        $('<p/>').text(data.content),
-                    )
-                );*/
+
                 var contentText = $('<div class="content__text"></div>')
                     .append(data.message);
 
@@ -167,8 +158,8 @@
                     .append('<span class="content__date">'+ data.created_at +'</span>');
 
                 var messageInfo = $('<div class="message-info"></div>')
-                    .append('<span class="user-name">dfsad</span>')
-                    .append('<img class="head__avatar" src="#" alt="avatar">');
+                    .append('<span class="user-name">{{ Auth()->user()->name }}</span>')
+                    .append('<img class="head__avatar" src="{{ asset(Auth()->user()->avatar) }}" alt="avatar">');
 
                 var myMessage = $('<div class="my-message"></div>')
                     .append(messageContent)
@@ -176,17 +167,6 @@
 
                 $('.messenger__body')
                     .append(myMessage);
-
-                /*var newElems = $("<div class="my-message"></div>")
-                    .append("<img src='http://professorweb.ru/downloads/jquery/lily.png'/>")
-                    .append("<label for='lily'>Лилии:</label>")
-                    .append("<input name='lily' value='0' required />");
-
-                newElems.css("border", "thick solid red");
-
-                $('#row1').append(newElems);*/
-
-
 
             }
 
@@ -199,8 +179,8 @@
                     .append('<span class="content__date">'+ data.created_at +'</span>');
 
                 var messageInfo = $('<div class="message-info"></div>')
-                    .append('<span class="user-name">user</span>')
-                    .append('<img class="head__avatar" src="#" alt="avatar">');
+                    .append('<span class="user-name">' + data.sender.name + '</span>')
+                    .append('<img class="head__avatar" src="' + data.sender.avatar + '" alt="avatar">');
 
                 var userMessage = $('<div class="user-message"></div>')
                     .append(messageInfo)
@@ -235,8 +215,6 @@
 
                 var message = $('#editor_messenger').val().substring(0, 1000);
 
-                alert('click form: ' + message);
-
                 axios.post('{{ route('user.send_message') }}', {
                     message: message,
                     from_id: '{{ Auth::id() }}',
@@ -249,14 +227,17 @@
                     console.log(response.data);
 
                     appendMyMessage(response.data);
+
                     //очистити поле для вводу
                     /**clean textarea field*/
-                    // $('#editor_messenger').val('');
+                    for ( instance in CKEDITOR.instances ){
+                        CKEDITOR.instances[instance].updateElement();
+                    }
+                    CKEDITOR.instances[instance].setData('');
 
                 }, (error) => {
                     console.log(error);
                 });
-
 
             });
         });

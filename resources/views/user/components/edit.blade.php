@@ -71,7 +71,9 @@
                         name="country" id="user-settings__country">
                     @foreach($countries as $country)
                         <option class="night_input"
-                                value="{{$country->id}}" {{($country->id == old('country',$user->country_id)) ? ' selected' : '' }}>{{$country->name}}</option>
+                                value="{{$country->id}}" {{($country->id == old('country',$user->country_id)) ? ' selected' : '' }}>
+                            {{$country->name}}
+                        </option>
                     @endforeach
                 </select>
                 @if ($errors->has('country'))
@@ -152,8 +154,11 @@
             </label>
             <input class="form-check-input night_input "
                    type="checkbox" id="user-settings-view-avatar"
-                   name="view_avatars" value="{{old('view_avatars')}}"
-                >
+                   name="view_avatars" value="1"
+                   @if(old('view_avatars',$user->view_avatars))
+                   checked
+                @endif
+            >
             @if ($errors->has('view_avatars'))
                 <div class="alert alert-danger" role="alert">
                     <strong>{{ $errors->first('view_avatars') }}</strong>
