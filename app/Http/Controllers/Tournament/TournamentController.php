@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tournament;
 
 use App\Models\ReplayMap;
 use App\Models\TourneyList;
+use App\Models\TourneyMatch;
 use App\Services\Tournament\TourneyService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,6 +14,7 @@ class TournamentController extends Controller
 {
 
     public $mapsIds;
+
     /**
      * Display a listing of the resource.
      *
@@ -94,6 +96,36 @@ class TournamentController extends Controller
         ]);
     }
 
+
+//    public function downloadMultipleMatch($tournament)
+//    {
+//
+//    }
+
+    public function downloadMatch($tournament, $rep)
+    {
+
+        $tourneyMatchFile = TourneyMatch::where('tourney_id', $tournament)->value($rep);
+
+        $repPath = $tourneyMatchFile;
+
+        if (empty($repPath)) {
+            return back();
+        }
+        if (strpos($tourneyMatchFile, '/storage') !== false) {
+            $repPath = \Str::replaceFirst('/storage', 'public', $tourneyMatchFile);
+        }
+        if (strpos($tourneyMatchFile, 'storage') !== false) {
+            $repPath = \Str::replaceFirst('storage', 'public', $tourneyMatchFile);
+        }
+
+        $checkPath = \Storage::path($repPath);
+        if (\File::exists($checkPath) === false) {
+            return back();
+        };
+
+        return response()->download($checkPath);
+    }
 
     public function getTournament($id)
     {
