@@ -64,7 +64,7 @@
                                 <p class="name">{{ $topic->title }}</p>
                             </a>
                             <div class="right">
-                                <p class="date">{{ $topic->created_at }}</p>
+                                <p class="date">{{ $topic->created_at->format('h:m d.m.Y')}}</p>
                             </div>
                         </div>
                         <div class="detailed-news__info night_modal">
@@ -111,7 +111,15 @@
                                 @if(isset($topic->author) && !empty($topic->author))
                                     <a class="block_account"
                                        href="{{route('user_profile',['id'=>$topic->author->id])}}">
-                                        <img class="search_img" src="{{ $topic->author->avatar }}" alt="avatar">
+                                        @if(auth()->user()->userViewAvatars())
+                                            @if(!empty($topic->author->avatar) && file_exists($topic->author->avatar))
+                                                <img class="search_img" src="{{ asset($topic->author->avatar) }}"
+                                                     alt="avatar">
+                                            @else
+                                                <img class="search_img"
+                                                     src="{{ asset($topic->author->defaultAvatar()) }}" alt="avatar">
+                                            @endif
+                                        @endif
                                         <span>{{ $topic->author->name }}</span>
                                     </a>
                                 @endif

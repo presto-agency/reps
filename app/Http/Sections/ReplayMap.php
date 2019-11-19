@@ -102,8 +102,9 @@ class ReplayMap extends Section
         $display->setItems([
 
             $picture = AdminFormElement::image('url', 'Картинка карты')
-                ->setUploadPath(function (UploadedFile $file) {
-                    return PathHelper::checkUploadStoragePath("/images/replays/maps");
+                ->setUploadPath(function (UploadedFile $file) use ($id) {
+                    $filePath = \App\Models\ReplayMap::where('id', $id)->value('url');
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/replays/maps", $filePath);
                 })
                 ->setValidationRules(['required',
                                       'max:2048']),

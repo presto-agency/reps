@@ -57,18 +57,17 @@ class TourneyMatch extends Model
      */
     public static function getTourneyMap($mapId)
     {
-        $tourneyMap = ReplayMap::where('id', $mapId)->first([
-            'url',
-            'name'
-        ]);
+        $tourneyMap = ReplayMap::where('id', $mapId)->first();
 
         $data = null;
         if (!empty($tourneyMap->name)){
             $data['title'] = "<span class='title_text'>" . $tourneyMap->name . "</span>";
 
         }
-        if (!empty($tourneyMap->name) && !empty($tourneyMap->url)){
-            $data['url'] = "<div class='map'>" . "<img src='$tourneyMap->url' alt='$tourneyMap->name' title='$tourneyMap->name'>" . "</div>";
+        if (!empty($tourneyMap->url)){
+            $data['url'] = "<div class='map'>" . "<img src=".asset($tourneyMap->url)." alt='$tourneyMap->name' title='$tourneyMap->name'>" . "</div>";
+        }else{
+            $data['url'] = "<div class='map'>" . "<img src=".asset($tourneyMap->defaultMap())." alt='$tourneyMap->name' title='$tourneyMap->name'>" . "</div>";
 
         }
 
@@ -96,7 +95,7 @@ class TourneyMatch extends Model
         if (!empty($tourneyMap)) {
             return "<a href=" . asset($tourneyMap->url) . " title='$tourneyMap->name'>$tourneyMap->name</a>";
         } else {
-            return null;
+            return "<a href=" . asset($tourneyMap->defaultMap()) . " title='$tourneyMap->name'>$tourneyMap->name</a>";
         }
     }
 }

@@ -81,12 +81,8 @@ class UserService
         if ($request->hasFile('avatar')) {
             // Check if upload file Successful Uploads
             if ($request->file('avatar')->isValid()) {
-                // Check path
-
-                PathHelper::checkUploadStoragePath("/images/users/avatars");
-                // Check old file
-                PathHelper::checkAvatarAndDelete($data->avatar);
-
+                // Check Old file delete if exists and path create if not exists
+                PathHelper::checkUploadsFileAndPath("/images/users/avatars", auth()->user()->avatar);
                 // Upload file on server
                 $image = $request->file('avatar');
                 $filePath = $image->store('/images/users/avatars', 'public');

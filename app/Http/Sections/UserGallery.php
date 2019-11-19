@@ -136,7 +136,7 @@ class UserGallery extends Section
 
             $picture = AdminFormElement::image('picture', 'Картинка')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return PathHelper::checkUploadStoragePath("/images/users/galleries");
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/users/galleries");
                 })
                 ->setValidationRules(['required', 'max:2048']),
 

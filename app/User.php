@@ -4,14 +4,13 @@ namespace App;
 
 use App\Traits\GravatarTrait;
 use App\Traits\ModelRelations\UserRelation;
-use App\Traits\ModelSetAttributes\UserSetAttribute;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, GravatarTrait, UserRelation, UserSetAttribute;
+    use Notifiable, GravatarTrait, UserRelation;
 
     /**
      * The attributes that are mass assignable.
@@ -52,6 +51,14 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function userViewAvatars()
+    {
+        if ($this->view_avatars == 0) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * The attributes that should be cast to native types.

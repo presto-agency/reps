@@ -1,7 +1,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3 text-center">
-            <img class="img-bordered-sm" src="{{asset($replay->maps->url)}}" alt="map">
+            @if(!empty($replay->maps->url))
+                <img style="width: 100%" class="img-bordered-sm" src="{{asset($replay->maps->url)}}" alt="map">
+            @else
+                <img style="width: 100%" class="img-bordered-sm" src="{{asset($replay->maps->defaultMap)}}" alt="map">
+            @endif
         </div>
         <div class="col-md-9">
             <div class="row">
@@ -62,7 +66,13 @@
                     <p>Файл:</p>
                 </div>
                 <div class="col-md-10">
-                    <a href="{{route('admin.replay.download', ['id' => $replay->id])}}">Скачать Replay</a>
+                    <a href="#"
+                       onclick="event.preventDefault(); document.getElementById('admin-downloadReplay').submit();">{{__('Скачать Replay')}}</a>
+                    <form id="admin-downloadReplay"
+                          action="{{route('admin.replay.download', ['id' => $replay->id])}}" method="POST"
+                          style="display: none;">
+                        @csrf
+                    </form>
                 </div>
                 <div class="col-md-2">
                     <p>Контент:</p>
@@ -82,18 +92,25 @@
                     </div>
                     {{ Form::close() }}
                 </div>
-                <div class="box-body">
+                <div class="table-content">
                     @foreach($replay->comments as $comment)
                         <div class="item row">
-                            <img src="{{asset($comment->user->avatar)}}"
-                                 class="img-circle img-bordered-sm" alt="Avatar"/>
+                            @if(auth()->user()->userViewAvatars())
+                                @if(!empty($comment->user->avatar) && file_exists($comment->user->avatar))
+                                    <img src="{{asset($comment->user->avatar)}}" class="img-circle img-bordered-sm"
+                                         alt="avatar"/>
+                                @else
+                                    <img src="{{asset($comment->user->defaultAvatar())}}"
+                                         class="img-circle img-bordered-sm" alt="avatar"/>
+                                @endif
+                            @endif
                             <p class="message">
-{{--                                <a href="{{route('user.show',['user'=>$comment->user->id])}}" class="name">--}}
+                                <a href="#" class="name">
                                     <small class="text-muted pull-right"><i
-                                            class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d-m-Y')}}
+                                            class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
                                     </small>
                                     {{$comment->user->name}}
-{{--                                </a>--}}
+                                </a>
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['admin.replays.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
                                 <button class="btn btn-default text-red" title="Удалить запись"><i
                                         class="fa fa-trash"></i></button>

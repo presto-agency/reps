@@ -48,7 +48,7 @@
                 <div class="body__wrap">
                     <div class="body__info change_gray">
                         <p class="info__nickname night_text">{{$item->users->name}}</p>
-                        <img src="{{ asset($item->users->avatar) }}" class="info__flag" alt="flag">
+                        <img src="" class="info__flag" alt="flag">
                         <img src="{{ asset('images/default/game-races'.$item->races->title.'.png') }}"
                              class="info__cube" alt="race">
                         <p class="info__text night_text">16826 pts | 675 кг</p>

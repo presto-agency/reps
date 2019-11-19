@@ -52,7 +52,7 @@ class ReplayController extends Controller
 
     public function download($id)
     {
-        $replay = Replay::where('id', $id)->firstOrFail('file');
+        $replay = Replay::where('id', $id)->firstOrFail();
         $filePath = $replay->file;
         if (empty($filePath)) {
             return back();
@@ -68,9 +68,17 @@ class ReplayController extends Controller
         if (\File::exists($checkPath) === false) {
             return back();
         };
+        self::downloadCount($replay);
         return response()->download($checkPath);
 
     }
+
+    public static function downloadCount($replay)
+    {
+        $replay->increment('downloaded', 1);
+        $replay->save();
+    }
+
 
     public function comment(Request $request, $id)
     {

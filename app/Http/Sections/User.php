@@ -174,9 +174,9 @@ class User extends Section
         $display->setItems([
             $avatar = AdminFormElement::image('avatar', 'Аватар')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return PathHelper::checkUploadStoragePath("/images/users/avatars");
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/users/avatars", auth()->user()->avatar);
                 })
-                ->setValueSkipped(request()->exists('avatar'))
+                ->setValueSkipped(empty(request('avatar')))
                 ->setValidationRules([
                     'nullable',
                     'max:2048'

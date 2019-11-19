@@ -25,14 +25,21 @@
                 <div class="comments__wrapp">
                     @if(isset($comment->user) && !empty($comment->user))
                         <div class="comments__info">
-                            <img src="{{$comment->user->avatar}}" class="info__avatar" alt="avatar">
+                            @if(auth()->user()->userViewAvatars())
+                                @if(!empty($comment->user->avatar) && file_exists($comment->user->avatar))
+                                    <img src="{{asset($comment->user->avatar)}}" class="info__avatar" alt="avatar">
+                                @else
+                                    <img src="{{asset($comment->user->defaultAvatar())}}" class="info__avatar"
+                                         alt="avatar">
+                                @endif
+                            @endif
                             <p class="info__nickname">{{$comment->user->name}}</p>
                             <img src="{{$comment->user->countries->flag}}" class="info__flag" alt="flag">
                             <img src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
                                  class="info__cube" alt="race">
                             <p class="info__text">{{$comment->user->comments_count.' pts'}}
                                 | {{$comment->user->count_positive - $comment->user->count_negative.' кг'}}</p>
-                            <span class="info__date">{{$comment->created_at->format('Y-m-d H:m:s')}}</span>
+                            <span class="info__date">{{$comment->created_at->format('h:m d.m.Y')}}</span>
                         </div>
                     @endif
                     <div class="comments__content">
