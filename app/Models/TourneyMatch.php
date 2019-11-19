@@ -61,9 +61,17 @@ class TourneyMatch extends Model
             'url',
             'name'
         ]);
+
         $data = null;
-        $data['title'] = "<span class='title_text'>" . $tourneyMap->name . "</span>";
-        $data['url'] = "<div class='map'>" . "<img src='$tourneyMap->url' alt='$tourneyMap->name' title='$tourneyMap->name'>" . "</div>";
+        if (!empty($tourneyMap->name)){
+            $data['title'] = "<span class='title_text'>" . $tourneyMap->name . "</span>";
+
+        }
+        if (!empty($tourneyMap->name) && !empty($tourneyMap->url)){
+            $data['url'] = "<div class='map'>" . "<img src='$tourneyMap->url' alt='$tourneyMap->name' title='$tourneyMap->name'>" . "</div>";
+
+        }
+
         return $data;
     }
 

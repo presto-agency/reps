@@ -73,6 +73,7 @@ class UserMessagingController extends Controller
 
             $message = UserMessage::createMessage($request, $dialogue_id);
             if ($message) {
+                $message->load('sender');
 
                 event(new NewUserMessageAdded($message));
 
@@ -90,6 +91,7 @@ class UserMessagingController extends Controller
 
                 if ($message) {
 
+                    $message->load('sender');
                     event(new NewUserMessageAdded($message));
 
                     return response()->json($message);

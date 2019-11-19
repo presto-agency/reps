@@ -52,23 +52,24 @@ class ReplayController extends Controller
 
     public function download($id)
     {
-//        $filePath = Replay::where('id', $id)->first();
-//        $getStorageFilePath1 = \Str::replaceFirst('/', '', $filePath->file);
-//        $getStorageFilePath2 = \Str::replaceFirst('storage', '', $filePath->file);
-//        $b = \Storage::disk('public')->exists($getStorageFilePath2);
-//        dd($filePath,$filePath->file,$getStorageFilePath1,$getStorageFilePath2,$b);
+        $replay = Replay::where('id', $id)->firstOrFail('file');
+        $filePath = $replay->file;
+        if (empty($filePath)) {
+            return back();
+        }
+        if (strpos($filePath, '/storage') !== false) {
+            $filePath = \Str::replaceFirst('/storage', 'public', $filePath);
+        }
+        if (strpos($filePath, 'storage') !== false) {
+            $filePath = \Str::replaceFirst('storage', 'public', $filePath);
+        }
 
-//        if (PathHelper::checkStorageFileExistsNoAsset($filePath->file)) {
-////            $getStorageFilePath = \Str::replaceFirst('/', '', $filePath->file);
-//
-//            $filePath->increment('downloaded', 1);
-//            $filePath->save();
-//
-//
-//            return response()->download($filePath->file
-//);
-//        }
-//        return back();
+        $checkPath = \Storage::path($filePath);
+        if (\File::exists($checkPath) === false) {
+            return back();
+        };
+        return response()->download($checkPath);
+
     }
 
     public function comment(Request $request, $id)
