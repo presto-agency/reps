@@ -265,9 +265,7 @@
                         @if(isset($round['title']) && !empty($round['title']))
                             <p class="title_playersText">{{$round['title']}}</p>
                         @endif
-
                         @if(!empty($round['map']['url']) && $checkFile::checkFileExists($round['map']['url']))
-                                @dump($checkFile::checkFileExists($round['map']['url']))
                             <a href='{{asset($round['map']['url'])}}'
                                title='{{$round['map']['name']}}'>{{$round['map']['name']}}</a>
                         @else
@@ -348,7 +346,14 @@
                                 <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-4 right_block">
                                     @for($i = 1; $i <= 7; $i++)
                                         @if(!empty($match->{"rep$i"}))
-                                            <a href="{{ asset($match->{"rep$i"}) }}">{{"rep$i"}}</a>
+                                            <a href="#"
+                                               onclick="event.preventDefault(); document.getElementById('download-match').submit();">{{"rep$i"}}</a>
+                                            <form id="download-match"
+                                                  action="{{ route('download.match',['tournament'=>$tournament->id,'rep'=> "rep$i"]) }}"
+                                                  method="POST"
+                                                  style="display: none;">
+                                                @csrf
+                                            </form>
                                         @endif
                                     @endfor
                                 </div>

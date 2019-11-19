@@ -46,9 +46,11 @@ Route::group(['prefix' => 'replay'], function () {
 });
 /*Tournament*/
 Route::resource("tournament", 'Tournament\TournamentController');
+Route::post("{tournament}/{rep}/download-match", 'Tournament\TournamentController@downloadMatch')->name('download.match');
 Route::post('tournament/loadmore/load_tournament', 'Tournament\TournamentController@loadTournament')->name('load.more.tournament');
 
-Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+Route::group(['prefix'     => 'user',
+              'middleware' => 'auth'], function () {
 
     Route::get('/friends_list', 'UserFriendController@getFriendsList')->name('user.friends_list');
 
@@ -90,8 +92,8 @@ Route::group(['prefix' => 'chat'], function () {
     Route::get('/get_messages', 'ChatController@get_messages')->name('chat.get_messages');
 //    Route::post('/get_message', 'ChatController@get_message')->name('chat.get_message');
 
-    Route::get('/get_externalsmiles','ChatController@get_externalsmiles')->name('chat.get_smiles');
-    Route::get('/get_externalimages','ChatController@get_externalimages')->name('chat.get_images');
+    Route::get('/get_externalsmiles', 'ChatController@get_externalsmiles')->name('chat.get_smiles');
+    Route::get('/get_externalimages', 'ChatController@get_externalimages')->name('chat.get_images');
 });
 
 /*Galleries*/
