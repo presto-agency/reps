@@ -143,22 +143,13 @@
 
 @endsection
 
-@section('right-side')
-    right-side
-@endsection
-
 @section('java-script')
     <script>
 
         $(function () {
 
             function appendMyMessage(data){
-                /*$('.messenger__body').append(
-                    $('<li/>').append(
-                        $('<b/>').text(data.author),
-                        $('<p/>').text(data.content),
-                    )
-                );*/
+
                 var contentText = $('<div class="content__text"></div>')
                     .append(data.message);
 
@@ -177,17 +168,6 @@
                 $('.messenger__body')
                     .append(myMessage);
 
-                /*var newElems = $("<div class="my-message"></div>")
-                    .append("<img src='http://professorweb.ru/downloads/jquery/lily.png'/>")
-                    .append("<label for='lily'>Лилии:</label>")
-                    .append("<input name='lily' value='0' required />");
-
-                newElems.css("border", "thick solid red");
-
-                $('#row1').append(newElems);*/
-
-
-
             }
 
             function appendUserMessage(data){
@@ -199,8 +179,8 @@
                     .append('<span class="content__date">'+ data.created_at +'</span>');
 
                 var messageInfo = $('<div class="message-info"></div>')
-                    .append('<span class="user-name">{{ $message->sender->name }}</span>')
-                    .append('<img class="head__avatar" src="{{ asset($message->sender->avatar) }}" alt="avatar">');
+                    .append('<span class="user-name">' + data.sender.name + '</span>')
+                    .append('<img class="head__avatar" src="' + data.sender.avatar + '" alt="avatar">');
 
                 var userMessage = $('<div class="user-message"></div>')
                     .append(messageInfo)
