@@ -199,25 +199,33 @@ class Replay extends Section
                         ->setHtmlAttribute('placeholder', 'Название')
                         ->setHtmlAttribute('maxlength', '255')
                         ->setHtmlAttribute('minlength', '1')
-                        ->setValidationRules(['required', 'string', 'between:1,255'])
+                        ->setValidationRules(['required',
+                                              'string',
+                                              'between:1,255'])
                 ], 3)
                 ->addColumn([
                     $type_id = AdminFormElement::select('type_id', 'Тип')
                         ->setOptions((new ReplayType())->pluck('title', 'id')->toArray())
                         ->setDisplay('title')
-                        ->setValidationRules(['required', 'string', 'exists:replay_types,id'])
+                        ->setValidationRules(['required',
+                                              'string',
+                                              'exists:replay_types,id'])
                 ], 3)
                 ->addColumn([
                     $map_id = AdminFormElement::select('map_id', 'Карта')
                         ->setOptions((new ReplayMap())->pluck('name', 'id')->toArray())
                         ->setDisplay('name')
-                        ->setValidationRules(['required', 'string', 'exists:replay_maps,id'])
+                        ->setValidationRules(['required',
+                                              'string',
+                                              'exists:replay_maps,id'])
 
                 ], 3)
                 ->addColumn([
                     $map_id = AdminFormElement::select('user_replay', 'Профессиональный/Пользовательский')
                         ->setOptions(\App\Models\Replay::$userReplaysType)
-                        ->setValidationRules(['required', 'string', 'in:0,1'])
+                        ->setValidationRules(['required',
+                                              'string',
+                                              'in:0,1'])
                 ], 3)
         ]);
         $form->setItems(
@@ -227,17 +235,24 @@ class Replay extends Section
                         $first_race = AdminFormElement::select('first_race', 'Перва раса')
                             ->setOptions((new Race())->pluck('title', 'id')->toArray())
                             ->setDisplay('name')
-                            ->setValidationRules(['required', 'string', 'exists:races,id']),
+                            ->setValidationRules(['required',
+                                                  'string',
+                                                  'exists:races,id']),
                         $first_country_id = AdminFormElement::select('first_country_id', 'Первая страна')
                             ->setOptions((new Country())->pluck('name', 'id')->toArray())
                             ->setDisplay('name')
-                            ->setValidationRules(['required', 'string', 'exists:countries,id']),
+                            ->setValidationRules(['required',
+                                                  'string',
+                                                  'exists:countries,id']),
                         $first_location = AdminFormElement::number('first_location', 'Первая локация')
                             ->setHtmlAttribute('placeholder', 'Первая локация')
                             ->setStep('1')
                             ->setMin('1')
                             ->setMax('20')
-                            ->setValidationRules(['nullable', 'numeric', 'min:1', 'max:20'])
+                            ->setValidationRules(['nullable',
+                                                  'numeric',
+                                                  'min:1',
+                                                  'max:20'])
                             ->setValueSkipped(function () {
                                 return is_null(request('first_location'));
                             }),
@@ -245,24 +260,33 @@ class Replay extends Section
                             ->setHtmlAttribute('placeholder', 'Первое имя')
                             ->setHtmlAttribute('maxlength', '255')
                             ->setHtmlAttribute('minlength', '1')
-                            ->setValidationRules(['nullable', 'string', 'between:1,255']),
+                            ->setValidationRules(['nullable',
+                                                  'string',
+                                                  'between:1,255']),
                     ];
                 })->addColumn(function () {
                     return [
                         $first_race = AdminFormElement::select('second_race', 'Вторая раса')
                             ->setOptions((new Race())->pluck('title', 'id')->toArray())
                             ->setDisplay('name')
-                            ->setValidationRules(['required', 'string', 'exists:races,id']),
+                            ->setValidationRules(['required',
+                                                  'string',
+                                                  'exists:races,id']),
                         $first_country_id = AdminFormElement::select('second_country_id', 'Вторая страна')
                             ->setOptions((new Country())->pluck('name', 'id')->toArray())
                             ->setDisplay('name')
-                            ->setValidationRules(['required', 'string', 'exists:countries,id']),
+                            ->setValidationRules(['required',
+                                                  'string',
+                                                  'exists:countries,id']),
                         $second_location = AdminFormElement::number('second_location', 'Вторая локация')
                             ->setHtmlAttribute('placeholder', 'Вторая локация')
                             ->setStep('1')
                             ->setMin('1')
                             ->setMax('20')
-                            ->setValidationRules(['nullable', 'numeric', 'min:1', 'max:20'])
+                            ->setValidationRules(['nullable',
+                                                  'numeric',
+                                                  'min:1',
+                                                  'max:20'])
                             ->setValueSkipped(function () {
                                 return is_null(request('second_location'));
                             }),
@@ -270,7 +294,9 @@ class Replay extends Section
                             ->setHtmlAttribute('placeholder', 'Второе имя')
                             ->setHtmlAttribute('maxlength', '255')
                             ->setHtmlAttribute('minlength', '1')
-                            ->setValidationRules(['nullable', 'string', 'between:1,255']),
+                            ->setValidationRules(['nullable',
+                                                  'string',
+                                                  'between:1,255']),
                     ];
                 })
         );
@@ -278,19 +304,26 @@ class Replay extends Section
         $form->addBody([
             $video_iframe = AdminFormElement::wysiwyg('video_iframe', 'Видео')
                 ->setHtmlAttributes(['placeholder' => 'Видео'])
-                ->setValidationRules(['nullable', 'string', 'max:5000']),
+                ->setValidationRules(['nullable',
+                                      'string',
+                                      'max:5000']),
 
             $content = AdminFormElement::wysiwyg('content', 'Краткое описание')
                 ->setHtmlAttributes(['placeholder' => 'Краткое описание'])
-                ->setValidationRules(['required', 'string', 'between:1,2000']),
+                ->setValidationRules(['required',
+                                      'string',
+                                      'between:1,2000']),
 
             AdminFormElement::columns()
-                ->addColumn(function () {
+                ->addColumn(function () use ($id) {
                     return [
                         $file = AdminFormElement::file('file', 'Файл')
-                            ->setValidationRules(['required', 'file', 'max:5120'])
-                            ->setUploadPath(function (UploadedFile $file) {
-                                return PathHelper::checkUploadStoragePath("/files/replays");
+                            ->setValidationRules(['required',
+                                                  'file',
+                                                  'max:5120'])
+                            ->setUploadPath(function (UploadedFile $file) use ($id) {
+                                $filePath = \App\Models\Replay::where('id', $id)->value('file');
+                                return 'storage' . PathHelper::checkUploadsFileAndPath("/files/replays", $filePath);
                             }),
                     ];
                 })
@@ -322,25 +355,30 @@ class Replay extends Section
                         ->setHtmlAttribute('placeholder', 'Название')
                         ->setHtmlAttribute('maxlength', '255')
                         ->setHtmlAttribute('minlength', '1')
-                        ->setValidationRules(['required', 'string', 'between:1,255'])
+                        ->setValidationRules(['required',
+                                              'string',
+                                              'between:1,255'])
                 ], 3)
                 ->addColumn([
                     $type_id = AdminFormElement::select('type_id', 'Тип')
                         ->setOptions((new ReplayType())->pluck('title', 'id')->toArray())
                         ->setDisplay('title')
-                        ->setValidationRules(['required', 'string'])
+                        ->setValidationRules(['required',
+                                              'string'])
                 ], 3)
                 ->addColumn([
                     $map_id = AdminFormElement::select('map_id', 'Карта')
                         ->setOptions((new ReplayMap())->pluck('name', 'id')->toArray())
                         ->setDisplay('name')
-                        ->setValidationRules(['required', 'string'])
+                        ->setValidationRules(['required',
+                                              'string'])
 
                 ], 3)
                 ->addColumn([
                     $map_id = AdminFormElement::select('user_replay', 'Профессиональный/Пользовательский')
                         ->setOptions(\App\Models\Replay::$userReplaysType)
-                        ->setValidationRules(['required', 'string'])
+                        ->setValidationRules(['required',
+                                              'string'])
                 ], 3)
         ]);
         $form->setItems(
@@ -350,17 +388,22 @@ class Replay extends Section
                         $first_race = AdminFormElement::select('first_race', 'Перва раса')
                             ->setOptions((new Race())->pluck('title', 'id')->toArray())
                             ->setDisplay('name')
-                            ->setValidationRules(['required', 'string']),
+                            ->setValidationRules(['required',
+                                                  'string']),
                         $first_country_id = AdminFormElement::select('first_country_id', 'Первая страна')
                             ->setOptions((new Country())->pluck('name', 'id')->toArray())
                             ->setDisplay('name')
-                            ->setValidationRules(['required', 'string']),
+                            ->setValidationRules(['required',
+                                                  'string']),
                         $first_location = AdminFormElement::number('first_location', 'Первая локация')
                             ->setHtmlAttribute('placeholder', 'Первая локация')
                             ->setStep('1')
                             ->setMin('1')
                             ->setMax('20')
-                            ->setValidationRules(['nullable', 'numeric', 'min:1', 'max:20'])
+                            ->setValidationRules(['nullable',
+                                                  'numeric',
+                                                  'min:1',
+                                                  'max:20'])
                             ->setValueSkipped(function () {
                                 return is_null(request('first_location'));
                             }),
@@ -368,24 +411,31 @@ class Replay extends Section
                             ->setHtmlAttribute('placeholder', 'Первое имя')
                             ->setHtmlAttribute('maxlength', '255')
                             ->setHtmlAttribute('minlength', '1')
-                            ->setValidationRules(['nullable', 'string', 'between:1,255']),
+                            ->setValidationRules(['nullable',
+                                                  'string',
+                                                  'between:1,255']),
                     ];
                 })->addColumn(function () {
                     return [
                         $first_race = AdminFormElement::select('second_race', 'Вторая раса')
                             ->setOptions((new Race())->pluck('title', 'id')->toArray())
                             ->setDisplay('name')
-                            ->setValidationRules(['required', 'string']),
+                            ->setValidationRules(['required',
+                                                  'string']),
                         $first_country_id = AdminFormElement::select('second_country_id', 'Вторая страна')
                             ->setOptions((new Country())->pluck('name', 'id')->toArray())
                             ->setDisplay('name')
-                            ->setValidationRules(['required', 'string']),
+                            ->setValidationRules(['required',
+                                                  'string']),
                         $second_location = AdminFormElement::number('second_location', 'Вторая локация')
                             ->setHtmlAttribute('placeholder', 'Вторая локация')
                             ->setStep('1')
                             ->setMin('1')
                             ->setMax('20')
-                            ->setValidationRules(['nullable', 'numeric', 'min:1', 'max:20'])
+                            ->setValidationRules(['nullable',
+                                                  'numeric',
+                                                  'min:1',
+                                                  'max:20'])
                             ->setValueSkipped(function () {
                                 return is_null(request('second_location'));
                             }),
@@ -393,22 +443,27 @@ class Replay extends Section
                             ->setHtmlAttribute('placeholder', 'Второе имя')
                             ->setHtmlAttribute('maxlength', '255')
                             ->setHtmlAttribute('minlength', '1')
-                            ->setValidationRules(['nullable', 'string', 'between:1,255']),
+                            ->setValidationRules(['nullable',
+                                                  'string',
+                                                  'between:1,255']),
                     ];
                 })
         );
-
         $form->addBody([
             $content = AdminFormElement::wysiwyg('content', 'Контент')
                 ->setHtmlAttributes(['placeholder' => 'Контент'])
-                ->setValidationRules(['nullable', 'string', 'between:1,1000']),
+                ->setValidationRules(['nullable',
+                                      'string',
+                                      'between:1,1000']),
             AdminFormElement::columns()
                 ->addColumn(function () {
                     return [
                         $file = AdminFormElement::file('file', 'Файл')
-                            ->setValidationRules(['required', 'file', 'max:5120'])
+                            ->setValidationRules(['required',
+                                                  'file',
+                                                  'max:5120'])
                             ->setUploadPath(function (UploadedFile $file) {
-                                return PathHelper::checkUploadStoragePath("/files/replays");
+                                return 'storage' . PathHelper::checkUploadsFileAndPath("/files/replays");
                             }),
                     ];
                 })

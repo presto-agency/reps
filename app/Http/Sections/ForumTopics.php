@@ -138,8 +138,9 @@ class ForumTopics extends Section
                                       'exists:forum_topics,id'])
                 ->setDisplay('title'),
             $preview_img = AdminFormElement::image('preview_img', 'Preview images')
-                ->setUploadPath(function (UploadedFile $file) {
-                    return PathHelper::checkUploadStoragePath("/images/topics");
+                ->setUploadPath(function (UploadedFile $file) use ($id) {
+                    $filePath = \App\Models\ForumTopic::where('id', $id)->value('preview_img');
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/topics", $filePath);
                 })
                 ->setValidationRules(['nullable',
                                       'max:2048']),

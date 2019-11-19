@@ -26,12 +26,20 @@
                         @isset($routCheck)
                             @if($routCheck)
                                 <a class="img-link" href="{{route('galleries.show',['gallery' => $item->id])}}">
-                                    <img src="{{$item->picture}}" alt="image">
+                                    @if(!empty($item->picture))
+                                        <img src="{{asset($item->picture)}}" alt="image">
+                                    @else
+                                        <img src="{{asset($item->defaultGallery())}}" alt="image">
+                                    @endif
                                 </a>
                             @else
                                 <a class="img-link"
                                    href="{{route('user-gallery.show',['id'=> $item->user_id,'user_gallery'=> $item->id])}}">
-                                    <img src="{{$item->picture}}" alt="image">
+                                    @if(!empty($item->picture))
+                                        <img src="{{$item->picture}}" alt="image">
+                                    @else
+                                        <img src="{{$item->defaultGallery()}}" alt="image">
+                                    @endif
                                 </a>
                             @endif
                         @endisset
@@ -54,5 +62,5 @@
                 </button>
             </div>
         @endif
-        @endisset
+    @endisset
 </div>

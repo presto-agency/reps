@@ -3,14 +3,25 @@
     <br>
     <div class="row">
         <div class="col-md-3 text-center">
-            <img class="img-bordered-sm" src="{{$userGallery->picture}}" alt="picture">
+            @if(!empty($userGallery->picture))
+                <img class="img-bordered-sm" src="{{$userGallery->picture}}" alt="picture">
+            @else
+                <img class="img-bordered-sm" src="{{$userGallery->defaultGallery()}}" alt="picture">
+            @endif
         </div>
     </div>
     <div class="row">
         <div class="col-md-3 text-center">
             <span class="username">
-                <img src="{{$userGallery->users->avatar}}"
-                     class="img-circle img-bordered-sm" alt="User avatar"/>
+                @if(auth()->user()->userViewAvatars())
+                    @if(!empty($userGallery->users->avatar) && file_exists($userGallery->users->avatar))
+                        <img src="{{asset($userGallery->users->avatar)}}" class="img-circle img-bordered-sm"
+                             alt="User avatar"/>
+                    @else
+                        <img src="{{asset($userGallery->users->defaultAvatar())}}" class="img-circle img-bordered-sm"
+                             alt="User avatar"/>
+                    @endif
+                @endif
             </span>
         </div>
     </div>
@@ -38,7 +49,7 @@
     </div>
     <div class="row">
         <div class="col-md-3 text-center">
-            <p class="date">{{ $userGallery->created_at->format('h:m d-m-Y') }}</p>
+            <p class="date">{{ $userGallery->created_at->format('h:m d.m.Y') }}</p>
         </div>
     </div>
     <div class="box-container">
@@ -55,12 +66,19 @@
         <div class="box-body">
             @foreach($userGallery->comments as $comment)
                 <div class="item row">
-                    <img src="{{$comment->user->avatar}}"
-                         class="img-circle img-bordered-sm" alt="User avatar"/>
+                    @if(auth()->user()->userViewAvatars())
+                        @if(!empty($comment->user->avatar) && file_exists($comment->user->avatar))
+                            <img src="{{asset($comment->user->avatar)}}" class="img-circle img-bordered-sm"
+                                 alt="User avatar"/>
+                        @else
+                            <img src="{{asset($comment->user->defaultAvatar())}}" class="img-circle img-bordered-sm"
+                                 alt="User avatar"/>
+                        @endif
+                    @endif
                     <p class="message">
                         <a href="#" class="name">
                             <small class="text-muted pull-right"><i
-                                    class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d-m-Y')}}
+                                    class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
                             </small>
                             {{$comment->user->name}}
                         </a>

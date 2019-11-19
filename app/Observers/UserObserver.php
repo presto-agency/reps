@@ -11,7 +11,6 @@ class UserObserver
 
     public function creating(User $user)
     {
-
     }
 
     public function created(User $user)
