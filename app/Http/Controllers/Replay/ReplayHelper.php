@@ -56,12 +56,13 @@ class ReplayHelper
 
     public function download()
     {
-        $request = request();
-
-        $filePath = Replay::where('id', $request->id)->value('file');
-        if (\File::exists($filePath)) {
-            return response()->download($filePath);
-        }
+//        $request = request();
+//
+//        $filePath = Replay::where('id', $request->id)->value('file');
+//        dd($filePath);
+//        if (\File::exists($filePath)) {
+//            return response()->download($filePath);
+//        }
         return back();
     }
 

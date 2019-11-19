@@ -94,7 +94,7 @@ class ForumController extends Controller
                         $query->orderByDesc('id')
                             ->where('id', '<', request('id'))
                             ->withCount('comments')
-                            ->limit(5);
+                            ->limit(7);
                     },
                             'topics.author:id,name,avatar'])
                     ->where('id', request('forum'))
@@ -104,7 +104,7 @@ class ForumController extends Controller
                     ->with(['topics' => function ($query) {
                         $query->orderByDesc('id')
                             ->withCount('comments')
-                            ->limit(5);
+                            ->limit(7);
                     },
                             'topics.author:id,name,avatar'])
                     ->where('id', request('forum'))
@@ -123,14 +123,14 @@ class ForumController extends Controller
                     ->withCount('forumSectionComments')
                     ->withCount('topics')
                     ->where('id', '<', request('id'))
-                    ->limit(3)
+                    ->limit(7)
                     ->get();
 
             } else {
                 $sections = ForumSection::orderByDesc('id')
                     ->withCount('forumSectionComments')
                     ->withCount('topics')
-                    ->limit(3)
+                    ->limit(7)
                     ->get();
             }
             echo view('forum.components.index', compact('sections'));
