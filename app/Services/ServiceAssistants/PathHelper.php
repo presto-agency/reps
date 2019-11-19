@@ -30,6 +30,16 @@ class PathHelper
 
     public static function checkFileExists($path)
     {
-        return $path;
+        /*Check file*/
+        if (strpos($path, '/storage') !== false) {
+            self::$path = \Str::replaceFirst('/storage', 'public', $path);
+        }
+        if (strpos($path, 'storage') !== false) {
+            self::$path = \Str::replaceFirst('storage', 'public', $path);
+        }
+        if (\Storage::exists(self::$path)) {
+            return true;
+        }
+        return false;
     }
 }

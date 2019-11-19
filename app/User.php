@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function userViewAvatars()
     {
-        if ($this->view_avatars == 0) {
+        if ($this->view_avatars == 1) {
             return true;
         }
         return false;

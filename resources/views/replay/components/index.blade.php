@@ -67,13 +67,21 @@
                     <div class="match__author">
                         <div class="subtitle__info">
                             @isset($item->users)
-                                @if(auth()->user()->userViewAvatars())
-                                @if(!empty($item->users->avatar) && file_exists($item->users->avatar))
-                                    <img src="{{asset($item->users->avatar)}}" alt="avatar">
+                                @auth()
+                                    @if(auth()->user()->userViewAvatars())
+                                        @if(!empty($item->users->avatar) && file_exists($item->users->avatar))
+                                            <img src="{{asset($item->users->avatar)}}" alt="avatar">
+                                        @else
+                                            <img src="{{asset($item->users->defaultAvatar())}}" alt="avatar">
+                                        @endif
+                                    @endif
                                 @else
-                                    <img src="{{asset($item->users->defaultAvatar())}}" alt="avatar">
-                                @endif
-                                @endif
+                                    @if(!empty($item->users->avatar) && file_exists($item->users->avatar))
+                                        <img src="{{asset($item->users->avatar)}}" alt="avatar">
+                                    @else
+                                        <img src="{{asset($item->users->defaultAvatar())}}" alt="avatar">
+                                    @endif
+                                @endauth
                                 <span class="comment-author__nickname"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
                             @endisset
