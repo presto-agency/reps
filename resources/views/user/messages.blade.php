@@ -167,8 +167,8 @@
                     .append('<span class="content__date">'+ data.created_at +'</span>');
 
                 var messageInfo = $('<div class="message-info"></div>')
-                    .append('<span class="user-name">dfsad</span>')
-                    .append('<img class="head__avatar" src="#" alt="avatar">');
+                    .append('<span class="user-name">{{ Auth()->user()->name }}</span>')
+                    .append('<img class="head__avatar" src="{{ asset(Auth()->user()->avatar) }}" alt="avatar">');
 
                 var myMessage = $('<div class="my-message"></div>')
                     .append(messageContent)
@@ -199,8 +199,8 @@
                     .append('<span class="content__date">'+ data.created_at +'</span>');
 
                 var messageInfo = $('<div class="message-info"></div>')
-                    .append('<span class="user-name">user</span>')
-                    .append('<img class="head__avatar" src="#" alt="avatar">');
+                    .append('<span class="user-name">{{ $message->sender->name }}</span>')
+                    .append('<img class="head__avatar" src="{{ asset($message->sender->avatar) }}" alt="avatar">');
 
                 var userMessage = $('<div class="user-message"></div>')
                     .append(messageInfo)
@@ -235,8 +235,6 @@
 
                 var message = $('#editor_messenger').val().substring(0, 1000);
 
-                alert('click form: ' + message);
-
                 axios.post('{{ route('user.send_message') }}', {
                     message: message,
                     from_id: '{{ Auth::id() }}',
@@ -249,14 +247,17 @@
                     console.log(response.data);
 
                     appendMyMessage(response.data);
+
                     //очистити поле для вводу
                     /**clean textarea field*/
-                    // $('#editor_messenger').val('');
+                    for ( instance in CKEDITOR.instances ){
+                        CKEDITOR.instances[instance].updateElement();
+                    }
+                    CKEDITOR.instances[instance].setData('');
 
                 }, (error) => {
                     console.log(error);
                 });
-
 
             });
         });

@@ -67,14 +67,9 @@ class NewsController extends Controller
 
 
         event('topicHasViewed', $news);
-        $bbcode = new \ChrisKonnertz\BBCode\BBCode();
-        $bbcode->ignoreTag('size');
 
-        $data = null;
-        $data['preview_content'] = $bbcode->render($news->preview_content);
-        $data['content'] = $bbcode->render($news->content);
 
-        return view('news.show', compact('news', 'data'));
+        return view('news.show', compact('news'));
     }
 
     /**

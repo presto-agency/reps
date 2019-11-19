@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\ServiceAssistants\PathHelper;
 use Illuminate\Database\Eloquent\Model;
 
 class ReplayMap extends Model
@@ -14,10 +15,13 @@ class ReplayMap extends Model
     /*$replayMap->url*/
     public function getUrlAttribute($value)
     {
-        if (!empty($value) && \File::exists($value)) {
-            return asset($value);
-        } else {
+        if (!empty($value)) {
+            if (PathHelper::checkStorageFileExists(asset($value))) {
+                return asset($value);
+            }
             return asset('images/default/map/nominimap.png');
         }
+        return asset('images/default/map/nominimap.png');
+
     }
 }
