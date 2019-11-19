@@ -191,7 +191,7 @@
             & .video_header{
                 padding: 0;
                 & img{
-                    padding-right: 1.464vw;
+                    margin-right: 1.464vw;
                 }
                 & .left_block{
                     & svg{
@@ -292,7 +292,7 @@
     }
     .block_replay{
         .title_block_gray{
-            padding: 0.7vw;
+            padding: 1.464vw;
         }
          .container_btn{
              .button{
@@ -495,7 +495,7 @@
             }
             & .content_img{
                 & img,svg{
-                    padding-right: 0.366vw;
+                    margin-right: 0.366vw;
                 }
             }
             & .content_login{

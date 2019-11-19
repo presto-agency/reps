@@ -176,14 +176,14 @@
             @endforeach
 
             <div id="load_more-replay" class="gocu-replays__button night_modal">
-                <button type="button" name="load_more-replay_button" class="btn btn-info form-control night_text"
+                <button type="button" name="load_more-replay_button" class="button button__download-more night_text"
                         id="load_more-replay_button" data-id="{{ $last_id }}" data-user_id="{{$user_id}}">
                     {{__('Загрузить еще')}}
                 </button>
             </div>
         @else
             <div id="load_more-replay" class="gocu-replays__button night_modal">
-                <button type="button" name="load_more-replay_button" class="btn btn-info form-control night_text">
+                <button type="button" name="load_more-replay_button" class="button button__download-more night_text">
                     {{__('Пусто')}}
                 </button>
             </div>

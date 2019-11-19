@@ -1,7 +1,7 @@
 @php
     $last_id = '';
 @endphp
-<div class="gallery">
+<div class="gallery nightMode border_shadow">
     @if($visible_title)
         <div class="gallery__title">
             <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -49,16 +49,14 @@
                     @endphp
                 @endforeach
                 <div id="load_more_user_gallery" class="gocu-replays__button night_modal">
-                    <button type="button" name="load_more_user_gallery_button"
-                            class="btn btn-info form-control night_text"
+                    <button type="button" name="load_more_user_gallery_button" class="button button__download-more night_text"
                             id="load_more_user_gallery_button" data-id="{{ $last_id }}">
                         {{__('Загрузить еще')}}
                     </button>
                 </div>
             @else
                 <div id="load_more_user_gallery" class="gocu-replays__button night_modal">
-                    <button type="button" name="load_more_user_gallery_button"
-                            class="btn btn-info form-control night_text">
+                    <button type="button" name="load_more_user_gallery_button" class="button button__download-more night_text">
                         {{__('Пусто')}}
                     </button>
                 </div>

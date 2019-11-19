@@ -93,7 +93,7 @@
         </div>
     @else
         <div id="load_more_news_search" class="breaking-news__button night_modal">
-            <button type="button" name="load_more_news_search" class="btn btn-info form-control night_text">
+            <button type="button" name="load_more_news_search" class="button button__download-more night_text">
                 {{__('Пусто')}}
             </button>
         </div>

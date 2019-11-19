@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewChatMessageAdded;
+use App\Models\ChatPicture;
+use App\Models\ChatSmile;
 use App\Models\PublicChat;
 use App\Services\GeneralViewHelper;
 use Illuminate\Http\Request;
@@ -121,6 +123,53 @@ class ChatController extends Controller
             ];
         }
         return response()->json($data);
+    }
+
+    /**
+     * Get Chat Smiles
+     */
+    public function get_externalsmiles()
+    {
+        $smiles = array();
+        $extraSmiles = ChatSmile::orderBy('updated_at', 'Desc')->get();
+        foreach ($extraSmiles as $smile) {
+            $smiles[] = array(
+                'charactor' => $smile->charactor,
+                'filename' => pathinfo($smile->image)["basename"]
+            );
+        }
+
+        return response()->json([
+            'status' => "ok",
+            'smiles' => $smiles
+        ], 200);
+    }
+
+    /**
+     * Get Chat Images
+     */
+    public function get_externalimages()
+    {
+        $images = array();
+        $extraImages = ChatPicture::with('tags')->orderBy('updated_at', 'Desc')->get();
+
+        foreach ($extraImages as $image) {
+
+            foreach ($image->tags as $tag){
+                if (!isset($images[$tag->name])) {
+                    $images[$tag->name] = array();
+                }
+                array_push($images[$tag->name], array(
+                    'charactor' => $image->charactor,
+                    'filepath' => $image->image
+                ));
+            }
+        }
+
+        return response()->json([
+            'status' => "ok",
+            'images' => $images
+        ], 200);
     }
 
 }

@@ -169,7 +169,7 @@
                                     {{--                                    @include('modal.like_autorization');--}}
                                     {{-- не авторизований--}}
 
-                                    @include('modal.no-autorization');
+                                    @include('modal.no-autorization')
                                 </div>
                             </div>
                         </div>
@@ -198,7 +198,7 @@
 
                                     {{--@include('modal.diselike_autorization');--}}
                                     {{-- не авторизований--}}
-                                    @include('modal.no-autorization');
+                                    @include('modal.no-autorization')
                                 </div>
                             </div>
                         </div>
@@ -228,10 +228,10 @@
             <span>{{__('Видео:')}}</span>
             <div class="replay_video border_shadow">{!! $replay->video_iframe !!}</div>
         @endif
-        @if($replay->content)
-            <span>{{__('Контент:')}}</span>
-            <div class="replay_video border_shadow">{!! $replay->content !!}</div>
-        @endif
+{{--        @if($replay->content)--}}
+{{--            <span>{{__('Контент:')}}</span>--}}
+{{--            <div class="replay_video border_shadow">{!! $replay->content !!}</div>--}}
+{{--        @endif--}}
     </section>
 @endisset
 <script type="text/javascript">

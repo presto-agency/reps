@@ -292,13 +292,13 @@
                                         {{__('- Freeslot -')}}
                                     @endisset
                                 </div>
+                                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-4 right_block">
                                 @for($i = 1; $i <= 7; $i++)
                                     @if(!empty($match->{"rep$i"}))
-                                        <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-4 right_block">
                                             <a href="{{ $match->{"rep$i"} }}">{{"rep$i"}}</a>
-                                        </div>
                                     @endif
                                 @endfor
+                                </div>
                             </div>
                         </div>
                     @endforeach
