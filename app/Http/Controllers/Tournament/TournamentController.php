@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 
 class TournamentController extends Controller
 {
+
+    public $mapsIds;
     /**
      * Display a listing of the resource.
      *
@@ -52,27 +54,46 @@ class TournamentController extends Controller
     {
         $tournament = $this->getTournament($id);
         $dataArr = [];
+        if (isset($tournament->maps) && !empty($tournament->maps)) {
+            $this->mapsIds = explode(",", $tournament->maps);
+            foreach ($this->mapsIds as $key => $item) {
+                $dataArr['mapsIds'][$key] = $item;
+            }
+        }
+        $getMatchesMaps = ReplayMap::whereIn('id', $dataArr['mapsIds'])->get
+        ([
+            'name',
+            'url'
+        ]);
         if (!empty($tournament->matches)) {
             foreach ($tournament->matches as $match) {
                 $dataArr['matches'][$match->round_id][] = $match;
-                $dataArr['round'][$match->round_id] = $match->round;
+                $dataArr['round'][$match->round_id]['title'] = $match->round;
+                $mapsCount = count($this->mapsIds);
+                $mapIndex = $match->round_id % $mapsCount;
+                $map = $this->getTourneyRoundMap($this->mapsIds[$mapIndex]);
+                if (!empty($map)) {
+                    $dataArr['round'][$match->round_id]['map']['name'] = $map->name;
+                    $dataArr['round'][$match->round_id]['map']['url'] = $map->url;
+                }
             }
         }
-
+dd($tournament->matches);
         $prizeList = TourneyService::getPrize($id);
 
-        if (!empty($tournament->maps)) {
-            $maps = explode(",", $tournament->maps);
-            foreach ($maps as $key => $map_name) {
-                $dataArr['maps'][$key]['name'] = $map_name;
-                $dataArr['maps'][$key]['url'] = ReplayMap::where('name', $map_name)->value('url');
-            }
-        }
-
         return view('tournament.show',
-            compact('tournament', 'dataArr', 'prizeList')
+            compact('tournament', 'dataArr', 'prizeList', 'getMatchesMaps')
         );
     }
+
+    public function getTourneyRoundMap($mapsId)
+    {
+        return ReplayMap::where('id', $mapsId)->first([
+            'name',
+            'url'
+        ]);
+    }
+
 
     public function getTournament($id)
     {

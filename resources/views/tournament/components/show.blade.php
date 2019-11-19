@@ -1,5 +1,5 @@
+@inject('checkFile', 'App\Services\ServiceAssistants\PathHelper')
 <section class="Page_tournamentDetail-content">
-
     <div class="wrapper border_shadow">
         <div class=" title_block">
             <div class="left_content">
@@ -121,7 +121,7 @@
                                                         @foreach($prizeList as $prize)
                                                             <div class="content">
                                                                 <div class="left_content">
-                                                                    <span>#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
+                                                                    <span>{{ '#'.$loop->iteration }} {{-- Starts with 1 --}}</span>
                                                                     <svg aria-hidden="true" focusable="false"
                                                                          data-prefix="fas"
                                                                          data-icon="medal"
@@ -143,18 +143,28 @@
                                                 <div class="col-xl-8 col-lg-8 col-md-8 pl-2  big_block">
                                                     <div class=" title_block ml-1">
                                                         <div class="left_content">
-                                                            <span class="title_text">Maps</span>
+                                                            <span class="title_text">{{__('Maps')}}</span>
                                                         </div>
                                                     </div>
                                                     <div class="container">
                                                         <div class="row">
-                                                            @isset($dataArr['maps'])
-                                                                @foreach($dataArr['maps'] as $map)
+                                                            @if($getMatchesMaps->isNotEmpty())
+                                                                @foreach($getMatchesMaps as $item)
                                                                     <div class="col-xl-4 pl-1 pr-0 container_map">
                                                                         <div class="title_block_gray">
-                                                                            {!! App\Models\TourneyMatch::getTourneyMap($map['name'])['title'] !!}
+                                                                            <span
+                                                                                class='title_text'>{{$item->name}}</span>
                                                                         </div>
-                                                                        {!! App\Models\TourneyMatch::getTourneyMap($map['name'])['url'] !!}
+                                                                        <div class='map'>
+                                                                            @if (!empty($item->url) && $checkFile::checkFileExists($item->url))
+                                                                                <img src="{{asset($item->url)}}"
+                                                                                     alt="map">
+                                                                            @else
+                                                                                <img
+                                                                                    src="{{asset($item->defaultMap())}}"
+                                                                                    alt="map">
+                                                                            @endif
+                                                                        </div>
                                                                     </div>
                                                                 @endforeach
                                                             @endisset
@@ -251,8 +261,20 @@
         @isset($dataArr['round'])
             @foreach($dataArr['round'] as $key => $round)
                 <div class="title_players">
-                    <p class="title_playersText">{{$round}}</p>
-                    {!! App\Models\TourneyMatch::getTourneyRoundMap($tournament->id, $key) !!}
+                    @isset($round['map'])
+                        @if(isset($round['title']) && !empty($round['title']))
+                            <p class="title_playersText">{{$round['title']}}</p>
+                        @endif
+
+                        @if(!empty($round['map']['url']) && $checkFile::checkFileExists($round['map']['url']))
+                                @dump($checkFile::checkFileExists($round['map']['url']))
+                            <a href='{{asset($round['map']['url'])}}'
+                               title='{{$round['map']['name']}}'>{{$round['map']['name']}}</a>
+                        @else
+                            <a href='{{asset('images/default/map/nominimap.png')}}'
+                               title='{{$round['map']['name']}}'>{{$round['map']['name']}}</a>
+                        @endif
+                    @endisset
                 </div>
                 @isset($dataArr['matches'])
                     @foreach($dataArr['matches'][$key] as $match )
@@ -326,7 +348,7 @@
                                 <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-4 right_block">
                                     @for($i = 1; $i <= 7; $i++)
                                         @if(!empty($match->{"rep$i"}))
-                                            <a href="{{ $match->{"rep$i"} }}">{{"rep$i"}}</a>
+                                            <a href="{{ asset($match->{"rep$i"}) }}">{{"rep$i"}}</a>
                                         @endif
                                     @endfor
                                 </div>
