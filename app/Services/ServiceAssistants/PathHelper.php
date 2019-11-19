@@ -7,6 +7,7 @@ namespace App\Services\ServiceAssistants;
 class PathHelper
 {
     public static $path;
+    public static $checkPath;
 
     public static function checkUploadsFileAndPath($storagePath, $oldFilePath = null)
     {
@@ -32,14 +33,14 @@ class PathHelper
     {
         /*Check file*/
         if (strpos($path, '/storage') !== false) {
-            self::$path = \Str::replaceFirst('/storage', 'public', $path);
+            self::$checkPath = \Str::replaceFirst('/storage', 'public', $path);
         }
         if (strpos($path, 'storage') !== false) {
-            self::$path = \Str::replaceFirst('storage', 'public', $path);
+            self::$checkPath = \Str::replaceFirst('storage', 'public', $path);
         }
-        if (\Storage::exists(self::$path)) {
-            return true;
-        }
-        return false;
+        self::$checkPath = $path;
+        
+        return \Storage::exists(self::$checkPath);
+
     }
 }

@@ -97,7 +97,7 @@
                 @foreach($news as $item)
                     <div class="players_content">
                         <div class="left_block">
-                            <span class="number night_text">#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
+                            <span class="number night_text">{{'#'.$loop->iteration }} {{-- Starts with 1 --}}</span>
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <img src="{{asset($item['avatar'])}}" alt="avatar"
                                      class="author__avatar img-fluid">
