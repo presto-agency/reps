@@ -27,6 +27,7 @@
         "@ckeditor/ckeditor5-basic-styles": "^15.0.0",
         "@ckeditor/ckeditor5-build-classic": "^15.0.0",
         "@ckeditor/ckeditor5-editor-classic": "^15.0.0",
+        "@ckeditor/ckeditor5-editor-decoupled": "^15.0.0",
         "@ckeditor/ckeditor5-essentials": "^15.0.0",
         "@ckeditor/ckeditor5-link": "^15.0.0",
         "@ckeditor/ckeditor5-media-embed": "^15.0.0",
@@ -35,10 +36,11 @@
         "@ckeditor/ckeditor5-vue": "^1.0.0",
         "ckeditor": "^4.12.1",
         "express": "^4.17.1",
+        "laravel-echo": "^1.6.1",
+        "moment": "^2.24.0",
         "select2": "^4.0.10",
         "socket.io": "^2.3.0",
-        "vue-socket.io": "^3.0.7",
-        "laravel-echo": "^1.6.1",
-        "socket.io-client": "^2.3.0"
+        "socket.io-client": "^2.3.0",
+        "vue-socket.io": "^3.0.7"
     }
 }

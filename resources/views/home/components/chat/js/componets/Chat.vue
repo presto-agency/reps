@@ -38,9 +38,23 @@
             </div>
         </div>
             <chat-message :messagearray="messagearray" />
-        <div class="form-group" v-if="isUser">
-            <textarea v-model="textMessage" @keyup.enter="sendMessage" class="form-control night_input"></textarea>
-
+        <div class="form-group" v-if="auth.id>0">
+            <Smiles :status="chat_action.smile" @turnOffStatus="turnOffStatus"></Smiles>
+            <Images :status="chat_action.image" @turnOffStatus="turnOffStatus"></Images>
+            <Color :status="chat_action.color" @turnOffStatus="turnOffStatus" @textarealistener="textareafoo(str)"></Color>
+            <div class="form-group-toolbar">
+                <img src="../../icons/bold.svg" alt="" class="toolbar_item" @click="bold()">
+                <img src="../../icons/italic.svg" alt="" class="toolbar_item" @click="italic()">
+                <img src="../../icons/underline.svg" alt="" class="toolbar_item" @click="underline()">
+                <img src="../../icons/font.svg" alt="" class="toolbar_item" @click="selectItem('color')">
+                <img src="../../icons/link.svg" alt="" class="toolbar_item" @click="link()">
+                <img src="../../icons/picture.svg" alt="" class="toolbar_item" @click="img()">
+                <img src="../../icons/smile.svg" alt="" class="toolbar_item" @click="selectItem('smile')">
+                <img src="../../icons/folder.svg" alt="" class="toolbar_item" @click="selectItem('image')">
+            </div>
+           <textarea v-model="textMessage" @keyup.enter="sendMessage" class="form-control night_input" id="pop_editor">
+           </textarea>
+            <!--<ckeditor :editor="editor" v-model="textMessage" :config="editorConfig"  tag-name="textarea"  @focus="onEditorFocus($event)"></ckeditor>-->
         </div>
 
         <div class="login_block" v-else>
@@ -53,25 +67,39 @@
 </template>
 
 <script>
-
+    import moment from 'moment'
+    import * as chatHelper from '../helper/chatHelper';
+    import * as utilsHelper from '../helper/utilsHelper';
+    import Smiles from './Smiles.vue'
+    import Images from './Images.vue'
+    import Color from './FontColor'
     export default {
         name: "Chat",
+        components: {
+          Smiles,Images,Color
+        },
         props: ['auth'],
         data: ()=>({
             isUser: true,
             messagearray: [],
-            textMessage: ''
+            textMessage: '',
+            chat_action: {
+                'smile': false,
+                'image': false,
+                'color': false
+            },
+            textarea: ''
         }),
         created(){
             axios.get('/chat/get_messages').then((response) => {
-                let number= response.data.length;
                 response.data.forEach((item,index)=> {
+
                     this.messagearray.push({
                         flag: '/images/country_flag.png',
                         ava: item.user.avatar,
                         usernick: item.user_name,
                         date: '13.11',
-                        message: item.message,
+                        message: chatHelper.strParse(item.message),
                         user_id: item.user_id,
                         visible: true
                     })
@@ -87,7 +115,7 @@
                     ava: data.user.avatar,
                     usernick: data.user_name,
                     date: '13.11',
-                    message: data.message,
+                    message: chatHelper.strParse(data.message),
                     user_id: data.user.id,
                     visible: true
                 });
@@ -102,18 +130,61 @@
                         file_path: "",
                         message: this.textMessage,
                         imo: ""})
-                        /*.then((response) => {
+                        .then((response) => {
                             console.log('Полученые данные методом POST: ');
                             console.log(response.data);
                             // this.messages = response.data;
-                        })*/;
+                        });
                     this.textMessage = '';
+                    console.log("send message")
+            },
+            getSelection: chatHelper.getSelection,
+            bold: chatHelper.bold,
+            italic: chatHelper.italic,
+            underline: chatHelper.underline,
+            link: chatHelper.link,
+            img: chatHelper.img,
+            selectItem: function(type) {
+                let self = this;
+                Object.keys(self.chat_action).forEach(function(key) {
+                    if(type === key){
+                        self.chat_action[key] = !self.chat_action[key];
+                    }
+                    else self.chat_action[key] = false;
+                })
+
+            },
+
+            turnOffStatus: function() {
+                let self = this;
+                Object.keys(self.chat_action).forEach(function(key) {
+                    self.chat_action[key] = false;
+                });
+
+            },
+            textareafoo (str) {
+                this.textMessage = str;
             }
+
+
 
         }
     }
 </script>
 
 <style >
+.form-group-toolbar {
+    padding: 15px 15px;
+}
+.toolbar_item {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.form-group {
+    position: relative;
+
+}
 
 </style>
