@@ -13,7 +13,7 @@ class PathHelper
     public static function checkUploadStoragePath($storage)
     {
         \Storage::disk('public')->exists($storage) === false ? \Storage::disk('public')->makeDirectory($storage) : null;
-        return 'storage' . $storage;
+        return '/storage' . $storage;
     }
 
     public static function checkFileAndDelete($file_path)
