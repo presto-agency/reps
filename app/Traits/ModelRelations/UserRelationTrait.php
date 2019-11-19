@@ -84,4 +84,20 @@ trait UserRelation
         return $this->hasMany('App\Models\Replay', 'user_id','id')->where('user_replay', 0);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function messages()
+    {
+        return $this->hasMany('App\Models\UserMessage', 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function dialogues()
+    {
+        return $this->belongsToMany('App\Models\Dialogue', 'user_messages');
+    }
+
 }
