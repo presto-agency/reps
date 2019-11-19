@@ -63,12 +63,12 @@ class UserDialogService
             });
         })->with('users')->first();
 
-        if(!$dialogue){
+        /*if(!$dialogue){
             $dialogue = new Dialogue();
             $dialogue->save();
 
             $dialogue->users()->attach([$user_id, Auth::id()]);
-        }
+        }*/
         return $dialogue;
     }
 }
