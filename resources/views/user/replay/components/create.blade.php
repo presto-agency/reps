@@ -114,7 +114,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="create-replay__first-country" class="night_text">* Первая страна:
-                            <select name="first_country_id" class="js-example-basic-single"
+                            <select name="first_country_id" class="night_input js-example-basic-single"
                                     id="create-replay__first-country">
                                 @isset($countries)
                                     @foreach($countries as $item)
@@ -260,7 +260,7 @@
             @endif
             <div class="create-replay__button">
                 <button class="button button__download-more">
-                    Создать
+                    Написать
                 </button>
             </div>
         </form>

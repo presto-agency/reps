@@ -154,7 +154,7 @@
             @endforeach
 
             <div id="load_replay_only_search" class="gocu-replays__button night_modal">
-                <button type="button" name="load_replay_only_search_button" class="btn btn-info form-control night_text"
+                <button type="button" name="load_replay_only_search_button" class="button button__download-more night_text"
                         id="load_replay_only_search_button" data-id="{{ $last_id }}">
                     {{__('Загрузить еще')}}
                 </button>
@@ -162,7 +162,7 @@
         @else
             <div id="load_replay_only_search" class="gocu-replays__button night_modal">
                 <button type="button" name="load_replay_only_search_button"
-                        class="btn btn-info form-control night_text">
+                        class="button button__download-morenight_text">
                     {{__('Пусто')}}
                 </button>
             </div>

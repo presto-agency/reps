@@ -42,7 +42,7 @@
                                     @csrf
                                     @if(isset($item->answers) && !$item->answers->isEmpty())
                                         @foreach($item->answers as $answer)
-                                            <div class="form-check">
+                                            <div class="form-check night_text">
                                                 <input class="form-check-input" type="radio" name="answer_id"
                                                        id="{{$answer->id}}"
                                                        value="{{$answer->id}}"
@@ -50,7 +50,7 @@
                                                 <input class="form-check-input" type="hidden" name="question_id"
                                                        id="{{$answer->question_id}}"
                                                        value="{{$answer->question_id}}">
-                                                <label class="form-check-label" for="{{$answer->id}}">
+                                                <label class="form-check-label night_text" for="{{$answer->id}}">
                                                     {{$answer->answer}}
                                                 </label>
                                             </div>

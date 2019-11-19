@@ -32,6 +32,12 @@
          background: white;
          height: 100%;
     }
+    .title_text_modal{
+        padding: 0;
+        font-size: 16px;
+        color:white;
+        margin: 0;
+    }
     & .title_text{
         font-size: 16px;
         color:white;
@@ -164,6 +170,15 @@
         position: relative;
         width: 75%;
     }
+    .modal-header_chat{
+        img{
+            display: none;
+        }
+        .close_btn{
+            font-size: 30px;
+            color: white;
+        }
+    }
     & .title_video{
         background: $blue;
         border-top-right-radius:5px;
@@ -173,7 +188,7 @@
             width: 0;
             & .svg_close{
                 visibility: hidden;
-                width: 20px;
+                width: 40px;
             }
         }
 
