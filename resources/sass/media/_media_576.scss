@@ -244,6 +244,9 @@
                     padding-right: 3.472vw;
                 }
                 & .left_block{
+                    button{
+                        display: none;
+                    }
                     & svg{
                         width: 6.944vw;
                     }
