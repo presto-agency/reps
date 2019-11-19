@@ -39,4 +39,24 @@ class PathHelper
         return false;
     }
 
+    public static function checkStorageFileExists($file_path)
+    {
+        $getStorageFilePath = \Str::replaceFirst(asset('storage'), '', $file_path);
+        $checkFiles = \Storage::disk('public')->exists($getStorageFilePath);
+        if ($checkFiles) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function checkStorageFileExistsNoAsset($file_path)
+    {
+        $getStorageFilePath = \Str::replaceFirst('storage', '', $file_path);
+
+        $checkFiles = \Storage::disk('public')->exists($getStorageFilePath);
+        if ($checkFiles) {
+            return true;
+        }
+        return false;
+    }
 }
