@@ -24,38 +24,7 @@ class UserMessagingController extends Controller
         if($id && $id == Auth::id()){
             return redirect()->route('user.messages_all');
         } else {
-
-//            if ($id){
-//                dd('user id='.$id);
-
-//                return view('user.messages')->with(MessageService::getMessageData($id));
-
-            //знаходимо користувача
-            /*$user = '';
-            if(!$id){
-                $id = Auth::id();
-                $user = Auth::user();
-            }else{
-                $user = User::find($id);
-            }*/
-
-
-
-                return view('user.messages')->with(MessageService::getMessageData($id));
-               /* }else{
-                    $dialogue = '';
-                    $messages = '';
-                    return view('user.messages', compact('user', 'dialogues', 'dialogue', 'messages'));
-                }*/
-            /*}else{
-//                dd('auth id='.$id);
-                $id = Auth::id();
-                $user = Auth::user();
-                return view('user.messages', compact('user'));
-
-//                return view('user.messages')->with(MessageService::getMessageData($id));
-            }*/
-
+            return view('user.messages')->with(MessageService::getMessageData($id));
         }
 
     }
