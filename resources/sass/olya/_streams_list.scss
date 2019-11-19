@@ -1,15 +1,16 @@
 .streams_list{
     padding: 15px;
-    top: 7.2%;
+    top: 60px;
     width: 255px;
     position: absolute;
-    height: 92%;
+    height: 86%;
     overflow: hidden;
     right: -255px;
     transition-duration: 0.3s;
     z-index: 9;
     background: white;
     background: transparent;
+    overflow: auto;
     & .widget-stream-lists{
         visibility: hidden;
         margin: 5px 0;
@@ -28,10 +29,23 @@
          white-space: nowrap;
          overflow: hidden;
          text-overflow: ellipsis;
+         button{
+             background: transparent;
+             border: 0;
+         }
          & span{
              font-weight: 400;
 
          }
 
      }
+}
+.streams_list::-webkit-scrollbar {
+    width: 10px;
+}
+.streams_list::-webkit-scrollbar-thumb {
+    background-color: #e2e5e9;
+    opacity: 0.8;
+    border-radius: 4px;
+    height: 227px;
 }

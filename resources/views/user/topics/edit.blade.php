@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('user-topics-edit',request('id'),request('user_topic')) }}
+    {{ Breadcrumbs::render('user-topics-edit',$topic->user_id,$topic->id) }}
 @endsection
 
 @section('sidebar-left')

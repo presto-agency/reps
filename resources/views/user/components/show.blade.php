@@ -17,7 +17,7 @@
                     <img class="img-fluid" src="{{ asset($user->avatar) }}" alt="avatar">
                     <div class="icon_img">
                         @if(Auth::id() == $user->id)
-                            <a href="#" title="Мои сообщения">
+                            <a href="{{ route('user.messages',['id'=>$user->id]) }}" title="Мои сообщения">
                                 <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="comment-dots"
                                      class="svg-inline--fa fa-comment-dots fa-w-16" role="img"
                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -54,7 +54,8 @@
                     <div class="information_block">
                         <div class="left_block"><span>Статус:</span></div>
                         <div class="right_block night_text">
-                            <span>{{$user->getUserStatus($user->points)}} {{ $user->points }} pts</span></div>
+                            <span>{{$user->getUserStatus($user->comments_count)}} {{ $user->comments_count.' pts' }}</span>
+                        </div>
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>ДР:</span></div>
@@ -70,7 +71,7 @@
                     <div class="information_block">
                         <div class="left_block"><span>Страна:</span></div>
                         <div class="right_block night_text">
-                            @if($user->countries->name)
+                            @if(isset($user->countries) && !empty($user->countries))
                                 <span>{{$user->countries->name}}</span>
                             @else
                                 <span>Не указано</span>
@@ -80,7 +81,7 @@
                     <div class="information_block">
                         <div class="left_block"><span>Раса:</span></div>
                         <div class="right_block night_text">
-                            @if($user->races->title)
+                            @if(isset($user->races) && !empty($user->races))
                                 <span>{{ $user->races->title }}</span>
                             @else
                                 <span>Не указано</span>
@@ -91,13 +92,13 @@
                         <div class="left_block"><span>Репутация:</span></div>
                         <div class="right_block night_text"><a
                                 href="{{route('user-rating-list.index',['id'=>$user->id])}}"
-                                title="Репутация"><span class="blue">{{$user->positive_count - $user->negative_count}} кг</span></a>
+                                title="Репутация"><span class="blue">{{$user->count_positive - $user->count_negative}} кг</span></a>
                         </div>
                     </div>
                 </div>
                 @if(Auth::id() != $user->id)
                     <a href="{{route('user.add_friend',['id'=>$user->id])}}" class="button button__download-more">ДОБАВИТЬ</a>
-                    <a href="#" class="button button__download-more">НАПИСАТЬ</a>
+                    <a href="{{ route('user.messages', ['id' => $user->id]) }}" class="button button__download-more">НАПИСАТЬ</a>
                 @endif
             </div>
         </div>
@@ -115,7 +116,7 @@
                                     <div class="friends">
                                         <div class="left_block">
                                             <a href="{{route('user_profile',['id' => $friend->id])}}">
-                                                <img src="http://reps.loc/images/newsAvatar.png" alt="avatar"
+                                                <img src="{{$friend->avatar}}" alt="avatar"
                                                      class="author__avatar img-fluid">
                                                 <span class="name_player">{{$friend->name}}</span>
                                             </a>
@@ -124,7 +125,7 @@
                                             <img src="{{asset($friend->countries->flag)}}"
                                                  class="info__flag" alt="flag">
                                             <img
-                                                src="{{asset('images/default.game-races/'.$friend->races->title.'.png')}}"
+                                                src="{{asset('/images/default/game-races/'.$friend->races->title.'.png')}}"
                                                 class="info__cube"
                                                 alt="race">
                                         </div>

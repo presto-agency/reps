@@ -17,15 +17,16 @@
     <div class="replays__accordion accordion" id="replaysAccordion">
         <div class="accordion__topic card night_modal ">
             <div class="topic__header card-header change_gray">
-                <a class="header__title night_text">
-                    {{$replayTypeName}}
+                <a class="header__title night_text" href="{{route('replay.index',['type' => 'user'])}}">
+                    {{__('Пользовательские реплеи')}}
+{{--                    {{$replayTypeName}}--}}
                 </a>
             </div>
         </div>
         <div class="accordion__topic card night_modal">
             <div class="topic__header card-header change_gray">
                 <a class="header__title night_text" href="{{route('replay.index',['type' => 'pro'])}}">
-                    Профессиональные реплеи
+                    {{__('Профессиональные реплеи')}}
                 </a>
             </div>
             @isset($replayNav)

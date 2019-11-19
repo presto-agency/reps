@@ -4,25 +4,37 @@
     }
     .title_block_gray{
         justify-content: flex-start;
+
     }
     & .block_topUsers{
         padding: 25px;
 
         & .content_code{
+            display: flex;
+            align-items: center;
+            padding: 0;
             & p{
                 font-size: 14px;
+                margin: 0;
+                padding-left: 10px;
             }
         }
         & .content_img{
             display: flex;
-            align-items: baseline;
+            align-items: center;
             & img,svg{
-                padding-right: 5px;
+                margin-right: 5px;
+                max-width: 22px;
+                max-height: 22px;
+                border-radius: 50%;
             }
+            margin-right: 10px;
         }
         & .content_login{
             display: flex;
             justify-content: flex-end;
+            align-items: center;
+            padding: 0;
             & p{
                 color: $blue;
                 font-size: 14px;
@@ -30,7 +42,9 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                max-width:90px ;
+                max-width: 50px;
+                margin: 0;
+
             }
         }
     }

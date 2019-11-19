@@ -63,8 +63,6 @@ class User extends Section
             AdminDisplayFilter::related('ban')->setModel(\App\User::class),
         ]);
 
-        $display->with('roles', 'countries');
-
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')
@@ -171,67 +169,111 @@ class User extends Section
      */
     public function onEdit($id)
     {
+
         $display = AdminForm::panel();
         $display->setItems([
             $avatar = AdminFormElement::image('avatar', 'Аватар')
                 ->setUploadPath(function (UploadedFile $file) {
                     return PathHelper::checkUploadStoragePath("/images/users/avatars");
                 })
-                ->setValidationRules(['nullable', 'max:2048'])
+                ->setValueSkipped(request()->exists('avatar'))
+                ->setValidationRules([
+                    'nullable',
+                    'max:2048'
+                ])
                 ->setUploadSettings([
                     'orientate' => [],
-                    'resize' => [120, 120, function ($constraint) {
-                        $constraint->upsize();
-                        $constraint->aspectRatio();
-                    }],
+                    'resize'    => [
+                        120,
+                        120,
+                        function ($constraint) {
+                            $constraint->upsize();
+                            $constraint->aspectRatio();
+                        }
+                    ],
                 ]),
             $email = AdminFormElement::text('email', 'Почта')
                 ->setHtmlAttribute('placeholder', 'Почта')
                 ->setHtmlAttribute('autocomplete', 'off')
                 ->setHtmlAttribute('maxlength', '30')
                 ->setHtmlAttribute('type', 'email')
-                ->setValidationRules(['required', 'string', 'email', 'max:255', 'unique:users,email,' . $id]),
+                ->setValidationRules([
+                    'required',
+                    'string',
+                    'email',
+                    'max:255',
+                    'unique:users,email,' . $id
+                ]),
 
             $name = AdminFormElement::text('name', 'Имя')
                 ->setHtmlAttribute('placeholder', 'Имя')
                 ->setHtmlAttribute('maxlength', '255')
                 ->setHtmlAttribute('minlength', '3')
                 ->setHtmlAttribute('autocomplete', 'off')
-                ->setValidationRules(['required', 'string', 'between:3,30', 'unique:users,name,' . $id, 'regex:/^[\p{L}0-9,.)\-_\s]+$/u']),
+                ->setValidationRules([
+                    'required',
+                    'string',
+                    'between:3,30',
+                    'unique:users,name,' . $id,
+                    'regex:/^[\p{L}0-9,.)\-_\s]+$/u'
+                ]),
 
             $birthday = AdminFormElement::date('birthday', 'День рождения')
                 ->setHtmlAttribute('placeholder', Carbon::now()->format('d-m-Y'))
-                ->setValidationRules(['nullable', 'date_format:d-m-Y']),
+                ->setValidationRules([
+                    'nullable',
+                    'date_format:d-m-Y'
+                ]),
 
             $homepage = AdminFormElement::text('homepage', 'Homepage')
                 ->setHtmlAttribute('placeholder', 'Homepage')
                 ->setHtmlAttribute('maxlength', '255')
                 ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules(['nullable', 'string', 'between:1,255']),
+                ->setValidationRules([
+                    'nullable',
+                    'string',
+                    'between:1,255'
+                ]),
 
             $discord = AdminFormElement::text('isq', 'Discord')
                 ->setHtmlAttribute('placeholder', 'Discord')
                 ->setHtmlAttribute('maxlength', '255')
                 ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules(['nullable', 'string', 'between:1,255']),
+                ->setValidationRules([
+                    'nullable',
+                    'string',
+                    'between:1,255'
+                ]),
 
             $skype = AdminFormElement::text('skype', 'Skype')
                 ->setHtmlAttribute('placeholder', 'Skype')
                 ->setHtmlAttribute('maxlength', '255')
                 ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules(['nullable', 'string', 'between:1,255']),
+                ->setValidationRules([
+                    'nullable',
+                    'string',
+                    'between:1,255'
+                ]),
 
             $vk_link = AdminFormElement::text('vk_link', 'Vkontakte')
                 ->setHtmlAttribute('placeholder', 'Vkontakte')
                 ->setHtmlAttribute('maxlength', '255')
                 ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules(['nullable', 'string', 'between:1,255']),
+                ->setValidationRules([
+                    'nullable',
+                    'string',
+                    'between:1,255'
+                ]),
 
             $fb_link = AdminFormElement::text('fb_link', 'Facebook')
                 ->setHtmlAttribute('placeholder', 'Facebook')
                 ->setHtmlAttribute('maxlength', '255')
                 ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules(['nullable', 'string', 'between:1,255']),
+                ->setValidationRules([
+                    'nullable',
+                    'string',
+                    'between:1,255'
+                ]),
 
             $role_id = AdminFormElement::select('role_id', 'Роль')
                 ->setOptions($this->getRoles())
@@ -245,19 +287,6 @@ class User extends Section
             $race_id = AdminFormElement::select('race_id', 'Раса')
                 ->setOptions((new Race())->pluck('title', 'id')->toArray())
                 ->setDisplay('title'),
-
-//            $password = AdminFormElement::password('password', 'Пароль')
-//                ->setHtmlAttribute('placeholder', 'Пароль')
-//                ->setHtmlAttribute('title', 'Оставьте поле пароль пустым если не хотите редактировать')
-//                ->setHtmlAttribute('autocomplete', 'off')
-//                ->setValidationRules(['between:8,50', empty($id) ? 'required' : 'nullable'])
-//                ->allowEmptyValue(),
-//
-//            $passwordConfirm = AdminFormElement::password('password_confirmation', 'Подтвердите пароль')
-//                ->setHtmlAttribute('placeholder', 'Подтвердите пароль')
-//                ->setHtmlAttribute('autocomplete', 'off')
-//                ->setValueSkipped(true)
-//                ->setValidationRules(['same:password', empty($id) ? 'required' : 'nullable']),
 
             $ban = AdminFormElement::checkbox('ban', 'Ban')
                 ->setHtmlAttribute('title', 'Внимание! Если пользователь в бане он не может залогиниться.'),
@@ -305,7 +334,7 @@ class User extends Section
         $this->emailVr = [
             'all' => 'Все',
             'yes' => 'Да',
-            'no' => 'Нет',
+            'no'  => 'Нет',
 
         ];
         return $this->emailVr;
@@ -320,8 +349,11 @@ class User extends Section
             return (new Role())->pluck('title', 'id')->toArray();
         } else {
             $getData = (new Role())->pluck('title', 'id')->toArray();
-            if (($key = array_search('Супер-админ', $getData)) !== false) {
-                unset($getData[$key]);
+            if (($key1 = array_search('Супер-админ', $getData)) !== false) {
+                unset($getData[$key1]);
+            }
+            if (($key2 = array_search('админ', $getData)) !== false) {
+                unset($getData[$key2]);
             }
             return $getData;
         }

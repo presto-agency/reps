@@ -25,7 +25,7 @@ class SearchReplaysComposer
         $this->country = $this->getCacheCountry('searchCountry', Country::all(['id', 'name']));
         $this->race = $this->getCacheCountry('searchReplay', Race::all(['id', 'title']));
         $this->map = $this->getCacheCountry('searchMap', ReplayMap::all(['id', 'name']));
-        $this->type = $this->getCacheCountry('searchType', ReplayType::all(['id', 'title']));
+        $this->type = $this->getCacheCountry('searchType', ReplayType::all(['id', 'title','name']));
         $this->type2 = $this->getCacheCountry('searchType2', collect(Replay::$userReplaysType));
     }
 

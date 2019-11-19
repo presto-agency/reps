@@ -15,14 +15,6 @@ class ForumController extends Controller
      */
     public function index()
     {
-//        $sections = ForumSection::active()->with(['topics' => function ($query) {
-//            $query->withCount('comments');
-//        }])->withCount('topics')->get();
-//
-//        foreach ($sections as $section) {
-//            $section->section_comments_count = $section->topics->sum('comments_count');
-//        }
-
         return view('forum.index');
     }
 
@@ -55,23 +47,6 @@ class ForumController extends Controller
      */
     public function show($id)
     {
-//        $section = ForumSection::active()
-//            ->where('id', $id)
-//            ->withCount('topics')
-//            ->with(['topics' => function ($query) {
-//                $query->withCount('comments');
-//            }, 'topics.author:id,name,avatar'])
-//            ->first();
-//        $commentTopic = [];
-//        $commentTopicCount = null;
-//        foreach ($section->topics as $item) {
-//            $commentTopic[] = [
-//                'comments_count' => $item->comments_count
-//            ];
-//            $commentTopicCount = collect($commentTopic)->sum('comments_count');
-//        }
-//        $section->setAttribute('topics_comments_count', $commentTopicCount);
-
         return view('forum.section-show');
     }
 
@@ -117,49 +92,25 @@ class ForumController extends Controller
                 $section = ForumSection::withCount('topics')
                     ->with(['topics' => function ($query) {
                         $query->orderByDesc('id')
-                            ->where('id','<', request('id'))
+                            ->where('id', '<', request('id'))
                             ->withCount('comments')
-                            ->limit(5);
-                    }, 'topics.author:id,name,avatar'])
+                            ->limit(7);
+                    },
+                            'topics.author:id,name,avatar'])
                     ->where('id', request('forum'))
                     ->first();
-
-                $commentTopic = [];
-                $commentTopicCount = null;
-
-                if (!$section->topics->isEmpty()) {
-                    foreach ($section->topics as $item) {
-                        $commentTopic[] = [
-                            'comments_count' => $item->comments_count
-                        ];
-                        $commentTopicCount = collect($commentTopic)->sum('comments_count');
-                    }
-                    $section->setAttribute('topics_comments_count', $commentTopicCount);
-                }
             } else {
                 $section = ForumSection::withCount('topics')
                     ->with(['topics' => function ($query) {
                         $query->orderByDesc('id')
                             ->withCount('comments')
-                            ->limit(5);
-                    }, 'topics.author:id,name,avatar'])
+                            ->limit(7);
+                    },
+                            'topics.author:id,name,avatar'])
                     ->where('id', request('forum'))
                     ->first();
-
-                $commentTopic = [];
-                $commentTopicCount = null;
-                if (!$section->topics->isEmpty()) {
-                    foreach ($section->topics as $item) {
-                        $commentTopic[] = [
-                            'comments_count' => $item->comments_count
-                        ];
-                        $commentTopicCount = collect($commentTopic)->sum('comments_count');
-                    }
-                    $section->setAttribute('topics_comments_count', $commentTopicCount);
-                }
                 $visible_title = true;
             }
-
             echo view('forum.components.section-show', compact('section', 'visible_title'));
         }
     }
@@ -169,28 +120,18 @@ class ForumController extends Controller
         if (request()->ajax()) {
             if (request('id') > 0) {
                 $sections = ForumSection::orderByDesc('id')
-                    ->with(['topics' => function ($query) {
-                        $query->withCount('comments');
-                    }])
+                    ->withCount('forumSectionComments')
                     ->withCount('topics')
                     ->where('id', '<', request('id'))
-                    ->limit(5)
-                    ->get();
-                foreach ($sections as $section) {
-                    $section->section_comments_count = $section->topics->sum('comments_count');
-                }
-            } else {
-                $sections = ForumSection::orderByDesc('id')
-                    ->with(['topics' => function ($query) {
-                        $query->withCount('comments');
-                    }])
-                    ->withCount('topics')
-                    ->limit(5)
+                    ->limit(7)
                     ->get();
 
-                foreach ($sections as $section) {
-                    $section->section_comments_count = $section->topics->sum('comments_count');
-                }
+            } else {
+                $sections = ForumSection::orderByDesc('id')
+                    ->withCount('forumSectionComments')
+                    ->withCount('topics')
+                    ->limit(7)
+                    ->get();
             }
             echo view('forum.components.index', compact('sections'));
         }

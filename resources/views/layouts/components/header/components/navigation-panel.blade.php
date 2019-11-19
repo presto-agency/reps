@@ -63,9 +63,8 @@
                     </svg>
                 </button>
             </div>
-                        <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search header_search_autorization">
 
-{{--            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search ">--}}
+            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search {{ Auth::check() ? 'header_search_autorization' : '' }} ">
                 <form  class="header_search" action="{{ route('search') }}" method="GET">
                     <div class="button_input">
                         <button>
@@ -75,8 +74,8 @@
                                placeholder="Поиск...">
                     </div>
                 </form>
-                <div class="autorization autorization_user">
-{{--                <div class="autorization">--}}
+
+                <div class="autorization {{ Auth::check() ? 'autorization_user' : '' }}">
                     @guest
                         <button type="button" data-toggle="modal"
                                 data-target="#authorizationModal">{{ __('Login') }}</button>
@@ -84,10 +83,6 @@
                                 data-target="#registrationModal">{{ __('Register') }}</button>
                     @else
                         @include('layouts.components.header.components.user-bar-panel')
-                        {{--                        <form id="logout-form" action="{{ route('logout') }}" method="POST">--}}
-                        {{--                            @csrf--}}
-                        {{--                            <button type="submit">{{ __('Logout') }}</button>--}}
-                        {{--                        </form>--}}
                     @endguest
                 </div>
             </div>

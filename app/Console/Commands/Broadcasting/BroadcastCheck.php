@@ -42,12 +42,15 @@ class BroadcastCheck extends Command
         if (!empty($getStreams)) {
             foreach ($getStreams as $item) {
                 try {
-                    $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
-                    $getResult['status'] == config('streams.status') ? $active = true : $active = false;
-                    Stream::where('id', $getResult['id'])->update(['active' => $active]);
-                    \Log::info('Успешно обновлен список стримов id=' . $getResult['id']);
+                    if (!empty($item->stream_url)) {
+                        $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
+                        $getResult['status'] == config('streams.status') ? $active = true : $active = false;
+                        Stream::where('id', $item->id)->update(['active' => $active]);
+                    } else {
+                        Stream::where('id', $item->id)->update(['active' => false]);
+                    }
                 } catch (\Exception $e) {
-                    \Log::info('Ошибка обновления стрима id=' . $getResult['id']);
+                    \Log::info('Ошибка обновления стрима id=' . $item->id);
                 }
             }
 

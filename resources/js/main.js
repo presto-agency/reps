@@ -81,11 +81,15 @@ $('.btn_streams_close').click(function (event) {
 $('.big_video_right').click(function (event) {
     event.preventDefault();
     $('.main_container').addClass("active_big_video");
+    $('#appchat').css({"display": "none"});
+    $('.block_stream_list').css({"width": "100%"});
     $('.big_video_left').css({"display": "block"});
     $('.big_video_right').css({"display": "none"});
 });
 $('.big_video_left').click(function (event) {
     event.preventDefault();
+    $('#appchat').css({"display": "block"});
+    $('.block_stream_list').css({"width": "75%"});
     $('.main_container').removeClass("active_big_video");
     $('.big_video_right').css({"display": "block"});
     $('.big_video_left').css({"display": "none"});

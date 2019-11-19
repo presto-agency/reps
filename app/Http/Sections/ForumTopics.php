@@ -10,14 +10,12 @@ use AdminFormElement;
 use AdminDisplayFilter;
 use AdminColumnFilter;
 use App\Models\ForumSection;
-use App\Models\ForumTopic;
 use App\Services\ServiceAssistants\PathHelper;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
-//use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -67,32 +65,31 @@ class ForumTopics extends Section
             AdminDisplayFilter::related('forum_section_id')->setModel(ForumSection::class),
             AdminDisplayFilter::related('user_id')->setModel(User::class),
         ]);
-
+        $display->setApply(function ($query) {
+            $query->orderByDesc('id');
+        });
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'ID')
                 ->setWidth('15px'),
-            $id = AdminColumn::text('title', 'Title')
-                ->setWidth('15px'),
-            $section = AdminColumn::text('forumSection.title', 'Section')
+            $title = AdminColumn::text('title', 'Название')
+                ->setHtmlAttribute('class', 'text-left')
+                ->setWidth('100px'),
+            $section = AdminColumn::text('forumSection.title', 'Раздел')
                 ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md')
                 ->setWidth('50px')
-                ->append(
-                    AdminColumn::filter('forum_section_id')
-                ),
-            $author = AdminColumn::text('author.name', 'Author')
+                ->append(AdminColumn::filter('forum_section_id')),
+            $author = AdminColumn::text('author.name', 'Автор')
                 ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md')
                 ->setWidth('50px')
-                ->append(
-                    AdminColumn::filter('user_id')
-                ),
-            $rating = AdminColumn::text('rating', 'Rating')
+                ->append(AdminColumn::filter('user_id')),
+            $rating = AdminColumn::text('rating', 'Рейтинг')
                 ->setWidth('30px'),
-            $comments_count = AdminColumn::count('comments', 'Comments')
+            $comments_count = AdminColumn::count('comments', 'Комментарии')
                 ->setWidth('15px'),
-            $reviews = AdminColumn::text('reviews', 'Reviews')
+            $reviews = AdminColumn::text('reviews', 'Просмотры')
                 ->setWidth('30px'),
-            $news = AdminColumnEditable::checkbox('news', 'Yes', 'No')->setLabel('News'),
+            $news = AdminColumnEditable::checkbox('news', 'Да', 'Нет')->setLabel('Новость'),
 
         ]);
 
@@ -102,8 +99,13 @@ class ForumTopics extends Section
 
         $display->setColumnFilters([
             null,
-            AdminColumnFilter::text()->setOperator('contains')->setPlaceholder('Title'),
-            AdminColumnFilter::select(ForumSection::class, 'title')->setPlaceholder('Section')->setColumnName('forum_section_id'),
+            AdminColumnFilter::text()->setOperator('contains')
+                ->setHtmlAttributes(['style' => 'width: 100%'])
+                ->setPlaceholder('Title'),
+            AdminColumnFilter::select(ForumSection::class, 'title')
+                ->setHtmlAttributes(['style' => 'width: 100%'])
+                ->setPlaceholder('Section')
+                ->setColumnName('forum_section_id'),
             null,
             null,
             null,
@@ -128,20 +130,28 @@ class ForumTopics extends Section
             /*Init FormElement*/
             $title = AdminFormElement::text('title', 'Title')
                 ->setHtmlAttribute('placeholder', 'Title')
-                ->setValidationRules(['required', 'between:1,255', 'string']),
+                ->setValidationRules(['required',
+                                      'between:1,255',
+                                      'string']),
             $sections = AdminFormElement::select('forum_section_id', 'Section', ForumSection::class)
-                ->setValidationRules(['required', 'exists:forum_topics,id'])
+                ->setValidationRules(['required',
+                                      'exists:forum_topics,id'])
                 ->setDisplay('title'),
             $preview_img = AdminFormElement::image('preview_img', 'Preview images')
                 ->setUploadPath(function (UploadedFile $file) {
                     return PathHelper::checkUploadStoragePath("/images/topics");
                 })
-                ->setValidationRules(['nullable', 'max:2048']),
+                ->setValidationRules(['nullable',
+                                      'max:2048']),
             $preview_content = AdminFormElement::wysiwyg('preview_content', 'Preview')
-                ->setValidationRules(['required', 'string', 'between:1,1000'])
+                ->setValidationRules(['required',
+                                      'string',
+                                      'between:1,1000'])
                 ->disableFilter(),
             $content = AdminFormElement::wysiwyg('content', 'Content')
-                ->setValidationRules(['required', 'string', 'between:3,50000'])
+                ->setValidationRules(['required',
+                                      'string',
+                                      'between:3,50000'])
                 ->disableFilter(),
             $start_on = AdminFormElement::date('start_on', 'Publish from')
                 ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d'))

@@ -14,3 +14,12 @@
 /*Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });*/
+
+Broadcast::channel('dialogue.{id}', function ($user, $id) {
+
+    //делаем проверку может ли пользователь входить в комнату
+    // обращаемся к пользователю который пытается подключится
+    // и ищем связаные комнаты с этим пользователем
+    // contains() ищет значение в колекции по номеру комнаты к которай пытается подключится пользователь
+    return $user->dialogues->contains($id);
+});

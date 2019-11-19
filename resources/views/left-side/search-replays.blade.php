@@ -21,7 +21,7 @@
                     @foreach($searchCountry as $item)
                         <option
                             value="{{$item->id}}"
-                            {{ old('first_country_id',request('first_country_id')) == $item->id ??  "selected"}}
+                            {{ old('first_country_id',request('first_country_id')) == $item->id ?  "selected" : ''}}
                         >{{$item->name}}</option>
                     @endforeach
                 </select>
@@ -32,7 +32,7 @@
                     <option value="">{{__('Все')}}</option>
                     @foreach($searchCountry as $item)
                         <option value="{{$item->id}}"
-                            {{ old('second_country_id',request('second_country_id')) == $item->id ??  "selected"}}
+                            {{ old('second_country_id',request('second_country_id')) == $item->id ?  "selected": ''}}
                         >{{$item->name}}</option>
                     @endforeach
                 </select>
@@ -43,7 +43,7 @@
                     <option value="">{{__('Все')}}</option>
                     @foreach($searchRace as $item)
                         <option value="{{$item->id}}"
-                            {{ old('first_race',request('first_race')) == $item->id ??  "selected"}}
+                            {{ old('first_race',request('first_race')) == $item->id ?   "selected" : ''}}
                         >{{$item->title}}</option>
                     @endforeach
                 </select>
@@ -54,7 +54,7 @@
                     <option value="">{{__('Все')}}</option>
                     @foreach($searchRace as $item)
                         <option value="{{$item->id}}"
-                            {{ old('second_race',request('second_race')) == $item->id ??  "selected"}}
+                            {{ old('second_race',request('second_race')) == $item->id ?   "selected": ''}}
                         >{{$item->title}}</option>
                     @endforeach
                 </select>
@@ -65,18 +65,19 @@
                     <option value="">{{__('Все')}}</option>
                     @foreach($searchMap as $item)
                         <option value="{{$item->id}}"
-                            {{ old('map_id',request('map_id')) == $item->id ??  "selected"}}
+                            {{ old('map_id',request('map_id')) == $item->id ?   "selected" : ''}}
                         >{{$item->name}}</option>
                     @endforeach
                 </select>
             </label>
+
             <label class="body__type" for="type_id">{{__('Тип:')}}
                 <select class="night_input" id="type_id" name="type_id">
                     <option value="">{{__('Все')}}</option>
                     @foreach($searchType as $item)
                         <option value="{{$item->id}}"
-                            {{ old('type_id',request('type_id')) == $item->id ?? "selected"}}
-                        >{{$item->title}}</option>
+                            {{ old('type_id',request('type_id')) == $item->id ?  "selected": ''}}
+                        >{{$item->name}}</option>
                     @endforeach
                 </select>
             </label>
@@ -85,7 +86,7 @@
                     <option value="">{{__('Все')}}</option>
                     @foreach($searchType2 as $key => $item)
                         <option value="{{$key}}"
-                            {{ old('user_replay',request('user_replay')) == $key ?? "selected"}}
+                            {{ old('user_replay',request('user_replay')) == (string)$key ?  "selected": ''}}
                         >{{$item}}</option>
                     @endforeach
                 </select>

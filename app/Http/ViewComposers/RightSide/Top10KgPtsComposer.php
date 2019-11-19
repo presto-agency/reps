@@ -53,9 +53,9 @@ class Top10KgPtsComposer
     {
         $data = null;
 
-        $getData = User::orderByRaw("(count_positive - count_negative) DESC")
+        $getData = User::with('countries:id,flag,name', 'races:id,code,title')
+            ->orderByRaw("(count_positive - count_negative) DESC")
             ->whereRaw("(count_positive - count_negative) >= 0")
-            ->with('countries:id,flag,name', 'races:id,code,title')
             ->take(10)
             ->get();
 
@@ -70,8 +70,8 @@ class Top10KgPtsComposer
     {
         $data = null;
 
-        $getData = User::withCount('totalComments')
-            ->orderByDesc('total_comments_count')
+        $getData = User::withCount('comments')
+            ->orderByDesc('comments_count')
             ->with('countries:id,flag,name', 'races:id,code,title')
             ->take(10)
             ->get();
@@ -94,14 +94,14 @@ class Top10KgPtsComposer
 
         foreach ($setData as $item) {
             $data[] = [
-                'id' => $item->id,
-                'name' => $item->name,
-                'avatar' => self::checkAvatar($item),
-                'raceIcon' => "images/default/game-races/" . $item->races->title . ".png",
-                'raceTitle' => $item->races->title,
+                'id'               => $item->id,
+                'name'             => $item->name,
+                'avatar'           => self::checkAvatar($item),
+                'raceIcon'         => "images/default/game-races/" . $item->races->title . ".png",
+                'raceTitle'        => $item->races->title,
                 'countryFlag25x20' => $item->countries->flag,
-                'countryName' => $item->countries->name,
-                'max' => self::setMaxType($type, $item),
+                'countryName'      => $item->countries->name,
+                'max'              => self::setMaxType($type, $item),
             ];
         }
         return $data;
@@ -127,7 +127,7 @@ class Top10KgPtsComposer
     {
         switch ($type) {
             case 'comments':
-                return $item->total_comments_count;
+                return $item->comments_count;
                 break;
             case 'rating':
                 return $item->count_positive - $item->count_negative;

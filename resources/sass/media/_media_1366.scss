@@ -191,7 +191,7 @@
             & .video_header{
                 padding: 0;
                 & img{
-                    padding-right: 1.464vw;
+                    margin-right: 1.464vw;
                 }
                 & .left_block{
                     & svg{
@@ -200,7 +200,7 @@
                 }
                 & .right_block{
                     & svg{
-                        width: 1.562vw;
+                        width: 2.562vw;
                         margin-right: 0.732vw;
                     }
                 }
@@ -246,7 +246,9 @@
         padding: 1.098vw;
         width: 18.668vw;
         right: -18.668vw;
-        & .widget-stream-lists{
+        top:4.392vw;
+        height:90%;
+         .widget-stream-lists{
             margin: 0.366vw 0;
             & span{
                 margin-left: 20px;
@@ -276,6 +278,7 @@
 
     //Предстоящие турниры
     .block_tournament{
+
         & .block_futureTournament{
             & .information_text{
                 font-size: 1.171vw;
@@ -288,19 +291,22 @@
         }
     }
     .block_replay{
-        & .container_btn{
-            & .button{
+        .title_block_gray{
+            padding: 1.464vw;
+        }
+         .container_btn{
+             .button{
                 margin: 1.464vw auto 2.928vw;
                 padding: 0.366vw;
             }
         }
-        & .title_top{
+         .title_top{
             margin-bottom: 1.830vw;
         }
-        & .row_game{
+         .row_game{
             margin: 0 0.732vw;
             margin-bottom: 1.098vw;
-            & .name_game{
+             .name_game{
                 & p{
                     font-size: 1.025vw;
                 }
@@ -308,16 +314,16 @@
             }
             .content_game{
                 margin-bottom: 0.366vw;
-                & img{
+                 img{
                     width: 1.171vw;
                     height: 1.098vw;
                     margin: 5px;
                 }
-                & .text_matchap{
+                 .text_matchap{
                     font-size: 0.878vw;
 
                 }
-                & .text{
+                 .text{
                     font-size: 0.878vw;
                 }
             }
@@ -477,6 +483,9 @@
 
     //Топ
     .block_top{
+        .title_block_gray{
+            padding: 1.464vw;
+        }
         & .block_topUsers{
             padding: 1.830vw;
             & .content_code{
@@ -486,7 +495,7 @@
             }
             & .content_img{
                 & img,svg{
-                    padding-right: 0.366vw;
+                    margin-right: 0.366vw;
                 }
             }
             & .content_login{
@@ -2272,6 +2281,7 @@
             height: 1.830vw;
         }
     }
+
     .page_replay{
         .title_block{
             .right_block{
@@ -2288,7 +2298,7 @@
             }
         }
         .title_block_gray{
-            padding: 1.098vw;
+            padding: 1.464vw!important;
             span{
                 font-size: 1.171vw;
             }
@@ -2323,6 +2333,15 @@
 
             }
             .content_right{
+                .modal-content{
+                    .modal_like_text{
+                        svg{
+                            width: 1.5vw;
+                        }
+
+                    }
+                }
+
                 .title{
                     font-size: 16px;
                 }

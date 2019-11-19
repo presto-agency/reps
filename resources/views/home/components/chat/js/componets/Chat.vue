@@ -20,12 +20,12 @@
                                  aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content ">
-                                        <div class="modal-header title_block">
+                                        <div class="modal-header title_block modal-header_chat">
                                             <img id="img_menuMob" class="icon_bars"
                                                  src=""/>
-                                            <p class="title_text">Guest</p>
+                                            <p class="title_text_modal">Guest</p>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span class="btn_close" aria-hidden="true">&times;</span>
+                                                <span aria-hidden="true" class="close_modal close_btn">×</span>
                                             </button>
                                         </div>
                                         <div class="modal-body popup_contant messanger night_modal">

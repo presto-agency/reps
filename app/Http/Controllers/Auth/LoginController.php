@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Session;
@@ -43,6 +45,10 @@ class LoginController extends Controller
     {
         Session::flash('showModal', 'login');
 
+        $isBan = User::where('email', $request->get('email'))->value('ban');
+        if ($isBan == 1) {
+            return redirect()->to('/');
+        }
         $this->validateLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle

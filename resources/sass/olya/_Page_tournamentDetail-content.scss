@@ -152,12 +152,14 @@
                 }
                 & img{
                     margin: 0 10px 0 15px;
+                    height: 28px;
+                    width: 28px;
+                    border-radius: 50%;
                 }
                 & a{
 
                     width: 170px;
                     display: block;
-                    height: 28px;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -195,6 +197,9 @@
                 }
                 & img{
                     margin: 0 10px 0 15px;
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 50%;
                 }
                 & a{
                     text-decoration: underline;
@@ -207,18 +212,19 @@
             }
             & .center_block{
                 display: flex;
-                justify-content: center;
                 align-items: baseline;
                 & .one_player{
                     width: 110px;
                     display: block;
-                    height: 28px;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis
                 }
                 & img{
                     margin: 0 5px;
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 50%;
                 }
                 & .blue_span{
                     color: $blue;

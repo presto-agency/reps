@@ -2,35 +2,22 @@
 
 namespace App\Traits;
 
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use App\Services\ServiceAssistants\PathHelper;
+
 
 trait GravatarTrait
 {
     /*$user->avatar*/
     public function getAvatarAttribute($value)
     {
-        if (!empty($value) && \File::exists($value)) {
-            return asset($value);
-        } else {
+        if (!empty($value)) {
+            if (PathHelper::checkStorageFileExists(asset($value))) {
+                return asset($value);
+            }
             return asset('images/default/avatar/avatar.png');
         }
+        return asset('images/default/avatar/avatar.png');
     }
-
-    /*$user->avatar_url_or_blank*/
-//    public function getAvatarUrlOrBlankAttribute()
-//    {
-//        if (empty($url = $this->avatar)) {
-//            $s = 200;
-//            $d = '404';
-//            $url = 'https://www.gravatar.com/avatar/';
-//            $url .= md5(strtolower(trim($this->email)));
-//            $url .= "?s=$s&d=$d";
-//            if (!@fopen($url, 'r')) {
-//                $url = '/images/avatar.jpg';
-//            }
-//        }
-//    }
 }
 
 

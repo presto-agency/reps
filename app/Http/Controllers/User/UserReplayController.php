@@ -71,7 +71,10 @@ class UserReplayController extends Controller
         $this->replayDataSave($data, $request);
         $data->save();
 
-        return redirect()->route('user-replay.show', ['id' => auth()->id(), 'user_replay' => $data->id]);
+        return redirect()->route('user-replay.show', [
+            'id'          => auth()->id(),
+            'user_replay' => $data->id
+        ]);
     }
 
     /**
@@ -84,27 +87,7 @@ class UserReplayController extends Controller
      */
     public function show($id, $user_replay, $type = null)
     {
-        $relations = [
-            'users:id,name,avatar,count_positive,count_negative',
-            'users.totalComments',
-            'maps:id,name,url',
-            'types:id,name,title',
-            'firstCountries:id,flag,name',
-            'secondCountries:id,flag,name',
-            'firstRaces:id,title,code',
-            'secondRaces:id,title,code',
-            'comments',
-        ];
-        $type = ReplayHelper::getReplayType();
-        $replay = ReplayHelper::findUserReplayWithType2($relations, $id, $user_replay, $type);
-        $countUserPts = $replay->users->totalComments->count();
-        $userReplayRout = ReplayHelper::checkUrl() === true ? true : false;
-        $type = $type == Replay::REPLAY_USER ? 'user' : 'pro';
-
-        return view('user.replay.show',
-            compact('replay', 'countUserPts', 'type', 'userReplayRout')
-        );
-
+        return redirect()->to('/');
     }
 
     /**
@@ -144,7 +127,10 @@ class UserReplayController extends Controller
         $this->replayDataUpdate($data, $request);
         $data->save();
 
-        return redirect()->route('user-replay.edit', ['id' => auth()->id(), 'user_replay' => $user_replay]);
+        return redirect()->route('user-replay.edit', [
+            'id'          => auth()->id(),
+            'user_replay' => $user_replay
+        ]);
 
     }
 
@@ -271,7 +257,7 @@ class UserReplayController extends Controller
                 PathHelper::checkFileAndDelete($data->file);
                 // Upload file on server
                 $image = $request->file('file');
-                $filePath = $image->store('file/replay', 'public');
+                $filePath = $image->store('/files/replays', 'public');
                 $data->file = 'storage/' . $filePath;
             } else {
                 back();
@@ -281,22 +267,36 @@ class UserReplayController extends Controller
 
     private static function getRaces()
     {
-        return Race::all(['id', 'title']);
+        return Race::all([
+            'id',
+            'title'
+        ]);
     }
 
     private static function getCountries()
     {
-        return Country::all(['id', 'name', 'flag']);
+        return Country::all([
+            'id',
+            'name',
+            'flag'
+        ]);
     }
 
     private static function getTypes()
     {
-        return ReplayType::all(['id', 'name']);
+        return ReplayType::all([
+            'id',
+            'name'
+        ]);
     }
 
     private static function getMaps()
     {
-        return ReplayMap::all(['id', 'name', 'url']);
+        return ReplayMap::all([
+            'id',
+            'name',
+            'url'
+        ]);
     }
 
 }

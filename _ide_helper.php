@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.4.0 on 2019-11-07.
+ * Generated for Laravel 6.5.1 on 2019-11-18.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -2989,7 +2989,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the default cache time.
          *
-         * @return int 
+         * @return int|null 
          * @static 
          */ 
         public static function getDefaultCacheTime()
@@ -4748,6 +4748,18 @@ namespace Illuminate\Support\Facades {
         public static function exists($path)
         {
             return \Illuminate\Filesystem\Filesystem::exists($path);
+        }
+        
+        /**
+         * Determine if a file or directory is missing.
+         *
+         * @param string $path
+         * @return bool 
+         * @static 
+         */ 
+        public static function missing($path)
+        {
+            return \Illuminate\Filesystem\Filesystem::missing($path);
         }
         
         /**
@@ -7946,7 +7958,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string|null $param
          * @param mixed $default
-         * @return \Illuminate\Routing\Route|object|string 
+         * @return \Illuminate\Routing\Route|object|string|null 
          * @static 
          */ 
         public static function route($param = null, $default = null)
@@ -8859,7 +8871,6 @@ namespace Illuminate\Support\Facades {
          * Checks whether or not the method is safe.
          *
          * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
-         * @param bool $andCacheable Adds the additional condition that the method should be cacheable. True by default.
          * @return bool 
          * @static 
          */ 
@@ -11677,6 +11688,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Determine if a file or directory is missing.
+         *
+         * @param string $path
+         * @return bool 
+         * @static 
+         */ 
+        public static function missing($path)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::missing($path);
+        }
+        
+        /**
          * Get the full path for the file at the given "short" path.
          *
          * @param string $path
@@ -12192,6 +12215,7 @@ namespace Illuminate\Support\Facades {
          * @param \DateTimeInterface|\DateInterval|int|null $expiration
          * @param bool $absolute
          * @return string 
+         * @throws \InvalidArgumentException
          * @static 
          */ 
         public static function signedRoute($name, $parameters = array(), $expiration = null, $absolute = true)
@@ -13502,6 +13526,67 @@ namespace Illuminate\Support {
  
 }
 
+namespace Intervention\Image\Facades { 
+
+    class Image {
+        
+        /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @return self 
+         * @static 
+         */ 
+        public static function configure($config = array())
+        {
+            return \Intervention\Image\ImageManager::configure($config);
+        }
+        
+        /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function make($data)
+        {
+            return \Intervention\Image\ImageManager::make($data);
+        }
+        
+        /**
+         * Creates an empty image canvas
+         *
+         * @param int $width
+         * @param int $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function canvas($width, $height, $background = null)
+        {
+            return \Intervention\Image\ImageManager::canvas($width, $height, $background);
+        }
+        
+        /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param int $lifetime
+         * @param boolean $returnObj
+         * @return \Image 
+         * @static 
+         */ 
+        public static function cache($callback, $lifetime = null, $returnObj = false)
+        {
+            return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
+        }
+         
+    }
+ 
+}
+
 namespace Barryvdh\Debugbar { 
 
     class Facade {
@@ -14467,67 +14552,6 @@ namespace Facade\Ignition\Facades {
         public static function group($groupName, $properties)
         {
             return \Facade\FlareClient\Flare::group($groupName, $properties);
-        }
-         
-    }
- 
-}
-
-namespace Intervention\Image\Facades { 
-
-    class Image {
-        
-        /**
-         * Overrides configuration settings
-         *
-         * @param array $config
-         * @return self 
-         * @static 
-         */ 
-        public static function configure($config = array())
-        {
-            return \Intervention\Image\ImageManager::configure($config);
-        }
-        
-        /**
-         * Initiates an Image instance from different input types
-         *
-         * @param mixed $data
-         * @return \Intervention\Image\Image 
-         * @static 
-         */ 
-        public static function make($data)
-        {
-            return \Intervention\Image\ImageManager::make($data);
-        }
-        
-        /**
-         * Creates an empty image canvas
-         *
-         * @param int $width
-         * @param int $height
-         * @param mixed $background
-         * @return \Intervention\Image\Image 
-         * @static 
-         */ 
-        public static function canvas($width, $height, $background = null)
-        {
-            return \Intervention\Image\ImageManager::canvas($width, $height, $background);
-        }
-        
-        /**
-         * Create new cached image and run callback
-         * (requires additional package intervention/imagecache)
-         *
-         * @param \Closure $callback
-         * @param int $lifetime
-         * @param boolean $returnObj
-         * @return \Image 
-         * @static 
-         */ 
-        public static function cache($callback, $lifetime = null, $returnObj = false)
-        {
-            return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
         }
          
     }
@@ -20060,7 +20084,7 @@ namespace  {
             /**
              * Add a "group by" clause to the query.
              *
-             * @param array $groups
+             * @param array|string $groups
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -20395,6 +20419,30 @@ namespace  {
             public static function doesntExist()
             {    
                 return \Illuminate\Database\Query\Builder::doesntExist();
+            }
+         
+            /**
+             * Execute the given callback if no rows exist for the current query.
+             *
+             * @param \Closure $callback
+             * @return mixed 
+             * @static 
+             */ 
+            public static function existsOr($callback)
+            {    
+                return \Illuminate\Database\Query\Builder::existsOr($callback);
+            }
+         
+            /**
+             * Execute the given callback if rows exist for the current query.
+             *
+             * @param \Closure $callback
+             * @return mixed 
+             * @static 
+             */ 
+            public static function doesntExistOr($callback)
+            {    
+                return \Illuminate\Database\Query\Builder::doesntExistOr($callback);
             }
          
             /**
@@ -20806,13 +20854,13 @@ namespace  {
 
     class View extends \Illuminate\Support\Facades\View {}
 
+    class Image extends \Intervention\Image\Facades\Image {}
+
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
 
     class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
 
     class Flare extends \Facade\Ignition\Facades\Flare {}
-
-    class Image extends \Intervention\Image\Facades\Image {}
 
     class Form extends \Collective\Html\FormFacade {}
 

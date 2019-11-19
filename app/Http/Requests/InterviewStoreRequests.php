@@ -24,7 +24,7 @@ class InterviewStoreRequests extends FormRequest
     public function rules()
     {
         return [
-            'question_id' => 'required|string',
+            'question_id' => 'required|string|exists:countries,id',
             'answer_id' => 'required|string',
         ];
     }

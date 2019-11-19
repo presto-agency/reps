@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\ForumTopic;
 use Illuminate\Http\Request;
-
 class TopicController extends Controller
 {
     /**
@@ -32,7 +31,7 @@ class TopicController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,28 +42,39 @@ class TopicController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $topic = ForumTopic::with(
-            'author',
+
+            'author:id,avatar,name,country_id,race_id,count_negative,count_positive',
             'author.countries:id,name,flag',
             'author.races:id,title',
-            'comments'
+
+            'comments',
+            'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive',
+            'comments.user.countries:id,name,flag',
+            'comments.user.races:id,title'
         )
-            ->with(['author' =>function ($query){
+            ->with(['author' => function ($query) {
                 $query->withCount('comments');
             }])
-            ->where('id', $id)->withCount('comments')->first();
+            ->with(['comments.user' => function ($query) {
+                $query->withCount('comments');
+            }])
+            ->withCount('comments')->findOrFail($id);
+
+        event('topicHasViewed', $topic);
+
         return view('forumTopic.show')->with('topic', $topic);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -75,8 +85,8 @@ class TopicController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -87,7 +97,7 @@ class TopicController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -105,18 +115,4 @@ class TopicController extends Controller
         $replay->comments()->save($comment);
         return back();
     }
-
-
-//    public function getUserTopic($user_id = 0)
-//    {
-////        if ($user_id == 0){
-////            $user_id = Auth::id();
-////        }
-////
-////        $data = ForumSection::getUserTopics($user_id);//TODO: remove
-////
-////        return view('user.forum.my_topics')->with([
-////            'topics' => $data, //TODO: remove
-////            'user_id' => $user_id]);
-//    }
 }

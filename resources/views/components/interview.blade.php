@@ -23,64 +23,125 @@
                 c2.2-2.2,5-3.2,7.8-3.2C189.7,182.5,192.5,183.6,194.7,185.8z"/>
         </svg>
 
-        <p class="title__text">Голосование</p>
+        <p class="title__text">{{__('Голосование')}}</p>
     </div>
     @if(!$votes->isEmpty())
         @foreach($votes as $item)
-            <div class="vote__content">
-                <div class="content__header change_gray">
-                    <p class="header__title night_text">{{$item->question}}</p>
-                </div>
-                <div class="content__body">
-                    @auth
-                        @if($item->users->isEmpty())
-                            <form class="vote-form" id="vote-form" action="{{ route('interview.store')}}" method="POST"
-                                  enctype="multipart/form-data">
-                                @csrf
-                                @if(!$item->answers->isEmpty())
-                                    @foreach($item->answers as $answer)
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="answer_id"
-                                                   id="{{$answer->id}}"
-                                                   value="{{$answer->id}}"
-                                                   checked>
-                                            <input class="form-check-input" type="hidden" name="question_id"
-                                                   id="{{$answer->question_id}}"
-                                                   value="{{$answer->question_id}}">
-                                            <label class="form-check-label" for="{{$answer->id}}">
-                                                {{$answer->answer}}
-                                            </label>
-                                        </div>
-                                    @endforeach
-                                @endif
-                                <div class="body__button-vote">
-                                    <button class="button button__download-more">
-                                        Проголосовать
-                                    </button>
-                                </div>
-                            </form>
-                        @endif
-                    @endauth
-                    <div class="view-results" id="view-results">
-                        @if(!$item->answers->isEmpty())
-                            @foreach($item->answers as $answer)
-                                <div class="results">
-                                    <span class="night_text">{{$answer->answer}}</span>
-                                    <span class="night_text">({{$answer->users_count}})</span>
-                                </div>
-                            @endforeach
-                        @endif
-                        <div class="result__total">
-                            <span class="night_text">Total votes: {{$item->user_answers_count}}</span>
+
+            @if($item->for_login && auth()->user())
+                <div class="vote__content">
+                    <div class="content__header change_gray">
+                        <p class="header__title night_text">{{$item->question}}</p>
+                    </div>
+                    <div class="content__body">
+                        @auth
+                            @if(isset($item->users) && $item->users->isEmpty())
+                                <form class="vote-form" id="vote-form" action="{{ route('interview.store')}}"
+                                      method="POST"
+                                      enctype="multipart/form-data">
+                                    @csrf
+                                    @if(isset($item->answers) && !$item->answers->isEmpty())
+                                        @foreach($item->answers as $answer)
+                                            <div class="form-check night_text">
+                                                <input class="form-check-input" type="radio" name="answer_id"
+                                                       id="{{$answer->id}}"
+                                                       value="{{$answer->id}}"
+                                                       checked>
+                                                <input class="form-check-input" type="hidden" name="question_id"
+                                                       id="{{$answer->question_id}}"
+                                                       value="{{$answer->question_id}}">
+                                                <label class="form-check-label night_text" for="{{$answer->id}}">
+                                                    {{$answer->answer}}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                    <div class="body__button-vote">
+                                        <button class="button button__download-more">
+                                            {{__('Проголосовать')}}
+                                        </button>
+                                    </div>
+                                </form>
+                            @endif
+                        @endauth
+                        <div class="view-results" id="view-results">
+                            @if(isset($item->answers) && !$item->answers->isEmpty())
+                                @foreach($item->answers as $answer)
+                                    <div class="results">
+                                        <span class="night_text">{{$answer->answer}}</span>
+                                        <span class="night_text">({{$answer->users_count}})</span>
+                                    </div>
+                                @endforeach
+                            @endif
+                            <div class="result__total">
+                                <span class="night_text">Total votes: {{$item->user_answers_count}}</span>
+                            </div>
+                        </div>
+                        <div id="view-results__1" class="body__view-results js-body__view-results">
+                            <button class="view-results__button night_text">
+                                {{__('Посмотреть результаты')}}
+                            </button>
                         </div>
                     </div>
-                    <div id="view-results__1" class="body__view-results js-body__view-results">
-                        <button class="view-results__button night_text">
-                            Посмотреть результаты
-                        </button>
+                </div>
+            @endif
+            @if($item->for_login == 0)
+                <div class="vote__content">
+                    <div class="content__header change_gray">
+                        <p class="header__title night_text">{{$item->question}}</p>
+                    </div>
+                    <div class="content__body">
+                        @auth
+                            @if(isset($item->users) && $item->users->isEmpty())
+                                <form class="vote-form" id="vote-form" action="{{ route('interview.store')}}"
+                                      method="POST"
+                                      enctype="multipart/form-data">
+                                    @csrf
+                                    @if(isset($item->answers) && !$item->answers->isEmpty())
+                                        @foreach($item->answers as $answer)
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="answer_id"
+                                                       id="{{$answer->id}}"
+                                                       value="{{$answer->id}}"
+                                                       checked>
+                                                <input class="form-check-input" type="hidden" name="question_id"
+                                                       id="{{$answer->question_id}}"
+                                                       value="{{$answer->question_id}}">
+                                                <label class="form-check-label" for="{{$answer->id}}">
+                                                    {{$answer->answer}}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                    <div class="body__button-vote">
+                                        <button class="button button__download-more">
+                                            {{__('Проголосовать')}}
+                                        </button>
+                                    </div>
+                                </form>
+                            @endif
+                        @endauth
+                        <div class="view-results" id="view-results">
+                            @if(isset($item->answers) && !$item->answers->isEmpty())
+                                @foreach($item->answers as $answer)
+                                    <div class="results">
+                                        <span class="night_text">{{$answer->answer}}</span>
+                                        <span class="night_text">({{$answer->users_count}})</span>
+                                    </div>
+                                @endforeach
+                            @endif
+                            <div class="result__total">
+                                <span class="night_text">Total votes: {{$item->user_answers_count}}</span>
+                            </div>
+                        </div>
+                        <div id="view-results__1" class="body__view-results js-body__view-results">
+                            <button class="view-results__button night_text">
+                                {{__('Посмотреть результаты')}}
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
         @endforeach
     @endif
 </div>

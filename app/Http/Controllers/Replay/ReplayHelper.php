@@ -10,26 +10,6 @@ class ReplayHelper
 {
     public static $USER_REPLAY_URL = 'user-replay';
 
-
-    /**
-     * Get Auth user replay withType2
-     *
-     * @param $relations
-     * @param $replay_id
-     * @param $id
-     * @param $user_replay
-     * @return Replay|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
-     */
-    public static function findUserReplayWithType2($relations, $id, $replay_id, $user_replay)
-    {
-        return Replay::with($relations)
-            ->withCount('comments')
-            ->where('user_id', $id)
-            ->where('id', $replay_id)
-            ->where('user_replay', $user_replay)
-            ->firstOrFail();
-    }
-
     /**
      * Get user replay withType2
      *
@@ -42,10 +22,16 @@ class ReplayHelper
     {
         return Replay::with($relations)
             ->withCount('comments')
-            ->where('user_replay', $user_replay)
+            ->with(['comments.user' => function ($query) {
+                $query->withCount('comments');
+            }])
+            ->with(['users' => function ($query) {
+                $query->withCount('comments');
+            }])
             ->where('approved', 1)
-            ->findOrFail($id);
-
+            ->where('user_replay', $user_replay)
+            ->where('id', $id)
+            ->firstOrFail();
     }
 
     public static function findReplaysWithType($relations, $id, $user_replay, $type)
@@ -53,22 +39,30 @@ class ReplayHelper
 
         return Replay::with($relations)
             ->withCount('comments')
+            ->with(['comments.user' => function ($query) {
+                $query->withCount('comments');
+            }])
+            ->with(['users' => function ($query) {
+                $query->withCount('comments');
+            }])
             ->where('approved', 1)
             ->whereHas('types', function ($query) use ($type) {
                 $query->where('name', $type);
             })
             ->where('user_replay', $user_replay)
-            ->findOrFail($id);
+            ->where('id', $id)
+            ->firstOrFail();
     }
 
     public function download()
     {
-        $request = request();
-        $filePath = Replay::find($request->id)->value('file');
-
-        if (\File::exists($filePath)) {
-            return response()->download($filePath);
-        }
+//        $request = request();
+//
+//        $filePath = Replay::where('id', $request->id)->value('file');
+//        dd($filePath);
+//        if (\File::exists($filePath)) {
+//            return response()->download($filePath);
+//        }
         return back();
     }
 
@@ -76,7 +70,7 @@ class ReplayHelper
     {
         $request = request();
         if ($request->ajax()) {
-            $filePath = Replay::find($request->id)->value('file');
+            $filePath = Replay::where('id', $request->id)->value('file');
             if (\File::exists($filePath)) {
                 $replay = Replay::find($request->id);
                 $replay->increment('downloaded', 1);
