@@ -96,6 +96,12 @@ class TournamentController extends Controller
         ]);
     }
 
+
+//    public function downloadMultipleMatch($tournament)
+//    {
+//
+//    }
+
     public function downloadMatch($tournament, $rep)
     {
 

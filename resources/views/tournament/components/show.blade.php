@@ -22,44 +22,44 @@
         <div class="row block_replay_content">
             <div class="col-xl-6 col-lg-6 col-md-6 block_left">
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Administrator:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Administrator:'))}}</p></div>
                     <div class="replay-desc-left"><p class="blue">{{$tournament->admin_user}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Place:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Place:'))}}</p></div>
                     <div class="replay-desc-left"><p class="blue">{{$tournament->place}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Registration time:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Registration time:'))}}</p></div>
                     <div class="replay-desc-left">
                         <p>{{ Carbon\Carbon::parse($tournament->created_at)->format('h:m d.m.Y')}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Check-in time:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Check-in time:'))}}</p></div>
                     <div class="replay-desc-left">
                         <p>{{ Carbon\Carbon::parse($tournament->checkin_time)->format('h:m d.m.Y')}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Start of Tourney time:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Start of Tourney time:'))}}</p></div>
                     <div class="replay-desc-left">
                         <p>{{ Carbon\Carbon::parse($tournament->start_time)->format('h:m d.m.Y')}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Prize Fond:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Prize Fond:'))}}</p></div>
                     <div class="replay-desc-left"><p>{{$tournament->getPrizePool($tournament->prize_pool)}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Status of tourney:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Status of tourney:'))}}</p></div>
                     <div class="replay-desc-left"><p class="gray">{{$tournament::$status[$tournament->status]}}</p>
                     </div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Selection map:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Selection map:'))}}</p></div>
                     <div class="replay-desc-left"><p
                             class="blue">{{$tournament::$map_types[$tournament->map_selecttype]}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Importance tourney:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Importance tourney:'))}}</p></div>
                     <div class="replay-desc-left">
                         {!!  $tournament->ImpToStars($tournament->id)!!}
                     </div>
@@ -67,16 +67,20 @@
 
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 block_right">
-                <img class="img-fluid" src="{{ url('/images/tournament_detail.png') }}" alt="logo">
+                @if(!empty($tournament->logo_link))
+                    <img class="img-fluid" src="{{asset($tournament->logo_link)}}" alt="tournament-logo">
+                @else
+                    <img class="img-fluid" src="{{asset('/images/tournament_detail.png')}}" alt="tournament-logo">
+                @endif
                 <div class="container_block">
                     <div class="left">
                         <a href="{{$tournament->rules_link}}">
-                            <p>Rules/FAQ</p>
+                            <p>{{(__('Rules/FAQ'))}}</p>
                         </a>
                     </div>
                     <div class="right">
                         <a href="#">
-                            <span>Full Replay</span>
+                            <span>{{(__('Full Replay'))}}</span>
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;"
@@ -88,14 +92,19 @@
                                 c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"/>
                             </svg>
                         </a>
+                        {{--                        <form id="download-all-match"--}}
+                        {{--                              action="{{ route('download.all.match',['tournament'=>$tournament->id]) }}"--}}
+                        {{--                              method="POST"--}}
+                        {{--                              style="display: none;">--}}
+                        {{--                            @csrf--}}
+                        {{--                        </form>--}}
                     </div>
                 </div>
                 <div class="container_block">
                     <div class="left modal_tournament">
                         <button type="button" class="btn_modal" data-toggle="modal" data-target="#exampleModal">
-                            <p>Maps/Prize</p>
+                            <span>{{(__('Maps/Prize'))}}</span>
                         </button>
-
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -104,7 +113,7 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">{{$tournament->name}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
+                                            <span aria-hidden="true">{!! __('&times;') !!}</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
@@ -180,7 +189,7 @@
                     </div>
                     <div class="right">
                         <a href="{{$tournament->rules_link}}">
-                            <span class="gray">Rules/FAQ</span>
+                            <span class="gray">{{__('Rules/FAQ')}}</span>
                             <svg class="svg_gray" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;"
@@ -197,7 +206,7 @@
             </div>
         </div>
         <div class="title_players">
-            <p class="title_playersText">Players</p>
+            <p class="title_playersText">{{__('Players')}}</p>
         </div>
         <div class="container_players">
             @isset($tournament->players)
@@ -288,19 +297,22 @@
                                                 @if(auth()->user()->userViewAvatars())
                                                     @if(!empty($match->player1->user->avatar) && file_exists($match->player1->user->avatar))
                                                         <img class="icon_bars"
-                                                             src="{{asset($match->player1->user->avatar)}}">
+                                                             src="{{asset($match->player1->user->avatar)}}"
+                                                             alt="avatar">
                                                     @else
                                                         <img class="icon_bars"
-                                                             src="{{asset($match->player1->user->defaultAvatar())}}">
+                                                             src="{{asset($match->player1->user->defaultAvatar())}}"
+                                                             alt="avatar">
                                                     @endif
                                                 @endif
                                             @else
                                                 @if(!empty($match->player1->user->avatar) && file_exists($match->player1->user->avatar))
                                                     <img class="icon_bars"
-                                                         src="{{asset($match->player1->user->avatar)}}">
+                                                         src="{{asset($match->player1->user->avatar)}}" alt="avatar">
                                                 @else
                                                     <img class="icon_bars"
-                                                         src="{{asset($match->player1->user->defaultAvatar())}}">
+                                                         src="{{asset($match->player1->user->defaultAvatar())}}"
+                                                         alt="avatar">
                                                 @endif
                                             @endauth
                                             <span>{{$match->player1->user->name}}</span>
@@ -322,19 +334,22 @@
                                                 @if(auth()->user()->userViewAvatars())
                                                     @if(!empty($match->player2->user->avatar) && file_exists($match->player2->user->avatar))
                                                         <img class="icon_bars"
-                                                             src="{{asset($match->player2->user->avatar)}}">
+                                                             src="{{asset($match->player2->user->avatar)}}"
+                                                             alt="avatar">
                                                     @else
                                                         <img class="icon_bars"
-                                                             src="{{asset($match->player2->user->defaultAvatar())}}">
+                                                             src="{{asset($match->player2->user->defaultAvatar())}}"
+                                                             alt="avatar">
                                                     @endif
                                                 @endif
                                             @else
                                                 @if(!empty($match->player2->user->avatar) && file_exists($match->player2->user->avatar))
                                                     <img class="icon_bars"
-                                                         src="{{asset($match->player2->user->avatar)}}">
+                                                         src="{{asset($match->player2->user->avatar)}}" alt="avatar">
                                                 @else
                                                     <img class="icon_bars"
-                                                         src="{{asset($match->player2->user->defaultAvatar())}}">
+                                                         src="{{asset($match->player2->user->defaultAvatar())}}"
+                                                         alt="avatar">
                                                 @endif
                                             @endauth
                                             <span>{{$match->player2->user->name}}</span>
