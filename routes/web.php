@@ -78,9 +78,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'chat'], function () {
 
-    Route::get('/', function (){
+    /*Route::get('/', function (){
         return view('stream-section.test-chat');
-    });
+    });*/
 
     Route::group(['middleware' => 'auth'], function () {
         Route::post('/insert_message', 'ChatController@insert_message')->name('chat.add_message');
@@ -90,8 +90,8 @@ Route::group(['prefix' => 'chat'], function () {
     Route::get('/get_messages', 'ChatController@get_messages')->name('chat.get_messages');
 //    Route::post('/get_message', 'ChatController@get_message')->name('chat.get_message');
 
-//    Route::get('/get_externalsmiles','ChatController@get_externalsmiles')->name('chat.get_smiles');
-//    Route::get('/get_externalimages','ChatController@get_externalimages')->name('chat.get_images');
+    Route::get('/get_externalsmiles','ChatController@get_externalsmiles')->name('chat.get_smiles');
+    Route::get('/get_externalimages','ChatController@get_externalimages')->name('chat.get_images');
 });
 
 /*Galleries*/
