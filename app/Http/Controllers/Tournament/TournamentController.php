@@ -78,7 +78,7 @@ class TournamentController extends Controller
                 }
             }
         }
-dd($tournament->matches);
+
         $prizeList = TourneyService::getPrize($id);
 
         return view('tournament.show',
