@@ -14,13 +14,21 @@
                 <div class="right_block">
                     @if(!empty($replay->users))
                         <a href="{{route('user_profile',['id'=>$replay->users->id])}}">{{$replay->users->name}}</a>
-                        @if(auth()->user()->userViewAvatars())
+                        @auth()
+                            @if(auth()->user()->userViewAvatars())
+                                @if(!empty($replay->users->avatar) && file_exists($replay->users->avatar))
+                                    <img class="icon_bars" src="{{asset($replay->users->avatar)}}"/>
+                                @else
+                                    <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"/>
+                                @endif
+                            @endif
+                        @else
                             @if(!empty($replay->users->avatar) && file_exists($replay->users->avatar))
                                 <img class="icon_bars" src="{{asset($replay->users->avatar)}}"/>
                             @else
                                 <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"/>
                             @endif
-                        @endif
+                        @endauth
                         <span>{{$replay->users->count_positive - $replay->users->count_negative .' кг'}}</span>
                         <a href="{{route('user-comments.index',['id'=>$replay->users->id])}}">{{$replay->users->comments_count.' pts'}}</a>
                     @endif
@@ -228,10 +236,10 @@
             <span>{{__('Видео:')}}</span>
             <div class="replay_video border_shadow">{!! $replay->video_iframe !!}</div>
         @endif
-{{--        @if($replay->content)--}}
-{{--            <span>{{__('Контент:')}}</span>--}}
-{{--            <div class="replay_video border_shadow">{!! $replay->content !!}</div>--}}
-{{--        @endif--}}
+        {{--        @if($replay->content)--}}
+        {{--            <span>{{__('Контент:')}}</span>--}}
+        {{--            <div class="replay_video border_shadow">{!! $replay->content !!}</div>--}}
+        {{--        @endif--}}
     </section>
 @endisset
 <script type="text/javascript">
