@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Tournament;
 
 use App\Models\ReplayMap;
 use App\Models\TourneyList;
+use App\Models\TourneyMatch;
 use App\Services\Tournament\TourneyService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class TournamentController extends Controller
 {
+
+    public $mapsIds;
+
     /**
      * Display a listing of the resource.
      *
@@ -52,26 +56,75 @@ class TournamentController extends Controller
     {
         $tournament = $this->getTournament($id);
         $dataArr = [];
+        if (isset($tournament->maps) && !empty($tournament->maps)) {
+            $this->mapsIds = explode(",", $tournament->maps);
+            foreach ($this->mapsIds as $key => $item) {
+                $dataArr['mapsIds'][$key] = $item;
+            }
+        }
+        $getMatchesMaps = ReplayMap::whereIn('id', $dataArr['mapsIds'])->get
+        ([
+            'name',
+            'url'
+        ]);
         if (!empty($tournament->matches)) {
             foreach ($tournament->matches as $match) {
                 $dataArr['matches'][$match->round_id][] = $match;
-                $dataArr['round'][$match->round_id] = $match->round;
+                $dataArr['round'][$match->round_id]['title'] = $match->round;
+                $mapsCount = count($this->mapsIds);
+                $mapIndex = $match->round_id % $mapsCount;
+                $map = $this->getTourneyRoundMap($this->mapsIds[$mapIndex]);
+                if (!empty($map)) {
+                    $dataArr['round'][$match->round_id]['map']['name'] = $map->name;
+                    $dataArr['round'][$match->round_id]['map']['url'] = $map->url;
+                }
             }
         }
 
         $prizeList = TourneyService::getPrize($id);
 
-        if (!empty($tournament->maps)) {
-            $maps = explode(",", $tournament->maps);
-            foreach ($maps as $key => $map_name) {
-                $dataArr['maps'][$key]['name'] = $map_name;
-                $dataArr['maps'][$key]['url'] = ReplayMap::where('name', $map_name)->value('url');
-            }
+        return view('tournament.show',
+            compact('tournament', 'dataArr', 'prizeList', 'getMatchesMaps')
+        );
+    }
+
+    public function getTourneyRoundMap($mapsId)
+    {
+        return ReplayMap::where('id', $mapsId)->first([
+            'name',
+            'url'
+        ]);
+    }
+
+
+//    public function downloadMultipleMatch($tournament)
+//    {
+//
+//    }
+
+    public function downloadMatch($tournament, $rep)
+    {
+
+        $tourneyMatchFile = TourneyMatch::where('tourney_id', $tournament)->value($rep);
+
+        $repPath = $tourneyMatchFile;
+
+        if (empty($repPath)) {
+            return back();
+        }
+        if (strpos($tourneyMatchFile, '/storage') !== false) {
+            $repPath = \Str::replaceFirst('/storage', 'public', $tourneyMatchFile);
+        }
+        if (strpos($tourneyMatchFile, 'storage') !== false) {
+            $repPath = \Str::replaceFirst('storage', 'public', $tourneyMatchFile);
         }
 
-        return view('tournament.show',
-            compact('tournament', 'dataArr', 'prizeList')
-        );
+        $checkPath = \Storage::path($repPath);
+        if (\File::exists($checkPath) === false) {
+            return back();
+        };
+
+        return response()->download($checkPath);
     }
 
     public function getTournament($id)

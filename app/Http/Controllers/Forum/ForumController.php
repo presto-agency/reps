@@ -86,6 +86,7 @@ class ForumController extends Controller
 
     public function loadForumShow()
     {
+
         if (request()->ajax()) {
             $visible_title = false;
             if (request('id') > 0) {

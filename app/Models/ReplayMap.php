@@ -12,7 +12,6 @@ class ReplayMap extends Model
         'url'
     ];
 
-    /*$replayMap->url*/
     public function defaultMap()
     {
         return 'images/default/map/nominimap.png';

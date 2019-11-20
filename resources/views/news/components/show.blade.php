@@ -17,13 +17,22 @@
         </div>
         @if($news->author)
             <div class="title__wrap">
-                @if(auth()->user()->userViewAvatars())
+                @auth()
+                    @if(auth()->user()->userViewAvatars())
+                        @if(!empty($news->author->avatar) && file_exists($news->author->avatar))
+                            <img src="{{asset($news->author->avatar)}}" class="title__avatar" alt="avatar">
+                        @else
+                            <img src="{{asset($news->author->defaultAvatar())}}" class="title__avatar" alt="avatar">
+                        @endif
+                    @endif
+                @else
                     @if(!empty($news->author->avatar) && file_exists($news->author->avatar))
                         <img src="{{asset($news->author->avatar)}}" class="title__avatar" alt="avatar">
                     @else
                         <img src="{{asset($news->author->defaultAvatar())}}" class="title__avatar" alt="avatar">
                     @endif
-                @endif
+                @endauth
+
                 <p class="title__nickname">{{ $news->author->name ? $news->author->name : 'user' }}</p>
                 <img src="{{ $news->author->countries->flag }}" title="{{ $news->author->countries->name }}"
                      title="{{ $news->author->races->title }}" class="title__flag" alt="flag">
