@@ -18,7 +18,6 @@
                 <p class="title_text">{{$tournament->name}}</p>
             </div>
         </div>
-
         <div class="row block_replay_content">
             <div class="col-xl-6 col-lg-6 col-md-6 block_left">
                 <div class="container_block">
