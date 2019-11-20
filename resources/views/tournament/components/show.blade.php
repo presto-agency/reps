@@ -71,12 +71,12 @@
                 <div class="container_block">
                     <div class="left">
                         <a href="{{$tournament->rules_link}}">
-                            <p>Rules/FAQ</p>
+                            <p class="night_text">Rules/FAQ</p>
                         </a>
                     </div>
                     <div class="right">
                         <a href="#">
-                            <span>Full Replay</span>
+                            <span class="night_text">Full Replay</span>
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;"
@@ -93,7 +93,7 @@
                 <div class="container_block">
                     <div class="left modal_tournament">
                         <button type="button" class="btn_modal" data-toggle="modal" data-target="#exampleModal">
-                            <p>Maps/Prize</p>
+                            <p class="night_text">Maps/Prize</p>
                         </button>
 
                         <!-- Modal -->
@@ -170,7 +170,7 @@
                     </div>
                     <div class="right">
                         <a href="{{$tournament->rules_link}}">
-                            <span class="gray">Rules/FAQ</span>
+                            <span class="gray night_text">Winner's Pack</span>
                             <svg class="svg_gray" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;"
@@ -186,7 +186,7 @@
                 </div>
             </div>
         </div>
-        <div class="title_players">
+        <div class="title_players change_gray">
             <p class="title_playersText">Players</p>
         </div>
         <div class="container_players">
@@ -232,7 +232,7 @@
         </div>
         @isset($dataArr['round'])
             @foreach($dataArr['round'] as $key => $round)
-                <div class="title_players">
+                <div class="title_players change_gray">
                     <p class="title_playersText">{{$round}}</p>
                     {!! App\Models\TourneyMatch::getTourneyRoundMap($tournament->id, $key) !!}
                 </div>
