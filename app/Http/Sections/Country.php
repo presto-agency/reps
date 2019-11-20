@@ -93,9 +93,8 @@ class Country extends Section
                 })->addColumn(function () use ($id) {
                     return [
                         AdminFormElement::image('flag', 'Флаг')
-                            ->setUploadPath(function (UploadedFile $file) use ($id) {
-                                $flagPath = \App\Models\Country::where('id',$id)->value('flag');
-                                return 'storage' . PathHelper::checkUploadsFileAndPath("/images/countries/flags",$flagPath);
+                            ->setUploadPath(function (UploadedFile $file){
+                                return 'storage' . PathHelper::checkUploadsFileAndPath("/images/countries/flags",$this->getModelValue()->getAttribute('flag'));
                             })
                             ->setValidationRules(['required', 'max:2048'])
                             ->setUploadSettings([

@@ -7,10 +7,13 @@ use AdminForm;
 use AdminColumnEditable;
 use AdminDisplay;
 use AdminColumn;
+use App\Services\ServiceAssistants\PathHelper;
+use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 use SleepingOwl\Admin\Contracts\Initializable;
+use function foo\func;
 
 /**
  * Class Banner
@@ -21,6 +24,8 @@ use SleepingOwl\Admin\Contracts\Initializable;
  */
 class Banner extends Section implements Initializable
 {
+
+    protected $model;
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -70,7 +75,6 @@ class Banner extends Section implements Initializable
                 ->setWidth('15px'),
 
             $image = AdminColumn::image('image', 'Image')
-                ->setHtmlAttribute('class', 'hidden-sm hidden-xs foobar')
                 ->setWidth('100px'),
 
             $title = AdminColumn::text('title', 'Title')
@@ -79,7 +83,7 @@ class Banner extends Section implements Initializable
             $url = AdminColumn::text('url_redirect', 'URL')
                 ->setWidth('50px'),
 
-            $isActive = AdminColumnEditable::checkbox('is_active','Yes', 'No')
+            $isActive = AdminColumnEditable::checkbox('is_active', 'Yes', 'No')
                 ->setLabel('Active'),
 
         ]);
@@ -96,7 +100,23 @@ class Banner extends Section implements Initializable
     {
         $form = AdminForm::panel();
         $form->setItems([
-            $image = AdminFormElement::image('image', 'Image')->required(),
+            $image = AdminFormElement::image('image', 'Image')
+                ->setUploadPath(function (UploadedFile $file) {
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/banners",$this->getModelValue()->getAttribute('image'));
+                })
+                ->setValidationRules([
+                    'required',
+                    'max:2048'
+                ])->setUploadSettings([
+                    'orientate' => [],
+                    'resize'    => [
+                        400,
+                        function ($constraint) {
+                            $constraint->upsize();
+                            $constraint->aspectRatio();
+                        }
+                    ],
+                ]),
             $title = AdminFormElement::text('title', 'Title')->required(),
             $url = AdminFormElement::text('url_redirect', 'URL')->required(),
             $isActive = AdminFormElement::checkbox('is_active', 'Active'),

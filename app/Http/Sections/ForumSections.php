@@ -45,9 +45,10 @@ class ForumSections extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
+            ->with(['topics'])
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center')
-            ->paginate(10);
+            ->paginate(7);
         $display->setApply(function ($query) {
             $query->orderByDesc('id');
         });
@@ -145,7 +146,7 @@ class ForumSections extends Section
     public function lincShow()
     {
         $link = new \SleepingOwl\Admin\Display\ControlLink(function ($model) {
-            $url = url('admin/forum_topics');
+            $url = asset('admin/forum_topics');
             return $url . '?forum_section_id=' . $model->getKey(); // Генерация ссылки
         }, function ($model) {
             return $model->title . ' (' . $model->topicsCount() . ')'; // Генерация текста на кнопке

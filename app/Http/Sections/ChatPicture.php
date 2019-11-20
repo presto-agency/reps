@@ -110,8 +110,7 @@ class ChatPicture extends Section
             /*Init FormElement*/
             $image = AdminFormElement::image('image', 'Image')
                 ->setUploadPath(function (UploadedFile $file) use ($id) {
-                    $filePath = \App\Models\ChatPicture::where('id', $id)->value('image');
-                    return 'storage' . PathHelper::checkUploadsFileAndPath("/chat/pictures", $filePath);
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/chat/pictures", $this->getModelValue()->getAttribute('image'));
                 })
                 ->setValidationRules([
                     'required',

@@ -100,9 +100,8 @@ class ChatSmile extends Section
         $form->setItems([
             /*Init FormElement*/
             $image = AdminFormElement::image('image', 'Image')
-                ->setUploadPath(function (UploadedFile $file) use($id) {
-                    $filePath = \App\Models\ChatSmile::where('id', $id)->value('image');
-                    return 'storage' . PathHelper::checkUploadsFileAndPath("/chat/smiles",$filePath);
+                ->setUploadPath(function (UploadedFile $file){
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/chat/smiles",$this->getModelValue()->getAttribute('image'));
                 })
                 ->setValidationRules([
                     'required',

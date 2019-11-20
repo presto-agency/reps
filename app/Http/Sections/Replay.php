@@ -81,7 +81,6 @@ class Replay extends Section
 
         });
 
-
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')
