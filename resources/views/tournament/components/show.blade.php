@@ -1,5 +1,5 @@
-@inject('checkFile', 'App\Services\ServiceAssistants\PathHelper')
 <section class="Page_tournamentDetail-content">
+
     <div class="wrapper border_shadow">
         <div class=" title_block">
             <div class="left_content">
@@ -74,12 +74,12 @@
                 <div class="container_block">
                     <div class="left">
                         <a href="{{$tournament->rules_link}}">
-                            <p>{{(__('Rules/FAQ'))}}</p>
+                            <p class="night_text">{{(__('Rules/FAQ'))}}</p>
                         </a>
                     </div>
                     <div class="right">
                         <a href="#">
-                            <span>{{(__('Full Replay'))}}</span>
+                            <span class="night_text" >{{(__('Full Replay'))}}</span>
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;"
@@ -102,8 +102,9 @@
                 <div class="container_block">
                     <div class="left modal_tournament">
                         <button type="button" class="btn_modal" data-toggle="modal" data-target="#exampleModal">
-                            <span>{{(__('Maps/Prize'))}}</span>
+                            <p class="night_text">{{(__('Maps/Prize'))}}</p>
                         </button>
+
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -173,6 +174,7 @@
                                                                                     alt="map">
                                                                             @endif
                                                                         </div>
+                                                                        {!! App\Models\TourneyMatch::getTourneyMap($map['name'])['url'] !!}
                                                                     </div>
                                                                 @endforeach
                                                             @endisset
@@ -188,7 +190,7 @@
                     </div>
                     <div class="right">
                         <a href="{{$tournament->rules_link}}">
-                            <span class="gray">{{__('Rules/FAQ')}}</span>
+                            <span class="gray night_text">{{__('Winner*s Pack')}}</span>
                             <svg class="svg_gray" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;"
@@ -204,7 +206,7 @@
                 </div>
             </div>
         </div>
-        <div class="title_players">
+        <div class="title_players change_gray">
             <p class="title_playersText">{{__('Players')}}</p>
         </div>
         <div class="container_players">
@@ -268,7 +270,7 @@
         </div>
         @isset($dataArr['round'])
             @foreach($dataArr['round'] as $key => $round)
-                <div class="title_players">
+                <div class="title_players change_gray">
                     @isset($round['map'])
                         @if(isset($round['title']) && !empty($round['title']))
                             <p class="title_playersText">{{$round['title']}}</p>

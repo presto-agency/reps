@@ -16,12 +16,20 @@
         </div>
 
         <div class="bottom_menu">
-            <button>
-                <p>registration</p>
-            </button>
-            <button>
-                <p>login</p>
-            </button>
+            @guest
+                <button type="button" data-toggle="modal"
+                        data-target="#authorizationModal"><p>{{ __('Login') }}</p></button>
+                <button class="registration" type="button" data-toggle="modal"
+                        data-target="#registrationModal"><p>{{ __('Register') }}</p></button>
+            @else
+                @include('layouts.components.header.components.user-bar-panel')
+            @endguest
+{{--            <button>--}}
+{{--                <p>registration</p>--}}
+{{--            </button>--}}
+{{--            <button>--}}
+{{--                <p>login</p>--}}
+{{--            </button>--}}
         </div>
     </nav>
 </section>
