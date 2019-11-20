@@ -1,5 +1,5 @@
+@inject('checkFile', 'App\Services\ServiceAssistants\PathHelper')
 <section class="Page_tournamentDetail-content">
-
     <div class="wrapper border_shadow">
         <div class=" title_block">
             <div class="left_content">
@@ -18,7 +18,6 @@
                 <p class="title_text">{{$tournament->name}}</p>
             </div>
         </div>
-
         <div class="row block_replay_content">
             <div class="col-xl-6 col-lg-6 col-md-6 block_left">
                 <div class="container_block">
@@ -103,7 +102,7 @@
                 <div class="container_block">
                     <div class="left modal_tournament">
                         <button type="button" class="btn_modal" data-toggle="modal" data-target="#exampleModal">
-                            <p class="night_text">{{(__('Maps/Prize'))}}</p>
+                            <span class="night_text">{{(__('Maps/Prize'))}}</span>
                         </button>
 
                         <!-- Modal -->
@@ -175,7 +174,6 @@
                                                                                     alt="map">
                                                                             @endif
                                                                         </div>
-                                                                        {!! App\Models\TourneyMatch::getTourneyMap($map['name'])['url'] !!}
                                                                     </div>
                                                                 @endforeach
                                                             @endisset
