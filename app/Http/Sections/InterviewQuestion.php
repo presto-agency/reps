@@ -47,6 +47,7 @@ class InterviewQuestion extends Section
         $display = AdminDisplay::datatablesAsync();
         $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
         $display->paginate(10);
+        $display->with(['answers','userAnswers']);
 
         $display->setApply(function ($query) {
             $query->orderByDesc('id');
@@ -184,7 +185,7 @@ class InterviewQuestion extends Section
 
         $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
             $id = $model->getKey();
-            $url = url("admin/interview_questions/$id/show");
+            $url = asset("admin/interview_questions/$id/show");
             return $url;
         }, function (\Illuminate\Database\Eloquent\Model $model) {
             return 'Просмотреть';

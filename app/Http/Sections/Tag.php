@@ -46,11 +46,7 @@ class Tag extends Section
     {
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
-//            ->setDisplaySearch(true)
             ->setHtmlAttribute('class', 'table-info table-hover text-center')
-            /*->setActions([
-                AdminColumn::action('export', 'Export')->setIcon('fa fa-share')->setAction('#'),
-            ])*/
             ->paginate(10);
         $display->setApply(function ($query) {
             $query->orderBy('created_at', 'asc');
