@@ -2071,6 +2071,9 @@
     }
     // add_comments
     .add-comment {
+        .cke_combo_button{
+            display: none;
+        }
         .add-comment__title {
             padding-top: 3.472vw;
             padding-bottom: 3.472vw;

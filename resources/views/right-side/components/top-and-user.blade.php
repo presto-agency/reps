@@ -56,7 +56,7 @@
             @isset($top10Rating)
                 @foreach($top10Rating as $item)
                     <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_code">
                             <p class="night_text">{{$item['max']}} кг</p>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
@@ -65,7 +65,7 @@
                             <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race"
                                  title="{{$item['raceTitle']}}"/>
                         </div>
-                        <div class="col-xl-5 col-lg-5 col-md-5 col-5 content_login">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_login">
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <p title="{{$item['name']}}">{{$item['name']}}</p>
                             </a>
@@ -81,7 +81,7 @@
             @isset($top10Points)
                 @foreach($top10Points as $item)
                     <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_code">
                             <p class="night_text">{{$item['max']}} pts</p>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
@@ -90,7 +90,7 @@
                             <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race"
                                  title="{{$item['raceTitle']}}"/>
                         </div>
-                        <div class="col-xl-5 col-lg-5 col-md-5 col-5 content_login">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_login">
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <p title="{{$item['name']}}">{{$item['name']}}</p>
                             </a>
