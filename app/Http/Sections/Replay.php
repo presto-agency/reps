@@ -63,10 +63,10 @@ class Replay extends Section
 
         $display->setFilters([
             AdminDisplayFilter::related('approved')->setModel(\App\Models\Replay::class),
-            AdminDisplayFilter::related('user_replay')->setModel(\App\Models\Replay::class),
         ]);
         $display->setApply(function ($query) {
             $query->orderByDesc('id');
+
         });
 
 
@@ -82,38 +82,37 @@ class Replay extends Section
             $map_id = AdminColumn::relatedLink('maps.name', 'Карта')
                 ->setWidth(100),
 
-            $country = AdminColumn::custom('Страны', function ($model) {
-                return "{$model->firstCountries->name}" . '<br/><small>vs</small><br/>' . "{$model->secondCountries->name}";
+            $country = AdminColumn::custom('Первая или вторая страна', function (\Illuminate\Database\Eloquent\Model $model) {
+                return $model->firstCountries->name . '<br/><small>vs</small><br/>' . $model->secondCountries->name;
             })->setFilterCallback(function ($column, $query, $search) {
+                \Log::info($search);
                 $searchId = Country::where('name', $search)->value('id');
                 if (!empty($searchId)) {
-                    $query->where('first_country_id', 'like', "$searchId")->orWhere('second_country_id', 'like', "$searchId");
+                    $query->where('first_country_id', 'like', $searchId)->orWhere('second_country_id', 'like', $searchId);
                 }
                 if (empty($searchId)) {
                     $query->get();
                 }
             })->setWidth(120),
-
-            $race = AdminColumn::custom('Расы', function ($model) {
-                return "{$model->firstRaces->title}" . '<br/><small>vs</small><br/>' . "{$model->secondRaces->title}";
+            $race = AdminColumn::custom('Первая или вторая раса', function (\Illuminate\Database\Eloquent\Model $model) {
+                return $model->firstRaces->title . '<br/><small>vs</small><br/>' . $model->secondRaces->title;
             })->setFilterCallback(function ($column, $query, $search) {
                 $searchId = Race::where('title', $search)->value('id');
                 if (!empty($searchId)) {
-                    $query->where('first_race', 'like', "$searchId")->orWhere('second_race', 'like', "$searchId");
+                    $query->where('first_race', 'like', $searchId)->orWhere('second_race', 'like', $searchId);
                 }
                 if (empty($searchId)) {
                     $query->get();
                 }
-            })
-                ->setWidth(70),
+            })->setWidth(70),
 
             $type_id = AdminColumn::text('types.title', 'Тип')
                 ->setWidth(70),
 
-            $user_replay = AdminColumn::custom('Тип 2', function ($model) {
-                return $model->user_replay == $model::REPLAY_PRO ? "Профессиональный" : "Пользовательский";
+            $user_replay = AdminColumn::custom('Тип 2', function (\Illuminate\Database\Eloquent\Model $model) {
+                return $model::$userReplaysType[$model->user_replay];
+            })->setFilterCallback(function ($column, $query, $search)  {
             })
-                ->append(AdminColumn::filter('user_replay'))
                 ->setWidth(100),
 
             $comments_count = AdminColumn::count('comments', 'Коментарии')
@@ -169,6 +168,11 @@ class Replay extends Section
                 ->setHtmlAttributes(['style' => 'width: 100%']),
             $type_id = AdminColumnFilter::select()
                 ->setOptions((new ReplayType())->pluck('title', 'title')->toArray())
+                ->setOperator(FilterInterface::EQUAL)
+                ->setPlaceholder('Все')
+                ->setHtmlAttributes(['style' => 'width: 100%']),
+            $type2 = AdminColumnFilter::select()
+                ->setOptions($this->model::$userReplaysType)
                 ->setOperator(FilterInterface::EQUAL)
                 ->setPlaceholder('Все')
                 ->setHtmlAttributes(['style' => 'width: 100%']),

@@ -5,7 +5,6 @@
 @endsection
 
 @section('sidebar-left')
-@section('sidebar-left')
     @include('left-side.navigation-replays')
     @include('left-side.search-replays')
 @endsection
