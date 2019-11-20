@@ -1,12 +1,20 @@
 <template>
-    <transition name="fade">
-    <div v-if="status" class="component_image">
-            <img v-for="(image, index) in images" :key ="`image-${index}`"
-                 :src="`${image.src}`"
-                 :alt="`${image.charactor}`"
-                 :title="`${image.charactor}`" @click="selImage(image.charactor)">
+   <!-- <transition name="fade">
+        <div v-if="status" class="component_image">
+            <b-card no-body>
+                <b-tabs v-model="tabIndex" card>
+                    <b-tab v-for="(imagesbycategory, key ) in images" :key ="`${key}`" :title="`${key}`" >
+                        <div class="">
+                            <img v-for="(image, index) in imagesbycategory" :key ="`image-${index}`"
+                                 :src="`${image.filepath}`"
+                                 :alt="`${image.charactor}`"
+                                 :title="`${image.charactor}`" @click="selImage(image.charactor)">
+                        </div>
+                    </b-tab>
+                </b-tabs>
+            </b-card>
         </div>
-    </transition>
+    </transition>-->
 </template>
 
 <script>
@@ -16,23 +24,26 @@
         props: ["status"],
         data() {
             return {
+                tabIndex: 0,
                 images: []
             }
         },
         methods: {
-            get_images() {
-                axios.get('/chat/get_images').then((response) => {
-                    response.data.forEach((item,index)=> {
-                        this.smiles.push({
-                            src: item.src,
-                            charactor: item.charactor
+            // get_images() {
+            //         axios.get('/get_externalimages').then((response) => {
+            //             response.data.forEach((item,index)=> {
+            //                 this.images.push({
+            //                     src: item.src,
+            //                     charactor: item.charactor
+            //
+            //                 })
+            //             });
+            //             if(response.data.length>0 )this.tabIndex = Object.keys(this.images)[0];
+            //         })
+            //     }
 
-                        })
-                    })
-                })
             }
         }
-    }
 </script>
 
 <style lang="scss" scoped>
