@@ -24,9 +24,9 @@
         }
     }
     .add-comment__form {
+        padding-top: 20px;
         display: flex;
         justify-content: space-between;
-        padding: 20px;
         .form__group {
             width: 100%;
             margin-bottom: 0; //отмена стандартного margin
@@ -96,6 +96,9 @@
         }
         .form-group{
             width: 100%;
+            label{
+                display: none;
+            }
         }
         .add-comment__btn{
             text-align: center;

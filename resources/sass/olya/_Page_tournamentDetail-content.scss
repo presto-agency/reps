@@ -129,14 +129,15 @@
             margin: 0;
         }
         & a{
-            font-size: 12px;
+            font-size: 14px;
+            font-weight: 400;
             color: $gray;
             text-decoration: underline;
         }
     }
     & .container_players{
         max-height: 220px;
-        overflow: scroll;
+        overflow: auto;
         padding: 20px 0;
         & .pl-controls-bottom pl-flex qa-controls-bottom{
             display: none;
