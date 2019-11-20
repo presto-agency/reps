@@ -19,6 +19,10 @@ class Replay extends Model
         Replay::REPLAY_USER => 'Пользовательский',
     ];
 
+    public static $userReplaysTypeAdmin = [
+        'Профессиональный' => 'Профессиональный',
+        'Пользовательский' => 'Пользовательский',
+    ];
     public static $type = [
         Replay::REPLAY_PRO => 'pro',
         Replay::REPLAY_USER => 'user',

@@ -6,47 +6,43 @@ namespace App\Services\ServiceAssistants;
 
 class PathHelper
 {
-    /**
-     * @param $storage
-     * @return bool
-     */
-    public static function checkUploadStoragePath($storage)
-    {
-        \Storage::disk('public')->exists($storage) === false ? \Storage::disk('public')->makeDirectory($storage) : null;
-        return '/storage' . $storage;
-    }
+    public static $path;
+    public static $checkPath;
 
-    public static function checkFileAndDelete($file_path)
+    public static function checkUploadsFileAndPath($storagePath, $oldFilePath = null)
     {
-        $getStorageFilePath = \Str::replaceFirst('/storage', '', $file_path);
-        $checkFiles = \Storage::disk('public')->exists($getStorageFilePath);
-
-        if ($checkFiles === true) {
-            \Storage::disk('public')->delete($getStorageFilePath);
-            return true;
+        /*Check path*/
+        \Storage::disk('public')->exists($storagePath) === false ? \Storage::disk('public')->makeDirectory($storagePath) : null;
+        if (!empty($oldFilePath)) {
+            self::$path = $oldFilePath;
+            /*Check old file*/
+            if (strpos($oldFilePath, '/storage') !== false) {
+                self::$path = \Str::replaceFirst('/storage', 'public', $oldFilePath);
+            }
+            if (strpos($oldFilePath, 'storage') !== false) {
+                self::$path = \Str::replaceFirst('storage', 'public', $oldFilePath);
+            }
+            if (\Storage::exists(self::$path)) {
+                \Storage::delete(self::$path);
+            }
         }
-        return false;
+
+        return $storagePath;
     }
 
-    public static function checkAvatarAndDelete($file_path)
+    public static function checkFileExists($path)
     {
-        $getStorageFilePath = \Str::replaceFirst(asset('/storage'), '', $file_path);
-        $checkFiles = \Storage::disk('public')->exists($getStorageFilePath);
-        if ($checkFiles === true) {
-            \Storage::disk('public')->delete($getStorageFilePath);
-            return true;
+        self::$checkPath = $path;
+        /*Check file*/
+        if (strpos($path, '/storage') !== false) {
+            self::$checkPath = \Str::replaceFirst('/storage', 'public', $path);
         }
-        return false;
-    }
-
-    public static function checkStorageFileExists($file_path)
-    {
-        $getStorageFilePath = \Str::replaceFirst(asset('/storage'), '', $file_path);
-        $checkFiles = \Storage::disk('public')->exists($getStorageFilePath);
-        if ($checkFiles) {
-            return true;
+        if (strpos($path, 'storage') !== false) {
+            self::$checkPath = \Str::replaceFirst('storage', 'public', $path);
         }
-        return false;
-    }
 
+
+        return \Storage::exists(self::$checkPath);
+
+    }
 }

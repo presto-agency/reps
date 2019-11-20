@@ -1,16 +1,27 @@
 @if ($user)
     <li class="dropdown user user-menu" style="margin-right: 20px;">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-            <img src="{{asset($user->avatar)}}"
-                 class="user-image"/>
+            @if(auth()->user()->userViewAvatars())
+                @if(!empty($user->avatar) && file_exists($user->avatar))
+                    <img src="{{asset($user->avatar)}}" class="user-image"/>
+                @else
+                    <img src="{{asset($user->defaultAvatar())}}" class="user-image"/>
+                @endif
+            @endif
             <span class="hidden-xs">{{ $user->name }}</span>
         </a>
         <ul class="dropdown-menu">
             <li class="user-header">
-                <img src="{{asset($user->avatar) }}" class="img-circle"/>
+                @if(auth()->user()->userViewAvatars())
+                    @if(!empty($user->avatar) && file_exists($user->avatar))
+                        <img src="{{asset($user->avatar) }}" class="img-circle"/>
+                    @else
+                        <img src="{{asset($user->defaultAvatar()) }}" class="img-circle"/>
+                    @endif
+                @endif
                 <p>
                     {{ $user->name }} <small>({{ $user->roles->title }})</small>
-                    <small>@lang('sleeping_owl::lang.auth.since', ['date' => $user->created_at->format('d.m.Y')])</small>
+                    <small>@lang('sleeping_owl::lang.auth.since', ['date' => $user->created_at->format('h:m d.m.Y')])</small>
                 </p>
             </li>
             <li class="user-footer">

@@ -23,7 +23,7 @@ class TourneyService
     {
         $upcoming_tournaments = TourneyList::where('visible', 1)
             ->where('start_time', '>', Carbon::now()->format('Y-m-d H:i:s'))
-            ->orderBy('created_at', 'Desc')
+            ->orderByDesc('created_at')
             ->limit($limit)->get();
         return $upcoming_tournaments;
     }

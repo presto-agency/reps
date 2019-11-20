@@ -68,7 +68,14 @@ class User extends Section
             $id = AdminColumn::text('id', 'Id')
                 ->setWidth(70),
 
-            $avatar = AdminColumn::image('avatar', 'Аватар'),
+            $avatar = AdminColumn::image(function ($model) {
+                if (!empty($model->avatar) && PathHelper::checkFileExists($model->avatar)) {
+                    return $model->avatar;
+                } else {
+                    return 'images/default/avatar/avatar.png';
+                }
+
+            })->setWidth(10),
 
             $role_id = AdminColumn::text('roles.title', 'Роль'),
 
@@ -174,9 +181,9 @@ class User extends Section
         $display->setItems([
             $avatar = AdminFormElement::image('avatar', 'Аватар')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return PathHelper::checkUploadStoragePath("/images/users/avatars");
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/users/avatars", auth()->user()->avatar);
                 })
-                ->setValueSkipped(request()->exists('avatar'))
+                ->setValueSkipped(empty(request('avatar')))
                 ->setValidationRules([
                     'nullable',
                     'max:2048'

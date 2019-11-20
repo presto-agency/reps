@@ -10,6 +10,8 @@ use AdminDisplay;
 use AdminColumn;
 use AdminColumnFilter;
 use App\Models\Tag;
+use App\Services\ServiceAssistants\PathHelper;
+use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
@@ -47,19 +49,11 @@ class ChatPicture extends Section
     {
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
-//            ->setDisplaySearch(true)
-            ->setHtmlAttribute('class', 'table-info table-hover text-center')
-            /*->setActions([
-                AdminColumn::action('export', 'Export')->setIcon('fa fa-share')->setAction('#'),
-            ])*/
+            ->setHtmlAttribute('class', 'table-info text-center')
             ->paginate(10);
         $display->setApply(function ($query) {
-            $query->orderBy('created_at', 'asc');
+            $query->orderByDesc('id');
         });
-
-        /*$display->setFilters([
-            AdminDisplayFilter::field('tag')
-        ]);*/
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
@@ -69,10 +63,11 @@ class ChatPicture extends Section
                 ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md')
                 ->setWidth('100px'),
 
-            $image = AdminColumn::image('image', 'Image')
-                ->setHtmlAttribute('class', 'hidden-sm hidden-xs foobar')
-                ->setWidth('100px'),
-
+            $image = AdminColumn::image(function ($model) {
+                if (!empty($model->image) && PathHelper::checkFileExists($model->image)) {
+                    return asset($model->image);
+                }
+            })->setWidth('100px'),
             $comment = AdminColumn::text('comment', 'Comment')
                 ->setWidth('150px'),
 
@@ -113,12 +108,29 @@ class ChatPicture extends Section
         $form = AdminForm::panel();
         $form->setItems([
             /*Init FormElement*/
-
-            $image = AdminFormElement::image('image', 'Image')->required(),
+            $image = AdminFormElement::image('image', 'Image')
+                ->setUploadPath(function (UploadedFile $file) use ($id) {
+                    $filePath = \App\Models\ChatPicture::where('id', $id)->value('image');
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/chat/pictures", $filePath);
+                })
+                ->setValidationRules([
+                    'required',
+                    'max:2048'
+                ])
+                ->setUploadSettings([
+                    'orientate' => [],
+                    'resize'    => [
+                        120,
+                        120,
+                        function ($constraint) {
+                            $constraint->upsize();
+                            $constraint->aspectRatio();
+                        }
+                    ],
+                ]),
             $comment = AdminFormElement::text('comment', 'Comment'),
             $charactor = AdminFormElement::text('charactor', 'Charactor')->required(),
             $tag = AdminFormElement::multiselect('tags', 'Tags', Tag::class)->setDisplay('display_name')->required(),
-//            $tag = AdminFormElement::text('tag', 'Tag')->required(),
             $user = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
 
         ]);

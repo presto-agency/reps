@@ -28,7 +28,7 @@
                                             <path
                                                 d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"/>
                                         </svg>
-                                        <p class="items__info">{{$item->created_at->format('h:m d:m:Y')}}</p>
+                                        <p class="items__info">{{$item->created_at->format('h:m d.m.Y')}}</p>
                                         <p class="items__info info">#{{$item->id}}</p>
                                     </div>
                                 </div>
