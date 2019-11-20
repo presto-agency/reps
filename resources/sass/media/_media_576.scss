@@ -727,6 +727,7 @@
 
 
                 .info__country {
+                    max-width: 130px;
                     .country-first {
                         margin-left: 1.042vw;
                     }
@@ -737,10 +738,11 @@
                 & .info__wins{
                     width: 110px;
                     display: flex;
-                    justify-content: center;
+                    justify-content: flex-end;
                     align-items: baseline;
                 }
                 .info__match-up {
+                    max-width: 130px;
                     .match-up__versus {
                         margin-left: 0.868vw;
                         margin-right: 0.868vw;
@@ -756,6 +758,7 @@
                 }
 
                 .info__maps {
+                    max-width: 130px;
                     .maps__name {
                         font-size: 3.431vw;
                         margin-left: 2.083vw;
@@ -862,7 +865,9 @@
                 input{
                     height: 7.639vw;
                     padding-left: 3.472vw;
-                }
+                }::placeholder{
+                     font-size: 3.5vw;
+                                 }
                 select {
                     height: 7.639vw;
                     padding-left: 3.472vw;
@@ -874,6 +879,9 @@
             .body__button-search {
                 margin-top: 3.472vw;
                 margin-bottom: 2.431vw;
+                .button{
+                    font-size: 3.082vw;
+                }
             }
         }
     }
@@ -1053,7 +1061,8 @@
                 font-size: 3.778vw;
             }
             & a{
-                font-size: 2.083vw;
+                font-size: 3.083vw;
+                font-weight: 600;
             }
         }
         & .container_players{
@@ -1355,8 +1364,8 @@
                 margin-right: 1.736vw;
             }
         }
-        & .title_players{
-            min-height: 10.417vw;
+        .title_players{
+            height: 10.417vw;
             padding: 0 3.472vw;
             & .title_playersText{
                 font-size: 3.778vw;
@@ -1599,7 +1608,7 @@
             & .block_nameArticle{
                  .name{
                     margin: 0.868vw 0;
-                    font-size: 3.778vw;
+                    font-size: 3.0vw;
                 }
                  .date{
                     font-size: 2.5vw;
