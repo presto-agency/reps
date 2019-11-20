@@ -61,9 +61,9 @@ class UserGallery extends Section
             ->with(['users'])
             ->paginate(10);
 
-        $display->setFilters([
-            AdminDisplayFilter::related('for_adults')->setModel(\App\Models\UserGallery::class),
-        ]);
+        $display->setFilters(
+            AdminDisplayFilter::related('for_adults')->setModel(\App\Models\UserGallery::class)
+        );
 
         $display->setApply(function ($query) {
             $query->orderBy('id', 'desc');
