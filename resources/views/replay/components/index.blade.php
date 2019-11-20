@@ -85,7 +85,7 @@
                                 <span class="comment-author__nickname"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
                             @endisset
-                            <span class="comment-author__replay-item night_text">Видео реплай</span>
+                            <span class="comment-author__replay-item night_text">Видео реплей</span>
                         </div>
                         <div class="subtitle__icons">
                             <svg version="1.1" id="Capa_1"
@@ -129,7 +129,7 @@
                             </a>
                         </div>
                     </div>
-                    <p class="match__comment nightMode">{!!$item->content!!}</p>
+                    <p class="match__comment night_text">{!!$item->content!!}</p>
                     <div class="match__info">
                         <div class="info__country">
                             <span class="country__text night_text">Страны:</span>
