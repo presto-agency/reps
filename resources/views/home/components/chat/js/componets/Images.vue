@@ -2,7 +2,7 @@
     <transition name="fade">
     <div v-if="status" class="component_image">
             <img v-for="(image, index) in images" :key ="`image-${index}`"
-                 :src="`${image.filepath}`"
+                 :src="`${image.src}`"
                  :alt="`${image.charactor}`"
                  :title="`${image.charactor}`" @click="selImage(image.charactor)">
         </div>

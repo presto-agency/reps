@@ -24,17 +24,6 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-basic-styles": "^15.0.0",
-        "@ckeditor/ckeditor5-build-classic": "^15.0.0",
-        "@ckeditor/ckeditor5-editor-classic": "^15.0.0",
-        "@ckeditor/ckeditor5-editor-decoupled": "^15.0.0",
-        "@ckeditor/ckeditor5-essentials": "^15.0.0",
-        "@ckeditor/ckeditor5-link": "^15.0.0",
-        "@ckeditor/ckeditor5-media-embed": "^15.0.0",
-        "@ckeditor/ckeditor5-paragraph": "^15.0.0",
-        "@ckeditor/ckeditor5-theme-lark": "^15.0.0",
-        "@ckeditor/ckeditor5-vue": "^1.0.0",
-        "ckeditor": "^4.12.1",
         "express": "^4.17.1",
         "laravel-echo": "^1.6.1",
         "moment": "^2.24.0",

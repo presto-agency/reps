@@ -13,7 +13,7 @@
     import * as chatHelper from '../helper/chatHelper';
     export default {
         name: "FontColor",
-        props: ["status", "textarea"],
+        props: ["status"],
         data() {
             return {
                 colors: [
@@ -31,8 +31,19 @@
 
         methods: {
             selColor(color) {
-                this.mystr = "12345";
-                this.$emit("textarealistener", this.mystr);
+                let textareaObj = chatHelper.textareaObj();
+                let sel = chatHelper.getSelection();
+                let text;
+                if (sel.length > 0) {
+                    let newValue = textareaObj.value.replace(sel, '[' + color.key + ']' + sel +'[/' + color.key + ']');
+                    text=textareaObj.value = newValue;
+                } else {
+                    chatHelper.insertText('[' + color.key + '][/' + color.key + ']');
+                    text=textareaObj.value;
+                }
+                this.$emit("turnOffStatus");
+                this.$emit("textarealistener", text);
+
             }
         }
 

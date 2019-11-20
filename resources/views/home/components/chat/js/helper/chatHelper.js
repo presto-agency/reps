@@ -14,9 +14,35 @@ export const getSelection = () => {
 };
 export const strParse= (str) => {
 
-    str = str.replace(/\[img\]([\s\S]*)\[\/img\]/gim, '<img src="$1" style="max-width: 100%;" alt="Uncorrect link"/>');
+    str = str.replace(/\[img\]([\s\S]*)\[\/img\]/gim, '<img src="$1" style="max-width: 100%;" alt="Incorrect image link"/>');
     str= str.replace(/\[url\]([\s\S]*)\[\/url\]/gim, '<a href="$1">$1</a>');
+    str= str.replace(/;([\s\S]*);/gim, '<img src="$1" style="width: 24px; display: inline;" alt="smile"/>');
+    for(let i=1; i<=6; i++) {
+        if(str.search(`c${i}`)>-1) {
+            if(i===1)
+            str= str.replace(/\[c1\]([\s\S]*)\[\/c1\]/gim, '<span style="color: #FFFF77;">$1</span>');
+            else if(i===2)
+                str= str.replace(/\[c2\]([\s\S]*)\[\/c2\]/gim, '<span style="color: #FF77FF;">$1</span>');
+            else if(i===3)
+                str= str.replace(/\[c3\]([\s\S]*)\[\/c3\]/gim, '<span style="color: #77FFFF;">$1</span>');
+            else if(i===4)
+                str= str.replace(/\[c4\]([\s\S]*)\[\/c4\]/gim, '<span style="color: #FFAAAA;">$1</span>');
+            else if(i===5)
+                str= str.replace(/\[c5\]([\s\S]*)\[\/c5\]/gim, '<span style="color: #AAFFAA;">$1</span>');
+            else
+                str= str.replace(/\[c6\]([\s\S]*)\[\/c6\]/gim, '<span style="color: #AAAAFF;">$1</span>');
+        }
+    }
     return str
+};
+export const parsePath = (mes,smiles) => {
+    if(mes.search(';')>-1){
+        smiles.forEach((item)=>{
+            if(mes.search(item.charactor)>-1)
+                mes = mes.replace(/;([\s\S]*);/gim, `;${item.src};`);
+        })
+    }
+    return mes;
 };
 export const getFilterUser = (text) => {
     var string_array = text.split(' ');

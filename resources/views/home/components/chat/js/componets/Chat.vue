@@ -39,9 +39,9 @@
         </div>
             <chat-message :messagearray="messagearray" />
         <div class="form-group" v-if="auth.id>0">
-            <Smiles :status="chat_action.smile" @turnOffStatus="turnOffStatus"></Smiles>
+            <Smiles :status="chat_action.smile" @turnOffStatus="turnOffStatus" @insert_smile="addSmile($event)"></Smiles>
             <Images :status="chat_action.image" @turnOffStatus="turnOffStatus"></Images>
-            <Color :status="chat_action.color" @turnOffStatus="turnOffStatus" @textarealistener="textareafoo(str)"></Color>
+            <Color :status="chat_action.color"  @turnOffStatus="turnOffStatus" @textarealistener="textareafoo($event)"></Color>
             <div class="form-group-toolbar">
                 <img src="../../icons/bold.svg" alt="" class="toolbar_item" @click="bold()">
                 <img src="../../icons/italic.svg" alt="" class="toolbar_item" @click="italic()">
@@ -88,17 +88,18 @@
                 'image': false,
                 'color': false
             },
-            textarea: ''
+            textarea: '',
+            smiles: []
         }),
         created(){
             axios.get('/chat/get_messages').then((response) => {
                 response.data.forEach((item,index)=> {
-
                     this.messagearray.push({
-                        flag: '/images/country_flag.png',
+                        id: item.id,
+                        flag: item.country_flag,
                         ava: item.user.avatar,
                         usernick: item.user_name,
-                        date: '13.11',
+                        date: item.time,
                         message: chatHelper.strParse(item.message),
                         user_id: item.user_id,
                         visible: true
@@ -111,10 +112,11 @@
                 console.log('Полученые данные через сокет: ');
                 console.log(data);
                 this.messagearray.unshift({
-                    flag: '/images/country_flag.png',
+                    id: data.id,
+                    flag: data.country_flag,
                     ava: data.user.avatar,
                     usernick: data.user_name,
-                    date: '13.11',
+                    date: data.time,
                     message: chatHelper.strParse(data.message),
                     user_id: data.user.id,
                     visible: true
@@ -124,19 +126,19 @@
         },
         methods: {
             sendMessage(){
-                    // console.log(this.auth); this.auth.id
+                this.textMessage = chatHelper.parsePath(this.textMessage, this.smiles);
                     axios.post('/chat/insert_message', {
                         user_id: this.auth.id,
                         file_path: "",
                         message: this.textMessage,
-                        imo: ""})
-                        .then((response) => {
+                        imo: ""});
+                        /*.then((response) => {
                             console.log('Полученые данные методом POST: ');
                             console.log(response.data);
                             // this.messages = response.data;
-                        });
+                        });*/
                     this.textMessage = '';
-                    console.log("send message")
+
             },
             getSelection: chatHelper.getSelection,
             bold: chatHelper.bold,
@@ -164,6 +166,10 @@
             },
             textareafoo (str) {
                 this.textMessage = str;
+            },
+            addSmile(smile_object) {
+                this.textMessage = smile_object.str;
+                this.smiles = smile_object.smlies;
             }
 
 

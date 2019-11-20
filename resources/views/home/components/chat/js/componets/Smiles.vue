@@ -20,18 +20,21 @@
                 smiles: []
             }
         },
-        created: console.log('smile'),
-        methods: {
-            get_smiles() {
-                axios.get('/chat/get_smiles').then((response) => {
-                    response.data.forEach((item,index)=> {
-                        this.smiles.push({
-                            src: item.src,
-                            charactor: item.charactor
-
-                        })
+        created(){
+            axios.get('/chat/get_externalsmiles').then((response) => {
+                response.data.smiles.forEach((item, index) => {
+                    this.smiles.push({
+                        src: item.filename,
+                        charactor: item.charactor
                     })
                 })
+            })
+        },
+        methods: {
+            selSmile: function(smile) {
+                let str = smile.replace(smile,';' + smile + ';');
+                this.$emit("insert_smile", {'str':str,'smlies':this.smiles});
+                this.$emit("turnOffStatus");
             }
         }
     }
