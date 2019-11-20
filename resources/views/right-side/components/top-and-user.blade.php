@@ -28,7 +28,7 @@
             @isset($newUsers)
                 @foreach($newUsers as $item)
                     <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_code">
                             <p class="night_text">#{{$item->id}}</p>
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
@@ -38,7 +38,7 @@
                                  src="{{asset("images/default/game-races/" . $item->races->title . ".png")}}" alt="race"
                                  title="{{$item->races->title}}"/>
                         </div>
-                        <div class="col-xl-5 col-lg-5 col-md-5 col-5 content_login">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_login">
                             <a href="{{route('user_profile',['id'=>$item->id])}}">
                                 <p title="{{$item->name}}">{{$item->name}}</p>
                             </a>
