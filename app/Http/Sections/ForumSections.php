@@ -36,7 +36,6 @@ class ForumSections extends Section
 
     public function getTitle()
     {
-//        return parent::getTitle();
         return 'Разделы форума';
     }
 
@@ -47,8 +46,8 @@ class ForumSections extends Section
     {
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
-            ->setHtmlAttribute('class', 'table-info table-hover text-center')
-            ->paginate(20);
+            ->setHtmlAttribute('class', 'table-info text-center')
+            ->paginate(10);
         $display->setApply(function ($query) {
             $query->orderByDesc('id');
         });
@@ -77,18 +76,7 @@ class ForumSections extends Section
         ]);
 
         $control = $display->getColumns()->getControlColumn();
-
-        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $url = url('admin/forum_topics');
-            return $url . '?forum_section_id=' . $model->getKey(); // Генерация ссылки
-        }, function (\Illuminate\Database\Eloquent\Model $model) {
-            return $model->title . ' (' . $model->topics()->count() . ')'; // Генерация текста на кнопке
-        }, 50);
-        $link->hideText();
-        $link->setIcon('fa fa-eye');
-        $link->setHtmlAttribute('class', 'btn-info');
-
-        $control->addButton($link);
+        $control->addButton($this->lincShow());
 
         return $display;
     }
@@ -152,5 +140,19 @@ class ForumSections extends Section
     public function onRestore($id)
     {
         // remove if unused
+    }
+
+    public function lincShow()
+    {
+        $link = new \SleepingOwl\Admin\Display\ControlLink(function ($model) {
+            $url = url('admin/forum_topics');
+            return $url . '?forum_section_id=' . $model->getKey(); // Генерация ссылки
+        }, function ($model) {
+            return $model->title . ' (' . $model->topicsCount() . ')'; // Генерация текста на кнопке
+        }, 50);
+        $link->hideText();
+        $link->setIcon('fa fa-eye');
+        $link->setHtmlAttribute('class', 'btn-info');
+        return $link;
     }
 }
