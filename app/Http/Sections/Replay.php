@@ -85,7 +85,6 @@ class Replay extends Section
             $country = AdminColumn::custom('Первая или вторая страна', function (\Illuminate\Database\Eloquent\Model $model) {
                 return $model->firstCountries->name . '<br/><small>vs</small><br/>' . $model->secondCountries->name;
             })->setFilterCallback(function ($column, $query, $search) {
-                \Log::info($search);
                 $searchId = Country::where('name', $search)->value('id');
                 if (!empty($searchId)) {
                     $query->where('first_country_id', 'like', $searchId)->orWhere('second_country_id', 'like', $searchId);
@@ -112,6 +111,12 @@ class Replay extends Section
             $user_replay = AdminColumn::custom('Тип 2', function (\Illuminate\Database\Eloquent\Model $model) {
                 return $model::$userReplaysType[$model->user_replay];
             })->setFilterCallback(function ($column, $query, $search)  {
+                if (!empty($search)) {
+                    $query->where('user_replay', 'like', $search);
+                }
+                if (empty($search)) {
+                    $query->get();
+                }
             })
                 ->setWidth(100),
 
@@ -122,13 +127,10 @@ class Replay extends Section
                 ->setWidth(125),
 
             $rating = AdminColumn::custom('Рейтинг', function ($model) {
-                $positive = $model->negative_count;
-                $negative = $model->positive_count;
-                $result = $positive - $negative;
                 $thumbsUp = '<span style="font-size: 1em; color: green;"><i class="far fa-thumbs-up"></i></span>';
                 $equals = '<i class="fas fa-equals"></i>';
                 $thumbsDown = '<span style="font-size: 1em; color: red;"><i class="far fa-thumbs-down"></i></span>';
-                return "{$thumbsUp}" . "({$positive})" . '<br/>' . "{$equals}" . "({$result})" . '<br/>' . "{$thumbsDown}" . "({$negative})";
+                return $thumbsUp . $model->positive_count . '<br/>' . $equals . $model->positive_count-$model->negative_count . '<br/>' . $thumbsDown . $model->negative_count;
             })->setWidth(10),
 
             $approved = AdminColumnEditable::checkbox('approved')->setLabel('Подтвержден')
@@ -151,26 +153,30 @@ class Replay extends Section
                 ->setOperator(FilterInterface::CONTAINS)
                 ->setPlaceholder('Название')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
-            $map_id = AdminColumnFilter::select()
-                ->setOptions((new ReplayMap())->pluck('name', 'name')->toArray())
-                ->setOperator(FilterInterface::EQUAL)
-                ->setPlaceholder('Все')
-                ->setHtmlAttributes(['style' => 'width: 100%']),
-            $country = AdminColumnFilter::select()
-                ->setOptions((new Country())->pluck('name', 'name')->toArray())
-                ->setOperator(FilterInterface::EQUAL)
-                ->setPlaceholder('Все')
-                ->setHtmlAttributes(['style' => 'width: 100%']),
-            $race = AdminColumnFilter::select()
-                ->setOptions((new Race())->pluck('title', 'title')->toArray())
-                ->setOperator(FilterInterface::EQUAL)
-                ->setPlaceholder('Все')
-                ->setHtmlAttributes(['style' => 'width: 100%']),
-            $type_id = AdminColumnFilter::select()
-                ->setOptions((new ReplayType())->pluck('title', 'title')->toArray())
-                ->setOperator(FilterInterface::EQUAL)
-                ->setPlaceholder('Все')
-                ->setHtmlAttributes(['style' => 'width: 100%']),
+            $map_id = null,
+            $country = null,
+            $race = null,
+            $type_id = null,
+//            $map_id = AdminColumnFilter::select()
+//                ->setOptions((new ReplayMap())->pluck('name', 'name')->toArray())
+//                ->setOperator(FilterInterface::EQUAL)
+//                ->setPlaceholder('Все')
+//                ->setHtmlAttributes(['style' => 'width: 100%']),
+//            $country = AdminColumnFilter::select()
+//                ->setOptions((new Country())->pluck('name', 'name')->toArray())
+//                ->setOperator(FilterInterface::EQUAL)
+//                ->setPlaceholder('Все')
+//                ->setHtmlAttributes(['style' => 'width: 100%']),
+//            $race = AdminColumnFilter::select()
+//                ->setOptions((new Race())->pluck('title', 'title')->toArray())
+//                ->setOperator(FilterInterface::EQUAL)
+//                ->setPlaceholder('Все')
+//                ->setHtmlAttributes(['style' => 'width: 100%']),
+//            $type_id = AdminColumnFilter::select()
+//                ->setOptions((new ReplayType())->pluck('title', 'title')->toArray())
+//                ->setOperator(FilterInterface::EQUAL)
+//                ->setPlaceholder('Все')
+//                ->setHtmlAttributes(['style' => 'width: 100%']),
             $type2 = AdminColumnFilter::select()
                 ->setOptions($this->model::$userReplaysType)
                 ->setOperator(FilterInterface::EQUAL)
