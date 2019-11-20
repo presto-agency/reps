@@ -62,7 +62,7 @@ class User extends Section
             $query->orderByDesc('id');
         });
         $display->setFilters(
-            AdminDisplayFilter::related('ban')->setModel(\App\User::class),
+            AdminDisplayFilter::related('ban')->setModel(\App\User::class)
         );
 
         $display->setColumns([
