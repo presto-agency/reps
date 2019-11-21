@@ -4,7 +4,6 @@
 namespace App\Http\ViewComposers\LeftOrRightSide;
 
 
-use App\Http\Controllers\Interview\InterviewController;
 use App\Models\{InterviewQuestion};
 use Illuminate\View\View;
 

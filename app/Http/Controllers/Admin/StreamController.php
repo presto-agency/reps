@@ -8,10 +8,11 @@ use App\Models\Stream;
 
 class StreamController extends Controller
 {
+
     public function show($id)
     {
 
-        $columns = [
+        $columns   = [
             'id',
             'user_id',
             'title',
@@ -36,4 +37,5 @@ class StreamController extends Controller
 
         return AdminSection::view($content, 'Stream');
     }
+
 }

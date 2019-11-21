@@ -7,8 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class ReplayType extends Model
 {
 
+    protected $fillable
+        = [
+            'name', 'title',
+        ];
+
     public function replays()
     {
-        return $this->hasMany(\App\Models\Replay::class,'type_id','id');
+        return $this->hasMany(Replay::class, 'type_id', 'id');
     }
+
 }

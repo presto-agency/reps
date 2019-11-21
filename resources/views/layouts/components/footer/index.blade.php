@@ -6,7 +6,7 @@
                 <p class="logo__text">{{__('Everything about StarCraft®: Remastered')}}</p>
             </div>
             <div
-                class="footer__link col-xl-2 offset-xl-1 col-lg-2 mt-lg-0 offset-lg-1 col-md-6 col-sm-6 col-6 order-2 mt-4">
+                    class="footer__link col-xl-2 offset-xl-1 col-lg-2 mt-lg-0 offset-lg-1 col-md-6 col-sm-6 col-6 order-2 mt-4">
                 <a class="link-list__item" href="{{route('home.index')}}" title="Главная">{{__('Главная')}}</a>
                 <a class="link-list__item" href="{{route('forum.index')}}" title="Форум">{{__('Форум')}}</a>
                 <a class="link-list__item" href="{{route('replay.index',['type' => 'user'])}}"

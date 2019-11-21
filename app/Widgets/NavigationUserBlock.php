@@ -7,6 +7,7 @@ use SleepingOwl\Admin\Widgets\Widget;
 
 class NavigationUserBlock extends Widget
 {
+
     /**
      * @return array|string
      * @throws \Throwable
@@ -14,7 +15,7 @@ class NavigationUserBlock extends Widget
     public function toHtml()
     {
         return view('admin::auth.navbar', [
-            'user' => auth()->user()
+            'user' => auth()->user(),
         ])->render();
     }
 
@@ -33,4 +34,5 @@ class NavigationUserBlock extends Widget
     {
         return 'navbar.right';
     }
+
 }

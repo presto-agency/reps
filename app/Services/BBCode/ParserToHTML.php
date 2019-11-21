@@ -3,7 +3,7 @@
 
 namespace App\Services\BBCode;
 
-use \ChrisKonnertz\BBCode\BBCode;
+use ChrisKonnertz\BBCode\BBCode;
 
 class ParserToHTML
 {
@@ -21,7 +21,7 @@ class ParserToHTML
             $bbCode->ignoreTag($ignoreTag);
         }
 
-        return  htmlspecialchars_decode($bbCode->render($text));
+        return htmlspecialchars_decode($bbCode->render($text));
     }
 
 }

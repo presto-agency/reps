@@ -7,12 +7,12 @@
             @foreach($sections as $section)
                 <div class="wrapper border_shadow">
                     <div class="title_block">
-                            <div class="left_section">
-                                <a href="{{ route('forum.show', $section->id) }}">
-                                    <img id="img_menuMob" class="icon_bars" src="{{asset('images\speech-bubble.png')}}"/>
-                                    <span class="title_text">{{ $section->title }}</span>
-                                </a>
-                            </div>
+                        <div class="left_section">
+                            <a href="{{ route('forum.show', $section->id) }}">
+                                <img id="img_menuMob" class="icon_bars" src="{{asset('images\speech-bubble.png')}}"/>
+                                <span class="title_text">{{ $section->title }}</span>
+                            </a>
+                        </div>
                         <div class="right_section">
                             <div class="block_text night_text">
                                 <span>{{__('Темы: ')}}</span>

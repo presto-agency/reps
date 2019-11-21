@@ -2,7 +2,7 @@
     <div class="messanger">
         <div class="row_contentChat" v-for="(item,index) in messagearray" :key="index" v-if="item.visible">
             <div class=" block_user_akk">
-                <div class="user" >
+                <div class="user">
                     <img class="icon_bars" :src="item.flag">
                     <img class="icon_bars icon_avatar" :src="item.ava"/>
                     <a href="#">
@@ -34,20 +34,21 @@
 </template>
 <script>
     import * as chatHelper from '../helper/chatHelper';
-export default {
-    props: ['messagearray','not_user'],
-    data: ()=>({
-        ignored_users: [{}]
-    }),
-    methods: {
-        deleteMessage(id) {
-            this.$emit('on_delete',id);
-            axios.delete(`chat/delete/${id}\'`);
+
+    export default {
+        props: ['messagearray', 'not_user'],
+        data: () => ({
+            ignored_users: [{}]
+        }),
+        methods: {
+            deleteMessage(id) {
+                this.$emit('on_delete', id);
+                axios.delete(`chat/delete/${id}\'`);
+            }
         }
     }
-}
 
 </script>
-<style lang="scss" >
+<style lang="scss">
 
 </style>

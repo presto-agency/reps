@@ -7,14 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class InterviewQuestion extends Model
 {
+
     use InterviewQuestionRelationTrait;
 
-    protected $fillable = [
-        'question',
-        'active',
-        'for_login',
-        'count_answer',
-    ];
+    protected $fillable
+        = [
+            'question',
+            'active',
+            'for_login',
+            'count_answer',
+        ];
 
 
 }

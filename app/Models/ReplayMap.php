@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class ReplayMap extends Model
 {
 
-    protected $fillable = [
-        'name',
-        'url'
-    ];
+    protected $fillable
+        = [
+            'name',
+            'url',
+        ];
 
     public function defaultMap()
     {
         return 'images/default/map/nominimap.png';
     }
+
 }

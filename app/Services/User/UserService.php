@@ -16,11 +16,13 @@ use Illuminate\Http\Request;
 
 class UserService
 {
+
     /**
      * Update user data profile
      *
-     * @param Request $request
+     * @param  Request  $request
      * @param $user_id
+     *
      * @return mixed
      */
     public static function updateData($request, $user_id)
@@ -57,14 +59,18 @@ class UserService
         }
 
         $user->update($user_data);
+
         return true;
     }
 
     public static function isFriendExists($user_id, $friend_user_id)
     {
-        if (UserFriend::where('user_id', $user_id)->where('friend_user_id', $friend_user_id)->exists()) {
+        if (UserFriend::where('user_id', $user_id)
+            ->where('friend_user_id', $friend_user_id)->exists()
+        ) {
             return true;
         }
+
         return false;
     }
 
@@ -82,19 +88,26 @@ class UserService
             // Check if upload file Successful Uploads
             if ($request->file('avatar')->isValid()) {
                 //Check path Check old file4delete
-                $path = PathHelper::checkUploadsFileAndPath('images/users/avatars', auth()->user()->avatar);
+                $path
+                    = PathHelper::checkUploadsFileAndPath('images/users/avatars',
+                    auth()->user()->avatar);
                 $image = $request->file('avatar');
                 if ($image->getClientOriginalExtension() == "gif") {
-                    $filePath = 'storage/'.$f = $image->store('images/users/avatars','public');
-                }else{
+                    $filePath = 'storage/'.
+                        $f = $image->store('images/users/avatars', 'public');
+                } else {
                     //resize
-                    $filePath = ResizeImage::resizeImg($image, 125, 125, true, $path);
+                    $filePath = ResizeImage::resizeImg($image, 125, 125, true,
+                        $path);
                 }
+
                 return $filePath;
             } else {
                 back();
             }
         }
+
         return null;
     }
+
 }

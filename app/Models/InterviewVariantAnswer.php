@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class InterviewVariantAnswer extends Model
 {
+
     use InterviewVariantAnswerRelationTrait;
 
-    protected $fillable = [
-        'question_id', 'answer',
-    ];
+    protected $fillable
+        = [
+            'question_id', 'answer',
+        ];
+
 }

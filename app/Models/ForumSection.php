@@ -2,47 +2,52 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class ForumSection extends Model
 {
-    protected $fillable = [
-        'position',
-        'name',
-        'display_name',
-        'description',
-        'is_active',
-        'is_general',
-        'user_can_add_topics',
-    ];
+
+    protected $fillable
+        = [
+            'position',
+            'name',
+            'display_name',
+            'description',
+            'is_active',
+            'is_general',
+            'user_can_add_topics',
+        ];
 
     public function topics()
     {
-        return $this->hasMany('App\Models\ForumTopic','forum_section_id','id');
+        return $this->hasMany('App\Models\ForumTopic', 'forum_section_id',
+            'id');
     }
+
     public function topicsCount()
     {
-        return $this->hasMany('App\Models\ForumTopic','forum_section_id','id')->count();
+        return $this->hasMany('App\Models\ForumTopic', 'forum_section_id', 'id')
+            ->count();
     }
 
     public static function active()
     {
-        return $general_forum = ForumSection::where('is_active', 1)->orderBy('position');
+        return $general_forum = ForumSection::where('is_active', 1)
+            ->orderBy('position');
     }
-//ForumSection
-//id - integer
-//name - string
-//
-//ForumTopic
-//id - integer
-//forum_section_id - integer
-//name - string
-//
-//comments
-//id - integer
-//commentable_id - integer
-//title - string
+    //ForumSection
+    //id - integer
+    //name - string
+    //
+    //ForumTopic
+    //id - integer
+    //forum_section_id - integer
+    //name - string
+    //
+    //comments
+    //id - integer
+    //commentable_id - integer
+    //title - string
     /**
      * Get all of the comments for the ForumSection.
      */

@@ -65,7 +65,7 @@
             </div>
 
             <div class="col-xl-3 col-lg-4 col-md-7 col-sm-7 col-12 header_search {{ Auth::check() ? 'header_search_autorization' : '' }} ">
-                <form  class="header_search" action="{{ route('search') }}" method="GET">
+                <form class="header_search" action="{{ route('search') }}" method="GET">
                     <div class="button_input">
                         <button>
                             <img class="search_img" src="{{ url('/images/search.png') }}" title="Поиск">

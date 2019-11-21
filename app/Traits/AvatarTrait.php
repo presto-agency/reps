@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use checkFile;
+
 trait AvatarTrait
 {
 
@@ -12,7 +14,9 @@ trait AvatarTrait
      */
     public function avatarOrDefault()
     {
-        if ( ! empty($this->avatar) && \checkFile::checkFileExists($this->avatar)) {
+        if ( ! empty($this->avatar)
+            && checkFile::checkFileExists($this->avatar)
+        ) {
             return $this->avatar;
         } else {
             return 'images/default/avatar/avatar.png';

@@ -8,9 +8,7 @@ use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
 use App\Services\ServiceAssistants\PathHelper;
-use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
@@ -53,11 +51,10 @@ class ReplayMap extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
-            ->setHtmlAttribute('class', 'table-info table-sm text-center ')
+            ->setDatatableAttributes(['bInfo' => false])
+            ->setHtmlAttribute('class', 'table-info text-center ')
             ->paginate(10);
-        $display->setApply(function ($query) {
-            $query->orderByDesc('id');
-        });
+
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')
@@ -102,6 +99,7 @@ class ReplayMap extends Section
     }
 
     public $imageOldPath;
+
     /**
      * @param  int  $id
      *

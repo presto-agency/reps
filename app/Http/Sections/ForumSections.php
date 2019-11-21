@@ -2,24 +2,26 @@
 
 namespace App\Http\Sections;
 
-use AdminFormElement;
-use AdminForm;
+use AdminColumn;
 use AdminColumnEditable;
 use AdminDisplay;
-use AdminColumn;
+use AdminForm;
+use AdminFormElement;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Display\ControlLink;
 use SleepingOwl\Admin\Section;
 
 /**
  * Class ForumSections
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\ForumSection $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class ForumSections extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -48,10 +50,7 @@ class ForumSections extends Section
             ->with(['topics'])
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center')
-            ->paginate(7);
-        $display->setApply(function ($query) {
-            $query->orderByDesc('id');
-        });
+            ->paginate(4);
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
@@ -66,9 +65,12 @@ class ForumSections extends Section
                 ->setWidth('50px'),
             $isActive = AdminColumnEditable::checkbox('is_active', 'Да', 'Нет')
                 ->setLabel('Активный'),
-            $isGeneral = AdminColumnEditable::checkbox('is_general', 'Да', 'Нет')
+            $isGeneral = AdminColumnEditable::checkbox('is_general', 'Да',
+                'Нет')
                 ->setLabel('Основной'),
-            $userCanAddTopics = AdminColumnEditable::checkbox('user_can_add_topics', 'Да', 'Нет')
+            $userCanAddTopics
+                = AdminColumnEditable::checkbox('user_can_add_topics', 'Да',
+                'Нет')
                 ->setLabel('Пользователь добавляет'),
             $description = AdminColumn::text('description', 'Описание')
                 ->setHtmlAttribute('class', 'text-left')
@@ -83,7 +85,7 @@ class ForumSections extends Section
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
@@ -94,28 +96,32 @@ class ForumSections extends Section
             $name = AdminFormElement::text('name', 'Название:')
                 ->setValidationRules([
                     'required',
-                    'max:255'
+                    'max:255',
                 ]),
             $title = AdminFormElement::text('title', 'Имя:')
                 ->setValidationRules([
                     'required',
-                    'max:255'
+                    'max:255',
                 ]),
             $position = AdminFormElement::number('position', 'Позиция:')
                 ->setValidationRules([
                     'required',
-                    'min:0'
+                    'min:0',
                 ]),
-            $description = AdminFormElement::textarea('description', 'Описание:')
+            $description = AdminFormElement::textarea('description',
+                'Описание:')
                 ->setValidationRules([
                     'required',
-                    'max:255'
+                    'max:255',
                 ]),
             $isActive = AdminFormElement::checkbox('is_active', 'Активный'),
             $isGeneral = AdminFormElement::checkbox('is_general', 'Основной'),
-            $userCanAddTopics = AdminFormElement::checkbox('user_can_add_topics', 'Пользователь добавляет'),
+            $userCanAddTopics
+                = AdminFormElement::checkbox('user_can_add_topics',
+                'Пользователь добавляет'),
 
         ]);
+
         return $display;
     }
 
@@ -145,15 +151,18 @@ class ForumSections extends Section
 
     public function lincShow()
     {
-        $link = new \SleepingOwl\Admin\Display\ControlLink(function ($model) {
+        $link = new ControlLink(function ($model) {
             $url = asset('admin/forum_topics');
-            return $url . '?forum_section_id=' . $model->getKey(); // Генерация ссылки
+
+            return $url.'?forum_section_id='.$model->getKey();
         }, function ($model) {
 //            return $model->title . ' (' . $model->topicsCount() . ')'; // Генерация текста на кнопке
         }, 50);
         $link->hideText();
         $link->setIcon('fa fa-eye');
         $link->setHtmlAttribute('class', 'btn-info');
+
         return $link;
     }
+
 }

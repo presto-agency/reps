@@ -14,7 +14,7 @@
                         @isset($forumSection)
                             @foreach($forumSection as $item)
                                 <option class="night_input" value="{{$item->id}}"
-                                    {{ old('forum_section_id',$topic->forum_section_id) == $item->id ? "selected":""}}>
+                                        {{ old('forum_section_id',$topic->forum_section_id) == $item->id ? "selected":""}}>
                                     {{$item->title}}
                                 </option>
                             @endforeach
