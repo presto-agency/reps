@@ -129,14 +129,15 @@
             margin: 0;
         }
         & a{
-            font-size: 12px;
+            font-size: 14px;
+            font-weight: 400;
             color: $gray;
             text-decoration: underline;
         }
     }
     & .container_players{
         max-height: 220px;
-        overflow: scroll;
+        overflow: auto;
         padding: 20px 0;
         & .pl-controls-bottom pl-flex qa-controls-bottom{
             display: none;
@@ -173,6 +174,9 @@
             & .center_block{
                 & img{
                     margin: 0 5px;
+                    height: 28px;
+                    width: 28px;
+                    border-radius: 50%;
                 }
             }
             & .right_block{
@@ -212,7 +216,6 @@
             }
             & .center_block{
                 display: flex;
-                justify-content: center;
                 align-items: baseline;
                 & .one_player{
                     width: 110px;

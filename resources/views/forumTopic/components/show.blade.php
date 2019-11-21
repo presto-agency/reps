@@ -19,7 +19,23 @@
             </div>
             <div class="title__wrap">
                 @isset($topic->author)
-                    <img src="{{asset($topic->author->avatar)}}" class="title__avatar" alt="avatar">
+                    @auth()
+                        @if(auth()->user()->userViewAvatars())
+                            @if(!empty($topic->author->avatar) && file_exists($topic->author->avatar))
+                                <img src="{{asset($topic->author->avatar)}}" class="title__avatar" alt="avatar">
+                            @else
+                                <img src="{{asset($topic->author->defaultAvatar())}}" class="title__avatar"
+                                     alt="avatar">
+                            @endif
+                        @endif
+                    @else
+                        @if(!empty($topic->author->avatar) && file_exists($topic->author->avatar))
+                            <img src="{{asset($topic->author->avatar)}}" class="title__avatar" alt="avatar">
+                        @else
+                            <img src="{{asset($topic->author->defaultAvatar())}}" class="title__avatar" alt="avatar">
+                        @endif
+                    @endauth
+
                     <p class="title__nickname">{{ $topic->author->name ? $topic->author->name : 'user' }}</p>
                     <img src="{{ $topic->author->countries->flag }}" class="title__flag"
                          title="{{ $topic->author->countries->name }}" alt="flag">
@@ -84,7 +100,7 @@
                             <span class="edit_text">{{__('Редактировать')}}</span>
 
                         </a>
-                        <p class="items__date">{{$topic->created_at}}</p>
+                        <p class="items__date">{{$topic->created_at->format('h:m d.m.Y')}}</p>
                     </div>
                 @endif
             </div>

@@ -1,5 +1,6 @@
 .nightMode{
     background:#01093b;
+    color: white;
     .night_text{
             color: white!important;
         p, span, a{
@@ -50,6 +51,11 @@
     }
     .cke_chrome{
         border: 0!important;
+    }
+    .night_modal_special{
+        border: 1px solid $gray;
+        background: $blue;
+        border-radius: 0.25rem;
     }
 
     .accordion-button{

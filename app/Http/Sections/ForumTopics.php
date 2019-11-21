@@ -58,8 +58,11 @@ class ForumTopics extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
+            ->with(['forumSection',
+                    'author',
+                    'comments'])
             ->setDatatableAttributes(['bInfo' => false])
-            ->setHtmlAttribute('class', 'table-info table-hover text-center')
+            ->setHtmlAttribute('class', 'table-info text-center')
             ->paginate(10);
         $display->setFilters([
             AdminDisplayFilter::related('forum_section_id')->setModel(ForumSection::class),
@@ -128,37 +131,39 @@ class ForumTopics extends Section
 
         $form->setItems([
             /*Init FormElement*/
-            $title = AdminFormElement::text('title', 'Title')
-                ->setHtmlAttribute('placeholder', 'Title')
+            $title = AdminFormElement::text('title', 'Название:')
+                ->setHtmlAttribute('placeholder', 'Название:')
                 ->setValidationRules(['required',
                                       'between:1,255',
                                       'string']),
-            $sections = AdminFormElement::select('forum_section_id', 'Section', ForumSection::class)
+            $sections_id = AdminFormElement::select('forum_section_id', 'Раздел:', ForumSection::class)
                 ->setValidationRules(['required',
-                                      'exists:forum_topics,id'])
+                                      'exists:forum_sections,id'])
                 ->setDisplay('title'),
-            $preview_img = AdminFormElement::image('preview_img', 'Preview images')
+            $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
+            $preview_img = AdminFormElement::image('preview_img', 'Загрузить картинку превью')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return PathHelper::checkUploadStoragePath("/images/topics");
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/topics", $this->getModelValue()->getAttribute('preview_img'));
                 })
                 ->setValidationRules(['nullable',
                                       'max:2048']),
-            $preview_content = AdminFormElement::wysiwyg('preview_content', 'Preview')
+            $preview_content = AdminFormElement::wysiwyg('preview_content', 'Сокращенное содержание:')
                 ->setValidationRules(['required',
                                       'string',
-                                      'between:1,1000'])
+                                      'between:1,10000'])
                 ->disableFilter(),
-            $content = AdminFormElement::wysiwyg('content', 'Content')
+            $content = AdminFormElement::wysiwyg('content', 'Содержание:')
                 ->setValidationRules(['required',
                                       'string',
                                       'between:3,50000'])
                 ->disableFilter(),
-            $start_on = AdminFormElement::date('start_on', 'Publish from')
+            $start_on = AdminFormElement::date('start_on', 'Опубликовать с:')
                 ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d'))
-                ->setValidationRules(['required'])
+                ->setValidationRules(['nullable'])
                 ->setFormat('Y-m-d'),
-            $news = AdminFormElement::checkbox('news', 'Display in the news'),
-            $author = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
+            $news = AdminFormElement::checkbox('news', 'Отображать в новостях')
+                ->setValidationRules(['boolean']),
+
         ]);
         return $form;
     }

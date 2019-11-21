@@ -45,14 +45,14 @@
     <div class="user-reputation-history__body">
         @isset($userReputations)
             @foreach($userReputations as $item)
-                {{--{{ dd($item->recipient->races->title) }}--}}
                 <div class="body__wrap">
                     <div class="body__info change_gray">
-                        <p class="info__nickname night_text">{{$item->sender->name}}</p>
-                        <img src="{{ asset($item->sender->avatar) }}" class="info__flag" alt="flag">
-                        <img src="{{asset("images/default/game-races/" . $item->sender->races->title . ".png")}}" class="info__cube" alt="race">
-                        <p class="info__text night_text">{{$item->sender->point ?? 0}} pts | {{$item->sender->rating ?? 0}} кг</p>
-                        <span class="info__date night_text">{{$item->created_at}}</span>
+                        <p class="info__nickname night_text">{{$item->users->name}}</p>
+                        <img src="{{ asset($item->users->avatar) }}" class="info__flag" alt="flag">
+                        <img src="{{ asset('images/default/game-races'.$item->races->title.'.png') }}"
+                             class="info__cube" alt="race">
+                        <p class="info__text night_text">16826 pts | 675 кг</p>
+                        <span class="info__date night_text">09.09.2019</span>
                     </div>
                     <div class="body__content night_modal">
                         <p class="content__title night_text">{{$item->comment ?? 'no comments'}}</p>

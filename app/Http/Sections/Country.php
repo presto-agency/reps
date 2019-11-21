@@ -90,11 +90,11 @@ class Country extends Section
                             ->setHtmlAttribute('title', 'Alpha-2 ISO 3166-1')
                             ->setValidationRules(['required', 'min:2', 'max:10']),
                     ];
-                })->addColumn(function () {
+                })->addColumn(function () use ($id) {
                     return [
                         AdminFormElement::image('flag', 'Флаг')
-                            ->setUploadPath(function (UploadedFile $file) {
-                                return PathHelper::checkUploadStoragePath("/images/countries/flags");
+                            ->setUploadPath(function (UploadedFile $file){
+                                return 'storage' . PathHelper::checkUploadsFileAndPath("/images/countries/flags",$this->getModelValue()->getAttribute('flag'));
                             })
                             ->setValidationRules(['required', 'max:2048'])
                             ->setUploadSettings([

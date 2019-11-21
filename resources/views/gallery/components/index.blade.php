@@ -26,12 +26,20 @@
                         @isset($routCheck)
                             @if($routCheck)
                                 <a class="img-link" href="{{route('galleries.show',['gallery' => $item->id])}}">
-                                    <img src="{{$item->picture}}" alt="image">
+                                    @if(!empty($item->picture))
+                                        <img src="{{asset($item->picture)}}" alt="image">
+                                    @else
+                                        <img src="{{asset($item->defaultGallery())}}" alt="image">
+                                    @endif
                                 </a>
                             @else
                                 <a class="img-link"
                                    href="{{route('user-gallery.show',['id'=> $item->user_id,'user_gallery'=> $item->id])}}">
-                                    <img src="{{$item->picture}}" alt="image">
+                                    @if(!empty($item->picture))
+                                        <img src="{{$item->picture}}" alt="image">
+                                    @else
+                                        <img src="{{$item->defaultGallery()}}" alt="image">
+                                    @endif
                                 </a>
                             @endif
                         @endisset
@@ -42,17 +50,17 @@
                 @endforeach
             </div>
             <div id="load_more_galleries" class="gocu-replays__button night_modal">
-                <button type="button" name="load_more_galleries" class="btn btn-info form-control night_text"
+                <button type="button" name="load_more_galleries" class="button button__download-more night_text"
                         id="load_more_galleries_button" data-id="{{ $last_id }}">
                     {{__('Загрузить еще')}}
                 </button>
             </div>
         @else
             <div id="load_more_galleries" class="gocu-replays__button night_modal">
-                <button type="button" name="load_more_galleries" class="btn btn-info form-control night_text">
+                <button type="button" name="load_more_galleries" class="button button__download-more night_text">
                     {{__('Пусто')}}
                 </button>
             </div>
         @endif
-        @endisset
+    @endisset
 </div>

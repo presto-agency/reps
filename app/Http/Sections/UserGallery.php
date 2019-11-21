@@ -58,6 +58,7 @@ class UserGallery extends Section
         $display = AdminDisplay::datatablesAsync()
             ->setDisplaySearch(false)
             ->setHtmlAttribute('class', 'table-info table-sm text-center')
+            ->with(['users'])
             ->paginate(10);
 
         $display->setFilters([
@@ -73,7 +74,13 @@ class UserGallery extends Section
             $id = AdminColumn::text('id', 'Id')
                 ->setWidth(50),
 
-            $picture = AdminColumn::image('picture', 'Изображение'),
+            $picture = AdminColumn::image(function ($model) {
+                if (!empty($model->picture) && PathHelper::checkFileExists($model->picture)) {
+                    return $model->picture;
+                } else {
+                    return 'images/default/gallery/no-img.png';
+                }
+            })->setLabel('Изображение')->setWidth(10),
 
             $user_id = AdminColumn::relatedLink('users.name', 'Пользователь'),
 
@@ -84,13 +91,10 @@ class UserGallery extends Section
                 ->append(AdminColumn::filter('for_adults')),
 
             $rating = AdminColumn::custom('Рейтинг', function ($model) {
-                $positive = $model->negative_count;
-                $negative = $model->positive_count;
-                $result = $positive - $negative;
                 $thumbsUp = '<span style="font-size: 1em; color: green;"><i class="far fa-thumbs-up"></i></span>';
                 $equals = '<i class="fas fa-equals"></i>';
                 $thumbsDown = '<span style="font-size: 1em; color: red;"><i class="far fa-thumbs-down"></i></span>';
-                return "{$thumbsUp}" . "({$positive})" . '<br/>' . "{$equals}" . "({$result})" . '<br/>' . "{$thumbsDown}" . "({$negative})";
+                return $thumbsUp . $model->positive_count . '<br/>' . $equals . ($model->positive_count-$model->negative_count) . '<br/>' . $thumbsDown . $model->negative_count;
             })->setWidth(10),
 
             $comments_count = AdminColumn::count('comments', 'Коментарии')->setWidth(100),
@@ -115,7 +119,7 @@ class UserGallery extends Section
 
         $display->setItems([
             $picture = AdminColumn::image('picture', 'Изображение')
-                ->setImageWidth('500'),
+                ->setImageWidth('450'),
 
             $sign = AdminFormElement::text('sign', 'Подпись')
                 ->setHtmlAttribute('placeholder', 'Подпись')
@@ -136,7 +140,7 @@ class UserGallery extends Section
 
             $picture = AdminFormElement::image('picture', 'Картинка')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return PathHelper::checkUploadStoragePath("/images/users/galleries");
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/users/galleries");
                 })
                 ->setValidationRules(['required', 'max:2048']),
 
@@ -175,7 +179,7 @@ class UserGallery extends Section
     {
 
         $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $url = url('admin/user_galleries/show/' . $model->getKey());
+            $url = asset('admin/user_galleries/show/' . $model->getKey());
             return $url;
         }, function (\Illuminate\Database\Eloquent\Model $model) {
             return 'Просмотреть';

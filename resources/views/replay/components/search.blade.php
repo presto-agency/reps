@@ -42,16 +42,20 @@
                        href="{{ asset(url("replay/{$item->id}"."?type={$item::$type[$item->user_replay]}"))}}">
                         {{$item->title}}
                     </a>
-                    <p class="subtitle__date night_text">{{$item->created_at}}</p>
+                    <p class="subtitle__date night_text">{{$item->created_at->format('h:m d.m.Y')}}</p>
                 </div>
                 <div class="gocu-replays__match">
                     <div class="match__author">
                         <div class="subtitle__info">
                             @isset($item->users)
-                                <img
-                                    src="{{$item->users->avatar}}"
-                                    alt="avatar">
-                                <span class="comment-author__nickname"
+                                @if(auth()->user()->userViewAvatars())
+                                @if(!empty($item->users->avatar) && file_exists($item->users->avatar))
+                                    <img src="{{asset($item->users->avatar)}}" alt="avatar">
+                                @else
+                                    <img src="{{asset($item->users->defaultAvatar())}}" alt="avatar">
+                                @endif
+                                @endif
+                                    <span class="comment-author__nickname"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
                             @endisset
                             <span class="comment-author__replay-item night_text">Видео реплай</span>
@@ -154,7 +158,7 @@
             @endforeach
 
             <div id="load_replay_only_search" class="gocu-replays__button night_modal">
-                <button type="button" name="load_replay_only_search_button" class="btn btn-info form-control night_text"
+                <button type="button" name="load_replay_only_search_button" class="button button__download-more night_text"
                         id="load_replay_only_search_button" data-id="{{ $last_id }}">
                     {{__('Загрузить еще')}}
                 </button>
@@ -162,7 +166,7 @@
         @else
             <div id="load_replay_only_search" class="gocu-replays__button night_modal">
                 <button type="button" name="load_replay_only_search_button"
-                        class="btn btn-info form-control night_text">
+                        class="button button__download-morenight_text">
                     {{__('Пусто')}}
                 </button>
             </div>

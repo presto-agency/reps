@@ -495,13 +495,13 @@
             }
             & .content_img{
                 & img,svg{
-                    padding-right: 0.366vw;
+                    margin-right: 0.366vw;
                 }
             }
             & .content_login{
                 & p{
                     font-size: 1.025vw;
-                    max-width: 6.249vw;
+                    max-width: 5.249vw;
 
                 }
             }
@@ -606,7 +606,7 @@
                         max-width: 2.196vw;
                         max-height: 2.196vw;
                         border-radius: 1.464vw;
-                        padding-right: 0.732vw;
+                        margin-right: 0.732vw;
                     }
                     & span{
                         font-size: 1.025vw;
@@ -957,8 +957,9 @@
         }
 
         .gocu-replays__match {
+            padding: 0 1.464vw;
             .match__author {
-                padding: 1.464vw;
+                padding: 1.464vw 0;
 
                 .subtitle__info {
                     .comment-author__nickname {
@@ -1005,7 +1006,7 @@
             }
 
             .match__info {
-                padding: 1.464vw;
+                padding: 1.464vw 0;
 
                 .info__country {
                     .country-first {
@@ -1329,7 +1330,7 @@
             }
         }
         .add-comment__form {
-            padding: 1.464vw;
+            padding-top: 1.464vw;
             .form__group {
                 .comment {
                     .comment__icon {
@@ -1450,7 +1451,6 @@
             }
         }
         & .title_players{
-            height: 4.392vw;
             padding: 0 1.464vw;
             & .title_playersText{
                 font-size: 1.171vw;
@@ -1474,7 +1474,6 @@
                     & a{
 
                         width: 12.445vw;
-                        height: 2.050vw;
                         & .name_player{
                             font-size: 1.025vw;
                         }
@@ -1512,7 +1511,6 @@
                 & .center_block{
                     & .one_player{
                         width: 8.053vw;
-                        height: 2.050vw;
                     }
                     & img{
                         margin: 0 0.366vw;

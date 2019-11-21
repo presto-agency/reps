@@ -60,15 +60,19 @@
                             @endisset
                         @endif
                     @endisset
-                    <p class="subtitle__date night_text">{{$item->created_at}}</p>
+                    <p class="subtitle__date night_text">{{$item->created_at->format('h:m d.m.Y')}}</p>
                 </div>
                 <div class="gocu-replays__match">
                     <div class="match__author">
                         <div class="subtitle__info">
                             @isset($item->users)
-                                <img
-                                    src="{{$item->users->avatar}}"
-                                    alt="avatar">
+                                @if(auth()->user()->userViewAvatars())
+                                    @if(!empty($item->users->avatar) && file_exists($item->users->avatar))
+                                        <img src="{{asset($item->users->avatar)}}" alt="avatar">
+                                    @else
+                                        <img src="{{asset($item->users->defaultAvatar())}}" alt="avatar">
+                                    @endif
+                                @endif
                                 <span class="comment-author__nickname"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
                             @endisset
@@ -172,14 +176,14 @@
             @endforeach
 
             <div id="load_more-replay" class="gocu-replays__button night_modal">
-                <button type="button" name="load_more-replay_button" class="btn btn-info form-control night_text"
+                <button type="button" name="load_more-replay_button" class="button button__download-more night_text"
                         id="load_more-replay_button" data-id="{{ $last_id }}" data-user_id="{{$user_id}}">
                     {{__('Загрузить еще')}}
                 </button>
             </div>
         @else
             <div id="load_more-replay" class="gocu-replays__button night_modal">
-                <button type="button" name="load_more-replay_button" class="btn btn-info form-control night_text">
+                <button type="button" name="load_more-replay_button" class="button button__download-more night_text">
                     {{__('Пусто')}}
                 </button>
             </div>

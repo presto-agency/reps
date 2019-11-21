@@ -14,7 +14,13 @@
         <div class="userInfo_block">
             <div class="row">
                 <div class="col-xl-4 col-4 container_img">
-                    <img class="img-fluid" src="{{ asset($user->avatar) }}" alt="avatar">
+                    @if(auth()->user()->userViewAvatars())
+                    @if(!empty($user->avatar) && file_exists($user->avatar))
+                        <img class="img-fluid" src="{{ asset($user->avatar) }}" alt="avatar">
+                    @else
+                        <img class="img-fluid" src="{{ asset($user->defaultAvatar()) }}" alt="avatar">
+                    @endif
+                    @endif
                     <div class="icon_img">
                         @if(Auth::id() == $user->id)
                             <a href="{{ route('user.messages',['id'=>$user->id]) }}" title="Мои сообщения">
@@ -116,8 +122,13 @@
                                     <div class="friends">
                                         <div class="left_block">
                                             <a href="{{route('user_profile',['id' => $friend->id])}}">
-                                                <img src="{{$friend->avatar}}" alt="avatar"
-                                                     class="author__avatar img-fluid">
+                                                @if(auth()->user()->userViewAvatars())
+                                                @if(!empty($friend->avatar) && file_exists($friend->avatar))
+                                                    <img src="{{asset($friend->avatar)}}" alt="avatar" class="author__avatar img-fluid">
+                                                @else
+                                                    <img src="{{asset($friend->defaultAvatar())}}" alt="avatar" class="author__avatar img-fluid">
+                                                @endif
+                                                @endif
                                                 <span class="name_player">{{$friend->name}}</span>
                                             </a>
                                         </div>

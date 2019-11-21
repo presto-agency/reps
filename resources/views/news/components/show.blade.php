@@ -17,7 +17,22 @@
         </div>
         @if($news->author)
             <div class="title__wrap">
-                <img src="{{asset($news->author->avatar)}}" class="title__avatar" alt="avatar">
+                @auth()
+                    @if(auth()->user()->userViewAvatars())
+                        @if(!empty($news->author->avatar) && file_exists($news->author->avatar))
+                            <img src="{{asset($news->author->avatar)}}" class="title__avatar" alt="avatar">
+                        @else
+                            <img src="{{asset($news->author->defaultAvatar())}}" class="title__avatar" alt="avatar">
+                        @endif
+                    @endif
+                @else
+                    @if(!empty($news->author->avatar) && file_exists($news->author->avatar))
+                        <img src="{{asset($news->author->avatar)}}" class="title__avatar" alt="avatar">
+                    @else
+                        <img src="{{asset($news->author->defaultAvatar())}}" class="title__avatar" alt="avatar">
+                    @endif
+                @endauth
+
                 <p class="title__nickname">{{ $news->author->name ? $news->author->name : 'user' }}</p>
                 <img src="{{ $news->author->countries->flag }}" title="{{ $news->author->countries->name }}"
                      title="{{ $news->author->races->title }}" class="title__flag" alt="flag">
@@ -76,7 +91,7 @@
                         </svg>
                         <span class="edit_text">{{__('Редактировать')}}</span>
                     </a>
-                    <p class="items__date">{{$news->created_at}}</p>
+                    <p class="items__date">{{$news->created_at->format('h:m d.m.Y')}}</p>
                 </div>
             @endif
         </div>
@@ -87,8 +102,8 @@
             @if(!empty($news->preview_img) && File::exists($news->preview_img))
                 <img src="{{ asset($news->preview_img) }}" class="img-fluid" alt="news">
             @endif
-            <h2 class="card-body__title"> {!! $data['preview_content'] !!}</h2>
-            <div class="card-body__text">{!! $data['content'] !!}</div>
+            <h2 class="card-body__title"> {!! $news->preview_content !!}</h2>
+            <div class="card-body__text">{!! $news->content !!}</div>
             <div class="card-body__items">
                 <div class="card-body__items-wrap">
                     <a class="items__quote" href="#">
@@ -117,7 +132,8 @@
                         </svg>
                         <span>{{$news->positive_count}}</span>
                     </a>
-                    <div class="modal fade" id="likeModal_news" tabindex="-1" role="dialog" aria-labelledby="likeModal" aria-hidden="true">
+                    <div class="modal fade" id="likeModal_news" tabindex="-1" role="dialog" aria-labelledby="likeModal"
+                         aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content ">
                                 <div class="modal-header">
@@ -135,7 +151,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="items__dislike" href="#"  data-toggle="modal" data-target="#diselikeModal_news">
+                    <a class="items__dislike" href="#" data-toggle="modal" data-target="#diselikeModal_news">
                         <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"/>
@@ -144,7 +160,8 @@
                         </svg>
                         <span>{{$news->negative_count}}</span>
                     </a>
-                    <div class="modal fade" id="diselikeModal_news" tabindex="-1" role="dialog" aria-labelledby="likeModal" aria-hidden="true">
+                    <div class="modal fade" id="diselikeModal_news" tabindex="-1" role="dialog"
+                         aria-labelledby="likeModal" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content ">
                                 <div class="modal-header">

@@ -17,7 +17,7 @@ Route::get('interview_questions/{id}/show', '\App\Http\Controllers\Admin\Intervi
 Route::get('replays/{id}/show', '\App\Http\Controllers\Admin\ReplayController@show');
 Route::post('replays/{id}/show/send_comment', '\App\Http\Controllers\Admin\ReplayController@comment')->name('admin.replays.comment_send');
 Route::delete('replays/{id}/show/delete_comment', '\App\Http\Controllers\Admin\ReplayController@deleteComment')->name('admin.replays.comment_delete');
-Route::get('replays/{id}/download', '\App\Http\Controllers\Admin\ReplayController@download')->name('admin.replay.download');
+Route::post('replays/{id}/download', '\App\Http\Controllers\Admin\ReplayController@download')->name('admin.replay.download');
 
 Route::get('user_galleries/show/{id}', '\App\Http\Controllers\Admin\UserGalleryController@show');
 Route::post('user_galleries/show/{id}/send_comment', '\App\Http\Controllers\Admin\UserGalleryController@comment')->name('admin.usergallery.comment_send');

@@ -55,20 +55,28 @@ class User extends Section
 
         $display = AdminDisplay::datatablesAsync()
             ->setHtmlAttribute('class', 'table-info table-sm text-center small')
+            ->with(['roles',
+                    'countries'])
             ->paginate(20);
         $display->setApply(function ($query) {
             $query->orderByDesc('id');
         });
-        $display->setFilters([
-            AdminDisplayFilter::related('ban')->setModel(\App\User::class),
-        ]);
+        $display->setFilters(
+            AdminDisplayFilter::related('ban')->setModel(\App\User::class)
+        );
 
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')
                 ->setWidth(70),
 
-            $avatar = AdminColumn::image('avatar', 'Аватар'),
+            $avatar = AdminColumn::image(function ($model) {
+                if (!empty($model->avatar) && PathHelper::checkFileExists($model->avatar)) {
+                    return $model->avatar;
+                } else {
+                    return 'images/default/avatar/avatar.png';
+                }
+            })->setLabel('Аватар')->setWidth(10),
 
             $role_id = AdminColumn::text('roles.title', 'Роль'),
 
@@ -80,13 +88,10 @@ class User extends Section
                 ->setWidth(120),
 
             $rating = AdminColumn::custom('Рейтинг', function ($model) {
-                $positive = $model->negative_count;
-                $negative = $model->positive_count;
-                $result = $positive - $negative;
                 $thumbsUp = '<span style="font-size: 1em; color: green;"><i class="fas fa-plus"></i></span>';
                 $equals = '<i class="fas fa-equals"></i>';
                 $thumbsDown = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
-                return "{$thumbsUp}" . "({$positive})" . '<br/>' . "{$equals}" . "({$result})" . '<br/>' . "{$thumbsDown}" . "({$negative})";
+                return $thumbsUp . $model->positive_count . '<br/>' . $equals . ($model->positive_count - $model->negative_count) . '<br/>' . $thumbsDown . $model->negative_count;
             })->setWidth(10),
 
             $count_topic = AdminColumn::text('count_topic', '<small>Темы</small>')
@@ -174,9 +179,9 @@ class User extends Section
         $display->setItems([
             $avatar = AdminFormElement::image('avatar', 'Аватар')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return PathHelper::checkUploadStoragePath("/images/users/avatars");
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/users/avatars", auth()->user()->avatar);
                 })
-                ->setValueSkipped(request()->exists('avatar'))
+                ->setValueSkipped(empty(request('avatar')))
                 ->setValidationRules([
                     'nullable',
                     'max:2048'

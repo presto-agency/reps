@@ -21,13 +21,23 @@
                 @endif
                 <div class="card-body night_text">
                     <div class="card-body__author">
-                        <img src="{{ $single_news->author->avatar }}" alt="avatar" class="author__avatar img-fluid">
+                        @if(auth()->user()->userViewAvatars())
+                            @if(!empty($single_news->author->avatar) && file_exists($single_news->author->avatar))
+                                <img src="{{ asset($single_news->author->avatar) }}" alt="avatar"
+                                     class="author__avatar img-fluid">
+                            @else
+                                <img src="{{ asset($single_news->author->defaultAvatar()) }}" alt="avatar"
+                                     class="author__avatar img-fluid">
+                            @endif
+                        @endif
+
+
                         @if($single_news->author->name)
                             <p class="author__nickname">{{ $single_news->author->name }}</p>
                         @endif
                         @if($single_news->author->created_at)
                             <span
-                                class="author__date">{{\Carbon\Carbon::parse($single_news->author->created_at)->format('d.m.Y')}}</span>
+                                class="author__date">{{\Carbon\Carbon::parse($single_news->author->created_at)->format('h:m d.m.Y')}}</span>
                         @endif
                     </div>
                     <a href="{{ route('news.show', $single_news->id) }}">
@@ -75,14 +85,15 @@
             @endphp
         @endforeach
         <div id="load_more_news_search" class="breaking-news__button night_modal">
-            <button type="button" name="load_more_news_search" class="button button__download-more" data-id="{{ $last_id }}"
+            <button type="button" name="load_more_news_search" class="button button__download-more"
+                    data-id="{{ $last_id }}"
                     id="load_more_news_search_button">
                 {{__('Загрузить еще')}}
             </button>
         </div>
     @else
         <div id="load_more_news_search" class="breaking-news__button night_modal">
-            <button type="button" name="load_more_news_search" class="btn btn-info form-control night_text">
+            <button type="button" name="load_more_news_search" class="button button__download-more night_text">
                 {{__('Пусто')}}
             </button>
         </div>

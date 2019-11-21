@@ -54,7 +54,11 @@
                 </div>
             </div>
             <div class="body__img">
-                <img src="{{$userImage->picture}}" alt="image">
+                @if(!empty($userImage->picture))
+                    <img src="{{$userImage->picture}}" alt="image">
+                @else
+                    <img src="{{$userImage->defaultGallery()}}" alt="image">
+                @endif
             </div>
             <form action="" class="body__edit-image-form">
                 @csrf

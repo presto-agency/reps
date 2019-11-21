@@ -1,6 +1,5 @@
-<div class="gallery-download">
+<div class="gallery-download nightMode border_shadow">
     <div class="gallery-download__title">
-
         <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 512 512" xml:space="preserve">
@@ -22,13 +21,13 @@
               method="POST" enctype="multipart/form-data">
             @method('POST')
             @csrf
-            <div class="row">
+            <div class="row gallery-file__container">
                 <div class="col-8">
-                    <input id="uploadFile" class="f-input" readonly/>
+                    <input id="uploadFile " class="f-input night_input input_gallery" readonly/>
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
-                        <span>{{__('Выбрать файл')}}</span>
+{{--                        <span>{{__('Выбрать файл')}}</span>--}}
                         <input id="uploadBtn" type="file" class="upload" value="{{old('picture')}}" accept="image/*"
                                name="picture"/>
                     </div>
@@ -41,7 +40,7 @@
             @endif
             <div class="form-group">
                 <label class="label_group" for="gallery-name">{{__('Подпись:')}}</label>
-                <input type="text" name="sign" class="form-control" id="gallery-name"
+                <input type="text" name="sign" class="form-control night_input" id="gallery-name"
                        value="{{old('sign')}}" placeholder="Подпись">
             </div>
             @if ($errors->has('sign'))
@@ -50,7 +49,7 @@
                 </div>
             @endif
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="{{old('for_adults')}}" id="gallery__for-adults"
+                <input class="form-check-input night_input" type="checkbox" value="{{old('for_adults')}}" id="gallery__for-adults"
                        name='for_adults'>
                 <label class="label_group" class="form-check-label" for="gallery__for-adults">
                     {{__('18+')}}

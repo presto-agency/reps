@@ -114,7 +114,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="create-replay__first-country" class="night_text">* Первая страна:
-                            <select name="first_country_id" class="js-example-basic-single"
+                            <select name="first_country_id" class="night_input js-example-basic-single"
                                     id="create-replay__first-country">
                                 @isset($countries)
                                     @foreach($countries as $item)
@@ -130,7 +130,7 @@
                         {{ $errors->first('first_country_id') }}
                     </div>
                 @endif
-                <div class="form-group">
+                <div class="col-md-6 form-group">
                     <label for="create-replay__second-location" class="night_text">Первая локация:</label>
                     <input type="text" name="first_location" class="form-control night_input"
                            id="create-replay__second-location" minlength="1"
@@ -139,6 +139,17 @@
                 @if ($errors->has('first_location'))
                     <div class="alert alert-danger">
                         {{ $errors->first('first_location') }}
+                    </div>
+                @endif
+                <div class="col-md-6 form-group">
+                    <label for="create-replay__second-location" class="night_text">Вторая локация:</label>
+                    <input type="text" name="second_location" class="form-control night_input"
+                           id="create-replay__second-location" minlength="1"
+                           maxlength="255" value="{{old('second_location')}}" placeholder="Вторая локация">
+                </div>
+                @if ($errors->has('second_location'))
+                    <div class="alert alert-danger">
+                        {{ $errors->first('second_location') }}
                     </div>
                 @endif
             </div>
@@ -182,17 +193,6 @@
                         {{ $errors->first('second_country_id') }}
                     </div>
                 @endif
-                <div class="form-group">
-                    <label for="create-replay__second-location" class="night_text">Вторая локация:</label>
-                    <input type="text" name="second_location" class="form-control night_input"
-                           id="create-replay__second-location" minlength="1"
-                           maxlength="255" value="{{old('second_location')}}" placeholder="Вторая локация">
-                </div>
-                @if ($errors->has('second_location'))
-                    <div class="alert alert-danger">
-                        {{ $errors->first('second_location') }}
-                    </div>
-                @endif
             </div>
             <hr>
             <div class="form-group">
@@ -215,21 +215,19 @@
                         extraPlugins: 'autoembed',
                         toolbarGroups: [
                             {name: 'document', groups: ['mode', 'document', 'doctools']},
-                            '/',
                             {name: 'clipboard', groups: ['clipboard', 'undo']},
                             {name: 'editing', groups: ['find', 'selection', 'spellchecker', 'editing']},
                             {name: 'forms', groups: ['forms']},
-                            '/',
-                            {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
-                            {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']},
-                            {name: 'links', groups: ['links']},
-                            {name: 'insert', groups: ['insert']},
-                            '/',
                             {name: 'styles', groups: ['styles']},
                             {name: 'colors', groups: ['colors']},
                             {name: 'tools', groups: ['tools']},
                             {name: 'others', groups: ['others']},
-                            {name: 'about', groups: ['about']}
+                            {name: 'about', groups: ['about']},
+                            {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
+                            {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']},
+                            {name: 'links', groups: ['links']},
+                            {name: 'insert', groups: ['insert']},
+
                         ],
                         // Remove the redundant buttons from toolbar groups defined above.
                         removeButtons: 'Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Find,Replace,SelectAll,Scayt,Form,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,Strike,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Unlink,Image,Flash,Table,HorizontalRule,SpecialChar,PageBreak,ShowBlocks,Maximize,About,Checkbox'
@@ -243,12 +241,12 @@
             @endif
             <div class="row">
                 <div class="col-8">
-                    <input id="uploadFile" class="f-input" readonly/>
+                    <input id="uploadFile" class="f-input night_modal_special night_text" readonly/>
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
                         <span>* Выбрать файл</span>
-                        <input id="uploadBtn" type="file" class="upload"
+                        <input id="uploadBtn" type="file" class="upload "
                                name="file"/>
                     </div>
                 </div>
@@ -260,7 +258,7 @@
             @endif
             <div class="create-replay__button">
                 <button class="button button__download-more">
-                    Создать
+                    Написать
                 </button>
             </div>
         </form>

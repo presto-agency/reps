@@ -23,14 +23,32 @@
                 <div class="card-body night_text">
                     <div class="card-body__author">
                         @if($single_news->author)
-                            <img src="{{ $single_news->author->avatar }}" alt="avatar" class="author__avatar img-fluid">
+                            @auth()
+                                @if(auth()->user()->userViewAvatars())
+                                    @if(!empty($single_news->author->avatar) && file_exists($single_news->author->avatar))
+                                        <img src="{{ asset($single_news->author->avatar) }}" alt="avatar"
+                                             class="author__avatar img-fluid">
+                                    @else
+                                        <img src="{{ asset($single_news->author->defaultAvatar()) }}" alt="avatar"
+                                             class="author__avatar img-fluid">
+                                    @endif
+                                @endif
+                            @else
+                                @if(!empty($single_news->author->avatar) && file_exists($single_news->author->avatar))
+                                    <img src="{{ asset($single_news->author->avatar) }}" alt="avatar"
+                                         class="author__avatar img-fluid">
+                                @else
+                                    <img src="{{ asset($single_news->author->defaultAvatar()) }}" alt="avatar"
+                                         class="author__avatar img-fluid">
+                                @endif
+                            @endauth
                             @if($single_news->author->name)
                                 <p class="author__nickname">{{ $single_news->author->name }}</p>
                             @endif
                         @endif
                         @if($single_news->created_at)
                             <span
-                                class="author__date">{{\Carbon\Carbon::parse($single_news->created_at)->format('d.m.Y')}}</span>
+                                class="author__date">{{\Carbon\Carbon::parse($single_news->created_at)->format('h:m d.m.Y')}}</span>
                         @endif
                     </div>
 
@@ -87,7 +105,7 @@
         </div>
     @else
         <div id="load_more" class="breaking-news__button night_modal">
-            <button type="button" name="load_more_button" class="btn btn-info form-control night_text">
+            <button type="button" name="load_more_button" class="button button__download-more night_text">
                 {{__('Пусто')}}
             </button>
         </div>

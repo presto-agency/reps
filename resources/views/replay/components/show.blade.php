@@ -14,8 +14,21 @@
                 <div class="right_block">
                     @if(!empty($replay->users))
                         <a href="{{route('user_profile',['id'=>$replay->users->id])}}">{{$replay->users->name}}</a>
-                        <img class="icon_bars"
-                             src="{{$replay->users->avatar}}"/>
+                        @auth()
+                            @if(auth()->user()->userViewAvatars())
+                                @if(!empty($replay->users->avatar) && file_exists($replay->users->avatar))
+                                    <img class="icon_bars" src="{{asset($replay->users->avatar)}}"/>
+                                @else
+                                    <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"/>
+                                @endif
+                            @endif
+                        @else
+                            @if(!empty($replay->users->avatar) && file_exists($replay->users->avatar))
+                                <img class="icon_bars" src="{{asset($replay->users->avatar)}}"/>
+                            @else
+                                <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"/>
+                            @endif
+                        @endauth
                         <span>{{$replay->users->count_positive - $replay->users->count_negative .' кг'}}</span>
                         <a href="{{route('user-comments.index',['id'=>$replay->users->id])}}">{{$replay->users->comments_count.' pts'}}</a>
                     @endif
@@ -127,11 +140,16 @@
                 <div class="col-xl-4 content_right">
                     <p class="title">{{$replay->title}}</p>
                     @isset($replay->maps)
-                        <img class="img-fluid" src="{{asset($replay->maps->url)}}" alt="map"
-                             title="{{$replay->maps->name}}">
+                        @if(!empty($replay->maps->url))
+                            <img class="img-fluid" src="{{asset($replay->maps->url)}}" alt="map"
+                                 title="{{$replay->maps->name}}">
+                        @else
+                            <img class="img-fluid" src="{{asset($replay->maps->url)}}" alt="map">
+                        @endif
                     @endisset
                     <div class="replay-rating">
-                        <a href="#vote-modal" class="positive-vote vote-replay-up" data-toggle="modal" data-rating="1"  data-target="#likeModal"
+                        <a href="#vote-modal" class="positive-vote vote-replay-up" data-toggle="modal" data-rating="1"
+                           data-target="#likeModal"
                            data-route="http://reps.ru/replay/15980/set_rating">
                             <svg class="night_svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -144,7 +162,8 @@
                             </svg>
                             <span>{{$replay->positive_count}}</span>
                         </a>
-                        <div class="modal fade" id="likeModal" tabindex="-1" role="dialog" aria-labelledby="likeModal" aria-hidden="true">
+                        <div class="modal fade" id="likeModal" tabindex="-1" role="dialog" aria-labelledby="likeModal"
+                             aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content ">
                                     <div class="modal-header">
@@ -153,9 +172,9 @@
                                             <span aria-hidden="true" class="close_modal">&times;</span>
                                         </button>
                                     </div>
-{{--                                    авторизований--}}
+                                    {{--                                    авторизований--}}
 
-{{--                                    @include('modal.like_autorization');--}}
+                                    {{--                                    @include('modal.like_autorization');--}}
                                     {{-- не авторизований--}}
 
                                     @include('modal.no-autorization')
@@ -173,7 +192,8 @@
                             </svg>
                             <span>{{$replay->negative_count}}</span>
                         </a>
-                        <div class="modal fade" id="diselikeModal" tabindex="-1" role="dialog" aria-labelledby="likeModal" aria-hidden="true">
+                        <div class="modal fade" id="diselikeModal" tabindex="-1" role="dialog"
+                             aria-labelledby="likeModal" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content ">
                                     <div class="modal-header">
@@ -216,10 +236,10 @@
             <span>{{__('Видео:')}}</span>
             <div class="replay_video border_shadow">{!! $replay->video_iframe !!}</div>
         @endif
-{{--        @if($replay->content)--}}
-{{--            <span>{{__('Контент:')}}</span>--}}
-{{--            <div class="replay_video border_shadow">{!! $replay->content !!}</div>--}}
-{{--        @endif--}}
+        {{--        @if($replay->content)--}}
+        {{--            <span>{{__('Контент:')}}</span>--}}
+        {{--            <div class="replay_video border_shadow">{!! $replay->content !!}</div>--}}
+        {{--        @endif--}}
     </section>
 @endisset
 <script type="text/javascript">

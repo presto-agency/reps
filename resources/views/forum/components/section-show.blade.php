@@ -55,37 +55,36 @@
                 @endauth
             </div>
         @endif
-        @isset($section)
-            @if(!$section->topics->isEmpty())
-                @foreach($section->topics as $topic)
-                    <div class="content_article night_modal">
-                        <div class="block_nameArticle">
-                            <a href="{{ route('topic.show', $topic->id) }}">
-                                <p class="name">{{ $topic->title }}</p>
-                            </a>
-                            <div class="right">
-                                <p class="date">{{ $topic->created_at }}</p>
-                            </div>
+        @if($section->topics->isNotEmpty())
+            @foreach($section->topics as $topic)
+                <div class="content_article night_modal">
+                    <div class="block_nameArticle">
+                        <a href="{{ route('topic.show', $topic->id) }}">
+                            <p class="name">{{ $topic->title }}</p>
+                        </a>
+                        <div class="right">
+                            <p class="date">{{ $topic->created_at->format('h:m d.m.Y')}}</p>
                         </div>
-                        <div class="detailed-news__info night_modal">
-                            <div class="info__items">
-                                <div class="info_right">
-                                    <a class="items__watch" href="{{ route('topic.show', $topic->id) }}">
-                                        <svg id="Capa_1" enable-background="new 0 0 515.556 515.556"
-                                             viewBox="0 0 515.556 515.556" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="m257.778 64.444c-119.112 0-220.169 80.774-257.778 193.334 37.609 112.56 138.666 193.333 257.778 193.333s220.169-80.774 257.778-193.333c-37.609-112.56-138.666-193.334-257.778-193.334zm0 322.223c-71.184 0-128.889-57.706-128.889-128.889 0-71.184 57.705-128.889 128.889-128.889s128.889 57.705 128.889 128.889c0 71.182-57.705 128.889-128.889 128.889z"></path>
-                                            <path
-                                                d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"></path>
-                                        </svg>
-                                        <span>{{$topic->reviews}}</span>
-                                    </a>
-                                    <a class="items__comment" href="{{ route('topic.show', $topic->id) }}">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                             viewBox="0 0 511.6 511.6"
-                                             style="enable-background:new 0 0 511.6 511.6;"
-                                             xml:space="preserve">
+                    </div>
+                    <div class="detailed-news__info night_modal">
+                        <div class="info__items">
+                            <div class="info_right">
+                                <a class="items__watch" href="{{ route('topic.show', $topic->id) }}">
+                                    <svg id="Capa_1" enable-background="new 0 0 515.556 515.556"
+                                         viewBox="0 0 515.556 515.556" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="m257.778 64.444c-119.112 0-220.169 80.774-257.778 193.334 37.609 112.56 138.666 193.333 257.778 193.333s220.169-80.774 257.778-193.333c-37.609-112.56-138.666-193.334-257.778-193.334zm0 322.223c-71.184 0-128.889-57.706-128.889-128.889 0-71.184 57.705-128.889 128.889-128.889s128.889 57.705 128.889 128.889c0 71.182-57.705 128.889-128.889 128.889z"></path>
+                                        <path
+                                            d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"></path>
+                                    </svg>
+                                    <span>{{$topic->reviews}}</span>
+                                </a>
+                                <a class="items__comment" href="{{ route('topic.show', $topic->id) }}">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                         viewBox="0 0 511.6 511.6"
+                                         style="enable-background:new 0 0 511.6 511.6;"
+                                         xml:space="preserve">
                             <path d="M301.9,327.6c30.9-13,55.3-30.8,73.2-53.2C393,251.9,402,227.4,402,201c0-26.5-8.9-50.9-26.8-73.4
                                     c-17.9-22.5-42.3-40.2-73.2-53.2C271,61.3,237.4,54.8,201,54.8c-36.4,0-70,6.5-100.9,19.6c-30.9,13-55.3,30.8-73.2,53.2
                                     C8.9,150.1,0,174.5,0,201c0,22.6,6.8,44,20.3,64c13.5,20,32.1,36.8,55.7,50.5c-1.9,4.6-3.9,8.8-5.9,12.6c-2,3.8-4.4,7.5-7.1,11
@@ -97,7 +96,7 @@
                                     c14.9-16.9,35.1-30.4,60.4-40.3c25.3-9.9,52.5-14.8,81.7-14.8s56.3,5,81.7,14.8c25.3,9.9,45.4,23.3,60.4,40.3
                                     c14.9,16.9,22.4,35.1,22.4,54.5c0,19.4-7.5,37.6-22.4,54.5c-14.9,16.9-35.1,30.4-60.4,40.3c-25.3,9.9-52.5,14.8-81.7,14.8
                                     c-14.3,0-28.8-1.3-43.7-4L142.2,303.8z"></path>
-                                            <path d="M491.3,338.2c13.5-19.9,20.3-41.3,20.3-64.1c0-23.4-7.1-45.3-21.4-65.7c-14.3-20.4-33.7-37.3-58.2-50.8
+                                        <path d="M491.3,338.2c13.5-19.9,20.3-41.3,20.3-64.1c0-23.4-7.1-45.3-21.4-65.7c-14.3-20.4-33.7-37.3-58.2-50.8
                                     c4.4,14.3,6.6,28.7,6.6,43.4c0,25.5-6.4,49.7-19.1,72.5c-12.8,22.8-31,43-54.8,60.5c-22.1,16-47.2,28.3-75.4,36.8
                                     c-28.2,8.6-57.6,12.8-88.2,12.8c-5.7,0-14.1-0.4-25.1-1.1c38.3,25.1,83.2,37.7,134.8,37.7c16.4,0,33.1-1.5,50.3-4.6
                                     c23.6,16.8,50.1,28.9,79.4,36.5c6.9,1.7,15,3.2,24.6,4.6c2.3,0.2,4.4-0.5,6.3-2c1.9-1.5,3.1-3.6,3.7-6.3c-0.1-1.1,0-1.8,0.3-1.9
@@ -105,38 +104,56 @@
                                     c-0.3-0.3-0.7-0.8-1.3-1.4c-0.6-0.7-1-1.1-1.1-1.3c-1-1.1-3.1-3.5-6.6-7.1c-3.4-3.6-5.9-6.4-7.4-8.4c-1.5-2-3.7-4.8-6.4-8.3
                                     c-2.8-3.5-5.1-7.2-7.1-11c-2-3.8-3.9-8-5.9-12.6C459.3,374.9,477.8,358.1,491.3,338.2z"></path>
                             </svg>
-                                        <span>{{ $topic->comments_count }}</span>
-                                    </a>
-                                </div>
-                                @if(isset($topic->author) && !empty($topic->author))
-                                    <a class="block_account"
-                                       href="{{route('user_profile',['id'=>$topic->author->id])}}">
-                                        <img class="search_img" src="{{ $topic->author->avatar }}" alt="avatar">
-                                        <span>{{ $topic->author->name }}</span>
-                                    </a>
-                                @endif
+                                    <span>{{ $topic->comments_count }}</span>
+                                </a>
                             </div>
+                            @if(isset($topic->author) && !empty($topic->author))
+                                <a class="block_account"
+                                   href="{{route('user_profile',['id'=>$topic->author->id])}}">
+                                    @auth()
+                                        @if(auth()->user()->userViewAvatars())
+                                            @if(!empty($topic->author->avatar) && file_exists($topic->author->avatar))
+                                                <img class="search_img" src="{{ asset($topic->author->avatar) }}"
+                                                     alt="avatar">
+                                            @else
+                                                <img class="search_img"
+                                                     src="{{ asset($topic->author->defaultAvatar()) }}" alt="avatar">
+                                            @endif
+                                        @endif
+                                    @else
+                                        @if(!empty($topic->author->avatar) && file_exists($topic->author->avatar))
+                                            <img class="search_img" src="{{ asset($topic->author->avatar) }}"
+                                                 alt="avatar">
+                                        @else
+                                            <img class="search_img"
+                                                 src="{{ asset($topic->author->defaultAvatar()) }}" alt="avatar">
+                                        @endif
+                                    @endauth
+                                    <span>{{ $topic->author->name }}</span>
+                                </a>
+                            @endif
                         </div>
                     </div>
-                    @php
-                        $last_id = $topic->id;
-                    @endphp
-                @endforeach
-                <div id="load_forum_sections_show" class="gocu-replays__button night_modal">
-                    <button type="button" name="load_forum_sections_show"
-                            class="btn btn-info form-control night_text"
-                            id="load_forum_sections_show_button" data-id="{{ $last_id }}">
-                        {{__('Загрузить еще')}}
-                    </button>
                 </div>
-            @else
-                <div id="load_forum_sections_show" class="gocu-replays__button night_modal">
-                    <button type="button" name="load_forum_sections_show"
-                            class="btn btn-info form-control night_text">
-                        {{__('Пусто')}}
-                    </button>
-                </div>
-            @endif
-        @endisset
+                @php
+                    $last_id = $topic->id;
+                @endphp
+            @endforeach
+            <div id="load_forum_sections_show" class="gocu-replays__button night_modal">
+                <button type="button" name="load_forum_sections_show"
+                        class="button button__download-more night_text"
+                        id="load_forum_sections_show_button" data-id="{{ $last_id }}">
+                    {{__('Загрузить еще')}}
+                </button>
+            </div>
+        @else
+            <div id="load_forum_sections_show" class="gocu-replays__button night_modal">
+                <button type="button" name="load_forum_sections_show"
+                        class="button button__download-more night_text">
+                    {{__('Пусто')}}
+                </button>
+            </div>
+        @endif
+
     </div>
 </section>

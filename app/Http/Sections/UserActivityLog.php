@@ -52,7 +52,7 @@ class UserActivityLog extends Section
             ->setHtmlAttribute('class', 'table-info table-sm text-center')
             ->paginate(25);
 
-        $display->with('types', 'users');
+        $display->with(['users']);
         $display->setApply(function ($query) {
             $query->orderByDesc('id');
         });
@@ -108,29 +108,6 @@ class UserActivityLog extends Section
     {
         $test = json_decode($model->parameters);
         $test2 = !empty($test->description) === true ? $test->description : '';
-
-
-//        $parameters = $model->parameters;
-////        if ($model->type_id == $this->getTypeId('Like')) {
-////            /*Если лайк темы*/
-////            return 'Лайк ' . ' Ник ' . 'для ' . 'Тайл темы';
-////
-////        /*Если лайк кментария*/
-////            return 'Лайк коментария' . ' Ник ' . 'для ' . 'Тайл темы';
-////        }
-//        if ($model->type_id == $this->getTypeId('Comment')) {
-//            return $this->commentDescription($parameters);
-//        }
-//        if ($model->type_id == $this->getTypeId('Create Post')) {
-//            return $this->createPostDescription($parameters);
-//        }
-//        if ($model->type_id == $this->getTypeId('Upload Replay')) {
-//            return $this->uploadReplayDescription($parameters);
-//        }
-//        if ($model->type_id == $this->getTypeId('Upload Image')) {
-//            return $this->uploadImageDescription($parameters);
-//        }
-
         return $test2;
 
     }

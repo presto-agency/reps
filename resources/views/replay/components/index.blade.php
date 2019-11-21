@@ -32,10 +32,10 @@
         </svg>
             @isset($type)
                 @if($type == "user")
-                    <p class="title__text night_text">{{__('Пользовательские реплеи')}}</p>
+                    <p class="title__text night_text">{{__('Пользовательские')}}</p>
                 @endif
                 @if($type == "pro")
-                    <p class="title__text night_text">{{__('Профессиональные реплеи')}}</p>
+                    <p class="title__text night_text">{{__('Профессиональные')}}</p>
                 @endif
             @endisset
         </div>
@@ -61,19 +61,31 @@
                             @endisset
                         @endif
                     @endisset
-                    <p class="subtitle__date night_text">{{$item->created_at}}</p>
+                    <p class="subtitle__date night_text">{{$item->created_at->format('h:m d.m.Y')}}</p>
                 </div>
                 <div class="gocu-replays__match">
                     <div class="match__author">
                         <div class="subtitle__info">
                             @isset($item->users)
-                                <img
-                                    src="{{$item->users->avatar}}"
-                                    alt="avatar">
+                                @auth()
+                                    @if(auth()->user()->userViewAvatars())
+                                        @if(!empty($item->users->avatar) && file_exists($item->users->avatar))
+                                            <img src="{{asset($item->users->avatar)}}" alt="avatar">
+                                        @else
+                                            <img src="{{asset($item->users->defaultAvatar())}}" alt="avatar">
+                                        @endif
+                                    @endif
+                                @else
+                                    @if(!empty($item->users->avatar) && file_exists($item->users->avatar))
+                                        <img src="{{asset($item->users->avatar)}}" alt="avatar">
+                                    @else
+                                        <img src="{{asset($item->users->defaultAvatar())}}" alt="avatar">
+                                    @endif
+                                @endauth
                                 <span class="comment-author__nickname"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
                             @endisset
-                            <span class="comment-author__replay-item night_text">Видео реплай</span>
+                            <span class="comment-author__replay-item night_text">Видео реплей</span>
                         </div>
                         <div class="subtitle__icons">
                             <svg version="1.1" id="Capa_1"
@@ -117,7 +129,7 @@
                             </a>
                         </div>
                     </div>
-                    <p class="match__comment">{!!$item->content!!}</p>
+                    <p class="match__comment night_text">{!!$item->content!!}</p>
                     <div class="match__info">
                         <div class="info__country">
                             <span class="country__text night_text">Страны:</span>
@@ -134,12 +146,12 @@
                         <div class="info__match-up">
                             <span class="match-up__text night_text">Матчап: </span>
                             @isset($item->firstRaces)
-                                <span class="match-up__name name__first"
+                                <span class="match-up__name name__first night_text"
                                       title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</span>
                             @endisset
                             <span class="match-up__text match-up__versus night_text">vs</span>
                             @isset($item->secondRaces)
-                                <span class="match-up__name name__second"
+                                <span class="match-up__name name__second night_text"
                                       title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</span>
                             @endisset
                         </div>
@@ -173,14 +185,14 @@
             @endforeach
 
             <div id="load_more-replay" class="gocu-replays__button night_modal">
-                <button type="button" name="load_more-replay_button" class="btn btn-info form-control night_text"
+                <button type="button" name="load_more-replay_button" class="button button__download-more night_text"
                         id="load_more-replay_button" data-id="{{ $last_id }}" data-subtype="{{$subtype}}">
                     {{__('Загрузить еще')}}
                 </button>
             </div>
         @else
             <div id="load_more-replay" class="gocu-replays__button night_modal">
-                <button type="button" name="load_more-replay_button" class="btn btn-info form-control night_text">
+                <button type="button" name="load_more-replay_button" class="button button__download-more night_text">
                     {{__('Пусто')}}
                 </button>
             </div>

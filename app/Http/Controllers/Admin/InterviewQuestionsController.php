@@ -11,21 +11,12 @@ class InterviewQuestionsController extends Controller
 {
     public function show($id)
     {
-//        $getIVA = InterviewVariantAnswer::where('question_id', $id)
-//            ->withCount('userAnswers')
-//            ->with('question:id,question')
-//            ->get();
-//        $data = [];
-//        $getQuestionName = null;
-//        foreach ($getIVA as $item) {
-//            $getQuestionName = $item->question->question;
-//            $data[] = [
-//                'answer' => $item->answer,
-//                'userAnswersCount' => $item->user_answers_count,
-//            ];
-//        }
-//        , compact('getQuestionName', 'data')
-        $content = view('admin.InterviewQuestion.show');
+
+        $data = InterviewQuestion::with(['answers' => function ($query) {
+            $query->withCount('users');
+        }])->findOrFail($id);
+
+        $content = view('admin.InterviewQuestion.show', compact('data'));
         return AdminSection::view($content, 'Show');
     }
 }

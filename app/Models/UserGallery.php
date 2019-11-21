@@ -24,15 +24,9 @@ class UserGallery extends Model
     ];
 
     /*$user->picture*/
-    public function getPictureAttribute($value)
+    public function defaultGallery()
     {
-        if (!empty($value)) {
-            if (PathHelper::checkStorageFileExists(asset($value))) {
-                return asset($value);
-            }
-            return asset('images/default/gallery/no-img.png');
-        }
-        return asset('images/default/gallery/no-img.png');
+        return 'images/default/gallery/no-img.png';
     }
 
 

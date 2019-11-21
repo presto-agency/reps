@@ -1,7 +1,7 @@
 @php
     $last_id = '';
 @endphp
-<div class="gallery">
+<div class="gallery nightMode border_shadow">
     @if($visible_title)
         <div class="gallery__title">
             <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -26,12 +26,20 @@
                         @isset($routCheck)
                             @if($routCheck)
                                 <a class="img-link" href="{{route('galleries.show',['gallery' => $item->id])}}">
-                                    <img src="{{$item->picture}}" alt="image">
+                                    @if(!empty($item->picture) && file_exists($item->picture))
+                                        <img src="{{asset($item->picture)}}" alt="image">
+                                    @else
+                                        <img src="{{asset($item->defaultGallery())}}" alt="image">
+                                    @endif
                                 </a>
                             @else
                                 <a class="img-link"
                                    href="{{route('user-gallery.show',['id'=> $item->user_id,'user_gallery'=> $item->id])}}">
-                                    <img src="{{$item->picture}}" alt="image">
+                                    @if(!empty($item->picture) && file_exists($item->picture))
+                                        <img src="{{asset($item->picture)}}" alt="image">
+                                    @else
+                                        <img src="{{asset($item->defaultGallery())}}" alt="image">
+                                    @endif
                                 </a>
                             @endif
                         @endisset
@@ -41,14 +49,14 @@
                     @endphp
                 @endforeach
                 <div id="load_more_user_gallery" class="gocu-replays__button night_modal">
-                    <button type="button" name="load_more_user_gallery_button" class="btn btn-info form-control night_text"
+                    <button type="button" name="load_more_user_gallery_button" class="button button__download-more night_text"
                             id="load_more_user_gallery_button" data-id="{{ $last_id }}">
                         {{__('Загрузить еще')}}
                     </button>
                 </div>
             @else
                 <div id="load_more_user_gallery" class="gocu-replays__button night_modal">
-                    <button type="button" name="load_more_user_gallery_button" class="btn btn-info form-control night_text">
+                    <button type="button" name="load_more_user_gallery_button" class="button button__download-more night_text">
                         {{__('Пусто')}}
                     </button>
                 </div>

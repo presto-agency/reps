@@ -62,7 +62,13 @@ class ReplayMap extends Section
             $id = AdminColumn::text('id', 'Id')
                 ->setWidth(50),
 
-            $url = AdminColumn::image('url', 'Картинка карты'),
+            $url = AdminColumn::image(function ($model) {
+                if (!empty($model->url) && PathHelper::checkFileExists($model->url)) {
+                    return $model->url;
+                } else {
+                    return 'images/default/map/nominimap.png';
+                }
+            })->setLabel('Картинка карты')->setWidth(10),
 
             $name = AdminColumn::text('name', 'Название карты'),
 
@@ -102,8 +108,9 @@ class ReplayMap extends Section
         $display->setItems([
 
             $picture = AdminFormElement::image('url', 'Картинка карты')
-                ->setUploadPath(function (UploadedFile $file) {
-                    return PathHelper::checkUploadStoragePath("/images/replays/maps");
+                ->setUploadPath(function (UploadedFile $file) use ($id) {
+                    $filePath = \App\Models\ReplayMap::where('id', $id)->value('url');
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/replays/maps", $filePath);
                 })
                 ->setValidationRules(['required',
                                       'max:2048']),

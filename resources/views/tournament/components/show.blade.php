@@ -1,5 +1,5 @@
+@inject('checkFile', 'App\Services\ServiceAssistants\PathHelper')
 <section class="Page_tournamentDetail-content">
-
     <div class="wrapper border_shadow">
         <div class=" title_block">
             <div class="left_content">
@@ -18,48 +18,47 @@
                 <p class="title_text">{{$tournament->name}}</p>
             </div>
         </div>
-
         <div class="row block_replay_content">
             <div class="col-xl-6 col-lg-6 col-md-6 block_left">
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Administrator:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Administrator:'))}}</p></div>
                     <div class="replay-desc-left"><p class="blue">{{$tournament->admin_user}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Place:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Place:'))}}</p></div>
                     <div class="replay-desc-left"><p class="blue">{{$tournament->place}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Registration time:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Registration time:'))}}</p></div>
                     <div class="replay-desc-left">
                         <p>{{ Carbon\Carbon::parse($tournament->created_at)->format('h:m d.m.Y')}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Check-in time:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Check-in time:'))}}</p></div>
                     <div class="replay-desc-left">
                         <p>{{ Carbon\Carbon::parse($tournament->checkin_time)->format('h:m d.m.Y')}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Start of Tourney time:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Start of Tourney time:'))}}</p></div>
                     <div class="replay-desc-left">
                         <p>{{ Carbon\Carbon::parse($tournament->start_time)->format('h:m d.m.Y')}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Prize Fond:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Prize Fond:'))}}</p></div>
                     <div class="replay-desc-left"><p>{{$tournament->getPrizePool($tournament->prize_pool)}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Status of tourney:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Status of tourney:'))}}</p></div>
                     <div class="replay-desc-left"><p class="gray">{{$tournament::$status[$tournament->status]}}</p>
                     </div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Selection map:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Selection map:'))}}</p></div>
                     <div class="replay-desc-left"><p
                             class="blue">{{$tournament::$map_types[$tournament->map_selecttype]}}</p></div>
                 </div>
                 <div class="container_block">
-                    <div class="replay-desc-right"><p>Importance tourney:</p></div>
+                    <div class="replay-desc-right"><p>{{(__('Importance tourney:'))}}</p></div>
                     <div class="replay-desc-left">
                         {!!  $tournament->ImpToStars($tournament->id)!!}
                     </div>
@@ -67,16 +66,20 @@
 
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 block_right">
-                <img class="img-fluid" src="{{ url('/images/tournament_detail.png') }}" alt="logo">
+                @if(!empty($tournament->logo_link))
+                    <img class="img-fluid" src="{{asset($tournament->logo_link)}}" alt="tournament-logo">
+                @else
+                    <img class="img-fluid" src="{{asset('/images/tournament_detail.png')}}" alt="tournament-logo">
+                @endif
                 <div class="container_block">
                     <div class="left">
                         <a href="{{$tournament->rules_link}}">
-                            <p>Rules/FAQ</p>
+                            <p class="night_text">{{(__('Rules/FAQ'))}}</p>
                         </a>
                     </div>
                     <div class="right">
                         <a href="#">
-                            <span>Full Replay</span>
+                            <span class="night_text" >{{(__('Full Replay'))}}</span>
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;"
@@ -88,12 +91,18 @@
                                 c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"/>
                             </svg>
                         </a>
+                        {{--                        <form id="download-all-match"--}}
+                        {{--                              action="{{ route('download.all.match',['tournament'=>$tournament->id]) }}"--}}
+                        {{--                              method="POST"--}}
+                        {{--                              style="display: none;">--}}
+                        {{--                            @csrf--}}
+                        {{--                        </form>--}}
                     </div>
                 </div>
                 <div class="container_block">
                     <div class="left modal_tournament">
                         <button type="button" class="btn_modal" data-toggle="modal" data-target="#exampleModal">
-                            <p>Maps/Prize</p>
+                            <span class="night_text">{{(__('Maps/Prize'))}}</span>
                         </button>
 
                         <!-- Modal -->
@@ -104,7 +113,7 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">{{$tournament->name}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
+                                            <span aria-hidden="true">{!! __('&times;') !!}</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
@@ -121,7 +130,7 @@
                                                         @foreach($prizeList as $prize)
                                                             <div class="content">
                                                                 <div class="left_content">
-                                                                    <span>#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
+                                                                    <span>{{ '#'.$loop->iteration }} {{-- Starts with 1 --}}</span>
                                                                     <svg aria-hidden="true" focusable="false"
                                                                          data-prefix="fas"
                                                                          data-icon="medal"
@@ -143,18 +152,28 @@
                                                 <div class="col-xl-8 col-lg-8 col-md-8 pl-2  big_block">
                                                     <div class=" title_block ml-1">
                                                         <div class="left_content">
-                                                            <span class="title_text">Maps</span>
+                                                            <span class="title_text">{{__('Maps')}}</span>
                                                         </div>
                                                     </div>
                                                     <div class="container">
                                                         <div class="row">
-                                                            @isset($dataArr['maps'])
-                                                                @foreach($dataArr['maps'] as $map)
+                                                            @if($getMatchesMaps->isNotEmpty())
+                                                                @foreach($getMatchesMaps as $item)
                                                                     <div class="col-xl-4 pl-1 pr-0 container_map">
                                                                         <div class="title_block_gray">
-                                                                            {!! App\Models\TourneyMatch::getTourneyMap($map['name'])['title'] !!}
+                                                                            <span
+                                                                                class='title_text'>{{$item->name}}</span>
                                                                         </div>
-                                                                        {!! App\Models\TourneyMatch::getTourneyMap($map['name'])['url'] !!}
+                                                                        <div class='map'>
+                                                                            @if (!empty($item->url) && $checkFile::checkFileExists($item->url))
+                                                                                <img src="{{asset($item->url)}}"
+                                                                                     alt="map">
+                                                                            @else
+                                                                                <img
+                                                                                    src="{{asset($item->defaultMap())}}"
+                                                                                    alt="map">
+                                                                            @endif
+                                                                        </div>
                                                                     </div>
                                                                 @endforeach
                                                             @endisset
@@ -170,7 +189,7 @@
                     </div>
                     <div class="right">
                         <a href="{{$tournament->rules_link}}">
-                            <span class="gray">Rules/FAQ</span>
+                            <span class="gray night_text">{{__('Winner*s Pack')}}</span>
                             <svg class="svg_gray" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;"
@@ -186,8 +205,8 @@
                 </div>
             </div>
         </div>
-        <div class="title_players">
-            <p class="title_playersText">Players</p>
+        <div class="title_players change_gray">
+            <p class="title_playersText">{{__('Players')}}</p>
         </div>
         <div class="container_players">
             @isset($tournament->players)
@@ -197,8 +216,26 @@
                             <div class="left_block">
                                 <span>#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
                                 <a href="{{route('user_profile',['id'=>$player->user->id])}}">
-                                    <img src="{{asset($player->user->avatar)}}" class="author__avatar img-fluid"
-                                         alt="avatar" title="{{$player->user->name}}">
+                                    @auth()
+                                        @if(auth()->user()->userViewAvatars())
+                                            @if(!empty($player->user->avatar) && file_exists($player->user->avatar))
+                                                <img src="{{asset($player->user->avatar)}}"
+                                                     class="author__avatar img-fluid"
+                                                     alt="avatar" title="{{$player->user->name}}">
+                                            @else
+                                                <img src="{{asset($player->user->defaultAvatar())}}"
+                                                     class="author__avatar img-fluid" alt="avatar">
+                                            @endif
+                                        @endif
+                                    @else
+                                        @if(!empty($player->user->avatar) && file_exists($player->user->avatar))
+                                            <img src="{{asset($player->user->avatar)}}" class="author__avatar img-fluid"
+                                                 alt="avatar" title="{{$player->user->name}}">
+                                        @else
+                                            <img src="{{asset($player->user->defaultAvatar())}}"
+                                                 class="author__avatar img-fluid" alt="avatar">
+                                        @endif
+                                    @endauth
                                     <span class="name_player"
                                           title="{{$player->user->name}}">{{$player->user->name}}</span>
                                 </a>
@@ -232,9 +269,19 @@
         </div>
         @isset($dataArr['round'])
             @foreach($dataArr['round'] as $key => $round)
-                <div class="title_players">
-                    <p class="title_playersText">{{$round}}</p>
-                    {!! App\Models\TourneyMatch::getTourneyRoundMap($tournament->id, $key) !!}
+                <div class="title_players change_gray">
+                    @isset($round['map'])
+                        @if(isset($round['title']) && !empty($round['title']))
+                            <p class="title_playersText">{{$round['title']}}</p>
+                        @endif
+                        @if(!empty($round['map']['url']) && $checkFile::checkFileExists($round['map']['url']))
+                            <a href='{{asset($round['map']['url'])}}'
+                               title='{{$round['map']['name']}}'>{{$round['map']['name']}}</a>
+                        @else
+                            <a href='{{asset('images/default/map/nominimap.png')}}'
+                               title='{{$round['map']['name']}}'>{{$round['map']['name']}}</a>
+                        @endif
+                    @endisset
                 </div>
                 @isset($dataArr['matches'])
                     @foreach($dataArr['matches'][$key] as $match )
@@ -246,7 +293,28 @@
                                 <div class="col-xl-8 col-lg-10 col-md-10 col-sm-8 col-7 center_block">
                                     @isset($match->player1->user)
                                         <div class="one_player">
-                                            <img class="icon_bars" src="{{asset($match->player1->user->avatar)}}">
+                                            @auth()
+                                                @if(auth()->user()->userViewAvatars())
+                                                    @if(!empty($match->player1->user->avatar) && file_exists($match->player1->user->avatar))
+                                                        <img class="icon_bars"
+                                                             src="{{asset($match->player1->user->avatar)}}"
+                                                             alt="avatar">
+                                                    @else
+                                                        <img class="icon_bars"
+                                                             src="{{asset($match->player1->user->defaultAvatar())}}"
+                                                             alt="avatar">
+                                                    @endif
+                                                @endif
+                                            @else
+                                                @if(!empty($match->player1->user->avatar) && file_exists($match->player1->user->avatar))
+                                                    <img class="icon_bars"
+                                                         src="{{asset($match->player1->user->avatar)}}" alt="avatar">
+                                                @else
+                                                    <img class="icon_bars"
+                                                         src="{{asset($match->player1->user->defaultAvatar())}}"
+                                                         alt="avatar">
+                                                @endif
+                                            @endauth
                                             <span>{{$match->player1->user->name}}</span>
                                         </div>
                                     @else
@@ -262,7 +330,28 @@
                                     @endif
                                     @isset($match->player2->user)
                                         <div class="one_player">
-                                            <img class="icon_bars" src="{{asset($match->player2->user->avatar)}}">
+                                            @auth()
+                                                @if(auth()->user()->userViewAvatars())
+                                                    @if(!empty($match->player2->user->avatar) && file_exists($match->player2->user->avatar))
+                                                        <img class="icon_bars"
+                                                             src="{{asset($match->player2->user->avatar)}}"
+                                                             alt="avatar">
+                                                    @else
+                                                        <img class="icon_bars"
+                                                             src="{{asset($match->player2->user->defaultAvatar())}}"
+                                                             alt="avatar">
+                                                    @endif
+                                                @endif
+                                            @else
+                                                @if(!empty($match->player2->user->avatar) && file_exists($match->player2->user->avatar))
+                                                    <img class="icon_bars"
+                                                         src="{{asset($match->player2->user->avatar)}}" alt="avatar">
+                                                @else
+                                                    <img class="icon_bars"
+                                                         src="{{asset($match->player2->user->defaultAvatar())}}"
+                                                         alt="avatar">
+                                                @endif
+                                            @endauth
                                             <span>{{$match->player2->user->name}}</span>
                                         </div>
                                     @else
@@ -270,11 +359,18 @@
                                     @endisset
                                 </div>
                                 <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-4 right_block">
-                                @for($i = 1; $i <= 7; $i++)
-                                    @if(!empty($match->{"rep$i"}))
-                                            <a href="{{ $match->{"rep$i"} }}">{{"rep$i"}}</a>
-                                    @endif
-                                @endfor
+                                    @for($i = 1; $i <= 7; $i++)
+                                        @if(!empty($match->{"rep$i"}))
+                                            <a href="#"
+                                               onclick="event.preventDefault(); document.getElementById('download-match').submit();">{{"rep$i"}}</a>
+                                            <form id="download-match"
+                                                  action="{{ route('download.match',['tournament'=>$tournament->id,'rep'=> "rep$i"]) }}"
+                                                  method="POST"
+                                                  style="display: none;">
+                                                @csrf
+                                            </form>
+                                        @endif
+                                    @endfor
                                 </div>
                             </div>
                         </div>

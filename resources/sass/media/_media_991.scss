@@ -171,9 +171,12 @@
         }
         .button_input{
             width: 100% !important;
-            & .search_input{
+             .search_input{
                 min-width: 40vw !important;
-            }
+            }::placeholder {
+                font-size:2.5vw;
+                color: transparent;
+                          }
         }
         .header_search{
             justify-content: flex-start!important;
@@ -311,7 +314,7 @@
                     & button{
                     }
                     & svg{
-                        width: 2.5vw;
+                        width: 3.7vw;
                         margin-right: 1vw;
                     }
                     & .svg_close{
@@ -610,7 +613,7 @@
             }
             & .content_img{
                 & img,svg{
-                    padding-right: 0.505vw;
+                    margin-right: 0.505vw;
                 }
             }
             & .content_login{
@@ -714,7 +717,7 @@
                         max-width: 3.027vw;
                         max-height: 3.027vw;
                         border-radius: 2.018vw;
-                        padding-right: 1.009vw;
+                        margin-right: 1.009vw;
                     }
                     & span{
                         font-size: 1.413vw;
@@ -1068,8 +1071,9 @@
         }
 
         .gocu-replays__match {
+            padding: 0 2.018vw;
             .match__author {
-                padding: 2.018vw;
+                padding: 2.018vw 0;
                 .subtitle__info {
                     .comment-author__nickname {
                         font-size: 1.413vw;
@@ -1114,7 +1118,7 @@
             }
 
             .match__info {
-                padding: 2.018vw;
+                padding: 2.018vw 0;
 
                 .info__country {
                     .country-first {
@@ -1625,7 +1629,6 @@
                 & .center_block{
                     & .one_player{
                         width: 11.100vw;
-                        height: 2.825vw;
                     }
                     & img{
                         margin: 0 0.505vw;
@@ -1751,7 +1754,6 @@
             }
         }
         & .title_players{
-            height: 6.054vw;
             padding: 0 2.018vw;
             & .title_playersText{
                 font-size: 1.615vw;
@@ -1781,7 +1783,6 @@
                     }
                     & a{
                         width: 14.127vw;
-                        height: 2.825vw;
                         & .name_player{
                             font-size: 1.413vw;
                         }
