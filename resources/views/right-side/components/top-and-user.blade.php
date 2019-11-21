@@ -1,16 +1,16 @@
-{{--@isset($banners)--}}
-{{--    <section class="banner">--}}
-{{--        <div class="wrapper">--}}
-{{--            @foreach($banners as $baner)--}}
-{{--                <div class="block_content">--}}
-{{--                    <a href="#">--}}
-{{--                        <img src="{{url('images\logo.png')}}"/>--}}
-{{--                    </a>--}}
-{{--                </div>--}}
-{{--            @endforeach--}}
-{{--        </div>--}}
-{{--    </section>--}}
-{{--@endisset--}}
+@if($banners->isNotEmpty())
+    <section class="banner">
+        <div class="wrapper">
+            @foreach($banners as $item)
+                <div class="block_content">
+                    <a href="{{$item->url_redirect}}" title="{{$item->title}}">
+                        <img src="{{asset($item->image)}}" alt="banner"/>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </section>
+@endisset
 <section class="block_top">
     <div class="wrapper border_shadow">
         <div class="title_block">
@@ -28,17 +28,17 @@
             @isset($newUsers)
                 @foreach($newUsers as $item)
                     <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
+                        <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
                             <p class="night_text">#{{$item->id}}</p>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
+                        <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
                             <img class="icon_bars" src="{{asset($item->countries->flag)}}" alt="flag"
                                  title="{{$item->countries->name}}"/>
                             <img class="icon_bars"
                                  src="{{asset("images/default/game-races/" . $item->races->title . ".png")}}" alt="race"
                                  title="{{$item->races->title}}"/>
                         </div>
-                        <div class="col-xl-5 col-lg-5 col-md-5 col-5 content_login">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_login">
                             <a href="{{route('user_profile',['id'=>$item->id])}}">
                                 <p title="{{$item->name}}">{{$item->name}}</p>
                             </a>
@@ -56,16 +56,16 @@
             @isset($top10Rating)
                 @foreach($top10Rating as $item)
                     <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
+                        <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
                             <p class="night_text">{{$item['max']}} кг</p>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
+                        <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
                             <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="flag"
                                  title="{{$item['countryName']}}"/>
                             <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race"
                                  title="{{$item['raceTitle']}}"/>
                         </div>
-                        <div class="col-xl-5 col-lg-5 col-md-5 col-5 content_login">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_login">
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <p title="{{$item['name']}}">{{$item['name']}}</p>
                             </a>
@@ -81,16 +81,16 @@
             @isset($top10Points)
                 @foreach($top10Points as $item)
                     <div class="row">
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_code">
+                        <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
                             <p class="night_text">{{$item['max']}} pts</p>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
+                        <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
                             <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="flag"
                                  title="{{$item['countryName']}}"/>
                             <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race"
                                  title="{{$item['raceTitle']}}"/>
                         </div>
-                        <div class="col-xl-5 col-lg-5 col-md-5 col-5 content_login">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_login">
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 <p title="{{$item['name']}}">{{$item['name']}}</p>
                             </a>

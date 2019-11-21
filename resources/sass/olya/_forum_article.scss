@@ -14,7 +14,7 @@
         padding: 0 20px;
         & svg{
             width: 40px;
-            padding-right: 15px;
+            margin-right: 15px;
             fill: white;
         }
         & .title_text{
@@ -72,6 +72,9 @@
             }
         }
         & .right_section_autorization{
+            a{
+                display: flex;
+            }
             svg{
                 width: 25px;
             }
@@ -164,7 +167,7 @@
                     max-width: 30px;
                     max-height: 30px;
                     border-radius: 20px;
-                    padding-right: 10px;
+                    //padding-right: 10px;
                 }
                 & span{
                     color:$blue;

@@ -2,10 +2,7 @@
     box-shadow: 1px 6px 10px rgba(0, 2, 76, 0.13);
     border-radius: 5px;
     background-color: #ffffff;
-    .input_gallery{
-        border: 1px solid #ced4da;
-        border-radius: 0.25rem;
-    }
+
     .gallery-download__title {
         border-radius: 5px 5px 0 0;
         background-color: #0567cc;
@@ -30,6 +27,17 @@
     }
     .gallery-download__body {
         padding: 25px;
+        .gallery-file__container{
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            .input_gallery{
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+                width: 100%;
+                height: calc(1.6em + 0.75rem + 2px);
+            }
+        }
         .gallery__form {
             .form-group {
                 label {

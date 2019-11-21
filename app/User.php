@@ -8,8 +8,16 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+///**
+// * Class User
+// *
+// * @package App
+// * @property  int role_id
+// * @mixin \Eloquent
+// */
 class User extends Authenticatable
 {
+
     use Notifiable, GravatarTrait, UserRelation;
 
     /**
@@ -17,46 +25,49 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'avatar',
-        'role_id',
-        'name',
-        'email',
-        'country_id',
-        'race_id',
-        'rating',
-        'email_verified_at',
-        'ban',
-        'activity_at',
-        'birthday',
-        'count_negative',
-        'count_positive',
-        'password',
-        'remember_token',
-        'homepage',
-        'isq',
-        'skype',
-        'vk_link',
-        'fb_link',
-        'last_ip',
-        'view_avatars',
-    ];
+    protected $fillable
+        = [
+            'avatar',
+            'role_id',
+            'name',
+            'email',
+            'country_id',
+            'race_id',
+            'rating',
+            'email_verified_at',
+            'ban',
+            'activity_at',
+            'birthday',
+            'count_negative',
+            'count_positive',
+            'password',
+            'remember_token',
+            'homepage',
+            'isq',
+            'skype',
+            'vk_link',
+            'fb_link',
+            'last_ip',
+            'view_avatars',
+        ];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden
+        = [
+            'password',
+            'remember_token',
+        ];
 
     public function userViewAvatars()
     {
         if ($this->view_avatars == 1) {
             return true;
         }
+
         return false;
     }
 
@@ -65,13 +76,15 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    protected $casts
+        = [
+            'email_verified_at' => 'datetime',
+        ];
 
     public function isAdmin()
     {
-        return $this->roles->name == 'super-admin' || $this->roles->name == 'admin';
+        return $this->roles->name == 'super-admin'
+            || $this->roles->name == 'admin';
     }
 
     public function isNotUser()
@@ -86,6 +99,7 @@ class User extends Authenticatable
 
     /**
      * @param $id
+     *
      * @return mixed
      */
     public static function getUserDataById($id)
@@ -101,6 +115,7 @@ class User extends Authenticatable
             return false;
         }
         $time = Carbon::now()->diffInMinutes(Carbon::parse($this->activity_at));
+
         return $time <= 15;
     }
 
@@ -108,6 +123,7 @@ class User extends Authenticatable
      * Gets from OLD reps.ru files
      *
      * @param $value
+     *
      * @return string
      */
     public function getUserStatus($value)
@@ -152,11 +168,13 @@ class User extends Authenticatable
         if (preg_match('/^(http|https):\/\//i', $str)) {
             $url = $str;
         } else {
-            $url = 'http://' . $str;
+            $url = 'http://'.$str;
         }
         if (filter_var($url, FILTER_VALIDATE_URL)) {
             return $url;
         }
+
         return false;
     }
+
 }

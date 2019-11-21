@@ -77,12 +77,13 @@
     }
 
     .gocu-replays__match {
+           padding:0 20px ;
         .match__author {
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 20px 0;
 
             .subtitle__info {
                 img{
@@ -163,7 +164,7 @@
         .match__info {
             display: flex;
             justify-content: space-between;
-            padding: 20px;
+            padding: 20px 0;
 
             .info__country {
                 .country-first {
@@ -171,7 +172,6 @@
                 }
                 img{
                     width: 22px;
-                    height: 22px;
                     border-radius: 50%;
                 }
             }

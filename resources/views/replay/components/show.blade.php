@@ -1,3 +1,4 @@
+@inject('checkFile', 'App\Services\ServiceAssistants\PathHelper')
 @isset($replay)
     <section class="page_replay">
         <div class="wrapper">
@@ -12,21 +13,23 @@
                     <span class="title_text night_text">{{$replay->title}}</span>
                 </div>
                 <div class="right_block">
-                    @if(!empty($replay->users))
+                    @if(isset($replay->users) && !empty($replay->users))
                         <a href="{{route('user_profile',['id'=>$replay->users->id])}}">{{$replay->users->name}}</a>
                         @auth()
                             @if(auth()->user()->userViewAvatars())
-                                @if(!empty($replay->users->avatar) && file_exists($replay->users->avatar))
-                                    <img class="icon_bars" src="{{asset($replay->users->avatar)}}"/>
+                                @if(!empty($replay->users->avatar) && $checkFile::checkFileExists($replay->users->avatar))
+                                    <img class="icon_bars" src="{{asset($replay->users->avatar)}}" alt="avatar"/>
                                 @else
-                                    <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"/>
+                                    <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"
+                                         alt="avatar"/>
                                 @endif
                             @endif
                         @else
-                            @if(!empty($replay->users->avatar) && file_exists($replay->users->avatar))
-                                <img class="icon_bars" src="{{asset($replay->users->avatar)}}"/>
+                            @if(!empty($replay->users->avatar) && $checkFile::checkFileExists($replay->users->avatar))
+                                <img class="icon_bars" src="{{asset($replay->users->avatar)}}" alt="avatar"/>
                             @else
-                                <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"/>
+                                <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"
+                                     alt="avatar"/>
                             @endif
                         @endauth
                         <span>{{$replay->users->count_positive - $replay->users->count_negative .' кг'}}</span>
@@ -36,7 +39,9 @@
             </div>
             <div class="title_block_gray change_gray">
                 <div class="title_top left_block">
-                    <span class="title_text">{{$replay->title}}</span>
+                    @if(isset($replay->content) && !empty($replay->content))
+                        <div>{!! $replay->content !!}</div>
+                    @endif
                 </div>
                 <div class="right_block">
                     <a href="#">
@@ -50,11 +55,11 @@
                                 c-0.007,0.002-0.014,0-0.021,0.001L2.533,57.563l4.403-13.209c0.092-0.276,0.059-0.578-0.089-0.827C4.33,39.292,3,34.441,3,29.5
                                 C3,14.336,15.336,2,30.5,2S58,14.336,58,29.5S45.664,57,30.5,57z"></path>
                             <path
-                                d="M17,23.015h14c0.552,0,1-0.448,1-1s-0.448-1-1-1H17c-0.552,0-1,0.448-1,1S16.448,23.015,17,23.015z"></path>
+                                    d="M17,23.015h14c0.552,0,1-0.448,1-1s-0.448-1-1-1H17c-0.552,0-1,0.448-1,1S16.448,23.015,17,23.015z"></path>
                             <path
-                                d="M44,29.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,29.015,44,29.015z"></path>
+                                    d="M44,29.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,29.015,44,29.015z"></path>
                             <path
-                                d="M44,37.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,37.015,44,37.015z"></path>
+                                    d="M44,37.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,37.015,44,37.015z"></path>
                     </svg>
                         <span class="comment_count">{{$replay->comments_count}}</span>
                         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="clock"
@@ -62,7 +67,7 @@
                              xmlns="http://www.w3.org/2000/svg"
                              viewBox="0 0 512 512">
                             <path
-                                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path>
+                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path>
                         </svg>
                         <span>{{$replay->created_at->format('h:m d.m.Y')}}</span>
                     </a>
@@ -129,7 +134,7 @@
                                  xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 576 512">
                                 <path
-                                    d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"></path>
+                                        d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"></path>
                             </svg>
                             <a href="{{route('user-replay.edit',['id' => auth()->id(),'user_replay' =>$replay->id])}}">
                                 <span class="edit_text">{{__('Редактировать')}}</span>
@@ -138,15 +143,16 @@
                     @endif
                 </div>
                 <div class="col-xl-4 content_right">
-                    <p class="title">{{$replay->title}}</p>
-                    @isset($replay->maps)
-                        @if(!empty($replay->maps->url))
-                            <img class="img-fluid" src="{{asset($replay->maps->url)}}" alt="map"
-                                 title="{{$replay->maps->name}}">
-                        @else
+                    @if(isset($replay->maps) && !empty($replay->maps))
+                        @if(!empty($replay->maps->url) && $checkFile::checkFileExists($replay->maps->url))
+                            <p class="title">{{$replay->maps->name}}</p>
                             <img class="img-fluid" src="{{asset($replay->maps->url)}}" alt="map">
+                        @else
+                            <img class="img-fluid" src="{{asset($replay->maps->defaultMap())}}" alt="map">
                         @endif
-                    @endisset
+                    @else
+                        <img class="img-fluid" src="{{asset('images/default/map/nominimap.png')}}" alt="map">
+                    @endif
                     <div class="replay-rating">
                         <a href="#vote-modal" class="positive-vote vote-replay-up" data-toggle="modal" data-rating="1"
                            data-target="#likeModal"
@@ -186,9 +192,9 @@
                            data-route="http://reps.ru/replay/15980/set_rating" data-target="#diselikeModal">
                             <svg class="night_svg" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
                                 <path
-                                    d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"></path>
+                                        d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"></path>
                                 <path
-                                    d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"></path>
+                                        d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"></path>
                             </svg>
                             <span>{{$replay->negative_count}}</span>
                         </a>
@@ -232,14 +238,10 @@
                 </div>
             </div>
         </div>
-        @if($replay->video_iframe)
+        @if(isset($replay->video_iframe) && !empty($replay->video_iframe))
             <span>{{__('Видео:')}}</span>
             <div class="replay_video border_shadow">{!! $replay->video_iframe !!}</div>
         @endif
-        {{--        @if($replay->content)--}}
-        {{--            <span>{{__('Контент:')}}</span>--}}
-        {{--            <div class="replay_video border_shadow">{!! $replay->content !!}</div>--}}
-        {{--        @endif--}}
     </section>
 @endisset
 <script type="text/javascript">

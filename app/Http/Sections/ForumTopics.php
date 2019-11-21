@@ -21,12 +21,13 @@ use SleepingOwl\Admin\Section;
 /**
  * Class ForumTopics
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\ForumTopic $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class ForumTopics extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -58,11 +59,17 @@ class ForumTopics extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
+            ->with([
+                'forumSection',
+                'author',
+                'comments',
+            ])
             ->setDatatableAttributes(['bInfo' => false])
-            ->setHtmlAttribute('class', 'table-info table-hover text-center')
+            ->setHtmlAttribute('class', 'table-info text-center')
             ->paginate(10);
         $display->setFilters([
-            AdminDisplayFilter::related('forum_section_id')->setModel(ForumSection::class),
+            AdminDisplayFilter::related('forum_section_id')
+                ->setModel(ForumSection::class),
             AdminDisplayFilter::related('user_id')->setModel(User::class),
         ]);
         $display->setApply(function ($query) {
@@ -89,11 +96,12 @@ class ForumTopics extends Section
                 ->setWidth('15px'),
             $reviews = AdminColumn::text('reviews', 'Просмотры')
                 ->setWidth('30px'),
-            $news = AdminColumnEditable::checkbox('news', 'Да', 'Нет')->setLabel('Новость'),
+            $news = AdminColumnEditable::checkbox('news', 'Да', 'Нет')
+                ->setLabel('Новость'),
 
         ]);
 
-        $control = $display->getColumns()->getControlColumn();
+        $control    = $display->getColumns()->getControlColumn();
         $buttonShow = $this->show($display);
         $control->addButton($buttonShow);
 
@@ -118,7 +126,7 @@ class ForumTopics extends Section
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
@@ -130,39 +138,57 @@ class ForumTopics extends Section
             /*Init FormElement*/
             $title = AdminFormElement::text('title', 'Название:')
                 ->setHtmlAttribute('placeholder', 'Название:')
-                ->setValidationRules(['required',
-                                      'between:1,255',
-                                      'string']),
-            $sections_id = AdminFormElement::select('forum_section_id', 'Раздел:', ForumSection::class)
-                ->setValidationRules(['required',
-                                      'exists:forum_sections,id'])
+                ->setValidationRules([
+                    'required',
+                    'between:1,255',
+                    'string',
+                ]),
+            $sections_id = AdminFormElement::select('forum_section_id',
+                'Раздел:', ForumSection::class)
+                ->setValidationRules([
+                    'required',
+                    'exists:forum_sections,id',
+                ])
                 ->setDisplay('title'),
-            $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
-            $preview_img = AdminFormElement::image('preview_img', 'Загрузить картинку превью')
-                ->setUploadPath(function (UploadedFile $file) use ($id) {
-                    $filePath =  \App\Models\ForumTopic::where('id', $id)->value('preview_img');
-                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/topics", $filePath);
+            $user_id = AdminFormElement::hidden('user_id')
+                ->setDefaultValue(auth()->user()->id),
+            $preview_img = AdminFormElement::image('preview_img',
+                'Загрузить картинку превью')
+                ->setUploadPath(function (UploadedFile $file) {
+                    return 'storage'
+                        .PathHelper::checkUploadsFileAndPath("/images/topics",
+                            $this->getModelValue()
+                                ->getAttribute('preview_img'));
                 })
-                ->setValidationRules(['nullable',
-                                      'max:2048']),
-            $preview_content = AdminFormElement::wysiwyg('preview_content', 'Сокращенное содержание:')
-                ->setValidationRules(['required',
-                                      'string',
-                                      'between:1,10000'])
+                ->setValidationRules([
+                    'nullable',
+                    'max:2048',
+                ]),
+            $preview_content = AdminFormElement::wysiwyg('preview_content',
+                'Сокращенное содержание:')
+                ->setValidationRules([
+                    'required',
+                    'string',
+                    'between:1,10000',
+                ])
                 ->disableFilter(),
             $content = AdminFormElement::wysiwyg('content', 'Содержание:')
-                ->setValidationRules(['required',
-                                      'string',
-                                      'between:3,50000'])
+                ->setValidationRules([
+                    'required',
+                    'string',
+                    'between:3,50000',
+                ])
                 ->disableFilter(),
             $start_on = AdminFormElement::date('start_on', 'Опубликовать с:')
-                ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d'))
+                ->setHtmlAttribute('placeholder',
+                    Carbon::now()->format('Y-m-d'))
                 ->setValidationRules(['nullable'])
                 ->setFormat('Y-m-d'),
             $news = AdminFormElement::checkbox('news', 'Отображать в новостях')
                 ->setValidationRules(['boolean']),
 
         ]);
+
         return $form;
     }
 
@@ -192,13 +218,17 @@ class ForumTopics extends Section
 
     /**
      * @param $display
+     *
      * @return \SleepingOwl\Admin\Display\ControlLink
      */
     public function show($display)
     {
-        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $id = $model->getKey();
+        $link = new \SleepingOwl\Admin\Display\ControlLink(function (
+            \Illuminate\Database\Eloquent\Model $model
+        ) {
+            $id  = $model->getKey();
             $url = url("admin/forum_topics/$id/show");
+
             return $url; // Генерация ссылки
         }, function (\Illuminate\Database\Eloquent\Model $model) {
             return $model->title; // Генерация текста на кнопке
@@ -209,4 +239,5 @@ class ForumTopics extends Section
 
         return $link;
     }
+
 }

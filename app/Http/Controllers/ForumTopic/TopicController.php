@@ -64,7 +64,7 @@ class TopicController extends Controller
             ->with(['comments.user' => function ($query) {
                 $query->withCount('comments');
             }])
-            ->withCount('comments')->findOrFail($id);
+            ->withCount('comments','positive','negative')->findOrFail($id);
 
         event('topicHasViewed', $topic);
 

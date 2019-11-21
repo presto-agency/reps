@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 
+use App\Models\UserReputation;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,7 +19,9 @@ class UserRatingListController extends Controller
     public function index($id)
     {
         $user = User::findOrFail($id);
-        $userReputations = null;
+
+        $userReputations = UserReputation::where('recipient_id', $id)->with('sender.races')->paginate(30);
+//        $userReputations = null;
         return view('user.rating-list.index', compact('userReputations', 'user'));
     }
 

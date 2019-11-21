@@ -3,15 +3,20 @@
 namespace App\Providers;
 
 
-use App\Models\{Comment, Country, ForumTopic, Replay, Stream, UserGallery, InterviewQuestion};
-use App\Observers\{CommentObserver,
+use App\Models\{
+    Comment, Country, ForumTopic, Replay, Stream, UserGallery, InterviewQuestion, UserReputation
+};
+use App\Observers\{
+    CommentObserver,
     CountryObserver,
     ForumTopicObserver,
     ReplayObserver,
     StreamObserver,
     UserGalleryObservers,
     UserObserver,
-    InterviewQuestionObserver};
+    InterviewQuestionObserver,
+    UserReputationObserver
+};
 
 use App\User;
 use Illuminate\Support\ServiceProvider;
@@ -47,6 +52,6 @@ class AppServiceProvider extends ServiceProvider
         Comment::observe(CommentObserver::class);
         User::observe(UserObserver::class);
         Country::observe(CountryObserver::class);
-
+        UserReputation::observe(UserReputationObserver::class);
     }
 }

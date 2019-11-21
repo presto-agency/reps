@@ -3,36 +3,42 @@
 
 namespace App\Services\ImageService;
 
+use Image;
+use Intervention\Image\ImageManager;
 
-use Intervention\Image\Facades\Image;
 
 class ResizeImage
 {
 
+
     /**
      * Resize image
      *
-     * @param $fileName
-     * @param $originPath
-     * @return mixed
+     * @param $imageFile
+     * @param int $width
+     * @param int $height
+     * @param $aspectRatio
+     * @return string $path
      */
-    public static function resizeFlagImage25x20($fileName,$originPath)
-    {
-        $newPath = "storage/images/countries/flags/25x20/";
-        self::checkUploadPath($newPath);
-        $ext = ".png";
-        $path = $newPath . $fileName . $ext;
-        $resizeImg = Image::make($originPath)->resize(25, 20)->save($path, 100);
 
-        return $resizeImg;
-    }
-
-    /**
-     * @param $save_path
-     * @return bool
-     */
-    public static function checkUploadPath($save_path)
+    public static function resizeImg($imageFile, $width, $height, $aspectRatio, $path)
     {
-        return !\File::exists($save_path) === true ? mkdir($save_path, 666, true) : null;
+        $ext = $imageFile->getClientOriginalExtension();
+        $newFileName = \Str::random(32);
+        $savePath = 'storage/' . $path . '/' . $newFileName . '.' . $ext;
+
+        if ($aspectRatio === true) {
+            $aspectRatio = function ($constraint) {
+                $constraint->aspectRatio();
+            };
+        } else {
+            $aspectRatio = null;
+        }
+        $openImage = Image::make($imageFile);
+
+        // open an image file -> now you are able to resize the instance -> finally we save the image as a new file
+        $openImage->resize($width, $height, $aspectRatio)->save($savePath, 100);
+
+        return $savePath;
     }
 }
