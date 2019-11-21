@@ -1,7 +1,7 @@
 <template>
    <transition name="fade">
         <div v-if="status" class="component_image">
-            <div class="categories">
+            <div class="categories ">
                 <p class="category__item" :class="{active: category.active}" v-for="(category,index) in all_images" @click="change_Category(index)">{{category.category}}</p>
             </div>
             <div class=" row images" >
@@ -79,12 +79,14 @@
     bottom: 100px;
     padding: 4px;
     width: 100%;
-    height: 400px;
+    min-height: 400px;
 
     background: white;
     .categories {
         padding: 10px 0;
-        max-height: auto;
+        overflow-x: auto;
+        display: flex;
+        flex-wrap: wrap;
         .category__item {
             display: inline;
             cursor: pointer;
@@ -101,7 +103,6 @@
     }
     .images {
         border-top: 1px solid gray;
-        border-bottom: 1px solid gray;
         margin: 0;
         max-height: 330px;
         overflow-y: auto;
