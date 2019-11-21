@@ -95,15 +95,25 @@ class ReplayHelper
 
     public function downloadCount()
     {
-        $request = request();
-        if ($request->ajax()) {
-            $filePath = Replay::where('id', $request->id)->value('file');
-            if (\File::exists($filePath)) {
-                $replay = Replay::find($request->id);
+        if (\request()->ajax()) {
+            $filePath = Replay::where('id', \request('id'))->value('file');
+            $file     = $filePath;
+            if (empty($file)) {
+                return;
+            }
+            if (strpos($filePath, '/storage') !== false) {
+                $file = \Str::replaceFirst('/storage', 'public', $filePath);
+            }
+            if (strpos($filePath, 'storage') !== false) {
+                $file = \Str::replaceFirst('storage', 'public', $filePath);
+            }
+            $checkPath = \Storage::path($file);
+            if (\File::exists($checkPath) === false) {
+                $replay = Replay::find(\request('id'));
                 $replay->increment('downloaded', 1);
                 $replay->save();
                 echo json_encode(['downloaded' => $replay->downloaded]);
-            }
+            };
         }
     }
 

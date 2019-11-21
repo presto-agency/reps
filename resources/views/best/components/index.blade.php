@@ -1,4 +1,3 @@
-@inject('checkFile', 'App\Services\ServiceAssistants\PathHelper')
 <section class="Page_gameBest">
     <div class="wrapper border_shadow">
         <div class="title_block">
@@ -27,7 +26,7 @@
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 @auth()
                                     @if(auth()->user()->userViewAvatars())
-                                        @if(!empty($item['avatar']) && $checkFile::checkFileExists($item['avatar']))
+                                        @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
                                             <img src="{{asset($item['avatar'])}}" alt="avatar"
                                                  class="author__avatar img-fluid">
                                         @else
@@ -36,7 +35,7 @@
                                         @endif
                                     @endif
                                 @else
-                                    @if(!empty($item['avatar']) && $checkFile::checkFileExists($item['avatar']))
+                                    @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
                                         <img src="{{asset($item['avatar'])}}" alt="avatar"
                                              class="author__avatar img-fluid">
                                     @else
@@ -48,7 +47,7 @@
                             </a>
                         </div>
                         <div class="center_block">
-                            @if(!empty($item['countryFlag25x20']) && $checkFile::checkFileExists($item['countryFlag25x20']))
+                            @if(!empty($item['countryFlag25x20']) && checkFile::checkFileExists($item['countryFlag25x20']))
                                 <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag"
                                      title="{{$item['countryName']}}">
                             @else
@@ -77,7 +76,7 @@
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 @auth()
                                     @if(auth()->user()->userViewAvatars())
-                                        @if(!empty($item['avatar']) && $checkFile::checkFileExists($item['avatar']))
+                                        @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
                                             <img src="{{asset($item['avatar'])}}" alt="avatar"
                                                  class="author__avatar img-fluid">
                                         @else
@@ -86,7 +85,7 @@
                                         @endif
                                     @endif
                                 @else
-                                    @if(!empty($item['avatar']) && $checkFile::checkFileExists($item['avatar']))
+                                    @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
                                         <img src="{{asset($item['avatar'])}}" alt="avatar"
                                              class="author__avatar img-fluid">
                                     @else
@@ -98,7 +97,7 @@
                             </a>
                         </div>
                         <div class="center_block">
-                            @if(!empty($item['countryFlag25x20']) && $checkFile::checkFileExists($item['countryFlag25x20']))
+                            @if(!empty($item['countryFlag25x20']) && checkFile::checkFileExists($item['countryFlag25x20']))
                                 <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag"
                                      title="{{$item['countryName']}}">
                             @else
@@ -128,7 +127,7 @@
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 @auth()
                                     @if(auth()->user()->userViewAvatars())
-                                        @if(!empty($item['avatar']) && $checkFile::checkFileExists($item['avatar']))
+                                        @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
                                             <img src="{{asset($item['avatar'])}}" alt="avatar"
                                                  class="author__avatar img-fluid">
                                         @else
@@ -137,7 +136,7 @@
                                         @endif
                                     @endif
                                 @else
-                                    @if(!empty($item['avatar']) && $checkFile::checkFileExists($item['avatar']))
+                                    @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
                                         <img src="{{asset($item['avatar'])}}" alt="avatar"
                                              class="author__avatar img-fluid">
                                     @else
@@ -150,7 +149,7 @@
                             </a>
                         </div>
                         <div class="center_block">
-                            @if(!empty($item['countryFlag25x20']) && $checkFile::checkFileExists($item['countryFlag25x20']))
+                            @if(!empty($item['countryFlag25x20']) && checkFile::checkFileExists($item['countryFlag25x20']))
                                 <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag"
                                      title="{{$item['countryName']}}">
                             @else
@@ -180,7 +179,7 @@
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 @auth()
                                     @if(auth()->user()->userViewAvatars())
-                                        @if(!empty($item['avatar']) && $checkFile::checkFileExists($item['avatar']))
+                                        @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
                                             <img src="{{asset($item['avatar'])}}" alt="avatar"
                                                  class="author__avatar img-fluid">
                                         @else
@@ -189,7 +188,7 @@
                                         @endif
                                     @endif
                                 @else
-                                    @if(!empty($item['avatar']) && $checkFile::checkFileExists($item['avatar']))
+                                    @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
                                         <img src="{{asset($item['avatar'])}}" alt="avatar"
                                              class="author__avatar img-fluid">
                                     @else
@@ -201,7 +200,7 @@
                             </a>
                         </div>
                         <div class="center_block">
-                            @if(!empty($item['countryFlag25x20']) && $checkFile::checkFileExists($item['countryFlag25x20']))
+                            @if(!empty($item['countryFlag25x20']) && checkFile::checkFileExists($item['countryFlag25x20']))
                                 <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag"
                                      title="{{$item['countryName']}}">
                             @else
