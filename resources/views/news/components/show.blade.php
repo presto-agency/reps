@@ -103,7 +103,7 @@
                 <img src="{{ asset($news->preview_img) }}" class="img-fluid" alt="news">
             @endif
             <h2 class="card-body__title night_text"> {!! $news->preview_content !!}</h2>
-            <div class="card-body__text">{!! $news->content !!}</div>
+            <div class="card-body__text night_text">{!! $news->content !!}</div>
             <div class="card-body__items">
                 <div class="card-body__items-wrap">
                     <a class="items__quote" href="#">
