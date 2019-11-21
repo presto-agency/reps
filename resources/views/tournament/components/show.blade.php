@@ -91,12 +91,6 @@
                                 c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"/>
                             </svg>
                         </a>
-                        {{--                        <form id="download-all-match"--}}
-                        {{--                              action="{{ route('download.all.match',['tournament'=>$tournament->id]) }}"--}}
-                        {{--                              method="POST"--}}
-                        {{--                              style="display: none;">--}}
-                        {{--                            @csrf--}}
-                        {{--                        </form>--}}
                     </div>
                 </div>
                 <div class="container_block">
