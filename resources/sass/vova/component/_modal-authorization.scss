@@ -35,6 +35,11 @@
         }
         .form-group {
             margin-bottom: 0;
+            .remember{
+                display: flex;
+                justify-content: center;
+                margin-bottom: 15px;
+            }
             input {
                 margin-bottom: 15px;
             }

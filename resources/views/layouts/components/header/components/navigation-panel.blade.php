@@ -78,9 +78,9 @@
                 <div class="autorization {{ Auth::check() ? 'autorization_user' : '' }}">
                     @guest
                         <button type="button" data-toggle="modal"
-                                data-target="#authorizationModal">{{ __('Login') }}</button>
+                                data-target="#authorizationModal">{{ __('Вход') }}</button>
                         <button class="registration" type="button" data-toggle="modal"
-                                data-target="#registrationModal">{{ __('Register') }}</button>
+                                data-target="#registrationModal">{{ __('Регистрация') }}</button>
                     @else
                         @include('layouts.components.header.components.user-bar-panel')
                     @endguest
