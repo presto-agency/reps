@@ -1,5 +1,5 @@
 @isset($topic)
-    <div class="detailed-forum">
+    <div class="detailed-forum border_shadow">
         <div class="detailed-forum__title">
             <div class="title__wrap">
                 <svg class="title__icon" xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@
             </div>
 
         </div>
-        <div class="detailed-forum__info">
+        <div class="detailed-forum__info night_modal">
             <div class="info__items">
                 <div class="left">
                     <a class="items__watch" href="#">
@@ -107,16 +107,16 @@
         </div>
         <hr>
         <div class="detailed-forum__card card">
-            <div class="card-body">
+            <div class="card-body night_modal">
                 @if(!empty($topic->preview_img) && File::exists($topic->preview_img))
                     <img src="{{ asset($topic->preview_img) }}" class="card-img-top" alt="forum image">
                 @endif
 
-                <h2 class="card-body__text">{!! $topic->preview_content  !!}</h2>
-                <div class="card-body__text">{!! $topic->content !!}</div>
+                <h2 class="card-body__text night_text">{!! $topic->preview_content  !!}</h2>
+                <div class="card-body__text night_text">{!! $topic->content !!}</div>
                 <div class="card-body__items">
                     <div class="card-body__items-wrap">
-                        <a class="items__quote" href="#">
+                        <a class="items__quote night_text" href="#">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -133,7 +133,7 @@
                         @php
                             $modal = (Auth::guest() /*&&  $topic->user_id == Auth::user()->id*/) ?'#no-rating':'#vote-modal';
                         @endphp
-                        <a href="{{$modal}}"  class="items__like positive-vote vote-replay-up" data-toggle="modal" {{--data-target="#vote-modal" --}}data-rating="1" data-route="{{route('forum.topic.set_rating',['id'=>$topic->id])}}">
+                        <a href="{{$modal}}"  class="items__like positive-vote vote-replay-up night_text" data-toggle="modal" {{--data-target="#vote-modal" --}}data-rating="1" data-route="{{route('forum.topic.set_rating',['id'=>$topic->id])}}">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
