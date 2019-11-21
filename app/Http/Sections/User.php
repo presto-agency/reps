@@ -27,6 +27,7 @@ use SleepingOwl\Admin\Section;
 class User extends Section
 {
 
+    public $imageOldPath;
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -198,33 +199,23 @@ class User extends Section
      */
     public function onEdit($id)
     {
-
+        $getData = $this->getModel()->select('avatar')->find($id);
+        if ($getData) {
+            $this->imageOldPath = $getData->avatar;
+        }
         $display = AdminForm::panel();
         $display->setItems([
             $avatar = AdminFormElement::image('avatar', 'Аватар')
                 ->setUploadPath(function (UploadedFile $file) {
                     return 'storage'
-                        .PathHelper::checkUploadsFileAndPath("/images/users/avatars",
-                            auth()->user()->avatar);
+                        .PathHelper::checkUploadsFileAndPath("/images/users/avatars",$this->imageOldPath);
                 })
                 ->setValueSkipped(empty(request('avatar')))
                 ->setValidationRules([
                     'nullable',
                     'max:2048',
                     'mimes:jpeg,png,jpg,gif,svg',
-                ])->setUploadSettings([
-                    'orientate' => [],
-                    'resize'    => [
-                        120,
-                        120,
-                        function ($constraint) {
-                            $constraint->upsize();
-                            $constraint->aspectRatio();
-                        },
-                    ],
-                ])
-
-            ,
+                ]),
 
             $email = AdminFormElement::text('email', 'Почта')
                 ->setHtmlAttribute('placeholder', 'Почта')

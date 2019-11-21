@@ -2,23 +2,23 @@
 
 namespace App;
 
-use App\Traits\GravatarTrait;
+use App\Traits\AvatarTrait;
 use App\Traits\ModelRelations\UserRelation;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-///**
-// * Class User
-// *
-// * @package App
-// * @property  int role_id
-// * @mixin \Eloquent
-// */
+/**
+ * Class User
+ *
+ * @package App
+ * @property  string avatar
+ * @mixin \Eloquent
+ */
 class User extends Authenticatable
 {
 
-    use Notifiable, GravatarTrait, UserRelation;
+    use Notifiable, AvatarTrait, UserRelation;
 
     /**
      * The attributes that are mass assignable.
@@ -176,5 +176,4 @@ class User extends Authenticatable
 
         return false;
     }
-
 }

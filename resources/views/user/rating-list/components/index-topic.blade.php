@@ -48,12 +48,8 @@
                 <div class="body__wrap">
                     <div class="body__info change_gray">
                         <p class="info__nickname night_text">{{$item->users->name}}</p>
-                        @if(auth()->user()->userViewAvatars())
-                        @if(!empty($item->users->avatar) && file_exists($item->users->avatar))
-                            <img src="{{asset($item->users->avatar) }}" class="info__flag" alt="flag">
-                        @else
-                            <img src="{{asset($item->users->defaultAvatar()) }}" class="info__flag" alt="flag">
-                        @endif
+                        @if(auth()->user() && auth()->user()->userViewAvatars())
+                            <img src="{{asset($item->users->avatarOrDefault()) }}" class="info__flag" alt="flag">
                         @endif
                         <img src="{{ asset('images/default/game-races'.$item->races->title.'.png') }}"
                              class="info__cube" alt="race">

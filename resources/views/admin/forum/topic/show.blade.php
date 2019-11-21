@@ -8,7 +8,7 @@
     </div>
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title text-blue">{{$topic->forumSection->title}} / {!! $topic->title !!}</h3>
+            <h3 class="box-title text-blue">{{$topic->forumSection->title}} / {!! ParserToHTML::toHTML($topic->title,'size') !!}</h3>
         </div>
         <div class="box-body">
             <div class="box-tools col-md-12">
@@ -24,27 +24,25 @@
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <p>
-                                {!! $topic->preview_content !!}
+                                {!! ParserToHTML::toHTML($topic->preview_content,'size') !!}
                             </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <p>
-                                {!! $topic->content !!}
+                                {!! ParserToHTML::toHTML($topic->content,'size') !!}
                             </p>
                         </div>
                     </div>
                     <br>
                     <div class="user-block">
-                        @if(auth()->user()->userViewAvatars())
-                            @if(!empty($topic->author->avatar) && file_exists($topic->author->avatar))
-                                <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatar)}}"
-                                     alt="avatar">
-                            @else
-                                <img class="img-circle img-bordered-sm" src="{{asset($topic->author->defaultAvatar())}}"
-                                     alt="avatar">
-                            @endif
+                        @if(auth()->user() && auth()->user()->userViewAvatars())
+                            <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatarOrDefault())}}"
+                                 alt="avatar">
+                        @else
+                            <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatarOrDefault())}}"
+                                 alt="avatar">
                         @endif
                         {{--                            <img class="img-circle img-bordered-sm" src="{{route('news').'/dist/img/avatar.png'}}" alt="User img">--}}
                         <span class="username">
@@ -84,29 +82,29 @@
                                 </form>
                             </div>
                             <div class="table-content">
-                                @foreach($topic->comments as $comment)
-                                    <div class="item row">
-                                        @if(auth()->user()->userViewAvatars())
-                                            @if(!empty($comment->user->avatar) && file_exists($comment->user->avatar))
+                                @if(isset($topic->comments) && !empty($topic->comments))
+                                    @foreach($topic->comments as $comment)
+                                        <div class="item row">
+                                            @if(auth()->user() && auth()->user()->userViewAvatars())
                                                 <img class="img-circle img-bordered-sm"
-                                                     src="{{asset($comment->user->avatar)}}" alt="avatar">
+                                                     src="{{asset($comment->user->avatarOrDefault())}}" alt="avatar">
                                             @else
                                                 <img class="img-circle img-bordered-sm"
-                                                     src="{{asset($comment->user->defaultAvatar())}}" alt="avatar">
+                                                     src="{{asset($comment->user->avatarOrDefault())}}" alt="avatar">
                                             @endif
-                                        @endif
-                                        <p class="message">
-                                            <a href="#" class="name">
-                                                <small class="text-muted pull-right"><i
-                                                        class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
-                                                </small>
-                                                {{$comment->user->name}}
-                                            </a>
-                                            {{--<a type="button" class="btn btn-default text-red"  title="Удалить запись" href="#{{route('admin.comments.remove', ['id' => $comment->id])}}"><i class="fa fa-trash"></i></a>--}}
-                                            {!! $comment->content !!}
-                                        </p>
-                                    </div>
-                                @endforeach
+                                            <p class="message">
+                                                <a href="#" class="name">
+                                                    <small class="text-muted pull-right"><i
+                                                                class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
+                                                    </small>
+                                                    {{$comment->user->name}}
+                                                </a>
+                                                {{--<a type="button" class="btn btn-default text-red"  title="Удалить запись" href="#{{route('admin.comments.remove', ['id' => $comment->id])}}"><i class="fa fa-trash"></i></a>--}}
+                                                {!! ParserToHTML::toHTML($comment->content,'size') !!}
+                                            </p>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                         <div class="box-footer clearfix pagination-content">

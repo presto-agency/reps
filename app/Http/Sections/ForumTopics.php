@@ -125,6 +125,8 @@ class ForumTopics extends Section
         return $display;
     }
 
+    public $imageOldPath;
+
     /**
      * @param  int  $id
      *
@@ -132,8 +134,11 @@ class ForumTopics extends Section
      */
     public function onEdit($id)
     {
+        $getData = $this->getModel()->select('preview_img')->find($id);
+        if ($getData) {
+            $this->imageOldPath = $getData->preview_img;
+        }
         $form = AdminForm::panel();
-
         $form->setItems([
             /*Init FormElement*/
             $title = AdminFormElement::text('title', 'Название:')
@@ -157,8 +162,7 @@ class ForumTopics extends Section
                 ->setUploadPath(function (UploadedFile $file) {
                     return 'storage'
                         .PathHelper::checkUploadsFileAndPath("/images/topics",
-                            $this->getModelValue()
-                                ->getAttribute('preview_img'));
+                            $this->imageOldPath);
                 })
                 ->setValidationRules([
                     'nullable',

@@ -130,6 +130,7 @@ class UserGallery extends Section
      */
     public function onEdit($id)
     {
+
         $display = AdminForm::panel();
 
         $display->setItems(
@@ -163,13 +164,9 @@ class UserGallery extends Section
             [
                 $picture = AdminFormElement::image('picture', 'Картинка')
                     ->setUploadPath(
-                        function (
-                            UploadedFile $file
-                        ) {
+                        function (UploadedFile $file) {
                             return 'storage'
-                                .PathHelper::checkUploadsFileAndPath(
-                                    "/images/users/galleries"
-                                );
+                                .PathHelper::checkUploadsFileAndPath("/images/users/galleries");
                         }
                     )
                     ->setValidationRules(

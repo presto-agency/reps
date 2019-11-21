@@ -18,7 +18,7 @@
                                            href="{{route('forum.show',['forum'=>$item->forumSection->id])}}">{{$item->forumSection->title}}</a>
                                         <span>|</span>
                                         <a class="items__link"
-                                           href="{{route('topic.show',['topic'=>$item->id])}}">{{$item->title}}</a>
+                                           href="{{route('topic.show',['topic'=>$item->id])}}">{!! ParserToHTML::toHTML($topic->title,'size') !!}</a>
                                     </div>
                                     <div class="header__items">
                                         <svg class="items__icon" xmlns="http://www.w3.org/2000/svg" id="Capa_1"
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="panel__body">
-                                    <p class="body__comment night_text">{!! $item->content !!}</p>
+                                    <p class="body__comment night_text">{!! ParserToHTML::toHTML($item->content,'size') !!}</p>
                                 </div>
                                 <div class="panel__footer">
                                     <div class="footer__item">

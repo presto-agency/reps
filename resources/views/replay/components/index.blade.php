@@ -81,25 +81,15 @@
                 <div class="gocu-replays__match">
                     <div class="match__author">
                         <div class="subtitle__info">
-                            @isset($item->users)
-                                @auth()
-                                    @if(auth()->user()->userViewAvatars())
-                                        @if(!empty($item->users->avatar) && file_exists($item->users->avatar))
-                                            <img src="{{asset($item->users->avatar)}}" alt="avatar">
-                                        @else
-                                            <img src="{{asset($item->users->defaultAvatar())}}" alt="avatar">
-                                        @endif
-                                    @endif
+                            @if(isset($item->users) && !empty($item->users))
+                                @if(auth()->user() && auth()->user()->userViewAvatars())
+                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
                                 @else
-                                    @if(!empty($item->users->avatar) && file_exists($item->users->avatar))
-                                        <img src="{{asset($item->users->avatar)}}" alt="avatar">
-                                    @else
-                                        <img src="{{asset($item->users->defaultAvatar())}}" alt="avatar">
-                                    @endif
-                                @endauth
+                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
+                                @endif
                                 <span class="comment-author__nickname"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
-                            @endisset
+                            @endif
                             <span class="comment-author__replay-item night_text">Видео реплей</span>
                         </div>
                         <div class="subtitle__icons">

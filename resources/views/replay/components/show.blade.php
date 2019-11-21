@@ -16,20 +16,12 @@
                         <a href="{{route('user_profile',['id'=>$replay->users->id])}}">{{$replay->users->name}}</a>
                         @auth()
                             @if(auth()->user()->userViewAvatars())
-                                @if(!empty($replay->users->avatar) && checkFile::checkFileExists($replay->users->avatar))
-                                    <img class="icon_bars" src="{{asset($replay->users->avatar)}}" alt="avatar"/>
-                                @else
-                                    <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"
-                                         alt="avatar"/>
-                                @endif
-                            @endif
-                        @else
-                            @if(!empty($replay->users->avatar) && checkFile::checkFileExists($replay->users->avatar))
-                                <img class="icon_bars" src="{{asset($replay->users->avatar)}}" alt="avatar"/>
-                            @else
-                                <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"
+                                <img class="icon_bars" src="{{asset($replay->users->avatarOrDefault())}}"
                                      alt="avatar"/>
                             @endif
+                        @else
+                            <img class="icon_bars" src="{{asset($replay->users->avatarOrDefault())}}"
+                                 alt="avatar"/>
                         @endauth
                         <span>{{$replay->users->count_positive - $replay->users->count_negative .' кг'}}</span>
                         <a href="{{route('user-comments.index',['id'=>$replay->users->id])}}">{{$replay->users->comments_count.' pts'}}</a>

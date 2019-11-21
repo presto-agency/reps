@@ -6,7 +6,7 @@
             <p>Раса: {{$stream->races->title}}</p>
             <p>
                 Подтвержден: {!! $stream->approved == 1 ? "<i class='fa fa-check'></i>" : "<i class='fa fa-minus'></i>"!!}</p>
-            <p>Коментарий: {{ $stream->content }}</p>
+            <p>Коментарий: {{ ParserToHTML::toHTML($stream->content,'size') }}</p>
             <p>iframe(src) = {{$stream->stream_url}}</p>
             <iframe src="{{$stream->stream_url_iframe}}"
                     allowfullscreen="true"
