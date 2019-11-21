@@ -29,6 +29,9 @@ Route::group(['prefix' => 'forum'], function () {
     Route::resource('topic', 'ForumTopic\TopicController');
     Route::group(['prefix' => 'topic'], function () {
         Route::post('{id}/comment', 'ForumTopic\TopicController@saveComments')->name('topic.send_comment');
+
+        /**set reputation like/dislike*/
+        Route::post('{id}/set_rating', 'TopicRatingController@setRating')->name('forum.topic.set_rating');
     });
 });
 /*Interview*/
@@ -50,8 +53,13 @@ Route::post("{tournament}/{rep}/download-match", 'Tournament\TournamentControlle
 //Route::post("{tournament}/download-all-match", 'Tournament\TournamentController@downloadMultipleMatch')->name('download.all.match');
 Route::post('tournament/loadmore/load_tournament', 'Tournament\TournamentController@loadTournament')->name('load.more.tournament');
 
-Route::group(['prefix'     => 'user',
-              'middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
+    /**comments rating: like/dislike*/
+    Route::post('comment/{id}/set_rating', 'CommentsRatingController@setRating')->name('comment.set_rating');
+//    Route::get('comment/{id}/get_rating', 'CommentsRatingController@getRating')->name('comment.ger_rating');
+});
+
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
     Route::get('/friends_list', 'UserFriendController@getFriendsList')->name('user.friends_list');
 
@@ -77,6 +85,9 @@ Route::group(['prefix'     => 'user',
 
     Route::get('{id}/messages', 'UserMessagingController@getUser')->name('user.messages');
     Route::post('send_message', 'UserMessagingController@send')->name('user.send_message');
+
+    /**get user reputation list*/
+    Route::get('{id}/get_rating', 'RatingController@getRatingUser')->name('user.get_rating');
 });
 
 Route::group(['prefix' => 'chat'], function () {

@@ -26,4 +26,20 @@ class ForumTopic extends Model
     {
         return $this->morphMany('App\Models\Comment', 'commentable');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function positive()
+    {
+        return $this->hasMany('App\Models\UserReputation', 'object_id')->where('relation', UserReputation::RELATION_FORUM_TOPIC)->where('rating',1);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function negative()
+    {
+        return $this->hasMany('App\Models\UserReputation', 'object_id')->where('relation', UserReputation::RELATION_FORUM_TOPIC)->where('rating','-1');
+    }
 }

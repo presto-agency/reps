@@ -97,6 +97,62 @@
     @include('layouts.components.footer.index')
 </footer>
 
+
+<!-- ========ALL MODAL WINDOWS ============== -->
+<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Оставте комментарий</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @if(Auth::user() )
+                    <form id="rating-vote-form" action="" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="rating">Голос:
+                                <div class="positive">
+                                    <img src="{{asset('images/icons/thumbs-up.png')}}" alt="">
+                                </div>
+                                <div class="negative">
+                                    <img src="{{asset('images/icons/thumbs-down.png')}}" alt="">
+                                </div>
+                            </label>
+                            <input type="hidden" name="rating" id="rating" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Комментарий</label>
+                            <input type="text" class="form-control" name="comment" id="comment" value="">
+                        </div>
+                        <button class="btn btn-info" type="submit">Проголосовать</button>
+                    </form>
+                @else
+                    <div class="unregistered-info-wrapper">
+                        <div class="notice">
+                            Данная опция доступна только авторизированным пользователям
+                        </div>
+                        <div class="btn-wrapper">
+                            <a href="#" class="btn btn-info">Авторизироваться</a>
+                            <a href="#" class="btn btn-info">Зарегистрироваться</a>
+                        </div>
+                    </div>
+                @endif
+                <div class="unregistered-info-wrapper info-block">
+                    <div class="notice"></div>
+                    <img class="positive-vote-img d-none" src="{{asset('images/icons/thumbs-up.png')}}" alt="">
+                    <img class="negative-vote-img d-none" src="{{asset('images/icons/thumbs-down.png')}}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ========== END ALL MODAL WINDOWS ============ -->
+
+
 <!--SCEditor-->
 <script src="{{ asset('js/sceditor/sceditor.min.js') }}"></script>
 <script src="{{ asset('js/sceditor/formats/bbcode.js') }}"></script>
@@ -147,6 +203,63 @@
         });
     </script>
 @show
+
+<script>
+    $(function () {
+
+        /**Vote - positive / negative vote - Separate Replay Page*/
+        $('body').on('click', 'a.vote-replay-up, a.vote-replay-down', function (e) {
+            var rating = $(this).attr('data-rating');
+            var modal = $('#vote-modal');
+            var url = $(this).attr('data-route');
+            modal.find('form input#rating').val(rating);
+            modal.find('form').attr('action', url);
+            modal.find('.modal-body .unregistered-info-wrapper').addClass('d-none');
+
+            if (rating === '1') {
+                modal.find('.positive').removeClass('d-none');
+                modal.find('.negative').addClass('d-none');
+            }
+            if (rating === '-1') {
+                modal.find('.positive').addClass('d-none');
+                modal.find('.negative').removeClass('d-none');
+            }
+        });
+
+        $('body').on('submit', '#rating-vote-form', function (e) {
+            e.preventDefault();
+            var url = $(this).attr('action');
+            var selectData = $('#rating-vote-form').serialize();
+            var imgClass = 'positive-vote-img';
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: selectData,
+                success: function (response) {
+                    console.log('Ответ аджакс: ');
+                    console.log(response);
+                    if (response.message) {
+                        if (response.user_rating === "-1") {
+                            imgClass = 'negative-vote-img';
+                        }
+                        if (response.user_rating === undefined) {
+                            imgClass = '';
+                        }
+                        $('#vote-modal').find('.modal-body .unregistered-info-wrapper').removeClass('d-none');
+                        $('#vote-modal').find('.modal-body .unregistered-info-wrapper .notice').html(response.message);
+                        $('#vote-modal').find('.modal-body' + ' .' + imgClass).removeClass('d-none');
+                    } else {
+                        location.reload();
+                    }
+                },
+                error: function () {
+                    $('#vote-modal').find('.modal-body .unregistered-info-wrapper').removeClass('d-none');
+                    $('#vote-modal').find('.modal-body .unregistered-info-wrapper .notice').html('ошибка');
+                }
+            });
+        });
+    });
+</script>
 
 @yield('java-script')
 </body>
