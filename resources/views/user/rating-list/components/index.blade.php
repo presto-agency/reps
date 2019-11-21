@@ -43,6 +43,7 @@
     </div>
 
     <div class="user-reputation-history__body">
+        {{ dump($userReputations) }}
         @isset($userReputations)
             @foreach($userReputations as $item)
                 <div class="body__wrap">
