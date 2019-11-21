@@ -94,7 +94,7 @@ class ChatController extends Controller
             'file_path' => $msg->file_path,
             'imo' => $msg->imo,
             'created_at' => $msg->created_at,
-            'time' => $msg->created_at->format('h:mm'),
+            'time' => $msg->created_at->format('H:i'),
             'country_flag' => $country_flag,
             'user' => $msg->user
         );
