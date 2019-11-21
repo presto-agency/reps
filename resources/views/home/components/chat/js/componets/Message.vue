@@ -1,6 +1,6 @@
 <template>
     <div class="messanger">
-        <div class="row_contentChat" v-for="(item,index) in messagearray" :key="item.message" v-if="item.visible">
+        <div class="row_contentChat" v-for="(item,index) in messagearray" :key="index" v-if="item.visible">
             <div class=" block_user_akk">
                 <div class="user" >
                     <img class="icon_bars" :src="item.flag">
@@ -11,7 +11,7 @@
                     </a>
                 </div>
                 <div class=" block_close">
-                    <button @click="IgnoreUser(item.usernick)">
+                    <button @click="deleteMessage(item.id)" v-if="not_user===1">
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times"
                              class="svg-inline--fa fa-times fa-w-11" role="img"
                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512">
@@ -26,29 +26,28 @@
             </div>
             <div class=" block_userMessage">
                 <span class="user_nick">{{item.usernick}}</span>
-                <span class="user_text night_text">{{item.message}}</span>
+                <span class="user_text night_text" v-html="item.message"></span>
             </div>
 
         </div>
     </div> <!--main messenger-->
 </template>
 <script>
+    import * as chatHelper from '../helper/chatHelper';
 export default {
-    props: ['messagearray'],
+    props: ['messagearray','not_user'],
     data: ()=>({
-        ignored_users: [{}],
+        ignored_users: [{}]
     }),
     methods: {
-        IgnoreUser(usernick) {
-            this.messagearray.forEach((item)=>{
-                if(item.user===usernick) {
-                    item.visible=false;
-                    console.log('have')
-                }
-
-            })
+        deleteMessage(id) {
+            this.$emit('on_delete',id);
+            axios.delete(`chat/delete/${id}\'`);
         }
     }
 }
 
 </script>
+<style lang="scss" >
+
+</style>
