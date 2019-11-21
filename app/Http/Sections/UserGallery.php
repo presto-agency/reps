@@ -161,7 +161,6 @@ class UserGallery extends Section
         $display = AdminForm::panel();
         $display->setItems(
             [
-
                 $picture = AdminFormElement::image('picture', 'Картинка')
                     ->setUploadPath(
                         function (
@@ -179,7 +178,6 @@ class UserGallery extends Section
                             'max:2048',
                         ]
                     ),
-
                 $sign = AdminFormElement::text('sign', 'Подпись')
                     ->setHtmlAttribute(
                         'placeholder',
@@ -194,7 +192,6 @@ class UserGallery extends Section
                             'between:1,255',
                         ]
                     ),
-
                 $for_adults = AdminFormElement::checkbox('for_adults', '18+')
                     ->setDefaultValue(false),
             ]
