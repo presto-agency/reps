@@ -13,21 +13,23 @@
                     <span class="title_text night_text">{{$replay->title}}</span>
                 </div>
                 <div class="right_block">
-                    @if(!empty($replay->users))
+                    @if(isset($replay->users) && !empty($replay->users))
                         <a href="{{route('user_profile',['id'=>$replay->users->id])}}">{{$replay->users->name}}</a>
                         @auth()
                             @if(auth()->user()->userViewAvatars())
-                                @if(!empty($replay->users->avatar) && file_exists($replay->users->avatar))
-                                    <img class="icon_bars" src="{{asset($replay->users->avatar)}}"/>
+                                @if(!empty($replay->users->avatar) && $checkFile::checkFileExists($replay->users->avatar))
+                                    <img class="icon_bars" src="{{asset($replay->users->avatar)}}" alt="avatar"/>
                                 @else
-                                    <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"/>
+                                    <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"
+                                         alt="avatar"/>
                                 @endif
                             @endif
                         @else
-                            @if(!empty($replay->users->avatar) && file_exists($replay->users->avatar))
-                                <img class="icon_bars" src="{{asset($replay->users->avatar)}}"/>
+                            @if(!empty($replay->users->avatar) && $checkFile::checkFileExists($replay->users->avatar))
+                                <img class="icon_bars" src="{{asset($replay->users->avatar)}}" alt="avatar"/>
                             @else
-                                <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"/>
+                                <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"
+                                     alt="avatar"/>
                             @endif
                         @endauth
                         <span>{{$replay->users->count_positive - $replay->users->count_negative .' кг'}}</span>

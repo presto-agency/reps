@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class ReplayHelper
 {
+
     public static $USER_REPLAY_URL = 'user-replay';
 
     /**
@@ -16,35 +17,48 @@ class ReplayHelper
      * @param $relations
      * @param $id
      * @param $user_replay
+     *
      * @return Replay|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public static function findReplayWithType2($relations, $id, $user_replay)
     {
         return Replay::with($relations)
             ->withCount('comments')
-            ->with(['comments.user' => function ($query) {
-                $query->withCount('comments');
-            }])
-            ->with(['users' => function ($query) {
-                $query->withCount('comments');
-            }])
+            ->with([
+                'comments.user' => function ($query) {
+                    $query->withCount('comments');
+                },
+            ])
+            ->with([
+                'users' => function ($query) {
+                    $query->withCount('comments');
+                },
+            ])
             ->where('approved', 1)
             ->where('user_replay', $user_replay)
             ->where('id', $id)
             ->firstOrFail();
     }
 
-    public static function findReplaysWithType($relations, $id, $user_replay, $type)
-    {
+    public static function findReplaysWithType(
+        $relations,
+        $id,
+        $user_replay,
+        $type
+    ) {
 
         return Replay::with($relations)
             ->withCount('comments')
-            ->with(['comments.user' => function ($query) {
-                $query->withCount('comments');
-            }])
-            ->with(['users' => function ($query) {
-                $query->withCount('comments');
-            }])
+            ->with([
+                'comments.user' => function ($query) {
+                    $query->withCount('comments');
+                },
+            ])
+            ->with([
+                'users' => function ($query) {
+                    $query->withCount('comments');
+                },
+            ])
             ->where('approved', 1)
             ->whereHas('types', function ($query) use ($type) {
                 $query->where('name', $type);
@@ -56,14 +70,27 @@ class ReplayHelper
 
     public function download()
     {
-//        $request = request();
-//
-//        $filePath = Replay::where('id', $request->id)->value('file');
-//        dd($filePath);
-//        if (\File::exists($filePath)) {
-//            return response()->download($filePath);
-//        }
-        return back();
+        $filePath = Replay::where('id', \request('id'))->value('file');
+
+        $file = $filePath;
+
+        if (empty($file)) {
+            return back();
+        }
+        if (strpos($filePath, '/storage') !== false) {
+            $file = \Str::replaceFirst('/storage', 'public', $filePath);
+        }
+        if (strpos($filePath, 'storage') !== false) {
+            $file = \Str::replaceFirst('storage', 'public', $filePath);
+        }
+
+        $checkPath = \Storage::path($file);
+        if (\File::exists($checkPath) === false) {
+            return back();
+        };
+
+        return response()->download($checkPath);
+
     }
 
     public function downloadCount()
@@ -75,14 +102,14 @@ class ReplayHelper
                 $replay = Replay::find($request->id);
                 $replay->increment('downloaded', 1);
                 $replay->save();
-                echo json_encode(array('downloaded' => $replay->downloaded));
+                echo json_encode(['downloaded' => $replay->downloaded]);
             }
         }
     }
 
     public function saveComments()
     {
-        $replay = Replay::find(request('id'));
+        $replay  = Replay::find(request('id'));
         $comment = new Comment([
             'user_id' => auth()->id(),
             'content' => request('content'),
@@ -122,4 +149,5 @@ class ReplayHelper
     {
         return self::getReplayType();
     }
+
 }
