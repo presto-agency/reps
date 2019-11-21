@@ -29,7 +29,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body popup_contant messanger night_modal">
-                                            <chat-message :messagearray="messagearray" />
+                                            <chat-message :messagearray="messagearray" :not_user="not_user"/>
                                         </div>
                                     </div>
                                 </div>
@@ -37,10 +37,10 @@
                 </div>
             </div>
         </div>
-            <chat-message :messagearray="messagearray" />
+            <chat-message :messagearray="messagearray" :not_user="not_user" @on_delete="deleteMessage($event)"/>
         <div class="form-group" v-if="auth.id>0">
             <Smiles :status="chat_action.smile" @turnOffStatus="turnOffStatus" @insert_smile="addSmile($event)"></Smiles>
-            <Images :status="chat_action.image" @turnOffStatus="turnOffStatus"></Images>
+            <Images :status="chat_action.image" @turnOffStatus="turnOffStatus" @insert_image="addImage($event)"></Images>
             <Color :status="chat_action.color"  @turnOffStatus="turnOffStatus" @textarealistener="textareafoo($event)"></Color>
             <div class="form-group-toolbar">
                 <img src="../../icons/bold.svg" alt="" class="toolbar_item" @click="bold()">
@@ -78,7 +78,7 @@
         components: {
           Smiles,Images,Color
         },
-        props: ['auth'],
+        props: ['auth','not_user'],
         data: ()=>({
             isUser: true,
             messagearray: [],
@@ -89,10 +89,12 @@
                 'color': false
             },
             textarea: '',
-            smiles: []
+            smiles: [],
+            images: {}
         }),
         created(){
             axios.get('/chat/get_messages').then((response) => {
+                console.log('all', response.data)
                 response.data.forEach((item,index)=> {
                     this.messagearray.push({
                         id: item.id,
@@ -108,9 +110,9 @@
             })
         },
         mounted() {
+            console.log('isAdmin ',this.not_user);
             window.Echo.channel('chat').listen('NewChatMessageAdded', ({data}) => {
-                console.log('Полученые данные через сокет: ');
-                console.log(data);
+                console.log(data)
                 this.messagearray.unshift({
                     id: data.id,
                     flag: data.country_flag,
@@ -121,16 +123,14 @@
                     user_id: data.user.id,
                     visible: true
                 });
-                console.log(this.messagearray)
             });
         },
         methods: {
             sendMessage(){
-                this.textMessage = chatHelper.parsePath(this.textMessage, this.smiles);
                     axios.post('/chat/insert_message', {
                         user_id: this.auth.id,
                         file_path: "",
-                        message: this.textMessage,
+                        message: chatHelper.parsePath(this.textMessage, this.smiles, this.images),
                         imo: ""});
                         /*.then((response) => {
                             console.log('Полученые данные методом POST: ');
@@ -140,6 +140,7 @@
                     this.textMessage = '';
 
             },
+
             getSelection: chatHelper.getSelection,
             bold: chatHelper.bold,
             italic: chatHelper.italic,
@@ -147,6 +148,7 @@
             link: chatHelper.link,
             img: chatHelper.img,
             selectItem: function(type) {
+                this.textMessage = document.getElementById('pop_editor').value;
                 let self = this;
                 Object.keys(self.chat_action).forEach(function(key) {
                     if(type === key){
@@ -158,6 +160,7 @@
             },
 
             turnOffStatus: function() {
+
                 let self = this;
                 Object.keys(self.chat_action).forEach(function(key) {
                     self.chat_action[key] = false;
@@ -168,8 +171,15 @@
                 this.textMessage = str;
             },
             addSmile(smile_object) {
-                this.textMessage = smile_object.str;
+                this.textMessage += smile_object.str;
                 this.smiles = smile_object.smlies;
+            },
+            addImage(image_object) {
+                this.textMessage += image_object.str;
+                this.images = image_object.images;
+            },
+            deleteMessage(id) {
+                this.messagearray = this.messagearray.filter(item => item.id!=id );
             }
 
 

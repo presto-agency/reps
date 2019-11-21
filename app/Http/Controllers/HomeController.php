@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ForumTopic;
+use Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,6 +16,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
+        $isAdmin = 0;
+        if(Auth::check()){
+            $isAdmin = auth()->user()->isNotUser();
+        }
+
+
+        return view('home.index', compact('isAdmin'));
     }
 }

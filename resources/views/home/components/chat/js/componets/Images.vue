@@ -1,20 +1,19 @@
 <template>
-   <!-- <transition name="fade">
+   <transition name="fade">
         <div v-if="status" class="component_image">
-            <b-card no-body>
-                <b-tabs v-model="tabIndex" card>
-                    <b-tab v-for="(imagesbycategory, key ) in images" :key ="`${key}`" :title="`${key}`" >
-                        <div class="">
-                            <img v-for="(image, index) in imagesbycategory" :key ="`image-${index}`"
-                                 :src="`${image.filepath}`"
-                                 :alt="`${image.charactor}`"
-                                 :title="`${image.charactor}`" @click="selImage(image.charactor)">
-                        </div>
-                    </b-tab>
-                </b-tabs>
-            </b-card>
+            <div class="categories">
+                <p class="category__item" :class="{active: category.active}" v-for="(category,index) in all_images" @click="change_Category(index)">{{category.category}}</p>
+            </div>
+            <div class=" row images" >
+                <div class="image col-6" v-for="(image,index) in category_images.array" @click="selImage(image.charactor, index)" >
+                    <img
+                          :src="image.filepath"
+                          :alt="image.charactor"
+                          :title="image.charactor"/>
+                </div>
+            </div>
         </div>
-    </transition>-->
+    </transition>
 </template>
 
 <script>
@@ -24,23 +23,51 @@
         props: ["status"],
         data() {
             return {
-                tabIndex: 0,
-                images: []
+                current_category: '',
+                all_images: [],
+                category_images: {}
             }
         },
+        created() {
+            axios.get('chat/get_externalimages').then((response) => {
+                let i=0;
+                for( let key in response.data.images ) {
+                    this.all_images.push({
+                        category: key,
+                        active: false,
+                        array: Object.values(response.data.images)[i]
+                    });
+                    i++;
+                }
+                this.all_images[0].active= true;
+                this.category_images = this.all_images[0];
+            })
+        },
         methods: {
-            // get_images() {
-            //         axios.get('/get_externalimages').then((response) => {
-            //             response.data.forEach((item,index)=> {
-            //                 this.images.push({
-            //                     src: item.src,
-            //                     charactor: item.charactor
-            //
-            //                 })
-            //             });
-            //             if(response.data.length>0 )this.tabIndex = Object.keys(this.images)[0];
-            //         })
-            //     }
+            get_images() {
+                    axios.get('/get_externalimages').then((response) => {
+                        response.data.forEach((item,index)=> {
+                            this.images.push({
+                                src: item.src,
+                                charactor: item.charactor
+                            })
+                        });
+                        if(response.data.length>0 )this.tabIndex = Object.keys(this.images)[0];
+                    })
+                },
+                change_Category(selected_index) {
+                this.all_images.forEach((item)=>{
+                    item.active = false;
+                });
+                    this.all_images[selected_index].active = true;
+                    this.category_images = this.all_images[selected_index];
+                },
+            selImage: function(title,index){
+                let str = title.replace(title,'%' + title + '%');
+                this.$emit("insert_image", {'str':str,'images': this.category_images.array[index]});
+                this.$emit("turnOffStatus");
+            }
+
 
             }
         }
@@ -53,15 +80,37 @@
     padding: 4px;
     width: 100%;
     height: 400px;
-    max-height: 400px;
-    overflow-y: auto;
+
     background: white;
-    img {
-        max-width: 75px;
-        padding: 3px;
-        cursor: pointer;
-        &:hover {
-            background: #e6e6e6;
+    .categories {
+        padding: 10px 0;
+        .category__item {
+            display: inline;
+            cursor: pointer;
+            margin-left: 10px;
+            border-radius: 10px;
+            padding: 4px 5px;
+            box-shadow: 0 0 4px rgba(0,0,0,0.5);
+            background: #9fb4bf;
+        }
+        .active {
+            color: #fff;
+            background: linear-gradient(45deg, #487cb0, #1079e3);
+        }
+    }
+    .images {
+        border-top: 1px solid gray;
+        margin: 0;
+        max-height: 330px;
+        overflow-y: auto;
+        .image {
+            cursor: pointer;
+            margin-top: 5px;
+            width: auto;
+            padding: 2px;
+            transition: all 0.2s;
+            &:hover {
+                box-shadow: 0 0 4px rgba(0,0,0,0.5);}
         }
     }
 }

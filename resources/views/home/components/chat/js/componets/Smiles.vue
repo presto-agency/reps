@@ -3,7 +3,7 @@
     <div v-if="status" class="component_smiles">
         <div class="">
             <img v-for="(smile, index) in smiles" :key ="`smile-${index}`"
-                 :src="`/images/${smile.src}`"
+                 :src="`storage/chat/smiles/${smile.src}`"
                  :alt="`${smile.charactor}`"
                  :title="`${smile.charactor}`" @click="selSmile(smile.charactor)">
         </div>

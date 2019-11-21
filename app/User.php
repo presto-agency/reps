@@ -76,7 +76,7 @@ class User extends Authenticatable
 
     public function isNotUser()
     {
-        return $this->roles->name != 'user' ? true : false;
+        return $this->roles->name != 'user' ? 1 : 0;
     }
 
     public function superAdminRoles()

@@ -14,9 +14,10 @@ export const getSelection = () => {
 };
 export const strParse= (str) => {
 
+    str= str.replace(/\[url\]([\s\S]*)\[\/url\]/gim, '<a href="$1">Ссылка</a>');
+    str= str.replace(/%([\s\S]*)%/gim, '<img src="$1"  alt="picture"/>');
+    str= str.replace(/;([\s\S]*);/gim, '<img src="storage/chat/smiles/$1" style="display: inline;" alt="smile"/>');
     str = str.replace(/\[img\]([\s\S]*)\[\/img\]/gim, '<img src="$1" style="max-width: 100%;" alt="Incorrect image link"/>');
-    str= str.replace(/\[url\]([\s\S]*)\[\/url\]/gim, '<a href="$1">$1</a>');
-    str= str.replace(/;([\s\S]*);/gim, '<img src="$1" style="width: 24px; display: inline;" alt="smile"/>');
     for(let i=1; i<=6; i++) {
         if(str.search(`c${i}`)>-1) {
             if(i===1)
@@ -35,13 +36,15 @@ export const strParse= (str) => {
     }
     return str
 };
-export const parsePath = (mes,smiles) => {
+export const parsePath = (mes,smiles,images) => {
     if(mes.search(';')>-1){
         smiles.forEach((item)=>{
             if(mes.search(item.charactor)>-1)
                 mes = mes.replace(/;([\s\S]*);/gim, `;${item.src};`);
         })
     }
+    if(mes.search('%')>-1)
+            mes = mes.replace(/%([\s\S]*)%/gim, `%${images.filepath}%`);
     return mes;
 };
 export const getFilterUser = (text) => {

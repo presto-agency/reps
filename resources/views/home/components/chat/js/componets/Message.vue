@@ -11,7 +11,7 @@
                     </a>
                 </div>
                 <div class=" block_close">
-                    <button @click="deleteMessage(item.id)">
+                    <button @click="deleteMessage(item.id)" v-if="not_user===1">
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times"
                              class="svg-inline--fa fa-times fa-w-11" role="img"
                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512">
@@ -35,14 +35,14 @@
 <script>
     import * as chatHelper from '../helper/chatHelper';
 export default {
-    props: ['messagearray'],
+    props: ['messagearray','not_user'],
     data: ()=>({
-        ignored_users: [{}],
-        message_insert: ''
+        ignored_users: [{}]
     }),
     methods: {
         deleteMessage(id) {
-            this.messagearray = this.messagearray.filter(item => item.id!=id );
+            this.$emit('on_delete',id);
+            axios.delete(`chat/delete/${id}\'`);
         }
     }
 }
