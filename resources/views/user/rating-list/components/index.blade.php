@@ -47,10 +47,10 @@
             @foreach($userReputations as $item)
                 <div class="body__wrap">
                     <div class="body__info change_gray">
-                        <p class="info__nickname night_text">{{$item->recipient->name}}</p>
-                        <img src="{{ asset($item->recipient->avatar) }}" class="info__flag" alt="flag">
-                        <img src="{{ asset('images/default/game-races'.$item->recipient->races->title.'.png') }}" class="info__cube" alt="race">
-                        <p class="info__text night_text">{{ $item->recipient->point ?? 0 }} pts | {{ $item->recipient->rating ?? 0 }} кг</p>
+                        <p class="info__nickname night_text">{{$item->sender->name}}</p>
+                        <img src="{{ asset($item->sender->avatar) }}" class="info__flag" alt="flag">
+                        <img src="{{ asset('images/default/game-races'.$item->sender->races->title.'.png') }}" class="info__cube" alt="race">
+                        <p class="info__text night_text">{{ $item->sender->point ?? 0 }} pts | {{ $item->sender->rating ?? 0 }} кг</p>
                         <span class="info__date night_text">{{ $item->created_at }}</span>
                     </div>
                     <div class="body__content night_modal">
