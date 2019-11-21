@@ -59,14 +59,13 @@ class ChatController extends Controller
 //            \Log::info($insert);
             if ($insert) {
                 $insert->load('user');
-
-                $model = $this->setFullMessage($insert);
-                event(new NewChatMessageAdded($model));
+                $resultModel = $this->setFullMessage($insert);
+                event(new NewChatMessageAdded($resultModel));
 
 //                return redirect()->back();
                 return response()->json([
                     'status' => 'ok',
-                    'id' => $model->id, 'user' => Auth::id()
+                    'id' => $resultModel->id, 'user' => Auth::id()
                 ], 200);
             }
 
@@ -86,26 +85,24 @@ class ChatController extends Controller
 //        $race = ($msg->user->race) ? Replay::$race_icons[$msg->user->race] : Replay::$race_icons['All'];
 //        $len_check = strlen($msg->message) > 350 ? true : false;
 //        $short_msg = $len_check ? $this->general_helper->closeAllTags(mb_substr($msg->message, 0, 350, 'utf-8')) . '... ' : $msg->message;
-        /*$result = array(
+        return array(
+            'id' => $msg->id,
             'user_id' => $msg->user_id,
             'user_name' => $msg->user_name,
             'message' => $msg->message,
-//            'short_msg' => $short_msg,
-//            'more_length' => $len_check,
-//            'show_more' => true,
             'to' => $msg->to,
             'file_path' => $msg->file_path,
             'imo' => $msg->imo,
             'created_at' => $msg->created_at,
-            'time' => $msg->created_at->format('h:mm'),
-//            'country_code' => $country_code,
-//            'race' => $race
-        );*/
+            'time' => $msg->created_at->format('H:i'),
+            'country_flag' => $country_flag,
+            'user' => $msg->user
+        );
 
-        $msg->time = $msg->created_at->format('H:i');
+        /*$msg->time = $msg->created_at->format('H:i');
         $msg->country_flag = $country_flag;
 
-        return $msg;
+        return $msg;*/
     }
 
     public function destroy($id){

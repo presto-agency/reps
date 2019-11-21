@@ -22,9 +22,9 @@
 
         @if($comments->isNotEmpty())
             @foreach($comments as $comment)
-                <div class="comments__wrapp">
+                <div class="comments__wrapp border_shadow">
                     @if(isset($comment->user) && !empty($comment->user))
-                        <div class="comments__info">
+                        <div class="comments__info change_gray">
                             @auth()
                                 @if(auth()->user()->userViewAvatars())
                                     @if(!empty($comment->user->avatar) && file_exists($comment->user->avatar))
@@ -52,7 +52,7 @@
                         </div>
                     @endif
                     <div class="comments__content">
-                        <div class="content__title"> {!! $comment->content  !!}</div>
+                        <div class="content__title night_text"> {!! $comment->content  !!}</div>
                     </div>
                     <div class="comments__items">
                         <div class="items__wrap">
