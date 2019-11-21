@@ -55,11 +55,10 @@ class UserGalleryController extends Controller
         $userGallery = new UserGallery;
         $userGallery->user_id = auth()->id();
         $userGallery->sign = $request->get('sign');
-        if ($request->has('for_adults')) {
-            $userGallery->for_adults = $request->get('for_adults');
-        } else {
+        if ($request->exists('sign') == false) {
             $userGallery->for_adults = 0;
         }
+        $userGallery->for_adults = $request->get('for_adults');
         // Check have upload file
         if ($request->hasFile('picture')) {
             // Check if upload file Successful Uploads
@@ -93,7 +92,12 @@ class UserGalleryController extends Controller
     {
         User::findOrFail($id);
         $relation = ['comments'];
-        $row = ['id', 'sign', 'positive_count', 'negative_count', 'picture', 'user_id'];
+        $row = ['id',
+                'sign',
+                'positive_count',
+                'negative_count',
+                'picture',
+                'user_id'];
 
         $userImage = GalleryHelper::getUserImage($user_gallery, $relation, $row);
         // get previous user id
@@ -120,7 +124,13 @@ class UserGalleryController extends Controller
     {
         User::findOrFail($id);
         $relation = [];
-        $row = ['id', 'sign', 'positive_count', 'negative_count', 'picture', 'sign', 'for_adults'];
+        $row = ['id',
+                'sign',
+                'positive_count',
+                'negative_count',
+                'picture',
+                'sign',
+                'for_adults'];
         $userImage = GalleryHelper::getUserImage($user_gallery, $relation, $row);
 
         // get previous user id
@@ -153,7 +163,9 @@ class UserGalleryController extends Controller
     public function loadGallery()
     {
         User::findOrFail(request('id'));
-        $row = ['id', 'picture', 'user_id'];
+        $row = ['id',
+                'picture',
+                'user_id'];
 
         if (request()->ajax()) {
             $visible_title = false;

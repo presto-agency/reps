@@ -14,12 +14,13 @@ use SleepingOwl\Admin\Section;
 /**
  * Class InterviewQuestionObserver
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\InterviewQuestion $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class InterviewQuestion extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -47,7 +48,7 @@ class InterviewQuestion extends Section
         $display = AdminDisplay::datatablesAsync();
         $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
         $display->paginate(10);
-        $display->with(['answers','userAnswers']);
+        $display->with(['answers', 'userAnswers']);
 
         $display->setApply(function ($query) {
             $query->orderByDesc('id');
@@ -72,26 +73,29 @@ class InterviewQuestion extends Section
             $count_answer = AdminColumn::count('answers', 'Количество вариатов')
                 ->setWidth(100),
 
-            $count_answerUsers = AdminColumn::count('userAnswers', 'Количество ответов')
+            $count_answerUsers = AdminColumn::count('userAnswers',
+                'Количество ответов')
                 ->setWidth(100),
 
 
         ]);
-        $control = $display->getColumns()->getControlColumn();
+        $control    = $display->getColumns()->getControlColumn();
         $buttonShow = $this->show($display);
         $control->addButton($buttonShow);
+
         return $display;
     }
 
     /**
      * @param $id
+     *
      * @return \SleepingOwl\Admin\Form\FormPanel
      * @throws \Exception
      */
     public function onEdit($id)
     {
-        InterviewVariantAnswerComposer::$method = 'edit';
-        InterviewVariantAnswerComposer::$id = $id;
+//        InterviewVariantAnswerComposer::$method = 'edit';
+//        InterviewVariantAnswerComposer::$id     = $id;
 
         $form = AdminForm::panel();
 
@@ -103,21 +107,25 @@ class InterviewQuestion extends Section
                             ->setHtmlAttribute('placeholder', 'Вопрос')
                             ->setHtmlAttribute('maxlength', '255')
                             ->setHtmlAttribute('minlength', '1')
-                            ->setValidationRules(['required', 'string', 'between:1,255']),
-                        $active = AdminFormElement::checkbox('active', 'Активный')
+                            ->setValidationRules([
+                                'required', 'string', 'between:1,255',
+                            ]),
+                        $active = AdminFormElement::checkbox('active',
+                            'Активный')
                             ->setValidationRules(['boolean']),
-                        $active = AdminFormElement::checkbox('for_login', 'Только для авторизированных')
+                        $active = AdminFormElement::checkbox('for_login',
+                            'Только для авторизированных')
                         ,
                     ];
                 })->addColumn(function () {
                     return [
-                        $answer = AdminFormElement::hidden('answers')
-                            ->setValidationRules(['nullable']),
-                        AdminFormElement::view('admin.interviewQuestion.answers', $data = [], function () {
-                        })->render()
+                        AdminFormElement::hasMany('answers',[
+                            AdminFormElement::text('answer'),
+                        ])
                     ];
                 })
         );
+
         return $form;
     }
 
@@ -127,37 +135,42 @@ class InterviewQuestion extends Section
      */
     public function onCreate()
     {
-        InterviewVariantAnswerComposer::$method = 'create';
-        $form = AdminForm::panel();
+//        InterviewVariantAnswerComposer::$method = 'create';
 
-        $form->setItems(
-            AdminFormElement::columns()
-                ->addColumn(function () {
-                    return [
-                        $question = AdminFormElement::text('question', 'Вопрос')
-                            ->setHtmlAttribute('placeholder', 'Вопрос')
-                            ->setHtmlAttribute('maxlength', '255')
-                            ->setHtmlAttribute('minlength', '1')
-                            ->setValidationRules(['required', 'string', 'between:1,255']),
-                        $active = AdminFormElement::checkbox('active', 'Активный')
-                            ->setValidationRules(['boolean'])
-                            ->setHtmlAttribute('checked', 'checked')
-                            ->setDefaultValue(true),
-                        $for_login = AdminFormElement::checkbox('for_login', 'Только для авторизированных')
-                            ->setValidationRules(['boolean'])
-                            ->setDefaultValue(false),
-                    ];
-                })->addColumn(function () {
-                    return [
-                        $answer = AdminFormElement::hidden('answers')
-                            ->setValidationRules(['nullable']),
-
-                        AdminFormElement::view('admin.interviewQuestion.answers', $data = [], function () {
-                        })->render()
-                    ];
-                })
-        );
-        return $form;
+        return $this->onEdit('');
+//        $form = AdminForm::panel();
+//
+//        $form->setItems(
+//            AdminFormElement::columns()
+//                ->addColumn(function () {
+//                    return [
+//                        $question = AdminFormElement::text('question', 'Вопрос')
+//                            ->setHtmlAttribute('placeholder', 'Вопрос')
+//                            ->setHtmlAttribute('maxlength', '255')
+//                            ->setHtmlAttribute('minlength', '1')
+//                            ->setValidationRules([
+//                                'required', 'string', 'between:1,255',
+//                            ]),
+//                        $active = AdminFormElement::checkbox('active',
+//                            'Активный')
+//                            ->setValidationRules(['boolean'])
+//                            ->setHtmlAttribute('checked', 'checked')
+//                            ->setDefaultValue(true),
+//                        $for_login = AdminFormElement::checkbox('for_login',
+//                            'Только для авторизированных')
+//                            ->setValidationRules(['boolean'])
+//                            ->setDefaultValue(false),
+//                    ];
+//                })->addColumn(function () {
+//                    return [
+//                        AdminFormElement::hasMany('answers',[
+//                            AdminFormElement::text('answer'),
+//                        ])
+//                    ];
+//                })
+//
+//        );
+//        return $form;
     }
 
     /**
@@ -178,14 +191,18 @@ class InterviewQuestion extends Section
 
     /**
      * @param $display
+     *
      * @return \SleepingOwl\Admin\Display\ControlLink
      */
     public function show($display)
     {
 
-        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $id = $model->getKey();
+        $link = new \SleepingOwl\Admin\Display\ControlLink(function (
+            \Illuminate\Database\Eloquent\Model $model
+        ) {
+            $id  = $model->getKey();
             $url = asset("admin/interview_questions/$id/show");
+
             return $url;
         }, function (\Illuminate\Database\Eloquent\Model $model) {
             return 'Просмотреть';
@@ -196,4 +213,5 @@ class InterviewQuestion extends Section
 
         return $link;
     }
+
 }
