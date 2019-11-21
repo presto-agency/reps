@@ -32,10 +32,14 @@
         </svg>
             @isset($type)
                 @if($type == "user")
+
                     <p class="title__text night_text">{{__('Пользовательские')}}</p>
-                @endif
-                @if($type == "pro")
+                @elseif($type == "pro")
+
                     <p class="title__text night_text">{{__('Профессиональные')}}</p>
+
+                @else
+                    <p class="title__text night_text">{{__('Реплеи')}}</p>
                 @endif
             @endisset
         </div>
