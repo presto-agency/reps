@@ -1,4 +1,3 @@
-@inject('checkFile', 'App\Services\ServiceAssistants\PathHelper')
 @isset($replay)
     <section class="page_replay">
         <div class="wrapper">
@@ -17,7 +16,7 @@
                         <a href="{{route('user_profile',['id'=>$replay->users->id])}}">{{$replay->users->name}}</a>
                         @auth()
                             @if(auth()->user()->userViewAvatars())
-                                @if(!empty($replay->users->avatar) && $checkFile::checkFileExists($replay->users->avatar))
+                                @if(!empty($replay->users->avatar) && checkFile::checkFileExists($replay->users->avatar))
                                     <img class="icon_bars" src="{{asset($replay->users->avatar)}}" alt="avatar"/>
                                 @else
                                     <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"
@@ -25,7 +24,7 @@
                                 @endif
                             @endif
                         @else
-                            @if(!empty($replay->users->avatar) && $checkFile::checkFileExists($replay->users->avatar))
+                            @if(!empty($replay->users->avatar) && checkFile::checkFileExists($replay->users->avatar))
                                 <img class="icon_bars" src="{{asset($replay->users->avatar)}}" alt="avatar"/>
                             @else
                                 <img class="icon_bars" src="{{asset($replay->users->defaultAvatar())}}"
@@ -144,7 +143,7 @@
                 </div>
                 <div class="col-xl-4 content_right">
                     @if(isset($replay->maps) && !empty($replay->maps))
-                        @if(!empty($replay->maps->url) && $checkFile::checkFileExists($replay->maps->url))
+                        @if(!empty($replay->maps->url) && checkFile::checkFileExists($replay->maps->url))
                             <p class="title">{{$replay->maps->name}}</p>
                             <img class="img-fluid" src="{{asset($replay->maps->url)}}" alt="map">
                         @else

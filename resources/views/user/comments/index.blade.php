@@ -1,4 +1,4 @@
-add-comment border_shadow@extends('layouts.app')
+@extends('layouts.app')
 
 @section('breadcrumbs')
     {{ Breadcrumbs::render('user-comments',request('id')) }}

@@ -11,7 +11,6 @@
 
 @section('content')
     <div id="last_tournament"></div>
-    {{--    @include('tournament.components.index')--}}
 @endsection
 @section('ess21-custom-script')
     <script type="text/javascript">
