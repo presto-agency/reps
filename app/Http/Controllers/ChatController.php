@@ -60,13 +60,13 @@ class ChatController extends Controller
             if ($insert) {
                 $insert->load('user');
 
-                $insert = $this->setFullMessage($insert);
-                event(new NewChatMessageAdded($insert));
+                $model = $this->setFullMessage($insert);
+                event(new NewChatMessageAdded($model));
 
 //                return redirect()->back();
                 return response()->json([
                     'status' => 'ok',
-                    'id' => $insert->id, 'user' => Auth::id()
+                    'id' => $model->id, 'user' => Auth::id()
                 ], 200);
             }
 

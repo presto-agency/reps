@@ -239,13 +239,13 @@
                     {{ $errors->first('replay_video_iframe') }}
                 </div>
             @endif
-            <div class="row">
+            <div class="row gallery-file__container upload-image">
                 <div class="col-8">
-                    <input id="uploadFile" class="f-input night_modal_special night_text" readonly/>
+                    <input id="uploadFile" class="f-input night_modal_special night_text night_input" readonly/>
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
-                        <span>* Выбрать файл</span>
+                        <span>Выбрать файл</span>
                         <input id="uploadBtn" type="file" class="upload "
                                name="file"/>
                     </div>

@@ -43,7 +43,7 @@
             </div>
         @endif
     </div>
-    <div class="detailed-news__info">
+    <div class="detailed-news__info night_modal border_shadow">
         <div class="info__items">
             <span class="items__watch">
                 <svg id="Capa_1" enable-background="new 0 0 515.556 515.556" viewBox="0 0 515.556 515.556"
@@ -97,12 +97,12 @@
         </div>
     </div>
     <hr>
-    <div class="detailed-news__card card">
-        <div class="card-body">
+    <div class="detailed-news__card card night_modal night_text border_shadow">
+        <div class="card-body ">
             @if(!empty($news->preview_img) && File::exists($news->preview_img))
                 <img src="{{ asset($news->preview_img) }}" class="img-fluid" alt="news">
             @endif
-            <h2 class="card-body__title"> {!! $news->preview_content !!}</h2>
+            <h2 class="card-body__title "> {!! $news->preview_content !!}</h2>
             <div class="card-body__text">{!! $news->content !!}</div>
             <div class="card-body__items">
                 <div class="card-body__items-wrap">
