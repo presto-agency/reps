@@ -1,3 +1,4 @@
+@inject('checkFile', 'App\Services\ServiceAssistants\PathHelper')
 @isset($replay)
     <section class="page_replay">
         <div class="wrapper">
@@ -36,7 +37,9 @@
             </div>
             <div class="title_block_gray change_gray">
                 <div class="title_top left_block">
-                    <span class="title_text">{{$replay->title}}</span>
+                    @if(isset($replay->content) && !empty($replay->content))
+                        <div>{!! $replay->content !!}</div>
+                    @endif
                 </div>
                 <div class="right_block">
                     <a href="#">
@@ -138,15 +141,13 @@
                     @endif
                 </div>
                 <div class="col-xl-4 content_right">
-                    <p class="title">{{$replay->title}}</p>
-                    @isset($replay->maps)
-                        @if(!empty($replay->maps->url))
-                            <img class="img-fluid" src="{{asset($replay->maps->url)}}" alt="map"
-                                 title="{{$replay->maps->name}}">
-                        @else
-                            <img class="img-fluid" src="{{asset($replay->maps->url)}}" alt="map">
-                        @endif
-                    @endisset
+                    <p class="title">{{$replay->maps->name}}</p>
+                    @if(!empty($replay->maps->url) && $checkFile::checkFileExists($replay->maps->url))
+                        <img class="img-fluid" src="{{asset($replay->maps->url)}}" alt="map"
+                             title="{{$replay->maps->name}}">
+                    @else
+                        <img class="img-fluid" src="{{asset($replay->maps->defaultMap())}}" alt="map">
+                    @endif
                     <div class="replay-rating">
                         <a href="#vote-modal" class="positive-vote vote-replay-up" data-toggle="modal" data-rating="1"
                            data-target="#likeModal"
@@ -235,10 +236,6 @@
         @if(isset($replay->video_iframe) && !empty($replay->video_iframe))
             <span>{{__('Видео:')}}</span>
             <div class="replay_video border_shadow">{!! $replay->video_iframe !!}</div>
-        @endif
-        @if(isset($replay->video_iframe) && !empty($replay->video_iframe))
-            <span>{{__('Контент:')}}</span>
-            <div class="replay_video border_shadow">{!! $replay->content !!}</div>
         @endif
     </section>
 @endisset
