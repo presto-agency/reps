@@ -43,7 +43,7 @@
                     </svg>
                 </button>
             </div>
-            <div class="col-xl-5 col-lg-5 col-md-2 col-sm-2 col-3 main_menu">
+            <div class="col-xl-6 col-lg-5 col-md-2 col-sm-2 col-3 main_menu">
                 <nav class="menu_navigation">
                     <a href="{{route('home.index')}}" title="Главная">ГЛАВНАЯ </a>
                     <a href="{{route('forum.index')}}" title="Форум">ФОРУМ</a>
@@ -64,7 +64,7 @@
                 </button>
             </div>
 
-            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-12 header_search {{ Auth::check() ? 'header_search_autorization' : '' }} ">
+            <div class="col-xl-3 col-lg-4 col-md-7 col-sm-7 col-12 header_search {{ Auth::check() ? 'header_search_autorization' : '' }} ">
                 <form  class="header_search" action="{{ route('search') }}" method="GET">
                     <div class="button_input">
                         <button>

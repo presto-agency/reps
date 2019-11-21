@@ -1416,7 +1416,7 @@
                 & .container_block{
                     & .replay-desc-right{
                         & p{
-                            font-size: 0.878vw;
+                            font-size: 1.3vw;
                         }
                     }
                     & .replay-desc-left{
@@ -1435,6 +1435,9 @@
             & .block_right{
                 & .container_block{
                     margin-top: 1.464vw;
+                    span{
+                        font-size: 1.3vw;
+                    }
                     & p{
                         font-size: 0.878vw;
                     }
@@ -2377,6 +2380,10 @@
     .modal_tournament{
         h5{
             font-size: 1.171vw;
+        }
+        span{
+            font-size: 1.2vw;
+            color: $blue;
         }
         .title_block_gray{
             padding: 0.732vw;
