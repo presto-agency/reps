@@ -81,7 +81,7 @@
             @endisset
         </div>
         <div class="container_btn">
-            <a href="{{route('replay.index',['type' =>'user'])}}" class="name_game" title="Пользовательские реплеи">
+            <a href="{{route('replay.index',['type' =>'user'])}}" class="name_game" >
                 <button class="button button__download-more">{{__('Пользовательские реплеи')}}</button>
             </a>
         </div>

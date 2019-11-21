@@ -39,7 +39,7 @@
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>Репутация:</span></div>
-                        <div class="right_block"><span class="blue">{{$user->countries->count_positive - $user->countries->count_negative}} кг</span>
+                        <div class="right_block"><span class="blue">{{$user->rating}} кг</span>
                         </div>
                     </div>
                 </div>
