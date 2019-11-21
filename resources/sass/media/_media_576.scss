@@ -1721,6 +1721,17 @@
             padding-left: 3.646vw;
             padding-right: 3.819vw;
             .info__items {
+                .right{
+                    a{
+                        display: flex;
+                        align-items: baseline;
+                        font-size:2.7vw ;
+                    }
+                    svg{
+                        width:4vw!important;
+                    }
+
+                }
                 .items__watch,
                 .items__comment {
                     svg {
