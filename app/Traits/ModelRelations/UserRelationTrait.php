@@ -21,21 +21,20 @@ trait UserRelation
         return $this->belongsTo(\App\Models\Race::class, 'race_id', 'id');
     }
 
-    public function totalReplays()
+    public function replays()
     {
         return $this->hasMany(\App\Models\Replay::class, 'user_id', 'id');
     }
 
-    public function totalNews()
+    public function news()
     {
         return $this->hasMany(\App\Models\ForumTopic::class, 'user_id', 'id')->whereNews(1);
     }
 
-    public function totalComments()
+    public function images()
     {
-        return $this->hasMany(\App\Models\Comment::class,'user_id', 'id');
+        return $this->hasMany(\App\Models\UserGallery::class, 'user_id', 'id');
     }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
