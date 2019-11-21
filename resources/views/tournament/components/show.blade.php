@@ -1,4 +1,3 @@
-@inject('checkFile', 'App\Services\ServiceAssistants\PathHelper')
 <section class="Page_tournamentDetail-content">
     <div class="wrapper border_shadow">
         <div class=" title_block">
@@ -159,7 +158,7 @@
                                                                                 class='title_text'>{{$item->name}}</span>
                                                                         </div>
                                                                         <div class='map'>
-                                                                            @if (!empty($item->url) && $checkFile::checkFileExists($item->url))
+                                                                            @if (!empty($item->url) && checkFile::checkFileExists($item->url))
                                                                                 <img src="{{asset($item->url)}}"
                                                                                      alt="map">
                                                                             @else
@@ -268,7 +267,7 @@
                         @if(isset($round['title']) && !empty($round['title']))
                             <p class="title_playersText">{{$round['title']}}</p>
                         @endif
-                        @if(!empty($round['map']['url']) && $checkFile::checkFileExists($round['map']['url']))
+                        @if(!empty($round['map']['url']) && checkFile::checkFileExists($round['map']['url']))
                             <a href='{{asset($round['map']['url'])}}'
                                title='{{$round['map']['name']}}'>{{$round['map']['name']}}</a>
                         @else
@@ -355,14 +354,8 @@
                                 <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-4 right_block">
                                     @for($i = 1; $i <= 7; $i++)
                                         @if(!empty($match->{"rep$i"}))
-                                            <a href="#"
-                                               onclick="event.preventDefault(); document.getElementById('download-match').submit();">{{"rep$i"}}</a>
-                                            <form id="download-match"
-                                                  action="{{ route('download.match',['tournament'=>$tournament->id,'rep'=> "rep$i"]) }}"
-                                                  method="POST"
-                                                  style="display: none;">
-                                                @csrf
-                                            </form>
+                                            <a href="{{ route('download.match',['match'=>$match->id,'rep'=> "rep$i"]) }}"
+                                               >{{"rep$i"}}</a>
                                         @endif
                                     @endfor
                                 </div>
