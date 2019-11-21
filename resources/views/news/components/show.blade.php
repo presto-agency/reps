@@ -13,7 +13,7 @@
 			c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
 			c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
             </svg>
-            <p class="title__text">{{$news->title }}</p>
+            <p class="title__text night_text">{{$news->title }}</p>
         </div>
         @if($news->author)
             <div class="title__wrap">
@@ -33,19 +33,19 @@
                     @endif
                 @endauth
 
-                <p class="title__nickname">{{ $news->author->name ? $news->author->name : 'user' }}</p>
+                <p class="title__nickname night_text">{{ $news->author->name ? $news->author->name : 'user' }}</p>
                 <img src="{{ $news->author->countries->flag }}" title="{{ $news->author->countries->name }}"
                      title="{{ $news->author->races->title }}" class="title__flag" alt="flag">
                 <img src="{{asset("images/default/game-races/" . $news->author->races->title . ".png")}}"
                      class="title__cube" alt="race">
-                <p class="title__text">{{ $news->author->comments_count.'  pts' }}
+                <p class="title__text night_text">{{ $news->author->comments_count.'  pts' }}
                     | {{ $news->author->count_positive - $news->author->count_negative.' кг' }}</p>
             </div>
         @endif
     </div>
     <div class="detailed-news__info night_modal border_shadow">
         <div class="info__items">
-            <span class="items__watch">
+            <span class="items__watch night_text">
                 <svg id="Capa_1" enable-background="new 0 0 515.556 515.556" viewBox="0 0 515.556 515.556"
                      xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -55,7 +55,7 @@
                 </svg>
                 <span>{{$news->reviews}}</span>
             </span>
-            <span class="items__comment">
+            <span class="items__comment night_text">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      viewBox="0 0 511.6 511.6" style="enable-background:new 0 0 511.6 511.6;" xml:space="preserve">
@@ -102,7 +102,7 @@
             @if(!empty($news->preview_img) && File::exists($news->preview_img))
                 <img src="{{ asset($news->preview_img) }}" class="img-fluid" alt="news">
             @endif
-            <h2 class="card-body__title "> {!! $news->preview_content !!}</h2>
+            <h2 class="card-body__title night_text"> {!! $news->preview_content !!}</h2>
             <div class="card-body__text">{!! $news->content !!}</div>
             <div class="card-body__items">
                 <div class="card-body__items-wrap">
@@ -120,7 +120,7 @@
                     </a>
                 </div>
                 <div class="card-body__items-wrap">
-                    <a class="items__like" href="#" data-toggle="modal" data-target="#likeModal_news">
+                    <a class="items__like night_text" href="#" data-toggle="modal" data-target="#likeModal_news">
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -137,9 +137,9 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content ">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="likeModalLabel">Оставте коментарий</h5>
+                                    <h5 class="modal-title night_text" id="likeModalLabel">Оставте коментарий</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true" class="close_modal">&times;</span>
+                                        <span aria-hidden="true" class="close_modal night_text">&times;</span>
                                     </button>
                                 </div>
                                 {{--                                    авторизований--}}
@@ -165,9 +165,9 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content ">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="likeModalLabel">Оставте коментарий</h5>
+                                    <h5 class="modal-title night_text" id="likeModalLabel">Оставте коментарий</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true" class="close_modal">&times;</span>
+                                        <span aria-hidden="true" class="close_modal night_text">&times;</span>
                                     </button>
                                 </div>
                                 {{--                                    авторизований--}}
