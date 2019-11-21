@@ -18,12 +18,13 @@ use SleepingOwl\Admin\Section;
 /**
  * Class ReplayMap
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\ReplayMap $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class ReplayMap extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -63,7 +64,9 @@ class ReplayMap extends Section
                 ->setWidth(50),
 
             $url = AdminColumn::image(function ($model) {
-                if (!empty($model->url) && PathHelper::checkFileExists($model->url)) {
+                if ( ! empty($model->url)
+                    && PathHelper::checkFileExists($model->url)
+                ) {
                     return $model->url;
                 } else {
                     return 'images/default/map/nominimap.png';
@@ -78,7 +81,8 @@ class ReplayMap extends Section
             $id = null,
             $url = null,
             $name = AdminColumnFilter::select()
-                ->setOptions((new \App\Models\ReplayMap())->pluck('name', 'name')->toArray())
+                ->setOptions((new \App\Models\ReplayMap())->pluck('name',
+                    'name')->toArray())
                 ->setOperator(FilterInterface::CONTAINS)
                 ->setPlaceholder('Название карты')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
@@ -98,7 +102,7 @@ class ReplayMap extends Section
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
@@ -108,21 +112,27 @@ class ReplayMap extends Section
         $display->setItems([
 
             $picture = AdminFormElement::image('url', 'Картинка карты')
-                ->setUploadPath(function (UploadedFile $file) use ($id) {
-                    $filePath = \App\Models\ReplayMap::where('id', $id)->value('url');
-                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/replays/maps", $filePath);
+                ->setUploadPath(function (UploadedFile $file) {
+                    return 'storage'
+                        .PathHelper::checkUploadsFileAndPath("/images/replays/maps",
+                            $this->getModelValue()->getAttribute('url'));
                 })
-                ->setValidationRules(['required',
-                                      'max:2048']),
+                ->setValidationRules([
+                    'required',
+                    'max:2048',
+                ]),
 
             $name = AdminFormElement::text('name', 'Название карты')
                 ->setHtmlAttribute('placeholder', 'Название карты')
                 ->setHtmlAttribute('maxlength', '255')
                 ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules(['required',
-                                      'string',
-                                      'between:1,255']),
+                ->setValidationRules([
+                    'required',
+                    'string',
+                    'between:1,255',
+                ]),
         ]);
+
         return $display;
     }
 

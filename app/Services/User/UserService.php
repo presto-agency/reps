@@ -9,10 +9,10 @@
 namespace App\Services\User;
 
 use App\Models\UserFriend;
+use App\Services\ImageService\ResizeImage;
 use App\Services\ServiceAssistants\PathHelper;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UserService
 {
@@ -50,7 +50,7 @@ class UserService
             unset($user_data['race']);
         }
 
-        $user_data['avatar'] = self::saveFile($request, $user, $user_data);
+        $user_data['avatar'] = self::saveFile($request);
 
         if (is_null($user_data['avatar'])) {
             unset($user_data['avatar']);
@@ -75,18 +75,22 @@ class UserService
 
     }
 
-    public static function saveFile($request, $data, $user_data)
+    public static function saveFile($request)
     {
         // Check have input file
         if ($request->hasFile('avatar')) {
             // Check if upload file Successful Uploads
             if ($request->file('avatar')->isValid()) {
-                // Check Old file delete if exists and path create if not exists
-                PathHelper::checkUploadsFileAndPath("/images/users/avatars", auth()->user()->avatar);
-                // Upload file on server
+                //Check path Check old file4delete
+                $path = PathHelper::checkUploadsFileAndPath('images/users/avatars', auth()->user()->avatar);
                 $image = $request->file('avatar');
-                $filePath = $image->store('/images/users/avatars', 'public');
-                return 'storage/' . $filePath;
+                if ($image->getClientOriginalExtension() == "gif") {
+                    $filePath = 'storage/'.$f = $image->store('images/users/avatars','public');
+                }else{
+                    //resize
+                    $filePath = ResizeImage::resizeImg($image, 125, 125, true, $path);
+                }
+                return $filePath;
             } else {
                 back();
             }

@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\Country;
-use App\Services\ImageService\ResizeImage;
 
 class CountryObserver
 {

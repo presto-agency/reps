@@ -20,12 +20,13 @@ use SleepingOwl\Admin\Section;
 /**
  * Class User
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\User $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class User extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -55,8 +56,14 @@ class User extends Section
 
         $display = AdminDisplay::datatablesAsync()
             ->setHtmlAttribute('class', 'table-info table-sm text-center small')
-            ->with(['roles',
-                    'countries'])
+            ->with([
+                'roles',
+                'countries',
+                'comments',
+                'topics',
+                'replays',
+                'images',
+            ])
             ->paginate(20);
         $display->setApply(function ($query) {
             $query->orderByDesc('id');
@@ -71,7 +78,9 @@ class User extends Section
                 ->setWidth(70),
 
             $avatar = AdminColumn::image(function ($model) {
-                if (!empty($model->avatar) && PathHelper::checkFileExists($model->avatar)) {
+                if ( ! empty($model->avatar)
+                    && PathHelper::checkFileExists($model->avatar)
+                ) {
                     return $model->avatar;
                 } else {
                     return 'images/default/avatar/avatar.png';
@@ -88,27 +97,39 @@ class User extends Section
                 ->setWidth(120),
 
             $rating = AdminColumn::custom('Рейтинг', function ($model) {
-                $thumbsUp = '<span style="font-size: 1em; color: green;"><i class="fas fa-plus"></i></span>';
+                $thumbsUp
+                        = '<span style="font-size: 1em; color: green;"><i class="fas fa-plus"></i></span>';
                 $equals = '<i class="fas fa-equals"></i>';
-                $thumbsDown = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
-                return $thumbsUp . $model->positive_count . '<br/>' . $equals . ($model->positive_count - $model->negative_count) . '<br/>' . $thumbsDown . $model->negative_count;
+                $thumbsDown
+                        = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
+
+                return $thumbsUp.$model->positive_count.'<br/>'.$equals
+                    .($model->positive_count - $model->negative_count).'<br/>'
+                    .$thumbsDown.$model->negative_count;
             })->setWidth(10),
 
-            $count_topic = AdminColumn::text('count_topic', '<small>Темы</small>')
+            $count_topic = AdminColumn::count('topics',
+                '<small>Темы</small>')
                 ->setWidth(45),
 
-            $count_replay = AdminColumn::text('count_replay', '<small>Replay</small>')
+            $count_replay = AdminColumn::count('replays',
+                '<small>Replay</small>')
                 ->setWidth(50),
 
-            $count_picture = AdminColumn::text('count_picture', '<small>Гале<br/>рея</small>')
+            $count_picture = AdminColumn::count('images',
+                '<small>Гале<br/>рея</small>')
                 ->setWidth(40),
 
-            $count_comment = AdminColumn::text('count_comment', '<small>Коме<br/>нтарии</small>')
+            $count_comment = AdminColumn::count('comments',
+                '<small>Коме<br/>нтарии</small>')
                 ->setWidth(55),
 
-            $email_verified_at = AdminColumn::custom('<small>Почта</small>', function ($model) {
-                return !empty($model->email_verified_at) ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
-            })->setFilterCallback(function ($column, $query, $search) {
+            $email_verified_at = AdminColumn::custom('<small>Почта</small>',
+                function ($model) {
+                    return ! empty($model->email_verified_at)
+                        ? '<i class="fa fa-check"></i>'
+                        : '<i class="fa fa-minus"></i>';
+                })->setFilterCallback(function ($column, $query, $search) {
                 if ($search == 'yes') {
                     $query->whereNotNull('email_verified_at');
                 }
@@ -119,11 +140,13 @@ class User extends Section
 
             })->setWidth(10),
 
-            $ban = AdminColumnEditable::checkbox('ban')->setLabel('<small>Бан</small>')
+            $ban = AdminColumnEditable::checkbox('ban')
+                ->setLabel('<small>Бан</small>')
                 ->append(AdminColumn::filter('ban'))
                 ->setWidth(10),
 
-            $activity_at = AdminColumn::datetime('activity_at', '<small>Акти<br/>вность</small>')
+            $activity_at = AdminColumn::datetime('activity_at',
+                '<small>Акти<br/>вность</small>')
                 ->setHtmlAttribute('class', 'small')
                 ->setFormat('d-m-Y H:i:s')
                 ->setWidth(50),
@@ -164,11 +187,12 @@ class User extends Section
                 ->setHtmlAttributes(['style' => 'width: 100%']),
         ]);
         $display->getColumnFilters()->setPlacement('table.header');
+
         return $display;
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
@@ -179,14 +203,16 @@ class User extends Section
         $display->setItems([
             $avatar = AdminFormElement::image('avatar', 'Аватар')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/users/avatars", auth()->user()->avatar);
+                    return 'storage'
+                        .PathHelper::checkUploadsFileAndPath("/images/users/avatars",
+                            auth()->user()->avatar);
                 })
                 ->setValueSkipped(empty(request('avatar')))
                 ->setValidationRules([
                     'nullable',
-                    'max:2048'
-                ])
-                ->setUploadSettings([
+                    'max:2048',
+                    'mimes:jpeg,png,jpg,gif,svg',
+                ])->setUploadSettings([
                     'orientate' => [],
                     'resize'    => [
                         120,
@@ -194,9 +220,12 @@ class User extends Section
                         function ($constraint) {
                             $constraint->upsize();
                             $constraint->aspectRatio();
-                        }
+                        },
                     ],
-                ]),
+                ])
+
+            ,
+
             $email = AdminFormElement::text('email', 'Почта')
                 ->setHtmlAttribute('placeholder', 'Почта')
                 ->setHtmlAttribute('autocomplete', 'off')
@@ -207,7 +236,7 @@ class User extends Section
                     'string',
                     'email',
                     'max:255',
-                    'unique:users,email,' . $id
+                    'unique:users,email,'.$id,
                 ]),
 
             $name = AdminFormElement::text('name', 'Имя')
@@ -219,15 +248,16 @@ class User extends Section
                     'required',
                     'string',
                     'between:3,30',
-                    'unique:users,name,' . $id,
-                    'regex:/^[\p{L}0-9,.)\-_\s]+$/u'
+                    'unique:users,name,'.$id,
+                    'regex:/^[\p{L}0-9,.)\-_\s]+$/u',
                 ]),
 
             $birthday = AdminFormElement::date('birthday', 'День рождения')
-                ->setHtmlAttribute('placeholder', Carbon::now()->format('d-m-Y'))
+                ->setHtmlAttribute('placeholder',
+                    Carbon::now()->format('d-m-Y'))
                 ->setValidationRules([
                     'nullable',
-                    'date_format:d-m-Y'
+                    'date_format:d-m-Y',
                 ]),
 
             $homepage = AdminFormElement::text('homepage', 'Homepage')
@@ -237,7 +267,7 @@ class User extends Section
                 ->setValidationRules([
                     'nullable',
                     'string',
-                    'between:1,255'
+                    'between:1,255',
                 ]),
 
             $discord = AdminFormElement::text('isq', 'Discord')
@@ -247,7 +277,7 @@ class User extends Section
                 ->setValidationRules([
                     'nullable',
                     'string',
-                    'between:1,255'
+                    'between:1,255',
                 ]),
 
             $skype = AdminFormElement::text('skype', 'Skype')
@@ -257,7 +287,7 @@ class User extends Section
                 ->setValidationRules([
                     'nullable',
                     'string',
-                    'between:1,255'
+                    'between:1,255',
                 ]),
 
             $vk_link = AdminFormElement::text('vk_link', 'Vkontakte')
@@ -267,7 +297,7 @@ class User extends Section
                 ->setValidationRules([
                     'nullable',
                     'string',
-                    'between:1,255'
+                    'between:1,255',
                 ]),
 
             $fb_link = AdminFormElement::text('fb_link', 'Facebook')
@@ -277,7 +307,7 @@ class User extends Section
                 ->setValidationRules([
                     'nullable',
                     'string',
-                    'between:1,255'
+                    'between:1,255',
                 ]),
 
             $role_id = AdminFormElement::select('role_id', 'Роль')
@@ -294,21 +324,22 @@ class User extends Section
                 ->setDisplay('title'),
 
             $ban = AdminFormElement::checkbox('ban', 'Ban')
-                ->setHtmlAttribute('title', 'Внимание! Если пользователь в бане он не может залогиниться.'),
+                ->setHtmlAttribute('title',
+                    'Внимание! Если пользователь в бане он не может залогиниться.'),
         ]);
 
         return $display;
     }
 
 
-//    /**
-//     * @return FormInterface
-//     */
-//    public function onCreate()
-//    {
-//
-//        return $this->onEdit('');
-//    }
+    //    /**
+    //     * @return FormInterface
+    //     */
+    //    public function onCreate()
+    //    {
+    //
+    //        return $this->onEdit('');
+    //    }
 
     /**
      * @return void
@@ -342,6 +373,7 @@ class User extends Section
             'no'  => 'Нет',
 
         ];
+
         return $this->emailVr;
     }
 
@@ -360,7 +392,9 @@ class User extends Section
             if (($key2 = array_search('админ', $getData)) !== false) {
                 unset($getData[$key2]);
             }
+
             return $getData;
         }
     }
+
 }

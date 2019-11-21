@@ -26,7 +26,7 @@ class UserGalleryRequests extends FormRequest
         return [
             'picture' => 'required|image|max:2048',
             'sign' => 'nullable|string|between:1,255',
-            'for_adults' => 'boolean',
+            'for_adults' => 'nullable|boolean',
         ];
     }
 }

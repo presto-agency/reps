@@ -133,7 +133,7 @@ class BestController extends Controller
         $data = null;
 
         $getData = User::with('countries:id,flag,name', 'races:id,title')
-            ->withCount('totalNews')
+            ->withCount('news')
             ->orderByDesc('total_news_count')
             ->limit(100)
             ->get();
@@ -147,7 +147,7 @@ class BestController extends Controller
     public function getReplay()
     {
         $getData = User::with('countries:id,flag,name', 'races:id,title')
-            ->withCount('totalReplays')
+            ->withCount('replays')
             ->orderByDesc('total_replays_count')
             ->limit(100)
             ->get();
