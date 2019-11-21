@@ -195,11 +195,8 @@
             width: 100%;
         }
         .block_stream_list{
-            width: 100%;
+            width: 100%!important;
 
-        }
-        .big_video_right{
-            display: none;
         }
         & .messanger{
             max-height: 107.639vw;
@@ -248,16 +245,16 @@
                     width: 6vw;
                 }
                 & .left_block{
-                    button{
-                        display: none;
-                    }
+                    //button{
+                    //    display: none;
+                    //}
                     & svg{
-                        width: 6.944vw;
+                        width: 8.076vw;
                     }
                 }
                 & .right_block{
                     & svg{
-                        width: 6.076vw;
+                        width: 8.076vw;
                         margin-right: 1.736vw;
                     }
                 }

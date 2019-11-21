@@ -28,10 +28,10 @@
             @isset($newUsers)
                 @foreach($newUsers as $item)
                     <div class="row">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_code">
+                        <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
                             <p class="night_text">#{{$item->id}}</p>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
+                        <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
                             <img class="icon_bars" src="{{asset($item->countries->flag)}}" alt="flag"
                                  title="{{$item->countries->name}}"/>
                             <img class="icon_bars"
@@ -56,10 +56,10 @@
             @isset($top10Rating)
                 @foreach($top10Rating as $item)
                     <div class="row">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_code">
+                        <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
                             <p class="night_text">{{$item['max']}} кг</p>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
+                        <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
                             <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="flag"
                                  title="{{$item['countryName']}}"/>
                             <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race"
@@ -81,10 +81,10 @@
             @isset($top10Points)
                 @foreach($top10Points as $item)
                     <div class="row">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_code">
+                        <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
                             <p class="night_text">{{$item['max']}} pts</p>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 content_img">
+                        <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
                             <img class="icon_bars" src="{{asset($item['countryFlag25x20'])}}" alt="flag"
                                  title="{{$item['countryName']}}"/>
                             <img class="icon_bars" src="{{asset($item['raceIcon'])}}" alt="race"
