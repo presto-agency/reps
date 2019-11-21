@@ -16,12 +16,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $isAdmin = 0;
-        if(Auth::check()){
-            $isAdmin = auth()->user()->isNotUser();
-        }
-
-
-        return view('home.index', compact('isAdmin'));
+        return view('home.index');
     }
 }

@@ -102,7 +102,7 @@ class Banner extends Section implements Initializable
         $form->setItems([
             $image = AdminFormElement::image('image', 'Image')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage' . PathHelper::checkUploadsFileAndPath("/banners",$this->getModelValue()->getAttribute('image'));
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/banners");
                 })
                 ->setValidationRules([
                     'required',

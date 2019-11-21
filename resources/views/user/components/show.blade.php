@@ -14,12 +14,8 @@
         <div class="userInfo_block">
             <div class="row">
                 <div class="col-xl-4 col-4 container_img">
-                    @if(auth()->user()->userViewAvatars())
-                    @if(!empty($user->avatar) && file_exists($user->avatar))
-                        <img class="img-fluid" src="{{ asset($user->avatar) }}" alt="avatar">
-                    @else
-                        <img class="img-fluid" src="{{ asset($user->defaultAvatar()) }}" alt="avatar">
-                    @endif
+                    @if(auth()->user() && auth()->user()->userViewAvatars())
+                        <img class="img-fluid" src="{{ asset($user->avatarOrDefault()) }}" alt="avatar">
                     @endif
                     <div class="icon_img">
                         @if(Auth::id() == $user->id)
@@ -122,12 +118,8 @@
                                     <div class="friends">
                                         <div class="left_block">
                                             <a href="{{route('user_profile',['id' => $friend->id])}}">
-                                                @if(auth()->user()->userViewAvatars())
-                                                @if(!empty($friend->avatar) && file_exists($friend->avatar))
-                                                    <img src="{{asset($friend->avatar)}}" alt="avatar" class="author__avatar img-fluid">
-                                                @else
-                                                    <img src="{{asset($friend->defaultAvatar())}}" alt="avatar" class="author__avatar img-fluid">
-                                                @endif
+                                                @if(auth()->user() && auth()->user()->userViewAvatars())
+                                                    <img src="{{asset($friend->avatarOrDefault())}}" alt="avatar" class="author__avatar img-fluid">
                                                 @endif
                                                 <span class="name_player">{{$friend->name}}</span>
                                             </a>

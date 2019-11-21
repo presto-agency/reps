@@ -197,6 +197,7 @@ class Replay extends Section
         return $display;
     }
 
+    public $fileOldPath;
     /**
      * @param $id
      * @return \SleepingOwl\Admin\Form\FormPanel
@@ -204,8 +205,11 @@ class Replay extends Section
      */
     public function onEdit($id)
     {
+        $getData = $this->getModel()->select('file')->find($id);
+        if ($getData) {
+            $this->fileOldPath = $getData->file;
+        }
         $form = AdminForm::panel();
-
         $form->addHeader([
             AdminFormElement::columns()
                 ->addColumn([
@@ -329,15 +333,14 @@ class Replay extends Section
                                       'between:1,2000']),
 
             AdminFormElement::columns()
-                ->addColumn(function () use ($id) {
+                ->addColumn(function () {
                     return [
                         $file = AdminFormElement::file('file', 'Файл')
                             ->setValidationRules(['required',
                                                   'file',
                                                   'max:5120'])
-                            ->setUploadPath(function (UploadedFile $file) use ($id) {
-                                $filePath = \App\Models\Replay::where('id', $id)->value('file');
-                                return 'storage' . PathHelper::checkUploadsFileAndPath("/files/replays", $filePath);
+                            ->setUploadPath(function (UploadedFile $file) {
+                                return 'storage' . PathHelper::checkUploadsFileAndPath("/files/replays", $this->fileOldPath);
                             }),
                     ];
                 })

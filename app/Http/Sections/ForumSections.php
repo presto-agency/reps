@@ -149,7 +149,7 @@ class ForumSections extends Section
             $url = asset('admin/forum_topics');
             return $url . '?forum_section_id=' . $model->getKey(); // Генерация ссылки
         }, function ($model) {
-            return $model->title . ' (' . $model->topicsCount() . ')'; // Генерация текста на кнопке
+//            return $model->title . ' (' . $model->topicsCount() . ')'; // Генерация текста на кнопке
         }, 50);
         $link->hideText();
         $link->setIcon('fa fa-eye');

@@ -13,14 +13,12 @@
     <div class="row">
         <div class="col-md-3 text-center">
             <span class="username">
-                @if(auth()->user()->userViewAvatars())
-                    @if(!empty($userGallery->users->avatar) && file_exists($userGallery->users->avatar))
-                        <img src="{{asset($userGallery->users->avatar)}}" class="img-circle img-bordered-sm"
-                             alt="User avatar"/>
-                    @else
-                        <img src="{{asset($userGallery->users->defaultAvatar())}}" class="img-circle img-bordered-sm"
-                             alt="User avatar"/>
-                    @endif
+                @if(auth()->user() && auth()->user()->userViewAvatars())
+                    <img src="{{asset($userGallery->users->avatarOrDefault())}}" class="img-circle img-bordered-sm"
+                         alt="User avatar"/>
+                @else
+                    <img src="{{asset($userGallery->users->avatarOrDefault())}}" class="img-circle img-bordered-sm"
+                         alt="User avatar"/>
                 @endif
             </span>
         </div>
@@ -64,32 +62,32 @@
             {{ Form::close() }}
         </div>
         <div class="box-body">
-            @foreach($userGallery->comments as $comment)
-                <div class="item row">
-                    @if(auth()->user()->userViewAvatars())
-                        @if(!empty($comment->user->avatar) && file_exists($comment->user->avatar))
-                            <img src="{{asset($comment->user->avatar)}}" class="img-circle img-bordered-sm"
+            @if( isset($userGallery->comments) && !empty($userGallery->comments))
+                @foreach($userGallery->comments as $comment)
+                    <div class="item row">
+                        @if(auth()->user() && auth()->user()->userViewAvatars())
+                            <img src="{{asset($comment->user->avatarOrDefault())}}" class="img-circle img-bordered-sm"
                                  alt="User avatar"/>
                         @else
-                            <img src="{{asset($comment->user->defaultAvatar())}}" class="img-circle img-bordered-sm"
+                            <img src="{{asset($comment->user->avatarOrDefault())}}" class="img-circle img-bordered-sm"
                                  alt="User avatar"/>
                         @endif
-                    @endif
-                    <p class="message">
-                        <a href="#" class="name">
-                            <small class="text-muted pull-right"><i
-                                    class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
-                            </small>
-                            {{$comment->user->name}}
-                        </a>
-                        {{ Form::open(['method' => 'DELETE', 'route' => ['admin.usergallery.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
-                        <button class="btn btn-default text-red" title="Удалить запись"><i
-                                class="fa fa-trash"></i></button>
-                        {{ Form::close() }}
-                        {!! $comment->content !!}
-                    </p>
-                </div>
-            @endforeach
+                        <p class="message">
+                            <a href="#" class="name">
+                                <small class="text-muted pull-right"><i
+                                            class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
+                                </small>
+                                {{$comment->user->name}}
+                            </a>
+                            {{ Form::open(['method' => 'DELETE', 'route' => ['admin.usergallery.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
+                            <button class="btn btn-default text-red" title="Удалить запись"><i
+                                        class="fa fa-trash"></i></button>
+                            {{ Form::close() }}
+                            {!! ParserToHTML::toHTML($comment->content,'size') !!}
+                        </p>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
 </div>

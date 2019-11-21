@@ -109,7 +109,7 @@ Route::group(['prefix' => 'chat'], function () {
 });
 
 /*Galleries*/
-Route::resource("galleries", 'Gallery\GalleriesController');
+Route::resource('galleries', 'Gallery\GalleriesController');
 Route::post('galleries/loadmore/load_galleries', 'Gallery\GalleriesController@loadGalleries')->name('load.more.galleries');
 Route::post('galleries/{id}/send_comment', 'User\GalleryHelper@saveComments')->name('galleries.send.comment');
 

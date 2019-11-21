@@ -16,12 +16,13 @@ use SleepingOwl\Admin\Section;
 /**
  * Class ChatSmile
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\ChatSmile $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class ChatSmile extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -72,57 +73,69 @@ class ChatSmile extends Section
                 ->setWidth('50px'),
 
             $image = AdminColumn::image(function ($model) {
-                    if (!empty($model->image) && PathHelper::checkFileExists($model->image)) {
-                        return asset($model->image);
-                    }
-                })->setWidth('100px'),
+                if ( ! empty($model->image)
+                    && PathHelper::checkFileExists($model->image)
+                ) {
+                    return asset($model->image);
+                }
+            })->setWidth('100px'),
             $title = AdminColumn::text('comment', 'Comment')
                 ->setWidth('60px'),
 
             $position = AdminColumn::text('charactor', 'Charactor')
                 ->setWidth('50px'),
 
-            $date = AdminColumn::datetime('created_at', 'Date')->setFormat('Y-m-d')->setWidth('20px'),
+            $date = AdminColumn::datetime('created_at', 'Date')
+                ->setFormat('Y-m-d')->setWidth('20px'),
 
         ]);
 
         return $display;
     }
 
+    public $imageOldPath;
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
     public function onEdit($id)
     {
+        $getData = $this->getModel()->select('image')->find($id);
+        if ($getData) {
+            $this->imageOldPath = $getData->image;
+        }
         $form = AdminForm::panel();
         $form->setItems([
             /*Init FormElement*/
             $image = AdminFormElement::image('image', 'Image')
-                ->setUploadPath(function (UploadedFile $file){
-                    return 'storage' . PathHelper::checkUploadsFileAndPath("/chat/smiles",$this->getModelValue()->getAttribute('image'));
+                ->setUploadPath(function (UploadedFile $file) {
+                    return 'storage'
+                        .PathHelper::checkUploadsFileAndPath("/chat/smiles",$this->imageOldPath);
                 })
                 ->setValidationRules([
                     'required',
-                    'max:2048'
+                    'max:2048',
                 ])
                 ->setUploadSettings([
                     'orientate' => [],
                     'resize'    => [
-                        24,
-                        24,
+                        25,
+                        null,
                         function ($constraint) {
                             $constraint->upsize();
                             $constraint->aspectRatio();
-                        }
+                        },
                     ],
                 ]),
             $comment = AdminFormElement::text('comment', 'Comment'),
-            $charactor = AdminFormElement::text('charactor', 'Charactor')->required(),
-            $user = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
+            $charactor = AdminFormElement::text('charactor', 'Charactor')
+                ->required(),
+            $user = AdminFormElement::hidden('user_id')
+                ->setDefaultValue(auth()->user()->id),
 
         ]);
+
         return $form;
     }
 
@@ -149,4 +162,5 @@ class ChatSmile extends Section
     {
         // remove if unused
     }
+
 }

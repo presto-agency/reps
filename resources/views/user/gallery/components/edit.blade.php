@@ -45,19 +45,19 @@
                     <a href="#">{{__('Рейтинг лист')}}</a>
                 </div>
                 <div class="items__slide-button">
-                    <a href="{{route('gallery.edit',['gallery'=>$previous])}}">
+                    <a href="{{route('user-gallery.edit',['id'=>$userImage->user_id,'user_gallery'=>$previous])}}">
                         <i class="fas fa-angle-double-left"></i>
                     </a>
-                    <a href="{{route('gallery.edit',['gallery'=>$next])}}">
+                    <a href="{{route('user-gallery.edit',['id'=>$userImage->user_id,'user_gallery'=>$next])}}">
                         <i class="fas fa-angle-double-right"></i>
                     </a>
                 </div>
             </div>
             <div class="body__img">
-                @if(!empty($userImage->picture))
-                    <img src="{{$userImage->picture}}" alt="image">
+                @if(!empty($userImage->picture) && checkFile::checkFileExists($userImage->picture))
+                    <img src="{{asset($userImage->picture)}}" alt="image">
                 @else
-                    <img src="{{$userImage->defaultGallery()}}" alt="image">
+                    <img src="{{asset($userImage->defaultGallery())}}" alt="image">
                 @endif
             </div>
             <form action="" class="body__edit-image-form">
@@ -73,8 +73,10 @@
                     </div>
                 @endif
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{old('for_adults',$userImage->for_adults)}}"
-                           name="for_adults" id="gallery__for-adults">
+                    <input class="form-check-input" type="checkbox" value="1"
+                           name="for_adults" id="gallery__for-adults"
+                            {{ old('for_adults',$userImage->for_adults) == '1' ? 'checked' : '' }}
+                    >
                     <label class="form-check-label" for="gallery__for-adults">
                         {{__('18+')}}
                     </label>
