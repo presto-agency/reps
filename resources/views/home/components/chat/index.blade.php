@@ -6,7 +6,7 @@
 <section id="block_chat-twitch" class="block_chat-twitch theatre-off">
     <div class="row main_row">
         <div class="col-12 main_container">
-            <div id="appchat"><chat-room :auth="{{ Auth::check() ? Auth::user() : 0 }}"/></div>
+            <div id="appchat"><chat-room :auth="{{ Auth::check() ? Auth::user() : 0 }}" :not_user="{{$isAdmin}}"/></div>
             <div class="block_stream_list">
                 <div class="title_video ">
                     @include('home.components.chat.components.streams-list')
