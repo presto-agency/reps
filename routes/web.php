@@ -49,7 +49,7 @@ Route::group(['prefix' => 'replay'], function () {
 });
 /*Tournament*/
 Route::resource("tournament", 'Tournament\TournamentController');
-Route::post("{tournament}/{rep}/download-match", 'Tournament\TournamentController@downloadMatch')->name('download.match');
+Route::get("tournament/download-match/{match}/{rep}", 'Tournament\TournamentController@downloadMatch')->name('download.match');
 //Route::post("{tournament}/download-all-match", 'Tournament\TournamentController@downloadMultipleMatch')->name('download.all.match');
 Route::post('tournament/loadmore/load_tournament', 'Tournament\TournamentController@loadTournament')->name('load.more.tournament');
 

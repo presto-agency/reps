@@ -134,7 +134,7 @@ class BestController extends Controller
 
         $getData = User::with('countries:id,flag,name', 'races:id,title')
             ->withCount('news')
-            ->orderByDesc('total_news_count')
+            ->orderByDesc('news_count')
             ->limit(100)
             ->get();
         if (!$getData->isEmpty()) {
@@ -148,7 +148,7 @@ class BestController extends Controller
     {
         $getData = User::with('countries:id,flag,name', 'races:id,title')
             ->withCount('replays')
-            ->orderByDesc('total_replays_count')
+            ->orderByDesc('replays_count')
             ->limit(100)
             ->get();
         $data = null;
@@ -198,10 +198,10 @@ class BestController extends Controller
                 return $item->count_positive - $item->count_negative;
                 break;
             case 'news':
-                return $item->total_news_count;
+                return $item->news_count;
                 break;
             case 'replays':
-                return $item->total_replays_count;
+                return $item->replays_count;
                 break;
             default:
                 return null;
