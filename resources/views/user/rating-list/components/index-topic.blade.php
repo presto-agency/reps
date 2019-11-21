@@ -48,7 +48,7 @@
                 <div class="body__wrap">
                     <div class="body__info change_gray">
                         <p class="info__nickname night_text">{{$item->users->name}}</p>
-                        @if(auth()->user() && auth()->user()->userViewAvatars())
+                        @if(auth()->check()) && auth()->user()->userViewAvatars())
                             <img src="{{asset($item->users->avatarOrDefault()) }}" class="info__flag" alt="flag">
                         @endif
                         <img src="{{ asset('images/default/game-races'.$item->races->title.'.png') }}"

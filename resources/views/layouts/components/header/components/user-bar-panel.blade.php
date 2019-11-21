@@ -1,7 +1,7 @@
 <section class="user_bar">
     <div class="user_panel">
         <a href="{{route('user_profile',['id'=> Auth::id()])}}" class="user-avatar">
-            @if(auth()->user() && auth()->user()->userViewAvatars() )
+            @if(auth()->check() && auth()->user()->userViewAvatars() )
                 <img src="{{asset(auth()->user()->avatarOrDefault())}}" alt="avatar">
             @else
                 <img src="{{asset(auth()->user()->avatarOrDefault())}}" alt="avatar">

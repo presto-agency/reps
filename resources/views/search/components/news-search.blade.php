@@ -22,7 +22,7 @@
                 <div class="card-body night_text">
                     <div class="card-body__author">
                         @if(isset($single_news->author) && !empty($single_news->author))
-                            @if(auth()->user() && auth()->user()->userViewAvatars())
+                            @if(auth()->check() && auth()->user()->userViewAvatars())
                                 <img src="{{ asset($single_news->author->avatarOrDefault()) }}" alt="avatar"
                                      class="author__avatar img-fluid">
                             @else

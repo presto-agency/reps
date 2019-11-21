@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-3 text-center">
             <span class="username">
-                @if(auth()->user() && auth()->user()->userViewAvatars())
+                @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img src="{{asset($userGallery->users->avatarOrDefault())}}" class="img-circle img-bordered-sm"
                          alt="User avatar"/>
                 @else
@@ -65,7 +65,7 @@
             @if( isset($userGallery->comments) && !empty($userGallery->comments))
                 @foreach($userGallery->comments as $comment)
                     <div class="item row">
-                        @if(auth()->user() && auth()->user()->userViewAvatars())
+                        @if(auth()->check() && auth()->user()->userViewAvatars())
                             <img src="{{asset($comment->user->avatarOrDefault())}}" class="img-circle img-bordered-sm"
                                  alt="User avatar"/>
                         @else

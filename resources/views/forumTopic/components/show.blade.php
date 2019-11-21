@@ -19,7 +19,7 @@
             </div>
             <div class="title__wrap">
                 @if(isset($topic->author) && !empty($topic->author))
-                    @if(auth()->user() && auth()->user()->userViewAvatars())
+                    @if(auth()->check() && auth()->user()->userViewAvatars())
                         <img src="{{asset($topic->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
                     @else
                         <img src="{{asset($topic->author->avatarOrDefault())}}" class="title__avatar"

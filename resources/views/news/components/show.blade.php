@@ -17,7 +17,7 @@
         </div>
         @if($news->author)
             <div class="title__wrap">
-                @if(auth()->user() && auth()->user()->userViewAvatars())
+                @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
                 @else
                     <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">

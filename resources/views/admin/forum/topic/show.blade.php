@@ -37,7 +37,7 @@
                     </div>
                     <br>
                     <div class="user-block">
-                        @if(auth()->user() && auth()->user()->userViewAvatars())
+                        @if(auth()->check() && auth()->user()->userViewAvatars())
                             <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatarOrDefault())}}"
                                  alt="avatar">
                         @else
@@ -85,7 +85,7 @@
                                 @if(isset($topic->comments) && !empty($topic->comments))
                                     @foreach($topic->comments as $comment)
                                         <div class="item row">
-                                            @if(auth()->user() && auth()->user()->userViewAvatars())
+                                            @if(auth()->check() && auth()->user()->userViewAvatars())
                                                 <img class="img-circle img-bordered-sm"
                                                      src="{{asset($comment->user->avatarOrDefault())}}" alt="avatar">
                                             @else

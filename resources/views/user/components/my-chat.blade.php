@@ -38,7 +38,7 @@
                     <div class="body__user">
                         <div class="user__avatar">
                             <a href="{{ route('user.messages', ['id' => $sender->id]) }}">
-                                @if(auth()->user() && auth()->user()->userViewAvatars())
+                                @if(auth()->check() && auth()->user()->userViewAvatars())
                                     <img class="avatar__image" src="{{ asset($sender->avatarOrDefault()) }}" alt="avatar">
                                 @else
                                     <img class="avatar__image" src="{{ asset($sender->avatarOrDefault()) }}"
