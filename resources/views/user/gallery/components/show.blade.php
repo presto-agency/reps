@@ -75,7 +75,11 @@
                 @endisset
             </div>
             <div class="body__img">
-                <img src="{{$userImage->picture}}" alt="image">
+            @if(!empty($userImage->picture) && checkFile::checkFileExists($userImage->picture))
+                <img src="{{asset($userImage->picture)}}" alt="image">
+            @else
+                <img src="{{asset($userImage->defaultGallery())}}" alt="image">
+            @endif
             </div>
         </div>
     @endisset

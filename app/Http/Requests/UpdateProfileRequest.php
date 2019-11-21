@@ -50,7 +50,7 @@ class UpdateProfileRequest extends FormRequest
             'signature'    => 'nullable|string|max:255',
             'birthday'     => 'nullable|string|max:255',
             'avatar'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'view_avatars' => 'nullable|in:1,0',
+            'view_avatars' => 'nullable|in:1',
         ];
     }
 

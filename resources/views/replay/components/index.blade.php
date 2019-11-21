@@ -46,7 +46,7 @@
                 @if(isset($type) && !empty($type))
                     @if($type == "user")
                         <p class="title__text night_text">{{__('Пользовательские')}}</p>
-                    @else($type == "pro")
+                    @elseif($type == "pro")
                         <p class="title__text night_text">{{__('Профессиональные')}}</p>
                     @endif
                 @else
@@ -64,14 +64,14 @@
                             @isset($type)
                                 <a class="subtitle__name night_text"
                                    href="{{ asset(url("user/{$item->users->id}/user-replay/{$item->id}"."?type={$type}"))}}">
-                                    {{$item->title}}
+                                    <div>{!! ParserToHTML::toHTML($item->title,'size') !!}</div>
                                 </a>
                             @endisset
                         @else
                             @isset($type)
                                 <a class="subtitle__name night_text"
                                    href="{{ asset(url("replay/{$item->id}"."?type={$type}"))}}">
-                                    {{$item->title}}
+                                    <div>{!! ParserToHTML::toHTML($item->title,'size') !!}</div>
                                 </a>
                             @endisset
                         @endif
@@ -144,7 +144,7 @@
                             </a>
                         </div>
                     </div>
-                    <p class="match__comment night_text">{!!$item->content!!}</p>
+                    <div class="match__comment night_text">{!! ParserToHTML::toHTML($item->content,'size') !!}</div>
                     <div class="match__info">
                         <div class="info__country">
                             <span class="country__text night_text">Страны:</span>

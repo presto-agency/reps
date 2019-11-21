@@ -8,10 +8,20 @@ use \ChrisKonnertz\BBCode\BBCode;
 class ParserToHTML
 {
 
-    public static function toHTML($text, $ignoreTag)
+    /**
+     * @param $text
+     * @param $ignoreTag
+     *
+     * @return string
+     */
+    public static function toHTML($text, $ignoreTag = null)
     {
         $bbCode = new BBCode();
-        $bbCode->ignoreTag($ignoreTag);
-        return $bbCode->render($text);
+        if ( ! empty($ignoreTag)) {
+            $bbCode->ignoreTag($ignoreTag);
+        }
+
+        return  htmlspecialchars_decode($bbCode->render($text));
     }
+
 }

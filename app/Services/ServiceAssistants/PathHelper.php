@@ -41,7 +41,6 @@ class PathHelper
             self::$checkPath = \Str::replaceFirst('storage', 'public', $path);
         }
 
-
         return \Storage::exists(self::$checkPath);
 
     }
