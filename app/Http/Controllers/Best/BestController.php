@@ -20,7 +20,7 @@ class BestController extends Controller
 
         $points = $this->getPoints();
         $rating = $this->getRating();
-        $news = $this->getNews();
+        $news   = $this->getNews();
         $replay = $this->getReplay();
 
 
@@ -42,7 +42,8 @@ class BestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -54,7 +55,8 @@ class BestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -66,7 +68,8 @@ class BestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -78,8 +81,9 @@ class BestController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -91,7 +95,8 @@ class BestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -107,10 +112,11 @@ class BestController extends Controller
             ->orderByDesc('comments_count')
             ->limit(100)
             ->get();
-        $data = null;
-        if (!$getData->isEmpty()) {
+        $data    = null;
+        if ( ! $getData->isEmpty()) {
             $data = $this->getDataArray($getData, 'comments');
         }
+
         return $data;
     }
 
@@ -121,10 +127,11 @@ class BestController extends Controller
             ->whereRaw("(count_positive - count_negative) >= 0")
             ->limit(100)
             ->get();
-        $data = null;
-        if (!$getData->isEmpty()) {
+        $data    = null;
+        if ( ! $getData->isEmpty()) {
             $data = $this->getDataArray($getData, 'rating');
         }
+
         return $data;
     }
 
@@ -137,7 +144,7 @@ class BestController extends Controller
             ->orderByDesc('news_count')
             ->limit(100)
             ->get();
-        if (!$getData->isEmpty()) {
+        if ( ! $getData->isEmpty()) {
             $data = $this->getDataArray($getData, 'news');
         }
 
@@ -151,8 +158,8 @@ class BestController extends Controller
             ->orderByDesc('replays_count')
             ->limit(100)
             ->get();
-        $data = null;
-        if (!$getData->isEmpty()) {
+        $data    = null;
+        if ( ! $getData->isEmpty()) {
             $data = $this->getDataArray($getData, 'replays');
         }
 
@@ -162,6 +169,7 @@ class BestController extends Controller
     /**
      * @param $setData
      * @param $type
+     *
      * @return array
      */
     public function getDataArray($setData, $type)
@@ -172,13 +180,14 @@ class BestController extends Controller
                 'id'               => $item->id,
                 'name'             => $item->name,
                 'avatar'           => $item->avatar,
-                'raceIcon'         => "images/default/game-races/" . $item->races->title . ".png",
+                'raceIcon'         => "images/default/game-races/".$item->races->title.".png",
                 'raceTitle'        => $item->races->title,
                 'countryFlag25x20' => $item->countries->flag,
                 'countryName'      => $item->countries->name,
                 'max'              => $this->setMaxType($type, $item),
             ];
         }
+
         return $data;
 
     }
@@ -186,6 +195,7 @@ class BestController extends Controller
     /**
      * @param $type
      * @param $item
+     *
      * @return |null
      */
     public function setMaxType($type, $item)
@@ -208,4 +218,5 @@ class BestController extends Controller
                 break;
         }
     }
+
 }

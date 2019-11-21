@@ -353,8 +353,8 @@
                                 </div>
                                 <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-4 right_block">
                                     @for($i = 1; $i <= 7; $i++)
-                                        @if(!empty($match->{"rep$i"}))
-                                            <a href="{{ route('download.match',['match'=>$match->id,'rep'=> "rep$i"]) }}"
+                                        @if(!empty($match->{"rep$i"}) && checkFile::checkFileExists($match->{"rep$i"}))
+                                            <a href="{{ route('download.match',['tourney' =>$match->tourney_id,'match'=>$match->match_id,'rep'=> "rep$i"]) }}"
                                                >{{"rep$i"}}</a>
                                         @endif
                                     @endfor
