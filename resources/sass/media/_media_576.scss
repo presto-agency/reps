@@ -82,10 +82,13 @@
         }
         & .button_input{
             margin-left: 3.472vw;
-            & .search_input {
+             .search_input {
                 margin-left: 0 !important;
                 min-width: 77vw !important;
-            }
+            }::placeholder {
+                 font-size:3.5vw;
+                 color: transparent;
+             }
         }
         .burger_menu{
             display: block!important;
@@ -192,11 +195,8 @@
             width: 100%;
         }
         .block_stream_list{
-            width: 100%;
+            width: 100%!important;
 
-        }
-        .big_video_right{
-            display: none;
         }
         & .messanger{
             max-height: 107.639vw;
@@ -242,18 +242,19 @@
             & .video_header{
                 & img{
                     margin-right: 3.472vw;
+                    width: 6vw;
                 }
                 & .left_block{
-                    button{
-                        display: none;
-                    }
+                    //button{
+                    //    display: none;
+                    //}
                     & svg{
-                        width: 6.944vw;
+                        width: 8.076vw;
                     }
                 }
                 & .right_block{
                     & svg{
-                        width: 6.076vw;
+                        width: 8.076vw;
                         margin-right: 1.736vw;
                     }
                 }
@@ -663,9 +664,9 @@
             }
         }
         .gocu-replays__match {
-
+            padding: 0 3.472vw;
             .match__author {
-                padding: 3.472vw;
+                padding: 3.472vw 0;
                 .subtitle__info {
                     svg{
                         width: 3.646vw;
@@ -721,7 +722,7 @@
                 padding-right: 3.472vw;
             }
             .match__info {
-                padding: 3.472vw;
+                padding: 3.472vw 0;
                 display: flex;
                 align-items: center;
 
@@ -1190,15 +1191,19 @@
     }
     //page_replay
     .page_replay {
+        padding: 2.472vw ;
         .title_block {
+            .title_text{
+                font-size: 3.283vw;
+            }
             .right_block {
                 a {
-                    font-size: 2.083vw;
+                    font-size: 3.283vw;
                     margin-left: 1.736vw;
                 }
 
                 span {
-                    font-size: 2.083vw;
+                    font-size: 3.778vw;
                 }
 
                 img {
@@ -1648,7 +1653,7 @@
                         max-width: 5.208vw;
                         max-height: 5.208vw;
                         border-radius: 3.472vw;
-                        padding-right: 1.736vw;
+                        margin-right: 1.736vw;
                     }
                     & span{
                         font-size: 2.431vw;
@@ -2372,10 +2377,10 @@
                     font-size: 3.5vw;
                 }
                 .select2 {
-                    height: 6.424vw;
                     .select2-selection {
-                        height: 6.424vw;
+                        //height: 6.424vw;
                         margin-top: 1.389vw;
+                        height: calc(1.6em + 0.75rem + 2px);
                         .select2-selection__rendered {
                             padding-top: 0.694vw;
                         }
@@ -2403,6 +2408,9 @@
     //create-new-replay
     .create-replay {
         margin-bottom: 5.903vw;
+        .form-control::placeholder {
+            font-size: 3.2vw;
+        }
         .create-replay__title {
             border-radius: 0.868vw 0.868vw 0 0;
             padding-top: 3.472vw;
@@ -2422,15 +2430,15 @@
             .form-group {
                 label {
                     select {
-                        height: 6.424vw;
+                        height: calc(1.6em + 0.75rem + 2px);
                         margin-top: 0.868vw;
                     }
                 }
 
                 .select2 {
-                    height: 6.424vw;
+                    height: calc(1.6em + 0.75rem + 2px);
                     .select2-selection {
-                        height: 6.424vw;
+                        height: calc(1.6em + 0.75rem + 2px);
                         margin-top: 0.868vw;
                         .select2-selection__rendered {
                             padding-top: 0.694vw;
@@ -2800,14 +2808,12 @@
                 label {
                     font-size: 3.5vw;
                     select {
-                        height: 6.424vw;
+                        height: calc(1.6em + 0.75rem + 2px);
                         margin-top: 0.868vw;
                     }
                 }
                 .select2 {
-                    height: 6.424vw;
                     .select2-selection {
-                        height: 6.424vw;
                         margin-top: 0.868vw;
                         .select2-selection__rendered {
                             padding-top: 0.694vw;
@@ -3184,7 +3190,7 @@
 
             .form-group {
                 #create-topic__section {
-                    height: 6.424vw;
+                    height: calc(1.6em + 0.75rem + 2px);
                     margin-top: 1.389vw;
                 }
             }

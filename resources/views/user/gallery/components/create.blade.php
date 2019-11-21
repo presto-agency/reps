@@ -21,7 +21,7 @@
               method="POST" enctype="multipart/form-data">
             @method('POST')
             @csrf
-            <div class="row">
+            <div class="row gallery-file__container">
                 <div class="col-8">
                     <input id="uploadFile " class="f-input night_input input_gallery" readonly/>
                 </div>

@@ -501,7 +501,7 @@
             & .content_login{
                 & p{
                     font-size: 1.025vw;
-                    max-width: 6.249vw;
+                    max-width: 5.249vw;
 
                 }
             }
@@ -606,7 +606,7 @@
                         max-width: 2.196vw;
                         max-height: 2.196vw;
                         border-radius: 1.464vw;
-                        padding-right: 0.732vw;
+                        margin-right: 0.732vw;
                     }
                     & span{
                         font-size: 1.025vw;
@@ -957,8 +957,9 @@
         }
 
         .gocu-replays__match {
+            padding: 0 1.464vw;
             .match__author {
-                padding: 1.464vw;
+                padding: 1.464vw 0;
 
                 .subtitle__info {
                     .comment-author__nickname {
@@ -1005,7 +1006,7 @@
             }
 
             .match__info {
-                padding: 1.464vw;
+                padding: 1.464vw 0;
 
                 .info__country {
                     .country-first {

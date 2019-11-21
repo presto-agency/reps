@@ -46,7 +46,11 @@
     .gallery__body {
         padding: 25px;
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
+        .gocu-replays__button{
+            width: 50%;
+        }
         .img-wrapper {
             max-width: 120px;
             padding: 5px;
