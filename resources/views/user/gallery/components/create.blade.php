@@ -21,12 +21,13 @@
               method="POST" enctype="multipart/form-data">
             @method('POST')
             @csrf
-            <div class="row gallery-file__container">
+            <div class="row gallery-file__container upload-image">
                 <div class="col-8">
                     <input id="uploadFile " class="f-input night_input input_gallery" readonly/>
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
+                        <span>{{__('Выбрать файл')}}</span>
                         <input id="uploadBtn" type="file" class="upload" value="{{old('picture')}}" accept="image/*"
                                name="picture"/>
                     </div>
@@ -48,20 +49,12 @@
                 </div>
             @endif
             <div class="form-check">
-                <input class="form-check-input night_input" id="gallery__for-adults"
-                       type="checkbox" value="1" name="for_adults"
-                       @if(!old() || old('for_adults') == '1') checked="checked" @endif
-                />
+                <input class="form-check-input night_input" type="checkbox" value="{{old('for_adults')}}" id="gallery__for-adults"
+                       name='for_adults'>
                 <label class="label_group" class="form-check-label" for="gallery__for-adults">
                     {{__('18+')}}
                 </label>
             </div>
-
-            @if ($errors->has('for_adults'))
-                <div class="alert alert-danger">
-                    {{ $errors->first('for_adults') }}
-                </div>
-            @endif
             <div class="modal-body__add-btn">
                 <button class="button button__download-more">
                     {{__('Добавить')}}
