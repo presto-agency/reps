@@ -17,20 +17,22 @@
 
     .btn--browse{
         border: 1px solid #0567cc;
-        display: inline-block;
+        display: flex;
+        //display: inline-block;
         cursor: pointer;
         background-color: #0567cc;
         margin-bottom: 0;
         padding: 10px 10px;
         color: #fff;
         border-radius: 4px;
-        height: 42px;
+        height: calc(1.6em + 0.75rem + 2px);
         align-items: center;
         width: 100%;
     }
 
     .f-input{
-        height: 42px;
+        //height: 42px;
+        height: calc(1.6em + 0.75rem + 2px);
         width: 100%;
         float: left;
         padding: 0 14px;

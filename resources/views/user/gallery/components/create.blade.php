@@ -1,4 +1,4 @@
-<div class="gallery-download nightMode border_shadow">
+<div class="gallery-download night_modal border_shadow">
     <div class="gallery-download__title">
         <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -21,13 +21,13 @@
               method="POST" enctype="multipart/form-data">
             @method('POST')
             @csrf
-            <div class="row gallery-file__container">
+            <div class="row gallery-file__container upload-image">
                 <div class="col-8">
                     <input id="uploadFile " class="f-input night_input input_gallery" readonly/>
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
-{{--                        <span>{{__('Выбрать файл')}}</span>--}}
+                        <span>{{__('Выбрать файл')}}</span>
                         <input id="uploadBtn" type="file" class="upload" value="{{old('picture')}}" accept="image/*"
                                name="picture"/>
                     </div>
