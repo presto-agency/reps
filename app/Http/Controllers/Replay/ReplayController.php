@@ -136,7 +136,7 @@ class ReplayController extends Controller
     {
         $relations = [
             'users:id,name,avatar',
-            'maps:id,name',
+            'maps:id,name,url',
             'firstCountries:id,flag,name',
             'secondCountries:id,flag,name',
             'firstRaces:id,title,code',
