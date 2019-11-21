@@ -15,7 +15,7 @@
     @if($news->isNotEmpty())
         @foreach($news as $single_news)
             <div class="breaking-news__news-card card night_modal">
-                @if($single_news->preview_img && File::exists($single_news->preview_img))
+                @if(!empty($single_news->preview_img) && checkFile::checkFileExists($single_news->preview_img))
                     <a href="{{ route('news.show', $single_news->id) }}">
                         <img src="{{ asset($single_news->preview_img) }}" class="card-img-top" alt="news">
                     </a>
@@ -23,7 +23,7 @@
                 <div class="card-body night_text">
                     <div class="card-body__author">
                         @if(isset($single_news->author) && !empty($single_news->author))
-                            @if(auth()->user()->userViewAvatars())
+                            @if(auth()->check() && auth()->user()->userViewAvatars())
                                 <img src="{{ asset($single_news->author->avatarOrDefault()) }}" alt="avatar"
                                      class="author__avatar img-fluid">
                             @else
@@ -81,6 +81,7 @@
                     <hr class="card-body__horizontal-line">
                 </div>
             </div>
+
             @php
                 $last_id = $single_news->id;
             @endphp

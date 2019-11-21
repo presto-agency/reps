@@ -14,7 +14,7 @@
         <div class="userInfo_block">
             <div class="row">
                 <div class="col-xl-4 col-4 container_img">
-                    @if(auth()->user() && auth()->user()->userViewAvatars())
+                    @if(auth()->check() && auth()->user()->userViewAvatars())
                         <img class="img-fluid" src="{{ asset($user->avatarOrDefault()) }}" alt="avatar">
                     @endif
                     <div class="icon_img">
@@ -118,7 +118,7 @@
                                     <div class="friends">
                                         <div class="left_block">
                                             <a href="{{route('user_profile',['id' => $friend->id])}}">
-                                                @if(auth()->user() && auth()->user()->userViewAvatars())
+                                                @if(auth()->check() && auth()->user()->userViewAvatars())
                                                     <img src="{{asset($friend->avatarOrDefault())}}" alt="avatar" class="author__avatar img-fluid">
                                                 @endif
                                                 <span class="name_player">{{$friend->name}}</span>

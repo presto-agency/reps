@@ -209,7 +209,7 @@
                             <div class="left_block">
                                 <span>#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
                                 <a href="{{route('user_profile',['id'=>$player->user->id])}}">
-                                    @if(auth()->user() && auth()->user()->userViewAvatars())
+                                    @if(auth()->check() && auth()->user()->userViewAvatars())
                                         <img src="{{asset($player->user->avatarOrDefault())}}"
                                              class="author__avatar img-fluid"
                                              alt="avatar" title="{{$player->user->name}}">
@@ -272,7 +272,7 @@
                                 <div class="col-xl-8 col-lg-10 col-md-10 col-sm-8 col-7 center_block">
                                     @isset($match->player1->user)
                                         <div class="one_player">
-                                            @if(auth()->user() && auth()->user()->userViewAvatars())
+                                            @if(auth()->check() && auth()->user()->userViewAvatars())
                                                 <img class="icon_bars"
                                                      src="{{asset($match->player1->user->avatarOrDefault())}}"
                                                      alt="avatar">
@@ -296,7 +296,7 @@
                                     @endif
                                     @isset($match->player2->user)
                                         <div class="one_player">
-                                            @if(auth()->user() && auth()->user()->userViewAvatars())
+                                            @if(auth()->check() && auth()->user()->userViewAvatars())
                                                 @if(!empty($match->player2->user->avatar) && file_exists($match->player2->user->avatar))
                                                     <img class="icon_bars"
                                                          src="{{asset($match->player2->user->avatarOrDefault())}}"

@@ -66,7 +66,7 @@
                     <div class="match__author">
                         <div class="subtitle__info">
                             @if(isset($item->users) && !empty($item->users))
-                                @if(auth()->user() && auth()->user()->userViewAvatars())
+                                @if(auth()->check() && auth()->user()->userViewAvatars())
                                     <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
                                 @else
                                     <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">

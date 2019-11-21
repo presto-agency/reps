@@ -24,7 +24,7 @@
 
         @if($user)
             <div class="messenger__head">
-                @if(auth()->user() && auth()->user()->userViewAvatars())
+                @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img class="head__avatar" src="{{ asset($user->avatarOrDefault()) }}" alt="avatar">
                 @else
                     <img class="head__avatar" src="{{ asset($user->avatarOrDefault()) }}" alt="avatar">
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="message-info">
                                     <span class="user-name">{{ $message->sender->name }}</span>
-                                    @if(auth()->user() && auth()->user()->userViewAvatars())
+                                    @if(auth()->check() && auth()->user()->userViewAvatars())
                                         <img class="head__avatar" src="{{ asset($message->sender->avatarOrDefault()) }}"
                                              alt="avatar">
                                     @else
@@ -71,7 +71,7 @@
                             <div class="user-message">
                                 <div class="message-info">
                                     <span class="user-name">{{ $message->sender->name }}</span>
-                                    @if(auth()->user() && auth()->user()->userViewAvatars())
+                                    @if(auth()->check() && auth()->user()->userViewAvatars())
                                         <img class="head__avatar" src="{{ asset($message->sender->avatarOrDefault()) }}"
                                              alt="avatar">
                                     @else

@@ -14,7 +14,7 @@
         <div class="userInfo_block">
             <div class="row">
                 <div class="col-xl-4 col-4 container_img">
-                    @if(auth()->user() && auth()->user()->userViewAvatars())
+                    @if(auth()->check() && auth()->user()->userViewAvatars())
                         <img src="{{asset($user->avatarOrDefault())}}" alt="avatar">
                     @else
                         <img src="{{asset($user->avatarOrDefault())}}" alt="avatar">

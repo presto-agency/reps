@@ -25,7 +25,7 @@
                 <div class="comments__wrapp border_shadow">
                     @if(isset($comment->user) && !empty($comment->user))
                         <div class="comments__info change_gray">
-                            @if(auth()->user() && auth()->user()->userViewAvatars())
+                            @if(auth()->check() && auth()->user()->userViewAvatars())
                                 <img src="{{asset($comment->user->avatarOrDefault())}}" class="info__avatar"
                                      alt="avatar">
                             @else

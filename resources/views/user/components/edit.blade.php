@@ -41,7 +41,7 @@
         <div class="upload-image">
             <p>{{__('Аватар:')}}</p>
             <div class="preview-image-wrapper">
-                @if(auth()->user() && auth()->user()->userViewAvatars())
+                @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img class="" src="{{asset($user->avatarOrDefault())}}" alt="avatar">
                 @else
                     <img class="" src="{{asset($user->avatarOrDefault())}}" alt="avatar">

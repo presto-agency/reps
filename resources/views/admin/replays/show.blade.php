@@ -96,7 +96,7 @@
                     @if(isset() && !empty($replay->comments))
                         @foreach($replay->comments as $comment)
                             <div class="item row">
-                                @if(auth()->user() && auth()->user()->userViewAvatars())
+                                @if(auth()->check() && auth()->user()->userViewAvatars())
                                     <img src="{{asset($comment->user->avatarOrDefault())}}"
                                          class="img-circle img-bordered-sm"
                                          alt="avatar"/>

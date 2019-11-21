@@ -1,7 +1,7 @@
 @if ($user)
     <li class="dropdown user user-menu" style="margin-right: 20px;">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-            @if(auth()->user() && auth()->user()->userViewAvatars())
+            @if(auth()->check() && auth()->user()->userViewAvatars())
                 <img src="{{asset($user->avatarOrDefault())}}" class="user-image"/>
             @else
                 <img src="{{asset($user->avatarOrDefault())}}" class="user-image"/>
@@ -10,7 +10,7 @@
         </a>
         <ul class="dropdown-menu">
             <li class="user-header">
-                @if(auth()->user() && auth()->user()->userViewAvatars())
+                @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img src="{{asset($user->avatarOrDefault()) }}" class="img-circle"/>
                 @else
                     <img src="{{asset($user->avatarOrDefault()) }}" class="img-circle"/>
