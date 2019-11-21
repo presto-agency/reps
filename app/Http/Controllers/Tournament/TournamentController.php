@@ -109,9 +109,9 @@ class TournamentController extends Controller
     //
     //    }
 
-    public function downloadMatch($match, $rep)
+    public function downloadMatch($tourney,$match, $rep)
     {
-        $tourneyMatchFile = TourneyMatch::where('id', $match)->value($rep);
+        $tourneyMatchFile = TourneyMatch::where('tourney_id', $tourney)->where('match_id',$match)->value($rep);
 
         $repPath = $tourneyMatchFile;
 
