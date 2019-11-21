@@ -2,13 +2,10 @@
 
 namespace App\Http\Sections;
 
-use AdminFormElement;
-use AdminForm;
-use AdminColumnEditable;
-use AdminDisplayFilter;
-use AdminDisplay;
 use AdminColumn;
-use AdminColumnFilter;
+use AdminDisplay;
+use AdminForm;
+use AdminFormElement;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
@@ -16,12 +13,13 @@ use SleepingOwl\Admin\Section;
 /**
  * Class Tag
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\Tag $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class Tag extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -48,9 +46,6 @@ class Tag extends Section
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info table-hover text-center')
             ->paginate(10);
-        $display->setApply(function ($query) {
-            $query->orderBy('created_at', 'asc');
-        });
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
@@ -70,7 +65,7 @@ class Tag extends Section
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
@@ -81,9 +76,11 @@ class Tag extends Section
             /*Init FormElement*/
 
             $name = AdminFormElement::text('name', 'Name')->required(),
-            $display_name = AdminFormElement::text('display_name', 'Display Name')->required(),
+            $display_name = AdminFormElement::text('display_name',
+                'Display Name')->required(),
 
         ]);
+
         return $form;// remove if unused
     }
 
@@ -110,4 +107,5 @@ class Tag extends Section
     {
         // remove if unused
     }
+
 }

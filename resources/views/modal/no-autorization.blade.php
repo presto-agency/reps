@@ -8,7 +8,7 @@
                 Авторизироваться
             </button>
             <button class="button button__download-more">
-               Зарегистрироваться
+                Зарегистрироваться
             </button>
         </div>
 

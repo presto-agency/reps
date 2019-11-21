@@ -7,7 +7,6 @@ use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
 use App\Services\ServiceAssistants\PathHelper;
-use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Section;
 
@@ -44,28 +43,19 @@ class Country extends Section
     {
 
         $display = AdminDisplay::datatablesAsync()
+            ->setDatatableAttributes(['bInfo' => false])
             ->paginate(50);
 
         $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
 
-        $display->setApply(function ($query) {
-            $query->orderByDesc('id');
-        });
-
         $display->setColumns([
-
             $id = AdminColumn::text('id', 'ID'),
-
             $name = AdminColumn::text('name', 'Название'),
-
             $code = AdminColumn::text('code', 'Код')
                 ->setHtmlAttribute('class', 'hidden-sm ')
                 ->setHtmlAttribute('title', 'Alpha-2 ISO 3166-1'),
-
             $flag = AdminColumn::image('flag', 'Флаг'),
-
-            $count_using = AdminColumn::count('using', 'Используют')
-            ,
+            $count_using = AdminColumn::count('using', 'Используют'),
         ]);
 
         return $display;
@@ -142,28 +132,6 @@ class Country extends Section
     public function isDeletable($model)
     {
         return true;
-    }
-
-    /**
-     * @param $save_path
-     *
-     * @return bool
-     */
-    public function checkUploadPath($save_path)
-    {
-        return ! \File::exists($save_path) === true ? mkdir($save_path, 666,
-            true) : null;
-    }
-
-    /**
-     * @param $file
-     *
-     * @return string
-     */
-    public function creatUploadName($file)
-    {
-        return uniqid().Carbon::now()->timestamp.'.'
-            .$file->getClientOriginalExtension();
     }
 
 }

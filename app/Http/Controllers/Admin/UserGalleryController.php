@@ -10,10 +10,11 @@ use Illuminate\Http\Request;
 
 class UserGalleryController extends Controller
 {
+
     public function show($id)
     {
 
-        $columns = [
+        $columns     = [
             'id',
             'user_id',
             'picture',
@@ -23,11 +24,12 @@ class UserGalleryController extends Controller
             'comments_count',
             'created_at',
         ];
-        $relations = [
+        $relations   = [
             'users',
             'comments',
         ];
-        $userGallery = UserGallery::select($columns)->with($relations)->findOrFail($id);
+        $userGallery = UserGallery::select($columns)->with($relations)
+            ->findOrFail($id);
 
         $content = view('admin.usergallery.show',
             compact('userGallery')
@@ -40,7 +42,7 @@ class UserGalleryController extends Controller
     public function comment(Request $request, $id)
     {
 
-        $topic = UserGallery::find($id);
+        $topic   = UserGallery::find($id);
         $comment = new Comment([
             'user_id' => auth()->id(),
             'content' => $request->input('content'),
@@ -56,4 +58,5 @@ class UserGalleryController extends Controller
 
         return back();
     }
+
 }

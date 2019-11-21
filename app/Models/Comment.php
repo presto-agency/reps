@@ -7,14 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $fillable = [
-        'user_id', 'commentable_id', 'commentable_type', 'title', 'content', 'rating', 'negative_count', 'positive_count'
-    ];
+
+    protected $fillable
+        = [
+            'user_id', 'commentable_id', 'commentable_type', 'title', 'content',
+            'rating', 'negative_count', 'positive_count',
+        ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
     /**
      * Get the owning commentable model.
      */
@@ -28,7 +32,9 @@ class Comment extends Model
      */
     public function positive()
     {
-        return $this->hasMany('App\Models\UserReputation', 'object_id')->where('relation', UserReputation::RELATION_FORUM_TOPIC)->where('rating',1);
+        return $this->hasMany('App\Models\UserReputation', 'object_id')
+            ->where('relation', UserReputation::RELATION_FORUM_TOPIC)
+            ->where('rating', 1);
     }
 
     /**
@@ -36,6 +42,9 @@ class Comment extends Model
      */
     public function negative()
     {
-        return $this->hasMany('App\Models\UserReputation', 'object_id')->where('relation', UserReputation::RELATION_FORUM_TOPIC)->where('rating','-1');
+        return $this->hasMany('App\Models\UserReputation', 'object_id')
+            ->where('relation', UserReputation::RELATION_FORUM_TOPIC)
+            ->where('rating', '-1');
     }
+
 }

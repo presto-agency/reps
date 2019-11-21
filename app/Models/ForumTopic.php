@@ -7,13 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class ForumTopic extends Model
 {
-    protected $fillable = [
-        'title', 'forum_section_id', 'user_id', 'reviews', 'rating', 'preview_content', 'preview_img', 'content', 'comments_count', 'news', 'start_on',
-    ];
+
+    protected $fillable
+        = [
+            'title', 'forum_section_id', 'user_id', 'reviews', 'rating',
+            'preview_content', 'preview_img', 'content', 'comments_count',
+            'news', 'start_on',
+        ];
+
     public function forumSection()
     {
         return $this->belongsTo(ForumSection::class, 'forum_section_id');
     }
+
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -32,7 +38,9 @@ class ForumTopic extends Model
      */
     public function positive()
     {
-        return $this->hasMany('App\Models\UserReputation', 'object_id')->where('relation', UserReputation::RELATION_FORUM_TOPIC)->where('rating',1);
+        return $this->hasMany('App\Models\UserReputation', 'object_id')
+            ->where('relation', UserReputation::RELATION_FORUM_TOPIC)
+            ->where('rating', 1);
     }
 
     /**
@@ -40,6 +48,9 @@ class ForumTopic extends Model
      */
     public function negative()
     {
-        return $this->hasMany('App\Models\UserReputation', 'object_id')->where('relation', UserReputation::RELATION_FORUM_TOPIC)->where('rating','-1');
+        return $this->hasMany('App\Models\UserReputation', 'object_id')
+            ->where('relation', UserReputation::RELATION_FORUM_TOPIC)
+            ->where('rating', '-1');
     }
+
 }

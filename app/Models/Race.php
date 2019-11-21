@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Race extends Model
 {
-    protected $fillable = [
-        'title', 'code',
-    ];
+
+    protected $fillable
+        = [
+            'title', 'code',
+        ];
+
 }

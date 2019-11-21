@@ -3,9 +3,9 @@
 
 namespace App\Http\ViewComposers\admin;
 
+use App\Models\ForumTopic;
 use App\Models\Replay;
 use App\User;
-use App\Models\ForumTopic;
 use Illuminate\View\View;
 
 class DashboardCountComposer

@@ -11,7 +11,8 @@ trait InterviewQuestionRelationTrait
 
     public function answers()
     {
-        return $this->hasMany(InterviewVariantAnswer::class, 'question_id','id');
+        return $this->hasMany(InterviewVariantAnswer::class, 'question_id',
+            'id');
     }
 
     public function userAnswers()

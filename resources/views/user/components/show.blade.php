@@ -93,8 +93,8 @@
                     <div class="information_block">
                         <div class="left_block"><span>Репутация:</span></div>
                         <div class="right_block night_text"><a
-                                href="{{route('user-rating-list.index',['id'=>$user->id])}}"
-                                title="Репутация"><span class="blue">{{$user->count_positive - $user->count_negative}} кг</span></a>
+                                    href="{{route('user-rating-list.index',['id'=>$user->id])}}"
+                                    title="Репутация"><span class="blue">{{$user->count_positive - $user->count_negative}} кг</span></a>
                         </div>
                     </div>
                 </div>
@@ -128,9 +128,9 @@
                                             <img src="{{asset($friend->countries->flag)}}"
                                                  class="info__flag" alt="flag">
                                             <img
-                                                src="{{asset('/images/default/game-races/'.$friend->races->title.'.png')}}"
-                                                class="info__cube"
-                                                alt="race">
+                                                    src="{{asset('/images/default/game-races/'.$friend->races->title.'.png')}}"
+                                                    class="info__cube"
+                                                    alt="race">
                                         </div>
                                     </div>
                                     {{--<a href="{{route('user_profile',['id' => $friend->id])}}">
@@ -173,9 +173,9 @@
                                             @endisset
                                             @isset($friend->races)
                                                 <img
-                                                    src="{{asset('images/default/game-races/'.$friend->races->title.'.png') }}"
-                                                    class="info__cube"
-                                                    title="{{$friend->races->title}}" alt="race">
+                                                        src="{{asset('images/default/game-races/'.$friend->races->title.'.png') }}"
+                                                        class="info__cube"
+                                                        title="{{$friend->races->title}}" alt="race">
                                             @endisset
                                         </div>
                                     </div>
@@ -195,27 +195,27 @@
                         <div class="block_inform">
                             <div class="left_block"><span>Темы:</span></div>
                             <div class="right_block"><a href="{{route('user-topics.index',['id' => $user->id])}}"><span
-                                        class="blue" title="Темы">{{$user->topics_count}}</span></a></div>
+                                            class="blue" title="Темы">{{$user->topics_count}}</span></a></div>
                         </div>
                         <div class="block_inform">
                             <div class="left_block"><span>Посты:</span></div>
                             <div class="right_block"><a
-                                    href="{{route('user-comments.index',['id' => $user->id])}}"><span
-                                        class="blue" title="Посты">{{$user->comments_count}}</span></a>
+                                        href="{{route('user-comments.index',['id' => $user->id])}}"><span
+                                            class="blue" title="Посты">{{$user->comments_count}}</span></a>
                             </div>
                         </div>
                         <div class="block_inform">
                             <div class="left_block"><span>Профессиональные реплеи:</span></div>
                             <div class="right_block"><a
-                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'pro'])}}"><span
-                                        class="blue" title="Профессиональные реплеи">{{$user->gosu_replay_count}}</span></a>
+                                        href="{{route('user-replay.index',['id' => $user->id, 'type' => 'pro'])}}"><span
+                                            class="blue" title="Профессиональные реплеи">{{$user->gosu_replay_count}}</span></a>
                             </div>
                         </div>
                         <div class="block_inform">
                             <div class="left_block"><span>Пользовательские реплеи:</span></div>
                             <div class="right_block"><a
-                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}"><span
-                                        class="blue" title="Пользовательские реплеи">{{$user->user_replay_count}}</span></a>
+                                        href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}"><span
+                                            class="blue" title="Пользовательские реплеи">{{$user->user_replay_count}}</span></a>
                             </div>
                         </div>
                     </div>
@@ -241,7 +241,7 @@
                                     <span>{{$user->homepage ?? 'не указано'}}</span>
                                 @else
                                     <a href="{{$user->checkUserLink($user->homepage)}}"><span
-                                            class="small">{{$user->homepage}}</span></a>
+                                                class="small">{{$user->homepage}}</span></a>
                                 @endif
                             </div>
                         </div>

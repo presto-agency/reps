@@ -17,31 +17,31 @@
                     </button>
                     <!-- Modal insert need -->
                     <div class="  modal  fade" id="exampleModalLong" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content ">
-                                        <div class="modal-header title_block modal-header_chat">
-                                            <img id="img_menuMob" class="icon_bars"
-                                                 src=""/>
-                                            <p class="title_text_modal">Guest</p>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true" class="close_modal close_btn">×</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body popup_contant messanger night_modal">
-                                            <chat-message :messagearray="messagearray" :not_user="not_user"/>
-                                        </div>
-                                    </div>
+                         aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content ">
+                                <div class="modal-header title_block modal-header_chat">
+                                    <img id="img_menuMob" class="icon_bars"
+                                         src=""/>
+                                    <p class="title_text_modal">Guest</p>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" class="close_modal close_btn">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body popup_contant messanger night_modal">
+                                    <chat-message :messagearray="messagearray" :not_user="not_user"/>
                                 </div>
                             </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-            <chat-message :messagearray="messagearray" :not_user="not_user" @on_delete="deleteMessage($event)"/>
+        <chat-message :messagearray="messagearray" :not_user="not_user" @on_delete="deleteMessage($event)"/>
         <div class="form-group" v-if="auth.id>0">
             <Smiles :status="chat_action.smile" @turnOffStatus="turnOffStatus" @insert_smile="addSmile($event)"></Smiles>
             <Images :status="chat_action.image" @turnOffStatus="turnOffStatus" @insert_image="addImage($event)"></Images>
-            <Color :status="chat_action.color"  @turnOffStatus="turnOffStatus" @textarealistener="textareafoo($event)"></Color>
+            <Color :status="chat_action.color" @turnOffStatus="turnOffStatus" @textarealistener="textareafoo($event)"></Color>
             <div class="form-group-toolbar">
                 <img src="../../icons/bold.svg" alt="" class="toolbar_item" @click="bold()">
                 <img src="../../icons/italic.svg" alt="" class="toolbar_item" @click="italic()">
@@ -52,14 +52,14 @@
                 <img src="../../icons/smile.svg" alt="" class="toolbar_item" @click="selectItem('smile')">
                 <img src="../../icons/folder.svg" alt="" class="toolbar_item" @click="selectItem('image')">
             </div>
-           <textarea v-model="textMessage" @keyup.enter="sendMessage" class="form-control night_input" id="pop_editor">
+            <textarea v-model="textMessage" @keyup.enter="sendMessage" class="form-control night_input" id="pop_editor">
            </textarea>
             <!--<ckeditor :editor="editor" v-model="textMessage" :config="editorConfig"  tag-name="textarea"  @focus="onEditorFocus($event)"></ckeditor>-->
         </div>
 
         <div class="login_block" v-else>
-         <a href="#">
-            <span>LOGIN</span> to chat!
+            <a href="#">
+                <span>LOGIN</span> to chat!
             </a>
         </div>
 
@@ -73,13 +73,14 @@
     import Smiles from './Smiles.vue'
     import Images from './Images.vue'
     import Color from './FontColor'
+
     export default {
         name: "Chat",
         components: {
-          Smiles,Images,Color
+            Smiles, Images, Color
         },
-        props: ['auth','not_user'],
-        data: ()=>({
+        props: ['auth', 'not_user'],
+        data: () => ({
             isUser: true,
             messagearray: [],
             textMessage: '',
@@ -92,10 +93,10 @@
             smiles: [],
             images: {}
         }),
-        created(){
+        created() {
             axios.get('/chat/get_messages').then((response) => {
                 console.log('all', response.data)
-                response.data.forEach((item,index)=> {
+                response.data.forEach((item, index) => {
                     this.messagearray.push({
                         id: item.id,
                         flag: item.country_flag,
@@ -110,7 +111,7 @@
             })
         },
         mounted() {
-            console.log('isAdmin ',this.not_user);
+            console.log('isAdmin ', this.not_user);
             window.Echo.channel('chat').listen('NewChatMessageAdded', ({data}) => {
                 console.log(data)
                 this.messagearray.unshift({
@@ -126,18 +127,19 @@
             });
         },
         methods: {
-            sendMessage(){
-                    axios.post('/chat/insert_message', {
-                        user_id: this.auth.id,
-                        file_path: "",
-                        message: chatHelper.parsePath(this.textMessage, this.smiles, this.images),
-                        imo: ""});
-                        /*.then((response) => {
-                            console.log('Полученые данные методом POST: ');
-                            console.log(response.data);
-                            // this.messages = response.data;
-                        });*/
-                    this.textMessage = '';
+            sendMessage() {
+                axios.post('/chat/insert_message', {
+                    user_id: this.auth.id,
+                    file_path: "",
+                    message: chatHelper.parsePath(this.textMessage, this.smiles, this.images),
+                    imo: ""
+                });
+                /*.then((response) => {
+                    console.log('Полученые данные методом POST: ');
+                    console.log(response.data);
+                    // this.messages = response.data;
+                });*/
+                this.textMessage = '';
 
             },
 
@@ -147,27 +149,26 @@
             underline: chatHelper.underline,
             link: chatHelper.link,
             img: chatHelper.img,
-            selectItem: function(type) {
+            selectItem: function (type) {
                 this.textMessage = document.getElementById('pop_editor').value;
                 let self = this;
-                Object.keys(self.chat_action).forEach(function(key) {
-                    if(type === key){
+                Object.keys(self.chat_action).forEach(function (key) {
+                    if (type === key) {
                         self.chat_action[key] = !self.chat_action[key];
-                    }
-                    else self.chat_action[key] = false;
+                    } else self.chat_action[key] = false;
                 })
 
             },
 
-            turnOffStatus: function() {
+            turnOffStatus: function () {
 
                 let self = this;
-                Object.keys(self.chat_action).forEach(function(key) {
+                Object.keys(self.chat_action).forEach(function (key) {
                     self.chat_action[key] = false;
                 });
 
             },
-            textareafoo (str) {
+            textareafoo(str) {
                 this.textMessage = str;
             },
             addSmile(smile_object) {
@@ -179,28 +180,29 @@
                 this.images = image_object.images;
             },
             deleteMessage(id) {
-                this.messagearray = this.messagearray.filter(item => item.id!=id );
+                this.messagearray = this.messagearray.filter(item => item.id != id);
             }
-
 
 
         }
     }
 </script>
 
-<style >
-.form-group-toolbar {
-    padding: 15px 15px;
-}
-.toolbar_item {
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-    margin-left: 5px;
-}
-.form-group {
-    position: relative;
+<style>
+    .form-group-toolbar {
+        padding: 15px 15px;
+    }
 
-}
+    .toolbar_item {
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+        margin-left: 5px;
+    }
+
+    .form-group {
+        position: relative;
+
+    }
 
 </style>

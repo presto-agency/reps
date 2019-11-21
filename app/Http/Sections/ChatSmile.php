@@ -2,11 +2,10 @@
 
 namespace App\Http\Sections;
 
-use AdminFormElement;
-use AdminForm;
-use AdminColumnEditable;
-use AdminDisplay;
 use AdminColumn;
+use AdminDisplay;
+use AdminForm;
+use AdminFormElement;
 use App\Services\ServiceAssistants\PathHelper;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
@@ -59,9 +58,6 @@ class ChatSmile extends Section
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center')
             ->paginate(50);
-        $display->setApply(function ($query) {
-            $query->orderByDesc('id');
-        });
 
 
         $display->setColumns([
@@ -73,12 +69,8 @@ class ChatSmile extends Section
                 ->setWidth('50px'),
 
             $image = AdminColumn::image(function ($model) {
-                if ( ! empty($model->image)
-                    && PathHelper::checkFileExists($model->image)
-                ) {
-                    return asset($model->image);
-                }
-            })->setWidth('100px'),
+                return $model->imageOrDefault();
+            })->setLabel('Image')->setWidth('100px'),
             $title = AdminColumn::text('comment', 'Comment')
                 ->setWidth('60px'),
 
@@ -94,6 +86,7 @@ class ChatSmile extends Section
     }
 
     public $imageOldPath;
+
     /**
      * @param  int  $id
      *
@@ -111,7 +104,8 @@ class ChatSmile extends Section
             $image = AdminFormElement::image('image', 'Image')
                 ->setUploadPath(function (UploadedFile $file) {
                     return 'storage'
-                        .PathHelper::checkUploadsFileAndPath("/chat/smiles",$this->imageOldPath);
+                        .PathHelper::checkUploadsFileAndPath("/chat/smiles",
+                            $this->imageOldPath);
                 })
                 ->setValidationRules([
                     'required',

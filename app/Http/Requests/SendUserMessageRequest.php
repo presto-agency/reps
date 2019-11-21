@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class SendUserMessageRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +25,7 @@ class SendUserMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            'message' => 'required|max:10000'
+            'message' => 'required|max:10000',
         ];
     }
 
@@ -40,4 +41,5 @@ class SendUserMessageRequest extends FormRequest
             'message.max'      => 'Сообщение должено быть не больше 10000 символов',
         ];
     }
+
 }

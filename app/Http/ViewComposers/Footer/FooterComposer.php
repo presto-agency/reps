@@ -4,9 +4,9 @@
 namespace App\Http\ViewComposers\Footer;
 
 
+use App\Models\{Footer, FooterUrl};
 use App\User;
 use Carbon\Carbon;
-use App\Models\{Footer, FooterUrl};
 use Illuminate\View\View;
 
 class FooterComposer

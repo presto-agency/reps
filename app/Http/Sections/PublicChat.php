@@ -2,11 +2,11 @@
 
 namespace App\Http\Sections;
 
-use AdminFormElement;
-use AdminForm;
-use AdminColumnEditable;
 use AdminColumn;
+use AdminColumnEditable;
 use AdminDisplay;
+use AdminForm;
+use AdminFormElement;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
@@ -14,12 +14,13 @@ use SleepingOwl\Admin\Section;
 /**
  * Class PublicChat
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\PublicChat $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class PublicChat extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -46,10 +47,6 @@ class PublicChat extends Section
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info table-hover text-center')
             ->paginate(50);
-        $display->setApply(function ($query) {
-            $query->orderBy('created_at', 'desc');
-        });
-
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
@@ -62,10 +59,11 @@ class PublicChat extends Section
             $message = AdminColumn::text('message', 'Message')
                 ->setWidth('60px'),
 
-            $isHidden = AdminColumnEditable::checkbox('is_hidden','Yes', 'No')
+            $isHidden = AdminColumnEditable::checkbox('is_hidden', 'Yes', 'No')
                 ->setLabel('Hidden'),
 
-            $date = AdminColumn::datetime('created_at', 'Date')->setFormat('Y-m-d H:m:s')->setWidth('20px'),
+            $date = AdminColumn::datetime('created_at', 'Date')
+                ->setFormat('Y-m-d H:m:s')->setWidth('20px'),
 
         ]);
 
@@ -73,7 +71,7 @@ class PublicChat extends Section
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
@@ -85,9 +83,11 @@ class PublicChat extends Section
 
             $message = AdminFormElement::text('message', 'Message')->required(),
             $isHidden = AdminFormElement::checkbox('is_hidden', 'Hidden'),
-            $user = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
+            $user = AdminFormElement::hidden('user_id')
+                ->setDefaultValue(auth()->user()->id),
 
         ]);
+
         return $form;
     }
 
@@ -114,4 +114,5 @@ class PublicChat extends Section
     {
         // remove if unused
     }
+
 }

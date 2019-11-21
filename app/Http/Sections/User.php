@@ -9,8 +9,8 @@ use AdminDisplay;
 use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
+use checkFile;
 use App\Models\{Country, Race, Role};
-use App\Services\ServiceAssistants\PathHelper;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
@@ -56,22 +56,17 @@ class User extends Section
     {
 
         $display = AdminDisplay::datatablesAsync()
-            ->setHtmlAttribute('class', 'table-info table-sm text-center small')
+            ->setDatatableAttributes(['bInfo' => false])
+            ->setHtmlAttribute('class', 'table-info text-center small')
             ->with([
-                'roles',
-                'countries',
-                'comments',
-                'topics',
-                'replays',
-                'images',
+                'roles', 'countries', 'comments', 'topics', 'replays', 'images',
             ])
-            ->paginate(20);
+            ->paginate(5);
         $display->setApply(function ($query) {
-            $query->orderByDesc('id');
+            $query->orderBy('id','ASC');
         });
-        $display->setFilters(
-            AdminDisplayFilter::related('ban')->setModel(\App\User::class)
-        );
+        $display->setFilters(AdminDisplayFilter::related('ban')
+            ->setModel(\App\User::class));
 
         $display->setColumns([
 
@@ -79,13 +74,7 @@ class User extends Section
                 ->setWidth(70),
 
             $avatar = AdminColumn::image(function ($model) {
-                if ( ! empty($model->avatar)
-                    && PathHelper::checkFileExists($model->avatar)
-                ) {
-                    return $model->avatar;
-                } else {
-                    return 'images/default/avatar/avatar.png';
-                }
+                return $model->avatarOrDefault();
             })->setLabel('Аватар')->setWidth(10),
 
             $role_id = AdminColumn::text('roles.title', 'Роль'),
@@ -203,12 +192,14 @@ class User extends Section
         if ($getData) {
             $this->imageOldPath = $getData->avatar;
         }
+
         $display = AdminForm::panel();
         $display->setItems([
             $avatar = AdminFormElement::image('avatar', 'Аватар')
                 ->setUploadPath(function (UploadedFile $file) {
                     return 'storage'
-                        .PathHelper::checkUploadsFileAndPath("/images/users/avatars",$this->imageOldPath);
+                        .checkFile::checkUploadsFileAndPath("/images/users/avatars",
+                            $this->imageOldPath);
                 })
                 ->setValueSkipped(empty(request('avatar')))
                 ->setValidationRules([
@@ -233,14 +224,13 @@ class User extends Section
             $name = AdminFormElement::text('name', 'Имя')
                 ->setHtmlAttribute('placeholder', 'Имя')
                 ->setHtmlAttribute('maxlength', '255')
-                ->setHtmlAttribute('minlength', '3')
+                ->setHtmlAttribute('minlength', '1')
                 ->setHtmlAttribute('autocomplete', 'off')
                 ->setValidationRules([
                     'required',
                     'string',
-                    'between:3,30',
+                    'between:1,255',
                     'unique:users,name,'.$id,
-                    'regex:/^[\p{L}0-9,.)\-_\s]+$/u',
                 ]),
 
             $birthday = AdminFormElement::date('birthday', 'День рождения')
@@ -304,19 +294,21 @@ class User extends Section
             $role_id = AdminFormElement::select('role_id', 'Роль')
                 ->setOptions($this->getRoles())
                 ->setDisplay('title')
-                ->setValidationRules(['required']),
+                ->setValidationRules(['required','exists:roles,id']),
 
             $country_id = AdminFormElement::select('country_id', 'Страна')
                 ->setOptions((new Country())->pluck('name', 'id')->toArray())
-                ->setDisplay('name'),
+                ->setDisplay('name')
+                ->setValidationRules(['nullable','exists:countries,id']),
 
             $race_id = AdminFormElement::select('race_id', 'Раса')
                 ->setOptions((new Race())->pluck('title', 'id')->toArray())
+                ->setValidationRules(['nullable','exists:races,id'])
                 ->setDisplay('title'),
 
             $ban = AdminFormElement::checkbox('ban', 'Ban')
                 ->setHtmlAttribute('title',
-                    'Внимание! Если пользователь в бане он не может залогиниться.'),
+                    'Внимание! Если пользователь в бане он не сможет зайти'),
         ]);
 
         return $display;
@@ -380,10 +372,9 @@ class User extends Section
             if (($key1 = array_search('Супер-админ', $getData)) !== false) {
                 unset($getData[$key1]);
             }
-            if (($key2 = array_search('админ', $getData)) !== false) {
+            if (($key2 = array_search('Админ', $getData)) !== false) {
                 unset($getData[$key2]);
             }
-
             return $getData;
         }
     }

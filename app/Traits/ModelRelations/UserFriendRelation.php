@@ -11,6 +11,7 @@ namespace App\Traits\ModelRelations;
 
 trait UserFriendRelation
 {
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

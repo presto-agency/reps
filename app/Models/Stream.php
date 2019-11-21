@@ -7,18 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stream extends Model
 {
+
     use StreamRelationTrait;
 
-    protected $fillable = [
+    protected $fillable
+        = [
 
-        'user_id',
-        'title',
-        'race_id',
-        'content',
-        'country_id',
-        'stream_url',
-        'approved',
-        'active'
+            'user_id',
+            'title',
+            'race_id',
+            'content',
+            'country_id',
+            'stream_url',
+            'approved',
+            'active',
 
-    ];
+        ];
+
 }

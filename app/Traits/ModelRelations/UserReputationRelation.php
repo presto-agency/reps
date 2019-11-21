@@ -11,6 +11,7 @@ namespace App\Traits\ModelRelations;
 
 trait UserReputationRelation
 {
+
     /**
      * Relations. Reputations user sender
      *
@@ -70,4 +71,5 @@ trait UserReputationRelation
     {
         return $this->belongsTo('App\Models\Comment', 'object_id');
     }
+
 }

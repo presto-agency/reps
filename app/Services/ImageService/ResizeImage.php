@@ -4,7 +4,7 @@
 namespace App\Services\ImageService;
 
 use Image;
-use Intervention\Image\ImageManager;
+use Str;
 
 
 class ResizeImage
@@ -15,17 +15,23 @@ class ResizeImage
      * Resize image
      *
      * @param $imageFile
-     * @param int $width
-     * @param int $height
+     * @param  int  $width
+     * @param  int  $height
      * @param $aspectRatio
+     *
      * @return string $path
      */
 
-    public static function resizeImg($imageFile, $width, $height, $aspectRatio, $path)
-    {
+    public static function resizeImg(
+        $imageFile,
+        $width,
+        $height,
+        $aspectRatio,
+        $path
+    ) {
         $ext = $imageFile->getClientOriginalExtension();
-        $newFileName = \Str::random(32);
-        $savePath = 'storage/' . $path . '/' . $newFileName . '.' . $ext;
+        $newFileName = Str::random(32);
+        $savePath = 'storage/'.$path.'/'.$newFileName.'.'.$ext;
 
         if ($aspectRatio === true) {
             $aspectRatio = function ($constraint) {
@@ -41,4 +47,5 @@ class ResizeImage
 
         return $savePath;
     }
+
 }

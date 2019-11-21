@@ -21,16 +21,21 @@ use Illuminate\Support\Facades\Auth;
 
 class RatingService
 {
+
     /**
      * Get user reputation view
+     *
      * @param $id
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public static function getRatingView($id)
     {
-        $user = User::findOrFail($id);
+        $user            = User::findOrFail($id);
         $userReputations = null;
-        return view('user.rating-list.index', compact('userReputations', 'user'));
+
+        return view('user.rating-list.index',
+            compact('userReputations', 'user'));
 
         /*return view('user.reputation')->with([
             'user' => User::find($id)
@@ -44,14 +49,16 @@ class RatingService
      */
     public static function refreshUserRating($user_id)
     {
-        $positive = UserReputation::where('recipient_id', $user_id)->where('rating', '1')->count();
-        $negative = UserReputation::where('recipient_id', $user_id)->where('rating', '-1')->count();
-        $val = $positive - $negative;
+        $positive = UserReputation::where('recipient_id', $user_id)
+            ->where('rating', '1')->count();
+        $negative = UserReputation::where('recipient_id', $user_id)
+            ->where('rating', '-1')->count();
+        $val      = $positive - $negative;
 
         User::where('id', $user_id)->update([
-            'rating' => $val,
+            'rating'         => $val,
             'count_negative' => $negative,
-            'count_positive' => $positive
+            'count_positive' => $positive,
         ]);
     }
 
@@ -64,23 +71,26 @@ class RatingService
     public static function refreshObjectRating($object_id, $relation_id)
     {
         $class_name = RatingService::getModel($relation_id);
-        $positive = UserReputation::where('object_id', $object_id)->where('relation', $relation_id)->where('rating',
-            '1')->count();
-        $negative = UserReputation::where('object_id', $object_id)->where('relation', $relation_id)->where('rating',
-            '-1')->count();
-        $val = $positive - $negative;
+        $positive   = UserReputation::where('object_id', $object_id)
+            ->where('relation', $relation_id)->where('rating',
+                '1')->count();
+        $negative   = UserReputation::where('object_id', $object_id)
+            ->where('relation', $relation_id)->where('rating',
+                '-1')->count();
+        $val        = $positive - $negative;
 
         echo $object_id;
         die;
         $class_name::where('id', $object_id)->update([
-            'rating' => $val,
+            'rating'         => $val,
             'negative_count' => $negative,
-            'positive_count' => $positive
+            'positive_count' => $positive,
         ]);
     }
 
     /**
      * @param $relation_id
+     *
      * @return null|string
      */
     public static function getModel($relation_id)
@@ -107,33 +117,42 @@ class RatingService
     /**
      * Set rating
      *
-     * @param SetRatingRequest $request
+     * @param  SetRatingRequest  $request
      * @param $id
      * @param $relation
+     *
      * @return array
      */
-    public static function set(SetRatingRequest $request, $id, $relation, $model)
-    {
+    public static function set(
+        SetRatingRequest $request,
+        $id,
+        $relation,
+        $model
+    ) {
         $object = ($model)::find($id);
 
         $comment = self::getComment($request);
         if ($object) {
-            if (!self::checkUserVoteExist($object, $request, $relation)) {
+            if ( ! self::checkUserVoteExist($object, $request, $relation)) {
                 $ratingObject = UserReputation::updateOrCreate(
                     [
-                        'sender_id' => Auth::id(),
+                        'sender_id'    => Auth::id(),
                         'recipient_id' => $object->user_id,
-                        'object_id' => $object->id,
-                        'relation' => $relation
+                        'object_id'    => $object->id,
+                        'relation'     => $relation,
                     ],
                     ['comment' => $comment, 'rating' => $request->get('rating')]
                 );
 
-//                UserActivityLogService::log(UserActivityLogService::EVENT_USER_LIKE, $ratingObject);
+                //                UserActivityLogService::log(UserActivityLogService::EVENT_USER_LIKE, $ratingObject);
 
                 return ['rating' => self::getRatingValue($object)];
             }
-            return ['message' => 'Вы уже проголосовали, Ваш голос:', 'user_rating' => $request->get('rating')];
+
+            return [
+                'message'     => 'Вы уже проголосовали, Ваш голос:',
+                'user_rating' => $request->get('rating'),
+            ];
         }
 
         return abort(404);
@@ -142,7 +161,8 @@ class RatingService
     /**
      * Get comment value
      *
-     * @param Request $request
+     * @param  Request  $request
+     *
      * @return mixed|null
      */
     public static function getComment(Request $request)
@@ -152,6 +172,7 @@ class RatingService
         if ($request->has('comment')) {
             $comment = $request->get('comment');
         }
+
         return $comment;
     }
 
@@ -159,6 +180,7 @@ class RatingService
      * @param $object
      * @param $request
      * @param $relation
+     *
      * @return bool
      */
     public static function checkUserVoteExist($object, $request, $relation)
@@ -177,10 +199,12 @@ class RatingService
      * Get calculation of rating value
      *
      * @param $object
+     *
      * @return mixed
      */
     protected static function getRatingValue($object)
     {
         return $object->positive()->count() - $object->negative()->count();
     }
+
 }

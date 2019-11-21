@@ -2,13 +2,11 @@
 
 namespace App\Http\Sections;
 
-use AdminFormElement;
-use AdminForm;
-use AdminColumnEditable;
-use AdminDisplayFilter;
-use AdminDisplay;
 use AdminColumn;
 use AdminColumnFilter;
+use AdminDisplay;
+use AdminForm;
+use AdminFormElement;
 use App\Models\Tag;
 use App\Services\ServiceAssistants\PathHelper;
 use Illuminate\Http\UploadedFile;
@@ -52,9 +50,7 @@ class ChatPicture extends Section
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center')
             ->paginate(10);
-        $display->setApply(function ($query) {
-            $query->orderByDesc('id');
-        });
+
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')

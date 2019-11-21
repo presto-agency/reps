@@ -39,7 +39,7 @@ class NavigationReplaysComposer
 
         self::$replayTypeName = ReplayHelper::checkUrlType() == 1
             ? 'Пользовательские' : 'Профессиональные';
-        $this->replayNav = self::getCacheReplayPro('proReplayNav');
+        $this->replayNav      = self::getCacheReplayPro('proReplayNav');
 
     }
 
@@ -67,14 +67,14 @@ class NavigationReplaysComposer
         return $data_cache;
     }
 
-//    private static function getReplay2(){
-//        return ReplayType::with(['replays' => function ($query) {
-//            $query->where('approved', 1)
-//                ->withCount('comments')
-//                ->where('user_replay', Replay::REPLAY_PRO)
-//                ->take(4);
-//       }])->get();
-//    }
+    //    private static function getReplay2(){
+    //        return ReplayType::with(['replays' => function ($query) {
+    //            $query->where('approved', 1)
+    //                ->withCount('comments')
+    //                ->where('user_replay', Replay::REPLAY_PRO)
+    //                ->take(4);
+    //       }])->get();
+    //    }
 
     private static function getReplay()
     {
