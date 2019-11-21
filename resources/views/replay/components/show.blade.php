@@ -235,11 +235,11 @@
                 </div>
             </div>
         </div>
-        @if(isset($replay->video_iframe) && !empty($replay->video_iframe))
-            <span>{{__('Видео:')}}</span>
-            <div class="replay_video border_shadow">{!! $replay->video_iframe !!}</div>
-        @endif
     </section>
+    @if(isset($replay->video_iframe) && !empty($replay->video_iframe))
+        <span>{{__('Видео:')}}</span>
+        <div class="replay_video border_shadow">{!! $replay->video_iframe !!}</div>
+    @endif
 @endisset
 <script type="text/javascript">
     $('.download').click(function () {
