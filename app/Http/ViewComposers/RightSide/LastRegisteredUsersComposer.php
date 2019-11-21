@@ -3,6 +3,7 @@
 
 namespace App\Http\ViewComposers\RightSide;
 
+use App\Models\Banner;
 use App\User;
 use Illuminate\View\View;
 
@@ -17,8 +18,8 @@ class LastRegisteredUsersComposer
      */
     public function compose(View $view)
     {
-        $result = self::getCache('newUsers');
-        $view->with('newUsers', $result);
+        $view->with('banners', self::getCache('banners', self::getBanners()));
+        $view->with('newUsers', self::getCache('newUsers', self::getNewUsers()));
         $view->with('voteRight', self::checkVoteRight());
     }
 
@@ -30,20 +31,29 @@ class LastRegisteredUsersComposer
         return User::with('countries:id,flag,name', 'races:id,code,title')
             ->orderByDesc('created_at')
             ->take(self::$userTake)
-            ->get(['id', 'name', 'race_id', 'country_id']);
+            ->get(['id',
+                   'name',
+                   'race_id',
+                   'country_id']);
+    }
+
+    private static function getBanners()
+    {
+        return Banner::whereNotNull('image')->where('is_active', 1)->get();
     }
 
     /**
      * @param $cache_name
+     * @param $data
      * @return mixed
      */
-    public static function getCache($cache_name)
+    public static function getCache($cache_name, $data)
     {
         if (\Cache::has($cache_name) && !\Cache::get($cache_name)->isEmpty()) {
             $data_cache = \Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
-                return self::getNewUsers();
+            $data_cache = \Cache::remember($cache_name, self::$ttl, function () use ($data) {
+                return $data;
             });
         }
         return $data_cache;

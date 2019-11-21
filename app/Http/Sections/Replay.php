@@ -13,6 +13,7 @@ use App\Services\ServiceAssistants\PathHelper;
 use App\Models\{Country, Race, ReplayMap, ReplayType};
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
+use phpDocumentor\Reflection\Types\Object_;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Section;
 
@@ -25,6 +26,7 @@ use SleepingOwl\Admin\Section;
  */
 class Replay extends Section
 {
+
     /**
      * @var bool
      */
@@ -58,79 +60,85 @@ class Replay extends Section
     {
 
         $display = AdminDisplay::datatablesAsync()
+            ->with([
+                'users',
+                'maps',
+                'comments',
+                'types',
+                'firstCountries',
+                'secondCountries',
+                'firstRaces',
+                'secondRaces',
+            ])
             ->setHtmlAttribute('class', 'table-info table-sm text-center')
             ->paginate(10);
 
-        $display->setFilters([
-            AdminDisplayFilter::related('approved')->setModel(\App\Models\Replay::class),
-        ]);
+        $display->setFilters(
+            AdminDisplayFilter::related('approved')->setModel(\App\Models\Replay::class)
+        );
         $display->setApply(function ($query) {
             $query->orderByDesc('id');
 
         });
-
 
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id')
                 ->setWidth(70),
 
-            $user_id = AdminColumn::relatedLink('users.name', 'Пользователь'),
+            $user = AdminColumn::relatedLink('users.name', 'Пользователь'),
 
-            $user_replay = AdminColumn::text('title', 'Название'),
+            $title = AdminColumn::text('title', 'Название'),
 
-            $map_id = AdminColumn::relatedLink('maps.name', 'Карта')
+            $map = AdminColumn::relatedLink('maps.name', 'Карта')
                 ->setWidth(100),
 
-            $country = AdminColumn::custom('Первая или вторая страна', function (\Illuminate\Database\Eloquent\Model $model) {
+            $country = AdminColumn::custom('Первая или вторая страна', function ($model) {
                 return $model->firstCountries->name . '<br/><small>vs</small><br/>' . $model->secondCountries->name;
             })->setFilterCallback(function ($column, $query, $search) {
-                $searchId = Country::where('name', $search)->value('id');
-                if (!empty($searchId)) {
-                    $query->where('first_country_id', 'like', $searchId)->orWhere('second_country_id', 'like', $searchId);
-                }
-                if (empty($searchId)) {
-                    $query->get();
+                if ($search) {
+                    $query->whereHas('firstCountries', function ($q) use ($search) {
+                        return $q->where('name', $search);
+                    })->orWhereHas('secondCountries', function ($q) use ($search) {
+                        return $q->where('name', $search);
+                    });
                 }
             })->setWidth(120),
-            $race = AdminColumn::custom('Первая или вторая раса', function (\Illuminate\Database\Eloquent\Model $model) {
+
+            $race = AdminColumn::custom('Первая или вторая раса', function ($model) {
                 return $model->firstRaces->title . '<br/><small>vs</small><br/>' . $model->secondRaces->title;
             })->setFilterCallback(function ($column, $query, $search) {
-                $searchId = Race::where('title', $search)->value('id');
-                if (!empty($searchId)) {
-                    $query->where('first_race', 'like', $searchId)->orWhere('second_race', 'like', $searchId);
-                }
-                if (empty($searchId)) {
-                    $query->get();
+                if ($search) {
+                    $query->whereHas('firstRaces', function ($q) use ($search) {
+                        return $q->where('title', $search);
+                    })->orWhereHas('secondRaces', function ($q) use ($search) {
+                        return $q->where('title', $search);
+                    });
                 }
             })->setWidth(70),
 
-            $type_id = AdminColumn::text('types.title', 'Тип')
+            $type = AdminColumn::text('types.title', 'Тип')
                 ->setWidth(70),
 
-            $user_replay = AdminColumn::custom('Тип 2', function (\Illuminate\Database\Eloquent\Model $model) {
+            $user_replay = AdminColumn::custom('Тип 2', function ($model) {
                 return $model::$userReplaysType[$model->user_replay];
-            })->setFilterCallback(function ($column, $query, $search)  {
-                if (!empty($search)) {
-                    $query->where('user_replay', 'like', $search);
+            })->setFilterCallback(function ($column, $query, $search) {
+                if ($search) {
+                    $query->where('user_replay', $this->model::$userReplaysType[$search]);
                 }
-                if (empty($search)) {
-                    $query->get();
-                }
-            })
-                ->setWidth(100),
+            })->setWidth(100),
 
             $comments_count = AdminColumn::count('comments', 'Коментарии')
                 ->setWidth(105),
 
-            $user_rating = AdminColumn::relatedLink('user_rating', 'Оценка <br/><small>(пользователей)</small>')
+            $user_rating = AdminColumn::text('user_rating', 'Оценка <br/><small>(пользователей)</small>')
                 ->setWidth(125),
 
             $rating = AdminColumn::custom('Рейтинг', function ($model) {
                 $thumbsUp = '<span style="font-size: 1em; color: green;"><i class="far fa-thumbs-up"></i></span>';
                 $equals = '<i class="fas fa-equals"></i>';
                 $thumbsDown = '<span style="font-size: 1em; color: red;"><i class="far fa-thumbs-down"></i></span>';
-                return $thumbsUp . $model->positive_count . '<br/>' . $equals . $model->positive_count-$model->negative_count . '<br/>' . $thumbsDown . $model->negative_count;
+                return $thumbsUp . $model->positive_count . '<br/>' . $equals . ($model->positive_count - $model->negative_count) . '<br/>' . $thumbsDown . $model->negative_count;
             })->setWidth(10),
 
             $approved = AdminColumnEditable::checkbox('approved')->setLabel('Подтвержден')
@@ -145,7 +153,7 @@ class Replay extends Section
                 ->setOperator(FilterInterface::CONTAINS)
                 ->setPlaceholder('ID')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
-            $user_id = AdminColumnFilter::text()
+            $user = AdminColumnFilter::text()
                 ->setOperator('contains')
                 ->setPlaceholder('Пользователь')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
@@ -153,30 +161,26 @@ class Replay extends Section
                 ->setOperator(FilterInterface::CONTAINS)
                 ->setPlaceholder('Название')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
-            $map_id = null,
-            $country = null,
-            $race = null,
-            $type_id = null,
-//            $map_id = AdminColumnFilter::select()
-//                ->setOptions((new ReplayMap())->pluck('name', 'name')->toArray())
-//                ->setOperator(FilterInterface::EQUAL)
-//                ->setPlaceholder('Все')
-//                ->setHtmlAttributes(['style' => 'width: 100%']),
-//            $country = AdminColumnFilter::select()
-//                ->setOptions((new Country())->pluck('name', 'name')->toArray())
-//                ->setOperator(FilterInterface::EQUAL)
-//                ->setPlaceholder('Все')
-//                ->setHtmlAttributes(['style' => 'width: 100%']),
-//            $race = AdminColumnFilter::select()
-//                ->setOptions((new Race())->pluck('title', 'title')->toArray())
-//                ->setOperator(FilterInterface::EQUAL)
-//                ->setPlaceholder('Все')
-//                ->setHtmlAttributes(['style' => 'width: 100%']),
-//            $type_id = AdminColumnFilter::select()
-//                ->setOptions((new ReplayType())->pluck('title', 'title')->toArray())
-//                ->setOperator(FilterInterface::EQUAL)
-//                ->setPlaceholder('Все')
-//                ->setHtmlAttributes(['style' => 'width: 100%']),
+            $map = AdminColumnFilter::select()
+                ->setOptions((new ReplayMap())->pluck('name', 'name')->toArray())
+                ->setOperator(FilterInterface::EQUAL)
+                ->setPlaceholder('Все')
+                ->setHtmlAttributes(['style' => 'width: 100%']),
+            $country = AdminColumnFilter::select()
+                ->setOptions((new Country())->pluck('name', 'name')->toArray())
+                ->setOperator(FilterInterface::EQUAL)
+                ->setPlaceholder('Все')
+                ->setHtmlAttributes(['style' => 'width: 100%']),
+            $race = AdminColumnFilter::select()
+                ->setOptions((new Race())->pluck('title', 'title')->toArray())
+                ->setOperator(FilterInterface::EQUAL)
+                ->setPlaceholder('Все')
+                ->setHtmlAttributes(['style' => 'width: 100%']),
+            $type = AdminColumnFilter::select()
+                ->setOptions((new ReplayType())->pluck('title', 'title')->toArray())
+                ->setOperator(FilterInterface::EQUAL)
+                ->setPlaceholder('Все')
+                ->setHtmlAttributes(['style' => 'width: 100%']),
             $type2 = AdminColumnFilter::select()
                 ->setOptions($this->model::$userReplaysType)
                 ->setOperator(FilterInterface::EQUAL)
@@ -514,12 +518,8 @@ class Replay extends Section
     public function show()
     {
         $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $id = $model->getKey();
-            $url = url("admin/replays/$id/show");
-            return $url;
-        }, function (\Illuminate\Database\Eloquent\Model $model) {
-            return 'Просмотреть';
-        }, 50);
+            return asset('admin/replays/' . $model->getKey() . '/show');
+        }, 'Просмотреть', 50);
         $link->hideText();
         $link->setIcon('fa fa-eye');
         $link->setHtmlAttribute('class', 'btn-info');

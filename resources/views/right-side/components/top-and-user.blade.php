@@ -1,16 +1,16 @@
-{{--@isset($banners)--}}
-{{--    <section class="banner">--}}
-{{--        <div class="wrapper">--}}
-{{--            @foreach($banners as $baner)--}}
-{{--                <div class="block_content">--}}
-{{--                    <a href="#">--}}
-{{--                        <img src="{{url('images\logo.png')}}"/>--}}
-{{--                    </a>--}}
-{{--                </div>--}}
-{{--            @endforeach--}}
-{{--        </div>--}}
-{{--    </section>--}}
-{{--@endisset--}}
+@if($banners->isNotEmpty())
+    <section class="banner">
+        <div class="wrapper">
+            @foreach($banners as $item)
+                <div class="block_content">
+                    <a href="{{$item->url_redirect}}" title="{{$item->title}}">
+                        <img src="{{asset($item->image)}}" alt="banner"/>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </section>
+@endisset
 <section class="block_top">
     <div class="wrapper border_shadow">
         <div class="title_block">

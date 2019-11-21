@@ -58,8 +58,11 @@ class ForumTopics extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
+            ->with(['forumSection',
+                    'author',
+                    'comments'])
             ->setDatatableAttributes(['bInfo' => false])
-            ->setHtmlAttribute('class', 'table-info table-hover text-center')
+            ->setHtmlAttribute('class', 'table-info text-center')
             ->paginate(10);
         $display->setFilters([
             AdminDisplayFilter::related('forum_section_id')->setModel(ForumSection::class),
@@ -139,9 +142,8 @@ class ForumTopics extends Section
                 ->setDisplay('title'),
             $user_id = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
             $preview_img = AdminFormElement::image('preview_img', 'Загрузить картинку превью')
-                ->setUploadPath(function (UploadedFile $file) use ($id) {
-                    $filePath =  \App\Models\ForumTopic::where('id', $id)->value('preview_img');
-                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/topics", $filePath);
+                ->setUploadPath(function (UploadedFile $file) {
+                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/topics", $this->getModelValue()->getAttribute('preview_img'));
                 })
                 ->setValidationRules(['nullable',
                                       'max:2048']),
