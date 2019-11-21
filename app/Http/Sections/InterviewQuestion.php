@@ -120,7 +120,13 @@ class InterviewQuestion extends Section
                 })->addColumn(function () {
                     return [
                         AdminFormElement::hasMany('answers',[
-                            AdminFormElement::text('answer'),
+                            AdminFormElement::text('answer')
+                                ->setHtmlAttribute('placeholder', 'Вариант ответа')
+                                ->setHtmlAttribute('maxlength', '255')
+                                ->setHtmlAttribute('minlength', '1')
+                                ->setValidationRules([
+                                    'required', 'string', 'between:1,255',
+                                ]),
                         ])
                     ];
                 })

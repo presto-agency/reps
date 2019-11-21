@@ -39,7 +39,7 @@
             @foreach($replay as $item)
                 <div class="gocu-replays__subtitle change_gray">
                     <a class="subtitle__name night_text"
-                       href="{{ asset(url("replay/{$item->id}"."?type={$item::$type[$item->user_replay]}"))}}">
+                       href="{{ asset("replay/{$item->id}"."?type={$item::$type[$item->user_replay]}")}}">
                         {{$item->title}}
                     </a>
                     <p class="subtitle__date night_text">{{$item->created_at->format('h:m d.m.Y')}}</p>
