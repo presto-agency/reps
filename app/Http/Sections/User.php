@@ -179,24 +179,27 @@ class User extends Section
         $display->setItems([
             $avatar = AdminFormElement::image('avatar', 'Аватар')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/users/avatars", auth()->user()->avatar);
+                        return 'storage' . PathHelper::checkUploadsFileAndPath("/images/users/avatars", auth()->user()->avatar);
                 })
                 ->setValueSkipped(empty(request('avatar')))
                 ->setValidationRules([
                     'nullable',
-                    'max:2048'
-                ])
-                ->setUploadSettings([
-                    'orientate' => [],
-                    'resize'    => [
-                        120,
-                        120,
-                        function ($constraint) {
-                            $constraint->upsize();
-                            $constraint->aspectRatio();
-                        }
-                    ],
-                ]),
+                    'max:2048',
+                    'mimes:jpeg,png,jpg,gif,svg'
+                ])->setUploadSettings([
+                         'orientate' => [],
+                         'resize'    => [
+                             120,
+                             120,
+                             function ($constraint) {
+                                 $constraint->upsize();
+                                 $constraint->aspectRatio();
+                             }
+                         ],
+                     ])
+
+            ,
+
             $email = AdminFormElement::text('email', 'Почта')
                 ->setHtmlAttribute('placeholder', 'Почта')
                 ->setHtmlAttribute('autocomplete', 'off')

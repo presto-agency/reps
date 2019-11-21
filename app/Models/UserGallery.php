@@ -29,7 +29,6 @@ class UserGallery extends Model
         return 'images/default/gallery/no-img.png';
     }
 
-
     public function getTitle()
     {
         return $this->sign ?: null;

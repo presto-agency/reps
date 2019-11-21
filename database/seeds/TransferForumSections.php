@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 class TransferForumSections extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -17,9 +18,11 @@ class TransferForumSections extends Seeder
         /**
          * Disable forKeys
          */
-        Schema::table('forum_sections', function (Blueprint $table) {
+        Schema::table(
+            'forum_sections', function (Blueprint $table) {
             Schema::disableForeignKeyConstraints();
-        });
+        }
+        );
         /**
          * Clear table
          */
@@ -27,14 +30,17 @@ class TransferForumSections extends Seeder
         /**
          * Remove autoIncr
          */
-        Schema::table('forum_sections', function (Blueprint $table) {
+        Schema::table(
+            'forum_sections', function (Blueprint $table) {
             $table->unsignedBigInteger('id', false)->change();
-        });
+        }
+        );
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("forum_sections")->orderBy('id','ASC')
-            ->chunkById(100, function ($repsForumSections) {
+        DB::connection("mysql2")->table("forum_sections")->orderBy('id', 'ASC')
+            ->chunkById(
+                100, function ($repsForumSections) {
                 try {
                     $insertItems = [];
                     foreach ($repsForumSections as $item) {
@@ -54,18 +60,24 @@ class TransferForumSections extends Seeder
                 } catch (\Exception $e) {
                     dd($e, $item);
                 }
-            });
+            }
+            );
         /**
          * Add autoIncr
          */
-        Schema::table('forum_sections', function (Blueprint $table) {
+        Schema::table(
+            'forum_sections', function (Blueprint $table) {
             $table->unsignedBigInteger('id', true)->change();
-        });
+        }
+        );
         /**
          * Enable forKeys
          */
-        Schema::table('forum_sections', function (Blueprint $table) {
+        Schema::table(
+            'forum_sections', function (Blueprint $table) {
             Schema::enableForeignKeyConstraints();
-        });
+        }
+        );
     }
+
 }

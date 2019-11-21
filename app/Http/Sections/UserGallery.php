@@ -16,9 +16,9 @@ use SleepingOwl\Admin\Section;
 /**
  * Class UserGallery
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\UserGallery $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class UserGallery extends Section
 {
@@ -57,51 +57,66 @@ class UserGallery extends Section
     {
         $display = AdminDisplay::datatablesAsync()
             ->setDisplaySearch(false)
-            ->setHtmlAttribute('class', 'table-info table-sm text-center')
+            ->setHtmlAttribute(
+                'class',
+                'table-info table-sm text-center'
+            )
             ->with(['users'])
             ->paginate(10);
-
         $display->setFilters(
-            AdminDisplayFilter::related('for_adults')->setModel(\App\Models\UserGallery::class)
+            AdminDisplayFilter::related('for_adults')
+                ->setModel(\App\Models\UserGallery::class)
+        );
+        $display->setApply(
+            function ($query) {
+                $query->orderBy('id', 'desc');
+            }
+        );
+        $display->setColumns(
+            [
+                AdminColumn::text('id', 'Id')->setWidth(50),
+                AdminColumn::image(
+                    function ($model) {
+                        if ( ! empty($model->picture)
+                            && PathHelper::checkFileExists(
+                                $model->picture
+                            )
+                        ) {
+                            return $model->picture;
+                        } else {
+                            return 'images/default/gallery/no-img.png';
+                        }
+                    }
+                )->setLabel('Изображение')->setWidth(10),
+                AdminColumn::relatedLink('users.name', 'Пользователь'),
+                AdminColumn::text('sign', 'Подпись'),
+                AdminColumnEditable::checkbox('for_adults')
+                    ->setLabel('18+')
+                    ->setWidth(50)
+                    ->append(AdminColumn::filter('for_adults')),
+
+                AdminColumn::custom(
+                    'Рейтинг',
+                    function ($model) {
+                        $thumbsUp
+                                = '<span style="font-size: 1em; color: green;"><i class="far fa-thumbs-up"></i></span>';
+                        $equals = '<i class="fas fa-equals"></i>';
+                        $thumbsDown
+                                = '<span style="font-size: 1em; color: red;"><i class="far fa-thumbs-down"></i></span>';
+
+                        return $thumbsUp.$model->positive_count.'<br/>'.$equals
+                            .($model->positive_count - $model->negative_count)
+                            .'<br/>'.$thumbsDown.$model->negative_count;
+                    }
+                )->setWidth(10),
+
+                $comments_count = AdminColumn::count('comments', 'Коментарии')
+                    ->setWidth(100),
+
+            ]
         );
 
-        $display->setApply(function ($query) {
-            $query->orderBy('id', 'desc');
-        });
-
-        $display->setColumns([
-
-            $id = AdminColumn::text('id', 'Id')
-                ->setWidth(50),
-
-            $picture = AdminColumn::image(function ($model) {
-                if (!empty($model->picture) && PathHelper::checkFileExists($model->picture)) {
-                    return $model->picture;
-                } else {
-                    return 'images/default/gallery/no-img.png';
-                }
-            })->setLabel('Изображение')->setWidth(10),
-
-            $user_id = AdminColumn::relatedLink('users.name', 'Пользователь'),
-
-            $sign = AdminColumn::text('sign', 'Подпись'),
-
-            $for_adults = AdminColumnEditable::checkbox('for_adults')->setLabel('18+')
-                ->setWidth(50)
-                ->append(AdminColumn::filter('for_adults')),
-
-            $rating = AdminColumn::custom('Рейтинг', function ($model) {
-                $thumbsUp = '<span style="font-size: 1em; color: green;"><i class="far fa-thumbs-up"></i></span>';
-                $equals = '<i class="fas fa-equals"></i>';
-                $thumbsDown = '<span style="font-size: 1em; color: red;"><i class="far fa-thumbs-down"></i></span>';
-                return $thumbsUp . $model->positive_count . '<br/>' . $equals . ($model->positive_count-$model->negative_count) . '<br/>' . $thumbsDown . $model->negative_count;
-            })->setWidth(10),
-
-            $comments_count = AdminColumn::count('comments', 'Коментарии')->setWidth(100),
-
-        ]);
-
-        $control = $display->getColumns()->getControlColumn();
+        $control    = $display->getColumns()->getControlColumn();
         $buttonShow = $this->show();
         $control->addButton($buttonShow);
 
@@ -109,7 +124,7 @@ class UserGallery extends Section
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
@@ -117,16 +132,24 @@ class UserGallery extends Section
     {
         $display = AdminForm::panel();
 
-        $display->setItems([
-            $picture = AdminColumn::image('picture', 'Изображение')
-                ->setImageWidth('450'),
+        $display->setItems(
+            [
+                $picture = AdminColumn::image('picture', 'Изображение')
+                    ->setImageWidth('450'),
 
-            $sign = AdminFormElement::text('sign', 'Подпись')
-                ->setHtmlAttribute('placeholder', 'Подпись')
-                ->setHtmlAttribute('maxlength', '255')
-                ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules(['nullable', 'string', 'between:1,255']),
-        ]);
+                $sign = AdminFormElement::text('sign', 'Подпись')
+                    ->setHtmlAttribute(
+                        'placeholder',
+                        'Подпись'
+                    )
+                    ->setHtmlAttribute('maxlength', '255')
+                    ->setHtmlAttribute('minlength', '1')
+                    ->setValidationRules([
+                        'nullable', 'string', 'between:1,255',
+                    ]),
+            ]
+        );
+
         return $display;
     }
 
@@ -136,23 +159,47 @@ class UserGallery extends Section
     public function onCreate()
     {
         $display = AdminForm::panel();
-        $display->setItems([
+        $display->setItems(
+            [
 
-            $picture = AdminFormElement::image('picture', 'Картинка')
-                ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage' . PathHelper::checkUploadsFileAndPath("/images/users/galleries");
-                })
-                ->setValidationRules(['required', 'max:2048']),
+                $picture = AdminFormElement::image('picture', 'Картинка')
+                    ->setUploadPath(
+                        function (
+                            UploadedFile $file
+                        ) {
+                            return 'storage'
+                                .PathHelper::checkUploadsFileAndPath(
+                                    "/images/users/galleries"
+                                );
+                        }
+                    )
+                    ->setValidationRules(
+                        [
+                            'required',
+                            'max:2048',
+                        ]
+                    ),
 
-            $sign = AdminFormElement::text('sign', 'Подпись')
-                ->setHtmlAttribute('placeholder', 'Подпись')
-                ->setHtmlAttribute('maxlength', '255')
-                ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules(['nullable', 'string', 'between:1,255']),
+                $sign = AdminFormElement::text('sign', 'Подпись')
+                    ->setHtmlAttribute(
+                        'placeholder',
+                        'Подпись'
+                    )
+                    ->setHtmlAttribute('maxlength', '255')
+                    ->setHtmlAttribute('minlength', '1')
+                    ->setValidationRules(
+                        [
+                            'nullable',
+                            'string',
+                            'between:1,255',
+                        ]
+                    ),
 
-            $for_adults = AdminFormElement::checkbox('for_adults', '18+')
-                ->setDefaultValue(false),
-        ]);
+                $for_adults = AdminFormElement::checkbox('for_adults', '18+')
+                    ->setDefaultValue(false),
+            ]
+        );
+
         return $display;
     }
 
@@ -178,16 +225,22 @@ class UserGallery extends Section
     public function show()
     {
 
-        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
-            $url = asset('admin/user_galleries/show/' . $model->getKey());
-            return $url;
-        }, function (\Illuminate\Database\Eloquent\Model $model) {
+        $link = new \SleepingOwl\Admin\Display\ControlLink(
+            function (
+                \Illuminate\Database\Eloquent\Model $model
+            ) {
+                $url = asset('admin/user_galleries/show/'.$model->getKey());
+
+                return $url;
+            }, function (\Illuminate\Database\Eloquent\Model $model) {
             return 'Просмотреть';
-        }, 50);
+        }, 50
+        );
         $link->hideText();
         $link->setIcon('fa fa-eye');
         $link->setHtmlAttribute('class', 'btn-info');
 
         return $link;
     }
+
 }
