@@ -84,6 +84,7 @@
     background: white;
     .categories {
         padding: 10px 0;
+        max-height: auto;
         .category__item {
             display: inline;
             cursor: pointer;
@@ -100,6 +101,7 @@
     }
     .images {
         border-top: 1px solid gray;
+        border-bottom: 1px solid gray;
         margin: 0;
         max-height: 330px;
         overflow-y: auto;
