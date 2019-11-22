@@ -1047,7 +1047,7 @@
                         font-size: 3.083vw;
                     }
                      .right{
-                         p{
+                         p, span{
                             font-size: 3vw;
                         }
                         & svg{
@@ -1055,7 +1055,7 @@
                         }
                     }
                     .left{
-                        p{
+                        p, span{
                             font-size: 3vw;
                         }
                     }
@@ -1063,7 +1063,7 @@
             }
         }
         & .title_players{
-            padding:  3.472vw;
+            padding:  5.472vw;
             & .title_playersText{
                 font-size: 3.778vw;
             }
