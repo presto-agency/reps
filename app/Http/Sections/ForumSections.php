@@ -71,7 +71,7 @@ class ForumSections extends Section
         ];
 
         $display = AdminDisplay::datatables()
-            ->setName('forumSectionsTables')
+            ->setName('forumsectionstables')
             ->setOrder([[0, 'asc']])
             ->setDisplaySearch(false)
             ->with(['topics'])
