@@ -144,7 +144,7 @@
                     @endif
                     <div class="replay-rating">
                         <a href="#vote-modal" class="positive-vote vote-replay-up" data-toggle="modal" data-rating="1"
-                           data-target="#likeModal"
+                           data-target="#vote-modal"
                            data-route="http://reps.ru/replay/15980/set_rating">
                             <svg class="night_svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -157,7 +157,7 @@
                             </svg>
                             <span>{{$replay->positive_count}}</span>
                         </a>
-                        <div class="modal fade" id="likeModal" tabindex="-1" role="dialog" aria-labelledby="likeModal"
+                        <div class="modal fade" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="likeModal"
                              aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content ">
@@ -172,13 +172,13 @@
                                     {{--                                    @include('modal.like_autorization');--}}
                                     {{-- не авторизований--}}
 
-                                    @include('modal.no-autorization')
+                                    @include('modal.like_autorization')
                                 </div>
                             </div>
                         </div>
                         <a href="#vote-modal" class="negative-vote vote-replay-down" data-toggle="modal"
                            data-rating="-1"
-                           data-route="http://reps.ru/replay/15980/set_rating" data-target="#diselikeModal">
+                           data-route="http://reps.ru/replay/15980/set_rating" data-target="#vote-modal">
                             <svg class="night_svg" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                         d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"></path>
@@ -187,7 +187,7 @@
                             </svg>
                             <span>{{$replay->negative_count}}</span>
                         </a>
-                        <div class="modal fade" id="diselikeModal" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="vote-modal" tabindex="-1" role="dialog"
                              aria-labelledby="likeModal" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content ">
@@ -201,7 +201,7 @@
 
                                     {{--@include('modal.diselike_autorization');--}}
                                     {{-- не авторизований--}}
-                                    @include('modal.no-autorization')
+                                    @include('modal.like_autorization')
                                 </div>
                             </div>
                         </div>
