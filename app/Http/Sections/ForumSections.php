@@ -7,6 +7,7 @@ use AdminColumnEditable;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
+use App\Models\ForumSection;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Display\ControlLink;
@@ -16,7 +17,7 @@ use SleepingOwl\Admin\Section;
  * Class ForumSections
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
- * @property \App\Models\ForumSection $model
+ * @property ForumSection $model
  *
  */
 class ForumSections extends Section

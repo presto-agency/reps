@@ -9,6 +9,8 @@ use App\Models\Race;
 use App\Models\Replay;
 use App\Models\Role;
 use App\Models\UserGallery;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait UserRelation
 {
@@ -45,7 +47,7 @@ trait UserRelation
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function user_friends()
     {
@@ -53,7 +55,7 @@ trait UserRelation
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function user_friendly()
     {
@@ -61,7 +63,7 @@ trait UserRelation
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function topics()
     {
@@ -69,7 +71,7 @@ trait UserRelation
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function comments()
     {
@@ -77,7 +79,7 @@ trait UserRelation
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function user_replay()
     {
@@ -86,7 +88,7 @@ trait UserRelation
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function gosu_replay()
     {
@@ -95,7 +97,7 @@ trait UserRelation
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function messages()
     {
@@ -103,7 +105,7 @@ trait UserRelation
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function dialogues()
     {

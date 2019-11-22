@@ -10,10 +10,14 @@ use AdminForm;
 use AdminFormElement;
 use App\Http\ViewComposers\StreamIframeComposer;
 use App\Models\{Country, Race};
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Display\ControlLink;
+use SleepingOwl\Admin\Display\DisplayDatatablesAsync;
+use SleepingOwl\Admin\Form\FormPanel;
 use SleepingOwl\Admin\Section;
+use Throwable;
 use View;
 
 /**
@@ -51,8 +55,8 @@ class Stream extends Section implements Initializable
     }
 
     /**
-     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
-     * @throws \Exception
+     * @return DisplayDatatablesAsync
+     * @throws Exception
      */
     public function onDisplay()
     {
@@ -96,8 +100,8 @@ class Stream extends Section implements Initializable
     /**
      * @param $id
      *
-     * @return \SleepingOwl\Admin\Form\FormPanel
-     * @throws \Throwable
+     * @return FormPanel
+     * @throws Throwable
      */
     public function onEdit($id)
     {
@@ -159,8 +163,8 @@ class Stream extends Section implements Initializable
     }
 
     /**
-     * @return \SleepingOwl\Admin\Form\FormPanel
-     * @throws \Throwable
+     * @return FormPanel
+     * @throws Throwable
      */
     public function onCreate()
     {
@@ -234,7 +238,7 @@ class Stream extends Section implements Initializable
     /**
      * @param $display
      *
-     * @return \SleepingOwl\Admin\Display\ControlLink
+     * @return ControlLink
      */
     public function show($display)
     {

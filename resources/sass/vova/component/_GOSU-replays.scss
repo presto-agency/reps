@@ -159,6 +159,8 @@
             padding-left: 20px;
             padding-right: 20px;
             margin-bottom: 0; //отмена стандартного margin
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .match__info {

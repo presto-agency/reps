@@ -6,6 +6,7 @@ namespace App\Http\ViewComposers\admin;
 use App\Models\ForumTopic;
 use App\Models\Replay;
 use App\User;
+use Cache;
 use Illuminate\View\View;
 
 class DashboardCountComposer
@@ -35,10 +36,10 @@ class DashboardCountComposer
     public static function getCacheUser()
     {
         $cache_name = 'dashboardUsersCount';
-        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
-            $data_cache = \Cache::get($cache_name);
+        if (Cache::has($cache_name) && !empty(Cache::get($cache_name))) {
+            $data_cache = Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
+            $data_cache = Cache::remember($cache_name, self::$ttl, function () {
                 return User::count();
             });
         }
@@ -48,10 +49,10 @@ class DashboardCountComposer
     public static function getCacheForumTopics()
     {
         $cache_name = 'dashboardForumTopics';
-        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
-            $data_cache = \Cache::get($cache_name);
+        if (Cache::has($cache_name) && !empty(Cache::get($cache_name))) {
+            $data_cache = Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
+            $data_cache = Cache::remember($cache_name, self::$ttl, function () {
                 return ForumTopic::count();
             });
         }
@@ -61,10 +62,10 @@ class DashboardCountComposer
     public static function getCacheUserReplay()
     {
         $cache_name = 'dashboardUserReplay';
-        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
-            $data_cache = \Cache::get($cache_name);
+        if (Cache::has($cache_name) && !empty(Cache::get($cache_name))) {
+            $data_cache = Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
+            $data_cache = Cache::remember($cache_name, self::$ttl, function () {
                 return Replay::where('user_replay', Replay::REPLAY_USER)->count();
             });
         }
@@ -74,10 +75,10 @@ class DashboardCountComposer
     public static function getCacheGosuReplay()
     {
         $cache_name = 'dashboardGosuReplay';
-        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
-            $data_cache = \Cache::get($cache_name);
+        if (Cache::has($cache_name) && !empty(Cache::get($cache_name))) {
+            $data_cache = Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
+            $data_cache = Cache::remember($cache_name, self::$ttl, function () {
                 return Replay::where('user_replay', Replay::REPLAY_PRO)->count();
             });
         }

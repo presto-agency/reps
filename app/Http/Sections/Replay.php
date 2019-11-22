@@ -12,10 +12,14 @@ use AdminFormElement;
 use App\Models\{Country, Race, ReplayMap, ReplayType};
 use App\Services\ServiceAssistants\PathHelper;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Display\ControlLink;
+use SleepingOwl\Admin\Display\DisplayDatatablesAsync;
+use SleepingOwl\Admin\Exceptions\FilterOperatorException;
+use SleepingOwl\Admin\Form\FormPanel;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -56,8 +60,8 @@ class Replay extends Section
     public $replaysTypes2;
 
     /**
-     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
-     * @throws \SleepingOwl\Admin\Exceptions\FilterOperatorException
+     * @return DisplayDatatablesAsync
+     * @throws FilterOperatorException
      */
     public function onDisplay()
     {
@@ -279,8 +283,8 @@ class Replay extends Section
     /**
      * @param $id
      *
-     * @return \SleepingOwl\Admin\Form\FormPanel
-     * @throws \Exception
+     * @return FormPanel
+     * @throws Exception
      */
     public function onEdit($id)
     {
@@ -492,8 +496,8 @@ class Replay extends Section
     }
 
     /**
-     * @return \SleepingOwl\Admin\Form\FormPanel
-     * @throws \Exception
+     * @return FormPanel
+     * @throws Exception
      */
     public function onCreate()
     {
@@ -702,7 +706,7 @@ class Replay extends Section
     }
 
     /**
-     * @return \SleepingOwl\Admin\Display\ControlLink
+     * @return ControlLink
      */
     public function show()
     {

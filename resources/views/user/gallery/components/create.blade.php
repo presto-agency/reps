@@ -1,4 +1,4 @@
-<div class="gallery-download nightMode border_shadow">
+<div class="gallery-download night_modal border_shadow">
     <div class="gallery-download__title">
         <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

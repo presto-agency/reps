@@ -4,6 +4,7 @@
 namespace App\Services\Broadcasting;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Documentation API http://api2.goodgame.ru/apigility/documentation/Goodgame-v2
@@ -27,7 +28,7 @@ class GoodGame
      * @param $id
      *
      * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function getStatus($chanelName, $id)
     {

@@ -10,6 +10,7 @@ use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
 use App\Models\ForumSection;
+use App\Models\ForumTopic;
 use App\Services\ServiceAssistants\PathHelper;
 use App\User;
 use Carbon\Carbon;
@@ -24,7 +25,7 @@ use SleepingOwl\Admin\Section;
  * Class ForumTopics
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
- * @property \App\Models\ForumTopic $model
+ * @property ForumTopic $model
  *
  */
 class ForumTopics extends Section
@@ -217,7 +218,7 @@ class ForumTopics extends Section
     /**
      * @param $display
      *
-     * @return \SleepingOwl\Admin\Display\ControlLink
+     * @return ControlLink
      */
     public function show($display)
     {

@@ -7,8 +7,12 @@ use App\Models\ReplayMap;
 use App\Models\TourneyList;
 use App\Models\TourneyMatch;
 use App\Services\Tournament\TourneyService;
+use File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
+use Storage;
+use Str;
 
 class TournamentController extends Controller
 {
@@ -18,7 +22,7 @@ class TournamentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -28,7 +32,7 @@ class TournamentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -38,9 +42,9 @@ class TournamentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -52,7 +56,7 @@ class TournamentController extends Controller
      *
      * @param  int  $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -119,16 +123,16 @@ class TournamentController extends Controller
             return back();
         }
         if (strpos($tourneyMatchFile, '/storage') !== false) {
-            $repPath = \Str::replaceFirst('/storage', 'public',
+            $repPath = Str::replaceFirst('/storage', 'public',
                 $tourneyMatchFile);
         }
         if (strpos($tourneyMatchFile, 'storage') !== false) {
-            $repPath = \Str::replaceFirst('storage', 'public',
+            $repPath = Str::replaceFirst('storage', 'public',
                 $tourneyMatchFile);
         }
 
-        $checkPath = \Storage::path($repPath);
-        if (\File::exists($checkPath) === false) {
+        $checkPath = Storage::path($repPath);
+        if (File::exists($checkPath) === false) {
             return back();
         };
 
@@ -181,7 +185,7 @@ class TournamentController extends Controller
      *
      * @param  int  $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -191,10 +195,10 @@ class TournamentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -206,7 +210,7 @@ class TournamentController extends Controller
      *
      * @param  int  $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
