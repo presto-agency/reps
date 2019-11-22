@@ -71,14 +71,14 @@ class ForumSections extends Section
         ];
 
         $display = AdminDisplay::datatables()
-            ->setName('forumSectionsTables')
+            ->setName('forumsectionstables')
             ->setOrder([[0, 'asc']])
             ->setDisplaySearch(false)
             ->with(['topics'])
             ->paginate(5)
             ->setColumns($columns)
             ->setHtmlAttribute('class',
-                'table-info table-hover th-center text-center');
+                'table-primary table-hover th-center text-center');
         //        $display->setColumnFilters([
         //          AdminColumnFilter::select()
         //            ->setModelForOptions(\App\Models\ForumSection::class, 'name')
