@@ -90,7 +90,7 @@ Breadcrumbs::register('user-friends', function ($breadcrumbs, $id) {
 });
 Breadcrumbs::register('user-edit', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('user-profile-show', $id);
-    $breadcrumbs->push('Мой профайл', route('edit_profile', [
+    $breadcrumbs->push('Настройки пользователя', route('edit_profile', [
         'id' => $id,
     ]));
 });

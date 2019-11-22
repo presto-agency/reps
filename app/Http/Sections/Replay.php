@@ -195,7 +195,7 @@ class Replay extends Section
                             = '<span style="font-size: 1em; color: red;"><i class="far fa-thumbs-down"></i></span>';
 
                     return $thumbsUp.$model->positive_count.'<br/>'.$equals
-                        .($model->positive_count - $model->negative_count)
+                        .$model->rating
                         .'<br/>'
                         .$thumbsDown.$model->negative_count;
                 })->setWidth(10),

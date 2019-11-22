@@ -58,7 +58,7 @@ class NavigationReplaysComposer
         if (\Cache::has($cache_name) && ! \Cache::get($cache_name)->isEmpty()) {
             $data_cache = \Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, 300,
+            $data_cache = \Cache::remember($cache_name, 600,
                 function () {
                     return self::getReplay();
                 });
@@ -67,26 +67,16 @@ class NavigationReplaysComposer
         return $data_cache;
     }
 
-    //    private static function getReplay2(){
-    //        return ReplayType::with(['replays' => function ($query) {
-    //            $query->where('approved', 1)
-    //                ->withCount('comments')
-    //                ->where('user_replay', Replay::REPLAY_PRO)
-    //                ->take(4);
-    //       }])->get();
-    //    }
-
     private static function getReplay()
     {
-        return ReplayType::with('replays')->get()->map(function ($query) {
-            $query->setRelation('replays',
-                $query->replays->where('approved', 1)
-                    ->where('user_replay', Replay::REPLAY_PRO)
-                    ->take(3)
-            )->orderByDesc('created_at');
+        return ReplayType::with(['replays'])
+            ->get(['id', 'name', 'title'])->map
+            (function ($query) {
+                $query->setRelation('replays',
+                    $query->replays->take(3));
 
-            return $query;
-        });
+                return $query;
+            });
     }
 
 }
