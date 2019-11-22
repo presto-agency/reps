@@ -109,7 +109,7 @@
                 </div>
             @endforeach
             @else
-                <h2>{{__('Нет комментариев')}}</h2>
+                <p class="none_comments night_text"> {{__('Нет комментариев')}}</p>
             @endif
         </div>
     @endisset
