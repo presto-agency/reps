@@ -21,7 +21,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content ">
                                         <div class="modal-header title_block modal-header_chat">
-                                            <img id="img_menuMob" class="icon_bars"
+                                            <img id="img_menuMob1" class="icon_bars"
                                                  src=""/>
                                             <p class="title_text_modal">Guest</p>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -29,7 +29,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body popup_contant messanger night_modal">
-                                            <chat-message :messagearray="messagearray" :not_user="not_user"/>
+                                           <chat-message :messagearray="messagearray" :not_user="not_user" :auth="auth" @on_delete="deleteMessage($event)"/>
                                         </div>
                                     </div>
                                 </div>
@@ -37,32 +37,7 @@
                 </div>
             </div>
         </div>
-            <chat-message :messagearray="messagearray" :not_user="not_user" @on_delete="deleteMessage($event)"/>
-        <div class="form-group" v-if="auth.id>0">
-            <Smiles :status="chat_action.smile" @turnOffStatus="turnOffStatus" @insert_smile="addSmile($event)"></Smiles>
-            <Images :status="chat_action.image" @turnOffStatus="turnOffStatus" @insert_image="addImage($event)"></Images>
-            <Color :status="chat_action.color"  @turnOffStatus="turnOffStatus" @textarealistener="textareafoo($event)"></Color>
-            <div class="form-group-toolbar">
-                <img src="../../icons/bold.svg" alt="" class="toolbar_item" @click="bold()">
-                <img src="../../icons/italic.svg" alt="" class="toolbar_item" @click="italic()">
-                <img src="../../icons/underline.svg" alt="" class="toolbar_item" @click="underline()">
-                <img src="../../icons/font.svg" alt="" class="toolbar_item" @click="selectItem('color')">
-                <img src="../../icons/link.svg" alt="" class="toolbar_item" @click="link()">
-                <img src="../../icons/picture.svg" alt="" class="toolbar_item" @click="img()">
-                <img src="../../icons/smile.svg" alt="" class="toolbar_item" @click="selectItem('smile')">
-                <img src="../../icons/folder.svg" alt="" class="toolbar_item" @click="selectItem('image')">
-            </div>
-           <textarea v-model="textMessage" @keyup.enter="sendMessage" class="form-control night_input" id="pop_editor">
-           </textarea>
-            <!--<ckeditor :editor="editor" v-model="textMessage" :config="editorConfig"  tag-name="textarea"  @focus="onEditorFocus($event)"></ckeditor>-->
-        </div>
-
-        <div class="login_block" v-else>
-         <a href="#">
-            <span>LOGIN</span> to chat!
-            </a>
-        </div>
-
+            <chat-message :messagearray="messagearray" :not_user="not_user" :auth="auth" @on_delete="deleteMessage($event)"/>
     </div>
 </template>
 
@@ -70,31 +45,16 @@
     import moment from 'moment'
     import * as chatHelper from '../helper/chatHelper';
     import * as utilsHelper from '../helper/utilsHelper';
-    import Smiles from './Smiles.vue'
-    import Images from './Images.vue'
-    import Color from './FontColor'
+
     export default {
         name: "Chat",
-        components: {
-          Smiles,Images,Color
-        },
         props: ['auth','not_user'],
         data: ()=>({
             isUser: true,
-            messagearray: [],
-            textMessage: '',
-            chat_action: {
-                'smile': false,
-                'image': false,
-                'color': false
-            },
-            textarea: '',
-            smiles: [],
-            images: {}
+            messagearray: []
         }),
         created(){
             axios.get('/chat/get_messages').then((response) => {
-                console.log('all', response.data)
                 response.data.forEach((item,index)=> {
                     this.messagearray.push({
                         id: item.id,
@@ -104,15 +64,16 @@
                         date: item.time,
                         message: chatHelper.strParse(item.message),
                         user_id: item.user_id,
+                        user_path: 'http://reps.loc/user/',
                         visible: true
                     })
-                })
+                });
+
+
             })
         },
         mounted() {
-            console.log('isAdmin ',this.not_user);
             window.Echo.channel('chat').listen('NewChatMessageAdded', ({data}) => {
-                console.log(data)
                 this.messagearray.unshift({
                     id: data.id,
                     flag: data.country_flag,
@@ -121,86 +82,19 @@
                     date: data.time,
                     message: chatHelper.strParse(data.message),
                     user_id: data.user.id,
+                    user_path: 'http://reps.loc/user/',
                     visible: true
                 });
             });
         },
         methods: {
-            sendMessage(){
-                    axios.post('/chat/insert_message', {
-                        user_id: this.auth.id,
-                        file_path: "",
-                        message: chatHelper.parsePath(this.textMessage, this.smiles, this.images),
-                        imo: ""});
-                        /*.then((response) => {
-                            console.log('Полученые данные методом POST: ');
-                            console.log(response.data);
-                            // this.messages = response.data;
-                        });*/
-                    this.textMessage = '';
-
-            },
-
-            getSelection: chatHelper.getSelection,
-            bold: chatHelper.bold,
-            italic: chatHelper.italic,
-            underline: chatHelper.underline,
-            link: chatHelper.link,
-            img: chatHelper.img,
-            selectItem: function(type) {
-                this.textMessage = document.getElementById('pop_editor').value;
-                let self = this;
-                Object.keys(self.chat_action).forEach(function(key) {
-                    if(type === key){
-                        self.chat_action[key] = !self.chat_action[key];
-                    }
-                    else self.chat_action[key] = false;
-                })
-
-            },
-
-            turnOffStatus: function() {
-
-                let self = this;
-                Object.keys(self.chat_action).forEach(function(key) {
-                    self.chat_action[key] = false;
-                });
-
-            },
-            textareafoo (str) {
-                this.textMessage = str;
-            },
-            addSmile(smile_object) {
-                this.textMessage += smile_object.str;
-                this.smiles = smile_object.smlies;
-            },
-            addImage(image_object) {
-                this.textMessage += image_object.str;
-                this.images = image_object.images;
-            },
             deleteMessage(id) {
                 this.messagearray = this.messagearray.filter(item => item.id!=id );
             }
-
-
-
         }
     }
 </script>
 
 <style >
-.form-group-toolbar {
-    padding: 15px 15px;
-}
-.toolbar_item {
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-    margin-left: 5px;
-}
-.form-group {
-    position: relative;
-
-}
 
 </style>
