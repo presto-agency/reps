@@ -49,7 +49,8 @@
                 </div>
             @endif
             <div class="form-check">
-                <input class="form-check-input night_input" type="checkbox" value="{{old('for_adults')}}" id="gallery__for-adults"
+                <input class="form-check-input night_input" type="checkbox" value="1" id="gallery__for-adults"
+                       {{ old('for_adults') == '1' ? 'checked' : '' }}
                        name='for_adults'>
                 <label class="label_group" class="form-check-label" for="gallery__for-adults">
                     {{__('18+')}}
@@ -65,8 +66,10 @@
 </div>
 @push('ess21-custom-script')
     <script type="text/javascript">
-        $('#gallery__for-adults').on('change', function () {
-            this.value = this.checked ? 1 : 0;
-        }).change();
+        $(document).ready(function () {
+            $('#gallery__for-adults').on('change', function () {
+                this.value = this.checked ? 1 : 0;
+            }).change();
+        })
     </script>
 @endpush

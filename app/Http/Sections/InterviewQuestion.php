@@ -7,8 +7,9 @@ use AdminColumnEditable;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
-use App\Http\ViewComposers\admin\InterviewVariantAnswerComposer;
+use Illuminate\Database\Eloquent\Model;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
+use SleepingOwl\Admin\Display\ControlLink;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -45,14 +46,11 @@ class InterviewQuestion extends Section
      */
     public function onDisplay()
     {
-        $display = AdminDisplay::datatablesAsync();
-        $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
-        $display->paginate(10);
-        $display->with(['answers', 'userAnswers']);
-
-        $display->setApply(function ($query) {
-            $query->orderByDesc('id');
-        });
+        $display = AdminDisplay::datatablesAsync()
+            ->setDatatableAttributes(['bInfo' => false])
+            ->setHtmlAttribute('class', 'table-info table-sm text-center ')
+            ->with(['answers', 'userAnswers'])
+            ->paginate(10);
 
         $display->setColumns([
 
@@ -87,6 +85,40 @@ class InterviewQuestion extends Section
     }
 
     /**
+     * @param $display
+     *
+     * @return \SleepingOwl\Admin\Display\ControlLink
+     */
+    public function show($display)
+    {
+
+        $link = new ControlLink(function (
+            Model $model
+        ) {
+            $id  = $model->getKey();
+            $url = asset("admin/interview_questions/$id/show");
+
+            return $url;
+        }, function (Model $model) {
+            return 'Просмотреть';
+        }, 50);
+        $link->hideText();
+        $link->setIcon('fa fa-eye');
+        $link->setHtmlAttribute('class', 'btn-info');
+
+        return $link;
+    }
+
+    /**
+     * @return \SleepingOwl\Admin\Form\FormPanel
+     * @throws \Exception
+     */
+    public function onCreate()
+    {
+        return $this->onEdit('');
+    }
+
+    /**
      * @param $id
      *
      * @return \SleepingOwl\Admin\Form\FormPanel
@@ -94,11 +126,8 @@ class InterviewQuestion extends Section
      */
     public function onEdit($id)
     {
-//        InterviewVariantAnswerComposer::$method = 'edit';
-//        InterviewVariantAnswerComposer::$id     = $id;
 
         $form = AdminForm::panel();
-
         $form->setItems(
             AdminFormElement::columns()
                 ->addColumn(function () {
@@ -119,64 +148,21 @@ class InterviewQuestion extends Section
                     ];
                 })->addColumn(function () {
                     return [
-                        AdminFormElement::hasMany('answers',[
+                        AdminFormElement::hasMany('answers', [
                             AdminFormElement::text('answer')
-                                ->setHtmlAttribute('placeholder', 'Вариант ответа')
+                                ->setHtmlAttribute('placeholder',
+                                    'Вариант ответа')
                                 ->setHtmlAttribute('maxlength', '255')
                                 ->setHtmlAttribute('minlength', '1')
                                 ->setValidationRules([
                                     'required', 'string', 'between:1,255',
                                 ]),
-                        ])
+                        ]),
                     ];
                 })
         );
 
         return $form;
-    }
-
-    /**
-     * @return \SleepingOwl\Admin\Form\FormPanel
-     * @throws \Exception
-     */
-    public function onCreate()
-    {
-//        InterviewVariantAnswerComposer::$method = 'create';
-
-        return $this->onEdit('');
-//        $form = AdminForm::panel();
-//
-//        $form->setItems(
-//            AdminFormElement::columns()
-//                ->addColumn(function () {
-//                    return [
-//                        $question = AdminFormElement::text('question', 'Вопрос')
-//                            ->setHtmlAttribute('placeholder', 'Вопрос')
-//                            ->setHtmlAttribute('maxlength', '255')
-//                            ->setHtmlAttribute('minlength', '1')
-//                            ->setValidationRules([
-//                                'required', 'string', 'between:1,255',
-//                            ]),
-//                        $active = AdminFormElement::checkbox('active',
-//                            'Активный')
-//                            ->setValidationRules(['boolean'])
-//                            ->setHtmlAttribute('checked', 'checked')
-//                            ->setDefaultValue(true),
-//                        $for_login = AdminFormElement::checkbox('for_login',
-//                            'Только для авторизированных')
-//                            ->setValidationRules(['boolean'])
-//                            ->setDefaultValue(false),
-//                    ];
-//                })->addColumn(function () {
-//                    return [
-//                        AdminFormElement::hasMany('answers',[
-//                            AdminFormElement::text('answer'),
-//                        ])
-//                    ];
-//                })
-//
-//        );
-//        return $form;
     }
 
     /**
@@ -193,31 +179,6 @@ class InterviewQuestion extends Section
     public function onRestore($id)
     {
         // remove if unused
-    }
-
-    /**
-     * @param $display
-     *
-     * @return \SleepingOwl\Admin\Display\ControlLink
-     */
-    public function show($display)
-    {
-
-        $link = new \SleepingOwl\Admin\Display\ControlLink(function (
-            \Illuminate\Database\Eloquent\Model $model
-        ) {
-            $id  = $model->getKey();
-            $url = asset("admin/interview_questions/$id/show");
-
-            return $url;
-        }, function (\Illuminate\Database\Eloquent\Model $model) {
-            return 'Просмотреть';
-        }, 50);
-        $link->hideText();
-        $link->setIcon('fa fa-eye');
-        $link->setHtmlAttribute('class', 'btn-info');
-
-        return $link;
     }
 
 }

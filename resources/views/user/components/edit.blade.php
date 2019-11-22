@@ -40,17 +40,13 @@
         </div>
         <div class="upload-image">
             <p>{{__('Аватар:')}}</p>
-            @if(auth()->user()->userViewAvatars())
-                <div class="preview-image-wrapper">
-                    @if(auth()->user()->userViewAvatars())
-                        @if(!empty($user->avatar) && file_exists($user->avatar))
-                            <img class="" src="{{asset(old('avatar',$user->avatar))}}" alt="avatar">
-                        @else
-                            <img class="" src="{{asset(old('avatar',$user->defaultAvatar()))}}" alt="avatar">
-                        @endif
-                    @endif
-                </div>
-            @endif
+            <div class="preview-image-wrapper">
+                @if(auth()->check() && auth()->user()->userViewAvatars())
+                    <img class="" src="{{asset($user->avatarOrDefault())}}" alt="avatar">
+                @else
+                    <img class="" src="{{asset($user->avatarOrDefault())}}" alt="avatar">
+                @endif
+            </div>
             <div class="row">
                 <div class="col-8">
                     <input id="uploadFile" class="f-input night_input" readonly/>
@@ -162,7 +158,7 @@
                    name="view_avatars" value="1"
                    @if(old('view_avatars',$user->view_avatars))
                    checked
-                @endif
+                    @endif
             >
             @if ($errors->has('view_avatars'))
                 <div class="alert alert-danger" role="alert">

@@ -15,59 +15,65 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageService
 {
+
     /**
      * Get data for message view
      *
      * @param $id
+     *
      * @return array
      */
     public static function getMessageData($id)
     {
         $contacts = UserDialogService::getUserDialogues();
-        $data =    self::formMessageData($id, $contacts);
+        $data     = self::formMessageData($id, $contacts);
+
         return $data;
 
     }
+
     /**
      * @param $id
      * @param $contacts
+     *
      * @return array
      */
     protected static function formMessageData($id, $contacts)
     {
         if (count($contacts)) {
-            if(!$id){
+            if ( ! $id) {
 
-                foreach ($contacts->first()->senders as $sender){
-                    if ($sender->id != Auth::id()){
+                foreach ($contacts->first()->senders as $sender) {
+                    if ($sender->id != Auth::id()) {
                         $id = $sender->id;
                     }
                 }
 
             }
 
-            $dialogue = UserDialogService::getDialogUser($id);
+            $dialogue  = UserDialogService::getDialogUser($id);
             $dialog_id = false;
-            $messages = '';
-            if ($dialogue){
+            $messages  = '';
+            if ($dialogue) {
                 $dialog_id = $dialogue->id;
-                $messages = Dialogue::getUserDialogueContent($dialog_id);
+                $messages  = Dialogue::getUserDialogueContent($dialog_id);
             }
 
             return [
                 'dialogue_id' => $dialog_id,
-                'messages' => $messages,
-                'contacts' => $contacts,
-                'user' => User::find($id),
+                'messages'    => $messages,
+                'contacts'    => $contacts,
+                'user'        => User::find($id),
             ];
         } else {
 
-            return  [
+            return [
                 'dialogue_id' => false,
-                'messages' => '',
-                'contacts' => $contacts,
-                'user' => !isset($id) ? false : User::find($id),
+                'messages'    => '',
+                'contacts'    => $contacts,
+                'user'        => ! isset($id) ? false : User::find($id),
             ];
         }
     }
+
 }

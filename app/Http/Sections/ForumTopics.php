@@ -4,18 +4,20 @@ namespace App\Http\Sections;
 
 use AdminColumn;
 use AdminColumnEditable;
+use AdminColumnFilter;
 use AdminDisplay;
+use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
-use AdminDisplayFilter;
-use AdminColumnFilter;
 use App\Models\ForumSection;
 use App\Services\ServiceAssistants\PathHelper;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Display\ControlLink;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -67,16 +69,13 @@ class ForumTopics extends Section
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center')
             ->paginate(10);
-        $display->setFilters([
+        $display->setFilters(
             AdminDisplayFilter::related('forum_section_id')
                 ->setModel(ForumSection::class),
-            AdminDisplayFilter::related('user_id')->setModel(User::class),
-        ]);
-        $display->setApply(function ($query) {
-            $query->orderByDesc('id');
-        });
-        $display->setColumns([
+            AdminDisplayFilter::related('user_id')->setModel(User::class)
+        );
 
+        $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
                 ->setWidth('15px'),
             $title = AdminColumn::text('title', 'Название')
@@ -114,16 +113,13 @@ class ForumTopics extends Section
                 ->setHtmlAttributes(['style' => 'width: 100%'])
                 ->setPlaceholder('Section')
                 ->setColumnName('forum_section_id'),
-            null,
-            null,
-            null,
-            null,
-            null,
         ]);
         $display->getColumnFilters()->setPlacement('table.header');
 
         return $display;
     }
+
+    public $imageOldPath;
 
     /**
      * @param  int  $id
@@ -132,8 +128,11 @@ class ForumTopics extends Section
      */
     public function onEdit($id)
     {
+        $getData = $this->getModel()->select('preview_img')->find($id);
+        if ($getData) {
+            $this->imageOldPath = $getData->preview_img;
+        }
         $form = AdminForm::panel();
-
         $form->setItems([
             /*Init FormElement*/
             $title = AdminFormElement::text('title', 'Название:')
@@ -157,8 +156,7 @@ class ForumTopics extends Section
                 ->setUploadPath(function (UploadedFile $file) {
                     return 'storage'
                         .PathHelper::checkUploadsFileAndPath("/images/topics",
-                            $this->getModelValue()
-                                ->getAttribute('preview_img'));
+                            $this->imageOldPath);
                 })
                 ->setValidationRules([
                     'nullable',
@@ -223,14 +221,14 @@ class ForumTopics extends Section
      */
     public function show($display)
     {
-        $link = new \SleepingOwl\Admin\Display\ControlLink(function (
-            \Illuminate\Database\Eloquent\Model $model
+        $link = new ControlLink(function (
+            Model $model
         ) {
             $id  = $model->getKey();
             $url = url("admin/forum_topics/$id/show");
 
             return $url; // Генерация ссылки
-        }, function (\Illuminate\Database\Eloquent\Model $model) {
+        }, function (Model $model) {
             return $model->title; // Генерация текста на кнопке
         }, 50);
         $link->hideText();

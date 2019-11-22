@@ -13,6 +13,7 @@ use App\Models\Country;
 
 class GeneralViewHelper
 {
+
     protected static $instance;
 
     protected $countries;
@@ -20,7 +21,7 @@ class GeneralViewHelper
 
     public function __construct()
     {
-        if (!self::$instance) {
+        if ( ! self::$instance) {
             self::$instance = $this;
         }
 
@@ -32,13 +33,14 @@ class GeneralViewHelper
      */
     public function getCountries()
     {
-        if (!self::$instance->countries) {
+        if ( ! self::$instance->countries) {
             $countries = Country::all();
 
             foreach ($countries as $country) {
                 self::$instance->countries[$country->id] = $country;
             }
         }
+
         return self::$instance->countries;
     }
 

@@ -46,7 +46,7 @@
                 @if(isset($type) && !empty($type))
                     @if($type == "user")
                         <p class="title__text night_text">{{__('Пользовательские')}}</p>
-                    @else($type == "pro")
+                    @elseif($type == "pro")
                         <p class="title__text night_text">{{__('Профессиональные')}}</p>
                     @endif
                 @else
@@ -64,14 +64,14 @@
                             @isset($type)
                                 <a class="subtitle__name night_text"
                                    href="{{ asset(url("user/{$item->users->id}/user-replay/{$item->id}"."?type={$type}"))}}">
-                                    {{$item->title}}
+                                    <div>{!! ParserToHTML::toHTML($item->title,'size') !!}</div>
                                 </a>
                             @endisset
                         @else
                             @isset($type)
                                 <a class="subtitle__name night_text"
                                    href="{{ asset(url("replay/{$item->id}"."?type={$type}"))}}">
-                                    {{$item->title}}
+                                    <div>{!! ParserToHTML::toHTML($item->title,'size') !!}</div>
                                 </a>
                             @endisset
                         @endif
@@ -81,25 +81,15 @@
                 <div class="gocu-replays__match">
                     <div class="match__author">
                         <div class="subtitle__info">
-                            @isset($item->users)
-                                @auth()
-                                    @if(auth()->user()->userViewAvatars())
-                                        @if(!empty($item->users->avatar) && file_exists($item->users->avatar))
-                                            <img src="{{asset($item->users->avatar)}}" alt="avatar">
-                                        @else
-                                            <img src="{{asset($item->users->defaultAvatar())}}" alt="avatar">
-                                        @endif
-                                    @endif
+                            @if(isset($item->users) && !empty($item->users))
+                                @if(auth()->check() && auth()->user()->userViewAvatars())
+                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
                                 @else
-                                    @if(!empty($item->users->avatar) && file_exists($item->users->avatar))
-                                        <img src="{{asset($item->users->avatar)}}" alt="avatar">
-                                    @else
-                                        <img src="{{asset($item->users->defaultAvatar())}}" alt="avatar">
-                                    @endif
-                                @endauth
+                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
+                                @endif
                                 <span class="comment-author__nickname"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
-                            @endisset
+                            @endif
                             <span class="comment-author__replay-item night_text">Видео реплей</span>
                         </div>
                         <div class="subtitle__icons">
@@ -144,7 +134,7 @@
                             </a>
                         </div>
                     </div>
-                    <p class="match__comment night_text">{!!$item->content!!}</p>
+                    <div class="match__comment night_text">{!! ParserToHTML::toHTML($item->content,'size') !!}</div>
                     <div class="match__info">
                         <div class="info__country">
                             <span class="country__text night_text">Страны:</span>

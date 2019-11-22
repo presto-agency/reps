@@ -5,11 +5,11 @@ namespace App\Widgets;
 
 
 use AdminTemplate;
-
 use SleepingOwl\Admin\Widgets\Widget;
 
 class PollMod extends Widget
 {
+
     /**
      * @return array|string
      * @throws \Throwable

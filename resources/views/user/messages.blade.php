@@ -24,12 +24,10 @@
 
         @if($user)
             <div class="messenger__head">
-                @if(auth()->user()->userViewAvatars())
-                    @if(!empty($user->avatar) && file_exists($user->avatar))
-                        <img class="head__avatar" src="{{ asset($user->avatar) }}" alt="avatar">
-                    @else
-                        <img class="head__avatar" src="{{ asset($user->defaultAvatar()) }}" alt="avatar">
-                    @endif
+                @if(auth()->check() && auth()->user()->userViewAvatars())
+                    <img class="head__avatar" src="{{ asset($user->avatarOrDefault()) }}" alt="avatar">
+                @else
+                    <img class="head__avatar" src="{{ asset($user->avatarOrDefault()) }}" alt="avatar">
                 @endif
                 <span class="head__nickname">{{ $user->name }}</span>
                 <span class="head__date">2019-06-28 14:11:21</span>
@@ -59,15 +57,13 @@
                                 </div>
                                 <div class="message-info">
                                     <span class="user-name">{{ $message->sender->name }}</span>
-                                    @if(auth()->user()->userViewAvatars())
-                                        @if(!empty($message->sender->avatar) && file_exists($message->sender->avatar))
-                                            <img class="head__avatar" src="{{ asset($message->sender->avatar) }}"
-                                                 alt="avatar">
-                                        @else
-                                            <img class="head__avatar"
-                                                 src="{{ asset($message->sender->defaultAvatar()) }}"
-                                                 alt="avatar">
-                                        @endif
+                                    @if(auth()->check() && auth()->user()->userViewAvatars())
+                                        <img class="head__avatar" src="{{ asset($message->sender->avatarOrDefault()) }}"
+                                             alt="avatar">
+                                    @else
+                                        <img class="head__avatar"
+                                             src="{{ asset($message->sender->avatarOrDefault()) }}"
+                                             alt="avatar">
                                     @endif
                                 </div>
                             </div>
@@ -75,15 +71,13 @@
                             <div class="user-message">
                                 <div class="message-info">
                                     <span class="user-name">{{ $message->sender->name }}</span>
-                                    @if(auth()->user()->userViewAvatars())
-                                        @if(!empty($message->sender->avatar) && file_exists($message->sender->avatar))
-                                            <img class="head__avatar" src="{{ asset($message->sender->avatar) }}"
-                                                 alt="avatar">
-                                        @else
-                                            <img class="head__avatar"
-                                                 src="{{ asset($message->sender->defaultAvatar()) }}"
-                                                 alt="avatar">
-                                        @endif
+                                    @if(auth()->check() && auth()->user()->userViewAvatars())
+                                        <img class="head__avatar" src="{{ asset($message->sender->avatarOrDefault()) }}"
+                                             alt="avatar">
+                                    @else
+                                        <img class="head__avatar"
+                                             src="{{ asset($message->sender->avatarOrDefault()) }}"
+                                             alt="avatar">
                                     @endif
                                 </div>
                                 <div class="message-content">
@@ -112,7 +106,7 @@
 
             <div class="form-group">
 
-                <label for="replay_content" class="night_text">Вставить HTML код с видео реплеем</label>
+                {{--<label for="replay_content" class="night_text">Вставить HTML код с видео реплеем</label>--}}
                 <form action="{{ route('user.send_message') }}" method="POST" class="user-message-form">
                     {{ csrf_field() }}
                     <textarea name="message" class="form-control night_input" id="editor_messenger"></textarea>
@@ -184,8 +178,8 @@
                     .append('<img class="head__avatar" src="{{ asset(auth()->user()->avatar) }}" alt="avatar">')
                     @else
                     .append('<img class="head__avatar" src="{{ asset(auth()->user()->defaultAvatar()) }}" alt="avatar">');
-                    @endif
-                    @endif
+                        @endif
+                        @endif
                 var myMessage = $('<div class="my-message"></div>')
                         .append(messageContent)
                         .append(messageInfo);

@@ -38,13 +38,11 @@
                     <div class="body__user">
                         <div class="user__avatar">
                             <a href="{{ route('user.messages', ['id' => $sender->id]) }}">
-                                @if(auth()->user()->userViewAvatars())
-                                    @if(!empty($sender->avatar) && file_exists($sender->avatar))
-                                        <img class="avatar__image" src="{{ asset($sender->avatar) }}" alt="avatar">
-                                    @else
-                                        <img class="avatar__image" src="{{ asset($sender->defaultAvatar()) }}"
-                                             alt="avatar">
-                                    @endif
+                                @if(auth()->check() && auth()->user()->userViewAvatars())
+                                    <img class="avatar__image" src="{{ asset($sender->avatarOrDefault()) }}" alt="avatar">
+                                @else
+                                    <img class="avatar__image" src="{{ asset($sender->avatarOrDefault()) }}"
+                                         alt="avatar">
                                 @endif
                             </a>
                         </div>

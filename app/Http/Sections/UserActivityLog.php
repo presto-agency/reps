@@ -10,19 +10,19 @@ use App\Models\ForumTopic;
 use App\Models\Replay;
 use App\Models\UserActivityType;
 use App\Models\UserGallery;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Section;
 
 /**
  * Class UserActivityLog
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\UserActivityLog $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class UserActivityLog extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -49,13 +49,10 @@ class UserActivityLog extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
-            ->setHtmlAttribute('class', 'table-info table-sm text-center')
+            ->setDatatableAttributes(['bInfo' => false])
+            ->setHtmlAttribute('class', 'table-info text-center')
+            ->with(['users'])
             ->paginate(25);
-
-        $display->with(['users']);
-        $display->setApply(function ($query) {
-            $query->orderByDesc('id');
-        });
 
         $display->setColumns([
             $type = AdminColumn::text('type', 'Событие')
@@ -77,7 +74,8 @@ class UserActivityLog extends Section
 
         $display->setColumnFilters([
             $type = AdminColumnFilter::select()
-                ->setOptions((new UserActivityType())->pluck('name', 'name')->toArray())
+                ->setOptions((new UserActivityType())->pluck('name', 'name')
+                    ->toArray())
                 ->setOperator(FilterInterface::EQUAL)
                 ->setPlaceholder('Все события')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
@@ -106,8 +104,9 @@ class UserActivityLog extends Section
 
     private function getEventTitle($model)
     {
-        $test = json_decode($model->parameters);
-        $test2 = !empty($test->description) === true ? $test->description : '';
+        $test  = json_decode($model->parameters);
+        $test2 = ! empty($test->description) === true ? $test->description : '';
+
         return $test2;
 
     }
@@ -118,6 +117,7 @@ class UserActivityLog extends Section
 
     /**
      * @param $name
+     *
      * @return mixed
      */
     private function getTypeId($name)
@@ -127,6 +127,7 @@ class UserActivityLog extends Section
 
     /**
      * @param $id
+     *
      * @return bool|string
      */
     private function likeDescription($id)
@@ -136,79 +137,92 @@ class UserActivityLog extends Section
 
     /**
      * @param $id
+     *
      * @return bool|string
      */
     private function uploadReplayDescription($id)
     {
         $user_replay = Replay::where('id', $id)->value('title');
-        $for = 'Replay ';
-        if (!empty($user_replay)) {
+        $for         = 'Replay ';
+        if ( ! empty($user_replay)) {
             return $this->link($for, $this->replays, $id, $user_replay);
         }
+
         return $this->link($for, null, null, null);
     }
 
     /**
      * @param $id
+     *
      * @return bool|string
      */
     private function createPostDescription($id)
     {
-        $for = 'Пост ';
+        $for   = 'Пост ';
         $title = ForumTopic::where('id', $id)->value('title');
-        if (!empty($title)) {
+        if ( ! empty($title)) {
             return $this->link($for, $this->forum_topics, $id, $title);
         }
+
         return $this->link($for, null, null, null);
     }
 
     /**
      * @param $id
+     *
      * @return bool|string
      */
     private function uploadImageDescription($id)
     {
-        $for = 'Изображение ';
+        $for  = 'Изображение ';
         $sign = UserGallery::where('id', $id)->value('sign');
 
-        if (!empty($sign)) {
+        if ( ! empty($sign)) {
             return $this->link($for, $this->usergallery, $id, $sign);
         }
+
         return $this->link($for, null, null, null);
     }
 
     /**
      * @param $id
+     *
      * @return bool|string
      */
     private function commentDescription($id)
     {
-        $for = 'Коментарий для ';
+        $for  = 'Коментарий для ';
         $data = Comment::find($id);
-        if (!empty($data)) {
+        if ( ! empty($data)) {
             $commentable = $data->commentable;
-            $showId = $commentable->id;
-            $className = $this->getClassName($commentable);
+            $showId      = $commentable->id;
+            $className   = $this->getClassName($commentable);
             if ($className == 'Replay') {
-                return $this->link($for, $this->replays, $showId, $commentable->title);
+                return $this->link($for, $this->replays, $showId,
+                    $commentable->title);
             }
             if ($className == 'ForumTopic') {
-                return $this->link($for, $this->forum_topics, $showId, $commentable->title);
+                return $this->link($for, $this->forum_topics, $showId,
+                    $commentable->title);
             }
             if ($className == 'UserGallery') {
-                return $this->link($for, $this->usergallery, $showId, $commentable->sign);
+                return $this->link($for, $this->usergallery, $showId,
+                    $commentable->sign);
             }
         }
+
         return $this->link($for, null, null, null);
     }
 
     /**
      * @param $object
+     *
      * @return mixed
      */
     private function getClassName($object)
     {
         $parseObjectPath = explode('\\', get_class($object));
+
         return $getClassName = end($parseObjectPath);
     }
 
@@ -217,12 +231,15 @@ class UserActivityLog extends Section
      * @param $urlPart
      * @param $id
      * @param $linkTitle
+     *
      * @return string
      */
     private function link($for, $urlPart, $id, $linkTitle)
     {
-        $url = url("admin/$urlPart/show/" . $id);
+        $url  = url("admin/$urlPart/show/".$id);
         $link = "<a href='$url'>$linkTitle</a>";
-        return $for . $link;
+
+        return $for.$link;
     }
+
 }

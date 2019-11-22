@@ -7,18 +7,19 @@ use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
 use App\Services\ServiceAssistants\PathHelper;
-use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Section;
 
 
 /**
  * Class Country
+ *
  * @package App\Http\Sections
  */
 class Country extends Section
 {
 
+    public $imageOldPath;
     protected $checkAccess = false;
 
     protected $alias = false;
@@ -42,41 +43,37 @@ class Country extends Section
     {
 
         $display = AdminDisplay::datatablesAsync()
+            ->setDatatableAttributes(['bInfo' => false])
             ->paginate(50);
 
         $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
 
-        $display->setApply(function ($query) {
-            $query->orderByDesc('id');
-        });
-
         $display->setColumns([
-
             $id = AdminColumn::text('id', 'ID'),
-
             $name = AdminColumn::text('name', 'Название'),
-
             $code = AdminColumn::text('code', 'Код')
                 ->setHtmlAttribute('class', 'hidden-sm ')
                 ->setHtmlAttribute('title', 'Alpha-2 ISO 3166-1'),
-
             $flag = AdminColumn::image('flag', 'Флаг'),
-
-            $count_using = AdminColumn::count('using', 'Используют')
-            ,
+            $count_using = AdminColumn::count('using', 'Используют'),
         ]);
+
         return $display;
 
     }
 
     /**
      * @param $id
+     *
      * @return \SleepingOwl\Admin\Form\FormPanel
      * @throws \Exception
      */
     public function onEdit($id)
     {
-
+        $getData = $this->getModel()->select('flag')->find($id);
+        if ($getData) {
+            $this->imageOldPath = $getData->geta;
+        }
         $form = AdminForm::panel();
         $form->setItems(
             AdminFormElement::columns()
@@ -84,25 +81,33 @@ class Country extends Section
                     return [
                         AdminFormElement::text('name', 'Название')
                             ->setHtmlAttribute('placeholder', 'Название')
-                            ->setValidationRules(['required', 'min:2', 'max:255']),
+                            ->setValidationRules([
+                                'required', 'min:2', 'max:255',
+                            ]),
                         AdminFormElement::text('code', 'Код страны')
                             ->setHtmlAttribute('placeholder', 'Код страны')
                             ->setHtmlAttribute('title', 'Alpha-2 ISO 3166-1')
-                            ->setValidationRules(['required', 'min:2', 'max:10']),
+                            ->setValidationRules([
+                                'required', 'min:2', 'max:10',
+                            ]),
                     ];
-                })->addColumn(function () use ($id) {
+                })->addColumn(function () {
                     return [
                         AdminFormElement::image('flag', 'Флаг')
-                            ->setUploadPath(function (UploadedFile $file){
-                                return 'storage' . PathHelper::checkUploadsFileAndPath("/images/countries/flags",$this->getModelValue()->getAttribute('flag'));
+                            ->setUploadPath(function (UploadedFile $file) {
+                                return 'storage'
+                                    .PathHelper::checkUploadsFileAndPath("/images/countries/flags",
+                                        $this->imageOldPath);
                             })
                             ->setValidationRules(['required', 'max:2048'])
                             ->setUploadSettings([
                                 'orientate' => [],
-                                'resize' => [50, null, function ($constraint) {
-                                    $constraint->upsize();
-                                    $constraint->aspectRatio();
-                                }],
+                                'resize'    => [
+                                    120, null, function ($constraint) {
+                                        $constraint->upsize();
+                                        $constraint->aspectRatio();
+                                    },
+                                ],
                             ]),
                     ];
                 })
@@ -129,21 +134,4 @@ class Country extends Section
         return true;
     }
 
-    /**
-     * @param $save_path
-     * @return bool
-     */
-    public function checkUploadPath($save_path)
-    {
-        return !\File::exists($save_path) === true ? mkdir($save_path, 666, true) : null;
-    }
-
-    /**
-     * @param $file
-     * @return string
-     */
-    public function creatUploadName($file)
-    {
-        return uniqid() . Carbon::now()->timestamp . '.' . $file->getClientOriginalExtension();
-    }
 }

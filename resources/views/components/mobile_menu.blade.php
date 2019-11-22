@@ -1,11 +1,11 @@
-<section class="mob_menu" >
+<section class="mob_menu">
     <nav class=" nav-wrapper" id="nav-mobile">
         <div class="main_punkt">
             <div class="btn-round">
                 <span class="close"></span>
             </div>
             <ul class="punct">
-                <li><a class="nav_item"  href="/">ГЛАВНАЯ</a></li>
+                <li><a class="nav_item" href="/">ГЛАВНАЯ</a></li>
                 <li><a class="nav_item" href="/forum">ФОРУМ</a></li>
                 <li><a class="nav_item" href="/replay">РЕПЛЕИ</a></li>
                 <li><a class="nav_item" href="/news">НОВОСТИ</a></li>
@@ -24,17 +24,15 @@
             @else
                 @include('layouts.components.header.components.user-bar-panel')
             @endguest
-{{--            <button>--}}
-{{--                <p>registration</p>--}}
-{{--            </button>--}}
-{{--            <button>--}}
-{{--                <p>login</p>--}}
-{{--            </button>--}}
+            {{--            <button>--}}
+            {{--                <p>registration</p>--}}
+            {{--            </button>--}}
+            {{--            <button>--}}
+            {{--                <p>login</p>--}}
+            {{--            </button>--}}
         </div>
     </nav>
 </section>
-
-
 
 
 {{--        <label for="nav" class="nav-btn">--}}

@@ -1,12 +1,10 @@
 <section class="user_bar">
     <div class="user_panel">
         <a href="{{route('user_profile',['id'=> Auth::id()])}}" class="user-avatar">
-            @if(auth()->user()->userViewAvatars() )
-                @if(!empty(Auth::user()->avatar) && checkFile::checkFileExists(Auth::user()->avatar))
-                    <img src="{{asset(Auth::user()->avatar)}}" alt="avatar">
-                @else
-                    <img src="{{asset(Auth::user()->defaultAvatar())}}" alt="avatar">
-                @endif
+            @if(auth()->check() && auth()->user()->userViewAvatars() )
+                <img src="{{asset(auth()->user()->avatarOrDefault())}}" alt="avatar">
+            @else
+                <img src="{{asset(auth()->user()->avatarOrDefault())}}" alt="avatar">
             @endif
         </a>
         <a href="{{route('user_profile',['id'=> Auth::id()])}}" class="user-nickname"

@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class FooterUrl extends Model
 {
-    protected $fillable = [
-        'title',
-        'url',
-        'approved'
-    ];
+
+    protected $fillable
+        = [
+            'title',
+            'url',
+            'approved',
+        ];
+
 }

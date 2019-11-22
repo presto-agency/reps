@@ -11,6 +11,7 @@ namespace App\Traits\ModelRelations;
 
 trait UserMessageRelation
 {
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -26,4 +27,5 @@ trait UserMessageRelation
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+
 }

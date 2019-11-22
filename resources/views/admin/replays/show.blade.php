@@ -78,7 +78,7 @@
                     <p>Контент:</p>
                 </div>
                 <div class="col-md-10">
-                    {!! $replay->content !!}
+                    {!! ParserToHTML::toHTML($replay->content,'size') !!}
                 </div>
             </div>
             <div class="box-container">
@@ -93,32 +93,33 @@
                     {{ Form::close() }}
                 </div>
                 <div class="table-content">
-                    @foreach($replay->comments as $comment)
-                        <div class="item row">
-                            @if(auth()->user()->userViewAvatars())
-                                @if(!empty($comment->user->avatar) && file_exists($comment->user->avatar))
-                                    <img src="{{asset($comment->user->avatar)}}" class="img-circle img-bordered-sm"
+                    @if(isset() && !empty($replay->comments))
+                        @foreach($replay->comments as $comment)
+                            <div class="item row">
+                                @if(auth()->check() && auth()->user()->userViewAvatars())
+                                    <img src="{{asset($comment->user->avatarOrDefault())}}"
+                                         class="img-circle img-bordered-sm"
                                          alt="avatar"/>
                                 @else
-                                    <img src="{{asset($comment->user->defaultAvatar())}}"
+                                    <img src="{{asset($comment->user->avatarOrDefault())}}"
                                          class="img-circle img-bordered-sm" alt="avatar"/>
                                 @endif
-                            @endif
-                            <p class="message">
-                                <a href="#" class="name">
-                                    <small class="text-muted pull-right"><i
-                                            class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
-                                    </small>
-                                    {{$comment->user->name}}
-                                </a>
-                                {{ Form::open(['method' => 'DELETE', 'route' => ['admin.replays.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
-                                <button class="btn btn-default text-red" title="Удалить запись"><i
-                                        class="fa fa-trash"></i></button>
-                                {{ Form::close() }}
-                                {!! $comment->content !!}
-                            </p>
-                        </div>
-                    @endforeach
+                                <p class="message">
+                                    <a href="#" class="name">
+                                        <small class="text-muted pull-right"><i
+                                                    class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
+                                        </small>
+                                        {{$comment->user->name}}
+                                    </a>
+                                    {{ Form::open(['method' => 'DELETE', 'route' => ['admin.replays.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
+                                    <button class="btn btn-default text-red" title="Удалить запись"><i
+                                                class="fa fa-trash"></i></button>
+                                    {{ Form::close() }}
+                                    {!! ParserToHTML::toHTML($comment->content,'size') !!}
+                                </p>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

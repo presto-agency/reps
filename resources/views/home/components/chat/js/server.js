@@ -3,6 +3,7 @@
 const express = require('express');
 const http = require('http');
 const socketio = require('socket.io');
+
 class Server {
     constructor() {
         this.port = process.env.SOCKET_PORT || 3001;
@@ -19,9 +20,9 @@ class Server {
         this.http.listen(this.port, this.host, () => {
             console.log(`Listening on http://${this.host}:${this.port}`);
 
-        this.socket.on('connection', ()=>{
-            console.log('user connected')
-        })
+            this.socket.on('connection', () => {
+                console.log('user connected')
+            })
 
         });
 

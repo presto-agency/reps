@@ -14,9 +14,9 @@ class InterviewVariantAnswerController extends Controller
      */
     public function store($question_id, $answer)
     {
-        $store = new InterviewVariantAnswer;
+        $store              = new InterviewVariantAnswer;
         $store->question_id = $question_id;
-        $store->answer = $answer;
+        $store->answer      = $answer;
         $store->save();
 
     }
@@ -29,10 +29,10 @@ class InterviewVariantAnswerController extends Controller
     public function update($id, $answer, $question_id)
     {
         $update = InterviewVariantAnswer::where('id', $id)->first();
-        if (!$update) {
+        if ( ! $update) {
             $this->store($question_id, $answer);
         }
-        if (!empty($update)) {
+        if ( ! empty($update)) {
             if ($update->answer != $answer) {
                 $update->answer = $answer;
                 $update->save();
@@ -43,6 +43,8 @@ class InterviewVariantAnswerController extends Controller
     public function delete($id)
     {
         InterviewVariantAnswer::destroy($id);
+
         return back();
     }
+
 }

@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.4.0 on 2019-11-21 14:34:44.
+ * Generated for Laravel 6.4.0 on 2019-11-22 09:20:22.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -14857,6 +14857,18 @@ namespace App\Services\ServiceAssistants {
  
 }
 
+namespace App\Services\BBCode { 
+
+    /**
+     * 
+     *
+     */ 
+    class ParserToHTML {
+         
+    }
+ 
+}
+
 namespace Barryvdh\Debugbar { 
 
     /**
@@ -24351,6 +24363,8 @@ namespace  {
     class Image extends \Intervention\Image\Facades\Image {}
 
     class checkFile extends \App\Services\ServiceAssistants\PathHelper {}
+
+    class ParserToHTML extends \App\Services\BBCode\ParserToHTML {}
 
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
 

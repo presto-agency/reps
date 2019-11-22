@@ -13,12 +13,13 @@ use SleepingOwl\Admin\Section;
 /**
  * Class ReplayType
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\ReplayType $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class ReplayType extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -43,18 +44,20 @@ class ReplayType extends Section
      */
     public function onDisplay()
     {
-        $display = AdminDisplay::datatablesAsync();
-        $display->setHtmlAttribute('class', 'table-info');
-        $display->paginate(10);
+        $display = AdminDisplay::datatablesAsync()
+            ->setDatatableAttributes(['bInfo' => false])
+            ->setHtmlAttribute('class', 'table-info')
+            ->paginate(10);
 
         $display->setColumns([
-            $title = AdminColumn::text('title', 'Title'),
+            AdminColumn::text('title', 'Title'),
         ]);
+
         return $display;
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
@@ -67,7 +70,7 @@ class ReplayType extends Section
                 ->setHtmlAttribute('placeholder', 'Название')
                 ->setHtmlAttribute('maxlength', '255')
                 ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules(['required', 'string', 'between:1,255'])
+                ->setValidationRules(['required', 'string', 'between:1,255']),
         ]);
 
         return $display;

@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Footer extends Model
 {
-    protected $fillable = [
-        'text',
-        'approved'
-    ];
+
+    protected $fillable
+        = [
+            'text',
+            'approved',
+        ];
+
 }

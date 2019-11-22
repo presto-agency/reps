@@ -3,7 +3,6 @@
 
 namespace App\Http\ViewComposers\admin;
 
-use App\Models\InterviewVariantAnswer;
 use Illuminate\View\View;
 
 class InterviewVariantAnswerComposer

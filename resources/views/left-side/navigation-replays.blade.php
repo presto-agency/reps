@@ -19,7 +19,6 @@
             <div class="topic__header card-header change_gray">
                 <a class="header__title night_text" href="{{route('replay.index',['type' => 'user'])}}">
                     {{__('Пользовательские реплеи')}}
-{{--                    {{$replayTypeName}}--}}
                 </a>
             </div>
         </div>
@@ -37,7 +36,7 @@
                                 <div class="subtopic__header card-header change_gray">
                                     <a class="header__title night_text"
                                        href="{{route('replay.index',['type' => 'pro', 'subtype'=> $replayName->name])}}">
-                                        {{$replayName->title}}
+                                        {!! ParserToHTML::toHTML($replayName->title,'size') !!}
                                     </a>
                                 </div>
                                 <div class="subtopic__body">
@@ -46,9 +45,9 @@
                                             @foreach($replayName->replays as $replayNavItem)
                                                 <div class="body__wrap">
                                                     <a href="{{route('replay.show',['replay'=>$replayNavItem->id, 'type' => !isset($type) ? $type : 'pro', 'subtype'=> $replayName->name])}}"
-                                                       class="body__title night_text">{{$replayNavItem->title}}</a>
+                                                       class="body__title night_text">{!! ParserToHTML::toHTML($replayNavItem->title,'size') !!}</a>
                                                     <span
-                                                        class="body__numb">{{$replayNavItem->positive_count - $replayNavItem->negative_count}}</span>
+                                                            class="body__numb"></span>
                                                 </div>
                                             @endforeach
                                         @endisset

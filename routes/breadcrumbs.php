@@ -1,5 +1,6 @@
 <?php
 
+
 Breadcrumbs::register('home', function ($breadcrumbs) {
     $breadcrumbs->push('Главная', route('home.index'));
 });
@@ -50,7 +51,8 @@ Breadcrumbs::register('tournament', function ($breadcrumbs) {
 });
 Breadcrumbs::register('tournament-show', function ($breadcrumbs) {
     $breadcrumbs->parent('tournament');
-    $breadcrumbs->push('Турнир', route('tournament.show', ['id' => request('tournament')]));
+    $breadcrumbs->push('Турнир',
+        route('tournament.show', ['id' => request('tournament')]));
 });
 
 Breadcrumbs::register('best', function ($breadcrumbs) {
@@ -63,7 +65,8 @@ Breadcrumbs::register('gallery-index', function ($breadcrumbs) {
 });
 Breadcrumbs::register('gallery-show', function ($breadcrumbs, $gallery) {
     $breadcrumbs->parent('gallery-index');
-    $breadcrumbs->push('Картинка', route('galleries.show', ['gallery' => $gallery]));
+    $breadcrumbs->push('Картинка',
+        route('galleries.show', ['gallery' => $gallery]));
 });
 
 
@@ -76,97 +79,105 @@ Breadcrumbs::register('gallery-show', function ($breadcrumbs, $gallery) {
 Breadcrumbs::register('user-profile-show', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Личный кабинет', route('user_profile', [
-        'id' => $id
+        'id' => $id,
     ]));
 });
 Breadcrumbs::register('user-friends', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('user-profile-show', $id);
     $breadcrumbs->push('Мои друзья', route('user.friends_list.by_id', [
-        'id' => $id
+        'id' => $id,
     ]));
 });
 Breadcrumbs::register('user-edit', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('user-profile-show', $id);
     $breadcrumbs->push('Мой профайл', route('edit_profile', [
-        'id' => $id
+        'id' => $id,
     ]));
 });
 
 Breadcrumbs::register('user-rating-list', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('user-profile-show', $id);
-    $breadcrumbs->push('Репутация пользователя', route('user-rating-list.index', [
-        'id' => $id
-    ]));
+    $breadcrumbs->push('Репутация пользователя',
+        route('user-rating-list.index', [
+            'id' => $id,
+        ]));
 });
 
 Breadcrumbs::register('user-topic-rating-list', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('user-profile-show', $id);
-    $breadcrumbs->push('Репутация темы пользователя', route('user-topic-rating-list.index', [
-        'id' => $id
-    ]));
+    $breadcrumbs->push('Репутация темы пользователя',
+        route('user-topic-rating-list.index', [
+            'id' => $id,
+        ]));
 });
 
 Breadcrumbs::register('user-comments', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('user-profile-show', $id);
     $breadcrumbs->push('Посты пользователя', route('user-comments.index', [
-        'id' => $id
+        'id' => $id,
     ]));
 });
 
 Breadcrumbs::register('user-topics', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('user-profile-show', $id);
     $breadcrumbs->push('Темы пользователя', route('user-topics.index', [
-        'id' => $id
+        'id' => $id,
     ]));
 });
 Breadcrumbs::register('user-topics-create', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('user-topics', $id);
     $breadcrumbs->push('Создать тему', route('user-topics.create', [
-        'id' => $id
+        'id' => $id,
     ]));
 });
-Breadcrumbs::register('user-topics-edit', function ($breadcrumbs, $id, $user_topic) {
-    $breadcrumbs->parent('user-topics', $id);
-    $breadcrumbs->push('Редактировать тему пользователя', route('user-topics.edit', [
-        'id'         => $id,
-        'user_topic' => $user_topic
-    ]));
-});
+Breadcrumbs::register('user-topics-edit',
+    function ($breadcrumbs, $id, $user_topic) {
+        $breadcrumbs->parent('user-topics', $id);
+        $breadcrumbs->push('Редактировать тему пользователя',
+            route('user-topics.edit', [
+                'id'         => $id,
+                'user_topic' => $user_topic,
+            ]));
+    });
 
 Breadcrumbs::register('user-replay', function ($breadcrumbs, $id, $type) {
     $breadcrumbs->parent('user-profile-show', $id);
-    $breadcrumbs->push('Реплеи пользователя', asset(url("user/$id/user-replay/?type=$type")));
+    $breadcrumbs->push('Реплеи пользователя',
+        asset(url("user/$id/user-replay/?type=$type")));
 });
 
-Breadcrumbs::register('user-replay-create', function ($breadcrumbs, $id, $user_replay, $type) {
-    $breadcrumbs->parent('user-replay', $id, $type);
-    $breadcrumbs->push('Реплей пользователя', route('user-replay.create', [
-        'id'          => $id,
-        'user_replay' => $user_replay
-    ]));
-});
+Breadcrumbs::register('user-replay-create',
+    function ($breadcrumbs, $id, $user_replay, $type) {
+        $breadcrumbs->parent('user-replay', $id, $type);
+        $breadcrumbs->push('Реплей пользователя', route('user-replay.create', [
+            'id'          => $id,
+            'user_replay' => $user_replay,
+        ]));
+    });
 
-Breadcrumbs::register('user-replay-edit', function ($breadcrumbs, $id, $user_replay, $type) {
-    $breadcrumbs->parent('user-replay', $id, $type);
-    $breadcrumbs->push('Реплей пользователя', route('user-replay.edit', [
-        'id'          => $id,
-        'user_replay' => $user_replay
-    ]));
-});
+Breadcrumbs::register('user-replay-edit',
+    function ($breadcrumbs, $id, $user_replay, $type) {
+        $breadcrumbs->parent('user-replay', $id, $type);
+        $breadcrumbs->push('Реплей пользователя', route('user-replay.edit', [
+            'id'          => $id,
+            'user_replay' => $user_replay,
+        ]));
+    });
 
-Breadcrumbs::register('user-replay-show', function ($breadcrumbs, $id, $user_replay, $type) {
-    $breadcrumbs->parent('user-replay', $id, $type);
-    $breadcrumbs->push('Реплей пользователя', route('user-replay.show', [
-        'id'          => $id,
-        'user_replay' => $user_replay
-    ]));
-});
+Breadcrumbs::register('user-replay-show',
+    function ($breadcrumbs, $id, $user_replay, $type) {
+        $breadcrumbs->parent('user-replay', $id, $type);
+        $breadcrumbs->push('Реплей пользователя', route('user-replay.show', [
+            'id'          => $id,
+            'user_replay' => $user_replay,
+        ]));
+    });
 
 
 Breadcrumbs::register('user-gallery-index', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Галерея', route('user-gallery.index', [
-        'id' => $id
+        'id' => $id,
     ]));
 });
 

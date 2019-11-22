@@ -33,11 +33,11 @@
          */
         $(document).ready(function () {
                 let _token = $('input[name="_token"]').val();
-                @if (request()->has('search') && request()->filled('search'))
+                    @if (request()->has('search') && request()->filled('search'))
                 let search = "{{request('search')}}";
-                @endif
+                    @endif
 
-                load_more_news_search('', _token, search);
+                    load_more_news_search('', _token, search);
 
                 function load_more_news_search(id = "", _token, search) {
                     $.ajax({
@@ -63,7 +63,7 @@
          */
         $(document).ready(function () {
             let _token = $('input[name="_token"]').val();
-                @if (request()->has('search') && request()->filled('search'))
+                    @if (request()->has('search') && request()->filled('search'))
             let search = "{{request('search')}}";
             @endif
             load_more_replays_search('', _token, search);
@@ -79,6 +79,7 @@
                     }
                 })
             }
+
             $(document).on('click', '#load_more_replays_search_button', function () {
                 let id = $(this).data('id');
                 $('#load_more_replays_search_button').html('<b>Загрузка...</b>');
