@@ -78,6 +78,7 @@
             .right{
                 display: flex;
                 align-items: baseline;
+                font-size: 14px;
                 a{
                     margin-right: 15px;
                     svg{
@@ -128,6 +129,9 @@
     }
     .detailed-news__card {
         border: 0px;
+        img{
+            width: 100%;
+        }
         .card-body {
             .card-body__title {
                 color: #010b4a;
