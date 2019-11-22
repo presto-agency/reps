@@ -56,7 +56,7 @@
             @endforeach
         </div>
     @else
-        <div>
+        <div class="none_text">
             Пожалуйста, добавьте друзей
         </div>
     @endif
