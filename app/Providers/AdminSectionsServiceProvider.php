@@ -96,7 +96,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
 
         AdminNavigation::setFromArray([
             [
-                'title' => 'ФОРУМ',
+                'title' => 'Форум',
                 'icon' => 'fas fa-user',
                 'priority' => 4,
                 'pages' => [
