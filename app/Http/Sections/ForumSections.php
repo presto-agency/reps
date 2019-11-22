@@ -68,10 +68,7 @@ class ForumSections extends Section
             AdminColumn::text('description', 'Описание')
                 ->setHtmlAttribute('class', 'text-left'),
         ];
-        //            $name = AdminColumn::text('name', 'Название')
-        //                ->setWidth('50px'),
-        //            $title = AdminColumn::text('title', 'Имя')
-        //                ->setWidth('60px'),
+
         //            $position = AdminColumn::text('position', 'Позиция')
         //                ->setWidth('50px'),
         //            $quantity = AdminColumn::count('topics', 'Количество тем')
