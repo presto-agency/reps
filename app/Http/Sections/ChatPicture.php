@@ -2,13 +2,11 @@
 
 namespace App\Http\Sections;
 
-use AdminFormElement;
-use AdminForm;
-use AdminColumnEditable;
-use AdminDisplayFilter;
-use AdminDisplay;
 use AdminColumn;
 use AdminColumnFilter;
+use AdminDisplay;
+use AdminForm;
+use AdminFormElement;
 use App\Models\Tag;
 use App\Services\ServiceAssistants\PathHelper;
 use Illuminate\Http\UploadedFile;
@@ -19,12 +17,13 @@ use SleepingOwl\Admin\Section;
 /**
  * Class ChatPicture
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\ChatPicture $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class ChatPicture extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -51,9 +50,7 @@ class ChatPicture extends Section
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center')
             ->paginate(10);
-        $display->setApply(function ($query) {
-            $query->orderByDesc('id');
-        });
+
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
@@ -64,7 +61,9 @@ class ChatPicture extends Section
                 ->setWidth('100px'),
 
             $image = AdminColumn::image(function ($model) {
-                if (!empty($model->image) && PathHelper::checkFileExists($model->image)) {
+                if ( ! empty($model->image)
+                    && PathHelper::checkFileExists($model->image)
+                ) {
                     return asset($model->image);
                 }
             })->setWidth('100px'),
@@ -80,7 +79,8 @@ class ChatPicture extends Section
                 ->append(
                     AdminColumn::filter('tag')
                 ),*/
-            $date = AdminColumn::datetime('created_at', 'Date')->setFormat('Y-m-d')->setWidth('100px'),
+            $date = AdminColumn::datetime('created_at', 'Date')
+                ->setFormat('Y-m-d')->setWidth('100px'),
 
         ]);
 
@@ -89,8 +89,10 @@ class ChatPicture extends Section
             null,
             null,
             null,
-            AdminColumnFilter::text()->setOperator('contains')->setPlaceholder('Charactor'),
-            AdminColumnFilter::text()->setOperator('equal')->setPlaceholder('Tag'),
+            AdminColumnFilter::text()->setOperator('contains')
+                ->setPlaceholder('Charactor'),
+            AdminColumnFilter::text()->setOperator('equal')
+                ->setPlaceholder('Tag'),
             null,
         ]);
 
@@ -98,23 +100,31 @@ class ChatPicture extends Section
 
     }
 
+    public $imageOldPath;
+
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
     public function onEdit($id)
     {
+        $getData = $this->getModel()->select('image')->find($id);
+        if ($getData) {
+            $this->imageOldPath = $getData->image;
+        }
         $form = AdminForm::panel();
         $form->setItems([
             /*Init FormElement*/
             $image = AdminFormElement::image('image', 'Image')
-                ->setUploadPath(function (UploadedFile $file) use ($id) {
-                    return 'storage' . PathHelper::checkUploadsFileAndPath("/chat/pictures", $this->getModelValue()->getAttribute('image'));
+                ->setUploadPath(function (UploadedFile $file) {
+                    return 'storage'
+                        .PathHelper::checkUploadsFileAndPath("/chat/pictures",
+                            $this->imageOldPath);
                 })
                 ->setValidationRules([
                     'required',
-                    'max:2048'
+                    'max:2048',
                 ])
                 ->setUploadSettings([
                     'orientate' => [],
@@ -124,15 +134,19 @@ class ChatPicture extends Section
                         function ($constraint) {
                             $constraint->upsize();
                             $constraint->aspectRatio();
-                        }
+                        },
                     ],
                 ]),
             $comment = AdminFormElement::text('comment', 'Comment'),
-            $charactor = AdminFormElement::text('charactor', 'Charactor')->required(),
-            $tag = AdminFormElement::multiselect('tags', 'Tags', Tag::class)->setDisplay('display_name')->required(),
-            $user = AdminFormElement::hidden('user_id')->setDefaultValue(auth()->user()->id),
+            $charactor = AdminFormElement::text('charactor', 'Charactor')
+                ->required(),
+            $tag = AdminFormElement::multiselect('tags', 'Tags', Tag::class)
+                ->setDisplay('display_name')->required(),
+            $user = AdminFormElement::hidden('user_id')
+                ->setDefaultValue(auth()->user()->id),
 
         ]);
+
         return $form;
     }
 
@@ -159,4 +173,5 @@ class ChatPicture extends Section
     {
         // remove if unused
     }
+
 }

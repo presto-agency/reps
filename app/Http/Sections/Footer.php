@@ -15,12 +15,13 @@ use SleepingOwl\Admin\Section;
 /**
  * Class Footer
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\Footer $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class Footer extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -55,6 +56,7 @@ class Footer extends Section
     {
 
         $display = AdminDisplay::datatablesAsync()
+            ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info')
             ->paginate(1);
 
@@ -74,7 +76,7 @@ class Footer extends Section
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
@@ -84,7 +86,8 @@ class Footer extends Section
 
         $display->setItems([
 
-            $text = AdminFormElement::wysiwyg('text', 'Текст Footer', 'simplemde')
+            $text = AdminFormElement::wysiwyg('text', 'Текст Footer',
+                'simplemde')
                 ->setHtmlAttributes(['placeholder' => 'Текст'])
                 ->setValidationRules(['required', 'string', 'between:1,1000']),
 
@@ -95,4 +98,5 @@ class Footer extends Section
 
         return $display;
     }
+
 }

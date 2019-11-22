@@ -5,16 +5,19 @@ namespace App\Http\Controllers\Admin;
 use AdminSection;
 use App\Events\ReplayDownload;
 use App\Http\Controllers\Controller;
-use App\Services\ServiceAssistants\PathHelper;
 use App\Models\{Comment, Replay};
+use File;
 use Illuminate\Http\Request;
+use Storage;
+use Str;
 
 class ReplayController extends Controller
 {
+
     public function show($id)
     {
 
-        $columns = [
+        $columns   = [
             'id',
             'map_id',
             'title',
@@ -38,9 +41,10 @@ class ReplayController extends Controller
             'secondCountries',
             'firstRaces',
             'secondRaces',
-            'comments'
+            'comments',
         ];
-        $replay = Replay::select($columns)->with($relations)->findOrFail($id);
+        $replay    = Replay::select($columns)->with($relations)
+            ->findOrFail($id);
 
 
         $content = view('admin.replays.show',
@@ -52,23 +56,24 @@ class ReplayController extends Controller
 
     public function download($id)
     {
-        $replay = Replay::where('id', $id)->firstOrFail();
+        $replay   = Replay::where('id', $id)->firstOrFail();
         $filePath = $replay->file;
         if (empty($filePath)) {
             return back();
         }
         if (strpos($filePath, '/storage') !== false) {
-            $filePath = \Str::replaceFirst('/storage', 'public', $filePath);
+            $filePath = Str::replaceFirst('/storage', 'public', $filePath);
         }
         if (strpos($filePath, 'storage') !== false) {
-            $filePath = \Str::replaceFirst('storage', 'public', $filePath);
+            $filePath = Str::replaceFirst('storage', 'public', $filePath);
         }
 
-        $checkPath = \Storage::path($filePath);
-        if (\File::exists($checkPath) === false) {
+        $checkPath = Storage::path($filePath);
+        if (File::exists($checkPath) === false) {
             return back();
         };
         self::downloadCount($replay);
+
         return response()->download($checkPath);
 
     }
@@ -82,7 +87,7 @@ class ReplayController extends Controller
 
     public function comment(Request $request, $id)
     {
-        $topic = Replay::find($id);
+        $topic   = Replay::find($id);
         $comment = new Comment([
             'user_id' => auth()->id(),
             'content' => $request->input('content'),

@@ -17,7 +17,7 @@ class UserGalleryObservers
     }
 
     /**
-     * @param UserGallery $userGallery
+     * @param  UserGallery  $userGallery
      */
     public function created(UserGallery $userGallery)
     {
@@ -58,4 +58,5 @@ class UserGalleryObservers
         return $data['user_id'] = auth()->user()->id;
 
     }
+
 }

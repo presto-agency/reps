@@ -12,6 +12,8 @@
             color: $gray;
             margin:0;
             font-weight: 600;
+            padding: 0!important;
+
         }
         & .more{
             background: none;
@@ -85,8 +87,12 @@
         }
     }
     & .block_userInformation{
+
         & .container_left{
             padding-right: 0;
+            p,span{
+                padding: 10px;
+            }
         }
         & .container_right{
             padding-left: 0;
@@ -97,6 +103,9 @@
                     display: flex;
                     justify-content: space-between;
                     padding-bottom: 10px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    align-items: baseline;
                     & .left_block{
                         & span{
                             font-size: 12px;
@@ -106,8 +115,16 @@
 
                     }
                     & .right_block{
+                        display: flex;
                         & span{
                             font-size: 14px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            margin: 0px 0 5px 0;
+                            max-width: 140px;
+                            display: inline-block;
+                            margin: 0;
                         }
                         & .small{
                             font-size: 12px;

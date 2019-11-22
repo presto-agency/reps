@@ -26,7 +26,7 @@
                         >
 
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-md-6 offset-md-4">
+                        <div class="col-12 remember">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 

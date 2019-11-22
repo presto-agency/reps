@@ -3,12 +3,14 @@
 namespace App\Traits\ModelRelations;
 
 
+use App\User;
+
 trait UserGalleryRelationTrait
 {
 
     public function users()
     {
-        return $this->belongsTo(\App\User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     /**
@@ -18,4 +20,5 @@ trait UserGalleryRelationTrait
     {
         return $this->morphMany('App\Models\Comment', 'commentable');
     }
+
 }

@@ -230,6 +230,7 @@ return [
         'View'         => Illuminate\Support\Facades\View::class,
         'Image'        => Intervention\Image\Facades\Image::class,
         'checkFile'    => App\Services\ServiceAssistants\PathHelper::class,
+        'ParserToHTML' => App\Services\BBCode\ParserToHTML::class,
     ],
 
 ];

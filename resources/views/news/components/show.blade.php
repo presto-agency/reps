@@ -13,29 +13,19 @@
 			c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
 			c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
             </svg>
-            <p class="title__text night_text">{{$news->title }}</p>
+            <p class="title__text night_text">{!! ParserToHTML::toHTML($news->title,'size') !!}</p>
         </div>
         @if($news->author)
             <div class="title__wrap">
-                @auth()
-                    @if(auth()->user()->userViewAvatars())
-                        @if(!empty($news->author->avatar) && file_exists($news->author->avatar))
-                            <img src="{{asset($news->author->avatar)}}" class="title__avatar" alt="avatar">
-                        @else
-                            <img src="{{asset($news->author->defaultAvatar())}}" class="title__avatar" alt="avatar">
-                        @endif
-                    @endif
+                @if(auth()->check() && auth()->user()->userViewAvatars())
+                    <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
                 @else
-                    @if(!empty($news->author->avatar) && file_exists($news->author->avatar))
-                        <img src="{{asset($news->author->avatar)}}" class="title__avatar" alt="avatar">
-                    @else
-                        <img src="{{asset($news->author->defaultAvatar())}}" class="title__avatar" alt="avatar">
-                    @endif
-                @endauth
+                    <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
+                @endif
 
                 <p class="title__nickname night_text">{{ $news->author->name ? $news->author->name : 'user' }}</p>
-                <img src="{{ $news->author->countries->flag }}" title="{{ $news->author->countries->name }}"
-                     title="{{ $news->author->races->title }}" class="title__flag" alt="flag">
+                <img src="{{ $news->author->countries->flag }}" title="{{ $news->author->races->title }}"
+                     class="title__flag" alt="flag">
                 <img src="{{asset("images/default/game-races/" . $news->author->races->title . ".png")}}"
                      class="title__cube" alt="race">
                 <p class="title__text night_text">{{ $news->author->comments_count.'  pts' }}
@@ -49,9 +39,9 @@
                 <svg id="Capa_1" enable-background="new 0 0 515.556 515.556" viewBox="0 0 515.556 515.556"
                      xmlns="http://www.w3.org/2000/svg">
                     <path
-                        d="m257.778 64.444c-119.112 0-220.169 80.774-257.778 193.334 37.609 112.56 138.666 193.333 257.778 193.333s220.169-80.774 257.778-193.333c-37.609-112.56-138.666-193.334-257.778-193.334zm0 322.223c-71.184 0-128.889-57.706-128.889-128.889 0-71.184 57.705-128.889 128.889-128.889s128.889 57.705 128.889 128.889c0 71.182-57.705 128.889-128.889 128.889z"/>
+                            d="m257.778 64.444c-119.112 0-220.169 80.774-257.778 193.334 37.609 112.56 138.666 193.333 257.778 193.333s220.169-80.774 257.778-193.333c-37.609-112.56-138.666-193.334-257.778-193.334zm0 322.223c-71.184 0-128.889-57.706-128.889-128.889 0-71.184 57.705-128.889 128.889-128.889s128.889 57.705 128.889 128.889c0 71.182-57.705 128.889-128.889 128.889z"/>
                     <path
-                        d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"/>
+                            d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"/>
                 </svg>
                 <span>{{$news->reviews}}</span>
             </span>
@@ -78,7 +68,7 @@
                             c-0.3-0.3-0.7-0.8-1.3-1.4c-0.6-0.7-1-1.1-1.1-1.3c-1-1.1-3.1-3.5-6.6-7.1c-3.4-3.6-5.9-6.4-7.4-8.4c-1.5-2-3.7-4.8-6.4-8.3
                             c-2.8-3.5-5.1-7.2-7.1-11c-2-3.8-3.9-8-5.9-12.6C459.3,374.9,477.8,358.1,491.3,338.2z"/>
                 </svg>
-                <span>{{$news->comments_count}}</span>
+                <span> {{ $news->comments_count }}</span>
             </span>
             @if(Auth::user() && Auth::user()->isNotUser())
                 <div class="right">
@@ -87,7 +77,7 @@
                              class="svg-inline--fa fa-edit fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg"
                              viewBox="0 0 576 512">
                             <path
-                                d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"></path>
+                                    d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"></path>
                         </svg>
                         <span class="edit_text">{{__('Редактировать')}}</span>
                     </a>
@@ -102,8 +92,8 @@
             @if(!empty($news->preview_img) && File::exists($news->preview_img))
                 <img src="{{ asset($news->preview_img) }}" class="img-fluid" alt="news">
             @endif
-            <h2 class="card-body__title night_text"> {!! $news->preview_content !!}</h2>
-            <div class="card-body__text night_text">{!! $news->content !!}</div>
+            <h2 class="card-body__title night_text"> {!! ParserToHTML::toHTML($news->preview_content,'size') !!}</h2>
+            <div class="card-body__text night_text">{!! ParserToHTML::toHTML($news->content,'size') !!}</div>
             <div class="card-body__items">
                 <div class="card-body__items-wrap">
                     <a class="items__quote" href="#">
@@ -154,9 +144,9 @@
                     <a class="items__dislike" href="#" data-toggle="modal" data-target="#diselikeModal_news">
                         <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
                             <path
-                                d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"/>
+                                    d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"/>
                             <path
-                                d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"/>
+                                    d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"/>
                         </svg>
                         <span>{{$news->negative_count}}</span>
                     </a>

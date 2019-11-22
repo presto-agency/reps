@@ -18,7 +18,8 @@ class StreamObserver
     /**
      * Handle the stream "created" event.
      *
-     * @param \App\Models\Stream $stream
+     * @param Stream $stream
+     *
      * @return void
      */
     public function created(Stream $stream)
@@ -37,7 +38,8 @@ class StreamObserver
     /**
      * Handle the stream "updated" event.
      *
-     * @param \App\Models\Stream $stream
+     * @param Stream $stream
+     *
      * @return void
      */
     public function updated(Stream $stream)
@@ -48,7 +50,8 @@ class StreamObserver
     /**
      * Handle the stream "deleted" event.
      *
-     * @param \App\Models\Stream $stream
+     * @param Stream $stream
+     *
      * @return void
      */
     public function deleted(Stream $stream)
@@ -59,7 +62,8 @@ class StreamObserver
     /**
      * Handle the stream "restored" event.
      *
-     * @param \App\Models\Stream $stream
+     * @param Stream $stream
+     *
      * @return void
      */
     public function restored(Stream $stream)
@@ -70,7 +74,8 @@ class StreamObserver
     /**
      * Handle the stream "force deleted" event.
      *
-     * @param \App\Models\Stream $stream
+     * @param Stream $stream
+     *
      * @return void
      */
     public function forceDeleted(Stream $stream)
@@ -87,31 +92,36 @@ class StreamObserver
     /**
      * @param $stream_url
      * @param $stream
+     *
      * @return bool|void
      */
     public static function liveStreamCheck($stream_url, $stream)
     {
         $parseUrl = self::parse_stream_url($stream_url);
-        $getHost = $parseUrl['host'];
+        $getHost  = $parseUrl['host'];
 
         if ($getHost == config('streams.twitch.host')) {
-            $parsePath = explode('/', $parseUrl['path']);
+            $parsePath     = explode('/', $parseUrl['path']);
             $getChanelName = end($parsePath);
-            $setNewTwitchUrl = "https://player.twitch.tv/?volume=0.5&!muted&channel=$getChanelName";
+            $setNewTwitchUrl
+                           = "https://player.twitch.tv/?volume=0.5&!muted&channel=$getChanelName";
             $stream->setAttribute('stream_url_iframe', $setNewTwitchUrl);
         }
         if ($getHost == config('streams.goodgame.host')) {
-            $parsePath = explode('/', $parseUrl['path']);
+            $parsePath     = explode('/', $parseUrl['path']);
             $getChanelName = $parsePath[2];
-            $setNewTwitchUrl = "https://goodgame.ru/channel/$getChanelName/#autoplay";
+            $setNewTwitchUrl
+                           = "https://goodgame.ru/channel/$getChanelName/#autoplay";
             $stream->setAttribute('stream_url_iframe', $setNewTwitchUrl);
         }
         if ($getHost == config('streams.afreecatv.host')) {
-            $parsePath = explode('/', $parseUrl['path']);
+            $parsePath     = explode('/', $parseUrl['path']);
             $getChanelName = $parsePath[1];
-            $setNewTwitchUrl = "https://play.afreecatv.com/$getChanelName/embed";
+            $setNewTwitchUrl
+                           = "https://play.afreecatv.com/$getChanelName/embed";
             $stream->setAttribute('stream_url_iframe', $setNewTwitchUrl);
         }
+
         return false;
     }
 
@@ -133,4 +143,5 @@ class StreamObserver
     {
         return parse_url(htmlspecialchars_decode($url));
     }
+
 }

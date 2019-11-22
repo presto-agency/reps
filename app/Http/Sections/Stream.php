@@ -10,18 +10,26 @@ use AdminForm;
 use AdminFormElement;
 use App\Http\ViewComposers\StreamIframeComposer;
 use App\Models\{Country, Race};
+use Exception;
+use Illuminate\Database\Eloquent\Model;
 use SleepingOwl\Admin\Contracts\Initializable;
+use SleepingOwl\Admin\Display\ControlLink;
+use SleepingOwl\Admin\Display\DisplayDatatablesAsync;
+use SleepingOwl\Admin\Form\FormPanel;
 use SleepingOwl\Admin\Section;
+use Throwable;
+use View;
 
 /**
  * Class Stream
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\Stream $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class Stream extends Section implements Initializable
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -47,41 +55,42 @@ class Stream extends Section implements Initializable
     }
 
     /**
-     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
-     * @throws \Exception
+     * @return DisplayDatatablesAsync
+     * @throws Exception
      */
     public function onDisplay()
     {
 
         $display = AdminDisplay::datatablesAsync()
-            ->setHtmlAttribute('class', 'table-info table-sm text-center ')
+            ->setDatatableAttributes(['bInfo' => false])
+            ->setHtmlAttribute('class', 'table-info text-center ')
             ->paginate(25);
-        $display->setFilters([
-            AdminDisplayFilter::related('approved')->setModel(\App\Models\Stream::class),
-        ]);
+        $display->setFilters(AdminDisplayFilter::related('approved')
+            ->setModel(\App\Models\Stream::class));
 
-        $display->setApply(function ($query) {
-            $query->orderByDesc('id');
-        });
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'ID'),
             $user_id = AdminColumn::relatedLink('users.name', 'Пользователь'),
             $title = AdminColumn::text('title', 'Название'),
-            $approved = AdminColumnEditable::checkbox('approved')->setLabel('Подтвержден')
+            $approved = AdminColumnEditable::checkbox('approved')
+                ->setLabel('Подтвержден')
                 ->append(AdminColumn::filter('approved'))
                 ->setWidth(150),
             $online = AdminColumn::custom('Online', function ($model) {
-                return $model->active == 1 ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
+                return $model->active == 1 ? '<i class="fa fa-check"></i>'
+                    : '<i class="fa fa-minus"></i>';
             }),
             $service = AdminColumn::custom('Service', function ($model) {
                 $parts = $this->parse_stream_url($model->stream_url);
-                $host = !empty($parts['host']) === true ? $parts['host'] : 'Поле stream_url пустое';
+                $host  = ! empty($parts['host']) === true ? $parts['host']
+                    : 'Поле stream_url пустое';
+
                 return $host;
             }),
         ]);
 
-        $control = $display->getColumns()->getControlColumn();
+        $control    = $display->getColumns()->getControlColumn();
         $buttonShow = $this->show($display);
         $control->addButton($buttonShow);
 
@@ -90,8 +99,9 @@ class Stream extends Section implements Initializable
 
     /**
      * @param $id
-     * @return \SleepingOwl\Admin\Form\FormPanel
-     * @throws \Throwable
+     *
+     * @return FormPanel
+     * @throws Throwable
      */
     public function onEdit($id)
     {
@@ -102,41 +112,50 @@ class Stream extends Section implements Initializable
                 ->setHtmlAttribute('placeholder', 'Название')
                 ->setHtmlAttribute('maxlength', '255')
                 ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules(['required',
-                                      'string',
-                                      'between:1,255']),
+                ->setValidationRules([
+                    'required',
+                    'string',
+                    'between:1,255',
+                ]),
 
             $race_id = AdminFormElement::select('race_id', 'Первая раса')
                 ->setOptions((new Race())->pluck('title', 'id')->toArray())
                 ->setDisplay('title')
                 ->setValidationRules(['required']),
 
-            $country_id = AdminFormElement::select('country_id', 'Первая страна')
+            $country_id = AdminFormElement::select('country_id',
+                'Первая страна')
                 ->setOptions((new Country())->pluck('name', 'id')->toArray())
                 ->setDisplay('name')
                 ->setValidationRules(['required']),
 
             $content = AdminFormElement::textarea('content', 'Комментарий')
-                ->setValidationRules(['nullable',
-                                      'string',
-                                      'max:1000'])
+                ->setValidationRules([
+                    'nullable',
+                    'string',
+                    'max:1000',
+                ])
                 ->setHtmlAttribute('placeholder', 'Комментарий'),
 
             $approved = AdminFormElement::checkbox('approved', 'Подтвердить'),
 
             $stream_url = AdminFormElement::text('stream_url', 'Вставить url')
                 ->setHtmlAttribute('placeholder', 'Вставить url')
-                ->setValidationRules(['required',
-                                      'max:1000',
-                                      'url']),
+                ->setValidationRules([
+                    'required',
+                    'max:1000',
+                    'url',
+                ]),
 
 
         ]);
 
-        if (!empty($id)) {
-            $streamUrlIframe = \App\Models\Stream::where('id', $id)->value('stream_url_iframe');
+        if ( ! empty($id)) {
+            $streamUrlIframe = \App\Models\Stream::where('id', $id)
+                ->value('stream_url_iframe');
             $display->setItems([
-                \View::make('admin.stream.iframeInput', compact('streamUrlIframe'))->render(),
+                View::make('admin.stream.iframeInput',
+                    compact('streamUrlIframe'))->render(),
             ]);
         }
 
@@ -144,8 +163,8 @@ class Stream extends Section implements Initializable
     }
 
     /**
-     * @return \SleepingOwl\Admin\Form\FormPanel
-     * @throws \Throwable
+     * @return FormPanel
+     * @throws Throwable
      */
     public function onCreate()
     {
@@ -156,24 +175,29 @@ class Stream extends Section implements Initializable
                 ->setHtmlAttribute('placeholder', 'Название')
                 ->setHtmlAttribute('maxlength', '255')
                 ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules(['required',
-                                      'string',
-                                      'between:1,255']),
+                ->setValidationRules([
+                    'required',
+                    'string',
+                    'between:1,255',
+                ]),
 
             $race_id = AdminFormElement::select('race_id', 'Первая раса')
                 ->setOptions((new Race())->pluck('title', 'id')->toArray())
                 ->setDisplay('title')
                 ->setValidationRules(['required']),
 
-            $country_id = AdminFormElement::select('country_id', 'Первая страна')
+            $country_id = AdminFormElement::select('country_id',
+                'Первая страна')
                 ->setOptions((new Country())->pluck('name', 'id')->toArray())
                 ->setDisplay('name')
                 ->setValidationRules(['required']),
 
             $content = AdminFormElement::textarea('content', 'Комментарий')
-                ->setValidationRules(['nullable',
-                                      'string',
-                                      'max:1000'])
+                ->setValidationRules([
+                    'nullable',
+                    'string',
+                    'max:1000',
+                ])
                 ->setHtmlAttribute('placeholder', 'Комментарий'),
 
             $approved = AdminFormElement::checkbox('approved', 'Подтвердить')
@@ -182,12 +206,14 @@ class Stream extends Section implements Initializable
 
             $stream_url = AdminFormElement::text('stream_url', 'Вставить url')
                 ->setHtmlAttribute('placeholder', 'Вставить url')
-                ->setValidationRules(['required',
-                                      'max:1000',
-                                      'url']),
+                ->setValidationRules([
+                    'required',
+                    'max:1000',
+                    'url',
+                ]),
         ]);
         $display->setItems([
-            \View::make('admin.stream.iframeInput')->render(),
+            View::make('admin.stream.iframeInput')->render(),
         ]);
 
         return $display;
@@ -211,15 +237,19 @@ class Stream extends Section implements Initializable
 
     /**
      * @param $display
-     * @return \SleepingOwl\Admin\Display\ControlLink
+     *
+     * @return ControlLink
      */
     public function show($display)
     {
 
-        $link = new \SleepingOwl\Admin\Display\ControlLink(function (\Illuminate\Database\Eloquent\Model $model) {
+        $link = new ControlLink(function (
+            Model $model
+        ) {
             $url = url('admin/streams/show');
-            return $url . '/' . $model->getKey();
-        }, function (\Illuminate\Database\Eloquent\Model $model) {
+
+            return $url.'/'.$model->getKey();
+        }, function (Model $model) {
             return 'Просмотреть';
         }, 50);
         $link->hideText();
@@ -233,4 +263,5 @@ class Stream extends Section implements Initializable
     {
         return parse_url(htmlspecialchars_decode($url));
     }
+
 }

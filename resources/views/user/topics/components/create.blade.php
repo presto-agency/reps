@@ -12,7 +12,7 @@
                         @foreach($forumSection as $item)
                             <option class="night_input" value="{{$item->id}}"
                                     title="{{$item->description}}"
-                                {{old('forum_section_id')}}>{{$item->title}}</option>
+                                    {{old('forum_section_id')}}>{{$item->title}}</option>
                         @endforeach
                     @endisset
                 </select>

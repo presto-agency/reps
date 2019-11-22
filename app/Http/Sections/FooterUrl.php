@@ -14,12 +14,13 @@ use SleepingOwl\Admin\Section;
 /**
  * Class FooterUrl
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\FooterUrl $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class FooterUrl extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -53,12 +54,10 @@ class FooterUrl extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
+            ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center ')
             ->paginate(10);
 
-        $display->setApply(function ($query) {
-            $query->orderByDesc('id');
-        });
 
         $display->setColumns([
 
@@ -78,7 +77,7 @@ class FooterUrl extends Section
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
@@ -144,4 +143,5 @@ class FooterUrl extends Section
     {
         // remove if unused
     }
+
 }

@@ -6,7 +6,9 @@
 <section id="block_chat-twitch" class="block_chat-twitch theatre-off">
     <div class="row main_row">
         <div class="col-12 main_container">
-            <div id="appchat"><chat-room :auth="{{ Auth::check() ? Auth::user() : 0 }}" :not_user="{{$isAdmin}}"/></div>
+            <div id="appchat">
+                <chat-room :auth="{{ Auth::check() ? Auth::user() : 0 }}" :not_user="{{ Auth::check() ? auth()->user()->isNotUser() : 0}}"/>
+            </div>
             <div class="block_stream_list">
                 <div class="title_video ">
                     @include('home.components.chat.components.streams-list')
@@ -17,7 +19,7 @@
                                      class="svg_left svg-inline--fa fa-chevron-left fa-w-10" role="img"
                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                                     <path
-                                        d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"></path>
+                                            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"></path>
                                 </svg>
                             </button>
                             <button class="big_video_left">
@@ -25,18 +27,18 @@
                                      class="svg_right svg-inline--fa fa-chevron-right fa-w-10" role="img"
                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                                     <path
-                                        d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path>
+                                            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path>
                                 </svg>
                             </button>
 
-                                <img class="icon_bars" id="streamOnlineFlag"
-                                     src="@isset($stream){{asset($stream->countries->flag)}}@endisset"
-                                     title="@isset($stream){{$stream->countries->name}}@endisset" alt="flag"/>
-                                <img class="icon_bars" id="streamOnlineRace"
-                                     src="@isset($stream){{asset('images/default/game-races/'.$stream->races->title.'.png')}}@endisset"
-                                     title="@isset($stream){{$stream->races->title}}@endisset" alt="race"/>
-                                <p class="title_text" id="streamOnlineName"
-                                   title="@isset($stream){{$stream->title}}@endisset">@isset($stream){{$stream->title}}@endisset</p>
+                            <img class="icon_bars" id="streamOnlineFlag"
+                                 src="@isset($stream){{asset($stream->countries->flag)}}@endisset"
+                                 title="@isset($stream){{$stream->countries->name}}@endisset" alt="flag"/>
+                            <img class="icon_bars" id="streamOnlineRace"
+                                 src="@isset($stream){{asset('images/default/game-races/'.$stream->races->title.'.png')}}@endisset"
+                                 title="@isset($stream){{$stream->races->title}}@endisset" alt="race"/>
+                            <p class="title_text" id="streamOnlineName"
+                               title="@isset($stream){{$stream->title}}@endisset">@isset($stream){{$stream->title}}@endisset</p>
                         </div>
                         <div class="right_block">
                             <button id="btn_theatre_mode" class="btn_theatre_mode">

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class SetRatingRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,7 +26,7 @@ class SetRatingRequest extends FormRequest
     {
         return [
             'rating'  => 'required|in:1,-1',
-            'comment' => 'nullable|max:255'
+            'comment' => 'nullable|max:255',
         ];
     }
 
@@ -42,4 +43,5 @@ class SetRatingRequest extends FormRequest
             'comment.max'     => 'Коментарий должен быть не больше 255 символов',
         ];
     }
+
 }

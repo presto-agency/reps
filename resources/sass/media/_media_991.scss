@@ -1591,7 +1591,6 @@
                     & a{
 
                         width: 17.154vw;
-                        height: 2.825vw;
                         & .name_player{
                             font-size: 1.413vw;
                         }
@@ -1652,7 +1651,7 @@
             width: 1.009vw;
         }
         .container_players::-webkit-scrollbar-thumb {
-            height: 2.523vw;
+           // height: 2.523vw;
         }
     }
 

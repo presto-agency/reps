@@ -10,9 +10,11 @@ namespace App\Services;
 
 
 use App\Models\Country;
+use Illuminate\Database\Eloquent\Collection;
 
 class GeneralViewHelper
 {
+
     protected static $instance;
 
     protected $countries;
@@ -20,7 +22,7 @@ class GeneralViewHelper
 
     public function __construct()
     {
-        if (!self::$instance) {
+        if ( ! self::$instance) {
             self::$instance = $this;
         }
 
@@ -28,17 +30,18 @@ class GeneralViewHelper
 
 
     /**
-     * @return Country[]|\Illuminate\Database\Eloquent\Collection
+     * @return Country[]|Collection
      */
     public function getCountries()
     {
-        if (!self::$instance->countries) {
+        if ( ! self::$instance->countries) {
             $countries = Country::all();
 
             foreach ($countries as $country) {
                 self::$instance->countries[$country->id] = $country;
             }
         }
+
         return self::$instance->countries;
     }
 

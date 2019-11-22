@@ -24,7 +24,7 @@
             <div class="form-group">
                 <label for="create-replay-name" class="night_text">* Название:</label>
                 <input type="text" class="form-control night_input" id="create-replay-name" placeholder="Название"
-                       name="title" value="{{ old("title", $replay->title)}}" required minlength="1" maxlength="255">
+                       name="title" value="{{ old("title", ParserToHTML::toHTML($replay->title,'size'))}}" required minlength="1" maxlength="255">
             </div>
             @if ($errors->has('title'))
                 <div class="alert alert-danger">
@@ -40,7 +40,7 @@
                                 @isset($types)
                                     @foreach ($types as $item)
                                         <option value="{{$item->id}}"
-                                            {{ old('type_id',$replay->type_id) == $item->id ? "selected":""}}>
+                                                {{ old('type_id',$replay->type_id) == $item->id ? "selected":""}}>
                                             {{$item->name}}
                                         </option>
                                     @endforeach
@@ -62,7 +62,7 @@
                                 @isset($userReplay)
                                     @foreach ($userReplay as $key => $item)
                                         <option value="{{$key}}"
-                                            {{ old('user_replay',$replay->user_replay) == $key ? "selected":""}}>
+                                                {{ old('user_replay',$replay->user_replay) == $key ? "selected":""}}>
                                             {{$item}}
                                         </option>
                                     @endforeach
@@ -83,7 +83,7 @@
                         @isset($maps)
                             @foreach($maps as $item)
                                 <option value="{{$item->id}}"
-                                    {{ old('type_id',$replay->map_id) == $item->id ? "selected":""}}>
+                                        {{ old('type_id',$replay->map_id) == $item->id ? "selected":""}}>
                                     {{$item->name}}
                                 </option>
                             @endforeach
@@ -106,7 +106,7 @@
                                 @isset($races)
                                     @foreach($races as $item)
                                         <option value="{{$item->id}}"
-                                            {{ old('first_race',$replay->first_race) == $item->id ? "selected":""}}>
+                                                {{ old('first_race',$replay->first_race) == $item->id ? "selected":""}}>
                                             {{$item->title}}
                                         </option>
                                     @endforeach
@@ -123,12 +123,12 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="create-replay__first-country" class="night_text">* Первая страна:
-                            <select name="first_country_id" class="js-example-basic-single"
+                            <select name="first_country_id" class="js-example-basic-single night_input"
                                     id="create-replay__first-country">
                                 @isset($countries)
                                     @foreach($countries as $item)
                                         <option value="{{$item->id}}"
-                                            {{ old('first_country_id',$replay->first_country_id) == $item->id ? "selected":""}}>
+                                                {{ old('first_country_id',$replay->first_country_id) == $item->id ? "selected":""}}>
                                             {{$item->name}}
                                         </option>
                                     @endforeach
@@ -142,7 +142,7 @@
                         {{ $errors->first('first_country_id') }}
                     </div>
                 @endif
-                <div class="form-group">
+                <div class="col-md-6 form-group">
                     <label for="create-replay__second-location" class="night_text">Первая локация:</label>
                     <input type="text" name="first_location" class="form-control night_input"
                            id="create-replay__second-location" minlength="1"
@@ -152,6 +152,18 @@
                 @if ($errors->has('first_location'))
                     <div class="alert alert-danger">
                         {{ $errors->first('first_location') }}
+                    </div>
+                @endif
+                <div class="col-md-6 form-group">
+                    <label for="create-replay__second-location" class="night_text">Вторая локация:</label>
+                    <input type="text" name="second_location" class="form-control night_input"
+                           id="create-replay__second-location" minlength="1"
+                           maxlength="255" value="{{old('second_location',$replay->second_location)}}"
+                           placeholder="Вторая локация">
+                </div>
+                @if ($errors->has('second_location'))
+                    <div class="alert alert-danger">
+                        {{ $errors->first('second_location') }}
                     </div>
                 @endif
             </div>
@@ -165,7 +177,7 @@
                                 @isset($races)
                                     @foreach($races as $item)
                                         <option value="{{$item->id}}"
-                                            {{ old('second_race',$replay->second_race) == $item->id ? "selected":""}}>
+                                                {{ old('second_race',$replay->second_race) == $item->id ? "selected":""}}>
                                             {{$item->title}}
                                         </option>
                                     @endforeach
@@ -187,7 +199,7 @@
                                 @isset($countries)
                                     @foreach($countries as $item)
                                         <option value="{{$item->id}}"
-                                            {{ old('second_country_id',$replay->second_country_id) == $item->id ? "selected":""}}>
+                                                {{ old('second_country_id',$replay->second_country_id) == $item->id ? "selected":""}}>
                                             {{$item->name}}
                                         </option>
                                     @endforeach
@@ -201,24 +213,12 @@
                         {{ $errors->first('second_country_id') }}
                     </div>
                 @endif
-                <div class="form-group">
-                    <label for="create-replay__second-location" class="night_text">Вторая локация:</label>
-                    <input type="text" name="second_location" class="form-control night_input"
-                           id="create-replay__second-location" minlength="1"
-                           maxlength="255" value="{{old('second_location',$replay->second_location)}}"
-                           placeholder="Вторая локация">
-                </div>
-                @if ($errors->has('second_location'))
-                    <div class="alert alert-danger">
-                        {{ $errors->first('second_location') }}
-                    </div>
-                @endif
             </div>
             <hr>
             <div class="form-group">
                 <label for="content" class="night_text">Краткое описание</label>
                 <textarea name="content" class="form-control night_input"
-                          id="content">{{old('content',$replay->content)}}</textarea>
+                          id="content">{!! old('content',ParserToHTML::toHTML($replay->content,'size')) !!}</textarea>
             </div>
             @if ($errors->has('content'))
                 <div class="alert alert-danger">
@@ -262,13 +262,13 @@
                     {{ $errors->first('replay_video_iframe') }}
                 </div>
             @endif
-            <div class="row">
+            <div class="row gallery-file__container upload-image">
                 <div class="col-8">
-                    <input id="uploadFile" class="f-input" readonly/>
+                    <input id="uploadFile" class="f-input night_text night_input" readonly/>
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
-                        <span>* Выбрать файл</span>
+                        <span>Выбрать файл</span>
                         <input id="uploadBtn" type="file" class="upload"
                                name="file"/>
                     </div>

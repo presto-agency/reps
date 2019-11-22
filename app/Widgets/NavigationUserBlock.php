@@ -4,17 +4,19 @@ namespace App\Widgets;
 
 use AdminTemplate;
 use SleepingOwl\Admin\Widgets\Widget;
+use Throwable;
 
 class NavigationUserBlock extends Widget
 {
+
     /**
      * @return array|string
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function toHtml()
     {
         return view('admin::auth.navbar', [
-            'user' => auth()->user()
+            'user' => auth()->user(),
         ])->render();
     }
 
@@ -33,4 +35,5 @@ class NavigationUserBlock extends Widget
     {
         return 'navbar.right';
     }
+
 }

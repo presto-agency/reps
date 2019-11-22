@@ -7,8 +7,12 @@ use App\Models\UserGallery;
 use App\Services\ServiceAssistants\PathHelper;
 use App\Services\User\UserService;
 use App\User;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class UserGalleryController extends Controller
 {
@@ -25,7 +29,8 @@ class UserGalleryController extends Controller
      * Display a listing of the resource.
      *
      * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * @return Factory|View
      */
     public function index($id)
     {
@@ -35,7 +40,7 @@ class UserGalleryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -45,20 +50,21 @@ class UserGalleryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param UserGalleryRequests $request
+     * @param  UserGalleryRequests  $request
      * @param $id
-     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @return RedirectResponse
      */
     public function store(UserGalleryRequests $request, $id)
     {
 
-        $userGallery = new UserGallery;
+        $userGallery          = new UserGallery;
         $userGallery->user_id = auth()->id();
-        $userGallery->sign = $request->get('sign');
+        $userGallery->sign    = $request->get('sign');
         if ($request->exists('sign') == false) {
             $userGallery->for_adults = 0;
         }
-        $userGallery->for_adults = $request->get('for_adults');
+        $userGallery->for_adults = 1;
         // Check have upload file
         if ($request->hasFile('picture')) {
             // Check if upload file Successful Uploads
@@ -66,9 +72,10 @@ class UserGalleryController extends Controller
                 // Check path
                 PathHelper::checkUploadsFileAndPath("/images/users/galleries");
                 // Upload file on server
-                $image = $request->file('picture');
-                $filePath = $image->store('image/user/gallery', 'public');
-                $userGallery->picture = 'storage/' . $filePath;
+                $image                = $request->file('picture');
+                $filePath             = $image->store('image/user/gallery',
+                    'public');
+                $userGallery->picture = 'storage/'.$filePath;
             } else {
                 back();
             }
@@ -86,60 +93,73 @@ class UserGalleryController extends Controller
      *
      * @param $id
      * @param $user_gallery
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * @return Factory|View
      */
     public function show($id, $user_gallery)
     {
         User::findOrFail($id);
         $relation = ['comments'];
-        $row = ['id',
-                'sign',
-                'positive_count',
-                'negative_count',
-                'picture',
-                'user_id'];
+        $row      = [
+            'id',
+            'sign',
+            'positive_count',
+            'negative_count',
+            'picture',
+            'user_id',
+        ];
 
-        $userImage = GalleryHelper::getUserImage($user_gallery, $relation, $row);
+        $userImage = GalleryHelper::getUserImage($user_gallery, $relation,
+            $row);
         // get previous user id
-        $previous = GalleryHelper::previousUserImage($user_gallery, $relation, $row);
+        $previous = GalleryHelper::previousUserImage($user_gallery, $relation,
+            $row);
 
         // get next user id
         $next = GalleryHelper::nextUserImage($user_gallery, $relation, $row);
 
         $routCheck = $this->routCheck;
-        $user_id = UserService::getUserId();
+        $user_id   = UserService::getUserId();
 
-        return view('user.gallery.show', compact('userImage', 'previous', 'next', 'routCheck', 'user_id'));
+        return view('user.gallery.show',
+            compact('userImage', 'previous', 'next', 'routCheck', 'user_id'));
 
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
-     * @param int $user_gallery
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     * @param  int  $user_gallery
+     *
+     * @return Response
      */
     public function edit($id, $user_gallery)
     {
         User::findOrFail($id);
-        $relation = [];
-        $row = ['id',
-                'sign',
-                'positive_count',
-                'negative_count',
-                'picture',
-                'sign',
-                'for_adults'];
-        $userImage = GalleryHelper::getUserImage($user_gallery, $relation, $row);
+        $relation  = [];
+        $row       = [
+            'id',
+            'sign',
+            'positive_count',
+            'negative_count',
+            'picture',
+            'sign',
+            'for_adults',
+        ];
+        $userImage = GalleryHelper::getUserImage($user_gallery, $relation,
+            $row);
 
         // get previous user id
-        $previous = GalleryHelper::previousUserImage($user_gallery, $relation, $row);
+        $previous = GalleryHelper::previousUserImage($user_gallery, $relation,
+            $row);
 
         // get next user id
-        $next = GalleryHelper::nextUserImage($user_gallery, $relation, $row);
+        $next    = GalleryHelper::nextUserImage($user_gallery, $relation, $row);
         $user_id = UserService::getUserId();
-        return view('user.gallery.edit', compact('userImage', 'previous', 'next', 'user_id'));
+
+        return view('user.gallery.edit',
+            compact('userImage', 'previous', 'next', 'user_id'));
     }
 
     /**
@@ -163,17 +183,21 @@ class UserGalleryController extends Controller
     public function loadGallery()
     {
         User::findOrFail(request('id'));
-        $row = ['id',
-                'picture',
-                'user_id'];
+        $row = [
+            'id',
+            'picture',
+            'user_id',
+        ];
 
         if (request()->ajax()) {
             $visible_title = false;
-            $routCheck = $this->routCheck;
+            $routCheck     = $this->routCheck;
             if (request('find_id') > 0) {
-                $images = GalleryHelper::getAllUserImagesAjaxId($row, request('id'), request('find_id'));
+                $images = GalleryHelper::getAllUserImagesAjaxId($row,
+                    request('id'), request('find_id'));
             } else {
-                $images = GalleryHelper::getAllUserImagesAjax($row, request('id'));
+                $images = GalleryHelper::getAllUserImagesAjax($row,
+                    request('id'));
 
                 $visible_title = true;
             }
@@ -182,4 +206,5 @@ class UserGalleryController extends Controller
             );
         }
     }
+
 }

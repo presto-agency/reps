@@ -14,7 +14,7 @@
                         @isset($forumSection)
                             @foreach($forumSection as $item)
                                 <option class="night_input" value="{{$item->id}}"
-                                    {{ old('forum_section_id',$topic->forum_section_id) == $item->id ? "selected":""}}>
+                                        {{ old('forum_section_id',$topic->forum_section_id) == $item->id ? "selected":""}}>
                                     {{$item->title}}
                                 </option>
                             @endforeach
@@ -64,7 +64,7 @@
                 <label for="preview_content" class="night_text">{{__('*Краткое содержание')}}</label>
                 <textarea type="text" class="form-control create-topic__name night_input" id="preview_content"
                           name="preview_content" minlength="1" maxlength="1000" rows="16" required>
-                    {!! (old('preview_content', $topic->preview_content)) !!}
+                    {!! old('preview_content', ParserToHTML::toHTML($topic->preview_content,'size')) !!}
             </textarea>
             </div>
             @if ($errors->has('preview_content'))
@@ -76,7 +76,7 @@
                 <label for="content" class="night_text">{{__('*Содержание')}}</label>
                 <textarea type="text" class="form-control create-topic__name night_input" id="preview_content"
                           name="content" minlength="1" maxlength="50000" rows="32" required>
-                   {!!(old('content',$topic->content))!!}
+                   {!!old('content',ParserToHTML::toHTML($topic->content,'size'))!!}
             </textarea>
             </div>
             @if ($errors->has('content'))

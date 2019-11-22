@@ -13,12 +13,13 @@ use SleepingOwl\Admin\Section;
 /**
  * Class Headline
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\Headline $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class Headline extends Section
 {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -43,28 +44,24 @@ class Headline extends Section
      */
     public function onDisplay()
     {
-        $display = AdminDisplay::datatablesAsync();
-        $display->setHtmlAttribute('class', 'table-info table-sm');
-        $display->paginate(10);
-
-        $display->setApply(function ($query) {
-            $query->orderBy('id', 'asc');
-        });
+        $display = AdminDisplay::datatablesAsync()
+            ->setDatatableAttributes(['bInfo' => false])
+            ->setHtmlAttribute('class', 'table-info table-sm')
+            ->paginate(10);
 
         $display->setColumns([
-
-            $id = AdminColumn::text('id', 'ID')->setWidth('50px'),
-
-            $title = AdminColumn::custom('Новостная строка', function ($model) {
+            AdminColumn::text('id', 'ID')->setWidth('50px'),
+            AdminColumn::custom('Новостная строка', function ($model) {
                 return $model->title;
             })->setHtmlAttribute('class', 'text-left'),
 
         ]);
+
         return $display;
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
@@ -73,7 +70,8 @@ class Headline extends Section
         $display = AdminForm::panel();
 
         $display->setItems([
-            $title = AdminFormElement::wysiwyg('title', 'Новостная строка', 'simplemde')
+            AdminFormElement::wysiwyg('title', 'Новостная строка',
+                'simplemde')
                 ->setHtmlAttributes(['placeholder' => 'Новостная строка'])
                 ->setValidationRules(['required', 'string', 'between:1,1000']),
         ]);
@@ -104,4 +102,5 @@ class Headline extends Section
     {
         // remove if unused
     }
+
 }

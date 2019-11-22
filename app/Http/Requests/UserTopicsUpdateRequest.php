@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserTopicsUpdateRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +14,7 @@ class UserTopicsUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return  auth()->user() && auth()->user()->isNotUser();
+        return auth()->user() && auth()->user()->isNotUser();
     }
 
     /**
@@ -25,10 +26,11 @@ class UserTopicsUpdateRequest extends FormRequest
     {
         return [
             'forum_section_id' => 'exists:forum_sections,id',
-            'title' => 'between:1,255|string',
-            'preview_content' => 'between:1,10000|string',
-            'content' => 'between:1,50000|string',
-            'preview_img' => 'nullable|image|max:2048',
+            'title'            => 'between:1,255|string',
+            'preview_content'  => 'between:1,10000|string',
+            'content'          => 'between:1,50000|string',
+            'preview_img'      => 'nullable|image|max:2048',
         ];
     }
+
 }

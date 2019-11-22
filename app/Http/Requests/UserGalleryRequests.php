@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserGalleryRequests extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,9 +25,10 @@ class UserGalleryRequests extends FormRequest
     public function rules()
     {
         return [
-            'picture' => 'required|image|max:2048',
-            'sign' => 'nullable|string|between:1,255',
-            'for_adults' => 'nullable|boolean',
+            'picture'    => 'required|image|max:2048',
+            'sign'       => 'nullable|string|between:1,255',
+            'for_adults' => 'nullable|in:1',
         ];
     }
+
 }

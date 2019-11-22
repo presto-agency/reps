@@ -149,6 +149,7 @@
             .row_contentChat{
                 padding: 2.604vw 1.736vw 0;
             }
+
         }
     }
     .popup_contant::-webkit-scrollbar {
@@ -1042,22 +1043,27 @@
             & .block_right{
                 & .container_block{
                     margin-top: 3.472vw;
-                    & p{
+                    p{
                         font-size: 3.083vw;
                     }
-                    & .right{
-                        & p{
-                            font-size: 3.083vw;
+                     .right{
+                         p, span{
+                            font-size: 3vw;
                         }
                         & svg{
                             width: 3.604vw;
+                        }
+                    }
+                    .left{
+                        p, span{
+                            font-size: 3vw;
                         }
                     }
                 }
             }
         }
         & .title_players{
-            padding:  3.472vw;
+            padding:  5.472vw;
             & .title_playersText{
                 font-size: 3.778vw;
             }
@@ -2929,6 +2935,7 @@
     //modal_autorization
     #authorizationModal {
         .modal-header {
+            font-size: 4vw;
             .modal-header__close {
                 right: -1.563vw;
                 top: -1.563vw;
@@ -2941,13 +2948,20 @@
             }
         }
         .modal-body {
+            font-size: 3.7vw;
             .modal-body__title {
                 margin-bottom: 3.472vw;
+                font-size: 3.7vw;
+            }
+            .form-control{
+                height: 9vw;
             }
             .form-group {
                 input {
                     margin-bottom: 2.604vw;
-                }
+                }::placeholder{
+                font-size: 3vw;
+                                 }
             }
             .modal-body__enter-btn {
                 margin-bottom: 5.208vw;
@@ -2963,6 +2977,7 @@
     //modal_registration
     #registrationModal {
         .modal-header {
+            font-size: 4vw;
             .modal-header__close {
                 right: -1.563vw;
                 top: -1.563vw;
@@ -2977,20 +2992,26 @@
         .modal-body {
             .modal-body__title {
                 margin-bottom: 3.472vw;
+                font-size: 3.7vw;
             }
             .form-group {
                 input {
                     margin-bottom: 2.604vw;
                     padding-left: 1.389vw;
-                }
+                }::placeholder{
+                    font-size: 3vw;
+                                 }
                 .select2 {
                     margin-bottom: 2.778vw;
-                    height: 6.424vw;
+                    height:calc(1.5em + .75rem + 2px);
                     .select2-selection {
-                        height: 6.424vw;
+                        height:calc(1.5em + .75rem + 2px);
+                        display: flex;
+                        align-items: center;
                         .select2-selection__rendered {
                             padding-top: 0;
                             padding-left: 1.389vw;
+                            font-size: 3vw;
                         }
                         .select2-selection__arrow {
                             top: 0.868vw;
@@ -2999,7 +3020,10 @@
                 }
                 #race {
                     margin-bottom: 2.778vw;
-                    height: 6.424vw;
+                    margin-top: 2.778vw;
+                    //height:calc(1.5em + .75rem + 2px);
+                    border-radius:4px;
+                    font-size: 3vw;
                 }
             }
             .modal-body__enter-btn {
@@ -3061,6 +3085,9 @@
                         margin-bottom: 2.604vw;
                         padding-bottom: 2.604vw;
                         padding-top: 2.604vw;
+                        p{
+                            font-size: 2.7vw;
+                        }
                         .body__numb {
                             font-size: 2.431vw;
                         }

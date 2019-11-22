@@ -38,7 +38,7 @@
             $(document).on('click', '#load_more_forum_sections_index_button', function () {
                 let id = $(this).data('id');
                 $('#load_more_forum_sections_index_button').html('<b>Загрузка...</b>');
-                last_forum_sections_index(id,_token);
+                last_forum_sections_index(id, _token);
             });
         });
     </script>

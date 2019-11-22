@@ -4,9 +4,10 @@
 namespace App\Http\ViewComposers\Footer;
 
 
+use Cache;
+use App\Models\{Footer, FooterUrl};
 use App\User;
 use Carbon\Carbon;
-use App\Models\{Footer, FooterUrl};
 use Illuminate\View\View;
 
 class FooterComposer
@@ -22,10 +23,10 @@ class FooterComposer
 
     public static function getCacheFooter($cache_name)
     {
-        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
-            $data_cache = \Cache::get($cache_name);
+        if (Cache::has($cache_name) && !empty(Cache::get($cache_name))) {
+            $data_cache = Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
+            $data_cache = Cache::remember($cache_name, self::$ttl, function () {
                 return self::getFooter();
             });
         }
@@ -34,10 +35,10 @@ class FooterComposer
 
     public static function getCacheFooterUrl($cache_name)
     {
-        if (\Cache::has($cache_name) && !\Cache::get($cache_name)->isEmpty()) {
-            $data_cache = \Cache::get($cache_name);
+        if (Cache::has($cache_name) && !Cache::get($cache_name)->isEmpty()) {
+            $data_cache = Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
+            $data_cache = Cache::remember($cache_name, self::$ttl, function () {
                 return self:: getFooterUrl();
             });
         }
@@ -46,10 +47,10 @@ class FooterComposer
 
     public static function getCacheFooterUser($cache_name)
     {
-        if (\Cache::has($cache_name) && !\Cache::get($cache_name)->isEmpty()) {
-            $data_cache = \Cache::get($cache_name);
+        if (Cache::has($cache_name) && !Cache::get($cache_name)->isEmpty()) {
+            $data_cache = Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
+            $data_cache = Cache::remember($cache_name, self::$ttl, function () {
                 return self::getFooterUser();
             });
         }

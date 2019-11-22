@@ -5,14 +5,15 @@ namespace App\Widgets;
 
 
 use AdminTemplate;
-use App\User;
 use SleepingOwl\Admin\Widgets\Widget;
+use Throwable;
 
 class DashboardMap extends Widget
 {
+
     /**
      * @return array|string
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function toHtml()
     {

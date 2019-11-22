@@ -9,12 +9,15 @@
 namespace App\Traits\ModelRelations;
 
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 trait UserReputationRelation
 {
+
     /**
      * Relations. Reputations user sender
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function sender()
     {
@@ -24,7 +27,7 @@ trait UserReputationRelation
     /**
      * Relations. Reputations user sender
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function recipient()
     {
@@ -34,7 +37,7 @@ trait UserReputationRelation
     /**
      * Relations. Reputations user sender
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function topic()
     {
@@ -44,7 +47,7 @@ trait UserReputationRelation
     /**
      * Relations. Reputations user sender
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function replay()
     {
@@ -54,7 +57,7 @@ trait UserReputationRelation
     /**
      * Relations. Reputations user sender
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function gallery()
     {
@@ -64,10 +67,11 @@ trait UserReputationRelation
     /**
      * Relations. Reputations user sender
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function comment()
     {
         return $this->belongsTo('App\Models\Comment', 'object_id');
     }
+
 }

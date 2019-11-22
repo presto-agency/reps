@@ -11,8 +11,10 @@ namespace App\Services\Base;
 
 class RegexService
 {
+
     /**
-     * @param string $regex_name
+     * @param  string  $regex_name
+     *
      * @return string
      */
     public static function regex(string $regex_name)

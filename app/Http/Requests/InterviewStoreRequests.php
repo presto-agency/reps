@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class InterviewStoreRequests extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,7 +26,8 @@ class InterviewStoreRequests extends FormRequest
     {
         return [
             'question_id' => 'required|string|exists:countries,id',
-            'answer_id' => 'required|string',
+            'answer_id'   => 'required|string',
         ];
     }
+
 }

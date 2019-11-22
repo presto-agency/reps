@@ -9,17 +9,21 @@ use Illuminate\Notifications\Notifiable;
 
 class TourneyList extends Model
 {
+
     use Notifiable, TournamentRelationTrait;
     /**
      * var array
      */
-    public static $status = array(
-        0 => 'ANNOUNCE', 1 => 'REGISTRATION', 2 => 'CHECK-IN', 3 => 'GENERATION', 4 => 'STARTED', 5 => 'FINISHED'
-    );
+    public static $status
+        = [
+            0 => 'ANNOUNCE', 1 => 'REGISTRATION', 2 => 'CHECK-IN',
+            3 => 'GENERATION', 4 => 'STARTED', 5 => 'FINISHED',
+        ];
 
-    public static $map_types = [
-        0 => 'NONE', 1 => 'FIRSTBYREMOVING', 2 => 'FIRSTBYROUND'
-    ];
+    public static $map_types
+        = [
+            0 => 'NONE', 1 => 'FIRSTBYREMOVING', 2 => 'FIRSTBYROUND',
+        ];
     /**
      * Using table name
      *
@@ -32,25 +36,26 @@ class TourneyList extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'tourney_id',
-        'admin_id',
-        'name',
-        'place',
-        'prize_pool',
-        'status',
-        'visible',
-        'maps',
-        'rules_link',
-        'vod_link',
-        'logo_link',
-        'map_selecttype',
-        'importance',
-        'is_ranking',
-        'password',
-        'checkin_time',
-        'start_time',
-    ];
+    protected $fillable
+        = [
+            'tourney_id',
+            'admin_id',
+            'name',
+            'place',
+            'prize_pool',
+            'status',
+            'visible',
+            'maps',
+            'rules_link',
+            'vod_link',
+            'logo_link',
+            'map_selecttype',
+            'importance',
+            'is_ranking',
+            'password',
+            'checkin_time',
+            'start_time',
+        ];
 
     /**
      * Indicates if the model should be timestamped.
@@ -69,4 +74,5 @@ class TourneyList extends Model
     {
         return TourneyService::ImpToStars($id);
     }
+
 }

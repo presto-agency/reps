@@ -9,8 +9,12 @@ use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
 use App\Services\ServiceAssistants\PathHelper;
+use Exception;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Display\ControlLink;
+use SleepingOwl\Admin\Display\DisplayDatatablesAsync;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -50,28 +54,20 @@ class UserGallery extends Section
 
 
     /**
-     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
-     * @throws \Exception
+     * @return DisplayDatatablesAsync
+     * @throws Exception
      */
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
-            ->setDisplaySearch(false)
-            ->setHtmlAttribute(
-                'class',
-                'table-info table-sm text-center'
-            )
+            ->setDatatableAttributes(['bInfo' => false])
+            ->setHtmlAttribute('class', 'table-info text-center')
             ->with(['users'])
             ->paginate(10);
-        $display->setFilters(
-            AdminDisplayFilter::related('for_adults')
-                ->setModel(\App\Models\UserGallery::class)
-        );
-        $display->setApply(
-            function ($query) {
-                $query->orderBy('id', 'desc');
-            }
-        );
+
+        $display->setFilters(AdminDisplayFilter::related('for_adults')
+            ->setModel(\App\Models\UserGallery::class));
+
         $display->setColumns(
             [
                 AdminColumn::text('id', 'Id')->setWidth(50),
@@ -130,6 +126,7 @@ class UserGallery extends Section
      */
     public function onEdit($id)
     {
+
         $display = AdminForm::panel();
 
         $display->setItems(
@@ -163,13 +160,9 @@ class UserGallery extends Section
             [
                 $picture = AdminFormElement::image('picture', 'Картинка')
                     ->setUploadPath(
-                        function (
-                            UploadedFile $file
-                        ) {
+                        function (UploadedFile $file) {
                             return 'storage'
-                                .PathHelper::checkUploadsFileAndPath(
-                                    "/images/users/galleries"
-                                );
+                                .PathHelper::checkUploadsFileAndPath("/images/users/galleries");
                         }
                     )
                     ->setValidationRules(
@@ -217,19 +210,19 @@ class UserGallery extends Section
     }
 
     /**
-     * @return \SleepingOwl\Admin\Display\ControlLink
+     * @return ControlLink
      */
     public function show()
     {
 
-        $link = new \SleepingOwl\Admin\Display\ControlLink(
+        $link = new ControlLink(
             function (
-                \Illuminate\Database\Eloquent\Model $model
+                Model $model
             ) {
                 $url = asset('admin/user_galleries/show/'.$model->getKey());
 
                 return $url;
-            }, function (\Illuminate\Database\Eloquent\Model $model) {
+            }, function (Model $model) {
             return 'Просмотреть';
         }, 50
         );

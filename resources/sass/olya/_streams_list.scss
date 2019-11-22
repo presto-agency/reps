@@ -16,6 +16,7 @@
         margin: 5px 0;
         & span{
             margin-left: 20px;
+
         }
     }
 }
@@ -26,15 +27,24 @@
      & .widget-stream-lists{
          visibility: visible;
          color: $blue;
-         white-space: nowrap;
-         overflow: hidden;
-         text-overflow: ellipsis;
          button{
              background: transparent;
              border: 0;
+             max-width: 200px;
+             display: flex;
+             align-items: center;
+             img{
+                 margin-right: 5px;
+             }
          }
          & span{
              font-weight: 400;
+             font-size: 14px;
+             white-space: nowrap;
+             overflow: hidden;
+             text-overflow: ellipsis;
+             display: inline-block;
+             max-width: 100px;
 
          }
 

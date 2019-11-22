@@ -4,9 +4,11 @@
 namespace App\Services\Broadcasting;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Class AfreecaTV
+ *
  * @package App\Services\Broadcasting
  */
 class AfreecaTV
@@ -23,43 +25,48 @@ class AfreecaTV
     /**
      * @param $chanelName
      * @param $id
+     *
      * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
-    public function getStatus($chanelName,$id)
+    public function getStatus($chanelName, $id)
     {
         self::$base_uri = config('streams.afreecatv.base_uri');
 
-        $client = new  Client ([
+        $client   = new  Client ([
             'base_uri' => self::$base_uri,
-            'headers' => [
+            'headers'  => [
                 'Accept' => 'application/json',
             ],
         ]);
         $response = $client->request('POST', 'player_live_api.php', [
             'form_params' => [
-                'bid' => $chanelName,
-                'bno' => '',
-                'type' => '',
+                'bid'         => $chanelName,
+                'bno'         => '',
+                'type'        => '',
                 'player_type' => 'html5',
                 'stream_type' => 'common',
-                'quality' => '',
-                'mode' => 'embed',
-            ]
+                'quality'     => '',
+                'mode'        => 'embed',
+            ],
         ]);
 
-        $data = [];
-        $data['host'] = config('streams.afreecatv.host');
+        $data               = [];
+        $data['host']       = config('streams.afreecatv.host');
         $data['chanelName'] = $chanelName;
 
         $prepareContent = json_decode($response->getBody()->getContents());
 
-        $getChannel = !empty($prepareContent->CHANNEL) ? $prepareContent->CHANNEL : null;
+        $getChannel = ! empty($prepareContent->CHANNEL)
+            ? $prepareContent->CHANNEL : null;
 
-        $getStatus = !empty($getChannel->RESULT) ? ($getChannel->RESULT == 1 ? config('streams.status') : null) : null;
+        $getStatus      = ! empty($getChannel->RESULT) ? ($getChannel->RESULT
+        == 1 ? config('streams.status') : null) : null;
         $data['status'] = $getStatus;
-        $data['id'] = $id;
+        $data['id']     = $id;
+
         return $data;
 
     }
+
 }

@@ -2,25 +2,24 @@
 
 namespace App\Http\Sections;
 
-use AdminFormElement;
-use AdminForm;
+use AdminColumn;
 use AdminColumnEditable;
 use AdminDisplay;
-use AdminColumn;
+use AdminForm;
+use AdminFormElement;
 use App\Services\ServiceAssistants\PathHelper;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
-use SleepingOwl\Admin\Section;
 use SleepingOwl\Admin\Contracts\Initializable;
-use function foo\func;
+use SleepingOwl\Admin\Section;
 
 /**
  * Class Banner
  *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  * @property \App\Models\Banner $model
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
 class Banner extends Section implements Initializable
 {
@@ -64,11 +63,8 @@ class Banner extends Section implements Initializable
     {
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
-            ->setHtmlAttribute('class', 'table-info table-hover text-center')
+            ->setHtmlAttribute('class', 'table-info text-center')
             ->paginate(10);
-        $display->setApply(function ($query) {
-            $query->orderBy('created_at', 'asc');
-        });
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
@@ -91,22 +87,30 @@ class Banner extends Section implements Initializable
         return $display;
     }
 
+    public $imageOldPath;
+
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
     public function onEdit($id)
     {
+        $getData = $this->getModel()->select('image')->find($id);
+        if ($getData) {
+            $this->imageOldPath = $getData->image;
+        }
         $form = AdminForm::panel();
         $form->setItems([
             $image = AdminFormElement::image('image', 'Image')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage' . PathHelper::checkUploadsFileAndPath("/banners",$this->getModelValue()->getAttribute('image'));
+                    return 'storage'
+                        .PathHelper::checkUploadsFileAndPath("/banners",
+                            $this->imageOldPath);
                 })
                 ->setValidationRules([
                     'required',
-                    'max:2048'
+                    'max:2048',
                 ])->setUploadSettings([
                     'orientate' => [],
                     'resize'    => [
@@ -114,13 +118,14 @@ class Banner extends Section implements Initializable
                         function ($constraint) {
                             $constraint->upsize();
                             $constraint->aspectRatio();
-                        }
+                        },
                     ],
                 ]),
             $title = AdminFormElement::text('title', 'Title')->required(),
             $url = AdminFormElement::text('url_redirect', 'URL')->required(),
             $isActive = AdminFormElement::checkbox('is_active', 'Active'),
         ]);
+
         return $form;
 
     }
@@ -148,4 +153,5 @@ class Banner extends Section implements Initializable
     {
         // remove if unused
     }
+
 }

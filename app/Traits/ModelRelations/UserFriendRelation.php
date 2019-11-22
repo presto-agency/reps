@@ -9,10 +9,13 @@
 namespace App\Traits\ModelRelations;
 
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 trait UserFriendRelation
 {
+
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function user()
     {
@@ -20,7 +23,7 @@ trait UserFriendRelation
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function friend_user()
     {

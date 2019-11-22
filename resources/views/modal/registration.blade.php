@@ -19,12 +19,12 @@
                                class="form-control night_input @error('name') is-invalid @enderror"
                                id="registration-name"
                                placeholder={{ __('Name') }}
-                               name="name"
+                                       name="name"
                                value="{{ old('name') }}"
                                required autocomplete="name" autofocus>
 
                         @error('name')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
@@ -33,11 +33,11 @@
                                class="form-control night_input @error('email') is-invalid @enderror"
                                id="registration-mail"
                                placeholder={{ __('E-Mail Address') }}
-                               name="email"
+                                       name="email"
                                value="{{ old('email') }}"
                                required autocomplete="email">
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
@@ -58,11 +58,11 @@
                                class="form-control night_input @error('password') is-invalid @enderror"
                                id="registration-password"
                                placeholder={{ __('Password') }}
-                                name="password"
+                                       name="password"
                                required autocomplete="new-password">
 
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
@@ -71,7 +71,7 @@
                                class="form-control night_input"
                                id="registration-rePassword"
                                placeholder={{ __('Confirm Password') }}
-                                name="password_confirmation"
+                                       name="password_confirmation"
                                required autocomplete="new-password">
                     </div>
 
