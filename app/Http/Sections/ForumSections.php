@@ -4,10 +4,18 @@ namespace App\Http\Sections;
 
 use AdminColumn;
 use AdminColumnEditable;
+use AdminColumnFilter;
 use AdminDisplay;
+use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
 use App\Models\ForumSection;
+use App\Models\ForumTopic;
+use App\Services\ServiceAssistants\PathHelper;
+use App\User;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Display\ControlLink;
@@ -30,11 +38,13 @@ class ForumSections extends Section
      */
     protected $checkAccess = false;
 
-    protected $alias = false;
+    protected $alias;
+
+    protected $title;
 
     public function getIcon()
     {
-        return parent::getIcon();
+        return 'fa fa-group';
     }
 
     public function getTitle()
@@ -49,7 +59,7 @@ class ForumSections extends Section
     {
         $display = AdminDisplay::datatablesAsync()
             ->with(['topics'])
-            ->setDatatableAttributes(['bInfo' => false])
+            ->setDatatableAttributes(['bInfo' => true])
             ->setHtmlAttribute('class', 'table-info text-center')
             ->paginate(4);
 
