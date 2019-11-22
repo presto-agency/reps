@@ -3,94 +3,88 @@
 namespace App\Http\Sections;
 
 use AdminColumn;
-use AdminColumnEditable;
-use AdminColumnFilter;
 use AdminDisplay;
-use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
-use App\Models\ForumSection;
-use App\Models\ForumTopic;
-use App\Services\ServiceAssistants\PathHelper;
-use App\User;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
-use SleepingOwl\Admin\Display\ControlLink;
+use SleepingOwl\Admin\Form\Buttons\Cancel;
+use SleepingOwl\Admin\Form\Buttons\Save;
+use SleepingOwl\Admin\Form\Buttons\SaveAndClose;
+use SleepingOwl\Admin\Form\Buttons\SaveAndCreate;
 use SleepingOwl\Admin\Section;
 
 /**
  * Class ForumSections
  *
- * @see http://sleepingowladmin.ru/docs/model_configuration_section
- * @property ForumSection $model
- *
+ * @property \App\Models\ForumSection $model
  */
 class ForumSections extends Section
 {
 
     /**
-     * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
-     *
      * @var bool
      */
     protected $checkAccess = false;
 
-    protected $alias;
-
+    /**
+     * @var string
+     */
     protected $title;
 
-    public function getIcon()
-    {
-        return 'fa fa-group';
-    }
-
-    public function getTitle()
-    {
-        return 'Разделы форума';
-    }
+    /**
+     * @var string
+     */
+    protected $alias;
 
     /**
      * @return DisplayInterface
      */
     public function onDisplay()
     {
-        $display = AdminDisplay::datatablesAsync()
-            ->with(['topics'])
-            ->setDatatableAttributes(['bInfo' => true])
-            ->setHtmlAttribute('class', 'table-info text-center')
-            ->paginate(4);
+        $columns = [
+            AdminColumn::text('id', '#')
+                ->setWidth('50px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('name', 'Название', 'created_at')
+            //            ->setSearchCallback(function($column, $query, $search){
+            //              return $query->orWhere('name', 'like', '%'.$search.'%')
+            //                           ->orWhere('created_at', 'like', '%'.$search.'%');
+            //            })
+            //            ->setOrderable(function($query, $direction) {
+            //              $query->orderBy('created_at', $direction);
+            //            })
+            ,
+            //          AdminColumn::boolean('name', 'On'),
+            //          AdminColumn::text('created_at', 'Created / updated', 'updated_at')
+            //            ->setWidth('160px')
+            //            ->setOrderable(function($query, $direction) {
+            //              $query->orderBy('updated_at', $direction);
+            //            })
+            //            ->setSearchable(false),
+        ];
 
-        $display->setColumns([
-            $id = AdminColumn::text('id', 'ID')
-                ->setWidth('15px'),
-//            $name = AdminColumn::text('name', 'Название')
-//                ->setWidth('50px'),
-//            $title = AdminColumn::text('title', 'Имя')
-//                ->setWidth('60px'),
-//            $position = AdminColumn::text('position', 'Позиция')
-//                ->setWidth('50px'),
-//            $quantity = AdminColumn::count('topics', 'Количество тем')
-//                ->setWidth('50px'),
-//            $isActive = AdminColumnEditable::checkbox('is_active', 'Да', 'Нет')
-//                ->setLabel('Активный'),
-//            $isGeneral = AdminColumnEditable::checkbox('is_general', 'Да',
-//                'Нет')
-//                ->setLabel('Основной'),
-//            $userCanAddTopics
-//                = AdminColumnEditable::checkbox('user_can_add_topics', 'Да',
-//                'Нет')
-//                ->setLabel('Пользователь добавляет'),
-//            $description = AdminColumn::text('description', 'Описание')
-//                ->setHtmlAttribute('class', 'text-left')
-//                ->setWidth('200px'),
+        $display = AdminDisplay::datatables()
+            ->setName('forumSectionsTables')
+            ->setOrder([[0, 'asc']])
+            ->setDisplaySearch(false)
+            ->paginate(25)
+            ->setColumns($columns)
+            ->setHtmlAttribute('class', 'table-info table-hover th-center');
 
-        ]);
 
-//        $control = $display->getColumns()->getControlColumn();
-//        $control->addButton($this->lincShow());
+        //        $display->setColumnFilters([
+        //          AdminColumnFilter::select()
+        //            ->setModelForOptions(\App\Models\ForumSection::class, 'name')
+        //            ->setLoadOptionsQueryPreparer(function($element, $query) {
+        //              return $query;
+        //            })
+        //            ->setDisplay('name')
+        //            ->setColumnName('name')
+        //            ->setPlaceholder('All names'),
+        //        ]);
+
+        //        $display->getColumnFilters()->setPlacement('panel.heading');
 
         return $display;
     }
@@ -102,38 +96,34 @@ class ForumSections extends Section
      */
     public function onEdit($id)
     {
-        $display = AdminForm::panel();
-        $display->setItems([
-            $name = AdminFormElement::text('name', 'Название:')
-                ->setValidationRules([
-                    'required',
-                    'max:255',
-                ]),
-            $title = AdminFormElement::text('title', 'Имя:')
-                ->setValidationRules([
-                    'required',
-                    'max:255',
-                ]),
-            $position = AdminFormElement::number('position', 'Позиция:')
-                ->setValidationRules([
-                    'required',
-                    'min:0',
-                ]),
-            $description = AdminFormElement::textarea('description',
-                'Описание:')
-                ->setValidationRules([
-                    'required',
-                    'max:255',
-                ]),
-            $isActive = AdminFormElement::checkbox('is_active', 'Активный'),
-            $isGeneral = AdminFormElement::checkbox('is_general', 'Основной'),
-            $userCanAddTopics
-                = AdminFormElement::checkbox('user_can_add_topics',
-                'Пользователь добавляет'),
+        $form = AdminForm::panel()->addBody([
+            AdminFormElement::columns()->addColumn([
 
+                AdminFormElement::text('name', 'Name')
+                    ->required(),
+                AdminFormElement::html('<hr>'),
+                AdminFormElement::datetime('created_at')
+                    ->setVisible(true)
+                    ->setReadonly(false),
+                AdminFormElement::html('last AdminFormElement without comma'),
+
+            ], 8)->addColumn([
+
+                AdminFormElement::text('id', 'ID')
+                    ->setReadonly(true),
+                AdminFormElement::html('last AdminFormElement without comma'),
+
+            ]),
         ]);
 
-        return $display;
+        $form->getButtons()->setButtons([
+            'save'            => new Save(),
+            'save_and_close'  => new SaveAndClose(),
+            'save_and_create' => new SaveAndCreate(),
+            'cancel'          => (new Cancel()),
+        ]);
+
+        return $form;
     }
 
     /**
@@ -150,30 +140,6 @@ class ForumSections extends Section
     public function onDelete($id)
     {
         // remove if unused
-    }
-
-    /**
-     * @return void
-     */
-    public function onRestore($id)
-    {
-        // remove if unused
-    }
-
-    public function lincShow()
-    {
-        $link = new ControlLink(function ($model) {
-            $url = asset('admin/forum_topics');
-
-            return $url.'?forum_section_id='.$model->getKey();
-        }, function ($model) {
-//            return $model->title . ' (' . $model->topicsCount() . ')'; // Генерация текста на кнопке
-        }, 50);
-        $link->hideText();
-        $link->setIcon('fa fa-eye');
-        $link->setHtmlAttribute('class', 'btn-info');
-
-        return $link;
     }
 
 }
