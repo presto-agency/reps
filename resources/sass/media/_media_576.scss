@@ -228,9 +228,11 @@
             & .block_user_akk{
                 & .blue_text{
                     font-size:  4.431vw;
+                    max-width: 35vw!important;
                 }
                 & .number_mess{
                     font-size:  4.431vw;
+                    max-width: 20vw!important;
                 }
                 & .user{
                     min-width: 27.778vw;
@@ -647,6 +649,12 @@
     .gocu-replays {
         .gocu-replays__subtitle{
             .subtitle__name{
+                div{
+                    max-width: 220px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
                 font-size: 3.0vw;
             }
             .subtitle__date{
