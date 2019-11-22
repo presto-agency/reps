@@ -61,7 +61,8 @@
     "prefer-stable": true,
     "scripts": {
         "post-update-cmd": [
-            "php artisan sleepingowl:update"
+            "php artisan sleepingowl:update",
+            "php artisan view:clear"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
