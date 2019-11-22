@@ -117,15 +117,33 @@
             align-items: center;
             justify-content: space-between;
             padding: 0;
+            white-space: nowrap;
             & .blue_text{
                 color: $blue;
                 font-size: 14px;
                 font-weight: bold;
+                display: inline-block;
+                max-width: 90px;
+                overflow: hidden;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: 0 5px;
             }
             .user{
                 min-width: 160px;
+                display: flex;
+                align-items: center;
+                a{
+                    display: flex;
+                }
                  .number_mess{
                     color:black;
+                     max-width: 50px;
+                     overflow: hidden;
+                     white-space: nowrap;
+                     overflow: hidden;
+                     text-overflow: ellipsis;
                 }
                 .icon_avatar {
                     width: 20px;
@@ -138,6 +156,7 @@
             justify-content: center;
             align-items: center;
             & button{
+                display: flex;
                 background: none;
                 border: none;
             }

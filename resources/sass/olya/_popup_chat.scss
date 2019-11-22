@@ -9,7 +9,8 @@
     .popup_contant{
         max-height: calc(100vh - 140px) !important;
         min-height: calc(100vh - 140px) !important;
-        overflow: scroll;
+        overflow: hidden;
+        padding: 0;
     }
     .modal-content{
         border: 0;
