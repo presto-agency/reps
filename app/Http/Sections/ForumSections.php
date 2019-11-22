@@ -2,21 +2,14 @@
 
 namespace App\Http\Sections;
 
-use AdminDisplay;
 use AdminColumn;
+use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
-use AdminColumnFilter;
-
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Display\ControlLink;
 use SleepingOwl\Admin\Section;
-
-use SleepingOwl\Admin\Form\Buttons\Save;
-use SleepingOwl\Admin\Form\Buttons\SaveAndClose;
-use SleepingOwl\Admin\Form\Buttons\Cancel;
-use SleepingOwl\Admin\Form\Buttons\SaveAndCreate;
 
 /**
  * Class ForumSections
@@ -25,6 +18,7 @@ use SleepingOwl\Admin\Form\Buttons\SaveAndCreate;
  */
 class ForumSections extends Section
 {
+
     /**
      * @var bool
      */
@@ -48,34 +42,67 @@ class ForumSections extends Section
         $columns = [
 
             AdminColumn::text('id', '#')
-            ->setWidth('50px')
-            ->setHtmlAttribute('class', 'text-center'),
-
-          AdminColumn::text('name', 'Название')
-            ->setWidth('100px')
-            ->setHtmlAttribute('class', 'text-center'),
-
+                ->setWidth('50px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('name', 'Название')
+                ->setWidth('100px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('title', 'Имя')
+                ->setWidth('100px')
+                ->setHtmlAttribute('class', 'text-center'),
             AdminColumn::text('position', 'Позиция')
-            ->setWidth('100px')
-            ->setHtmlAttribute('class', 'text-center'),
-
-          AdminColumn::text('description', 'Описание')
-            ->setHtmlAttribute('class', 'text-left'),
+                ->setWidth('80px')
+                ->setHtmlAttribute('class', 'text-center'),
+            \AdminColumnEditable::checkbox('is_active', 'Да', 'Нет')
+                ->setWidth('90px')
+                ->setLabel('Активный')
+                ->setHtmlAttribute('class', 'text-center'),
+            \AdminColumnEditable::checkbox('is_general', 'Да', 'Нет')
+                ->setWidth('90px')
+                ->setLabel('Основной')
+                ->setHtmlAttribute('class', 'text-center'),
+            \AdminColumnEditable::checkbox('user_can_add_topics', 'Да', 'Нет')
+                ->setWidth('120px')
+                ->setLabel('Пользователь может добавляь')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('description', 'Описание')
+                ->setHtmlAttribute('class', 'text-left'),
         ];
+        //            $name = AdminColumn::text('name', 'Название')
+        //                ->setWidth('50px'),
+        //            $title = AdminColumn::text('title', 'Имя')
+        //                ->setWidth('60px'),
+        //            $position = AdminColumn::text('position', 'Позиция')
+        //                ->setWidth('50px'),
+        //            $quantity = AdminColumn::count('topics', 'Количество тем')
+        //                ->setWidth('50px'),
+        //            $isActive = AdminColumnEditable::checkbox('is_active', 'Да', 'Нет')
+        //                ->setLabel('Активный'),
+        //            $isGeneral = AdminColumnEditable::checkbox('is_general', 'Да',
+        //                'Нет')
+        //                ->setLabel('Основной'),
+        //            $userCanAddTopics
+        //                = AdminColumnEditable::checkbox('user_can_add_topics', 'Да',
+        //                'Нет')
+        //                ->setLabel('Пользователь добавляет'),
+        //            $description = AdminColumn::text('description', 'Описание')
+        //                ->setHtmlAttribute('class', 'text-left')
+        //                ->setWidth('200px'),
+
 
         $display = AdminDisplay::datatables()
-          ->setName('firstdatatables')
-          ->setOrder([[0, 'asc']])
-          ->setDisplaySearch(true)
-          ->paginate(5)
-          ->setColumns($columns)
-          ->setHtmlAttribute('class', 'table-primary table-hover th-center');
+            ->setName('forumsectionstables')
+            ->setOrder([[0, 'asc']])
+            ->setDisplaySearch(false)
+            ->paginate(5)
+            ->setColumns($columns)
+            ->setHtmlAttribute('class', 'table-primary table-hover th-center');
 
         return $display;
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      *
      * @return FormInterface
      */
@@ -108,7 +135,7 @@ class ForumSections extends Section
             $isGeneral = AdminFormElement::checkbox('is_general', 'Основной'),
             $userCanAddTopics
                 = AdminFormElement::checkbox('user_can_add_topics',
-                'Пользователь добавляет'),
+                'Пользователь может добавлять'),
 
         ]);
 
@@ -130,6 +157,7 @@ class ForumSections extends Section
     {
         // remove if unused
     }
+
     public function lincShow()
     {
         $link = new ControlLink(function ($model) {
@@ -145,4 +173,5 @@ class ForumSections extends Section
 
         return $link;
     }
+
 }
