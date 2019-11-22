@@ -1,5 +1,11 @@
 @media (max-width: 576px) {
     //global_style
+    .fileUpload{
+        span{
+            font-size: 2.8vw;
+        }
+
+    }
     .title_block{
         padding: 3.472vw;
         min-height: 10.417vw;
@@ -627,7 +633,7 @@
             & .content_login{
                 & p{
                     font-size: 3.431vw;
-                    max-width: 38.306vw;
+                    max-width: 30.306vw;
                 }
             }
         }
@@ -2599,6 +2605,18 @@
     }
     //gallery-download
     .gallery-download {
+        .gallery-file__container{
+            .f-input{
+                height: 7.292vw!important;
+            }::placeholder{
+            font-size: 3vw;
+                         }
+        }
+        .form-control{
+            height:7.292vw!important;
+        }::placeholder{
+             font-size: 3vw;
+         }
         .form-check-label{
             font-size: 2.615vw;
         }
@@ -2642,8 +2660,9 @@
                 }
                 .form-check {
                     margin-bottom: 3.472vw;
+                    display: flex;
                     label {
-                        font-size: 2.5vw;
+                        font-size: 3.5vw;
                     }
                 }
 
