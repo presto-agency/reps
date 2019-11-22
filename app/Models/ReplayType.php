@@ -14,7 +14,9 @@ class ReplayType extends Model
 
     public function replays()
     {
-        return $this->hasMany(Replay::class, 'type_id', 'id');
+        return $this->hasMany(Replay::class, 'type_id', 'id')
+            ->orderByDesc('id')->where('approved', 1)
+            ->where('user_replay', Replay::REPLAY_PRO)->withCount('comments');
     }
 
 }

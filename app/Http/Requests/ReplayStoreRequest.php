@@ -37,6 +37,8 @@ class ReplayStoreRequest extends FormRequest
             'content'           => 'required|string|between:1,10000',
             'video_iframe'      => 'nullable|string|between:1,5000',
             'file'              => 'required|file|max:5120',
+//            'file_id'               => 'required_without:video_iframe|nullable|exists:files,id',
+//            'video_iframe'          => 'required_without:file_id|max:1000',
         ];
     }
 

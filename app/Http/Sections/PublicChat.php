@@ -47,7 +47,9 @@ class PublicChat extends Section
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info table-hover text-center')
             ->paginate(50);
-
+        $display->setApply(function ($query) {
+            $query->orderByDesc('created_at');
+        });
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
                 ->setWidth('15px'),
