@@ -270,7 +270,7 @@
                                 <div class="col-xl-1 col-lg-1 col-md-1 col-1  left_block">
                                     <span>#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
                                 </div>
-                                <div class="col-xl-8 col-lg-10 col-md-10 col-sm-8 col-7 center_block">
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-7 center_block">
                                     @isset($match->player1->user)
                                         <div class="one_player">
                                             @if(auth()->check() && auth()->user()->userViewAvatars())
@@ -314,7 +314,7 @@
                                         {{__('- Freeslot -')}}
                                     @endisset
                                 </div>
-                                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-3 col-4 right_block">
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-4 right_block">
                                     @for($i = 1; $i <= 7; $i++)
                                         @if(!empty($match->{"rep$i"}) && checkFile::checkFileExists($match->{"rep$i"}))
                                             <a href="{{ route('download.match',['tourney' =>$match->tourney_id,'match'=>$match->match_id,'rep'=> "rep$i"]) }}"
