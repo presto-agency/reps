@@ -678,8 +678,13 @@
         .gocu-replays__match {
             padding: 0 3.472vw;
             .match__author {
+                display: flex;
+                align-items: baseline;
                 padding: 3.472vw 0;
                 .subtitle__info {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     svg{
                         width: 3.646vw;
                         height: 3.646vw;
@@ -702,6 +707,9 @@
                 }
 
                 .subtitle__icons {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     svg {
                         width: 3.646vw;
                         height: 3.646vw;

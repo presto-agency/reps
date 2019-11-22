@@ -98,7 +98,7 @@
                 {{--</div>--}}
             <!--END CHAT MESSAGES -->
             @else
-                <p>Нет сообщений</p>
+                <p class="none_text">Нет сообщений</p>
             @endif
 
         <!-- ADD MESSAGE FORM -->
@@ -151,7 +151,7 @@
             </div>
             <!-- END ADD MESSAGE FORM -->
         @else
-            <p>Нет сообщений</p>
+            <p class="none_text">Нет сообщений</p>
         @endif
     </div>
 
