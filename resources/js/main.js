@@ -76,9 +76,10 @@ $('.search_img').click(function (event) {
 $('#settings').click(function (event) {
     event.preventDefault();
     $('.logged_links').addClass('active');
-    console.log(1);
+    console.log(999);
 //    $('.mob_menu').removeClass('menuOff-active');
 });
+
 
 // stream_list
 $('.btn_streams_list').click(function (event) {
