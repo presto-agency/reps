@@ -78,7 +78,7 @@ class ForumSections extends Section
             ->paginate(5)
             ->setColumns($columns)
             ->setHtmlAttribute('class',
-                'table-info table-hover th-center text-center');
+                'table-primary table-hover th-center text-center');
         //        $display->setColumnFilters([
         //          AdminColumnFilter::select()
         //            ->setModelForOptions(\App\Models\ForumSection::class, 'name')
