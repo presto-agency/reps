@@ -67,7 +67,7 @@ class ForumTopics extends Section
                 'author',
                 'comments',
             ])
-            ->setDatatableAttributes(['bInfo' => false])
+            ->setDatatableAttributes(['bInfo' => true])
             ->setHtmlAttribute('class', 'table-info text-center')
             ->paginate(10);
         $display->setFilters(
