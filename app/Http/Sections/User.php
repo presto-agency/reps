@@ -12,9 +12,11 @@ use AdminFormElement;
 use checkFile;
 use App\Models\{Country, Race, Role};
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Display\DisplayDatatablesAsync;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -49,8 +51,8 @@ class User extends Section
 
 
     /**
-     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
-     * @throws \Exception
+     * @return DisplayDatatablesAsync
+     * @throws Exception
      */
     public function onDisplay()
     {

@@ -7,7 +7,10 @@ use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
 use App\Services\ServiceAssistants\PathHelper;
+use Exception;
 use Illuminate\Http\UploadedFile;
+use SleepingOwl\Admin\Display\DisplayDatatablesAsync;
+use SleepingOwl\Admin\Form\FormPanel;
 use SleepingOwl\Admin\Section;
 
 
@@ -36,8 +39,8 @@ class Country extends Section
     }
 
     /**
-     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
-     * @throws \Exception
+     * @return DisplayDatatablesAsync
+     * @throws Exception
      */
     public function onDisplay()
     {
@@ -65,8 +68,8 @@ class Country extends Section
     /**
      * @param $id
      *
-     * @return \SleepingOwl\Admin\Form\FormPanel
-     * @throws \Exception
+     * @return FormPanel
+     * @throws Exception
      */
     public function onEdit($id)
     {
@@ -118,8 +121,8 @@ class Country extends Section
     }
 
     /**
-     * @return \SleepingOwl\Admin\Form\FormPanel
-     * @throws \Exception
+     * @return FormPanel
+     * @throws Exception
      */
     public function onCreate()
     {

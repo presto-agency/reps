@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\AvatarTrait;
 use App\Traits\ModelRelations\UserRelation;
 use Carbon\Carbon;
+use Eloquent;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -13,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
  *
  * @package App
  * @property  string avatar
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class User extends Authenticatable
 {

@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Services\User\UserService;
 use App\Traits\ModelRelations\UserFriendRelation;
 use App\User;
-use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use Illuminate\Database\Eloquent\{Collection, Model, SoftDeletes};
 use Illuminate\Support\Facades\Auth;
 
 class UserFriend extends Model
@@ -54,7 +54,7 @@ class UserFriend extends Model
     /**
      * @param  User  $user
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public static function getFriends(User $user)
     {
@@ -73,7 +73,7 @@ class UserFriend extends Model
     /**
      * @param  User  $user
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public static function getFriendlies(User $user)
     {

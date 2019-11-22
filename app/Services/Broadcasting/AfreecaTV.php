@@ -4,6 +4,7 @@
 namespace App\Services\Broadcasting;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Class AfreecaTV
@@ -26,7 +27,7 @@ class AfreecaTV
      * @param $id
      *
      * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function getStatus($chanelName, $id)
     {

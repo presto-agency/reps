@@ -10,6 +10,7 @@ namespace App\Services;
 
 
 use App\Models\Country;
+use Illuminate\Database\Eloquent\Collection;
 
 class GeneralViewHelper
 {
@@ -29,7 +30,7 @@ class GeneralViewHelper
 
 
     /**
-     * @return Country[]|\Illuminate\Database\Eloquent\Collection
+     * @return Country[]|Collection
      */
     public function getCountries()
     {

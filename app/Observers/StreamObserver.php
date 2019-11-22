@@ -18,7 +18,7 @@ class StreamObserver
     /**
      * Handle the stream "created" event.
      *
-     * @param  \App\Models\Stream  $stream
+     * @param Stream $stream
      *
      * @return void
      */
@@ -38,7 +38,7 @@ class StreamObserver
     /**
      * Handle the stream "updated" event.
      *
-     * @param  \App\Models\Stream  $stream
+     * @param Stream $stream
      *
      * @return void
      */
@@ -50,7 +50,7 @@ class StreamObserver
     /**
      * Handle the stream "deleted" event.
      *
-     * @param  \App\Models\Stream  $stream
+     * @param Stream $stream
      *
      * @return void
      */
@@ -62,7 +62,7 @@ class StreamObserver
     /**
      * Handle the stream "restored" event.
      *
-     * @param  \App\Models\Stream  $stream
+     * @param Stream $stream
      *
      * @return void
      */
@@ -74,7 +74,7 @@ class StreamObserver
     /**
      * Handle the stream "force deleted" event.
      *
-     * @param  \App\Models\Stream  $stream
+     * @param Stream $stream
      *
      * @return void
      */
