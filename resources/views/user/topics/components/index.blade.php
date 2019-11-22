@@ -18,7 +18,7 @@
                                            href="{{route('forum.show',['forum'=>$item->forumSection->id])}}">{{$item->forumSection->title}}</a>
                                         <span>|</span>
                                         <a class="items__link"
-                                           href="{{route('topic.show',['topic'=>$item->id])}}">{!! ParserToHTML::toHTML($topic->title,'size') !!}</a>
+                                           href="{{route('topic.show',['topic'=>$item->id])}}">{!! ParserToHTML::toHTML($item->title,'size') !!}</a>
                                     </div>
                                     <div class="header__items">
                                         <svg class="items__icon" xmlns="http://www.w3.org/2000/svg" id="Capa_1"

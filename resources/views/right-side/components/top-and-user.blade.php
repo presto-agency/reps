@@ -27,7 +27,7 @@
         <div class="block_topUsers">
             @isset($newUsers)
                 @foreach($newUsers as $item)
-                    <div class="row">
+                    <div class="row row_container">
                         <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
                             <p class="night_text">#{{$item->id}}</p>
                         </div>
@@ -55,7 +55,7 @@
         <div class="block_topUsers">
             @isset($top10Rating)
                 @foreach($top10Rating as $item)
-                    <div class="row">
+                    <div class="row row_container">
                         <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
                             <p class="night_text">{{$item['max']}} кг</p>
                         </div>
@@ -80,7 +80,7 @@
         <div class="block_topUsers">
             @isset($top10Points)
                 @foreach($top10Points as $item)
-                    <div class="row">
+                    <div class="row row_container">
                         <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
                             <p class="night_text">{{$item['max']}} pts</p>
                         </div>

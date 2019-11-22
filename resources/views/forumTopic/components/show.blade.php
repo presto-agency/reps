@@ -31,7 +31,7 @@
                          title="{{ $topic->author->countries->name }}" alt="flag">
                     <img src="{{asset("images/default/game-races/" . $topic->author->races->title . ".png")}}"
                          class="title__cube" title="{{ $topic->author->races->title }}" alt="race">
-                    <p class="title__text">{{ $topic->author->comments_count.'  pts' }}
+                    <p class="title__text text_pts">{{ $topic->author->comments_count.'  pts' }}
                         | {{ $topic->author->count_positive - $topic->author->count_negative.' кг' }}</p>
                 @endif
             </div>

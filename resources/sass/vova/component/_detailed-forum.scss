@@ -22,6 +22,10 @@
                 font-weight: 400;
                 margin-left: 20px;
                 margin-bottom: 0; //отмена стандартного отступа
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 170px;
             }
             .title__avatar {
                 width: 28px;
@@ -34,6 +38,10 @@
                 font-weight: 400;
                 margin-left: 13px;
                 margin-bottom: 0; //отмена стандартного отступа
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100px;
             }
             .title__flag {
                 width: 20px;
@@ -51,6 +59,12 @@
                 font-weight: 500;
                 margin-left: 12px;
                 margin-bottom: 0; //отмена стандартного отступа
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .text_pts{
+                max-width: 40px;
             }
 
         }
