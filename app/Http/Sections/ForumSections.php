@@ -59,7 +59,7 @@ class ForumSections extends Section
     {
         $display = AdminDisplay::datatablesAsync()
             ->with(['topics'])
-            ->setDatatableAttributes(['bInfo' => false])
+            ->setDatatableAttributes(['bInfo' => true])
             ->setHtmlAttribute('class', 'table-info text-center')
             ->paginate(4);
 
