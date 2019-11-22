@@ -56,31 +56,31 @@ class ForumSections extends Section
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
                 ->setWidth('15px'),
-            $name = AdminColumn::text('name', 'Название')
-                ->setWidth('50px'),
-            $title = AdminColumn::text('title', 'Имя')
-                ->setWidth('60px'),
-            $position = AdminColumn::text('position', 'Позиция')
-                ->setWidth('50px'),
-            $quantity = AdminColumn::count('topics', 'Количество тем')
-                ->setWidth('50px'),
-            $isActive = AdminColumnEditable::checkbox('is_active', 'Да', 'Нет')
-                ->setLabel('Активный'),
-            $isGeneral = AdminColumnEditable::checkbox('is_general', 'Да',
-                'Нет')
-                ->setLabel('Основной'),
-            $userCanAddTopics
-                = AdminColumnEditable::checkbox('user_can_add_topics', 'Да',
-                'Нет')
-                ->setLabel('Пользователь добавляет'),
-            $description = AdminColumn::text('description', 'Описание')
-                ->setHtmlAttribute('class', 'text-left')
-                ->setWidth('200px'),
+//            $name = AdminColumn::text('name', 'Название')
+//                ->setWidth('50px'),
+//            $title = AdminColumn::text('title', 'Имя')
+//                ->setWidth('60px'),
+//            $position = AdminColumn::text('position', 'Позиция')
+//                ->setWidth('50px'),
+//            $quantity = AdminColumn::count('topics', 'Количество тем')
+//                ->setWidth('50px'),
+//            $isActive = AdminColumnEditable::checkbox('is_active', 'Да', 'Нет')
+//                ->setLabel('Активный'),
+//            $isGeneral = AdminColumnEditable::checkbox('is_general', 'Да',
+//                'Нет')
+//                ->setLabel('Основной'),
+//            $userCanAddTopics
+//                = AdminColumnEditable::checkbox('user_can_add_topics', 'Да',
+//                'Нет')
+//                ->setLabel('Пользователь добавляет'),
+//            $description = AdminColumn::text('description', 'Описание')
+//                ->setHtmlAttribute('class', 'text-left')
+//                ->setWidth('200px'),
 
         ]);
 
-        $control = $display->getColumns()->getControlColumn();
-        $control->addButton($this->lincShow());
+//        $control = $display->getColumns()->getControlColumn();
+//        $control->addButton($this->lincShow());
 
         return $display;
     }
