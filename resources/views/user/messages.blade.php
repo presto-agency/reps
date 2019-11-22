@@ -106,7 +106,7 @@
 
             <div class="form-group">
 
-                <label for="replay_content" class="night_text">Вставить HTML код с видео реплеем</label>
+                {{--<label for="replay_content" class="night_text">Вставить HTML код с видео реплеем</label>--}}
                 <form action="{{ route('user.send_message') }}" method="POST" class="user-message-form">
                     {{ csrf_field() }}
                     <textarea name="message" class="form-control night_input" id="editor_messenger"></textarea>
