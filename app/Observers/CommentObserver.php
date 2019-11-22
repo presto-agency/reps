@@ -11,7 +11,7 @@ class CommentObserver
     /**
      * Handle the comment "created" event.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param Comment $comment
      *
      * @return void
      */
@@ -23,7 +23,7 @@ class CommentObserver
     /**
      * Handle the comment "updated" event.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param Comment $comment
      *
      * @return void
      */
@@ -35,7 +35,7 @@ class CommentObserver
     /**
      * Handle the comment "deleted" event.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param Comment $comment
      *
      * @return void
      */
@@ -47,7 +47,7 @@ class CommentObserver
     /**
      * Handle the comment "restored" event.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param Comment $comment
      *
      * @return void
      */
@@ -59,7 +59,7 @@ class CommentObserver
     /**
      * Handle the comment "force deleted" event.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param Comment $comment
      *
      * @return void
      */

@@ -7,8 +7,12 @@ use App\Models\UserGallery;
 use App\Services\ServiceAssistants\PathHelper;
 use App\Services\User\UserService;
 use App\User;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class UserGalleryController extends Controller
 {
@@ -26,7 +30,7 @@ class UserGalleryController extends Controller
      *
      * @param $id
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index($id)
     {
@@ -36,7 +40,7 @@ class UserGalleryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -49,7 +53,7 @@ class UserGalleryController extends Controller
      * @param  UserGalleryRequests  $request
      * @param $id
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(UserGalleryRequests $request, $id)
     {
@@ -90,7 +94,7 @@ class UserGalleryController extends Controller
      * @param $id
      * @param $user_gallery
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function show($id, $user_gallery)
     {
@@ -128,7 +132,7 @@ class UserGalleryController extends Controller
      * @param  int  $id
      * @param  int  $user_gallery
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id, $user_gallery)
     {

@@ -11,6 +11,8 @@ use App\Models\Replay;
 use App\Models\UserActivityType;
 use App\Models\UserGallery;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
+use SleepingOwl\Admin\Display\DisplayDatatablesAsync;
+use SleepingOwl\Admin\Exceptions\FilterOperatorException;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -43,8 +45,8 @@ class UserActivityLog extends Section
     }
 
     /**
-     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
-     * @throws \SleepingOwl\Admin\Exceptions\FilterOperatorException
+     * @return DisplayDatatablesAsync
+     * @throws FilterOperatorException
      */
     public function onDisplay()
     {

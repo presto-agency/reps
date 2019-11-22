@@ -9,11 +9,13 @@
 namespace App\Traits\ModelRelations;
 
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 trait UserMessageRelation
 {
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function dialogue()
     {
@@ -21,7 +23,7 @@ trait UserMessageRelation
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function sender()
     {

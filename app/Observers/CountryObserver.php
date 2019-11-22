@@ -15,7 +15,7 @@ class CountryObserver
     /**
      * Handle the country "created" event.
      *
-     * @param  \App\Models\Country  $country
+     * @param Country $country
      *
      * @return void
      */
@@ -32,7 +32,7 @@ class CountryObserver
     /**
      * Handle the country "updated" event.
      *
-     * @param  \App\Models\Country  $country
+     * @param Country $country
      *
      * @return void
      */
@@ -44,7 +44,7 @@ class CountryObserver
     /**
      * Handle the country "deleted" event.
      *
-     * @param  \App\Models\Country  $country
+     * @param Country $country
      *
      * @return void
      */
@@ -56,7 +56,7 @@ class CountryObserver
     /**
      * Handle the country "restored" event.
      *
-     * @param  \App\Models\Country  $country
+     * @param Country $country
      *
      * @return void
      */
@@ -68,7 +68,7 @@ class CountryObserver
     /**
      * Handle the country "force deleted" event.
      *
-     * @param  \App\Models\Country  $country
+     * @param Country $country
      *
      * @return void
      */

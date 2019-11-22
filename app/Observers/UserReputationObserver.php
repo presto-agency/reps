@@ -11,7 +11,7 @@ class UserReputationObserver
     /**
      * Handle the user reputation "created" event.
      *
-     * @param  \App\Models\UserReputation  $userReputation
+     * @param UserReputation $userReputation
      *
      * @return void
      */
@@ -25,7 +25,7 @@ class UserReputationObserver
     /**
      * Handle the user reputation "updated" event.
      *
-     * @param  \App\Models\UserReputation  $userReputation
+     * @param UserReputation $userReputation
      *
      * @return void
      */
@@ -39,7 +39,7 @@ class UserReputationObserver
     /**
      * Handle the user reputation "deleted" event.
      *
-     * @param  \App\Models\UserReputation  $userReputation
+     * @param UserReputation $userReputation
      *
      * @return void
      */
@@ -53,7 +53,7 @@ class UserReputationObserver
     /**
      * Handle the user reputation "restored" event.
      *
-     * @param  \App\Models\UserReputation  $userReputation
+     * @param UserReputation $userReputation
      *
      * @return void
      */
@@ -67,7 +67,7 @@ class UserReputationObserver
     /**
      * Handle the user reputation "force deleted" event.
      *
-     * @param  \App\Models\UserReputation  $userReputation
+     * @param UserReputation $userReputation
      *
      * @return void
      */

@@ -9,10 +9,12 @@ use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
 use App\Services\ServiceAssistants\PathHelper;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Display\ControlLink;
+use SleepingOwl\Admin\Display\DisplayDatatablesAsync;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -52,8 +54,8 @@ class UserGallery extends Section
 
 
     /**
-     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
-     * @throws \Exception
+     * @return DisplayDatatablesAsync
+     * @throws Exception
      */
     public function onDisplay()
     {
@@ -208,7 +210,7 @@ class UserGallery extends Section
     }
 
     /**
-     * @return \SleepingOwl\Admin\Display\ControlLink
+     * @return ControlLink
      */
     public function show()
     {

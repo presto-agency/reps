@@ -16,8 +16,10 @@ use App\Models\Replay;
 use App\Models\UserGallery;
 use App\Models\UserReputation;
 use App\User;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class RatingService
 {
@@ -27,7 +29,7 @@ class RatingService
      *
      * @param $id
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public static function getRatingView($id)
     {

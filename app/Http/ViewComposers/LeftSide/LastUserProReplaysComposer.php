@@ -5,6 +5,7 @@ namespace App\Http\ViewComposers\LeftSide;
 
 
 use App\Models\Replay;
+use Cache;
 use Illuminate\View\View;
 
 class LastUserProReplaysComposer
@@ -41,10 +42,10 @@ class LastUserProReplaysComposer
      */
     public static function getCacheLsReplays($cache_name, $data)
     {
-        if (\Cache::has($cache_name) && ! \Cache::get($cache_name)->isEmpty()) {
-            $data_cache = \Cache::get($cache_name);
+        if (Cache::has($cache_name) && ! Cache::get($cache_name)->isEmpty()) {
+            $data_cache = Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl,
+            $data_cache = Cache::remember($cache_name, self::$ttl,
                 function () use ($data) {
                     return $data;
                 });

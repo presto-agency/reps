@@ -4,6 +4,7 @@
 namespace App\Services\Broadcasting;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Documentation API
@@ -30,7 +31,7 @@ class Twitch
      * @param $id
      *
      * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function getStatus($chanelName, $id)
     {

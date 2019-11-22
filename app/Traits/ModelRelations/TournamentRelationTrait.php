@@ -3,13 +3,15 @@
 namespace App\Traits\ModelRelations;
 
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 trait TournamentRelationTrait
 {
 
     /**
      * Relations.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
 
     public function matches()

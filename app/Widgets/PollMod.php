@@ -6,13 +6,14 @@ namespace App\Widgets;
 
 use AdminTemplate;
 use SleepingOwl\Admin\Widgets\Widget;
+use Throwable;
 
 class PollMod extends Widget
 {
 
     /**
      * @return array|string
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function toHtml()
     {

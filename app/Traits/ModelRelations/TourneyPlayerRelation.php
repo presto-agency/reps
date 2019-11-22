@@ -3,11 +3,13 @@
 namespace App\Traits\ModelRelations;
 
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 trait TourneyPlayerRelation
 {
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     //    public function file()
     //    {
@@ -15,7 +17,7 @@ trait TourneyPlayerRelation
     //    }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function user()
     {

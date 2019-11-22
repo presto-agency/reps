@@ -7,9 +7,11 @@ use AdminColumnEditable;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Display\ControlLink;
+use SleepingOwl\Admin\Form\FormPanel;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -87,7 +89,7 @@ class InterviewQuestion extends Section
     /**
      * @param $display
      *
-     * @return \SleepingOwl\Admin\Display\ControlLink
+     * @return ControlLink
      */
     public function show($display)
     {
@@ -110,8 +112,8 @@ class InterviewQuestion extends Section
     }
 
     /**
-     * @return \SleepingOwl\Admin\Form\FormPanel
-     * @throws \Exception
+     * @return FormPanel
+     * @throws Exception
      */
     public function onCreate()
     {
@@ -121,8 +123,8 @@ class InterviewQuestion extends Section
     /**
      * @param $id
      *
-     * @return \SleepingOwl\Admin\Form\FormPanel
-     * @throws \Exception
+     * @return FormPanel
+     * @throws Exception
      */
     public function onEdit($id)
     {

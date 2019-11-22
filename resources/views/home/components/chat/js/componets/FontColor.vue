@@ -14,7 +14,7 @@
 
     export default {
         name: "FontColor",
-        props: ["status"],
+        props: ["status","selection"],
         data() {
             return {
                 colors: [
@@ -33,7 +33,7 @@
         methods: {
             selColor(color) {
                 let textareaObj = chatHelper.textareaObj();
-                let sel = chatHelper.getSelection();
+                let sel = this.selection;
                 let text;
                 if (sel.length > 0) {
                     let newValue = textareaObj.value.replace(sel, '[' + color.key + ']' + sel + '[/' + color.key + ']');

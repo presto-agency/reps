@@ -7,6 +7,7 @@ namespace App\Http\ViewComposers\LeftSide;
 use App\Http\Controllers\Replay\ReplayHelper;
 use App\Models\Replay;
 use App\Models\ReplayType;
+use Cache;
 use Illuminate\View\View;
 
 class NavigationReplaysComposer
@@ -55,10 +56,10 @@ class NavigationReplaysComposer
 
     private static function getCacheReplayPro($cache_name)
     {
-        if (\Cache::has($cache_name) && ! \Cache::get($cache_name)->isEmpty()) {
-            $data_cache = \Cache::get($cache_name);
+        if (Cache::has($cache_name) && ! Cache::get($cache_name)->isEmpty()) {
+            $data_cache = Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, 300,
+            $data_cache = Cache::remember($cache_name, 300,
                 function () {
                     return self::getReplay();
                 });
