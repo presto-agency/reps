@@ -40,7 +40,6 @@ class ForumSections extends Section
     public function onDisplay()
     {
         $columns = [
-
             //            ->setSearchCallback(function($column, $query, $search){
             //              return $query->orWhere('name', 'like', '%'.$search.'%')
             //                           ->orWhere('created_at', 'like', '%'.$search.'%');
@@ -60,15 +59,15 @@ class ForumSections extends Section
                 ->setHtmlAttribute('class', 'text-left'),
             AdminColumn::text('title', 'Имя'),
             AdminColumn::text('position', 'Позиция')->setWidth('100px'),
-            AdminColumn::count('topics', 'Количество тем')->setWidth('100px'),
-            \AdminColumnEditable::checkbox('is_active', 'Да', 'Нет')
-                ->setWidth('100px')
-                ->setLabel('Активен'),
-            \AdminColumnEditable::checkbox('is_general', 'Да', 'Нет')
-                ->setWidth('100px')
-                ->setLabel('Основной'),
-            AdminColumn::text('description', 'Описание')
-                ->setHtmlAttribute('class', 'text-left'),
+//            AdminColumn::count('topics', 'Количество тем')->setWidth('100px'),
+//            \AdminColumnEditable::checkbox('is_active', 'Да', 'Нет')
+//                ->setWidth('100px')
+//                ->setLabel('Активен'),
+//            \AdminColumnEditable::checkbox('is_general', 'Да', 'Нет')
+//                ->setWidth('100px')
+//                ->setLabel('Основной'),
+//            AdminColumn::text('description', 'Описание')
+//                ->setHtmlAttribute('class', 'text-left'),
         ];
 
         $display = AdminDisplay::datatables()
@@ -80,8 +79,6 @@ class ForumSections extends Section
             ->setColumns($columns)
             ->setHtmlAttribute('class',
                 'table-info table-hover th-center text-center');
-
-
         //        $display->setColumnFilters([
         //          AdminColumnFilter::select()
         //            ->setModelForOptions(\App\Models\ForumSection::class, 'name')
@@ -92,11 +89,10 @@ class ForumSections extends Section
         //            ->setColumnName('name')
         //            ->setPlaceholder('All names'),
         //        ]);
-
         //        $display->getColumnFilters()->setPlacement('panel.heading');
 
-        $control = $display->getColumns()->getControlColumn();
-        $control->addButton($this->lincShow());
+//        $control = $display->getColumns()->getControlColumn();
+//        $control->addButton($this->lincShow());
 
         return $display;
     }
