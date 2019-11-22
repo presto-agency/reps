@@ -90,7 +90,11 @@
                                 <span class="comment-author__nickname"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
                             @endif
-                            <span class="comment-author__replay-item night_text">Видео реплей</span>
+                            @if(!empty($item->file) && checkFile::checkFileExists($item->file))
+                                <span class="comment-author__replay-item night_text">{{__('REP')}}</span>
+                            @else
+                                <span class="comment-author__replay-item night_text">{{__('VOD')}}</span>
+                            @endif
                         </div>
                         <div class="subtitle__icons">
                             <svg version="1.1" id="Capa_1"

@@ -33,7 +33,7 @@ class TransferReplays extends Seeder
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("replays")->orderBy('id','ASC')
+        DB::connection("mysql2")->table("replays")
             ->chunkById(100, function ($repsReplays) {
                 try {
                     $insertItems = [];

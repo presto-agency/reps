@@ -12,7 +12,7 @@
     @include('news.components.show')
     @include('content.comments', ['comments' => $news->comments])
     @include('content.add-comment', [
-        'route' => route('news.show', ['id' =>$news->id])
+        'route' => route('topic.send_comment', ['id' =>$news->id])
     ])
 @endsection
 
