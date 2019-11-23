@@ -14,6 +14,7 @@ use Illuminate\Notifications\Notifiable;
  * Class User
  *
  * @package App
+ * @property  integer id
  * @property  string avatar
  * @mixin Eloquent
  */
