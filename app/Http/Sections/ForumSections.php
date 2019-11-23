@@ -54,9 +54,14 @@ class ForumSections extends Section
             AdminColumn::text('position', 'Позиция')
                 ->setWidth('80px')
                 ->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::custom('Количество тем', function ($model) {
-                return $model->topicsCount();
-            })->setWidth('80px')->setHtmlAttribute('class', 'text-center'),
+//            AdminColumn::custom('Количество тем', function ($model) {
+//                return $model->topicsCount();
+//            })
+//                ->setWidth('80px')
+//                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::count('topics', 'Количество тем')
+                ->setWidth('80px')
+                ->setHtmlAttribute('class', 'text-center'),
             \AdminColumnEditable::checkbox('is_active', 'Да', 'Нет')
                 ->setWidth('90px')
                 ->setLabel('Активный')
@@ -77,6 +82,7 @@ class ForumSections extends Section
             ->setName('forumsectionstables')
             ->setOrder([[0, 'asc']])
             ->setDisplaySearch(false)
+            ->with('topics')
             ->paginate(5)
             ->setColumns($columns)
             ->setHtmlAttribute('class',
