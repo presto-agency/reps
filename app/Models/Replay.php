@@ -3,13 +3,20 @@
 namespace App\Models;
 
 use App\Traits\ModelRelations\ReplayRelationTrait;
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
-
-
+use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
+/**
+ * Class Replay
+ *
+ * @package App
+ * @property  integer id
+ * @mixin Eloquent
+ */
 class Replay extends Model
 {
 
-    use ReplayRelationTrait;
+    use ReplayRelationTrait, HasEagerLimit;
 
     const REPLAY_PRO = 0;
 

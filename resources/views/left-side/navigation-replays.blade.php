@@ -47,7 +47,7 @@
                                                     <a href="{{route('replay.show',['replay'=>$replayNavItem->id, 'type' => !isset($type) ? $type : 'pro', 'subtype'=> $replayName->name])}}"
                                                        class="body__title night_text">{!! ParserToHTML::toHTML($replayNavItem->title,'size') !!}</a>
                                                     <span
-                                                            class="body__numb">{{$replayNavItem->comments_count}}</span>
+                                                            class="body__numb">{{$replayNavItem->replayComments()}}</span>
                                                 </div>
                                             @endforeach
                                         @endisset

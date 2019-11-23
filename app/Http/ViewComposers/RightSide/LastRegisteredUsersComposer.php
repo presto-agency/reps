@@ -10,7 +10,6 @@ use Illuminate\View\View;
 
 class LastRegisteredUsersComposer
 {
-    private static $userTake = 5;
     private static $ttl = 300;
 
     /**
@@ -29,8 +28,8 @@ class LastRegisteredUsersComposer
     private static function getNewUsers()
     {
         return User::with('countries:id,flag,name', 'races:id,code,title')
-            ->orderByDesc('created_at')
-            ->take(self::$userTake)
+            ->latest('created_at')
+            ->take(5)
             ->get(['id',
                    'name',
                    'race_id',

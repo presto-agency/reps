@@ -60,6 +60,7 @@ class LastUserProReplaysComposer
         $data = Replay::with(self::$relation)
             ->where('approved', 1)
             ->where('user_replay', Replay::REPLAY_USER)
+            ->orderByDesc('id')
             ->take(4)
             ->get(self::$column);
 
@@ -72,6 +73,7 @@ class LastUserProReplaysComposer
         $data = Replay::with(self::$relation)
             ->where('approved', 1)
             ->where('user_replay', Replay::REPLAY_PRO)
+            ->orderByDesc('id')
             ->take(8)
             ->get(self::$column);
 

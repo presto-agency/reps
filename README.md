@@ -10,6 +10,7 @@ Run:
 php artisan migrate
 php artisan storage:link
 php artisan key:generate
+php artisan config:clear
 php artisan config:cache
 
 npm run dev
@@ -52,25 +53,28 @@ This application uses the cache given to reduce queries to the database.
 The default is the 'file' cache driver.
 ```
 ```
-For production, it is recommended to change the driver to 'memcached' or 'redis
+For production, it is recommended to change the driver to 'memcached'
 1.You need install memcached on server;
 2.Change .env CACHE_DRIVER=;
-3.php artisan  config:cache;
+3.php artisan config:clear
+4.php artisan config:cache
 ```
 6.Mail settings info
 ```
 In the .emn file you need configure the email sending configuration
 ```
 ```
+1.Set urs settings:
 MAIL_FROM_ADDRESS=info@reps.ru
 MAIL_FROM_NAME=Reps.ru
-
 MAIL_DRIVER=smtp
 MAIL_HOST=
 MAIL_PORT=
 MAIL_USERNAME=
 MAIL_PASSWORD=
 MAIL_ENCRYPTION=
+2.php artisan config:clear;
+3.php artisan config:cache;
 ```
 
 6.Task Manager info
