@@ -7,7 +7,6 @@ namespace App\Http\ViewComposers\LeftSide;
 use App\Http\Controllers\Replay\ReplayHelper;
 use App\Models\Replay;
 use App\Models\ReplayType;
-use Illuminate\Database\Query\Builder;
 use Illuminate\View\View;
 
 class NavigationReplaysComposer
@@ -75,22 +74,22 @@ class NavigationReplaysComposer
          * This method using \Staudenmeir\EloquentEagerLimit\HasEagerLimit
          * for ->limit()
          * In Models:ReplayType,Replay
+         * this dont want work on  server
          */
-        return ReplayType::with('replays')->get();
+         return  ReplayType::with('replays')->get();
 
 
         /**
-         * Opd Version using map and withCount('comment')
-         * remove bcs too long load
+         * Old Version using map
+         *
          */
-        //        with(['replays'])
-        //            ->get(['id', 'name', 'title'])->map
-        //            (function ($query) {
-        //                $query->setRelation('replays',
-        //                    $query->replays->take(3));
-        //
-        //                return $query;
-        //            });
+//        return ReplayType::with(['replays'])->get()->map
+//            (function ($query) {
+//                $query->setRelation('replays',
+//                    $query->replays->take(3));
+//
+//                return $query;
+//            });
     }
 
 }
