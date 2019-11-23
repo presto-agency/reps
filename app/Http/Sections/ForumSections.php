@@ -72,6 +72,7 @@ class ForumSections extends Section
             AdminColumn::text('description', 'Описание')
                 ->setHtmlAttribute('class', 'text-left'),
         ];
+
         $display = AdminDisplay::datatables()
             ->setName('forumsectionstables')
             ->setOrder([[0, 'asc']])
@@ -80,6 +81,7 @@ class ForumSections extends Section
             ->setColumns($columns)
             ->setHtmlAttribute('class',
                 'table-primary table-hover th-center');
+
 
         $control    = $display->getColumns()->getControlColumn();
         $buttonShow = $this->show();
