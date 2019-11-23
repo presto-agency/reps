@@ -7,6 +7,7 @@ namespace App\Http\ViewComposers\LeftSide;
 use App\Http\Controllers\Replay\ReplayHelper;
 use App\Models\Replay;
 use App\Models\ReplayType;
+use Illuminate\Database\Query\Builder;
 use Illuminate\View\View;
 
 class NavigationReplaysComposer
@@ -40,7 +41,6 @@ class NavigationReplaysComposer
         self::$replayTypeName = ReplayHelper::checkUrlType() == 1
             ? 'Пользовательские' : 'Профессиональные';
         $this->replayNav      = self::getCacheReplayPro('proReplayNav');
-
     }
 
     public function compose(View $view)
@@ -69,14 +69,28 @@ class NavigationReplaysComposer
 
     private static function getReplay()
     {
-        return ReplayType::with(['replays'])
-            ->get(['id', 'name', 'title'])->map
-            (function ($query) {
-                $query->setRelation('replays',
-                    $query->replays->take(3));
+        /**
+         * New Version
+         * Attention !!!
+         * This method using \Staudenmeir\EloquentEagerLimit\HasEagerLimit
+         * for ->limit()
+         * In Models:ReplayType,Replay
+         */
+        return ReplayType::with('replays')->get();
 
-                return $query;
-            });
+
+        /**
+         * Opd Version using map and withCount('comment')
+         * remove bcs too long load
+         */
+        //        with(['replays'])
+        //            ->get(['id', 'name', 'title'])->map
+        //            (function ($query) {
+        //                $query->setRelation('replays',
+        //                    $query->replays->take(3));
+        //
+        //                return $query;
+        //            });
     }
 
 }
