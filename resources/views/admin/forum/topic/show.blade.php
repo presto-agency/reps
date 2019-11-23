@@ -40,10 +40,11 @@
                         @if(auth()->check() && auth()->user()->userViewAvatars())
                             <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatarOrDefault())}}"
                                  alt="avatar">
-                        @else
+                        @endif
+                        @guest()
                             <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatarOrDefault())}}"
                                  alt="avatar">
-                        @endif
+                        @endguest()
                         {{--                            <img class="img-circle img-bordered-sm" src="{{route('news').'/dist/img/avatar.png'}}" alt="User img">--}}
                         <span class="username">
 {{--                            <a href="#{{route('admin.user.profile', ['id' => $topic->author->id])}}">{{$topic->author->name}}</a>--}}
@@ -88,10 +89,11 @@
                                             @if(auth()->check() && auth()->user()->userViewAvatars())
                                                 <img class="img-circle img-bordered-sm"
                                                      src="{{asset($comment->user->avatarOrDefault())}}" alt="avatar">
-                                            @else
+                                            @endif
+                                            @guest()
                                                 <img class="img-circle img-bordered-sm"
                                                      src="{{asset($comment->user->avatarOrDefault())}}" alt="avatar">
-                                            @endif
+                                            @endguest()
                                             <p class="message">
                                                 <a href="#" class="name">
                                                     <small class="text-muted pull-right"><i

@@ -23,9 +23,9 @@ class Country extends Model
     public function getFlagAttribute($value)
     {
         if ( ! empty($value) && File::exists($value)) {
-            return asset($value);
+            return $value;
         } else {
-            return asset('images/default/flag/country.png');
+            return 'images/default/flag/country.png';
         }
     }
 

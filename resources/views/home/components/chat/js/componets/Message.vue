@@ -3,10 +3,10 @@
         <div class="messanger">
             <div class="row_contentChat" v-for="(item,index) in messagearray" :key="index">
                 <div class=" block_user_akk">
-                    <div class="user" >
+                    <div class="user">
                         <img class="icon_bars" :src="item.flag">
                         <img class="icon_bars icon_avatar" :src="item.ava"/>
-                            <span class="blue_text">{{item.usernick}}</span>
+                        <span class="blue_text">{{item.usernick}}</span>
                         <a :href="item.user_path+item.user_id" target="_blank">
                             <span class="number_mess night_text">#{{item.user_id}}</span>
                         </a>
@@ -34,7 +34,7 @@
         <div class="form-group" v-if="auth.id>0">
             <Smiles :status="chat_action.smile" @turnOffStatus="turnOffStatus" @insert_smile="addSmile($event)"></Smiles>
             <Images :status="chat_action.image" @turnOffStatus="turnOffStatus" @insert_image="addImage($event)"></Images>
-            <Color :status="chat_action.color"  @turnOffStatus="turnOffStatus" @textarealistener="textareafoo($event)" :selection="selection" ></Color>
+            <Color :status="chat_action.color" @turnOffStatus="turnOffStatus" @textarealistener="textareafoo($event)" :selection="selection"></Color>
             <div class="form-group-toolbar">
                 <img src="../../icons/bold.svg" alt="" class="toolbar_item" @click="bold()">
                 <img src="../../icons/italic.svg" alt="" class="toolbar_item" @click="italic()">
@@ -48,7 +48,7 @@
             <textarea v-model="textMessage" @keyup.enter="sendMessage" class="form-control night_input" id="pop_editor">
            </textarea>
         </div>
-        <div   class="login_block" v-else>
+        <div class="login_block" v-else>
             <p data-target="#authorizationModal" data-toggle="modal">
                 <span>LOGIN</span> to chat!
             </p>
@@ -61,120 +61,125 @@
     import Images from './Images.vue'
     import Color from './FontColor'
 
-export default {
-    props: ['messagearray','not_user','auth'],
-    components: {
-        Smiles,Images,Color
-    },
-    data: ()=>({
-        ignored_users: [{}],
-        chat_action: {
-            'smile': false,
-            'image': false,
-            'color': false
+    export default {
+        props: ['messagearray', 'not_user', 'auth'],
+        components: {
+            Smiles, Images, Color
         },
-        textMessage: '',
-        textarea: '',
-        smiles: [],
-        images: {},
-        linkProfile: '',
-        selection: ''
-    }),
-    methods: {
-        deleteMessage(id) {
-            this.$emit('on_delete',id);
-            axios.delete(`chat/delete/${id}\'`);
-        },
+        data: () => ({
+            ignored_users: [{}],
+            chat_action: {
+                'smile': false,
+                'image': false,
+                'color': false
+            },
+            textMessage: '',
+            textarea: '',
+            smiles: [],
+            images: {},
+            linkProfile: '',
+            selection: ''
+        }),
+        methods: {
+            deleteMessage(id) {
+                this.$emit('on_delete', id);
+                axios.delete(`chat/delete/${id}\'`);
+            },
 
 
-        bold() {
-             this.textMessage=chatHelper.bold(this.textMessage)
-        },
-        italic() {
-            this.textMessage = chatHelper.italic(this.textMessage)
-        },
-        underline() {
-            this.textMessage=chatHelper.underline(this.textMessage)
-        },
-        link() {
-           this.textMessage= chatHelper.link(this.textMessage)
-        },
-        img() {
-            this.textMessage= chatHelper.img(this.textMessage)
-        } ,
-        selectItem: function(type) {
-            this.selection = chatHelper.color(this.textMessage);
-            let self = this;
-            Object.keys(self.chat_action).forEach(function(key) {
-                if(type === key){
-                    self.chat_action[key] = !self.chat_action[key];
-                }
-                else self.chat_action[key] = false;
-            })
+            bold() {
+                this.textMessage = chatHelper.bold(this.textMessage)
+            },
+            italic() {
+                this.textMessage = chatHelper.italic(this.textMessage)
+            },
+            underline() {
+                this.textMessage = chatHelper.underline(this.textMessage)
+            },
+            link() {
+                this.textMessage = chatHelper.link(this.textMessage)
+            },
+            img() {
+                this.textMessage = chatHelper.img(this.textMessage)
+            },
+            selectItem: function (type) {
+                this.selection = chatHelper.color(this.textMessage);
+                let self = this;
+                Object.keys(self.chat_action).forEach(function (key) {
+                    if (type === key) {
+                        self.chat_action[key] = !self.chat_action[key];
+                    } else self.chat_action[key] = false;
+                })
 
-        },
+            },
 
-        turnOffStatus: function() {
+            turnOffStatus: function () {
 
-            let self = this;
-            Object.keys(self.chat_action).forEach(function(key) {
-                self.chat_action[key] = false;
-            });
+                let self = this;
+                Object.keys(self.chat_action).forEach(function (key) {
+                    self.chat_action[key] = false;
+                });
 
-        },
-        textareafoo (str) {
-            this.textMessage = str;
-        },
-        addSmile(smile_object) {
-            this.textMessage += smile_object.str;
-            this.smiles = smile_object.smlies;
-        },
-        addImage(image_object) {
-            this.textMessage += image_object.str;
-            this.images = image_object.images;
-        },
-        sendMessage(){
-            axios.post('/chat/insert_message', {
-                user_id: this.auth.id,
-                file_path: "",
-                message: chatHelper.parsePath(this.textMessage, this.smiles, this.images),
-                imo: ""});
-            this.textMessage = '';
+            },
+            textareafoo(str) {
+                this.textMessage = str;
+            },
+            addSmile(smile_object) {
+                this.textMessage += smile_object.str;
+                this.smiles = smile_object.smlies;
+            },
+            addImage(image_object) {
+                this.textMessage += image_object.str;
+                this.images = image_object.images;
+            },
+            sendMessage() {
+                axios.post('/chat/insert_message', {
+                    user_id: this.auth.id,
+                    file_path: "",
+                    message: chatHelper.parsePath(this.textMessage, this.smiles, this.images),
+                    imo: ""
+                });
+                this.textMessage = '';
+            }
+
+
         }
-
-
     }
-}
 
 </script>
-<style lang="scss" scoped >
-.login_block {
-    p {
-        cursor: pointer;
-        color: #0567cc;
-        text-decoration: underline;
+<style lang="scss" scoped>
+    .login_block {
+        p {
+            cursor: pointer;
+            color: #0567cc;
+            text-decoration: underline;
+        }
     }
-}
-.blue_text {
-    font-size: 12px !important;
-    letter-spacing: 1px;
-}
-.number_mess {
-    font-size: 10px !important;
-    letter-spacing: 1px;
-}
-.form-group-toolbar {
-    padding: 15px 15px;
-}
-.toolbar_item {
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-    margin-left: 5px;
-}
-.form-group {
-    position: relative;
 
-}
+    .blue_text {
+        font-size: 12px !important;
+        letter-spacing: 1px;
+    }
+
+    .number_mess {
+        font-size: 10px !important;
+        letter-spacing: 1px;
+    }
+
+    .form-group-toolbar {
+        padding: 15px 15px;
+    }
+
+    .toolbar_item {
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+        margin-left: 5px;
+    }
+
+    .form-group {
+        position: relative;
+
+    }
 
 </style>

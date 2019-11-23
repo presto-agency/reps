@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'password' => [
                 'required',
                 'string',
-                'between:6,30',
+                'between:8,30',
                 'confirmed'
             ],
         ]);
