@@ -827,10 +827,33 @@
             }
         }
         & .content_allArticle{
-            padding: 1.171vw 1.464vw 0;
+            padding: 1.171vw 1.464vw ;
             p {
                 font-size: 1.171vw;
             }
+        }
+    }
+    #authorizationModal{
+        .modal-body {
+            .modal-body__title {
+                font-size: 2.3vw;
+            }
+            .select2-selection__rendered{
+                font-size: 1.3vw;
+            }
+        }
+    }
+    #registrationModal {
+        .modal-body {
+            .modal-body__title {
+                font-size: 2.3vw;
+            }
+            .select2-selection__rendered{
+                font-size: 1.3vw;
+            }
+        }
+        #race{
+            font-size: 1.3vw;
         }
     }
 
@@ -1674,7 +1697,6 @@
                     }
                     & a{
                         width: 10.249vw;
-                        height: 2.050vw;
                         & .name_player{
                             font-size: 1.025vw;
                         }

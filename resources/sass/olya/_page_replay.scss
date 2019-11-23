@@ -59,11 +59,11 @@
         .title_top{
             padding: 0;
             height: auto;
-            max-width: 50%;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+            max-width: 60%;
             color: $gray;
+            div{
+                font-size: 14px;
+            }
         }
         svg{
             width: 15px;
