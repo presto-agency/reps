@@ -154,6 +154,20 @@ $('#day').click(function (event) {
     localStorage.setItem('nightMode', 2);
 });
 
+
+$(document).ready(function(){
+    $('№').click(function () {
+        $(this).toggleClass('click');
+    });
+});
+
+
+
+
+
+
+
+
 /*accordion replays script   start*/
 /*const accordionState = JSON.parse(localStorage.getItem('accordionState')) || {};
 

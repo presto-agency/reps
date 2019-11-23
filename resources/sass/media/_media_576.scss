@@ -650,7 +650,7 @@
         .gocu-replays__subtitle{
             .subtitle__name{
                 div{
-                    max-width: 220px;
+                    max-width: 200px;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -659,6 +659,7 @@
             }
             .subtitle__date{
                   font-size: 3.0vw;
+                min-width: 110px;
               }
         }
 
@@ -1252,6 +1253,11 @@
             svg {
                 width: 3.604vw;
             }
+            .title_top{
+                div{
+                    font-size: 3.431vw;
+                }
+            }
 
             .right_block {
                 a {
@@ -1391,6 +1397,7 @@
                 & svg{
                     margin-right: 1.736vw;
                 }
+
             }
             .right_content{
                 & svg{
@@ -1429,8 +1436,11 @@
                     span{
                         font-size: 2.431vw;
                     }
-                    & img{
+
+                    img{
                         margin: 0 1.736vw 0 2.604vw;
+                        width: 5.472vw;
+                        height: 5.472vw;
                     }
                     & a{
                         width: 24.306vw;
@@ -1602,7 +1612,7 @@
             }
         }
         & .content_allArticle{
-            padding: 2.778vw 3.472vw 0;
+            padding: 2.778vw 3.472vw ;
         }
     }
     //foru_article
