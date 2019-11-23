@@ -13,12 +13,12 @@
                             <div class="content_game">
                                 <p class="text">Страны:</p>
                                 @isset($item->firstCountries)
-                                    <img class="icon_bars" src="{{asset($item->firstCountries->flag)}}"
+                                    <img class="icon_bars" src="{{asset($item->firstCountries->flagOrDefault())}}"
                                          alt="flag" title="{{$item->firstCountries->name}}"/>
                                 @endisset
                                 <p class="text">vs</p>
                                 @isset($item->secondCountries)
-                                    <img class="icon_bars" src="{{asset($item->secondCountries->flag)}}"
+                                    <img class="icon_bars" src="{{asset($item->secondCountries->flagOrDefault())}}"
                                          alt="flag" title="{{$item->secondCountries->name}}"/>
                                 @endisset
                             </div>
@@ -54,12 +54,12 @@
                             <div class="content_game">
                                 <p class="text">{{__('Страны:')}}</p>
                                 @isset($item->firstCountries)
-                                    <img class="icon_bars" src="{{asset($item->firstCountries->flag)}}"
+                                    <img class="icon_bars" src="{{asset($item->firstCountries->flagOrDefault())}}"
                                          alt="flag" title="{{$item->firstCountries->name}}"/>
                                 @endisset
                                 <p class="text">{{__('vs')}}</p>
                                 @isset($item->secondCountries)
-                                    <img class="icon_bars" src="{{asset($item->secondCountries->flag)}}"
+                                    <img class="icon_bars" src="{{asset($item->secondCountries->flagOrDefault())}}"
                                          alt="flag" title="{{$item->secondCountries->name}}"/>
                                 @endisset
                             </div>

@@ -26,8 +26,7 @@ class ForumSection extends Model
 
     public function topicsCount()
     {
-        return $this->hasMany('App\Models\ForumTopic', 'forum_section_id', 'id')
-            ->count();
+        return $this->hasMany('App\Models\ForumTopic', 'forum_section_id', 'id')->count();
     }
 
     public static function active()

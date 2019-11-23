@@ -14,7 +14,7 @@
 
     export default {
         name: "FontColor",
-        props: ["status","selection"],
+        props: ["status", "selection"],
         data() {
             return {
                 colors: [

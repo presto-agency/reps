@@ -40,10 +40,11 @@
                             <a href="{{ route('user.messages', ['id' => $sender->id]) }}">
                                 @if(auth()->check() && auth()->user()->userViewAvatars())
                                     <img class="avatar__image" src="{{ asset($sender->avatarOrDefault()) }}" alt="avatar">
-                                @else
+                                @endif
+                                @guest()
                                     <img class="avatar__image" src="{{ asset($sender->avatarOrDefault()) }}"
                                          alt="avatar">
-                                @endif
+                                @endguest()
                             </a>
                         </div>
                         <div class="user__info">

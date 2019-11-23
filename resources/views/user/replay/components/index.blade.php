@@ -68,9 +68,10 @@
                             @if(isset($item->users) && !empty($item->users))
                                 @if(auth()->check() && auth()->user()->userViewAvatars())
                                     <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
-                                @else
-                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
                                 @endif
+                                @guest()
+                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
+                                @endguest()
                                 <span class="comment-author__nickname"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
                             @endif
@@ -123,12 +124,12 @@
                         <div class="info__country">
                             <span class="country__text night_text">Страны:</span>
                             @isset($item->firstCountries)
-                                <img class="country__img country-first" src="{{$item->firstCountries->flag}}"
+                                <img class="country__img country-first" src="{{asset($item->firstCountries->flagOrDefault())}}"
                                      alt="flag" title="{{$item->firstCountries->name}}">
                             @endisset
                             <span class="country__text night_text">vs</span>
                             @isset($item->secondCountries)
-                                <img src="{{$item->secondCountries->flag}}"
+                                <img src="{{asset($item->secondCountries->flagOrDefault())}}"
                                      alt="flag" title="{{$item->secondCountries->name}}">
                             @endisset
                         </div>

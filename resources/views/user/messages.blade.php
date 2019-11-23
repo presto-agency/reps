@@ -26,9 +26,10 @@
             <div class="messenger__head">
                 @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img class="head__avatar" src="{{ asset($user->avatarOrDefault()) }}" alt="avatar">
-                @else
-                    <img class="head__avatar" src="{{ asset($user->avatarOrDefault()) }}" alt="avatar">
                 @endif
+                @guest()
+                    <img class="head__avatar" src="{{ asset($user->avatarOrDefault()) }}" alt="avatar">
+                @endguest()
                 <span class="head__nickname">{{ $user->name }}</span>
                 <span class="head__date">2019-06-28 14:11:21</span>
             </div>
@@ -60,11 +61,11 @@
                                     @if(auth()->check() && auth()->user()->userViewAvatars())
                                         <img class="head__avatar" src="{{ asset($message->sender->avatarOrDefault()) }}"
                                              alt="avatar">
-                                    @else
-                                        <img class="head__avatar"
-                                             src="{{ asset($message->sender->avatarOrDefault()) }}"
-                                             alt="avatar">
                                     @endif
+                                    @guest()
+                                        <img class="head__avatar" src="{{ asset($message->sender->avatarOrDefault()) }}"
+                                             alt="avatar">
+                                    @endguest()
                                 </div>
                             </div>
                         @else
@@ -74,11 +75,11 @@
                                     @if(auth()->check() && auth()->user()->userViewAvatars())
                                         <img class="head__avatar" src="{{ asset($message->sender->avatarOrDefault()) }}"
                                              alt="avatar">
-                                    @else
-                                        <img class="head__avatar"
-                                             src="{{ asset($message->sender->avatarOrDefault()) }}"
-                                             alt="avatar">
                                     @endif
+                                    @guest()
+                                        <img class="head__avatar" src="{{ asset($message->sender->avatarOrDefault()) }}"
+                                             alt="avatar">
+                                    @endguest()
                                 </div>
                                 <div class="message-content">
                                     <div class="content__text">
@@ -173,13 +174,13 @@
 
                 var messageInfo = $('<div class="message-info"></div>')
                     .append('<span class="user-name">{{ auth()->user()->name }}</span>')
-                    @if(auth()->user()->userViewAvatars())
-                    @if(!empty(auth()->user()->avatar) && file_exists(auth()->user()->avatar))
-                    .append('<img class="head__avatar" src="{{ asset(auth()->user()->avatar) }}" alt="avatar">')
-                    @else
-                    .append('<img class="head__avatar" src="{{ asset(auth()->user()->defaultAvatar()) }}" alt="avatar">');
-                        @endif
-                        @endif
+                    @if(auth()->check() && auth()->user()->userViewAvatars())
+                    .append('<img class="head__avatar" src="{{ asset(auth()->user()->avatarOrDefault()) }}" alt="avatar">')
+                    @endif
+                    @guest()
+                    .append('<img class="head__avatar" src="{{ asset(auth()->user()->avatarOrDefault()) }}" alt="avatar">')
+                        @endguest()
+
                 var myMessage = $('<div class="my-message"></div>')
                         .append(messageContent)
                         .append(messageInfo);

@@ -39,6 +39,7 @@ class ForumSections extends Section
      */
     public function onDisplay()
     {
+
         $columns = [
 
             AdminColumn::text('id', '#')
@@ -51,6 +52,11 @@ class ForumSections extends Section
                 ->setWidth('100px')
                 ->setHtmlAttribute('class', 'text-center'),
             AdminColumn::text('position', 'Позиция')
+                ->setWidth('80px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::custom('Количество тем', function ($model) {
+                return $model->topicsCount();
+            })
                 ->setWidth('80px')
                 ->setHtmlAttribute('class', 'text-center'),
             \AdminColumnEditable::checkbox('is_active', 'Да', 'Нет')
@@ -69,31 +75,19 @@ class ForumSections extends Section
                 ->setHtmlAttribute('class', 'text-left'),
         ];
 
-        //            $position = AdminColumn::text('position', 'Позиция')
-        //                ->setWidth('50px'),
-        //            $quantity = AdminColumn::count('topics', 'Количество тем')
-        //                ->setWidth('50px'),
-        //            $isActive = AdminColumnEditable::checkbox('is_active', 'Да', 'Нет')
-        //                ->setLabel('Активный'),
-        //            $isGeneral = AdminColumnEditable::checkbox('is_general', 'Да',
-        //                'Нет')
-        //                ->setLabel('Основной'),
-        //            $userCanAddTopics
-        //                = AdminColumnEditable::checkbox('user_can_add_topics', 'Да',
-        //                'Нет')
-        //                ->setLabel('Пользователь добавляет'),
-        //            $description = AdminColumn::text('description', 'Описание')
-        //                ->setHtmlAttribute('class', 'text-left')
-        //                ->setWidth('200px'),
-
-
         $display = AdminDisplay::datatables()
             ->setName('forumsectionstables')
             ->setOrder([[0, 'asc']])
             ->setDisplaySearch(false)
             ->paginate(5)
             ->setColumns($columns)
-            ->setHtmlAttribute('class', 'table-primary table-hover th-center');
+            ->setHtmlAttribute('class', 'table-primary table-hover th-center')
+            ->setHtmlAttribute('class', 'text-center');
+
+
+        $control    = $display->getColumns()->getControlColumn();
+        $buttonShow = $this->show();
+        $control->addButton($buttonShow);
 
         return $display;
     }
@@ -155,15 +149,13 @@ class ForumSections extends Section
         // remove if unused
     }
 
-    public function lincShow()
+    public function show()
     {
         $link = new ControlLink(function ($model) {
             $url = asset('admin/forum_topics');
 
             return $url.'?forum_section_id='.$model->getKey();
-        }, function ($model) {
-            //            return $model->title . ' (' . $model->topicsCount() . ')'; // Генерация текста на кнопке
-        }, 50);
+        }, 'Просмотреть', 50);
         $link->hideText();
         $link->setIcon('fa fa-eye');
         $link->setHtmlAttribute('class', 'btn-info');

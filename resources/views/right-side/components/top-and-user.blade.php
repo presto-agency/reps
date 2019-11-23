@@ -32,7 +32,7 @@
                             <p class="night_text">#{{$item->id}}</p>
                         </div>
                         <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
-                            <img class="icon_bars" src="{{asset($item->countries->flag)}}" alt="flag"
+                            <img class="icon_bars" src="{{asset($item->countries->flagOrDefault())}}" alt="flag"
                                  title="{{$item->countries->name}}"/>
                             <img class="icon_bars"
                                  src="{{asset("images/default/game-races/" . $item->races->title . ".png")}}" alt="race"

@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+/*The Email Verification*/
+Auth::routes(['verify' => true]);
 
 /*Home*/
 Route::get('/', 'HomeController@index')->name('home.index');
