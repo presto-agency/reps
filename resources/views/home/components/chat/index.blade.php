@@ -32,7 +32,7 @@
                             </button>
 
                             <img class="icon_bars" id="streamOnlineFlag"
-                                 src="@isset($stream){{asset($stream->countries->flag)}}@endisset"
+                                 src="@isset($stream){{asset($stream->countries->flagOrDefault())}}@endisset"
                                  title="@isset($stream){{$stream->countries->name}}@endisset" alt="flag"/>
                             <img class="icon_bars" id="streamOnlineRace"
                                  src="@isset($stream){{asset('images/default/game-races/'.$stream->races->title.'.png')}}@endisset"

@@ -183,7 +183,7 @@ class BestController extends Controller
                 'avatar'           => $item->avatar,
                 'raceIcon'         => "images/default/game-races/".$item->races->title.".png",
                 'raceTitle'        => $item->races->title,
-                'countryFlag25x20' => $item->countries->flag,
+                'countryFlag25x20' => $item->countries->flagOrDefault(),
                 'countryName'      => $item->countries->name,
                 'max'              => $this->setMaxType($type, $item),
             ];

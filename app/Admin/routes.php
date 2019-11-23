@@ -29,4 +29,7 @@ Route::get('streams/show/{id}', '\App\Http\Controllers\Admin\StreamController@sh
 Route::get('forum_topics/{id}/show', '\App\Http\Controllers\Admin\ForumTopicController@show');
 Route::post('forum_topics/show/{id}/send_comment', '\App\Http\Controllers\Admin\TopicCommentController@store')->name('admin.forum.topic.comment_send');
 
+Route::get('user/send-email-create', '\App\Http\Controllers\Admin\EmailController@emailCreate')->name('admin.user.email-send.create');
+Route::post('user/send-email-send', '\App\Http\Controllers\Admin\EmailController@emailSend')->name('admin.user.email-send.send');
+
 //Route::get('translations/{groupKey?}', '\Barryvdh\TranslationManager\Controller@getIndex');

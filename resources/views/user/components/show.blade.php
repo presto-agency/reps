@@ -126,7 +126,7 @@
                                             </a>
                                         </div>
                                         <div class="right_block">
-                                            <img src="{{asset($friend->countries->flag)}}"
+                                            <img src="{{asset($friend->countries->flagOrDefault())}}"
                                                  class="info__flag" alt="flag">
                                             <img
                                                     src="{{asset('/images/default/game-races/'.$friend->races->title.'.png')}}"
@@ -169,7 +169,7 @@
                                         </div>
                                         <div class="right_block">
                                             @isset($friend->countries)
-                                                <img src="{{ asset($friend->countries->flag) }}" class="info__flag"
+                                                <img src="{{ asset($friend->countries->flagOrDefault()) }}" class="info__flag"
                                                      title="{{$friend->countries->name}}" alt="flag">
                                             @endisset
                                             @isset($friend->races)

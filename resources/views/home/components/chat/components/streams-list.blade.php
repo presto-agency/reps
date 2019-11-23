@@ -7,7 +7,7 @@
                         <button class="streamEvent" id="{{$item->id}}"
                                 data-src="{{$item->stream_url_iframe}}"
 
-                                data-img-flag="{{asset($item->countries->flag)}}"
+                                data-img-flag="{{asset($item->countries->flagOrDefault())}}"
                                 data-name-flag="{{$item->countries->name}}"
 
                                 data-img-race="{{asset('images/default/game-races/'.$item->races->title.'.png')}}"
@@ -15,7 +15,7 @@
 
                                 data-stream-title="{{$item->title}}"
                         >
-                            <img class="margin-left-5" src="{{asset($item->countries->flag)}}" alt="flag"
+                            <img class="margin-left-5" src="{{asset($item->countries->flagOrDefault())}}" alt="flag"
                                  title="{{$item->countries->name}}">
                             <img class="margin-left-5"
                                  src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}" alt="race"

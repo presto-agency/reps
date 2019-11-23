@@ -57,3 +57,24 @@ For production, it is recommended to change the driver to 'memcached' or 'redis
 2.Change .env CACHE_DRIVER=;
 3.php artisan  config:cache;
 ```
+6.Mail settings info
+```
+In the .emn file you need configure the email sending configuration
+```
+```
+MAIL_FROM_ADDRESS=info@reps.ru
+MAIL_FROM_NAME=Reps.ru
+
+MAIL_DRIVER=smtp
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=
+```
+
+6.Task Manager info
+```
+The project has tasks. To complete them, you need to configure the task scheduler on the server.
+exemple:* * * * * php /path/to/artisan schedule:run >>/dev/null 2>&1
+```
