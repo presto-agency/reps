@@ -67,9 +67,7 @@ class User extends Section
                 'roles', 'countries',
             ])
             ->paginate(5);
-        $display->setApply(function ($query) {
-            $query->orderBy('id', 'ASC');
-        });
+
         $display->setFilters(AdminDisplayFilter::related('ban')
             ->setModel(\App\User::class));
 

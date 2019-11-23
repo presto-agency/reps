@@ -2,7 +2,7 @@
     <div class="detailed-news__title">
         <div class="title__wrap">
             <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 x="0px" y="0px"
                  viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                 <path d="M437.019,74.98C388.667,26.629,324.38,0,256,0C187.619,0,123.331,26.629,74.98,74.98C26.628,123.332,0,187.62,0,256
 			s26.628,132.667,74.98,181.019C123.332,485.371,187.619,512,256,512c68.38,0,132.667-26.629,181.019-74.981
@@ -19,10 +19,10 @@
             <div class="title__wrap">
                 @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
-                @else
-                    <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
                 @endif
-
+                @guest()
+                    <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
+                @endguest()
                 <p class="title__nickname night_text">{{ $news->author->name ? $news->author->name : 'user' }}</p>
                 <img src="{{ $news->author->countries->flag }}" title="{{ $news->author->races->title }}"
                      class="title__flag" alt="flag">
@@ -47,7 +47,7 @@
             </span>
             <span class="items__comment night_text">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     x="0px" y="0px"
                      viewBox="0 0 511.6 511.6" style="enable-background:new 0 0 511.6 511.6;" xml:space="preserve">
                     <path d="M301.9,327.6c30.9-13,55.3-30.8,73.2-53.2C393,251.9,402,227.4,402,201c0-26.5-8.9-50.9-26.8-73.4
                             c-17.9-22.5-42.3-40.2-73.2-53.2C271,61.3,237.4,54.8,201,54.8c-36.4,0-70,6.5-100.9,19.6c-30.9,13-55.3,30.8-73.2,53.2
@@ -98,7 +98,7 @@
                 <div class="card-body__items-wrap">
                     <a class="items__quote" href="#">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             x="0px" y="0px"
                              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                             <path d="M256,0C114.6,0,0,114.6,0,256s114.6,256,256,256s256-114.6,256-256S397.4,0,256,0z M256,472c-119.3,0-216-96.7-216-216
 		                    S136.7,40,256,40s216,96.7,216,216S375.3,472,256,472z"/>
@@ -112,7 +112,7 @@
                 <div class="card-body__items-wrap">
                     <a class="items__like night_text" href="#" data-toggle="modal" data-target="#likeModal_news">
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             x="0px" y="0px"
                              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 		                    <path d="M83.6,167.3H16.7C7.5,167.3,0,174.7,0,184v300.9c0,9.2,7.5,16.7,16.7,16.7h66.9c9.2,0,16.7-7.5,16.7-16.7V184
 			                    C100.3,174.7,92.8,167.3,83.6,167.3z"/>

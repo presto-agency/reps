@@ -20,12 +20,14 @@ class VerificationController extends Controller
 
     use VerifiesEmails;
 
+
+    protected $redirectTo = '/';
+
     /**
      * Where to redirect users after verification.
      *
-     * @var string
+     * @return \Illuminate\Http\RedirectResponse
      */
-    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.

@@ -55,9 +55,10 @@
                             @if(isset($item->users) && !empty($item->users))
                                 @if(auth()->check() && auth()->user()->userViewAvatars())
                                     <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
-                                @else
-                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
                                 @endif
+                                @guest()
+                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
+                                @endguest()
                                 <span class="comment-author__nickname night_text"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
                             @endif

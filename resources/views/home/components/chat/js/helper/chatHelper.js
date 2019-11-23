@@ -13,46 +13,46 @@ export const getSelection = () => {
     var sel = textareaObj().value.substring(start, finish);
     return sel;
 };
-export const strParse= (str) => {
+export const strParse = (str) => {
 
-    str= str.replace(/\[url\]([\s\S]*)\[\/url\]/gim, '<a href="$1" target="_blank">Ссылка</a>');
-    str= str.replace(/%([\s\S]*)%/gim, '<img src="$1"  alt="picture"/>');
-    str= str.replace(/;([\s\S]*);/gim, '<img src="storage/chat/smiles/$1" style="display: inline;" alt="smile"/>');
+    str = str.replace(/\[url\]([\s\S]*)\[\/url\]/gim, '<a href="$1" target="_blank">Ссылка</a>');
+    str = str.replace(/%([\s\S]*)%/gim, '<img src="$1"  alt="picture"/>');
+    str = str.replace(/;([\s\S]*);/gim, '<img src="storage/chat/smiles/$1" style="display: inline;" alt="smile"/>');
     str = str.replace(/\[img\]([\s\S]*)\[\/img\]/gim, '<img src="$1" style="max-width: 100%;" alt="Incorrect image link"/>');
-    for(let i=1; i<=6; i++) {
-        if(str.search(`c${i}`)>-1) {
-            if(i===1)
-            str= str.replace(/\[c1\]([\s\S]*)\[\/c1\]/gim, '<span style="color: #FFFF77;">$1</span>');
-            else if(i===2)
-                str= str.replace(/\[c2\]([\s\S]*)\[\/c2\]/gim, '<span style="color: #FF77FF;">$1</span>');
-            else if(i===3)
-                str= str.replace(/\[c3\]([\s\S]*)\[\/c3\]/gim, '<span style="color: #77FFFF;">$1</span>');
-            else if(i===4)
-                str= str.replace(/\[c4\]([\s\S]*)\[\/c4\]/gim, '<span style="color: #FFAAAA;">$1</span>');
-            else if(i===5)
-                str= str.replace(/\[c5\]([\s\S]*)\[\/c5\]/gim, '<span style="color: #AAFFAA;">$1</span>');
+    for (let i = 1; i <= 6; i++) {
+        if (str.search(`c${i}`) > -1) {
+            if (i === 1)
+                str = str.replace(/\[c1\]([\s\S]*)\[\/c1\]/gim, '<span style="color: #FFFF77;">$1</span>');
+            else if (i === 2)
+                str = str.replace(/\[c2\]([\s\S]*)\[\/c2\]/gim, '<span style="color: #FF77FF;">$1</span>');
+            else if (i === 3)
+                str = str.replace(/\[c3\]([\s\S]*)\[\/c3\]/gim, '<span style="color: #77FFFF;">$1</span>');
+            else if (i === 4)
+                str = str.replace(/\[c4\]([\s\S]*)\[\/c4\]/gim, '<span style="color: #FFAAAA;">$1</span>');
+            else if (i === 5)
+                str = str.replace(/\[c5\]([\s\S]*)\[\/c5\]/gim, '<span style="color: #AAFFAA;">$1</span>');
             else
-                str= str.replace(/\[c6\]([\s\S]*)\[\/c6\]/gim, '<span style="color: #AAAAFF;">$1</span>');
+                str = str.replace(/\[c6\]([\s\S]*)\[\/c6\]/gim, '<span style="color: #AAAAFF;">$1</span>');
         }
     }
     return str
 };
-export const parsePath = (mes,smiles,images) => {
-    if(mes.search(';')>-1){
-        smiles.forEach((item)=>{
-            if(mes.search(item.charactor)>-1)
+export const parsePath = (mes, smiles, images) => {
+    if (mes.search(';') > -1) {
+        smiles.forEach((item) => {
+            if (mes.search(item.charactor) > -1)
                 mes = mes.replace(/;([\s\S]*);/gim, `;${item.src};`);
         })
     }
-    if(mes.search('%')>-1)
-            mes = mes.replace(/%([\s\S]*)%/gim, `%${images.filepath}%`);
+    if (mes.search('%') > -1)
+        mes = mes.replace(/%([\s\S]*)%/gim, `%${images.filepath}%`);
     return mes;
 };
 export const getFilterUser = (text) => {
     var string_array = text.split(' ');
     var focus_word = '';
     string_array.forEach(word => {
-        if(word.substring(0, 1)) {
+        if (word.substring(0, 1)) {
             focus_word = word.substring(1)
         }
     });
@@ -62,7 +62,7 @@ export const bold = (text) => {
     textareaObj().value = text;
     let sel = document.getSelection().toString();
     if (sel.length > 0) {
-        textareaObj().value = textareaObj().value.replace(sel, '<b>'+sel+'</b>');
+        textareaObj().value = textareaObj().value.replace(sel, '<b>' + sel + '</b>');
     } else {
         insertText('<b></b>')
     }
@@ -78,35 +78,37 @@ export const italic = (text) => {
     textareaObj().value = text;
     let sel = document.getSelection().toString();
     if (sel.length > 0) {
-        let newValue = textareaObj().value.replace(sel, '<i>'+sel+'</i>');
+        let newValue = textareaObj().value.replace(sel, '<i>' + sel + '</i>');
         textareaObj().value = newValue;
-    }  else {
+    } else {
         insertText('<i></i>')
     }
     textareaObj().focus();
     return textareaObj().value
 };
+
 export function pickColor(color) {
     let textareaObj = document.getElementById('pop_editor');
     // let textareaObj = document.getElementById('pop_editor');
     console.log(textareaObj);
     let sel = getSelection();
     //if (sel.length > 0) {
-       let newValue = textareaObj.value.replace(sel, '[' + color.key + ']' + sel +'[/' + color.key + ']');
-        //textareaObj.value = newValue;
+    let newValue = textareaObj.value.replace(sel, '[' + color.key + ']' + sel + '[/' + color.key + ']');
+    //textareaObj.value = newValue;
     //} else {
-        //insertText('[' + color.key + '][/' + color.key + ']')
+    //insertText('[' + color.key + '][/' + color.key + ']')
     //}
-    textareaObj.value= "s";
+    textareaObj.value = "s";
     textareaObj.focus();
-   console.log(textareaObj.value)
+    console.log(textareaObj.value)
 
 }
+
 export const underline = (text) => {
     textareaObj().value = text;
     let sel = document.getSelection().toString();
     if (sel.length > 0) {
-        let newValue = textareaObj().value.replace(sel, '<u>'+sel+'</u>');
+        let newValue = textareaObj().value.replace(sel, '<u>' + sel + '</u>');
         textareaObj().value = newValue;
     } else {
         insertText('<u></u>')
@@ -118,7 +120,7 @@ export const link = (text) => {
     textareaObj().value = text;
     let sel = document.getSelection().toString();
     if (sel.length > 0) {
-        let newValue = textareaObj().value.replace(sel, '[url]'+sel+'[/url]');
+        let newValue = textareaObj().value.replace(sel, '[url]' + sel + '[/url]');
         textareaObj().value = newValue;
 
     } else {
@@ -131,7 +133,7 @@ export const img = (text) => {
     textareaObj().value = text;
     let sel = document.getSelection().toString();
     if (sel.length > 0) {
-        let newValue = textareaObj().value.replace(sel, '[img]'+sel+'[/img]');
+        let newValue = textareaObj().value.replace(sel, '[img]' + sel + '[/img]');
         textareaObj().value = newValue;
 
     } else {
@@ -143,7 +145,7 @@ export const img = (text) => {
 export const meme = () => {
     let sel = getSelection();
     if (sel.length > 0) {
-        let newValue = textareaObj().value.replace(sel, '[d]'+sel+'[/d]');
+        let newValue = textareaObj().value.replace(sel, '[d]' + sel + '[/d]');
         textareaObj().value = newValue;
     } else {
         insertText('[d][/d]')

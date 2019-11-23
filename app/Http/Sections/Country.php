@@ -75,8 +75,9 @@ class Country extends Section
     {
         $getData = $this->getModel()->select('flag')->find($id);
         if ($getData) {
-            $this->imageOldPath = $getData->geta;
+            $this->imageOldPath = $getData->flag;
         }
+
         $form = AdminForm::panel();
         $form->setItems(
             AdminFormElement::columns()
@@ -106,7 +107,7 @@ class Country extends Section
                             ->setUploadSettings([
                                 'orientate' => [],
                                 'resize'    => [
-                                    120, null, function ($constraint) {
+                                    25, null, function ($constraint) {
                                         $constraint->upsize();
                                         $constraint->aspectRatio();
                                     },

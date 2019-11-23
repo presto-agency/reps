@@ -3,18 +3,20 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
             @if(auth()->check() && auth()->user()->userViewAvatars())
                 <img src="{{asset($user->avatarOrDefault())}}" class="user-image"/>
-            @else
-                <img src="{{asset($user->avatarOrDefault())}}" class="user-image"/>
             @endif
+            @guest()
+                <img src="{{asset($user->avatarOrDefault())}}" class="user-image"/>
+            @endguest()
             <span class="hidden-xs">{{ $user->name }}</span>
         </a>
         <ul class="dropdown-menu">
             <li class="user-header">
                 @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img src="{{asset($user->avatarOrDefault()) }}" class="img-circle"/>
-                @else
-                    <img src="{{asset($user->avatarOrDefault()) }}" class="img-circle"/>
                 @endif
+                @guest()
+                    <img src="{{asset($user->avatarOrDefault()) }}" class="img-circle"/>
+                @endguest()
                 <p>
                     {{ $user->name }} <small>({{ $user->roles->title }})</small>
                     <small>@lang('sleeping_owl::lang.auth.since', ['date' => $user->created_at->format('h:m d.m.Y')])</small>

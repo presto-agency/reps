@@ -21,11 +21,10 @@
                 @if(isset($topic->author) && !empty($topic->author))
                     @if(auth()->check() && auth()->user()->userViewAvatars())
                         <img src="{{asset($topic->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
-                    @else
-                        <img src="{{asset($topic->author->avatarOrDefault())}}" class="title__avatar"
-                             alt="avatar">
-
                     @endif
+                    @guest()
+                        <img src="{{asset($topic->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
+                    @endguest()
                     <p class="title__nickname">{{ $topic->author->name ? $topic->author->name : 'user' }}</p>
                     <img src="{{ $topic->author->countries->flag }}" class="title__flag"
                          title="{{ $topic->author->countries->name }}" alt="flag">

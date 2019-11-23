@@ -1,7 +1,7 @@
 <section class="user_profile">
     <div class="wrapper border_shadow">
         <div class="title_block">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px"
                  y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
                 <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon</metadata>
                 <g>
@@ -14,9 +14,7 @@
         <div class="userInfo_block">
             <div class="row">
                 <div class="col-xl-4 col-4 container_img">
-                    @if(auth()->check() && auth()->user()->userViewAvatars())
-                        <img class="img-fluid" src="{{ asset($user->avatarOrDefault()) }}" alt="avatar">
-                    @endif
+                    <img class="img-fluid" src="{{ asset($user->avatarOrDefault()) }}" alt="avatar">
                     <div class="icon_img">
                         @if(Auth::id() == $user->id)
                             <a href="{{ route('user.messages',['id'=>$user->id]) }}" title="Мои сообщения">
@@ -121,6 +119,9 @@
                                                 @if(auth()->check() && auth()->user()->userViewAvatars())
                                                     <img src="{{asset($friend->avatarOrDefault())}}" alt="avatar" class="author__avatar img-fluid">
                                                 @endif
+                                                @guest()
+                                                    <img src="{{asset($friend->avatarOrDefault())}}" alt="avatar" class="author__avatar img-fluid">
+                                                @endguest()
                                                 <span class="name_player">{{$friend->name}}</span>
                                             </a>
                                         </div>
