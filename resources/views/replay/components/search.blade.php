@@ -106,12 +106,12 @@
                         <div class="info__country">
                             <span class="country__text night_text">Страны:</span>
                             @isset($item->firstCountries)
-                                <img class="country__img country-first" src="{{$item->firstCountries->flagOrDefault()}}"
+                                <img class="country__img country-first" src="{{asset($item->firstCountries->flagOrDefault())}}"
                                      alt="flag" title="{{$item->firstCountries->name}}">
                             @endisset
                             <span class="country__text night_text">vs</span>
                             @isset($item->secondCountries)
-                                <img src="{{$item->secondCountries->flagOrDefault()}}"
+                                <img src="{{asset($item->secondCountries->flagOrDefault())}}"
                                      alt="flag" title="{{$item->secondCountries->name}}">
                             @endisset
                         </div>
