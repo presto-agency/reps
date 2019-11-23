@@ -224,7 +224,7 @@
                             </div>
                             <div class="center_block">
                                 @if(isset($player->user->countries) && !empty($player->user->countries))
-                                    <img src="{{asset($player->user->countries->flag)}}" class="info__flag" alt="flag"
+                                    <img src="{{asset($player->user->countries->flagOrDefault())}}" class="info__flag" alt="flag"
                                          title="{{$player->user->countries->name}}">
                                 @endif
                                 @if(isset($player->user->races) && !empty($player->user->races))

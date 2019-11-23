@@ -35,7 +35,7 @@
                                      alt="avatar">
                             @endguest()
                             <p class="info__nickname">{{$comment->user->name}}</p>
-                            <img src="{{$comment->user->countries->flag}}" class="info__flag" alt="flag">
+                            <img src="{{$comment->user->countries->flagOrDefault()}}" class="info__flag" alt="flag">
                             <img src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
                                  class="info__cube" alt="race">
                             <p class="info__text">{{$comment->user->comments_count.' pts'}}

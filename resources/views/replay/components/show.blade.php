@@ -70,12 +70,12 @@
                         </div>
                         <div class="right_block">
                             @isset($replay->firstCountries)
-                                <img src="{{asset($replay->firstCountries->flag)}}" alt="flag"
+                                <img src="{{asset($replay->firstCountries->flagOrDefault())}}" alt="flag"
                                      title="{{$replay->firstCountries->name}}"/>
                             @endisset
                             <span class="night_text"> vs </span>
                             @isset($replay->secondCountries)
-                                <img src="{{asset($replay->secondCountries->flag)}}" alt="flag"
+                                <img src="{{asset($replay->secondCountries->flagOrDefault())}}" alt="flag"
                                      title="{{$replay->secondCountries->name}}"/>
                             @endisset
                         </div>

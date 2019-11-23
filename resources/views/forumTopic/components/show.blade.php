@@ -26,7 +26,7 @@
                         <img src="{{asset($topic->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
                     @endguest()
                     <p class="title__nickname">{{ $topic->author->name ? $topic->author->name : 'user' }}</p>
-                    <img src="{{ $topic->author->countries->flag }}" class="title__flag"
+                    <img src="{{ $topic->author->countries->flagOrDefault() }}" class="title__flag"
                          title="{{ $topic->author->countries->name }}" alt="flag">
                     <img src="{{asset("images/default/game-races/" . $topic->author->races->title . ".png")}}"
                          class="title__cube" title="{{ $topic->author->races->title }}" alt="race">
