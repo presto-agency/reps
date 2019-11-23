@@ -112,4 +112,24 @@ trait UserRelation
         return $this->belongsToMany('App\Models\Dialogue', 'user_messages');
     }
 
+    public function topicsCount()
+    {
+        return $this->hasMany('App\Models\ForumTopic', 'user_id', 'id')->count();
+    }
+
+    public function replaysCount()
+    {
+        return $this->hasMany(Replay::class, 'user_id', 'id')->count();
+    }
+
+    public function imagesCount()
+    {
+        return $this->hasMany(UserGallery::class, 'user_id', 'id')->count();
+    }
+
+    public function commentsCount()
+    {
+        return $this->hasMany('App\Models\Comment', 'user_id', 'id')->count();
+    }
+
 }

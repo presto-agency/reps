@@ -81,8 +81,8 @@ class ForumSections extends Section
             ->setDisplaySearch(false)
             ->paginate(5)
             ->setColumns($columns)
-            ->setHtmlAttribute('class',
-                'table-primary table-hover th-center');
+            ->setHtmlAttribute('class', 'table-primary table-hover th-center')
+            ->setHtmlAttribute('class', 'text-center');
 
 
         $control    = $display->getColumns()->getControlColumn();
