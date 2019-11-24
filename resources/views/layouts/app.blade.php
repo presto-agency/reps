@@ -56,7 +56,11 @@
             @section('breadcrumbs')
                 {{--                {{ Breadcrumbs::render('home') }}--}}
             @show
+
         </div>
+{{--        <div class="col-6">--}}
+{{--            @include('rating.rating')--}}
+{{--        </div>--}}
     </div>
 </section>
 <!--END SECTION BREADCRUMBS-->
