@@ -1,7 +1,7 @@
 @php
     $last_id = '';
 @endphp
-<div class="gallery nightMode border_shadow">
+<div class="gallery night_modal border_shadow">
     @if($visible_title)
         <div class="gallery__title">
             <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"

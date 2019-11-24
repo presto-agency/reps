@@ -88,8 +88,9 @@
                                 @guest()
                                     <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
                                 @endguest()
-                                <span class="comment-author__nickname"
+                               <a href="#"> <span class="comment-author__nickname"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
+                               </a>
                             @endif
                             @if(!empty($item->file) && checkFile::checkFileExists($item->file))
                                 <span class="comment-author__replay-item night_text">{{__('REP')}}</span>
