@@ -110,7 +110,38 @@
 
 
 <!-- ========ALL MODAL WINDOWS ============== -->
-<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="likeModal"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="likeModalLabel">Оставте коментарий</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="close_modal">&times;</span>
+                </button>
+            </div>
+            @if(Auth::user() )
+                @include('modal.like_autorization')
+            @else
+                @include('modal.no-autorization')
+            @endif
+            <div class="modal-body unregistered-info-wrapper info-block">
+                <div class="notice"></div>
+                <img class="positive-vote-img d-none" src="{{asset('images/icons/thumbs-up.png')}}" alt="">
+                <img class="negative-vote-img d-none" src="{{asset('images/icons/thumbs-down.png')}}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- ********************************* -->
+{{--<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -160,7 +191,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>--}}
 <!-- ========== END ALL MODAL WINDOWS ============ -->
 
 
@@ -225,7 +256,7 @@
             var url = $(this).attr('data-route');
             modal.find('form input#rating').val(rating);
             modal.find('form').attr('action', url);
-            modal.find('.modal-body .unregistered-info-wrapper').addClass('d-none');
+            modal.find('.unregistered-info-wrapper').addClass('d-none');
 
             if (rating === '1') {
                 modal.find('.positive').removeClass('d-none');
@@ -256,16 +287,16 @@
                         if (response.user_rating === undefined) {
                             imgClass = '';
                         }
-                        $('#vote-modal').find('.modal-body .unregistered-info-wrapper').removeClass('d-none');
-                        $('#vote-modal').find('.modal-body .unregistered-info-wrapper .notice').html(response.message);
+                        $('#vote-modal').find('.unregistered-info-wrapper').removeClass('d-none');
+                        $('#vote-modal').find('.unregistered-info-wrapper .notice').html(response.message);
                         $('#vote-modal').find('.modal-body' + ' .' + imgClass).removeClass('d-none');
                     } else {
                         location.reload();
                     }
                 },
-                error: function () {
-                    $('#vote-modal').find('.modal-body .unregistered-info-wrapper').removeClass('d-none');
-                    $('#vote-modal').find('.modal-body .unregistered-info-wrapper .notice').html('ошибка');
+                error: function (error) {
+                    $('#vote-modal').find('.unregistered-info-wrapper').removeClass('d-none');
+                    $('#vote-modal').find('.unregistered-info-wrapper .notice').html('ошибка' + error);
                 }
             });
         });

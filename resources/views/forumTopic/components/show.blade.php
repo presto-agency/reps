@@ -120,7 +120,7 @@
                     </div>
                     <div class="card-body__items-wrap">
                         @php
-                            $modal = (Auth::guest() /*&&  $topic->user_id == Auth::user()->id*/) ?'#no-rating':'#vote-modal';
+                            $modal = (!Auth::guest() &&  $topic->user_id == Auth::user()->id) ?'#no-rating':'#vote-modal';
                         @endphp
                         <a href="{{$modal}}" class="items__like positive-vote vote-replay-up night_text"
                            data-toggle="modal" {{--data-target="#vote-modal" --}}data-rating="1"
