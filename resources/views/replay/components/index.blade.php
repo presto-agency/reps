@@ -76,6 +76,11 @@
                             @endisset
                         @endif
                     @endisset
+                        <div id="load_more-replay" class="gocu-replays__button night_modal">
+                            <button type="button" name="load_more-replay_button" class="button button__download-more night_text" id="load_more-replay_button" data-id="13" data-subtype="">
+                                Репутация
+                            </button>
+                        </div>
                     <p class="subtitle__date night_text">{{$item->created_at->format('h:m d.m.Y')}}</p>
                 </div>
                 <div class="gocu-replays__match">
@@ -88,8 +93,9 @@
                                 @guest()
                                     <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
                                 @endguest()
-                                <span class="comment-author__nickname"
+                               <a href="#"> <span class="comment-author__nickname"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
+                               </a>
                             @endif
                             @if(!empty($item->file) && checkFile::checkFileExists($item->file))
                                 <span class="comment-author__replay-item night_text">{{__('REP')}}</span>

@@ -20,7 +20,11 @@
                     <p>{{$userImage->sign}}</p>
                 </div>
                 <div class="items__rating">
-                    <a class="rating__like" href="#">
+                    @php
+                            $modal = (!Auth::guest() && $userImage->user_id == Auth::user()->id) ?'#no-rating':'#vote-modal';
+                        @endphp
+                    <a href="#vote-modal" class="rating__like positive-vote vote-replay-up" data-toggle="modal" data-rating="1"
+                       data-route="{{route('gallery.set_rating',['id'=>$userImage->id])}}">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                              y="0px" viewBox="0 0 512 512" xml:space="preserve">
 		                    <path d="M83.6,167.3H16.7C7.5,167.3,0,174.7,0,184v300.9c0,9.2,7.5,16.7,16.7,16.7h66.9c9.2,0,16.7-7.5,16.7-16.7V184
@@ -31,7 +35,8 @@
                     </svg>
                         <span>{{$userImage->positive_count}}</span>
                     </a>
-                    <a class="rating__dislike" href="#">
+                    <a href="#vote-modal" class="rating__dislike negative-vote vote-replay-down" data-toggle="modal" data-rating="-1"
+                       data-route="{{route('gallery.set_rating',['id'=>$userImage->id])}}">
                         <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
                             <path
                                     d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"/>

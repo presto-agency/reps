@@ -81,8 +81,6 @@ class RatingService
                 '-1')->count();
         $val        = $positive - $negative;
 
-        echo $object_id;
-        die;
         $class_name::where('id', $object_id)->update([
             'rating'         => $val,
             'negative_count' => $negative,
@@ -126,7 +124,7 @@ class RatingService
      * @return array
      */
     public static function set(
-        SetRatingRequest $request,
+        Request $request,
         $id,
         $relation,
         $model

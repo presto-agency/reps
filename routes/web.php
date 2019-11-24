@@ -57,6 +57,10 @@ Route::group(['prefix' => 'replay'], function () {
         ->name('replay.download.count');
     Route::post('{id}/send_comment', 'Replay\ReplayHelper@saveComments')
         ->name('replay.send_comment');
+
+    /**set reputation like/dislike*/
+    Route::post('{id}/set_rating', 'ReplayRatingController@setRating')
+        ->name('replay.set_rating');
 });
 /*Tournament*/
 Route::resource("tournament", 'Tournament\TournamentController');
@@ -80,6 +84,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth','loginAccess']], funct
 
     Route::get('messages', 'UserMessagingController@getUser')
         ->name('user.messages_all');
+    /**reputation gallery*/
+    Route::post('/user-gallery/{id}/set_rating', 'UserGalleryRatingController@setRating')->name('gallery.set_rating');
 
     Route::get('{id}', 'UserController@show')->name('user_profile');
     Route::resource("{id}/user-gallery", 'User\UserGalleryController');
