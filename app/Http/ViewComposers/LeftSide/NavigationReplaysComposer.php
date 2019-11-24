@@ -40,7 +40,6 @@ class NavigationReplaysComposer
         self::$replayTypeName = ReplayHelper::checkUrlType() == 1
             ? 'Пользовательские' : 'Профессиональные';
         $this->replayNav      = self::getCacheReplayPro('proReplayNav');
-
     }
 
     public function compose(View $view)
@@ -69,12 +68,25 @@ class NavigationReplaysComposer
 
     private static function getReplay()
     {
-        return ReplayType::with(['replays'])
-            ->get(['id', 'name', 'title'])->map
+        /**
+         * New Version
+         * Attention !!!
+         * This method using \Staudenmeir\EloquentEagerLimit\HasEagerLimit
+         * for ->limit()
+         * In Models:ReplayType,Replay
+         * this dont want work on  server
+         */
+//         return  ReplayType::with('replays')->get();
+
+        /**
+         * Old Version using map
+         *
+         */
+
+        return ReplayType::with('replays')->get()->map
             (function ($query) {
                 $query->setRelation('replays',
                     $query->replays->take(3));
-
                 return $query;
             });
     }

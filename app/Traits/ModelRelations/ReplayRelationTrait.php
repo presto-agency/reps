@@ -49,6 +49,10 @@ trait ReplayRelationTrait
     {
         return $this->belongsTo(Race::class, 'second_race', 'id');
     }
+    public function replayComments()
+    {
+       return \App\Models\Comment::where('commentable_id',$this->id)->where('commentable_type','App\Models\Replay')->count();
+    }
 
     /**
      * Get all of the topic comments.

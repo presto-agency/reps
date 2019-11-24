@@ -12,9 +12,11 @@
         "ext-curl": "*",
         "ext-gd": "*",
         "ext-json": "*",
+        "ext-zip": "*",
         "barryvdh/laravel-debugbar": "^3.2",
         "barryvdh/laravel-translation-manager": "^0.5.5",
         "caouecs/laravel-lang": "~4.0",
+        "chriskonnertz/bbcode": "^1.1.2",
         "davejamesmiller/laravel-breadcrumbs": "^5.3",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -22,8 +24,7 @@
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "laravelrus/sleepingowl": "dev-bs4",
-        "chriskonnertz/bbcode": "^1.1.2",
-        "ext-zip": "*"
+        "staudenmeir/eloquent-eager-limit": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
