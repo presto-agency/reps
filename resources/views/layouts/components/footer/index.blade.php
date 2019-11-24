@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="footer__logo col-xl-3 col-lg-3 col-md-6 col-sm-6 order-1">
-                <img src="{{ url('/images/logo.png') }}" class="logo__img img-fluid" alt="logo">
+                <img src="{{ asset('/images/logo.png') }}" class="logo__img img-fluid" alt="logo">
                 <p class="logo__text">{{__('Everything about StarCraft®: Remastered')}}</p>
             </div>
             <div

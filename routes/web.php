@@ -67,15 +67,14 @@ Route::post('tournament/loadmore/load_tournament',
     'Tournament\TournamentController@loadTournament')
     ->name('load.more.tournament');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth','loginAccess']], function () {
     /**comments rating: like/dislike*/
     Route::post('comment/{id}/set_rating', 'CommentsRatingController@setRating')
         ->name('comment.set_rating');
     //    Route::get('comment/{id}/get_rating', 'CommentsRatingController@getRating')->name('comment.ger_rating');
 });
 
-Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
-
+Route::group(['prefix' => 'user', 'middleware' => ['auth','loginAccess']], function () {
     Route::get('/friends_list', 'UserFriendController@getFriendsList')
         ->name('user.friends_list');
 
@@ -91,10 +90,12 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::resource("{id}/user-topics", 'User\UserTopicsController');
     Route::resource("{id}/user-replay", 'User\UserReplayController');
     Route::post('{id}/loadmore/load_replay',
-        'User\UserReplayController@loadReplay')->name('load.more.user.replay');
+        'User\UserReplayController@loadReplay')
+        ->name('load.more.user.replay');
 
     Route::resource("{id}/user-comments", 'User\UserCommentsController');
-    Route::resource("{id}/user-rating-list", 'User\UserRatingListController');
+    Route::resource("{id}/user-rating-list",
+        'User\UserRatingListController');
     Route::resource("{id}/user-topic-rating-list",
         'User\UserTopicRatingListController');
 
@@ -123,7 +124,7 @@ Route::group(['prefix' => 'chat'], function () {
         return view('stream-section.test-chat');
     });*/
 
-    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => ['auth','loginAccess']], function () {
         Route::post('/insert_message', 'ChatController@insert_message')
             ->name('chat.add_message');
         Route::delete('/delete/{id}', 'ChatController@destroy')

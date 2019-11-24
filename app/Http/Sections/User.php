@@ -13,10 +13,11 @@ use App\Models\{Country, Race, Role};
 use Carbon\Carbon;
 use checkFile;
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Log;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Display\ControlLink;
 use SleepingOwl\Admin\Display\DisplayDatatablesAsync;
 use SleepingOwl\Admin\Section;
 
@@ -92,10 +93,10 @@ class User extends Section
 
             $rating = AdminColumn::custom('Рейтинг', function ($model) {
                 $thumbsUp
-                    = '<span style="font-size: 1em; color: green;"><i class="fas fa-plus"></i></span>';
+                        = '<span style="font-size: 1em; color: green;"><i class="fas fa-plus"></i></span>';
                 $equals = '<i class="fas fa-equals"></i>';
                 $thumbsDown
-                    = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
+                        = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
 
                 return $thumbsUp."$model->count_positive".'<br/>'.$equals
                     ."$model->rating".'<br/>'
@@ -182,6 +183,11 @@ class User extends Section
                 ->setHtmlAttributes(['style' => 'width: 100%']),
         ]);
         $display->getColumnFilters()->setPlacement('table.header');
+
+
+        $control    = $display->getColumns()->getControlColumn();
+        $buttonShow = $this->show();
+        $control->addButton($buttonShow);
 
         return $display;
     }
@@ -383,6 +389,25 @@ class User extends Section
 
             return $getData;
         }
+    }
+
+    /**
+     * @return ControlLink
+     */
+    public function show()
+    {
+        $link = new ControlLink(function (
+            Model $model
+        ) {
+            //            return asset('/admin/users/'.$model->getKey().'/send-email-create');
+            return route('admin.user.email-send.create',
+                ['id' => $model->getKey()]);
+        }, 'Написать Email', 50);
+        $link->hideText();
+        $link->setIcon('far fa-envelope-open');
+        $link->setHtmlAttribute('class', 'btn-info');
+
+        return $link;
     }
 
 }
