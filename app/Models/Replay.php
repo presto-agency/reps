@@ -16,7 +16,9 @@ use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 class Replay extends Model
 {
 
-    use ReplayRelationTrait, HasEagerLimit;
+    use ReplayRelationTrait
+//        , HasEagerLimit
+        ;
 
     const REPLAY_PRO = 0;
 

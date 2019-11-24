@@ -8,7 +8,7 @@ use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 class ReplayType extends Model
 {
 
-    use HasEagerLimit;
+//    use HasEagerLimit;
     protected $fillable
         = [
             'name', 'title',
@@ -20,7 +20,8 @@ class ReplayType extends Model
             ->where('approved', 1)
             ->where('user_replay', Replay::REPLAY_PRO)
             ->orderByDesc('id')
-            ->take(3);
+//            ->take(3)
+            ;
     }
 
 }
