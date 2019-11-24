@@ -96,9 +96,9 @@ class User extends Section
                 $thumbsDown
                     = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
 
-                return $thumbsUp.$model->positive_count.'<br/>'.$equals
-                    .($model->positive_count - $model->negative_count).'<br/>'
-                    .$thumbsDown.$model->negative_count;
+                return $thumbsUp."$model->count_positive".'<br/>'.$equals
+                    ."$model->rating".'<br/>'
+                    .$thumbsDown."$model->count_negative";
             })->setWidth(10),
 
             $count_topic = AdminColumn::custom('<small>Темы</small>',
