@@ -76,20 +76,24 @@ class NavigationReplaysComposer
          * In Models:ReplayType,Replay
          * this dont want work on  server
          */
-         return  ReplayType::with('replays')->get();
+//         return  ReplayType::with('replays')->get();
 
 
         /**
          * Old Version using map
          *
          */
-//        return ReplayType::with(['replays'])->get()->map
-//            (function ($query) {
-//                $query->setRelation('replays',
-//                    $query->replays->take(3));
-//
-//                return $query;
-//            });
+//        $test = ReplayType::with(['replays'=>function ($query) {
+//            $query->select()
+//        }])->get();
+////            SELECT COUNT(*) FROM Universities WHERE Location = 'Moscow'
+//        dd($test);
+        return ReplayType::with('replays')->get()->map
+            (function ($query) {
+                $query->setRelation('replays',
+                    $query->replays->take(3));
+                return $query;
+            });
     }
 
 }
