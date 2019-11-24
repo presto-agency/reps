@@ -93,9 +93,10 @@ class Replay extends Section
 
         $display->setColumns([
 
-            $id = AdminColumn::text('id', 'Id')
-                ->setWidth(70),
-            $title = AdminColumn::text('title', 'Название'),
+            $id = AdminColumn::text('id', 'Id'),
+            
+            $title = AdminColumn::text('title', 'Название')
+                ->setWidth(150),
 
             $map = AdminColumn::relatedLink('maps.name', 'Карта')
                 ->setFilterCallback(function ($column, $query, $search) {

@@ -65,6 +65,13 @@ class User extends Authenticatable implements MustVerifyEmail
             'remember_token',
         ];
 
+    public function userCanLogin()
+    {
+        return auth()->user()->ban !== 1
+            || ! empty(auth()->user()
+                ->email_verified_at);
+    }
+
     public function userViewAvatars()
     {
         if ($this->view_avatars == 1) {
@@ -179,4 +186,5 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return false;
     }
+
 }

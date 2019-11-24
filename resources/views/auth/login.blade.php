@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('sidebar-left')
+    @include('left-side.upcoming-tournament')
+    @include('left-side.last-replays')
+    @include('left-side.last-news')
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">

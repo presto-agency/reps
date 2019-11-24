@@ -26,20 +26,12 @@
                         @isset($routCheck)
                             @if($routCheck)
                                 <a class="img-link" href="{{route('galleries.show',['gallery' => $item->id])}}">
-                                    @if(!empty($item->picture) && file_exists($item->picture))
-                                        <img src="{{asset($item->picture)}}" alt="image">
-                                    @else
-                                        <img src="{{asset($item->defaultGallery())}}" alt="image">
-                                    @endif
+                                        <img src="{{asset($item->pictureOrDefault())}}" alt="image">
                                 </a>
                             @else
                                 <a class="img-link"
                                    href="{{route('user-gallery.show',['id'=> $item->user_id,'user_gallery'=> $item->id])}}">
-                                    @if(!empty($item->picture) && file_exists($item->picture))
-                                        <img src="{{asset($item->picture)}}" alt="image">
-                                    @else
-                                        <img src="{{asset($item->defaultGallery())}}" alt="image">
-                                    @endif
+                                        <img src="{{asset($item->pictureOrDefault())}}" alt="image">
                                 </a>
                             @endif
                         @endisset

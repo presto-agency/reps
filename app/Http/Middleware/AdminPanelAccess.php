@@ -15,9 +15,10 @@ class AdminPanelAccess
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user() && auth()->user()->isAdmin()) {
+        if (auth()->check() && auth()->user()->isAdmin()) {
             return $next($request);
         }
+        auth()->logout();
         return redirect('/');
     }
 }

@@ -3,24 +3,14 @@
     <br>
     <div class="row">
         <div class="col-md-3 text-center">
-            @if(!empty($userGallery->picture))
-                <img class="img-bordered-sm" src="{{$userGallery->picture}}" alt="picture">
-            @else
-                <img class="img-bordered-sm" src="{{$userGallery->defaultGallery()}}" alt="picture">
-            @endif
+                <img class="img-bordered-sm" src="{{$userGallery->pictureOrDefault()}}" alt="picture">
         </div>
     </div>
     <div class="row">
         <div class="col-md-3 text-center">
             <span class="username">
-                @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img src="{{asset($userGallery->users->avatarOrDefault())}}" class="img-circle img-bordered-sm"
                          alt="User avatar"/>
-                @endif
-                @guest()
-                    <img src="{{asset($userGallery->users->avatarOrDefault())}}" class="img-circle img-bordered-sm"
-                         alt="User avatar"/>
-                @endguest()
             </span>
         </div>
     </div>
@@ -66,14 +56,8 @@
             @if( isset($userGallery->comments) && !empty($userGallery->comments))
                 @foreach($userGallery->comments as $comment)
                     <div class="item row">
-                        @if(auth()->check() && auth()->user()->userViewAvatars())
                             <img src="{{asset($comment->user->avatarOrDefault())}}" class="img-circle img-bordered-sm"
                                  alt="User avatar"/>
-                        @endif
-                        @guest()
-                            <img src="{{asset($comment->user->avatarOrDefault())}}" class="img-circle img-bordered-sm"
-                                 alt="User avatar"/>
-                        @endguest()
                         <p class="message">
                             <a href="#" class="name">
                                 <small class="text-muted pull-right"><i
