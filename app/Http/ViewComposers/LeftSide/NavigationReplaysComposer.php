@@ -78,16 +78,11 @@ class NavigationReplaysComposer
          */
 //         return  ReplayType::with('replays')->get();
 
-
         /**
          * Old Version using map
          *
          */
-//        $test = ReplayType::with(['replays'=>function ($query) {
-//            $query->select()
-//        }])->get();
-////            SELECT COUNT(*) FROM Universities WHERE Location = 'Moscow'
-//        dd($test);
+
         return ReplayType::with('replays')->get()->map
             (function ($query) {
                 $query->setRelation('replays',
