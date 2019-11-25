@@ -334,6 +334,5 @@ $('#return-to-top').click(function() {      // When arrow is clicked
     }, 500);
 });
 ///////////////////////////////////////////////////quote
-function Quote() {
-    alert(123);
-}
+
+

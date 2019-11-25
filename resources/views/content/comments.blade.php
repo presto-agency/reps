@@ -1,6 +1,23 @@
-@isset($comments)
+<script>
+    function remove() {
+        let block=document.getElementById('citation_block1');
+        block.remove();
+    }
+    remove();
+    function Quote(id) {
+         // var button = document.getElementById('btn_quote');
+         // textarea = document.getElementById('tq2');
+         // button.onclick = function() {
+         //     textarea.focus()
+         // }
+        let block=document.getElementById(id);
+        console.log(block);
 
-    <div class="comments border_shadow">
+        CKEDITOR.instances['content-comment'].insertHtml(block.innerHTML);
+        }
+    </script>
+@isset($comments)
+    <div class="comments border_shadow" >
         <div class="comments__title">
             <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                  x="0px" y="0px"
@@ -23,47 +40,51 @@
 
         @if($comments->isNotEmpty())
             @foreach($comments as $comment)
-                <div class="comments__wrapp border_shadow">
-                    @if(isset($comment->user) && !empty($comment->user))
-                        <div class="comments__info change_gray">
-                            @if(auth()->check() && auth()->user()->userViewAvatars())
-                                <img src="{{asset($comment->user->avatarOrDefault())}}" class="info__avatar"
-                                     alt="avatar">
+                <div class="citation border_shadow">
+                    <div  id="{{$comment->id}}">
+                        <div class="comments__wrapp wrapp_comments">
+                            @if(isset($comment->user) && !empty($comment->user))
+                                <div class="comments__info change_gray">
+                                    @if(auth()->check() && auth()->user()->userViewAvatars())
+                                        <img src="{{asset($comment->user->avatarOrDefault())}}" class="info__avatar"
+                                             alt="avatar">
+                                    @endif
+                                    @guest()
+                                        <img src="{{asset($comment->user->avatarOrDefault())}}" class="info__avatar"
+                                             alt="avatar">
+                                    @endguest()
+                                    <p class="info__nickname">{{$comment->user->name}}</p>
+                                    <img src="{{asset($comment->user->countries->flagOrDefault())}}" class="info__flag" alt="flag">
+                                    <img src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
+                                         class="info__cube" alt="race">
+                                    <p class="info__text">{{$comment->user->comments_count.' pts'}}
+                                        | {{$comment->user->count_positive - $comment->user->count_negative.' кг'}}</p>
+                                    <span class="info__date">{{$comment->created_at->format('h:m d.m.Y')}}</span>
+                                </div>
                             @endif
-                            @guest()
-                                <img src="{{asset($comment->user->avatarOrDefault())}}" class="info__avatar"
-                                     alt="avatar">
-                            @endguest()
-                            <p class="info__nickname">{{$comment->user->name}}</p>
-                            <img src="{{asset($comment->user->countries->flagOrDefault())}}" class="info__flag" alt="flag">
-                            <img src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
-                                 class="info__cube" alt="race">
-                            <p class="info__text">{{$comment->user->comments_count.' pts'}}
-                                | {{$comment->user->count_positive - $comment->user->count_negative.' кг'}}</p>
-                            <span class="info__date">{{$comment->created_at->format('h:m d.m.Y')}}</span>
+                            <div class="comments__content">
+                                <div class="content__title night_text"> {!! ParserToHTML::toHTML($comment->content,'size')  !!}</div>
+                            </div>
                         </div>
-                    @endif
-                    <div class="comments__content">
-                        <div class="content__title night_text"> {!! ParserToHTML::toHTML($comment->content,'size')  !!}</div>
                     </div>
                     <div class="comments__items">
                         <div class="items__wrap">
-                            <button class="items__quote" id="btn_quote" onClick="Quote()">
-{{--                                <a  href="#" >--}}
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                         x="0px" y="0px"
-                                         viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
-                                         xml:space="preserve">
+                            <button onclick="Quote({{$comment->id}})" class="items__quote" id="btn_quote" >
+                                {{--                                <a  href="#" >--}}
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                     x="0px" y="0px"
+                                     viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                                     xml:space="preserve">
                                 <path d="M256,0C114.6,0,0,114.6,0,256s114.6,256,256,256s256-114.6,256-256S397.4,0,256,0z M256,472c-119.3,0-216-96.7-216-216
                                     S136.7,40,256,40s216,96.7,216,216S375.3,472,256,472z"/>
-                                        <path d="M239.1,185.5L209.2,160c-37,27.2-65.2,75.6-65.2,127.4c0,41.6,23.3,64.6,50,64.6c24.2,0,43.5-20.4,43.5-45.9
+                                    <path d="M239.1,185.5L209.2,160c-37,27.2-65.2,75.6-65.2,127.4c0,41.6,23.3,64.6,50,64.6c24.2,0,43.5-20.4,43.5-45.9
                                     c0-24.6-16.9-43.3-39.5-43.3c-4,0-9.7,1.7-10.5,1.7C190.8,237.3,213.3,203.3,239.1,185.5z"/>
-                                        <path d="M326.9,262.8c-3.2,0-8.9,1.7-10.5,1.7c3.2-27.2,25.8-61.1,51.6-79L338.2,160c-37,27.2-65.2,75.6-65.2,127.4
+                                    <path d="M326.9,262.8c-3.2,0-8.9,1.7-10.5,1.7c3.2-27.2,25.8-61.1,51.6-79L338.2,160c-37,27.2-65.2,75.6-65.2,127.4
                                     c0,41.6,23.3,64.6,50,64.6c24.1,0,43.5-20.4,43.5-45.9C366.4,281.5,349.5,262.8,326.9,262.8z"/>
                             </svg>
-{{--                                </a>--}}
+                                {{--                                </a>--}}
                             </button>
-{{--               д--}}
+                            {{--               д--}}
                         </div>
                         <div class="items__wrap">
                             @php
@@ -88,15 +109,17 @@
                                data-route="{{route('comment.set_rating',['id'=>$comment->id])}}">
                                 <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
                                     <path
-                                            d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"/>
+                                        d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"/>
                                     <path
-                                            d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"/>
+                                        d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"/>
                                 </svg>
                                 <span>{{$comment->negative_count }}</span>
                             </a>
                         </div>
                     </div>
                 </div>
+
+
             @endforeach
         @else
             <p class="none_comments night_text"> {{__('Нет комментариев')}}</p>

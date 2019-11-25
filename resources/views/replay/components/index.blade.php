@@ -76,11 +76,11 @@
                             @endisset
                         @endif
                     @endisset
-                        <div id="load_more-replay" class="gocu-replays__button night_modal">
+                        {{--<div id="load_more-replay" class="gocu-replays__button night_modal">
                             <button type="button" name="load_more-replay_button" class="button button__download-more night_text" id="load_more-replay_button" data-id="13" data-subtype="">
                                 Репутация
                             </button>
-                        </div>
+                        </div>--}}
                     <p class="subtitle__date night_text">{{$item->created_at->format('h:m d.m.Y')}}</p>
                 </div>
                 <div class="gocu-replays__match">

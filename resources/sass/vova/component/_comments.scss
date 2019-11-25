@@ -1,6 +1,31 @@
+.nightMode{
+    .comments{
+        .comments__content{
+            .comments__wrapp{
+                box-shadow: 0 7px 35px rgba(0, 0, 12, 0.56) !important;
+            }
+        }
+    }
+}
 .comments {
+    br{
+        display: none!important;
+    }
     box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     border-radius: 5px;
+    .citation{
+        box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    .comments__content{
+        .comments__wrapp{
+            box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+            border-radius: 5px;
+            padding-bottom: 10px;
+        }
+    }
+
     .none_comments{
         font-size: 16px;
         padding: 20px;
@@ -29,6 +54,7 @@
     }
 
     .comments__wrapp {
+
         .comments__info {
             display: flex;
             align-items: center;
@@ -98,42 +124,125 @@
             }
         }
 
-        .comments__items {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 17px;
-            padding-left: 20px;
-            padding-right: 20px;
+        //.comments__items {
+        //    width: 100%;
+        //    display: flex;
+        //    justify-content: space-between;
+        //    align-items: center;
+        //    padding-bottom: 17px;
+        //    padding-left: 20px;
+        //    padding-right: 20px;
+        //
+        //    .items__wrap {
+        //        text-decoration: none;
+        //        .items__quote {
+        //            text-decoration: none;
+        //            svg {
+        //                width: 20px;
+        //                height: 20px;
+        //                fill: #c7c9d7;
+        //                transition: .3s;
+        //            }
+        //
+        //            &:hover {
+        //                & svg {
+        //                    fill: #0567cc;
+        //                }
+        //            }
+        //        }
+        //
+        //
+        //    }
+        //
+        //    .items__share {
+        //        text-decoration: none;
+        //        margin-left: 21px;
+        //
+        //        svg {
+        //            width: 18px;
+        //            height: 20px;
+        //            fill: #c7c9d7;
+        //            transition: .3s;
+        //        }
+        //
+        //        &:hover {
+        //            & svg {
+        //                fill: #0567cc;
+        //            }
+        //        }
+        //    }
+        //
+        //    .items__like {
+        //        text-decoration: none;
+        //
+        //        svg {
+        //            width: 20px;
+        //            height: 18px;
+        //            fill: #c7c9d7;
+        //            transition: .3s;
+        //        }
+        //
+        //        span {
+        //            color: #9ca0b6;
+        //            font-size: 12px;
+        //            font-weight: 400;
+        //            line-height: 19px;
+        //            margin-left: 7px;
+        //        }
+        //
+        //        &:hover {
+        //            & svg {
+        //                fill: #0567cc;
+        //            }
+        //        }
+        //    }
+        //
+        //    .items__dislike {
+        //        text-decoration: none;
+        //        margin-left: 17px;
+        //
+        //        svg {
+        //            width: 20px;
+        //            height: 18px;
+        //            fill: #c7c9d7;
+        //            transition: .3s;
+        //        }
+        //
+        //        span {
+        //            color: #9ca0b6;
+        //            font-size: 12px;
+        //            font-weight: 400;
+        //            line-height: 19px;
+        //            margin-left: 7px;
+        //        }
+        //
+        //        &:hover {
+        //            & svg {
+        //                fill: #0567cc;
+        //            }
+        //        }
+        //    }
+        //}
+    }
+    .comments__items {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 17px;
+        padding-left: 20px;
+        padding-right: 20px;
 
-            .items__wrap {
-                text-decoration: none;
-                .items__quote {
-                    text-decoration: none;
-                    svg {
-                        width: 20px;
-                        height: 20px;
-                        fill: #c7c9d7;
-                        transition: .3s;
-                    }
-
-                    &:hover {
-                        & svg {
-                            fill: #0567cc;
-                        }
-                    }
-                }
-
-
+        .items__wrap {
+            text-decoration: none;
+            button{
+                border: 0;
+                background: transparent;
             }
-
-            .items__share {
+            .items__quote {
                 text-decoration: none;
-                margin-left: 21px;
-
                 svg {
-                    width: 18px;
+                    width: 20px;
                     height: 20px;
                     fill: #c7c9d7;
                     transition: .3s;
@@ -146,54 +255,74 @@
                 }
             }
 
-            .items__like {
-                text-decoration: none;
 
-                svg {
-                    width: 20px;
-                    height: 18px;
-                    fill: #c7c9d7;
-                    transition: .3s;
-                }
+        }
 
-                span {
-                    color: #9ca0b6;
-                    font-size: 12px;
-                    font-weight: 400;
-                    line-height: 19px;
-                    margin-left: 7px;
-                }
+        .items__share {
+            text-decoration: none;
+            margin-left: 21px;
 
-                &:hover {
-                    & svg {
-                        fill: #0567cc;
-                    }
-                }
+            svg {
+                width: 18px;
+                height: 20px;
+                fill: #c7c9d7;
+                transition: .3s;
             }
 
-            .items__dislike {
-                text-decoration: none;
-                margin-left: 17px;
-
-                svg {
-                    width: 20px;
-                    height: 18px;
-                    fill: #c7c9d7;
-                    transition: .3s;
+            &:hover {
+                & svg {
+                    fill: #0567cc;
                 }
+            }
+        }
 
-                span {
-                    color: #9ca0b6;
-                    font-size: 12px;
-                    font-weight: 400;
-                    line-height: 19px;
-                    margin-left: 7px;
+        .items__like {
+            text-decoration: none;
+
+            svg {
+                width: 20px;
+                height: 18px;
+                fill: #c7c9d7;
+                transition: .3s;
+            }
+
+            span {
+                color: #9ca0b6;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 19px;
+                margin-left: 7px;
+            }
+
+            &:hover {
+                & svg {
+                    fill: #0567cc;
                 }
+            }
+        }
 
-                &:hover {
-                    & svg {
-                        fill: #0567cc;
-                    }
+        .items__dislike {
+            text-decoration: none;
+            margin-left: 17px;
+
+            svg {
+                width: 20px;
+                height: 18px;
+                fill: #c7c9d7;
+                transition: .3s;
+            }
+
+            span {
+                color: #9ca0b6;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 19px;
+                margin-left: 7px;
+            }
+
+            &:hover {
+                & svg {
+                    fill: #0567cc;
                 }
             }
         }
