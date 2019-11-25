@@ -47,7 +47,7 @@
                     </a>
                 </div>
                 <div class="items__reputation-button">
-                    <a href="#">{{__('Рейтинг лист')}}</a>
+                    <a href="{{route('gallery.get_rating',['id' => $userImage->id])}}">{{__('Рейтинг лист')}}</a>
                 </div>
                     @if($routCheck)
                         <div class="items__slide-button">

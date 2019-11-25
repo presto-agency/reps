@@ -62,6 +62,7 @@ Route::group(['prefix' => 'replay'], function () {
         ->name('replay.send_comment');
 
     /**set reputation like/dislike*/
+    Route::get('{id}/get_rating', 'ReplayRatingController@getRating')->name('replay.get_rating');
     Route::post('{id}/set_rating', 'ReplayRatingController@setRating')
         ->name('replay.set_rating');
 });
@@ -86,49 +87,46 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'ban', 'verified']],
         Route::get('/friends_list', 'UserFriendController@getFriendsList')
             ->name('user.friends_list');
 
-        Route::get('messages', 'UserMessagingController@getUser')
-            ->name('user.messages_all');
-        /**reputation gallery*/
-        Route::post('/user-gallery/{id}/set_rating',
-            'UserGalleryRatingController@setRating')
-            ->name('gallery.set_rating');
+    Route::get('messages', 'UserMessagingController@getUser')
+        ->name('user.messages_all');
+    /**reputation gallery*/
+    Route::get('/user-gallery/{id}/get_rating', 'UserGalleryRatingController@getRating')->name('gallery.get_rating');
+    Route::post('/user-gallery/{id}/set_rating', 'UserGalleryRatingController@setRating')->name('gallery.set_rating');
 
-        Route::get('{id}', 'UserController@show')->name('user_profile');
-        Route::resource("{id}/user-gallery", 'User\UserGalleryController');
-        Route::post('{id}/loadmore/load_gallery',
-            'User\UserGalleryController@loadGallery')
-            ->name('load.more.user.gallery');
+    Route::get('{id}', 'UserController@show')->name('user_profile');
+    Route::resource("{id}/user-gallery", 'User\UserGalleryController');
+    Route::post('{id}/loadmore/load_gallery',
+        'User\UserGalleryController@loadGallery')
+        ->name('load.more.user.gallery');
 
-        Route::resource("{id}/user-topics", 'User\UserTopicsController');
-        Route::resource("{id}/user-replay", 'User\UserReplayController');
-        Route::post('{id}/loadmore/load_replay',
-            'User\UserReplayController@loadReplay')
-            ->name('load.more.user.replay');
+    Route::resource("{id}/user-topics", 'User\UserTopicsController');
+    Route::resource("{id}/user-replay", 'User\UserReplayController');
+    Route::post('{id}/loadmore/load_replay',
+        'User\UserReplayController@loadReplay')->name('load.more.user.replay');
 
-        Route::resource("{id}/user-comments", 'User\UserCommentsController');
-        Route::resource("{id}/user-rating-list",
-            'User\UserRatingListController');
-        Route::resource("{id}/user-topic-rating-list",
-            'User\UserTopicRatingListController');
+    Route::resource("{id}/user-comments", 'User\UserCommentsController');
+    Route::resource("{id}/user-rating-list", 'User\UserRatingListController');
+    Route::resource("{id}/user-topic-rating-list",
+        'User\UserTopicRatingListController');
 
-        Route::get('{id}/edit', 'UserController@edit')->name('edit_profile');
-        Route::put('{id}/save', 'UserController@update')->name('save_profile');
-        Route::get('{id}/add_friend', 'UserFriendController@addFriend')
-            ->name('user.add_friend');
-        Route::get('{id}/remove_friend', 'UserFriendController@removeFriend')
-            ->name('user.remove_friend');
-        Route::get('{id}/friends_list', 'UserFriendController@getFriendsList')
-            ->name('user.friends_list.by_id');
+    Route::get('{id}/edit', 'UserController@edit')->name('edit_profile');
+    Route::put('{id}/save', 'UserController@update')->name('save_profile');
+    Route::get('{id}/add_friend', 'UserFriendController@addFriend')
+        ->name('user.add_friend');
+    Route::get('{id}/remove_friend', 'UserFriendController@removeFriend')
+        ->name('user.remove_friend');
+    Route::get('{id}/friends_list', 'UserFriendController@getFriendsList')
+        ->name('user.friends_list.by_id');
 
-        Route::get('{id}/messages', 'UserMessagingController@getUser')
-            ->name('user.messages');
-        Route::post('send_message', 'UserMessagingController@send')
-            ->name('user.send_message');
+    Route::get('{id}/messages', 'UserMessagingController@getUser')
+        ->name('user.messages');
+    Route::post('send_message', 'UserMessagingController@send')
+        ->name('user.send_message');
 
-        /**get user reputation list*/
-        Route::get('{id}/get_rating', 'RatingController@getRatingUser')
-            ->name('user.get_rating');
-    });
+    /**get user reputation list*/
+    Route::get('{id}/get_rating', 'RatingController@getRatingUser')
+        ->name('user.get_rating');
+});
 
 Route::group(['prefix' => 'chat'], function () {
 
