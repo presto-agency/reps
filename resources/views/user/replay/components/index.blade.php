@@ -60,6 +60,18 @@
                             @endisset
                         @endif
                     @endisset
+                        {{--<div id="load_more-replay" class="gocu-replays__button night_modal">
+                            <a type="button" name="load_more-replay_button" class="button button__download-more night_text" id="load_more-replay_button" data-id="13" data-subtype="">
+                                Репутация
+                            </a>
+                        </div>--}}
+
+                        <div class="gocu-replays__button night_modal">
+                            <a class="button button__download-more night_text"
+                               href="{{route('replay.get_rating',['id' => $item->id])}}">
+                                рейтинг лист</a>
+                        </div>
+
                     <p class="subtitle__date night_text">{{$item->created_at->format('h:m d.m.Y')}}</p>
                 </div>
                 <div class="gocu-replays__match">
@@ -167,9 +179,6 @@
                             <span class="wins__text night_text">{{$item->rating}}</span>
                         </div>
                     </div>
-                    <a class="rate"
-                       href="{{route('replay.get_rating',['id' => $item->id])}}">
-                        рейтинг лист</a>
                 </div>
                 <hr>
                 @php
