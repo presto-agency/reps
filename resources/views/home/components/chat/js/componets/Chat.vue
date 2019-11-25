@@ -3,7 +3,7 @@
         <div class="container_titleChat">
             <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_left">
                 <img id="img_menuMob" class="icon_bars" src="/images/speech-bubble.png"/>
-                <p class="title_text">Guest</p>
+                <p class="title_text">{{username}}</p>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_right">
                 <div class="popup_chat">
@@ -51,9 +51,10 @@
         props: ['auth','not_user'],
         data: ()=>({
             isUser: true,
-            messagearray: []
+            messagearray: [],
+            username: ''
         }),
-        created(){
+        beforeCreate(){
             axios.get('/chat/get_messages').then((response) => {
                 response.data.forEach((item,index)=> {
                     this.messagearray.push({
@@ -64,13 +65,20 @@
                         date: item.time,
                         message: chatHelper.strParse(item.message),
                         user_id: item.user_id,
-                        user_path: 'http://reps.loc/user/',
+                        user_path: '/user/',
                         visible: true
                     })
                 });
+            });
 
-
-            })
+        },
+        created() {
+            if(this.auth.id>0) {
+                this.username = this.auth.name
+            }
+            else {
+                this.username = 'Guest'
+            }
         },
         mounted() {
             window.Echo.channel('chat').listen('NewChatMessageAdded', ({data}) => {
@@ -82,10 +90,11 @@
                     date: data.time,
                     message: chatHelper.strParse(data.message),
                     user_id: data.user.id,
-                    user_path: 'http://reps.loc/user/',
+                    user_path: '/user/',
                     visible: true
                 });
             });
+
         },
         methods: {
             deleteMessage(id) {

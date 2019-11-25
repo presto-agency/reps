@@ -6,7 +6,7 @@
                     <div class="user" >
                         <img class="icon_bars" :src="item.flag">
                         <img class="icon_bars icon_avatar" :src="item.ava"/>
-                            <span class="blue_text">{{item.usernick}}</span>
+                        <span class="blue_text usernick" @click="UserClick(item.user_id, item.usernick)">{{item.usernick}}</span>
                         <a :href="item.user_path+item.user_id" target="_blank">
                             <span class="number_mess night_text">#{{item.user_id}}</span>
                         </a>
@@ -78,15 +78,15 @@ export default {
         smiles: [],
         images: {},
         linkProfile: '',
-        selection: ''
+        selection: '',
+        user_id: '',
+        user_nick: ''
     }),
     methods: {
         deleteMessage(id) {
             this.$emit('on_delete',id);
             axios.delete(`chat/delete/${id}\'`);
         },
-
-
         bold() {
              this.textMessage=chatHelper.bold(this.textMessage)
         },
@@ -134,15 +134,21 @@ export default {
             this.images = image_object.images;
         },
         sendMessage(){
+            let mes = chatHelper.parsePath(this.textMessage, this.smiles, this.images);
+            mes = chatHelper.parseUser(mes,this.user_id, this.user_nick,this.messagearray);
             axios.post('/chat/insert_message', {
                 user_id: this.auth.id,
                 file_path: "",
-                message: chatHelper.parsePath(this.textMessage, this.smiles, this.images),
+                message: mes,
                 imo: ""});
             this.textMessage = '';
+            this.user_id = '';
+            this.user_nick = '';
+        },
+        UserClick(id,usernick) {
+            this.textMessage += "@" + id + ",";
+
         }
-
-
     }
 }
 
@@ -152,6 +158,12 @@ export default {
     p {
         cursor: pointer;
         color: #0567cc;
+        text-decoration: underline;
+    }
+}
+.usernick {
+    cursor: pointer;
+    &:hover {
         text-decoration: underline;
     }
 }
@@ -176,5 +188,6 @@ export default {
     position: relative;
 
 }
+
 
 </style>

@@ -21,21 +21,47 @@ export const strParse= (str) => {
     str = str.replace(/\[img\]([\s\S]*)\[\/img\]/gim, '<img src="$1" style="max-width: 100%;" alt="Incorrect image link"/>');
     for(let i=1; i<=6; i++) {
         if(str.search(`c${i}`)>-1) {
-            if(i===1)
-            str= str.replace(/\[c1\]([\s\S]*)\[\/c1\]/gim, '<span style="color: #FFFF77;">$1</span>');
-            else if(i===2)
-                str= str.replace(/\[c2\]([\s\S]*)\[\/c2\]/gim, '<span style="color: #FF77FF;">$1</span>');
-            else if(i===3)
-                str= str.replace(/\[c3\]([\s\S]*)\[\/c3\]/gim, '<span style="color: #77FFFF;">$1</span>');
-            else if(i===4)
-                str= str.replace(/\[c4\]([\s\S]*)\[\/c4\]/gim, '<span style="color: #FFAAAA;">$1</span>');
-            else if(i===5)
-                str= str.replace(/\[c5\]([\s\S]*)\[\/c5\]/gim, '<span style="color: #AAFFAA;">$1</span>');
-            else
-                str= str.replace(/\[c6\]([\s\S]*)\[\/c6\]/gim, '<span style="color: #AAAAFF;">$1</span>');
+            if(i===1) {
+                str = str.replace(/\[c1\]([\s\S]*)\[\/c1\]/gim, '<span style="color: #FFFF77;">$1</span>');
+            }
+            else if(i===2) {
+                str = str.replace(/\[c2\]([\s\S]*)\[\/c2\]/gim, '<span style="color: #FF77FF;">$1</span>');
+            }
+            else if(i===3) {
+                str = str.replace(/\[c3\]([\s\S]*)\[\/c3\]/gim, '<span style="color: #77FFFF;">$1</span>');
+            }
+            else if(i===4) {
+                str = str.replace(/\[c4\]([\s\S]*)\[\/c4\]/gim, '<span style="color: #FFAAAA;">$1</span>');
+            }
+            else if(i===5) {
+                str = str.replace(/\[c5\]([\s\S]*)\[\/c5\]/gim, '<span style="color: #AAFFAA;">$1</span>');
+            }
+            else {
+                str = str.replace(/\[c6\]([\s\S]*)\[\/c6\]/gim, '<span style="color: #AAAAFF;">$1</span>');
+            }
         }
     }
+
     return str
+};
+export const parseUser = (str,id,usernick,messagearray) => {
+    if(usernick!='') {
+        let val = '<span><font color="#de8218">'+'@'+usernick+', '+'</font></span>';
+        str = str.replace(/@([\s\S]*),/gim, val)
+    }
+    else {
+       if(str.search('@')>-1) {
+
+           messagearray.forEach((item)=>{
+               if(str.search('@'+item.user_id+',')>-1){
+                   let val = '<span><font color="#de8218">'+'@'+item.usernick+', '+'</font></span>';
+                   str = str.replace(/@([\s\S]*),/gim, val)
+               }
+
+           })
+       }
+    }
+    return str;
 };
 export const parsePath = (mes,smiles,images) => {
     if(mes.search(';')>-1){
