@@ -93,7 +93,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isNotUser()
     {
-        return $this->roles->name != 'user' ? 1 : 0;
+        return $this->roles->name != 'user' ? true : false;
     }
 
     public function isUser()
@@ -104,6 +104,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function superAdminRoles()
     {
         return $this->roles->name == 'super-admin' ? true : false;
+    }
+
+    public function adminRoles()
+    {
+        return $this->roles->name == 'admin' ? true : false;
     }
 
     /**

@@ -192,6 +192,7 @@ class User extends Section
         return $display;
     }
 
+    public $id;
     /**
      * @param  int  $id
      *
@@ -199,6 +200,7 @@ class User extends Section
      */
     public function onEdit($id)
     {
+        $this->id = $id;
         $getData = $this->getModel()->select('avatar')->find($id);
         if ($getData) {
             $this->imageOldPath = $getData->avatar;
@@ -229,7 +231,7 @@ class User extends Section
                     'string',
                     'email',
                     'max:255',
-                    'unique:users,email,'.$id,
+                    'unique:users,email,'.$this->id,
                 ]),
 
             $name = AdminFormElement::text('name', 'Имя')
@@ -241,7 +243,7 @@ class User extends Section
                     'required',
                     'string',
                     'between:1,255',
-                    'unique:users,name,'.$id,
+                    'unique:users,name,'.$this->id,
                 ]),
 
             $birthday = AdminFormElement::date('birthday', 'День рождения')
@@ -340,7 +342,6 @@ class User extends Section
      */
     public function onDelete($id)
     {
-
     }
 
     /**
@@ -380,12 +381,12 @@ class User extends Section
             return (new Role())->pluck('title', 'id')->toArray();
         } else {
             $getData = (new Role())->pluck('title', 'id')->toArray();
-            if (($key1 = array_search('Супер-админ', $getData)) !== false) {
-                unset($getData[$key1]);
-            }
-            if (($key2 = array_search('Админ', $getData)) !== false) {
-                unset($getData[$key2]);
-            }
+//            if (($key1 = array_search('Супер-админ', $getData)) !== false) {
+//                unset($getData[$key1]);
+//            }
+//            if (($key2 = array_search('Админ', $getData)) !== false) {
+//                unset($getData[$key2]);
+//            }
 
             return $getData;
         }
