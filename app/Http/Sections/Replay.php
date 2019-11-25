@@ -297,7 +297,7 @@ class Replay extends Section
         $form->addHeader([
             AdminFormElement::columns()
                 ->addColumn([
-                    $user_replay = AdminFormElement::text('title', 'Название')
+                    $title = AdminFormElement::text('title', 'Название')
                         ->setHtmlAttribute('placeholder', 'Название')
                         ->setHtmlAttribute('maxlength', '255')
                         ->setHtmlAttribute('minlength', '1')
@@ -331,13 +331,12 @@ class Replay extends Section
 
                 ], 3)
                 ->addColumn([
-                    $map_id = AdminFormElement::select('user_replay',
+                    $user_replay = AdminFormElement::select('user_replay',
                         'Профессиональный/Пользовательский')
                         ->setOptions(\App\Models\Replay::$userReplaysType)
                         ->setValidationRules([
                             'required',
-                            'string',
-                            'in:0,1',
+                            'in:1,0',
                         ]),
                 ], 3),
         ]);
@@ -450,9 +449,8 @@ class Replay extends Section
             $video_iframe = AdminFormElement::wysiwyg('video_iframe', 'Видео')
                 ->setHtmlAttributes(['placeholder' => 'Видео'])
                 ->setValidationRules([
-                    'nullable',
-                    'string',
-                    'max:5000',
+                    'required_without:file',
+                    'max:1000',
                 ]),
 
             $content = AdminFormElement::wysiwyg('content', 'Краткое описание')
@@ -468,7 +466,8 @@ class Replay extends Section
                     return [
                         $file = AdminFormElement::file('file', 'Файл')
                             ->setValidationRules([
-                                'required',
+                                'required_without:video_iframe',
+                                'nullable',
                                 'file',
                                 'max:5120',
                             ])
@@ -507,7 +506,7 @@ class Replay extends Section
         $form->addHeader([
             AdminFormElement::columns()
                 ->addColumn([
-                    $user_replay = AdminFormElement::text('title', 'Название')
+                    $title = AdminFormElement::text('title', 'Название')
                         ->setHtmlAttribute('placeholder', 'Название')
                         ->setHtmlAttribute('maxlength', '255')
                         ->setHtmlAttribute('minlength', '1')
@@ -539,12 +538,12 @@ class Replay extends Section
 
                 ], 3)
                 ->addColumn([
-                    $map_id = AdminFormElement::select('user_replay',
+                    $user_replay = AdminFormElement::select('user_replay',
                         'Профессиональный/Пользовательский')
                         ->setOptions(\App\Models\Replay::$userReplaysType)
                         ->setValidationRules([
                             'required',
-                            'string',
+                            'in:1,0',
                         ]),
                 ], 3),
         ]);
@@ -649,6 +648,13 @@ class Replay extends Section
                 })
         );
         $form->addBody([
+
+            $video_iframe = AdminFormElement::wysiwyg('video_iframe', 'Видео')
+                ->setHtmlAttributes(['placeholder' => 'Видео'])
+                ->setValidationRules([
+                    'required_without:file',
+                    'max:1000',
+                ]),
             $content = AdminFormElement::wysiwyg('content', 'Контент')
                 ->setHtmlAttributes(['placeholder' => 'Контент'])
                 ->setValidationRules([
@@ -661,7 +667,8 @@ class Replay extends Section
                     return [
                         $file = AdminFormElement::file('file', 'Файл')
                             ->setValidationRules([
-                                'required',
+                                'required_without:video_iframe',
+                                'nullable',
                                 'file',
                                 'max:5120',
                             ])
