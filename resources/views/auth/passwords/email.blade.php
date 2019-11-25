@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('sidebar-left')
-    @include('components.interview')
-    @include('left-side.search-replays')
+    @include('left-side.upcoming-tournament')
+    @include('left-side.last-replays')
+    @include('left-side.last-news')
 @endsection
 
 @section('content')
@@ -35,7 +36,3 @@
     </div>
 @endsection
 
-@section('right-side')
-    @parent
-    @include('right-side.components.last-replay')
-@endsection

@@ -1,6 +1,6 @@
 <div class="my-topics forum-topics border_shadow">
     <div class="my-topics__title">
-        <p class="title__text">Мои темы</p>
+        <p class="title__text">{{__('Мои темы')}}</p>
     </div>
     <div class="my-topics__accordion">
         @isset($topics)

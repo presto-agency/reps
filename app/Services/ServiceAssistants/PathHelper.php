@@ -45,13 +45,13 @@ class PathHelper
     {
         self::$checkPath = $path;
         /*Check file*/
+
         if (strpos($path, '/storage') !== false) {
             self::$checkPath = Str::replaceFirst('/storage', 'public', $path);
         }
         if (strpos($path, 'storage') !== false) {
             self::$checkPath = Str::replaceFirst('storage', 'public', $path);
         }
-
         return Storage::exists(self::$checkPath);
 
     }

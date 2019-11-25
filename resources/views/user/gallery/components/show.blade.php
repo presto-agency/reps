@@ -11,7 +11,7 @@
                 c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
                 c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
         </svg>
-        <p class="title__text">Галерея</p>
+        <p class="title__text">{{__('Галерея')}}</p>
     </div>
     @isset($userImage)
         <div class="gallery-detail__body">
@@ -47,9 +47,8 @@
                     </a>
                 </div>
                 <div class="items__reputation-button">
-                    <a href="{{route('gallery.get_rating',['id' => $userImage->id])}}">рейтинг лист</a>
+                    <a href="{{route('gallery.get_rating',['id' => $userImage->id])}}">{{__('Рейтинг лист')}}</a>
                 </div>
-                @isset($routCheck)
                     @if($routCheck)
                         <div class="items__slide-button">
                             @isset($previous)
@@ -65,26 +64,21 @@
                         </div>
                     @else
                         <div class="items__slide-button">
-                            @isset($previous)
+                            @if($previous)
                                 <a href="{{route('user-gallery.show',['id'=> $userImage->user_id,'user_gallery'=> $previous])}}">
                                     <i class="fas fa-angle-double-left"></i>
                                 </a>
-                            @endisset
-                            @isset($next)
+                            @endif
+                            @if($next)
                                 <a href="{{route('user-gallery.show',['id'=> $userImage->user_id,'user_gallery'=> $next])}}">
                                     <i class="fas fa-angle-double-right"></i>
                                 </a>
-                            @endisset
+                            @endif
                         </div>
                     @endif
-                @endisset
             </div>
             <div class="body__img">
-                @if(!empty($userImage->picture) && checkFile::checkFileExists($userImage->picture))
-                    <img src="{{asset($userImage->picture)}}" alt="image">
-                @else
-                    <img src="{{asset($userImage->defaultGallery())}}" alt="image">
-                @endif
+                    <img src="{{asset($userImage->pictureOrDefault())}}" alt="image">
             </div>
         </div>
     @endisset

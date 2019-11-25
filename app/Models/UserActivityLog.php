@@ -11,6 +11,8 @@ class UserActivityLog extends Model
 
     use UserActivityLogRelationTrait;
 
+    const EVENT_USER_VERIFIED = 'email_verified';
+
     const EVENT_USER_LOGIN = 'login';
 
     const EVENT_USER_LOGOUT = 'logout';
@@ -31,6 +33,7 @@ class UserActivityLog extends Model
 
     public static $eventType
         = [
+            self::EVENT_USER_VERIFIED ,
             self::EVENT_USER_LOGIN,
             self::EVENT_USER_LOGOUT,
             self::EVENT_USER_COMMENT,

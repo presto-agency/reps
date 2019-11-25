@@ -71,18 +71,9 @@ class UserGallery extends Section
         $display->setColumns(
             [
                 AdminColumn::text('id', 'Id')->setWidth(50),
-                AdminColumn::image(
-                    function ($model) {
-                        if ( ! empty($model->picture)
-                            && PathHelper::checkFileExists(
-                                $model->picture
-                            )
-                        ) {
-                            return $model->picture;
-                        } else {
-                            return 'images/default/gallery/no-img.png';
-                        }
-                    }
+                AdminColumn::image(function ($model) {
+                    return $model->pictureOrDefault();
+                }
                 )->setLabel('Изображение')->setWidth(10),
                 AdminColumn::relatedLink('users.name', 'Пользователь'),
                 AdminColumn::text('sign', 'Подпись'),

@@ -24,14 +24,14 @@
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <p>
-                                {!! ParserToHTML::toHTML($topic->preview_content,'size') !!}
+                                {{ ParserToHTML::toHTML($topic->preview_content,'size') }}
                             </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <p>
-                                {!! ParserToHTML::toHTML($topic->content,'size') !!}
+                                {{ ParserToHTML::toHTML($topic->content,'size') }}
                             </p>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                                                     {{$comment->user->name}}
                                                 </a>
                                                 {{--<a type="button" class="btn btn-default text-red"  title="Удалить запись" href="#{{route('admin.comments.remove', ['id' => $comment->id])}}"><i class="fa fa-trash"></i></a>--}}
-                                                {!! ParserToHTML::toHTML($comment->content,'size') !!}
+                                                {{ ParserToHTML::toHTML($comment->content,'size') }}
                                             </p>
                                         </div>
                                     @endforeach

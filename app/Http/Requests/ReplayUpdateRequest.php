@@ -35,10 +35,9 @@ class ReplayUpdateRequest extends FormRequest
             'second_country_id' => 'string|exists:countries,id',
             'second_location'   => 'nullable|integer|min:1|max:20',
             'content'           => 'string|between:1,10000',
-            'video_iframe'      => 'nullable|string|between:1,5000',
-            'file'              => 'nullable|file|max:5120',
-//            'file_id'               => 'required_without:video_iframe|nullable|exists:files,id',
-//            'video_iframe'          => 'required_without:file_id|max:1000',
+            'video_iframe'      => 'required_without:file|max:1000',
+            'file'              => 'required_without:video_iframe|nullable|file|max:5120',
+            'user_replay'       => 'required|in:1,0',
         ];
     }
 
