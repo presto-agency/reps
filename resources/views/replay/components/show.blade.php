@@ -23,7 +23,7 @@
                             <img class="icon_bars" src="{{asset($replay->users->avatarOrDefault())}}"
                                  alt="avatar"/>
                         @endauth
-                        <span>{{$replay->users->count_positive - $replay->users->count_negative .' кг'}}</span>
+                        <span>{{$replay->users->rating .' кг'}}</span>
                         <a href="{{route('user-comments.index',['id'=>$replay->users->id])}}">{{$replay->users->comments_count.' pts'}}</a>
                     @endif
                 </div>
