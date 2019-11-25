@@ -45,7 +45,7 @@
                 <div class="gocu-replays__match gocu-replays__match_rating">
                     <div class="match__author">
                         <div class="subtitle__info">
-                                <span class="rating__info night_text">{{__('REP')}}</span>
+                                <span class="match__comment night_text">{{__('REP')}}</span>
                         </div>
 
                     </div>

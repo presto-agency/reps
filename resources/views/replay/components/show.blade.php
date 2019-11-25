@@ -1,5 +1,5 @@
 @isset($replay)
-    <section class="page_replay">
+    <section class="page_replay border_shadow">
         <div class="wrapper">
             <div class=" title_block">
                 <div class="left_block">
