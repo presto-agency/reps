@@ -1,6 +1,6 @@
 <div class="my-topics forum-topics border_shadow">
     <div class="my-topics__title">
-        <p class="title__text">{{__('Мои темы')}}</p>
+        <p class="title__text">Мои темы</p>
     </div>
     <div class="my-topics__accordion">
         @isset($topics)
@@ -46,11 +46,12 @@
                                                 <path
                                                         d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"/>
                                             </svg>
-                                            <span>168</span>
+                                            <span>{{ $item->reviews }}</span>
                                         </button>
 
                                         <button class="items__items item__comment">
                                             <svg xmlns="http://www.w3.org/2000/svg"
+                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
                                                  version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 60 60"
                                                  xml:space="preserve">
 	                    <path
@@ -68,7 +69,7 @@
                                     <div class="footer__item">
                                         <button class="items__items item__like">
                                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                                                 x="0px" y="0px"
+                                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                  viewBox="0 0 512 512"
                                                  style="enable-background:new 0 0 512 512;" xml:space="preserve">
 		                    <path d="M83.6,167.3H16.7C7.5,167.3,0,174.7,0,184v300.9c0,9.2,7.5,16.7,16.7,16.7h66.9c9.2,0,16.7-7.5,16.7-16.7V184
@@ -90,14 +91,15 @@
                                             <span>{{$item->negative_count}}</span>
                                         </button>
                                         <a class="rate"
-                                           href="{{route('user-topic-rating-list.show',['id' => $item->user_id,'user_topic_rating_list'=>$item->id])}}">
-                                            {{__('Рейтинг лист')}}</a>
+                                           href="{{route('forum.topic.get_rating',['id' => $item->id])}}">
+                                            рейтинг лист</a>
                                     </div>
 
                                     <div class="footer__item">
                                         <a class="item__later"
                                            href="{{route('topic.show',['topic'=> $item->id])}}">
                                             <svg xmlns="http://www.w3.org/2000/svg"
+                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
                                                  version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 489.6 489.6"
                                                  xml:space="preserve">
                             <path

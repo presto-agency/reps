@@ -3,7 +3,7 @@
         <div class="container_titleChat">
             <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_left">
                 <img id="img_menuMob" class="icon_bars" src="/images/speech-bubble.png"/>
-                <p class="title_text">Guest</p>
+                <p class="title_text">{{username}}</p>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_right">
                 <div class="popup_chat">
@@ -17,27 +17,27 @@
                     </button>
                     <!-- Modal insert need -->
                     <div class="  modal  fade" id="exampleModalLong" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content ">
-                                <div class="modal-header title_block modal-header_chat">
-                                    <img id="img_menuMob1" class="icon_bars"
-                                         src=""/>
-                                    <p class="title_text_modal">Guest</p>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true" class="close_modal close_btn">×</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body popup_contant messanger night_modal">
-                                    <chat-message :messagearray="messagearray" :not_user="not_user" :auth="auth" @on_delete="deleteMessage($event)"/>
+                                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content ">
+                                        <div class="modal-header title_block modal-header_chat">
+                                            <img id="img_menuMob1" class="icon_bars"
+                                                 src=""/>
+                                            <p class="title_text_modal">Guest</p>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true" class="close_modal close_btn">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body popup_contant messanger night_modal">
+                                           <chat-message :messagearray="messagearray" :not_user="not_user" :auth="auth" @on_delete="deleteMessage($event)"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-        <chat-message :messagearray="messagearray" :not_user="not_user" :auth="auth" @on_delete="deleteMessage($event)"/>
+            <chat-message :messagearray="messagearray" :not_user="not_user" :auth="auth" @on_delete="deleteMessage($event)"/>
     </div>
 </template>
 
@@ -48,14 +48,15 @@
 
     export default {
         name: "Chat",
-        props: ['auth', 'not_user'],
-        data: () => ({
+        props: ['auth','not_user'],
+        data: ()=>({
             isUser: true,
-            messagearray: []
+            messagearray: [],
+            username: ''
         }),
-        created() {
+        beforeCreate(){
             axios.get('/chat/get_messages').then((response) => {
-                response.data.forEach((item, index) => {
+                response.data.forEach((item,index)=> {
                     this.messagearray.push({
                         id: item.id,
                         flag: item.country_flag,
@@ -64,13 +65,20 @@
                         date: item.time,
                         message: chatHelper.strParse(item.message),
                         user_id: item.user_id,
-                        user_path: 'http://reps.loc/user/',
+                        user_path: '/user/',
                         visible: true
                     })
                 });
+            });
 
-
-            })
+        },
+        created() {
+            if(this.auth.id>0) {
+                this.username = this.auth.name
+            }
+            else {
+                this.username = 'Guest'
+            }
         },
         mounted() {
             window.Echo.channel('chat').listen('NewChatMessageAdded', ({data}) => {
@@ -82,19 +90,20 @@
                     date: data.time,
                     message: chatHelper.strParse(data.message),
                     user_id: data.user.id,
-                    user_path: 'http://reps.loc/user/',
+                    user_path: '/user/',
                     visible: true
                 });
             });
+
         },
         methods: {
             deleteMessage(id) {
-                this.messagearray = this.messagearray.filter(item => item.id != id);
+                this.messagearray = this.messagearray.filter(item => item.id!=id );
             }
         }
     }
 </script>
 
-<style>
+<style >
 
 </style>
