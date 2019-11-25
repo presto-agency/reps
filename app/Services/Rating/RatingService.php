@@ -45,6 +45,40 @@ class RatingService
     }
 
     /**
+     * Get view with rating list for current object
+     *
+     * @param $id
+     * @param $relation
+     * @param $model
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public static function getObjectRating($id, $model, $relation)
+    {
+        $route = '';
+        $pagination_path = '';
+        $object = $model::find($id);
+        switch ($relation) {
+            case UserReputation::RELATION_FORUM_TOPIC:
+                $route = 'forum.topic.index';
+                $pagination_path = 'forum.topic.paginate';
+                break;
+            case UserReputation::RELATION_REPLAY:
+                $route = 'replay.get';
+                $pagination_path = 'replay.paginate';
+                break;
+            case UserReputation::RELATION_USER_GALLERY:
+                $route = 'gallery.view';
+                $pagination_path = 'gallery.paginate';
+                break;
+        }
+        return view('user.object-reputation')->with([
+            'object' => $object,
+            'route' => $route,
+            'pagination_path' => $pagination_path
+        ]);
+    }
+
+    /**
      * Refresh user Rating
      *
      * @param $user_id
