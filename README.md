@@ -1,21 +1,23 @@
-Deploy:
+1.Deploy:
 
 ```$xslt
 composer install
 ```
-Update data in .env file
+2.Update data in .env file
 
 Run:
 ```
 php artisan migrate
 php artisan storage:link
 php artisan key:generate
+php artisan config:clear
 php artisan config:cache
 
 npm run dev
 composer dump-autoload
 ```
-Transfer data from old database:
+
+3.Transfer data from old database:
 ```
 1)You need to run a database dump on the server;
 2)Configure connection in .env
@@ -28,7 +30,7 @@ DB_PASSWORD2=
 4)php artisan db:seed
 ```
 
-Setting Chat:
+4.Setting Chat:
 - устрановка і запуск Redis сервера:
 ```
 sudo apt install redis-server
@@ -44,4 +46,39 @@ php artisan config:cache
 npm install -g laravel-echo-server
 laravel-echo-server init
 laravel-echo-server start
+```
+5.Cache settings info
+```
+This application uses the cache given to reduce queries to the database.
+The default is the 'file' cache driver.
+```
+```
+For production, it is recommended to change the driver to 'memcached'
+1.You need install memcached on server;
+2.Change .env CACHE_DRIVER=;
+3.php artisan config:clear
+4.php artisan config:cache
+```
+6.Mail settings info
+```
+In the .emn file you need configure the email sending configuration
+```
+```
+1.Set urs settings:
+MAIL_FROM_ADDRESS=info@reps.ru
+MAIL_FROM_NAME=Reps.ru
+MAIL_DRIVER=smtp
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=
+2.php artisan config:clear;
+3.php artisan config:cache;
+```
+
+6.Task Manager info
+```
+The project has tasks. To complete them, you need to configure the task scheduler on the server.
+exemple:* * * * * php /path/to/artisan schedule:run >>/dev/null 2>&1
 ```

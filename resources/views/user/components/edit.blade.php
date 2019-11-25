@@ -43,9 +43,10 @@
             <div class="preview-image-wrapper">
                 @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img class="" src="{{asset($user->avatarOrDefault())}}" alt="avatar">
-                @else
-                    <img class="" src="{{asset($user->avatarOrDefault())}}" alt="avatar">
                 @endif
+                @guest()
+                    <img class="" src="{{asset($user->avatarOrDefault())}}" alt="avatar">
+                @endguest()
             </div>
             <div class="row">
                 <div class="col-8">

@@ -1,5 +1,11 @@
 @media (max-width: 991px) {
     /*global styles START*/
+    .fileUpload{
+        span{
+            font-size: 1.8vw;
+        }
+
+    }
     #left-sidebar {
         order: 1;
     }
@@ -364,11 +370,18 @@
     .streams_list{
         padding: 15px;
         top: 6vw;
+        width:23vw;
         & .widget-stream-lists{
             visibility: hidden;
             margin: 5px 0;
             & span{
                 margin-left: 20px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: inline-block;
+                max-width: 8vw;
+                font-size:12px;
             }
         }
     }
@@ -619,7 +632,7 @@
             & .content_login{
                 & p{
                     font-size: 1.413vw;
-                    max-width: 13.127vw;
+                    max-width: 90%;
                 }
             }
         }
@@ -932,7 +945,7 @@
             }
         }
         & .content_allArticle{
-            padding: 1.615vw 2.018vw 0;
+            padding: 1.615vw 2.018vw ;
             p {
                 font-size: 1.615vw;
                 padding-left: 2.018vw;
@@ -940,7 +953,16 @@
             }
         }
     }
-
+    #registrationModal {
+        .modal-body {
+            .modal-body__title {
+                font-size: 3vw;
+            }
+            .select2-selection__rendered{
+                font-size: 1rem;
+            }
+        }
+    }
     /*РЕПЛЕИ*/
     .replays {
         margin-bottom: 3.431vw;
@@ -2447,6 +2469,11 @@
             }
             svg{
                 width: 1.514vw;
+            }
+            .title_top{
+                div{
+                    font-size: 1.171vw;
+                }
             }
             .right_block{
                 .comment_count{

@@ -16,10 +16,11 @@
                 @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img src="{{asset($userGallery->users->avatarOrDefault())}}" class="img-circle img-bordered-sm"
                          alt="User avatar"/>
-                @else
+                @endif
+                @guest()
                     <img src="{{asset($userGallery->users->avatarOrDefault())}}" class="img-circle img-bordered-sm"
                          alt="User avatar"/>
-                @endif
+                @endguest()
             </span>
         </div>
     </div>
@@ -68,10 +69,11 @@
                         @if(auth()->check() && auth()->user()->userViewAvatars())
                             <img src="{{asset($comment->user->avatarOrDefault())}}" class="img-circle img-bordered-sm"
                                  alt="User avatar"/>
-                        @else
+                        @endif
+                        @guest()
                             <img src="{{asset($comment->user->avatarOrDefault())}}" class="img-circle img-bordered-sm"
                                  alt="User avatar"/>
-                        @endif
+                        @endguest()
                         <p class="message">
                             <a href="#" class="name">
                                 <small class="text-muted pull-right"><i

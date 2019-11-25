@@ -76,6 +76,11 @@
                             @endisset
                         @endif
                     @endisset
+                        <div id="load_more-replay" class="gocu-replays__button night_modal">
+                            <button type="button" name="load_more-replay_button" class="button button__download-more night_text" id="load_more-replay_button" data-id="13" data-subtype="">
+                                Репутация
+                            </button>
+                        </div>
                     <p class="subtitle__date night_text">{{$item->created_at->format('h:m d.m.Y')}}</p>
                 </div>
                 <div class="gocu-replays__match">
@@ -84,13 +89,19 @@
                             @if(isset($item->users) && !empty($item->users))
                                 @if(auth()->check() && auth()->user()->userViewAvatars())
                                     <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
-                                @else
-                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
                                 @endif
-                                <span class="comment-author__nickname"
+                                @guest()
+                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
+                                @endguest()
+                               <a href="#"> <span class="comment-author__nickname"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
+                               </a>
                             @endif
-                            <span class="comment-author__replay-item night_text">Видео реплей</span>
+                            @if(!empty($item->file) && checkFile::checkFileExists($item->file))
+                                <span class="comment-author__replay-item night_text">{{__('REP')}}</span>
+                            @else
+                                <span class="comment-author__replay-item night_text">{{__('VOD')}}</span>
+                            @endif
                         </div>
                         <div class="subtitle__icons">
                             <svg version="1.1" id="Capa_1"
@@ -115,7 +126,7 @@
                                     class="night_text">{{$item->comments_count}}</span>
                             <a class="items__download night_text download"
                                data-id="{{$item->id}}"
-                               data-url="{{url("replay/$item->id/download_count")}}"
+                               data-url="{{asset("replay/$item->id/download_count")}}"
                                href="{{route('replay.download',['id' =>$item->id])}}">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -139,12 +150,12 @@
                         <div class="info__country">
                             <span class="country__text night_text">Страны:</span>
                             @isset($item->firstCountries)
-                                <img class="country__img country-first" src="{{$item->firstCountries->flag}}"
+                                <img class="country__img country-first" src="{{asset($item->firstCountries->flagOrDefault())}}"
                                      alt="flag" title="{{$item->firstCountries->name}}">
                             @endisset
                             <span class="country__text night_text">vs</span>
                             @isset($item->secondCountries)
-                                <img src="{{$item->secondCountries->flag}}"
+                                <img src="{{asset($item->secondCountries->flagOrDefault())}}"
                                      alt="flag" title="{{$item->secondCountries->name}}">
                             @endisset
                         </div>

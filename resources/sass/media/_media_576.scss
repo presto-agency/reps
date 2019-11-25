@@ -1,5 +1,16 @@
 @media (max-width: 576px) {
     //global_style
+    .fileUpload{
+        span{
+            font-size: 2.8vw;
+        }
+
+    }
+    .user_bar{
+        top:15px;
+        bottom: auto;
+        right: 50px;
+    }
     .title_block{
         padding: 3.472vw;
         min-height: 10.417vw;
@@ -217,9 +228,11 @@
             & .block_user_akk{
                 & .blue_text{
                     font-size:  4.431vw;
+                    max-width: 35vw!important;
                 }
                 & .number_mess{
                     font-size:  4.431vw;
+                    max-width: 20vw!important;
                 }
                 & .user{
                     min-width: 27.778vw;
@@ -627,7 +640,7 @@
             & .content_login{
                 & p{
                     font-size: 3.431vw;
-                    max-width: 38.306vw;
+                    max-width: 30.306vw;
                 }
             }
         }
@@ -636,10 +649,17 @@
     .gocu-replays {
         .gocu-replays__subtitle{
             .subtitle__name{
+                div{
+                    max-width: 200px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
                 font-size: 3.0vw;
             }
             .subtitle__date{
                   font-size: 3.0vw;
+                min-width: 110px;
               }
         }
 
@@ -667,8 +687,13 @@
         .gocu-replays__match {
             padding: 0 3.472vw;
             .match__author {
+                display: flex;
+                align-items: baseline;
                 padding: 3.472vw 0;
                 .subtitle__info {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     svg{
                         width: 3.646vw;
                         height: 3.646vw;
@@ -691,6 +716,9 @@
                 }
 
                 .subtitle__icons {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     svg {
                         width: 3.646vw;
                         height: 3.646vw;
@@ -725,7 +753,7 @@
             .match__info {
                 padding: 3.472vw 0;
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
 
 
                 .info__country {
@@ -1225,6 +1253,11 @@
             svg {
                 width: 3.604vw;
             }
+            .title_top{
+                div{
+                    font-size: 3.431vw;
+                }
+            }
 
             .right_block {
                 a {
@@ -1364,6 +1397,7 @@
                 & svg{
                     margin-right: 1.736vw;
                 }
+
             }
             .right_content{
                 & svg{
@@ -1402,8 +1436,11 @@
                     span{
                         font-size: 2.431vw;
                     }
-                    & img{
+
+                    img{
                         margin: 0 1.736vw 0 2.604vw;
+                        width: 5.472vw;
+                        height: 5.472vw;
                     }
                     & a{
                         width: 24.306vw;
@@ -1575,7 +1612,7 @@
             }
         }
         & .content_allArticle{
-            padding: 2.778vw 3.472vw 0;
+            padding: 2.778vw 3.472vw ;
         }
     }
     //foru_article
@@ -2599,6 +2636,18 @@
     }
     //gallery-download
     .gallery-download {
+        .gallery-file__container{
+            .f-input{
+                height: 7.292vw!important;
+            }::placeholder{
+            font-size: 3vw;
+                         }
+        }
+        .form-control{
+            height:7.292vw!important;
+        }::placeholder{
+             font-size: 3vw;
+         }
         .form-check-label{
             font-size: 2.615vw;
         }
@@ -2642,8 +2691,9 @@
                 }
                 .form-check {
                     margin-bottom: 3.472vw;
+                    display: flex;
                     label {
-                        font-size: 2.5vw;
+                        font-size: 3.5vw;
                     }
                 }
 

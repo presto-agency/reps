@@ -1,6 +1,8 @@
 <div class="modal-body autorization">
-    <form>
+    <form id="rating-vote-form" action="" method="POST">
+        @csrf
         <p class="modal_like_text">Голос:
+        <div class="positive">
             <svg class="night_svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
                  style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -10,11 +12,19 @@
                     c-7.1,1.8-13.3,6.5-17,12.8c-4.3,7.2-3.8,15.7-5.4,23.7c-3.9,20.3-13.5,39.7-28.4,54.2c-26,25.3-106.6,98.3-106.6,98.3v267.5
                     h278.6c37.6,0,62.2-42,43.7-74.7c22.1-14.2,29.7-44,16.7-66.9c22.1-14.2,29.7-44,16.7-66.9C527.6,235.2,514.8,174.8,470.3,167.3z"></path>
             </svg>
+        </div>
+        <div class="negative">
+            <svg class="night_svg" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+                <path d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"></path>
+                <path d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"></path>
+            </svg>
+        </div>
         </p>
+        <input type="hidden" name="rating" id="rating" value="">
         <p class="modal_like_text">Коментарий</p>
         <input type="text" class="form-control" name="comment" id="comment" value="">
         <div class="conteiner_btn">
-            <button class="button button__download-more">
+            <button type="submit" class="button button__download-more">
                 Проголосовать
             </button>
         </div>

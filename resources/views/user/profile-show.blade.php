@@ -7,7 +7,6 @@
 @section('sidebar-left')
     @include('components.interview')
     @include('left-side.search-replays')
-    {{--@include('user.components.my-chat')--}}
 @endsection
 
 @section('content')
@@ -21,9 +20,6 @@
         </div>
     @endif
     @include('user.components.show')
-    {{--    @include('user.components.password-recovery')--}}
-    {{--    @include('user.components.get-recovery-link')--}}
-    {{--    @include('user.messenger')--}}
 @endsection
 
 @section('right-side')

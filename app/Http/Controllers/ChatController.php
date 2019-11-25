@@ -81,7 +81,7 @@ class ChatController extends Controller
     {
         $countries = $this->general_helper->getCountries();
 //        $country_code = ($msg->user->country_id) ? mb_strtolower($countries[$msg->user->country_id]->code) : '';
-        $country_flag = ($msg->user->country_id) ? $countries[$msg->user->country_id]->flag : '';
+        $country_flag = ($msg->user->country_id) ? $countries[$msg->user->country_id]->flagOrDefault() : '';
 //        $race = ($msg->user->race) ? Replay::$race_icons[$msg->user->race] : Replay::$race_icons['All'];
 //        $len_check = strlen($msg->message) > 350 ? true : false;
 //        $short_msg = $len_check ? $this->general_helper->closeAllTags(mb_substr($msg->message, 0, 350, 'utf-8')) . '... ' : $msg->message;

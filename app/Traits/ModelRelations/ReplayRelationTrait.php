@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\Race;
 use App\Models\ReplayMap;
 use App\Models\ReplayType;
+use App\Models\UserReputation;
 use App\User;
 
 trait ReplayRelationTrait
@@ -49,6 +50,10 @@ trait ReplayRelationTrait
     {
         return $this->belongsTo(Race::class, 'second_race', 'id');
     }
+    public function replayComments()
+    {
+       return \App\Models\Comment::where('commentable_id',$this->id)->where('commentable_type','App\Models\Replay')->count();
+    }
 
     /**
      * Get all of the topic comments.
@@ -58,4 +63,23 @@ trait ReplayRelationTrait
         return $this->morphMany('App\Models\Comment', 'commentable');
     }
 
+    /**
+     * @return HasMany
+     */
+    public function positive()
+    {
+        return $this->hasMany('App\Models\UserReputation', 'object_id')
+            ->where('relation', UserReputation::RELATION_REPLAY)
+            ->where('rating', 1);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function negative()
+    {
+        return $this->hasMany('App\Models\UserReputation', 'object_id')
+            ->where('relation', UserReputation::RELATION_REPLAY)
+            ->where('rating', '-1');
+    }
 }

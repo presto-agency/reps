@@ -1,7 +1,7 @@
 <div class="replays border_shadow">
     <div class="replays__title">
         <svg class="title__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             x="0px" y="0px"
              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
         	<path d="M497,37h-65.7c0.2-7.3,0.4-14.6,0.4-22c0-8.3-6.7-15-15-15H95.3c-8.3,0-15,6.7-15,15c0,7.4,0.1,14.7,0.4,22H15
                 C6.7,37,0,43.7,0,52c0,67.2,17.6,130.6,49.5,178.6c31.5,47.4,73.5,74.6,118.9,77.2c10.3,11.2,21.2,20.3,32.5,27.3v66.7h-25.2
@@ -36,7 +36,7 @@
                                 <div class="subtopic__header card-header change_gray">
                                     <a class="header__title night_text"
                                        href="{{route('replay.index',['type' => 'pro', 'subtype'=> $replayName->name])}}">
-                                        {!! ParserToHTML::toHTML($replayName->title,'size') !!}
+                                        {{ $replayName->title }}
                                     </a>
                                 </div>
                                 <div class="subtopic__body">
@@ -47,7 +47,7 @@
                                                     <a href="{{route('replay.show',['replay'=>$replayNavItem->id, 'type' => !isset($type) ? $type : 'pro', 'subtype'=> $replayName->name])}}"
                                                        class="body__title night_text">{!! ParserToHTML::toHTML($replayNavItem->title,'size') !!}</a>
                                                     <span
-                                                            class="body__numb"></span>
+                                                            class="body__numb">{{$replayNavItem->replayComments()}}</span>
                                                 </div>
                                             @endforeach
                                         @endisset

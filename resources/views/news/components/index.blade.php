@@ -26,12 +26,13 @@
                             @if(auth()->check() && auth()->user()->userViewAvatars())
                                 <img src="{{ asset($single_news->author->avatarOrDefault()) }}" alt="avatar"
                                      class="author__avatar img-fluid">
-                            @else
+                            @endif
+                            @guest()
                                 <img src="{{ asset($single_news->author->avatarOrDefault()) }}" alt="avatar"
                                      class="author__avatar img-fluid">
-                            @endauth
+                            @endguest()
                             @if($single_news->author->name)
-                                <p class="author__nickname">{{ $single_news->author->name }}</p>
+                                    <a href="#">   <p class="author__nickname">{{ $single_news->author->name }}</p></a>
                             @endif
                         @endif
                         @if($single_news->created_at)
@@ -49,7 +50,7 @@
                     <div class="card-body__items">
                         <a class="items__comment" href="#">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 x="0px" y="0px"
                                  viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
                             <path d="M30.5,0C14.233,0,1,13.233,1,29.5c0,5.146,1.346,10.202,3.896,14.65L0.051,58.684c-0.116,0.349-0.032,0.732,0.219,1
                                 C0.462,59.888,0.728,60,1,60c0.085,0,0.17-0.011,0.254-0.033l15.867-4.176C21.243,57.892,25.86,59,30.5,59

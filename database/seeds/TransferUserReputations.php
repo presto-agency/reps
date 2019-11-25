@@ -13,25 +13,31 @@ class TransferUserReputations extends Seeder
     public function run()
     {
         /**
+         * Disable forKeys
+         */
+        Schema::table('user_reputations', function (Blueprint $table) {
+            Schema::disableForeignKeyConstraints();
+        });
+        /**
          * Clear table
          */
         \App\Models\UserReputation::query()->whereNotNull('id')->delete();
         /**
          * Remove autoIncr
          */
-        Schema::table('user_reputations', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
-        });
+//        Schema::table('user_reputations', function (Blueprint $table) {
+//            $table->integer('id')->change();
+//        });
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("user_reputations")->orderBy('id', 'ASC')
+        DB::connection("mysql2")->table("user_reputations")
             ->chunkById(100, function ($repsUserReputations) {
                 try {
                     $insertItems = [];
                     foreach ($repsUserReputations as $item) {
                         $insertItems[] = [
-                            'id'         => $item->id,
+//                            'id'         => $item->id,
                             'sender_id'   => $item->sender_id,
                             'recipient_id'     => $item->recipient_id,
                             'object_id'  => $item->object_id,
@@ -47,11 +53,17 @@ class TransferUserReputations extends Seeder
                     dd($e, $item);
                 }
             });
-        /**
-         * Add autoIncr
-         */
-        Schema::table('user_reputations', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        });
+//        /**
+//         * Add autoIncr
+//         */
+//        Schema::table('user_reputations', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        });
+//        /**
+//         * Enable forKeys
+//         */
+//        Schema::table('user_reputations', function (Blueprint $table) {
+//            Schema::enableForeignKeyConstraints();
+//        });
     }
 }

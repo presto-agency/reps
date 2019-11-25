@@ -9,7 +9,7 @@
                         <path fill="white"
                               d="M552 64H448V24c0-13.3-10.7-24-24-24H152c-13.3 0-24 10.7-24 24v40H24C10.7 64 0 74.7 0 88v56c0 35.7 22.5 72.4 61.9 100.7 31.5 22.7 69.8 37.1 110 41.7C203.3 338.5 240 360 240 360v72h-48c-35.3 0-64 20.7-64 56v12c0 6.6 5.4 12 12 12h296c6.6 0 12-5.4 12-12v-12c0-35.3-28.7-56-64-56h-48v-72s36.7-21.5 68.1-73.6c40.3-4.6 78.6-19 110-41.7 39.3-28.3 61.9-65 61.9-100.7V88c0-13.3-10.7-24-24-24zM99.3 192.8C74.9 175.2 64 155.6 64 144v-16h64.2c1 32.6 5.8 61.2 12.8 86.2-15.1-5.2-29.2-12.4-41.7-21.4zM512 144c0 16.1-17.7 36.1-35.3 48.8-12.5 9-26.7 16.2-41.8 21.4 7-25 11.8-53.6 12.8-86.2H512v16z"></path>
                     </svg>
-                    <span class="title_text night_text">{!! ParserToHTML::toHTML($replay->title,'size') !!}}</span>
+                    <span class="title_text night_text">{!! ParserToHTML::toHTML($replay->title,'size') !!}</span>
                 </div>
                 <div class="right_block">
                     @if(isset($replay->users) && !empty($replay->users))
@@ -70,12 +70,12 @@
                         </div>
                         <div class="right_block">
                             @isset($replay->firstCountries)
-                                <img src="{{asset($replay->firstCountries->flag)}}" alt="flag"
+                                <img src="{{asset($replay->firstCountries->flagOrDefault())}}" alt="flag"
                                      title="{{$replay->firstCountries->name}}"/>
                             @endisset
                             <span class="night_text"> vs </span>
                             @isset($replay->secondCountries)
-                                <img src="{{asset($replay->secondCountries->flag)}}" alt="flag"
+                                <img src="{{asset($replay->secondCountries->flagOrDefault())}}" alt="flag"
                                      title="{{$replay->secondCountries->name}}"/>
                             @endisset
                         </div>
@@ -143,9 +143,12 @@
                         <img class="img-fluid" src="{{asset('images/default/map/nominimap.png')}}" alt="map">
                     @endif
                     <div class="replay-rating">
+                        {{--@php
+                            $modal = (!Auth::guest() && $replay->user_id == Auth::user()->id) ?'#no-rating':'#vote-modal';
+                        @endphp--}}
                         <a href="#vote-modal" class="positive-vote vote-replay-up" data-toggle="modal" data-rating="1"
-                           data-target="#likeModal"
-                           data-route="http://reps.ru/replay/15980/set_rating">
+                           {{--data-target="#vote-modal"--}}
+                           data-route="{{route('replay.set_rating',['id'=>$replay->id])}}">
                             <svg class="night_svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
                                  style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -157,7 +160,7 @@
                             </svg>
                             <span>{{$replay->positive_count}}</span>
                         </a>
-                        <div class="modal fade" id="likeModal" tabindex="-1" role="dialog" aria-labelledby="likeModal"
+                        {{--<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="likeModal"
                              aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content ">
@@ -167,18 +170,18 @@
                                             <span aria-hidden="true" class="close_modal">&times;</span>
                                         </button>
                                     </div>
-                                    {{--                                    авторизований--}}
+                                    --}}{{--                                    авторизований--}}{{--
 
-                                    {{--                                    @include('modal.like_autorization');--}}
-                                    {{-- не авторизований--}}
+                                    --}}{{--                                    @include('modal.like_autorization');--}}{{--
+                                    --}}{{-- не авторизований--}}{{--
 
-                                    @include('modal.no-autorization')
+                                    @include('modal.like_autorization')
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                         <a href="#vote-modal" class="negative-vote vote-replay-down" data-toggle="modal"
                            data-rating="-1"
-                           data-route="http://reps.ru/replay/15980/set_rating" data-target="#diselikeModal">
+                           data-route="{{route('replay.set_rating',['id'=>$replay->id])}}" {{--data-target="#vote-modal"--}}>
                             <svg class="night_svg" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                         d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"></path>
@@ -187,7 +190,7 @@
                             </svg>
                             <span>{{$replay->negative_count}}</span>
                         </a>
-                        <div class="modal fade" id="diselikeModal" tabindex="-1" role="dialog"
+                        {{--<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog"
                              aria-labelledby="likeModal" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content ">
@@ -197,14 +200,14 @@
                                             <span aria-hidden="true" class="close_modal">&times;</span>
                                         </button>
                                     </div>
-                                    {{--                                    авторизований--}}
+                                    --}}{{--                                    авторизований--}}{{--
 
-                                    {{--@include('modal.diselike_autorization');--}}
-                                    {{-- не авторизований--}}
-                                    @include('modal.no-autorization')
+                                    --}}{{--@include('modal.diselike_autorization');--}}{{--
+                                    --}}{{-- не авторизований--}}{{--
+                                    @include('modal.like_autorization')
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
                     <div class="replay-download">
                         <svg class="night_svg" version="1.1" xmlns="http://www.w3.org/2000/svg"

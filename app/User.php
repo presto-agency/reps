@@ -6,6 +6,7 @@ use App\Traits\AvatarTrait;
 use App\Traits\ModelRelations\UserRelation;
 use Carbon\Carbon;
 use Eloquent;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -13,10 +14,11 @@ use Illuminate\Notifications\Notifiable;
  * Class User
  *
  * @package App
+ * @property  integer id
  * @property  string avatar
  * @mixin Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
 
     use Notifiable, AvatarTrait, UserRelation;

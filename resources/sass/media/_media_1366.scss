@@ -10,6 +10,11 @@
             margin: 0 0 0 1.464vw;
         }
     }
+    .fileUpload{
+        span{
+            font-size: 1.2vw;
+        }
+    }
     .title_top{
         height: 4.392vw;
         padding: 1.464vw;
@@ -501,7 +506,7 @@
             & .content_login{
                 & p{
                     font-size: 1.025vw;
-                    max-width: 5.249vw;
+                    max-width: 3.249vw;
 
                 }
             }
@@ -822,10 +827,33 @@
             }
         }
         & .content_allArticle{
-            padding: 1.171vw 1.464vw 0;
+            padding: 1.171vw 1.464vw ;
             p {
                 font-size: 1.171vw;
             }
+        }
+    }
+    #authorizationModal{
+        .modal-body {
+            .modal-body__title {
+                font-size: 2.3vw;
+            }
+            .select2-selection__rendered{
+                font-size: 1.3vw;
+            }
+        }
+    }
+    #registrationModal {
+        .modal-body {
+            .modal-body__title {
+                font-size: 2.3vw;
+            }
+            .select2-selection__rendered{
+                font-size: 1.3vw;
+            }
+        }
+        #race{
+            font-size: 1.3vw;
         }
     }
 
@@ -1669,7 +1697,6 @@
                     }
                     & a{
                         width: 10.249vw;
-                        height: 2.050vw;
                         & .name_player{
                             font-size: 1.025vw;
                         }
@@ -2260,8 +2287,7 @@
 
             & .friends_block{
                 padding: 1.830vw;
-                max-height: 21.962vw;
-                margin-right: 0.366vw;
+                max-height: 13.5vw;
                 & .friends{
                     padding-bottom: 0.732vw;
                     & .left_block{

@@ -9,9 +9,9 @@ use AdminDisplay;
 use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
-use checkFile;
 use App\Models\{Country, Race, Role};
 use Carbon\Carbon;
+use checkFile;
 use Exception;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
@@ -57,16 +57,17 @@ class User extends Section
     public function onDisplay()
     {
 
-        $display = AdminDisplay::datatablesAsync()
-            ->setDatatableAttributes(['bInfo' => false])
-            ->setHtmlAttribute('class', 'table-info text-center small')
+        $display = AdminDisplay::datatables()
+            ->setName('usertables')
+            ->setOrder([[0, 'asc']])
+            ->setDisplaySearch(false)
+            ->setHtmlAttribute('class', 'table-primary table-hover th-center')
+            ->setHtmlAttribute('class', 'text-center small')
             ->with([
-                'roles', 'countries', 'comments', 'topics', 'replays', 'images',
+                'roles', 'countries',
             ])
             ->paginate(5);
-        $display->setApply(function ($query) {
-            $query->orderBy('id','ASC');
-        });
+
         $display->setFilters(AdminDisplayFilter::related('ban')
             ->setModel(\App\User::class));
 
@@ -90,32 +91,33 @@ class User extends Section
 
             $rating = AdminColumn::custom('Рейтинг', function ($model) {
                 $thumbsUp
-                        = '<span style="font-size: 1em; color: green;"><i class="fas fa-plus"></i></span>';
+                    = '<span style="font-size: 1em; color: green;"><i class="fas fa-plus"></i></span>';
                 $equals = '<i class="fas fa-equals"></i>';
                 $thumbsDown
-                        = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
+                    = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
 
-                return $thumbsUp.$model->positive_count.'<br/>'.$equals
-                    .($model->positive_count - $model->negative_count).'<br/>'
-                    .$thumbsDown.$model->negative_count;
+                return $thumbsUp."$model->count_positive".'<br/>'.$equals
+                    ."$model->rating".'<br/>'
+                    .$thumbsDown."$model->count_negative";
             })->setWidth(10),
 
-            $count_topic = AdminColumn::count('topics',
-                '<small>Темы</small>')
-                ->setWidth(45),
-
-            $count_replay = AdminColumn::count('replays',
-                '<small>Replay</small>')
-                ->setWidth(50),
-
-            $count_picture = AdminColumn::count('images',
-                '<small>Гале<br/>рея</small>')
-                ->setWidth(40),
-
-            $count_comment = AdminColumn::count('comments',
-                '<small>Коме<br/>нтарии</small>')
-                ->setWidth(55),
-
+            $count_topic = AdminColumn::custom('<small>Темы</small>',
+                function ($model) {
+                    return $model->topicsCount();
+                }),
+            $count_replay = AdminColumn::custom('<small>Replay</small>',
+                function ($model) {
+                    return $model->replaysCount();
+                }),
+            $count_picture = AdminColumn::custom('<small>Гале<br/>рея</small>',
+                function ($model) {
+                    return $model->imagesCount();
+                }),
+            $count_comment
+                = AdminColumn::custom('<small>Коме<br/>нтарии</small>',
+                function ($model) {
+                    return $model->commentsCount();
+                }),
             $email_verified_at = AdminColumn::custom('<small>Почта</small>',
                 function ($model) {
                     return ! empty($model->email_verified_at)
@@ -296,16 +298,16 @@ class User extends Section
             $role_id = AdminFormElement::select('role_id', 'Роль')
                 ->setOptions($this->getRoles())
                 ->setDisplay('title')
-                ->setValidationRules(['required','exists:roles,id']),
+                ->setValidationRules(['required', 'exists:roles,id']),
 
             $country_id = AdminFormElement::select('country_id', 'Страна')
                 ->setOptions((new Country())->pluck('name', 'id')->toArray())
                 ->setDisplay('name')
-                ->setValidationRules(['nullable','exists:countries,id']),
+                ->setValidationRules(['nullable', 'exists:countries,id']),
 
             $race_id = AdminFormElement::select('race_id', 'Раса')
                 ->setOptions((new Race())->pluck('title', 'id')->toArray())
-                ->setValidationRules(['nullable','exists:races,id'])
+                ->setValidationRules(['nullable', 'exists:races,id'])
                 ->setDisplay('title'),
 
             $ban = AdminFormElement::checkbox('ban', 'Ban')
@@ -377,6 +379,7 @@ class User extends Section
             if (($key2 = array_search('Админ', $getData)) !== false) {
                 unset($getData[$key2]);
             }
+
             return $getData;
         }
     }

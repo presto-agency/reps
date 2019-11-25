@@ -76,9 +76,10 @@ $('.search_img').click(function (event) {
 $('#settings').click(function (event) {
     event.preventDefault();
     $('.logged_links').addClass('active');
-    console.log(1);
+    console.log(999);
 //    $('.mob_menu').removeClass('menuOff-active');
 });
+
 
 // stream_list
 $('.btn_streams_list').click(function (event) {
@@ -152,6 +153,20 @@ $('#day').click(function (event) {
     $('body').removeClass('nightMode');
     localStorage.setItem('nightMode', 2);
 });
+
+
+$(document).ready(function(){
+    $('№').click(function () {
+        $(this).toggleClass('click');
+    });
+});
+
+
+
+
+
+
+
 
 /*accordion replays script   start*/
 /*const accordionState = JSON.parse(localStorage.getItem('accordionState')) || {};
@@ -318,3 +333,7 @@ $('#return-to-top').click(function() {      // When arrow is clicked
         scrollTop : 0                       // Scroll to top of body
     }, 500);
 });
+///////////////////////////////////////////////////quote
+function Quote() {
+    alert(123);
+}

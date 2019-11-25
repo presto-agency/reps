@@ -55,10 +55,11 @@
                             @if(isset($item->users) && !empty($item->users))
                                 @if(auth()->check() && auth()->user()->userViewAvatars())
                                     <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
-                                @else
-                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
                                 @endif
-                                <span class="comment-author__nickname"
+                                @guest()
+                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
+                                @endguest()
+                                <span class="comment-author__nickname night_text"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
                             @endif
                             <span class="comment-author__replay-item night_text">{{__('Видео реплай')}}</span>
@@ -84,7 +85,7 @@
                         </svg>
                             <span
                                     class="night_text">{{$item->comments_count}}</span>
-                            <a class="items__download night_text download"
+                            <a class="items__download night_text download night_text"
                                data-id="{{$item->id}}"
                                data-url="{{url("replay/$item->id/download_count")}}"
                                href="{{route('replay.download',['id' =>$item->id])}}">
@@ -105,36 +106,36 @@
                             </a>
                         </div>
                     </div>
-                    <p class="match__comment">{!!ParserToHTML::toHTML($item->content,'size')!!}</p>
+                    <p class="match__comment night_text">{!!ParserToHTML::toHTML($item->content,'size')!!}</p>
                     <div class="match__info">
                         <div class="info__country">
                             <span class="country__text night_text">{{__('Страны:')}}</span>
                             @isset($item->firstCountries)
-                                <img class="country__img country-first" src="{{$item->firstCountries->flag}}"
+                                <img class="country__img country-first" src="{{asset($item->firstCountries->flagOrDefault())}}"
                                      alt="flag" title="{{$item->firstCountries->name}}">
                             @endisset
                             <span class="country__text night_text">{{__('vs')}}</span>
                             @isset($item->secondCountries)
-                                <img src="{{$item->secondCountries->flag}}"
+                                <img src="{{asset($item->secondCountries->flagOrDefault())}}"
                                      alt="flag" title="{{$item->secondCountries->name}}">
                             @endisset
                         </div>
                         <div class="info__match-up">
                             <span class="match-up__text night_text"{{__('Матчап: ')}}></span>
                             @isset($item->firstRaces)
-                                <span class="match-up__name name__first"
+                                <span class="match-up__name name__first night_text"
                                       title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</span>
                             @endisset
                             <span class="match-up__text match-up__versus night_text">vs</span>
                             @isset($item->secondRaces)
-                                <span class="match-up__name name__second"
+                                <span class="match-up__name name__second night_text"
                                       title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</span>
                             @endisset
                         </div>
                         <div class="info__maps">
                             <span class="maps__text night_text">{{__('Карта:')}}</span>
                             @isset($item->maps)
-                                <span class="maps__name">{{$item->maps->name}}</span>
+                                <span class="maps__name night_text">{{$item->maps->name}}</span>
                             @endisset
                         </div>
                         <div class="info__wins">

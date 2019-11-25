@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\User;
-use File;
+use checkFile;
 use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
@@ -19,13 +19,12 @@ class Country extends Model
         return $this->hasMany(User::class, 'country_id');
     }
 
-    /*$user->avatar*/
-    public function getFlagAttribute($value)
+    public function flagOrDefault()
     {
-        if ( ! empty($value) && File::exists($value)) {
-            return asset($value);
+        if ( ! empty($this->flag) && checkFile::checkFileExists($this->flag)) {
+            return $this->flag;
         } else {
-            return asset('images/default/flag/country.png');
+            return 'images/default/flag/country.png';
         }
     }
 

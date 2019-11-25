@@ -46,7 +46,7 @@
                                                 <path
                                                         d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"/>
                                             </svg>
-                                            <span>168</span>
+                                            <span>{{ $item->reviews }}</span>
                                         </button>
 
                                         <button class="items__items item__comment">
@@ -91,7 +91,7 @@
                                             <span>{{$item->negative_count}}</span>
                                         </button>
                                         <a class="rate"
-                                           href="{{route('user-topic-rating-list.index',['id' => Auth::id()])}}">
+                                           href="{{route('forum.topic.get_rating',['id' => $item->id])}}">
                                             рейтинг лист</a>
                                     </div>
 

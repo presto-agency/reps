@@ -25,10 +25,11 @@
                             @if(auth()->check() && auth()->user()->userViewAvatars())
                                 <img src="{{ asset($single_news->author->avatarOrDefault()) }}" alt="avatar"
                                      class="author__avatar img-fluid">
-                            @else
+                            @endif
+                            @guest()
                                 <img src="{{ asset($single_news->author->avatarOrDefault()) }}" alt="avatar"
                                      class="author__avatar img-fluid">
-                            @endif
+                            @endguest()
                             <p class="author__nickname">{{ $single_news->author->name }}</p>
                             <span class="author__date">{{\Carbon\Carbon::parse($single_news->author->created_at)->format('h:m d.m.Y')}}</span>
                         @endif

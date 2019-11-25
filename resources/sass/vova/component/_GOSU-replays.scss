@@ -1,4 +1,4 @@
-.gocu-replays {
+.gocu-replays, .rating {
     box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     border-radius: 5px;
 
@@ -57,6 +57,34 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        .rating__info{
+            font-size: 14px;
+        }
+        .block_right{
+            display: flex;
+            align-items: center;
+            svg{
+                width: 12px;
+                height: 12px;
+                fill: $gray;
+                margin-right: 5px;
+            }
+            .subtitle__number{
+                color: $blue;
+                margin-left: 5px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 45px;
+            }
+        }
+        .gocu-replays__button{
+            padding: 0;
+            button{
+                width: 100%;
+                padding: 5px;
+            }
+        }
         .subtitle__name {
             color: #8086a6;
             font-size: 16px;
@@ -66,6 +94,12 @@
             text-decoration: none;
             &:hover {
                 color: #0567cc;
+            }
+            div{
+                width: 90px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
         .subtitle__date {
@@ -151,7 +185,37 @@
                 }
             }
         }
-
+        .subtitle__icons {
+            svg {
+                width: 21px;
+                height: 21px;
+                fill: #9ca0b6;
+                transition: .3s;
+            }
+            .items__comment,
+            .items__download {
+                text-decoration: none;
+                svg {
+                    width: 21px;
+                    height: 21px;
+                    fill: #9ca0b6;
+                    transition: .3s;
+                }
+                span {
+                    color: #9ca0b6;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 19px;
+                    margin-left: 10px;
+                }
+                &:hover svg {
+                    fill: #0567cc;
+                }
+            }
+            .items__download {
+                margin-left: 25px;
+            }
+        }
         .match__comment {
             color: #010b4a;
             font-size: 16px;
@@ -159,6 +223,8 @@
             padding-left: 20px;
             padding-right: 20px;
             margin-bottom: 0; //отмена стандартного margin
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .match__info {
@@ -227,7 +293,9 @@
             }
         }
     }
-
+    .gocu-replays__match_rating{
+        padding: 15px;
+    }
     hr {
         margin-top: 0;
         margin-bottom: 0;

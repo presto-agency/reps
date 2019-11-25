@@ -21,13 +21,12 @@
                 @if(isset($topic->author) && !empty($topic->author))
                     @if(auth()->check() && auth()->user()->userViewAvatars())
                         <img src="{{asset($topic->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
-                    @else
-                        <img src="{{asset($topic->author->avatarOrDefault())}}" class="title__avatar"
-                             alt="avatar">
-
                     @endif
+                    @guest()
+                        <img src="{{asset($topic->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
+                    @endguest()
                     <p class="title__nickname">{{ $topic->author->name ? $topic->author->name : 'user' }}</p>
-                    <img src="{{ $topic->author->countries->flag }}" class="title__flag"
+                    <img src="{{ asset($topic->author->countries->flagOrDefault()) }}" class="title__flag"
                          title="{{ $topic->author->countries->name }}" alt="flag">
                     <img src="{{asset("images/default/game-races/" . $topic->author->races->title . ".png")}}"
                          class="title__cube" title="{{ $topic->author->races->title }}" alt="race">
@@ -121,7 +120,7 @@
                     </div>
                     <div class="card-body__items-wrap">
                         @php
-                            $modal = (Auth::guest() /*&&  $topic->user_id == Auth::user()->id*/) ?'#no-rating':'#vote-modal';
+                            $modal = (!Auth::guest() &&  $topic->user_id == Auth::user()->id) ?'#no-rating':'#vote-modal';
                         @endphp
                         <a href="{{$modal}}" class="items__like positive-vote vote-replay-up night_text"
                            data-toggle="modal" {{--data-target="#vote-modal" --}}data-rating="1"

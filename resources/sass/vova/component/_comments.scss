@@ -1,6 +1,10 @@
 .comments {
     box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     border-radius: 5px;
+    .none_comments{
+        font-size: 16px;
+        padding: 20px;
+    }
     .comments__title {
         border-radius: 5px 5px 0 0;
         background-color: #0567cc;
