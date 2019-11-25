@@ -105,7 +105,7 @@ Breadcrumbs::register('user-rating-list', function ($breadcrumbs, $id) {
 
 Breadcrumbs::register('user-topic-rating-list', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('user-profile-show', $id);
-    $breadcrumbs->push('Репутация темы пользователя',
+    $breadcrumbs->push('Информация',
         route('user-topic-rating-list.index', [
             'id' => $id,
         ]));

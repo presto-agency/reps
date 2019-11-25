@@ -37,6 +37,7 @@ Route::group(['prefix' => 'forum'], function () {
             ->name('topic.send_comment');
 
         /**set reputation like/dislike*/
+        Route::get('{id}/get_rating', 'TopicRatingController@getRating')->name('forum.topic.get_rating');
         Route::post('{id}/set_rating', 'TopicRatingController@setRating')
             ->name('forum.topic.set_rating');
     });
@@ -59,6 +60,7 @@ Route::group(['prefix' => 'replay'], function () {
         ->name('replay.send_comment');
 
     /**set reputation like/dislike*/
+    Route::get('{id}/get_rating', 'ReplayRatingController@getRating')->name('replay.get_rating');
     Route::post('{id}/set_rating', 'ReplayRatingController@setRating')
         ->name('replay.set_rating');
 });
@@ -86,6 +88,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('messages', 'UserMessagingController@getUser')
         ->name('user.messages_all');
     /**reputation gallery*/
+    Route::get('/user-gallery/{id}/get_rating', 'UserGalleryRatingController@getRating')->name('gallery.get_rating');
     Route::post('/user-gallery/{id}/set_rating', 'UserGalleryRatingController@setRating')->name('gallery.set_rating');
 
     Route::get('{id}', 'UserController@show')->name('user_profile');
