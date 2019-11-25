@@ -22,10 +22,6 @@ class LoginAccess
             auth()->logout();
         }
 
-        if (empty(auth()->user()->email_verified_at)) {
-            return redirect()->route('verification.notice');
-        }
-
         return $next($request);
 
     }
