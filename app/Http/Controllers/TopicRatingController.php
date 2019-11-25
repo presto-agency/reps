@@ -28,8 +28,8 @@ class TopicRatingController extends RatingController
 
         if ($object){
             $list = UserReputation::where('object_id', $object->id)->where('relation', $this->relation)->with('sender.races')->get();
-
-            return view('user.rating-list.index-topic', compact('object', 'list'));
+            $route = 'topic.show';
+            return view('user.rating-list.index-topic', compact('object', 'list', 'route'));
         }
         abort(404);
     }
