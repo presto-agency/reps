@@ -2,8 +2,9 @@
 
 
 namespace App\Admin\Policies;
-
-
+use App\User;
+use App\Http\Sections\User as Section;
+use App\User as Model;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserSectionModelPolicy
@@ -11,122 +12,79 @@ class UserSectionModelPolicy
 
     use HandlesAuthorization;
 
-    /**
-     * @param  \App\User  $user
-     * @param $ability
-     * @param  \App\Http\Sections\User  $section
-     * @param  \App\User|null  $item
-     *
-     * @return bool
-     */
-    public function before(
-        \App\User $user,
-        $ability,
-        \App\Http\Sections\User $section,
-        \App\User $item = null
-    ) {
-        if ($user->superAdminRoles()) {
-            if ($ability != 'display' && ! is_null($item)
-                && $item->roles->name == 'super-admin'
-            ) {
-                return false;
-            }
-        }
-        if ($user->adminRoles()) {
-            if ($ability != 'display' && ! is_null($item)
-                && $item->roles->name == 'admin'
-            ) {
-                return false;
-            }
-            if ($ability != 'display' && ! is_null($item)
-                && $item->roles->name == 'super-admin'
-            ) {
-                return false;
-            }
-            if ($ability != 'display' && $ability != 'edit' && ! is_null($item)
-                && $item->roles->name == 'user'
-            ) {
-                return true;
-            }
-            if ($ability != 'display' && $ability != 'edit' && ! is_null($item)
-                && $item->roles->name == 'moderator'
-            ) {
+    public function before(User $user, $ability, Section $section, Model $item = null) {
+                if ($user->superAdminRole()) {
+                    if ($ability != 'display' && ! is_null($item)
+                        && $item->roles->name == 'super-admin'
+                    ) {
+                        return false;
+                    }
+                }
+                if ($user->adminRole()) {
+                    if ($ability != 'display' && ! is_null($item)
+                        && $item->roles->name == 'admin'
+                    ) {
+                        return false;
+                    }
+                    if ($ability != 'display' && ! is_null($item)
+                        && $item->roles->name == 'super-admin'
+                    ) {
+                        return false;
+                    }
+                }
 
-                return true;
-            }
-        }
+        return  true;
+    }
 
+    public function display(User $user, $ability, Section $section, Model $item = null) {
         return true;
     }
 
-    /**
-     * @param  \App\User  $user
-     * @param $ability
-     * @param  \App\Http\Sections\User  $section
-     * @param  \App\User  $item
-     *
-     * @return bool
-     */
-    public function display(
-        \App\User $user,
-        $ability,
-        \App\Http\Sections\User $section,
-        \App\User $item
-    ) {
-        return true;
-    }
+    public function edit(User $user, $ability, Section $section, Model $item = null) {
 
-    /**
-     * @param  \App\User  $user
-     * @param $ability
-     * @param  \App\Http\Sections\User  $section
-     * @param  \App\User  $item
-     *
-     * @return bool
-     */
-    public function edit(
-        \App\User $user,
-        $ability,
-        \App\Http\Sections\User $section,
-        \App\User $item
-    ) {
-        if ($user->adminRoles()) {
-            if ( ! is_null($item) && $item->roles->name == 'user') {
-                return true;
+        if ($user->adminRole()) {
+            if (!is_null($item) && $item->roles->name == 'admin'
+            ) {
+                return false;
             }
-            if ( ! is_null($item) && $item->roles->name == 'moderator') {
-                return true;
+            if (!is_null($item) && $item->roles->name == 'super-admin'
+            ) {
+                return false;
             }
 
-            return false;
         }
-
         return true;
     }
 
-    /**
-     * @param  \App\User  $user
-     * @param $ability
-     * @param  \App\Http\Sections\User  $section
-     * @param  \App\User  $item
-     *
-     * @return bool
-     */
     public function delete(
-        \App\User $user,
-        $ability,
-        \App\Http\Sections\User $section,
-        \App\User $item
+        User $user, $ability, Section $section, Model $item = null
     ) {
+        if ($user->adminRole()) {
+            if (!is_null($item) && $item->roles->name == 'admin'
+            ) {
+                return false;
+            }
+            if (!is_null($item) && $item->roles->name == 'super-admin'
+            ) {
+                return false;
+            }
+
+        }
         return true;
     }
 
-    public function create(
-        \App\User $user,
-        $ability,
-        \App\Http\Sections\User $section,
-        \App\User $item
-    ) {
+    public function create(User $user, $ability, Section $section, Model $item = null) {
+        if ($user->adminRole()) {
+            if (!is_null($item) && $item->roles->name == 'admin'
+            ) {
+                return false;
+            }
+            if (!is_null($item) && $item->roles->name == 'super-admin'
+            ) {
+                return false;
+            }
+
+        }
         return true;
     }
 

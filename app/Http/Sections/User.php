@@ -377,7 +377,7 @@ class User extends Section
      */
     public function getRoles()
     {
-        if (auth()->user()->superAdminRoles() === true) {
+        if (auth()->user()->superAdminRole() === true) {
             return (new Role())->pluck('title', 'id')->toArray();
         } else {
             $getData = (new Role())->pluck('title', 'id')->toArray();
