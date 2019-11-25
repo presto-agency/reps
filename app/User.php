@@ -65,12 +65,6 @@ class User extends Authenticatable implements MustVerifyEmail
             'remember_token',
         ];
 
-    public function userCannotLogin()
-    {
-        return auth()->user()->ban == 1
-            || empty(auth()->user()
-                ->email_verified_at);
-    }
 
     public function userViewAvatars()
     {

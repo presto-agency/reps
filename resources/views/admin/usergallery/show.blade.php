@@ -3,7 +3,7 @@
     <br>
     <div class="row">
         <div class="col-md-3 text-center">
-                <img class="img-bordered-sm" src="{{$userGallery->pictureOrDefault()}}" alt="picture">
+                <img class="img-bordered-sm" src="{{asset($userGallery->pictureOrDefault())}}" alt="picture">
         </div>
     </div>
     <div class="row">
@@ -32,7 +32,7 @@
         </div>
         <div class="col-md-3 text-center comments_count">
             <span style="font-size: 2em;">
-                <i class="far fa-comment">{{$userGallery->comments->count()}}</i>
+                <i class="far fa-comment">{{$userGallery->commentsCount()}}</i>
              </span>
         </div>
     </div>

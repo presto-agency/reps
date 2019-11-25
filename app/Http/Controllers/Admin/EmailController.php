@@ -35,7 +35,7 @@ class EmailController extends Controller
         $user        = new User();
         $user->email = $request->to_email;
         $user->notify(new CustomEmail($request->subject, $request->message));
-        $request->session()->put('email-send-status', 'Вы отправили письмо '
+        $request->session()->flash('email-send','Вы отправили письмо '
             .$request->to_email);
 
         return back();

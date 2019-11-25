@@ -18,13 +18,16 @@ class LoginAccess
     public function handle($request, Closure $next)
     {
 
-        if (auth()->user()->userCannotLogin()
-        ) {
-            redirect()->route('login');
+        if (auth()->user()->ban == 1) {
             auth()->logout();
+        }
+
+        if (empty(auth()->user()->email_verified_at)) {
+            return redirect()->route('verification.notice');
         }
 
         return $next($request);
 
     }
+
 }
