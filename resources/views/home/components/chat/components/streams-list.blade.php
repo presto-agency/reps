@@ -6,12 +6,10 @@
                     <div class="widget-stream-lists">
                         <button class="streamEvent" id="{{$item->id}}"
                                 data-src="{{$item->stream_url_iframe}}"
-                                @if($item->countries)data-img-flag="{{asset($item->countries->flagOrDefault())}}" @endif
-                                @if($item->countries)data-name-flag="{{$item->countries->name}}" @endif
-
-                                @if($item->races)data-img-race="{{asset('images/default/game-races/'.$item->races->title.'.png')}}"  @endif
-                                @if($item->races)data-title-race="{{$item->races->title}}"  @endif
-
+                                data-img-flag="@if($item->countries){{asset($item->countries->flagOrDefault())}} @endif"
+                                data-name-flag="@if($item->countries){{$item->countries->name}} @endif"
+                                data-img-race="@if($item->races){{asset('images/default/game-races/'.$item->races->title.'.png')}}@endif"
+                                data-title-race="@if($item->races){{$item->races->title}}@endif"
                                 data-stream-title="{{$item->title}}"
                         >
                             @if($item->countries)
