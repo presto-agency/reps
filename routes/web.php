@@ -118,10 +118,9 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'ban', 'verified']],
     Route::get('{id}/friends_list', 'UserFriendController@getFriendsList')
         ->name('user.friends_list.by_id');
 
-    Route::get('{id}/messages', 'UserMessagingController@getUser')
-        ->name('user.messages');
-    Route::post('send_message', 'UserMessagingController@send')
-        ->name('user.send_message');
+    Route::get('{id}/messages', 'UserMessagingController@getUser')->name('user.messages');
+    Route::post('send_message', 'UserMessagingController@send')->name('user.send_message');
+    Route::get('/message/{dialogue_id}/load', 'UserMessagingController@loadMoreMessages')->name('user.message_load');
 
     /**get user reputation list*/
     Route::get('{id}/get_rating', 'RatingController@getRatingUser')

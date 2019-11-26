@@ -12,6 +12,7 @@ namespace App\Services\User;
 use App\Models\Dialogue;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class MessageService
 {
@@ -64,6 +65,7 @@ class MessageService
                 'messages'    => $messages,
                 'contacts'    => $contacts,
                 'user'        => User::find($id),
+                'page'        => Request::has('page') ? Request::input('page') + 1 : 2,
             ];
         } else {
 
@@ -76,4 +78,12 @@ class MessageService
         }
     }
 
+    /**
+     * @param $dialog_id
+     * @return mixed
+     */
+    public static function getContactUser($dialog_id)
+    {
+        return Dialogue::find($dialog_id)->users()->where('id','<>', Auth::id())->first();
+    }
 }

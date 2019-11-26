@@ -36,67 +36,9 @@
 
             @if($messages && count($messages) > 0)
             <!-- CHAT MESSAGES -->
-                {{--<div class="messages-wrapper messages-box">--}}
-                {{--@include('user.messages-partials.message_parse')--}}
-
-                <div class="messenger__body">
-                    <div class="messenger__load-more">
-                <span class="load-more">
-                    Load more
-                </span>
-                    </div>
-
-                    @foreach($messages as $message)
-                        @if($message->user_id == Auth()->id())
-                            <div class="my-message">
-                                <div class="message-content">
-                                    <div class="content__text">
-                                        {!! $message->message !!}
-                                        {{--<img class="content__img" src="{{ asset($message->sender->avatar) }}" alt="message-image">--}}
-                                    </div>
-                                    <span class="content__date">{{ $message->created_at->format('h:m d.m.Y')}}</span>
-                                </div>
-                                <div class="message-info">
-                                    <span class="user-name">{{ $message->sender->name }}</span>
-                                    @if(auth()->check() && auth()->user()->userViewAvatars())
-                                        <img class="head__avatar" src="{{ asset($message->sender->avatarOrDefault()) }}"
-                                             alt="avatar">
-                                    @endif
-                                    @guest()
-                                        <img class="head__avatar" src="{{ asset($message->sender->avatarOrDefault()) }}"
-                                             alt="avatar">
-                                    @endguest()
-                                </div>
-                            </div>
-                        @else
-                            <div class="user-message">
-                                <div class="message-info">
-                                    <span class="user-name">{{ $message->sender->name }}</span>
-                                    @if(auth()->check() && auth()->user()->userViewAvatars())
-                                        <img class="head__avatar" src="{{ asset($message->sender->avatarOrDefault()) }}"
-                                             alt="avatar">
-                                    @endif
-                                    @guest()
-                                        <img class="head__avatar" src="{{ asset($message->sender->avatarOrDefault()) }}"
-                                             alt="avatar">
-                                    @endguest()
-                                </div>
-                                <div class="message-content">
-                                    <div class="content__text">
-                                        {!! $message->message !!}
-                                        {{--<img class="content__img" src="{{ asset($message->sender->avatar) }}" alt="message-image">--}}
-                                    </div>
-                                    <span class="content__date">{{ $message->created_at->format('h:m d.m.Y')}}</span>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-
+                <div class="messenger__body messages-wrapper messages-box">
+                    @include('user.messages-partials.message_parse')
                 </div>
-
-
-
-                {{--</div>--}}
             <!--END CHAT MESSAGES -->
             @else
                 <p class="none_text">Нет сообщений</p>
@@ -144,7 +86,7 @@
                     <input type="hidden" name="dialog_id" value="1">
                     <div class="messenger__button">
                         <button class="button button__download-more">
-                            Создать
+                            Отправить
                         </button>
                     </div>
                 </form>
@@ -212,14 +154,11 @@
 
 
             var socketId = window.Echo.socketId();
-            console.log('Laravel Echo: ');
-            console.log(socketId);
 
             window.Echo.private('dialogue.' + '{{ $dialogue_id }}').listen('NewUserMessageAdded', ({message}) => {
-                console.log('channel private started here');
-                console.log(message);
                 @if(isset($message) && $message->user_id != Auth()->id())
-                appendUserMessage(message);
+                    appendUserMessage(message);
+                    $('body').find('.messages-box').scrollTop($(".scroll-to").offset().top);
                 @endif
 
 
@@ -243,22 +182,34 @@
                     .then((response) => {
 
                         // визвати метод для вставки повідослення
-                        console.log(response.data);
-
                         appendMyMessage(response.data);
 
-                        //очистити поле для вводу
                         /**clean textarea field*/
                         for (instance in CKEDITOR.instances) {
                             CKEDITOR.instances[instance].updateElement();
                         }
                         CKEDITOR.instances[instance].setData('');
 
+                        $('body').find('.messages-box').scrollTop($(".scroll-to").offset().top);
                     }, (error) => {
                         console.log(error);
                     });
 
             });
+
+            $('body').find('.messages-box').scrollTop($(".scroll-to").offset().top);
+
+            $('body').on('click', '.load-more', function () {
+                var url = $('.load-more').attr('date-href');
+
+                $.get(
+                    url,
+                    function (data) {
+                        $('.load-more-box').remove();
+                        $('.messages-box').prepend(data);
+                    }
+                );
+            })
         });
     </script>
 @endsection

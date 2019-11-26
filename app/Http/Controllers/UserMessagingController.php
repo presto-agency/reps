@@ -104,4 +104,22 @@ class UserMessagingController extends Controller
 //        return back();
 
     }
+
+    public function loadMoreMessages(Request $request, $dialogue_id){
+
+        /*$dialogue = Dialogue::where('id',$dialogue_id)->with('users')->first();
+        $user = '';
+        foreach ($dialogue->users as $item){
+
+            if ($item->id != Auth::id()){
+                $user = $item;
+            }
+        }*/
+
+        $messages  = Dialogue::getUserDialogueContent($dialogue_id);
+
+        $page = $request->has('page') ? $request->input('page') + 1 : 2;
+
+        return view('user.messages-partials.message_parse')->with(['messages'=> $messages, 'dialogue_id' => $dialogue_id, 'page' => $page]);
+    }
 }

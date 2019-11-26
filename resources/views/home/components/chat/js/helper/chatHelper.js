@@ -46,7 +46,7 @@ export const strParse= (str) => {
 };
 export const parseUser = (str,id,usernick,messagearray) => {
     if(usernick!='') {
-        let val = '<span><font color="#de8218">'+'@'+usernick+', '+'</font></span>';
+        let val = '<span><font color="#0567cc" size="2">'+'@'+usernick+', '+'</font></span>';
         str = str.replace(/@([\s\S]*),/gim, val)
     }
     else {
@@ -54,7 +54,7 @@ export const parseUser = (str,id,usernick,messagearray) => {
 
            messagearray.forEach((item)=>{
                if(str.search('@'+item.user_id+',')>-1){
-                   let val = '<span><font color="#de8218">'+'@'+item.usernick+', '+'</font></span>';
+                   let val = '<span><font color="#0567cc" size="2">'+'@'+item.usernick+', '+'</font></span>';
                    str = str.replace(/@([\s\S]*),/gim, val)
                }
 
