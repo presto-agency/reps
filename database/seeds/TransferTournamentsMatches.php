@@ -20,13 +20,13 @@ class TransferTournamentsMatches extends Seeder
         /**
          * Remove autoIncr
          */
-        Schema::table('tourney_matches', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
-        });
+//        Schema::table('tourney_matches', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', false)->change();
+//        });
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("tourney_matches")->orderBy('id','ASC')
+        DB::connection("mysql2")->table("tourney_matches")
             ->chunkById(100, function ($repsTournamentsMatches) {
                 try {
                     $insertItems = [];
@@ -75,8 +75,8 @@ class TransferTournamentsMatches extends Seeder
         /**
          * Add autoIncr
          */
-        Schema::table('tourney_matches', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        });
+//        Schema::table('tourney_matches', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        });
     }
 }

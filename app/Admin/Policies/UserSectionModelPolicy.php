@@ -20,7 +20,6 @@ class UserSectionModelPolicy
         Model $item = null
     ) {
 
-        //                dd($user->adminRole());
         //        if ($user->superAdminRole()) {
         //                    if ($ability != 'display' && ! is_null($item)
         //                        && $item->roles->name == 'super-admin'
@@ -43,21 +42,13 @@ class UserSectionModelPolicy
         return true;
     }
 
-    public function display(
-        User $user,
-        $ability,
-        Section $section,
-        Model $item = null
-    ) {
+    public function display(User $user, $ability, Section $section, Model $item = null) {
         return true;
     }
 
-    public function edit(
-        User $user,
-        $ability,
-        Section $section,
-        Model $item = null
+    public function edit(User $user, $ability, Section $section, Model $item = null
     ) {
+
         return true;
     }
 

@@ -59,7 +59,7 @@
                 <div class="container_block">
                     <div class="replay-desc-right"><p>{{(__('Importance tourney:'))}}</p></div>
                     <div class="replay-desc-left">
-                        {!!  $tournament->ImpToStars($tournament->id)!!}
+                        {!! \App\Models\TourneyList::ImpToStars($tournament->id) !!}
                     </div>
                 </div>
 

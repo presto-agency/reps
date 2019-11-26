@@ -30,15 +30,15 @@ class TransferForumSections extends Seeder
         /**
          * Remove autoIncr
          */
-        Schema::table(
-            'forum_sections', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
-        }
-        );
+//        Schema::table(
+//            'forum_sections', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', false)->change();
+//        }
+//        );
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("forum_sections")->orderBy('id', 'ASC')
+        DB::connection("mysql2")->table("forum_sections")
             ->chunkById(
                 100, function ($repsForumSections) {
                 try {
@@ -65,11 +65,11 @@ class TransferForumSections extends Seeder
         /**
          * Add autoIncr
          */
-        Schema::table(
-            'forum_sections', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        }
-        );
+//        Schema::table(
+//            'forum_sections', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        }
+//        );
         /**
          * Enable forKeys
          */

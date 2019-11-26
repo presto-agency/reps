@@ -32,13 +32,13 @@
                             </button>
 
                             <img class="icon_bars" id="streamOnlineFlag"
-                                 src="@isset($stream){{asset($stream->countries->flagOrDefault())}}@endisset"
-                                 title="@isset($stream){{$stream->countries->name}}@endisset" alt="flag"/>
+                                 src="@if($stream->countries){{asset($stream->countries->flagOrDefault())}}@endisset"
+                                 title="@if($stream->countries){{$stream->countries->name}}@endisset" alt="flag"/>
                             <img class="icon_bars" id="streamOnlineRace"
-                                 src="@isset($stream){{asset('images/default/game-races/'.$stream->races->title.'.png')}}@endisset"
-                                 title="@isset($stream){{$stream->races->title}}@endisset" alt="race"/>
+                                 src="@if($stream->races){{asset('images/default/game-races/'.$stream->races->title.'.png')}}@endisset"
+                                 title="@if($stream->races){{$stream->races->title}}@endisset" alt="race"/>
                             <p class="title_text" id="streamOnlineName"
-                               title="@isset($stream){{$stream->title}}@endisset">@isset($stream){{$stream->title}}@endisset</p>
+                               title="@if($stream->title){{$stream->title}}@endisset">@isset($stream){{$stream->title}}@endisset</p>
                         </div>
                         <div class="right_block">
                             <button id="btn_theatre_mode" class="btn_theatre_mode">

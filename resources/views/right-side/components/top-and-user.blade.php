@@ -33,8 +33,10 @@
                             <p class="night_text">{{'#'.$item->id}}</p>
                         </div>
                         <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
+                            @if($item->countries)
                             <img class="icon_bars" src="{{asset($item->countries->flagOrDefault())}}" alt="flag"
                                  title="{{$item->countries->name}}"/>
+                            @endif
                             <img class="icon_bars"
                                  src="{{asset("images/default/game-races/" . $item->races->title . ".png")}}" alt="race"
                                  title="{{$item->races->title}}"/>

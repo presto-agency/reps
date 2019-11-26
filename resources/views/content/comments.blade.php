@@ -54,11 +54,15 @@
                                              alt="avatar">
                                     @endguest()
                                     <p class="info__nickname">{{$comment->user->name}}</p>
-                                    <img src="{{asset($comment->user->countries->flagOrDefault())}}" class="info__flag" alt="flag">
-                                    <img src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
+                                     @if($comment->user->countries)
+                                        <img src="{{asset($comment->user->countries->flagOrDefault())}}" class="info__flag" alt="flag">
+                                       @endif
+                                        <img src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
                                          class="info__cube" alt="race">
-                                    <p class="info__text">{{$comment->user->comments_count.' pts'}}
+                                     @if($stream->user->races)
+                                        <p class="info__text">{{$comment->user->comments_count.' pts'}}
                                         | {{$comment->user->count_positive - $comment->user->count_negative.' кг'}}</p>
+                                      @endif
                                     <span class="info__date">{{$comment->created_at->format('h:m d.m.Y')}}</span>
                                 </div>
                             @endif

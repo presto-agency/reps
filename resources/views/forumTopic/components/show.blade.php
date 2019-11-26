@@ -26,8 +26,10 @@
                         <img src="{{asset($topic->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
                     @endguest()
                     <p class="title__nickname">{{ $topic->author->name ? $topic->author->name : 'user' }}</p>
+                      @if($topic->author->countries)
                     <img src="{{ asset($topic->author->countries->flagOrDefault()) }}" class="title__flag"
                          title="{{ $topic->author->countries->name }}" alt="flag">
+                     @endif
                     <img src="{{asset("images/default/game-races/" . $topic->author->races->title . ".png")}}"
                          class="title__cube" title="{{ $topic->author->races->title }}" alt="race">
                     <p class="title__text text_pts">{{ $topic->author->comments_count.'  pts' }}

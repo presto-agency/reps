@@ -71,7 +71,7 @@
                     <div class="information_block">
                         <div class="left_block"><span>Страна:</span></div>
                         <div class="right_block night_text">
-                            @if(isset($user->countries) && !empty($user->countries))
+                            @if($user->countries)
                                 <span>{{$user->countries->name}}</span>
                             @else
                                 <span>Не указано</span>
@@ -126,8 +126,10 @@
                                             </a>
                                         </div>
                                         <div class="right_block">
+                                             @if($friend->countries)
                                             <img src="{{asset($friend->countries->flagOrDefault())}}"
                                                  class="info__flag" alt="flag">
+                                               @endif
                                             <img
                                                     src="{{asset('/images/default/game-races/'.$friend->races->title.'.png')}}"
                                                     class="info__cube"
