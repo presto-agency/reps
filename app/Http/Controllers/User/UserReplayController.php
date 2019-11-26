@@ -78,11 +78,9 @@ class UserReplayController extends Controller
         $data = new Replay;
         $this->replayDataSave($data, $request);
         $data->save();
+        $type =  Replay::$type;
 
-        return redirect()->route('user-replay.show', [
-            'id'          => auth()->id(),
-            'user_replay' => $data->id,
-        ]);
+        return redirect()->to(asset("replay/{$data->id}"."?type=".$type[$data->user_replay]));
     }
 
     /**
@@ -142,12 +140,8 @@ class UserReplayController extends Controller
         $data = Replay::find($user_replay);
         $this->replayDataUpdate($data, $request);
         $data->save();
-
-        return redirect()->route('user-replay.edit', [
-            'id'          => auth()->id(),
-            'user_replay' => $user_replay,
-        ]);
-
+        $type =  Replay::$type;
+        return redirect()->to(asset("replay/{$data->id}"."?type=".$type[$data->user_replay]));
     }
 
     /**
@@ -258,7 +252,7 @@ class UserReplayController extends Controller
 
     public function columns($data, $request)
     {
-        $data->title             = $request->title;
+        $data->title             = clean($request->title);
         $data->map_id            = $request->map_id;
         $data->first_country_id  = $request->first_country_id;
         $data->second_country_id = $request->second_country_id;
@@ -267,7 +261,7 @@ class UserReplayController extends Controller
         $data->type_id           = $request->type_id;
         $data->first_location    = $request->first_location;
         $data->second_location   = $request->second_location;
-        $data->content           = $request->content;
+        $data->content           = clean($request->content);
         $data->video_iframe      = $request->video_iframe;
     }
 
@@ -283,8 +277,6 @@ class UserReplayController extends Controller
                 $image      = $request->file('file');
                 $filePath   = $image->store('/files/replays', 'public');
                 $data->file = 'storage/'.$filePath;
-            } else {
-                back();
             }
         }
     }

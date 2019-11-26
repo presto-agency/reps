@@ -36,6 +36,7 @@ class TransferUserGalleries extends Seeder
                             ->table("files")->where('id', $item->file_id)
                             ->value('link');
                         $insertItems[] = [
+                            'id'         => $item->id,
                             'user_id'        => $item->user_id,
                             'picture'        => ! empty($file) === true ? $file
                                 : '',

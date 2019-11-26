@@ -35,13 +35,13 @@ class TransferForumTopics extends Seeder
          * Remove autoIncr
          */
         Schema::table('forum_topics', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
+//            $table->unsignedBigInteger('id', false)->change();
             $table->longText('preview_content')->change();
         });
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("forum_topics")->orderBy('id','ASC')
+        DB::connection("mysql2")->table("forum_topics")
             ->chunkById(100, function ($repsForumTopics) {
                 try {
                     $insertItems = [];
@@ -76,9 +76,9 @@ class TransferForumTopics extends Seeder
         /**
          * Add autoIncr
          */
-        Schema::table('forum_topics', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        });
+//        Schema::table('forum_topics', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        });
         /**
          * Add NewForKeys and columns
          */

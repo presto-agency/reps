@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-4 pl-0">
                         <div class="fileUpload btn btn--browse">
-                            <span>{{__('Выбрать картинку превью')}}</span>
+                            <span>{{__('Выбрать')}}</span>
                             <input id="uploadBtn3" type="file" class="upload"
                                    value="{{old('preview_img',$topic->preview_img)}}"
                                    accept="image/*" name="preview_img"/>

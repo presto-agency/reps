@@ -29,17 +29,17 @@ class TransferComments extends Seeder
         /**
          * Clear table
          */
-        Comment::query()->whereNotNull('id')->delete();
+        Comment::query()->delete();
         /**
          * Remove autoIncr
          */
-        Schema::table('comments', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
-        });
+//        Schema::table('comments', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', false)->change();
+//        });
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("comments")->orderBy('id', 'ASC')
+        DB::connection("mysql2")->table("comments")
             ->chunkById(1000, function ($repsComments) {
                 try {
                     $insertItems = [];
@@ -71,9 +71,9 @@ class TransferComments extends Seeder
         /**
          * Add autoIncr
          */
-        Schema::table('comments', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        });
+//        Schema::table('comments', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        });
         /**
          * Add NewForKeys and columns
          */

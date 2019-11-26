@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="panel__body">
-                <p class="body__comment">{!! $object->content !!}</p>
+                <p class="body__comment">{!! ParserToHTML::toHTML($object->content,'size') !!}</p>
             </div>
             <div class="panel__footer">
                 <div class="footer__item">

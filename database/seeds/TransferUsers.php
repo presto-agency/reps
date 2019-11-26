@@ -27,13 +27,13 @@ class TransferUsers extends Seeder
         /**
          * Remove autoIncr
          */
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
-        });
+//        Schema::table('users', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', false)->change();
+//        });
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("users")->orderBy('id', 'ASC')
+        DB::connection("mysql2")->table("users")
             ->chunkById(100, function ($repsUsers) {
                 try {
                     $insertItems = [];
@@ -79,9 +79,9 @@ class TransferUsers extends Seeder
         /**
          * Add autoIncr
          */
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        });
+//        Schema::table('users', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        });
         /**
          * Enable forKeys
          */

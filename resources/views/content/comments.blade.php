@@ -1,15 +1,5 @@
 <script>
-    function remove() {
-        let block=document.getElementById('citation_block1');
-        block.remove();
-    }
-    remove();
     function Quote(id) {
-         // var button = document.getElementById('btn_quote');
-         // textarea = document.getElementById('tq2');
-         // button.onclick = function() {
-         //     textarea.focus()
-         // }
         let block=document.getElementById(id);
         console.log(block);
 
@@ -18,7 +8,7 @@
     </script>
 @isset($comments)
     <div class="comments border_shadow" >
-        <div class="comments__title">
+        <div class="comments__title" id="comments_id">
             <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                  x="0px" y="0px"
                  viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
@@ -54,17 +44,23 @@
                                              alt="avatar">
                                     @endguest()
                                     <p class="info__nickname">{{$comment->user->name}}</p>
-                                    <img src="{{asset($comment->user->countries->flagOrDefault())}}" class="info__flag" alt="flag">
-                                    <img src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
+                                     @if($comment->user->countries)
+                                        <img src="{{asset($comment->user->countries->flagOrDefault())}}" class="info__flag" alt="flag">
+                                       @endif
+                                        <img src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
                                          class="info__cube" alt="race">
-                                    <p class="info__text">{{$comment->user->comments_count.' pts'}}
+                                     @if($comment->user->races)
+                                        <p class="info__text">{{$comment->user->comments_count.' pts'}}
                                         | {{$comment->user->count_positive - $comment->user->count_negative.' кг'}}</p>
+                                      @endif
                                     <span class="info__date">{{$comment->created_at->format('h:m d.m.Y')}}</span>
                                 </div>
                             @endif
                             <div class="comments__content">
-                                <div class="content__title night_text"> {!! ParserToHTML::toHTML($comment->content,'size')  !!}</div>
+                                <div class="content__title night_text"> {!! ParserToHTML::toHTML($comment->content,'size')  !!}
+                                </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="comments__items">
@@ -88,9 +84,9 @@
                         </div>
                         <div class="items__wrap">
                             @php
-                                $modal = (Auth::guest()) ?'#no-rating':'#vote-modal';
+                                $modal = (!Auth::guest() && $comment->user_id == Auth::user()->id) ?'#no-rating':'#vote-modal';
                             @endphp
-                            <a href="{{$modal}}" class="items__like positive-vote vote-replay-up" data-toggle="modal"
+                            <a href="{{$modal}}" class="items__like modal_like-diselike positive-vote vote-replay-up" data-toggle="modal"
                                data-rating="1" data-route="{{route('comment.set_rating',['id'=>$comment->id])}}">
                                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                      x="0px" y="0px"

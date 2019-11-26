@@ -234,9 +234,9 @@
                     });
                 </script>
             </div>
-            @if ($errors->has('replay_video_iframe'))
+            @if ($errors->has('video_iframe'))
                 <div class="alert alert-danger">
-                    {{ $errors->first('replay_video_iframe') }}
+                    {{ $errors->first('video_iframe') }}
                 </div>
             @endif
             <div class="row gallery-file__container upload-image">

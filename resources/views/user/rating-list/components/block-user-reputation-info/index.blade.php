@@ -36,7 +36,9 @@
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>Страна:</span></div>
+                        @if($user->countries)
                         <div class="right_block"><span class="night_text">{{$user->countries->name}}</span></div>
+                        @endif
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>Репутация:</span></div>

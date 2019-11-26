@@ -33,14 +33,14 @@ class TransferStreams extends Seeder
         /**
          * Remove autoIncr
          */
-        Schema::table('streams', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
-        });
+//        Schema::table('streams', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', false)->change();
+//        });
         /**
          * Get and Insert data
          */
 
-        DB::connection("mysql2")->table("streams")->orderBy('id', 'ASC')
+        DB::connection("mysql2")->table("streams")
             ->chunkById(100, function ($repsStreams) {
                 try {
                     $insertItems = [];
@@ -68,9 +68,9 @@ class TransferStreams extends Seeder
         /**
          * Add autoIncr
          */
-        Schema::table('streams', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        });
+//        Schema::table('streams', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        });
         /**
          * Add NewForKeys and columns
          */

@@ -21,7 +21,7 @@ class Country extends Model
 
     public function flagOrDefault()
     {
-        if ( ! empty($this->flag) && checkFile::checkFileExists($this->flag)) {
+        if (isset($this->flag) && !empty($this->flag) && checkFile::checkFileExists($this->flag)) {
             return $this->flag;
         } else {
             return 'images/default/flag/country.png';

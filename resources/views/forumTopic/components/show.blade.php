@@ -26,8 +26,10 @@
                         <img src="{{asset($topic->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
                     @endguest()
                     <p class="title__nickname">{{ $topic->author->name ? $topic->author->name : 'user' }}</p>
+                      @if($topic->author->countries)
                     <img src="{{ asset($topic->author->countries->flagOrDefault()) }}" class="title__flag"
                          title="{{ $topic->author->countries->name }}" alt="flag">
+                     @endif
                     <img src="{{asset("images/default/game-races/" . $topic->author->races->title . ".png")}}"
                          class="title__cube" title="{{ $topic->author->races->title }}" alt="race">
                     <p class="title__text text_pts">{{ $topic->author->comments_count.'  pts' }}
@@ -122,7 +124,7 @@
                         @php
                             $modal = (!Auth::guest() &&  $topic->user_id == Auth::user()->id) ?'#no-rating':'#vote-modal';
                         @endphp
-                        <a href="{{$modal}}" class="items__like positive-vote vote-replay-up night_text"
+                        <a href="{{$modal}}" class="modal_like-diselike items__like positive-vote vote-replay-up night_text"
                            data-toggle="modal" {{--data-target="#vote-modal" --}}data-rating="1"
                            data-route="{{route('forum.topic.set_rating',['id'=>$topic->id])}}">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +138,7 @@
                     </svg>
                             <span id="positive-vote">{{$topic->positive_count}}</span>
                         </a>
-                        <a href="{{$modal}}" class="items__dislike negative-vote vote-replay-down" data-toggle="modal"
+                        <a href="{{$modal}}" class="items__dislike modal_like-diselike negative-vote vote-replay-down" data-toggle="modal"
                            {{--data-target="#vote-modal"--}} data-rating="-1"
                            data-route="{{route('forum.topic.set_rating',['id'=>$topic->id])}}">
                             <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
