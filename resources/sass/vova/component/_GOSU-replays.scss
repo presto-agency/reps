@@ -92,6 +92,9 @@
             transition: .3s;
             margin-bottom: 0;
             text-decoration: none;
+            p{
+                margin: 0;
+            }
             &:hover {
                 color: #0567cc;
             }
