@@ -59,7 +59,7 @@
                             @endif
                             <div class="comments__content">
                                 <div class="content__title night_text">
-                                    {!! ParserToHTML::toHTML2($comment->content,'size') !!}
+                                    {!! clean(ParserToHTML::toHTML($comment->content,'size')) !!}
                                 </div>
                             </div>
                         </div>

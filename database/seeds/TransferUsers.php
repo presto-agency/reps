@@ -23,7 +23,7 @@ class TransferUsers extends Seeder
         /**
          * Clear table
          */
-        User::query()->whereNotNull('id')->delete();
+        User::query()->delete();
         /**
          * Remove autoIncr
          */

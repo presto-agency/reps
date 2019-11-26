@@ -223,8 +223,10 @@
                                     <img src="{{asset("images/icons/goldMedal.png")}}"  alt="medal">
                                 @elseif($loop->iteration == 2)
                                     <img src="{{asset("images/icons/silverMedal.svg")}}"  alt="medal">
-                                @else
+                                @elseif($loop->iteration == 3)
                                     <img src="{{asset("images/icons/bronzeMedal.svg")}}"  alt="medal">
+                                @else
+                                    <img src="{{asset("images/icons/medal.svg")}}"  alt="medal">
                                 @endif
                             </div>
                         </div>
