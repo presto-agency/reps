@@ -15,7 +15,7 @@
                 c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
                 c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
             </svg>
-                <p class="title__text">{!! ParserToHTML::toHTML($topic->title,'size') !!}</p>
+                <div class="title__text">{!! ParserToHTML::toHTML($topic->title,'size') !!}</div>
             </div>
             <div class="title__wrap">
                 @if(isset($topic->author) && !empty($topic->author))
