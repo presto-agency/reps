@@ -11,6 +11,7 @@
                                 data-img-race="@if($item->races){{asset('images/default/game-races/'.$item->races->title.'.png')}}@endif"
                                 data-title-race="@if($item->races){{$item->races->title}}@endif"
                                 data-stream-title="{{$item->title}}"
+                                data-stream-chat=""
                         >
                             @if($item->countries)
                             <img class="margin-left-5" src="{{asset($item->countries->flagOrDefault())}}" alt="flag"
