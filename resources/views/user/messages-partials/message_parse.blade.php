@@ -1,3 +1,8 @@
+@php
+$revers_messages = collect($messages->items())->sortBy('created_at');
+
+@endphp
+
 @if(isset($dialogue_id) && $messages->lastPage() > $messages->currentPage())
 <div class="messenger__load-more load-more-box">
     <span class="load-more"
@@ -7,7 +12,7 @@
 </div>
 @endif
 
-@foreach($messages as $message)
+@foreach($revers_messages as $message)
     @if($message->user_id == Auth()->id())
         <div class="my-message">
             <div class="message-content">
