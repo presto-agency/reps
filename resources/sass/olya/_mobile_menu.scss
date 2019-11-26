@@ -15,7 +15,19 @@
         background: $blue;
         transition: all 0.2s ease;
         .main_punkt{
-
+             .punct{
+                position: absolute;
+                top: 40%;
+                transform: translateY(-50%);
+                width: 100%;
+                & li{
+                    display: block;
+                    float: none;
+                    width: 100%;
+                    text-align: left;
+                    margin-bottom: 10px;
+                }
+            }
         }
 
         & .nav-btn{
@@ -59,19 +71,7 @@
             transform: translate(-2);
         }
 
-        & .punct{
-            position: absolute;
-            top: 40%;
-            transform: translateY(-50%);
-            width: 100%;
-            & li{
-                display: block;
-                float: none;
-                width: 100%;
-                text-align: left;
-                margin-bottom: 10px;
-            }
-        }
+
 
 
     }
