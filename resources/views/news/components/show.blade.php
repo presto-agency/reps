@@ -25,7 +25,7 @@
             </svg>
             <p class="title__text night_text">{!! ParserToHTML::toHTML($news->title,'size') !!}</p>
         </div>
-        @if($news->author)
+        @if(!empty($news->author))
             <div class="title__wrap">
                 @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
@@ -34,7 +34,7 @@
                     <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
                 @endguest()
                 <p class="title__nickname night_text">{{ $news->author->name ? $news->author->name : 'user' }}</p>
-                 @if($topic->author->countries)
+                 @if(!empty($news->author->countries))
                     <img src="{{ asset($news->author->countries->flagOrDefault()) }}"
                      class="title__flag" alt="flag">
                      @endif
