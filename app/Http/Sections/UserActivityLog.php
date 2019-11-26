@@ -68,8 +68,7 @@ class UserActivityLog extends Section
                 ->setWidth(150),
 
             $parameters = AdminColumn::custom('Описание', function ($model) {
-
-                return $this->getEventTitle($model);
+                return clean($this->getEventTitle($model));
             })->setHtmlAttribute('class', 'text-left')
                 ->setWidth(500),
         ]);
