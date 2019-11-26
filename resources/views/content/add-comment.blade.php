@@ -29,7 +29,7 @@
                 <script>
                     CKEDITOR.config.allowedContent = true;
                     CKEDITOR.config.fillEmptyBlocks = false;
-                    CKEDITOR.config.indentClasses = ["ul-grey", "ul-red", "text-red", "ul-content-red", "circle", "style-none", "decimal", "paragraph-portfolio-top", "ul-portfolio-top", "url-portfolio-top", "text-grey"];
+                    CKEDITOR.config.indentClasses = ["i","ul-grey", "ul-red", "text-red", "ul-content-red", "circle", "style-none", "decimal", "paragraph-portfolio-top", "ul-portfolio-top", "url-portfolio-top", "text-grey"];
                     CKEDITOR.config.protectedSource.push(/<(style)[^>]*>.*<\/style>/ig);
                     CKEDITOR.config.protectedSource.push(/<(script)[^>]*>.*<\/script>/ig);// разрешить теги <script>
                     CKEDITOR.config.protectedSource.push(/<\?[\s\S]*?\?>/g);// разрешить php-код

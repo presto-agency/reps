@@ -110,7 +110,7 @@
 
 
 <!-- ========ALL MODAL WINDOWS ============== -->
-<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="likeModal"
+<div class="modal fade modal_like-diselike" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="likeModal"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content ">
