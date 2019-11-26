@@ -62,7 +62,6 @@
                             <div class="right">
                                 <a href="{{route('user-topics.edit',['id' => $news->user_id,'user_topic'=>$news->id])}}">
                                     <img src="{{asset('images/svg/edit-regular.svg')}}" alt="edit">
-                                    5555
                                     <span class="edit_text">{{__('Редактировать')}}</span>
                                 </a>
                                 <p class="items__date">{{$news->created_at->format('h:m d.m.Y')}}</p>
