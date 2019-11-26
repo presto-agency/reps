@@ -49,6 +49,7 @@ class ChatPicture extends Section
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center')
+            ->setOrder([[0, 'desc']])
             ->paginate(10);
 
 

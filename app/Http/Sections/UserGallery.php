@@ -63,6 +63,7 @@ class UserGallery extends Section
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center')
             ->with(['users'])
+            ->setOrder([[0, 'desc']])
             ->paginate(10);
 
         $display->setFilters(AdminDisplayFilter::related('for_adults')

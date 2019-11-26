@@ -47,6 +47,7 @@ class ReplayType extends Section
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info')
+            ->setOrder([[0, 'desc']])
             ->paginate(10);
 
         $display->setColumns([

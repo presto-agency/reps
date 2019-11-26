@@ -69,6 +69,7 @@ class ForumTopics extends Section
             ])
             ->setDatatableAttributes(['bInfo' => true])
             ->setHtmlAttribute('class', 'table-info text-center')
+            ->setOrder([[0, 'desc']])
             ->paginate(10);
         $display->setFilters(
             AdminDisplayFilter::related('forum_section_id')
