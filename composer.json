@@ -24,6 +24,7 @@
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "laravelrus/sleepingowl": "dev-bs4",
+        "mews/purifier": "^3.1",
         "staudenmeir/eloquent-eager-limit": "^1.0"
     },
     "require-dev": {

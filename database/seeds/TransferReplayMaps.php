@@ -59,15 +59,15 @@ class TransferReplayMaps extends Seeder
         /**
          * Remove autoIncr
          */
-        Schema::table(
-            'replay_maps', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
-        }
-        );
+//        Schema::table(
+//            'replay_maps', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', false)->change();
+//        }
+//        );
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("replay_maps")->orderBy('id', 'ASC')
+        DB::connection("mysql2")->table("replay_maps")
             ->chunkById(
                 100, function ($repsReplayMap) {
                 try {
@@ -89,11 +89,11 @@ class TransferReplayMaps extends Seeder
         /**
          * Add autoIncr
          */
-        Schema::table(
-            'replay_maps', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        }
-        );
+//        Schema::table(
+//            'replay_maps', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        }
+//        );
         /**
          * Add NewForKeys and columns
          */

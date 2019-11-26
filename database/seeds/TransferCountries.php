@@ -42,26 +42,27 @@ class TransferCountries extends Seeder
         /**
          * Clear table
          */
-        Country::query()->whereNotNull('id')->delete();
+        Country::query()->delete();
         /**
          * Remove autoIncr
          */
-        Schema::table('countries', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
-        });
+//        Schema::table('countries', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', false)->change();
+//        });
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("countries")->orderBy('id','ASC')
+        DB::connection("mysql2")->table("countries")
             ->chunkById(100, function ($repsCountries) {
                 try {
                     $insertItems = [];
                     foreach ($repsCountries as $item) {
+                        $flag = '/storage/images/countries/flags/'.$item->code.'.png';
                         $insertItems[] = [
                             'id'         => $item->id,
                             'name'       => !empty($item->name) === true ? $item->name : '',
                             'code'       => !empty($item->code) === true ? $item->code : '',
-                            'flag'       => null,
+                            'flag'       => !empty($item->code) === true ? $flag : null,
                             'created_at' => Carbon::now(),
                         ];
                     }
@@ -74,9 +75,9 @@ class TransferCountries extends Seeder
         /**
          * Add autoIncr
          */
-        Schema::table('countries', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        });
+//        Schema::table('countries', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        });
         /**
          * Add NewForKeys and columns
          */

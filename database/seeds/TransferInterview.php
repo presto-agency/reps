@@ -33,19 +33,19 @@ class TransferInterview extends Seeder
         /**
          * Remove autoIncr
          */
-        Schema::table('interview_questions', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
-        });
-        Schema::table('interview_user_answers', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
-        });
-        Schema::table('interview_variant_answers', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
-        });
+//        Schema::table('interview_questions', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', false)->change();
+//        });
+//        Schema::table('interview_user_answers', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', false)->change();
+//        });
+//        Schema::table('interview_variant_answers', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', false)->change();
+//        });
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("interview_questions")->orderBy('id', 'ASC')
+        DB::connection("mysql2")->table("interview_questions")
             ->chunkById(200, function ($repsInterviewQuestions) {
                 try {
                     $insertItems = [];
@@ -64,7 +64,7 @@ class TransferInterview extends Seeder
                     dd($e, $item);
                 }
             });
-        DB::connection("mysql2")->table("interview_user_answers")->orderBy('id', 'ASC')
+        DB::connection("mysql2")->table("interview_user_answers")
             ->chunkById(200, function ($repsInterviewUserAnswers) {
                 try {
                     $insertItems = [];
@@ -83,7 +83,7 @@ class TransferInterview extends Seeder
                     dd($e, $item);
                 }
             });
-        DB::connection("mysql2")->table("interview_variants_answers")->orderBy('id', 'ASC')
+        DB::connection("mysql2")->table("interview_variants_answers")
             ->chunkById(200, function ($repsInterviewVariantAnswers) {
                 try {
                     $insertItems = [];
@@ -105,15 +105,15 @@ class TransferInterview extends Seeder
         /**
          * Add autoIncr
          */
-        Schema::table('interview_questions', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        });
-        Schema::table('interview_user_answers', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        });
-        Schema::table('interview_variant_answers', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        });
+//        Schema::table('interview_questions', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        });
+//        Schema::table('interview_user_answers', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        });
+//        Schema::table('interview_variant_answers', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        });
         /**
          * Enable forKeys
          */

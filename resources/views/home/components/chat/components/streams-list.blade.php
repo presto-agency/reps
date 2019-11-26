@@ -6,20 +6,24 @@
                     <div class="widget-stream-lists">
                         <button class="streamEvent" id="{{$item->id}}"
                                 data-src="{{$item->stream_url_iframe}}"
+                                @if($item->countries)data-img-flag="{{asset($item->countries->flagOrDefault())}}" @endif
+                                @if($item->countries)data-name-flag="{{$item->countries->name}}" @endif
 
-                                data-img-flag="{{asset($item->countries->flagOrDefault())}}"
-                                data-name-flag="{{$item->countries->name}}"
-
-                                data-img-race="{{asset('images/default/game-races/'.$item->races->title.'.png')}}"
-                                data-title-race="{{$item->races->title}}"
+                                @if($item->races)data-img-race="{{asset('images/default/game-races/'.$item->races->title.'.png')}}"  @endif
+                                @if($item->races)data-title-race="{{$item->races->title}}"  @endif
 
                                 data-stream-title="{{$item->title}}"
                         >
+                            @if($item->countries)
                             <img class="margin-left-5" src="{{asset($item->countries->flagOrDefault())}}" alt="flag"
                                  title="{{$item->countries->name}}">
-                            <img class="margin-left-5"
+                            @endif
+                             @if($item->races)
+                            <img class
+                                 ="margin-left-5"
                                  src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}" alt="race"
                                  title="{{$item->races->title}}">
+                           @endif
                             <span class="color-blue night_text" title="{{$item->title}}">{{$item->title}}</span>
                         </button>
                     </div>

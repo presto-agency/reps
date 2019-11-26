@@ -24,8 +24,10 @@
                     <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
                 @endguest()
                 <p class="title__nickname night_text">{{ $news->author->name ? $news->author->name : 'user' }}</p>
-                <img src="{{ asset($news->author->countries->flagOrDefault()) }}"
+                 @if($topic->author->countries)
+                    <img src="{{ asset($news->author->countries->flagOrDefault()) }}"
                      class="title__flag" alt="flag">
+                     @endif
                 <img src="{{asset("images/default/game-races/" . $news->author->races->title . ".png")}}"
                      class="title__cube" alt="race">
                 <p class="title__text night_text">{{ $news->author->comments_count.'  pts' }}

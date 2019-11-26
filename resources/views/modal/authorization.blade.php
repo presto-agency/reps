@@ -14,7 +14,6 @@
                 <h2 class="modal-body__title night_text">Добро пожаловать!</h2>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-
                     <div class="form-group">
                         <input type="email"
                                class="form-control night_input @error('email') is-invalid @enderror"
