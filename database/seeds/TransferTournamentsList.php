@@ -17,7 +17,7 @@ class TransferTournamentsList extends Seeder
         /**
          * Clear table
          */
-        TourneyList::query()->whereNotNull('id')->delete();
+        TourneyList::query()->delete();
         /**
          * Remove autoIncr
          */

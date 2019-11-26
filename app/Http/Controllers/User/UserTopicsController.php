@@ -69,9 +69,9 @@ class UserTopicsController extends Controller
         }
         $topic = new ForumTopic;
         $topic->forum_section_id = $request->get('forum_section_id');
-        $topic->title = $request->get('title');
-        $topic->preview_content = $request->get('preview_content');
-        $topic->content = $request->get('content');
+        $topic->title = clean($request->get('title'));
+        $topic->preview_content = clean($request->get('preview_content'));
+        $topic->content = clean($request->get('content'));
         $this->checkImg($request, $topic);
         $topic->user_id = auth()->id();
         $topic->start_on = Carbon::now();
@@ -123,10 +123,10 @@ class UserTopicsController extends Controller
     public function update(UserTopicsUpdateRequest $request, $id, $user_topic)
     {
         $topic = ForumTopic::findOrFail($user_topic);
-        $topic->title = $request->get('title');
+        $topic->title = clean($request->get('title'));
         $topic->forum_section_id = $request->get('forum_section_id');
-        $topic->preview_content = $request->get('preview_content');
-        $topic->content = $request->get('content');
+        $topic->preview_content = clean($request->get('preview_content'));
+        $topic->content = clean($request->get('content'));
         $this->checkImg($request, $topic);
         $topic->save();
         return redirect()->to(route('topic.show', ['topic' => $topic->id]));

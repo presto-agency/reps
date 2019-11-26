@@ -27,9 +27,9 @@ class TransferInterview extends Seeder
         /**
          * Clear table
          */
-        \App\Models\InterviewQuestion::query()->whereNotNull('id')->delete();
-        \App\Models\InterviewUserAnswers::query()->whereNotNull('id')->delete();
-        \App\Models\InterviewVariantAnswer::query()->whereNotNull('id')->delete();
+        \App\Models\InterviewQuestion::query()->delete();
+        \App\Models\InterviewUserAnswers::query()->delete();
+        \App\Models\InterviewVariantAnswer::query()->delete();
         /**
          * Remove autoIncr
          */

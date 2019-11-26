@@ -29,7 +29,7 @@ class TransferStreams extends Seeder
         /**
          * Clear table
          */
-        Stream::query()->whereNotNull('id')->delete();
+        Stream::query()->delete();
         /**
          * Remove autoIncr
          */

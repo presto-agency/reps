@@ -23,7 +23,7 @@ class TransferUserGalleries extends Seeder
         /**
          * Clear table
          */
-        UserGallery::query()->whereNotNull('id')->delete();
+        UserGallery::query()->delete();
         /**
          * Get and Insert data
          */

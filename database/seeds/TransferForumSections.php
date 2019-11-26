@@ -26,7 +26,7 @@ class TransferForumSections extends Seeder
         /**
          * Clear table
          */
-        ForumSection::query()->whereNotNull('id')->delete();
+        ForumSection::query()->delete();
         /**
          * Remove autoIncr
          */

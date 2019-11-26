@@ -50,7 +50,7 @@ class TransferUserActivityLogs extends Seeder
         /**
          * Clear table
          */
-        UserActivityLog::query()->whereNotNull('id')->delete();
+        UserActivityLog::query()->delete();
         /**
          * Remove autoIncr
          */
