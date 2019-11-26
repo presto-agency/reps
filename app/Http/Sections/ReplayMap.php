@@ -98,7 +98,7 @@ class ReplayMap extends Section
         return $this->onEdit(null);
     }
 
-    public $data;
+    public $imageOldPath;
 
     /**
      * @param  int  $id
@@ -107,9 +107,9 @@ class ReplayMap extends Section
      */
     public function onEdit($id)
     {
-        $getData = $this->getModel()->find($id);
+        $getData = $this->getModel()->select('url')->find($id);
         if ($getData) {
-            $this->data = $getData;
+            $this->imageOldPath = $getData->url;
         }
 
         $display = AdminForm::panel();
@@ -117,7 +117,9 @@ class ReplayMap extends Section
 
             $picture = AdminFormElement::image('url', 'Картинка карты')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage'.PathHelper::checkUploadsFileAndPath("/images/replays/maps", $this->data->url);
+                    return 'storage'
+                        .PathHelper::checkUploadsFileAndPath("/images/replays/maps",
+                            $this->imageOldPath);
                 })
                 ->setValidationRules([
                     'required',

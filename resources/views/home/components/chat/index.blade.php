@@ -7,8 +7,7 @@
     <div class="row main_row">
         <div class="col-12 main_container">
             <div id="appchat">
-                <chat-room :auth="{{ Auth::check() ? Auth::user() : 0 }}"
-                           :not_user="{{ Auth::check() ? auth()->user()->isNotUser() : 0}}"/>
+                <chat-room :auth="{{ Auth::check() ? Auth::user() : 0 }}" :not_user="{{ Auth::check() ? auth()->user()->isNotUser() : 0}}"/>
             </div>
             <div class="block_stream_list">
                 <div class="title_video ">
@@ -32,17 +31,16 @@
                                 </svg>
                             </button>
 
-                            @if(!empty($stream))
-                                <img class="icon_bars" id="streamOnlineFlag"
-                                     src="@if(!empty($stream->countries)){{asset($stream->countries->flagOrDefault())}}@endisset"
-                                     title="@if(!empty($stream->countries)){{$stream->countries->name}}@endisset"
-                                     alt="flag"/>
-                                <img class="icon_bars" id="streamOnlineRace"
-                                     src="@if(!empty($stream->races)){{asset('images/default/game-races/'.$stream->races->title.'.png')}}@endisset"
-                                     title="@if(!empty($stream->races)){{$stream->races->title}}@endisset" alt="race"/>
-                                <p class="title_text" id="streamOnlineName"
-                                   title="{{$stream->title}}">{{$stream->title}}</p>
-                            @endif
+
+                            <img class="icon_bars" id="streamOnlineFlag"
+                                 src="@if($stream->countries){{asset($stream->countries->flagOrDefault())}}@endisset"
+                                 title="@if($stream->countries){{$stream->countries->name}}@endisset" alt="flag"/>
+                            <img class="icon_bars" id="streamOnlineRace"
+                                 src="@if($stream->races){{asset('images/default/game-races/'.$stream->races->title.'.png')}}@endisset"
+                                 title="@if($stream->races){{$stream->races->title}}@endisset" alt="race"/>
+                            <p class="title_text" id="streamOnlineName"
+                               title="@if($stream->title){{$stream->title}}@endisset">@isset($stream){{$stream->title}}@endisset</p>
+
                         </div>
                         <div class="right_block">
                             <button id="btn_theatre_mode" class="btn_theatre_mode">
@@ -72,8 +70,7 @@
                 </div>
                 <div class="video_twitch">
                     <iframe id="streamOnline" style="width: 99%; height: 100%;" allowfullscreen="true" scrolling="no"
-                            autoplay="1" frameborder="0"
-                            src="@isset($stream){{$stream->stream_url_iframe}}@endisset"></iframe>
+                            autoplay="1" frameborder="0" src="@isset($stream){{$stream->stream_url_iframe}}@endisset"></iframe>
                 </div>
             </div>
         </div>
