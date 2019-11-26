@@ -19,10 +19,9 @@ class DatabaseSeeder extends Seeder
          * Attention!!!
          *
          * 1.The table loc.<replay_maps> will be cleared.
-         * 2.In this process, all keys and their fields will be changed in the loc.(<replays>) table.
-         * 3.This process uses the following tables:
+         * 2.This process uses the following tables:
          * reps.(<replay_maps>)
-         * loc.(<replays>,<replay_maps>).
+         * loc.(<replay_maps>).
          */
                 $this->call(TransferReplayMaps::class);
 
@@ -72,13 +71,11 @@ class DatabaseSeeder extends Seeder
          * Attention!!!
          *
          * 1.The table loc.<countries> will be cleared.
-         * 2.In this process, all keys and their fields will be changed in the loc.(<users>,<streams>) table.
-         * 3.This process uses the following tables:
+         * 2.This process uses the following tables:
          * reps.(<countries>)
-         * loc.(<countries>,<replays>,<users>,<streams>).
+         * loc.(<countries>).
          */
                 $this->call(TransferCountries::class);
-
 
         /**
          *
@@ -87,10 +84,9 @@ class DatabaseSeeder extends Seeder
          * Attention!!!
          *
          * 1.The table loc.<user_activity_logs> will be cleared.
-         * 2.In this process, all keys and their fields will be changed in the loc.(<user_activity_logs>) table.
-         * 3.This process uses the following tables:
+         * 2.This process uses the following tables:
          * reps.(<user_activity_logs>)
-         * loc.(<user_activity_logs>,<users>).
+         * loc.(<user_activity_logs>).
          */
                 $this->call(TransferUserActivityLogs::class);
 
@@ -103,7 +99,7 @@ class DatabaseSeeder extends Seeder
          * 1.The table loc.<replays> will be cleared.
          * 2.This process uses the following tables:
          * reps.(<replays>,<files>)
-         * loc.(<replays>,<races>).
+         * loc.(<replays>).
          */
                 $this->call(TransferReplays::class);
 
@@ -114,10 +110,9 @@ class DatabaseSeeder extends Seeder
          * Attention!!!
          *
          * 1.The table loc.<streams> will be cleared.
-         * 2.In this process, all keys and their fields will be changed in the loc.(<streams>) table.
-         * 3.This process uses the following tables:
+         * 2.This process uses the following tables:
          * reps.(<streams>)
-         * loc.(<streams>,<races>).
+         * loc.(<streams>).
          */
         $this->call(TransferStreams::class);
         $this->call(SeederStreams::class);
@@ -156,7 +151,7 @@ class DatabaseSeeder extends Seeder
          * 1.The table loc.<forum_topics> will be cleared.
          * 2.This process uses the following tables:
          * reps.(<users>,<files>)
-         * loc.(<users>,<races>,<countries>,<roles>).
+         * loc.(<users>).
          */
                 $this->call(TransferUsers::class);
                 $this->call(SeederSuperAdmin::class);
@@ -172,7 +167,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<comments>)
          * loc.(<comments>).
          */
-                $this->call(TransferComments::class);
+//                $this->call(TransferComments::class);
 
         /**
          *

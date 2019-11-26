@@ -17,13 +17,7 @@ class TransferTournamentsList extends Seeder
         /**
          * Clear table
          */
-        TourneyList::query()->delete();
-        /**
-         * Remove autoIncr
-         */
-//        Schema::table('tourney_lists', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', false)->change();
-//        });
+        DB::table('tourney_lists')->delete();
         /**
          * Get and Insert data
          */
@@ -62,11 +56,5 @@ class TransferTournamentsList extends Seeder
                 }
             });
 
-        /**
-         * Add autoIncr
-         */
-//        Schema::table('tourney_lists', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', true)->change();
-//        });
     }
 }
