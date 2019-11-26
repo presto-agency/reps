@@ -16,7 +16,7 @@ class UserEventSubscriber
      */
     public function onUserVerified($event)
     {
-        //        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_VERIFIED, null);
+                $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_VERIFIED, null);
     }
 
     /**
@@ -25,7 +25,7 @@ class UserEventSubscriber
     public function onUserLogin($event)
     {
 
-        //        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGIN, null);
+                $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGIN, null);
     }
 
     /**
@@ -33,7 +33,7 @@ class UserEventSubscriber
      */
     public function onUserLogout($event)
     {
-        //        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGOUT, null);
+                $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGOUT, null);
     }
 
     /**
@@ -42,7 +42,7 @@ class UserEventSubscriber
     public function onUserRegistered($event)
     {
 
-        //        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_REGISTER, null);
+                $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_REGISTER, null);
     }
 
     /**
