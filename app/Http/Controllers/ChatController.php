@@ -65,7 +65,7 @@ class ChatController extends Controller
 //                return redirect()->back();
                 return response()->json([
                     'status' => 'ok',
-                    'id' => $resultModel->id, 'user' => Auth::id()
+                    'data' => $resultModel, 'user' => Auth::id()
                 ], 200);
             }
 
