@@ -9,7 +9,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-3 col-4 wrapper_game">
                         <div class="game_oneSection">
                             <a href="{{route('replay.show',['replay'=>$item->id, 'type' => 'pro'])}}" class="name_game"
-                               title="{!! ParserToHTML::toHTML($item->title,'size') !!}"><p>{!! ParserToHTML::toHTML($item->title,'size') !!}</p></a>
+                               title="{!! ParserToHTML::toHTML($item->title,'size') !!}">{!! ParserToHTML::toHTML($item->title,'size') !!}</a>
                             <div class="content_game">
                                 <p class="text">Страны:</p>
                                 @isset($item->firstCountries)
@@ -50,7 +50,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-3 col-4 wrapper_game">
                         <div class="game_oneSection">
                             <a href="{{route('replay.show',['replay'=>$item->id, 'type' => 'user'])}}" class="name_game"
-                               title="{!! ParserToHTML::toHTML($item->title,'size') !!}"><p>{!! ParserToHTML::toHTML($item->title,'size') !!}</p></a>
+                               title="{!! ParserToHTML::toHTML($item->title,'size') !!}">{!! ParserToHTML::toHTML($item->title,'size') !!}</a>
                             <div class="content_game">
                                 <p class="text">{{__('Страны:')}}</p>
                                 @isset($item->firstCountries)
