@@ -23,16 +23,12 @@
                     @endif
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p>
                                 {!! ParserToHTML::toHTML($topic->preview_content,'size') !!}
-                            </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p>
                                 {!! ParserToHTML::toHTML($topic->content,'size') !!}
-                            </p>
                         </div>
                     </div>
                     <br>
@@ -64,7 +60,6 @@
                                 {{$topic->positive_count}}</p></li>
                     </ul>
                     <br>
-                    <div>
                         <div class="box-body chat" id="chat-box">
                             <div class="box-footer">
                                 <form method="POST"
@@ -112,7 +107,6 @@
                         <div class="box-footer clearfix pagination-content">
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>

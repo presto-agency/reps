@@ -31,7 +31,7 @@
                 <div class="gocu-replays__subtitle change_gray">
                                 <a class="subtitle__name night_text"
                                    href="#">
-                                    <div>55</div>
+                                    55
                                 </a>
                     <div class="block_right">
                         <svg id="Capa_1" enable-background="new 0 0 515.556 515.556" height="512" viewBox="0 0 515.556 515.556" width="512" xmlns="http://www.w3.org/2000/svg">
