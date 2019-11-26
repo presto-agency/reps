@@ -27,8 +27,16 @@
                 <textarea name="content" class="form-control night_input"
                           id="content-comment">{{old('content')}}</textarea>
                 <script>
+                    CKEDITOR.config.allowedContent = true;
+                    CKEDITOR.config.fillEmptyBlocks = false;
+                    CKEDITOR.config.indentClasses = ["ul-grey", "ul-red", "text-red", "ul-content-red", "circle", "style-none", "decimal", "paragraph-portfolio-top", "ul-portfolio-top", "url-portfolio-top", "text-grey"];
+                    CKEDITOR.config.protectedSource.push(/<(style)[^>]*>.*<\/style>/ig);
+                    CKEDITOR.config.protectedSource.push(/<(script)[^>]*>.*<\/script>/ig);// разрешить теги <script>
+                    CKEDITOR.config.protectedSource.push(/<\?[\s\S]*?\?>/g);// разрешить php-код
+                    CKEDITOR.config.allowedContent = true; /* all tags */
                     CKEDITOR.replace('content-comment', {
                         // Define the toolbar groups as it is a more accessible solution.
+
                         extraPlugins: 'autoembed',
                         toolbarGroups: [
                             {name: 'document', groups: ['mode', 'document', 'doctools']},

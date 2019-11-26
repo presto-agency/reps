@@ -1,6 +1,6 @@
-<p>Примеры URl (afreecatv): http://play.afreecatv.com/byflash/218520058</p>
-<p>Примеры URl (twitch): https://www.twitch.tv/treshapro</p>
-<p>Примеры URl (goodgame): https://goodgame.ru/channel/PHombie/#autoplay</p>
+<p>{{__('Примеры URl (afreecatv): http://play.afreecatv.com/byflash/218520058')}}</p>
+<p>{{__('Примеры URl (twitch): https://www.twitch.tv/treshapro')}}</p>
+<p>{{__('Примеры URl (goodgame): https://goodgame.ru/channel/PHombie/#autoplay')}}</p>
 @isset($streamUrlIframe)
     <iframe src="{{$streamUrlIframe}}"
             allowfullscreen="true"

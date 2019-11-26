@@ -98,6 +98,7 @@ class UserGalleryController extends Controller
      */
     public function show($id, $user_gallery)
     {
+
         User::findOrFail($id);
         $relation = ['comments'];
         $row      = [
@@ -112,11 +113,10 @@ class UserGalleryController extends Controller
         $userImage = GalleryHelper::getUserImage($user_gallery, $relation,
             $row);
         // get previous user id
-        $previous = GalleryHelper::previousUserImage($user_gallery, $relation,
-            $row);
+        $previous = GalleryHelper::previousUserImage($id,$user_gallery);
 
         // get next user id
-        $next = GalleryHelper::nextUserImage($user_gallery, $relation, $row);
+        $next = GalleryHelper::nextUserImage($id,$user_gallery);
 
         $routCheck = $this->routCheck;
         $user_id   = UserService::getUserId();

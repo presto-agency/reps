@@ -76,4 +76,12 @@ class MessageService
         }
     }
 
+    /**
+     * @param $dialog_id
+     * @return mixed
+     */
+    public static function getContactUser($dialog_id)
+    {
+        return Dialogue::find($dialog_id)->users()->where('id','<>', Auth::id())->first();
+    }
 }

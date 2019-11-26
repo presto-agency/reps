@@ -82,4 +82,13 @@ class Replay extends Model
 
     }
 
+    public static function checkUser4Update(){
+        /*User role cannot add PRO-Replay*/
+        if (request('user_replay') == Replay::REPLAY_PRO) {
+            if (auth()->user()->isUser()) {
+                return back();
+            }
+        }
+        return null;
+    }
 }

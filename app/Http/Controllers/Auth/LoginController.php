@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 
-use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Session;
@@ -41,16 +40,18 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        return redirect()->route('home.index');
+    }
+
     public function login(Request $request)
     {
         Session::flash('showModal', 'login');
 
         $this->validateLogin($request);
 
-        $isBan = User::where('email', $request->get('email'))->value('ban');
-        if ($isBan == 1) {
-            return redirect()->to('/');
-        }
+
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.

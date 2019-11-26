@@ -65,6 +65,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'remember_token',
         ];
 
+
     public function userViewAvatars()
     {
         if ($this->view_avatars == 1) {
@@ -92,14 +93,31 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isNotUser()
     {
-        return $this->roles->name != 'user' ? 1 : 0;
+        return $this->roles->name != 'user' ? true : false;
     }
 
-    public function superAdminRoles()
+    public function isUser()
+    {
+        return $this->roles->name == 'user' ? true : false;
+    }
+
+    public function superAdminRole()
     {
         return $this->roles->name == 'super-admin' ? true : false;
     }
 
+    public function adminRole()
+    {
+        return $this->roles->name == 'admin' ? true : false;
+    }
+    public function moderatorRole()
+    {
+        return $this->roles->name == 'moderator' ? true : false;
+    }
+    public function userRole()
+    {
+        return $this->roles->name == 'user' ? true : false;
+    }
     /**
      * @param $id
      *
@@ -179,4 +197,5 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return false;
     }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Services\Base\RegexService;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
@@ -35,5 +36,29 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * New rules
+     * @return array
+     */
+    protected function rules()
+    {
+        return [
+            'token' => 'required',
+            'email'    => [
+                'required',
+                'email',
+                'string',
+                'max:30',
+                'unique:users,email',
+            ],
+            'password' => [
+                'required',
+                'string',
+                'between:8,30',
+                'confirmed',
+            ],
+        ];
     }
 }

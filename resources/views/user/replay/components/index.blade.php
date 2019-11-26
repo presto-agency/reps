@@ -60,6 +60,18 @@
                             @endisset
                         @endif
                     @endisset
+                        {{--<div id="load_more-replay" class="gocu-replays__button night_modal">
+                            <a type="button" name="load_more-replay_button" class="button button__download-more night_text" id="load_more-replay_button" data-id="13" data-subtype="">
+                                Репутация
+                            </a>
+                        </div>--}}
+
+                        <div class="gocu-replays__button night_modal">
+                            <a class="button button__download-more night_text"
+                               href="{{route('replay.get_rating',['id' => $item->id])}}">
+                                рейтинг лист</a>
+                        </div>
+
                     <p class="subtitle__date night_text">{{$item->created_at->format('h:m d.m.Y')}}</p>
                 </div>
                 <div class="gocu-replays__match">
@@ -164,7 +176,7 @@
                     c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                     C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
-                            <span class="wins__text night_text">{{$item->positive_count - $item->negative_count}}</span>
+                            <span class="wins__text night_text">{{$item->rating}}</span>
                         </div>
                     </div>
                 </div>

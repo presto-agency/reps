@@ -17,6 +17,7 @@ class SeederSuperAdmin extends Seeder
             'role_id'  => 1,
             'name'     => 'super-admin',
             'email'    => 'super-admin@reps.com',
+            'email_verified_at'    => \Carbon\Carbon::now(),
             'password' => \Hash::make('12345678')
         ]);
     }

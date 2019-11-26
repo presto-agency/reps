@@ -21,7 +21,7 @@ class UserRatingListController extends Controller
         $user = User::findOrFail($id);
 
         $userReputations = UserReputation::where('recipient_id', $id)->with('sender.races')->paginate(30);
-//        $userReputations = null;
+
         return view('user.rating-list.index', compact('userReputations', 'user'));
     }
 
