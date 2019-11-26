@@ -13,9 +13,11 @@ use App\Models\{Country, Race, Role};
 use Carbon\Carbon;
 use checkFile;
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Display\ControlLink;
 use SleepingOwl\Admin\Display\DisplayDatatablesAsync;
 use SleepingOwl\Admin\Section;
 
@@ -91,10 +93,10 @@ class User extends Section
 
             $rating = AdminColumn::custom('Рейтинг', function ($model) {
                 $thumbsUp
-                    = '<span style="font-size: 1em; color: green;"><i class="fas fa-plus"></i></span>';
+                        = '<span style="font-size: 1em; color: green;"><i class="fas fa-plus"></i></span>';
                 $equals = '<i class="fas fa-equals"></i>';
                 $thumbsDown
-                    = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
+                        = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
 
                 return $thumbsUp."$model->count_positive".'<br/>'.$equals
                     ."$model->rating".'<br/>'
@@ -182,9 +184,15 @@ class User extends Section
         ]);
         $display->getColumnFilters()->setPlacement('table.header');
 
+
+        $control    = $display->getColumns()->getControlColumn();
+        $buttonShow = $this->show();
+        $control->addButton($buttonShow);
+
         return $display;
     }
 
+    public $id;
     /**
      * @param  int  $id
      *
@@ -192,6 +200,7 @@ class User extends Section
      */
     public function onEdit($id)
     {
+        $this->id = $id;
         $getData = $this->getModel()->select('avatar')->find($id);
         if ($getData) {
             $this->imageOldPath = $getData->avatar;
@@ -222,7 +231,7 @@ class User extends Section
                     'string',
                     'email',
                     'max:255',
-                    'unique:users,email,'.$id,
+                    'unique:users,email,'.$this->id,
                 ]),
 
             $name = AdminFormElement::text('name', 'Имя')
@@ -234,7 +243,7 @@ class User extends Section
                     'required',
                     'string',
                     'between:1,255',
-                    'unique:users,name,'.$id,
+                    'unique:users,name,'.$this->id,
                 ]),
 
             $birthday = AdminFormElement::date('birthday', 'День рождения')
@@ -333,7 +342,6 @@ class User extends Section
      */
     public function onDelete($id)
     {
-
     }
 
     /**
@@ -369,19 +377,38 @@ class User extends Section
      */
     public function getRoles()
     {
-        if (auth()->user()->superAdminRoles() === true) {
+        if (auth()->user()->superAdminRole() === true) {
             return (new Role())->pluck('title', 'id')->toArray();
         } else {
             $getData = (new Role())->pluck('title', 'id')->toArray();
-            if (($key1 = array_search('Супер-админ', $getData)) !== false) {
-                unset($getData[$key1]);
-            }
-            if (($key2 = array_search('Админ', $getData)) !== false) {
-                unset($getData[$key2]);
-            }
+//            if (($key1 = array_search('Супер-админ', $getData)) !== false) {
+//                unset($getData[$key1]);
+//            }
+//            if (($key2 = array_search('Админ', $getData)) !== false) {
+//                unset($getData[$key2]);
+//            }
 
             return $getData;
         }
+    }
+
+    /**
+     * @return ControlLink
+     */
+    public function show()
+    {
+        $link = new ControlLink(function (
+            Model $model
+        ) {
+            //            return asset('/admin/users/'.$model->getKey().'/send-email-create');
+            return route('admin.user.email-send.create',
+                ['id' => $model->getKey()]);
+        }, 'Написать Email', 50);
+        $link->hideText();
+        $link->setIcon('far fa-envelope-open');
+        $link->setHtmlAttribute('class', 'btn-info');
+
+        return $link;
     }
 
 }

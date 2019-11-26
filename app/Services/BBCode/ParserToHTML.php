@@ -20,8 +20,10 @@ class ParserToHTML
         if ( ! empty($ignoreTag)) {
             $bbCode->ignoreTag($ignoreTag);
         }
-
-        return htmlspecialchars_decode($bbCode->render($text));
+//        $data = htmlspecialchars($bbCode->render($text));
+        $data = $bbCode->render($text);
+//        htmlspecialchars function to prevent XSS attacks.
+        return clean(htmlspecialchars_decode($data));
     }
 
 }

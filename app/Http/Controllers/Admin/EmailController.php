@@ -11,12 +11,15 @@ class EmailController extends Controller
 {
 
     /**
+     * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function emailCreate()
+    public function emailCreate($id)
     {
 
-        $content = view('admin.send-email.create');
+        $user = User::select('email')->findOrFail($id);
+
+        $content = view('admin.send-email.create',compact('user'));
 
         return \AdminSection::view($content, 'Отправка Email');
     }
@@ -32,7 +35,7 @@ class EmailController extends Controller
         $user        = new User();
         $user->email = $request->to_email;
         $user->notify(new CustomEmail($request->subject, $request->message));
-        $request->session()->put('email-send-status', 'Вы отправили письмо '
+        $request->session()->flash('email-send','Вы отправили письмо '
             .$request->to_email);
 
         return back();

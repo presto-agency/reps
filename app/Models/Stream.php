@@ -19,6 +19,7 @@ class Stream extends Model
             'content',
             'country_id',
             'stream_url',
+            'stream_url_iframe',
             'approved',
             'active',
 

@@ -17,6 +17,7 @@ use Session;
 
 class RegisterController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -50,31 +51,32 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param array $data
+     * @param  array  $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'name'     => [
-                'regex:' . RegexService::regex('name'),
+                'regex:'.RegexService::regex('name'),
                 'required',
                 'string',
                 'between:3,30',
-                'unique:users,name'
+                'unique:users,name',
             ],
             'email'    => [
                 'required',
                 'email',
                 'string',
                 'max:30',
-                'unique:users,email'
+                'unique:users,email',
             ],
             'password' => [
                 'required',
                 'string',
                 'between:8,30',
-                'confirmed'
+                'confirmed',
             ],
         ]);
     }
@@ -83,7 +85,8 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param array $data
+     * @param  array  $data
+     *
      * @return \App\User
      */
     protected function create(array $data)
@@ -91,7 +94,8 @@ class RegisterController extends Controller
         return User::create([
             'name'       => $data['name'],
             'email'      => $data['email'],
-            'country_id' => Country::where('code', $data['country'])->value('id'),
+            'country_id' => Country::where('code', $data['country'])
+                ->value('id'),
             'race_id'    => Race::where('code', $data['race'])->value('id'),
             'role_id'    => Role::where('name', 'user')->value('id'),
             'password'   => Hash::make($data['password']),
@@ -100,7 +104,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('auth.register');
+        return redirect()->route('home.index');
     }
 
     public function register(Request $request)
@@ -117,4 +121,5 @@ class RegisterController extends Controller
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }
+
 }

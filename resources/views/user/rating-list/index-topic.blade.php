@@ -10,8 +10,8 @@
 @endsection
 
 @section('content')
-    @include('user.rating-list.components.block-user-topic-reputation-info.index')
-    @include('user.rating-list.components.index-topic')
+    @include('user.rating-list.components.block-user-topic-reputation-info.info')
+    @include('user.rating-list.components.info-topic')
 @endsection
 
 @section('right-side')

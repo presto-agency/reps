@@ -54,11 +54,7 @@
                 </div>
             </div>
             <div class="body__img">
-                @if(!empty($userImage->picture) && checkFile::checkFileExists($userImage->picture))
-                    <img src="{{asset($userImage->picture)}}" alt="image">
-                @else
-                    <img src="{{asset($userImage->defaultGallery())}}" alt="image">
-                @endif
+                    <img src="{{asset($userImage->pictureOrDefault())}}" alt="image">
             </div>
             <form action="" class="body__edit-image-form">
                 @csrf

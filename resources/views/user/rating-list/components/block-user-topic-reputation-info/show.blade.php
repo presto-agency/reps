@@ -1,6 +1,6 @@
 <div class="reputation-info">
     <div class="reputation-info__title">
-        <p class="title__text">Мои темы</p>
+        <p class="title__text">{{__('Мои темы')}}</p>
     </div>
 
     <div class="reputation-info__body">
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="panel__body">
-                <p class="body__comment">{!! $object->content !!}</p>
+                <p class="body__comment">{!! ParserToHTML::toHTML($object->content,'size') !!}</p>
             </div>
             <div class="panel__footer">
                 <div class="footer__item">

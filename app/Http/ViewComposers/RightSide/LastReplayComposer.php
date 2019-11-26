@@ -29,6 +29,7 @@ class LastReplayComposer
     private static function getLastReplay()
     {
         return Replay::withCount('comments')
+            ->where('user_replay',Replay::REPLAY_USER)
             ->where('approved', 1)
             ->orderByDesc('id')
             ->take(5)

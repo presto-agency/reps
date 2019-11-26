@@ -54,13 +54,13 @@ class TransferUserActivityLogs extends Seeder
         /**
          * Remove autoIncr
          */
-        Schema::table('user_activity_logs', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
-        });
+//        Schema::table('user_activity_logs', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', false)->change();
+//        });
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("user_activity_logs")->orderBy('id','ASC')
+        DB::connection("mysql2")->table("user_activity_logs")
             ->chunkById(100, function ($repsUserActivityLogs) {
                 try {
                     $insertItems = [];
@@ -84,9 +84,9 @@ class TransferUserActivityLogs extends Seeder
         /**
          * Add autoIncr
          */
-        Schema::table('user_activity_logs', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        });
+//        Schema::table('user_activity_logs', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        });
         Schema::table('user_activity_logs', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->nullable()->change();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');

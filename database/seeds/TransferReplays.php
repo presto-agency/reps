@@ -27,9 +27,9 @@ class TransferReplays extends Seeder
         /**
          * Remove autoIncr
          */
-        Schema::table('replays', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', false)->change();
-        });
+//        Schema::table('replays', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', false)->change();
+//        });
         /**
          * Get and Insert data
          */
@@ -76,9 +76,9 @@ class TransferReplays extends Seeder
         /**
          * Add autoIncr
          */
-        Schema::table('replays', function (Blueprint $table) {
-            $table->unsignedBigInteger('id', true)->change();
-        });
+//        Schema::table('replays', function (Blueprint $table) {
+//            $table->unsignedBigInteger('id', true)->change();
+//        });
         /**
          * Enable forKeys
          */

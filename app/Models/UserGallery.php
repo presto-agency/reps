@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\ModelRelations\UserGalleryRelationTrait;
+use checkFile;
 use Illuminate\Database\Eloquent\Model;
 
 class UserGallery extends Model
@@ -25,10 +26,17 @@ class UserGallery extends Model
         ];
 
     /*$user->picture*/
-    public function defaultGallery()
+    public function pictureOrDefault()
     {
-        return 'images/default/gallery/no-img.png';
+        if ( ! empty($this->picture)
+            && checkFile::checkFileExists($this->picture)
+        ) {
+            return $this->picture;
+        } else {
+            return 'images/default/gallery/no-img.png';
+        }
     }
+
 
     public function getTitle()
     {

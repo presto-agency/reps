@@ -11,7 +11,9 @@
 |
 */
 /*The Email Verification*/
-Auth::routes(['verify' => true]);
+Auth::routes([
+    'verify' => true,
+]);
 
 /*Home*/
 Route::get('/', 'HomeController@index')->name('home.index');
@@ -73,17 +75,17 @@ Route::post('tournament/loadmore/load_tournament',
     'Tournament\TournamentController@loadTournament')
     ->name('load.more.tournament');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'ban', 'verified']], function () {
     /**comments rating: like/dislike*/
     Route::post('comment/{id}/set_rating', 'CommentsRatingController@setRating')
         ->name('comment.set_rating');
     //    Route::get('comment/{id}/get_rating', 'CommentsRatingController@getRating')->name('comment.ger_rating');
 });
 
-Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
-
-    Route::get('/friends_list', 'UserFriendController@getFriendsList')
-        ->name('user.friends_list');
+Route::group(['prefix' => 'user', 'middleware' => ['auth', 'ban', 'verified']],
+    function () {
+        Route::get('/friends_list', 'UserFriendController@getFriendsList')
+            ->name('user.friends_list');
 
     Route::get('messages', 'UserMessagingController@getUser')
         ->name('user.messages_all');
@@ -116,10 +118,9 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('{id}/friends_list', 'UserFriendController@getFriendsList')
         ->name('user.friends_list.by_id');
 
-    Route::get('{id}/messages', 'UserMessagingController@getUser')
-        ->name('user.messages');
-    Route::post('send_message', 'UserMessagingController@send')
-        ->name('user.send_message');
+    Route::get('{id}/messages', 'UserMessagingController@getUser')->name('user.messages');
+    Route::post('send_message', 'UserMessagingController@send')->name('user.send_message');
+    Route::get('/message/{dialogue_id}/load', 'UserMessagingController@loadMoreMessages')->name('user.message_load');
 
     /**get user reputation list*/
     Route::get('{id}/get_rating', 'RatingController@getRatingUser')
@@ -132,7 +133,7 @@ Route::group(['prefix' => 'chat'], function () {
         return view('stream-section.test-chat');
     });*/
 
-    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => ['auth', 'ban', 'verified']], function () {
         Route::post('/insert_message', 'ChatController@insert_message')
             ->name('chat.add_message');
         Route::delete('/delete/{id}', 'ChatController@destroy')

@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -52,9 +51,9 @@ class CustomEmail extends Notification
     {
         return (new MailMessage)
             ->from(config('mail.from.address'), config('mail.from.name'))
-            ->greeting('Hello!') //Заголовок
-            ->subject($this->subject) //Тема
-            ->line($this->message); //Контен
+            ->greeting('Hello!')
+            ->subject($this->subject)
+            ->markdown('emails.base', ['content' => $this->message]);
 
     }
 

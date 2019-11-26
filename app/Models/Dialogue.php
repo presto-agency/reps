@@ -46,7 +46,7 @@ class Dialogue extends Model
     public static function getUserDialogueContent($dialog_id)
     {
         $dialogues = Dialogue::find($dialog_id)->messages()
-            ->orderBy('created_at', 'asc')->with('sender')->get();
+            ->orderBy('created_at', 'desc')->with('sender')->paginate(10);
         $user_id   = Auth::id();
         Dialogue::find($dialog_id)->messages()->where('user_id', '<>', $user_id)
             ->update(['is_read' => 1]);
