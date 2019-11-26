@@ -158,6 +158,7 @@
             window.Echo.private('dialogue.' + '{{ $dialogue_id }}').listen('NewUserMessageAdded', ({message}) => {
                 @if(isset($message) && $message->user_id != Auth()->id())
                     appendUserMessage(message);
+                    $('body').find('.messages-box').scrollTop($(".scroll-to").offset().top);
                 @endif
 
 
@@ -189,6 +190,7 @@
                         }
                         CKEDITOR.instances[instance].setData('');
 
+                        $('body').find('.messages-box').scrollTop($(".scroll-to").offset().top);
                     }, (error) => {
                         console.log(error);
                     });
