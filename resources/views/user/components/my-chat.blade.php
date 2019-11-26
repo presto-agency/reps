@@ -56,6 +56,7 @@
                 @endif
             @endforeach
         </div>
+        {{ $contacts->links() }}
     @else
         <div class="none_text">
             Пожалуйста, добавьте друзей
