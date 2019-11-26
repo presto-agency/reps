@@ -262,7 +262,7 @@ class UserReplayController extends Controller
         $data->first_location    = $request->first_location;
         $data->second_location   = $request->second_location;
         $data->content           = clean($request->content);
-        $data->video_iframe      = $request->video_iframe;
+        $data->video_iframe      = clean($request->video_iframe);
     }
 
     public function saveFile($request, $data)
@@ -275,7 +275,8 @@ class UserReplayController extends Controller
                 PathHelper::checkUploadsFileAndPath("/files/replays");
                 // Upload file on server
                 $image      = $request->file('file');
-                $filePath   = $image->store('/files/replays', 'public');
+                $filePath   = $image->store('files/replays', 'public');
+
                 $data->file = 'storage/'.$filePath;
             }
         }

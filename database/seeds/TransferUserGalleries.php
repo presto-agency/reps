@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\UserGallery;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
 
@@ -17,13 +16,13 @@ class TransferUserGalleries extends Seeder
         /**
          * Disable forKeys
          */
-        Schema::table('replays', function (Blueprint $table) {
+        Schema::table('user_galleries', function (Blueprint $table) {
             Schema::disableForeignKeyConstraints();
         });
         /**
          * Clear table
          */
-        UserGallery::query()->delete();
+        DB::table('user_galleries')->delete();
         /**
          * Get and Insert data
          */
@@ -36,7 +35,7 @@ class TransferUserGalleries extends Seeder
                             ->table("files")->where('id', $item->file_id)
                             ->value('link');
                         $insertItems[] = [
-                            'id'         => $item->id,
+                            'id'             => $item->id,
                             'user_id'        => $item->user_id,
                             'picture'        => ! empty($file) === true ? $file
                                 : '',
