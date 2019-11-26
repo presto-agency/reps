@@ -180,21 +180,6 @@
                             </div>
                         </div>
                     </div>
-                    {{--                    <div class="right">--}}
-                    {{--                        <a href="{{$tournament->rules_link}}">--}}
-                    {{--                            <span class="gray night_text">{{__('Winner*s Pack')}}</span>--}}
-                    {{--                            <svg class="svg_gray" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
-                    {{--                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"--}}
-                    {{--                                 viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;"--}}
-                    {{--                                 xml:space="preserve">--}}
-                    {{--                            <path d="M457.7,230.1c-7.5,0-13.5,6-13.5,13.5v122.8c0,33.4-27.2,60.5-60.5,60.5H87.5C54.1,427,27,399.8,27,366.5V241.7--}}
-                    {{--                                c0-7.5-6-13.5-13.5-13.5S0,234.2,0,241.7v124.8C0,414.8,39.3,454,87.5,454h296.2c48.3,0,87.5-39.3,87.5-87.5V243.7--}}
-                    {{--                                C471.2,236.2,465.2,230.1,457.7,230.1z"/>--}}
-                    {{--                                <path d="M226.1,346.8c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-62.7,62.8V30.8--}}
-                    {{--                                c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"/>--}}
-                    {{--                            </svg>--}}
-                    {{--                        </a>--}}
-                    {{--                    </div>--}}
                 </div>
             </div>
         </div>
@@ -207,7 +192,7 @@
                     @if(isset($player->user) && !empty($player->user))
                         <div class="players_content">
                             <div class="left_block">
-                                <span>#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
+                                <span>{{'#'.$loop->iteration }} {{-- Starts with 1 --}}</span>
                                 <a href="{{route('user_profile',['id'=>$player->user->id])}}">
                                     @if(auth()->check() && auth()->user()->userViewAvatars())
                                         <img src="{{asset($player->user->avatarOrDefault())}}"
@@ -224,7 +209,8 @@
                             </div>
                             <div class="center_block">
                                 @if(isset($player->user->countries) && !empty($player->user->countries))
-                                    <img src="{{asset($player->user->countries->flagOrDefault())}}" class="info__flag" alt="flag"
+                                    <img src="{{asset($player->user->countries->flagOrDefault())}}" class="info__flag"
+                                         alt="flag"
                                          title="{{$player->user->countries->name}}">
                                 @endif
                                 @if(isset($player->user->races) && !empty($player->user->races))
@@ -233,36 +219,13 @@
                                 @endif
                             </div>
                             <div class="right_block">
-                                {{--                                <p>{{$player->place_result}}</p>--}}
-                                {{--                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medal"--}}
-                                {{--                                     class="svg-inline--fa fa-medal fa-w-16" role="img"--}}
-                                {{--                                     xmlns="http://www.w3.org/2000/svg"--}}
-                                {{--                                     viewBox="0 0 512 512">--}}
-                                {{--                                    <path fill="currentColor"--}}
-                                {{--                                          d="M223.75 130.75L154.62 15.54A31.997 31.997 0 0 0 127.18 0H16.03C3.08 0-4.5 14.57 2.92 25.18l111.27 158.96c29.72-27.77 67.52-46.83 109.56-53.39zM495.97 0H384.82c-11.24 0-21.66 5.9-27.44 15.54l-69.13 115.21c42.04 6.56 79.84 25.62 109.56 53.38L509.08 25.18C516.5 14.57 508.92 0 495.97 0zM256 160c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm92.52 157.26l-37.93 36.96 8.97 52.22c1.6 9.36-8.26 16.51-16.65 12.09L256 393.88l-46.9 24.65c-8.4 4.45-18.25-2.74-16.65-12.09l8.97-52.22-37.93-36.96c-6.82-6.64-3.05-18.23 6.35-19.59l52.43-7.64 23.43-47.52c2.11-4.28 6.19-6.39 10.28-6.39 4.11 0 8.22 2.14 10.33 6.39l23.43 47.52 52.43 7.64c9.4 1.36 13.17 12.95 6.35 19.59z"></path>--}}
-                                {{--                                </svg>--}}
-                                <svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420.57 512">
-                                    <defs>
-                                        <style>.cls-1 {
-                                                fill: #0074dd;
-                                            }
-
-                                            .cls-2 {
-                                                fill: #bcbbbb;
-                                            }
-
-                                            .cls-3 {
-                                                fill: #eaeaea;
-                                            }</style>
-                                    </defs>
-                                    <title>silverMedal</title>
-                                    <path class="cls-1" d="M109.09,375.65,45.72,457.14,118.86,448l18.28,64,64-82.29.3-.37A280.56,280.56,0,0,0,160,394.89,283,283,0,0,0,109.09,375.65Z" transform="translate(-45.72)"/>
-                                    <path class="cls-1" d="M402.91,375.65A284.34,284.34,0,0,0,352,394.85a279.86,279.86,0,0,0-41.43,34.45L374.86,512l18.28-64,73.15,9.14Z" transform="translate(-45.72)"/>
-                                    <path class="cls-2"
-                                          d="M448,228.57c0-38.31,23.87-83.38,6-114.29-18.46-31.91-70.06-33.54-102-52C321.07,44.35,294.31,0,256,0s-65.07,44.36-96,62.25c-31.92,18.47-83.51,20.12-102,52-17.9,30.93,6,76,6,114.31S40.13,312,58,342.86c18.46,31.91,70.06,33.54,102,52,30.93,17.93,57.69,62.28,96,62.28s65.07-44.36,96-62.25c31.92-18.47,83.51-20.12,102-52C471.87,312,448,266.88,448,228.57Z"
-                                          transform="translate(-45.72)"/>
-                                    <circle class="cls-3" cx="210.28" cy="228.57" r="155.43"/>
-                                </svg>
+                                @if($loop->iteration == 1)
+                                    <img src="{{asset("images/icons/goldMedal.png")}}"  alt="medal">
+                                @elseif($loop->iteration == 2)
+                                    <img src="{{asset("images/icons/silverMedal.svg")}}"  alt="medal">
+                                @else
+                                    <img src="{{asset("images/icons/bronzeMedal.svg")}}"  alt="medal">
+                                @endif
                             </div>
                         </div>
                     @endif
