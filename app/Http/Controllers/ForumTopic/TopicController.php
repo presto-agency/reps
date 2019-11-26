@@ -107,10 +107,11 @@ class TopicController extends Controller
 
     public function saveComments()
     {
+
         $replay = ForumTopic::find(request('id'));
         $comment = new Comment([
             'user_id' => auth()->id(),
-            'content' => request('content'),
+            'content' => clean(request('content')),
         ]);
         $replay->comments()->save($comment);
         return back();

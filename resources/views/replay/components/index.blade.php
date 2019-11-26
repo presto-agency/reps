@@ -64,14 +64,14 @@
                             @isset($type)
                                 <a class="subtitle__name night_text"
                                    href="{{ asset(url("user/{$item->users->id}/user-replay/{$item->id}"."?type={$type}"))}}">
-                                    <div>{!! ParserToHTML::toHTML($item->title,'size') !!}</div>
+                                   {!! ParserToHTML::toHTML($item->title,'size') !!}
                                 </a>
                             @endisset
                         @else
                             @isset($type)
                                 <a class="subtitle__name night_text"
                                    href="{{ asset(url("replay/{$item->id}"."?type={$type}"))}}">
-                                    <div>{!! ParserToHTML::toHTML($item->title,'size') !!}</div>
+                                    {!! ParserToHTML::toHTML($item->title,'size') !!}
                                 </a>
                             @endisset
                         @endif
