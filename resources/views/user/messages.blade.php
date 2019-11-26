@@ -181,6 +181,8 @@
                 }, {'X-Socket-ID': socketId})
                     .then((response) => {
 
+                        window.location.reload(true);
+
                         // визвати метод для вставки повідослення
                         appendMyMessage(response.data);
 
