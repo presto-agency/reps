@@ -34,7 +34,6 @@
                 <div class="title_top left_block">
 
                     {!! ParserToHTML::toHTML($replay->content,'size')  !!}</div>
-                </div>
                 <div class="right_block">
                     <a href="#">
                         <svg class="night_svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -83,6 +82,8 @@
                             @endisset
                         </div>
                     </div>
+
+
                     <div class="content_left">
                         <div class="left_block">
                             <span class="night_text">{{__('Матчап:')}}</span>
