@@ -59,7 +59,7 @@
                                        @endif
                                         <img src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
                                          class="info__cube" alt="race">
-                                     @if($stream->user->races)
+                                     @if($comment->user->races)
                                         <p class="info__text">{{$comment->user->comments_count.' pts'}}
                                         | {{$comment->user->count_positive - $comment->user->count_negative.' кг'}}</p>
                                       @endif

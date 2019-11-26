@@ -31,6 +31,7 @@
                                 </svg>
                             </button>
 
+
                             <img class="icon_bars" id="streamOnlineFlag"
                                  src="@if($stream->countries){{asset($stream->countries->flagOrDefault())}}@endisset"
                                  title="@if($stream->countries){{$stream->countries->name}}@endisset" alt="flag"/>
@@ -39,6 +40,7 @@
                                  title="@if($stream->races){{$stream->races->title}}@endisset" alt="race"/>
                             <p class="title_text" id="streamOnlineName"
                                title="@if($stream->title){{$stream->title}}@endisset">@isset($stream){{$stream->title}}@endisset</p>
+
                         </div>
                         <div class="right_block">
                             <button id="btn_theatre_mode" class="btn_theatre_mode">
