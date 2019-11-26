@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Services\Base\RegexService;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
@@ -46,13 +45,7 @@ class ResetPasswordController extends Controller
     {
         return [
             'token' => 'required',
-            'email'    => [
-                'required',
-                'email',
-                'string',
-                'max:30',
-                'unique:users,email',
-            ],
+            'email' => 'required|email',
             'password' => [
                 'required',
                 'string',
