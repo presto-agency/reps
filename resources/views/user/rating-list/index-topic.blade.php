@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    @include('user.rating-list.components.block-user-topic-reputation-info.info')
+    @include('user.rating-list.components.block-user-topic-reputation-info.show')
     @include('user.rating-list.components.info-topic')
 @endsection
 
