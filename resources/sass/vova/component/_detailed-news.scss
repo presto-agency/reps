@@ -26,6 +26,18 @@
         border-radius: 5px 5px 0 0;
         background-color: #0567cc;
         padding: 20px;
+        p{
+            margin: 0;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 400;
+            margin-left: 20px;
+            margin-bottom: 0; //отмена стандартного отступа
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+        }
 
         .title__wrap {
             display: flex;
@@ -307,6 +319,7 @@
             }
             .card-body__items-wrap {
                 button{
+
                     background: transparent;
                     border: 0;
 
