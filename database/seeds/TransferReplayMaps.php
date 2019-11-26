@@ -55,15 +55,15 @@ class TransferReplayMaps extends Seeder
         /**
          * Clear table
          */
-        ReplayMap::query()->whereNotNull('id')->delete();
+        ReplayMap::query()->delete();
         /**
          * Remove autoIncr
          */
-//        Schema::table(
-//            'replay_maps', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', false)->change();
-//        }
-//        );
+        //        Schema::table(
+        //            'replay_maps', function (Blueprint $table) {
+        //            $table->unsignedBigInteger('id', false)->change();
+        //        }
+        //        );
         /**
          * Get and Insert data
          */
@@ -72,28 +72,31 @@ class TransferReplayMaps extends Seeder
                 100, function ($repsReplayMap) {
                 try {
                     $insertItems = [];
+
                     foreach ($repsReplayMap as $item) {
+                        $url           = $this->checkUrl($item->url);
                         $insertItems[] = [
                             'id'         => $item->id,
                             'name'       => $item->name,
-                            'url'        => $item->url,
+                            'url'        => $url,
                             'created_at' => Carbon::now(),
                         ];
+
                     }
+
                     DB::table("replay_maps")->insertOrIgnore($insertItems);
                 } catch (\Exception $e) {
-                    dd($e, $item);
                 }
             }
             );
         /**
          * Add autoIncr
          */
-//        Schema::table(
-//            'replay_maps', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', true)->change();
-//        }
-//        );
+        //        Schema::table(
+        //            'replay_maps', function (Blueprint $table) {
+        //            $table->unsignedBigInteger('id', true)->change();
+        //        }
+        //        );
         /**
          * Add NewForKeys and columns
          */
@@ -158,6 +161,19 @@ class TransferReplayMaps extends Seeder
                 return $key->getName();
             }, $conn->listTableForeignKeys($table)
         );
+    }
+
+    public function checkUrl($url)
+    {
+        if (strpos($url, 'storage') == false) {
+            if ($url[0] == '/') {
+                return "/storage".$url;
+            } else {
+                return "/storage/".$url;
+            }
+        }
+
+        return $url;
     }
 
 }

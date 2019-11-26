@@ -23,7 +23,7 @@ class TransferReplays extends Seeder
         /**
          * Clear table
          */
-        Replay::query()->whereNotNull('id')->delete();
+        Replay::query()->delete();
         /**
          * Remove autoIncr
          */

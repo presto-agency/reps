@@ -16,7 +16,7 @@ class TransferTournamentsMatches extends Seeder
         /**
          * Clear table
          */
-        TourneyMatch::query()->whereNotNull('id')->delete();
+        TourneyMatch::query()->delete();
         /**
          * Remove autoIncr
          */

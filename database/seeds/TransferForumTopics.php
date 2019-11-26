@@ -30,7 +30,7 @@ class TransferForumTopics extends Seeder
         /**
          * Clear table
          */
-//        ForumTopic::query()->whereNotNull('id')->delete();
+        ForumTopic::query()->delete();
         /**
          * Remove autoIncr
          */

@@ -73,7 +73,7 @@ class UserGalleryController extends Controller
                 PathHelper::checkUploadsFileAndPath("/images/users/galleries");
                 // Upload file on server
                 $image                = $request->file('picture');
-                $filePath             = $image->store('image/user/gallery',
+                $filePath             = $image->store('images/users/galleries',
                     'public');
                 $userGallery->picture = 'storage/'.$filePath;
             } else {

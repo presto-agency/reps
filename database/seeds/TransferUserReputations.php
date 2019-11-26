@@ -22,7 +22,7 @@ class TransferUserReputations extends Seeder
         /**
          * Clear table
          */
-        \App\Models\UserReputation::query()->whereNotNull('id')->delete();
+        \App\Models\UserReputation::query()->delete();
         /**
          * Remove autoIncr
          */
