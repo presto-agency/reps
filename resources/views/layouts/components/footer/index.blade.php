@@ -27,8 +27,9 @@
                 <h2 class="info__title footer__title">{{__('Наши именинники:')}}</h2>
                 <div class="row">
                     <div class="col-4">
+
                         @foreach($footerUser as $item)
-                            <a class="our-birthday__nickname"
+                            <a class="our-birthday__nickname" target="_blank"
                                href="{{route('user_profile',['id'=>$item->id])}}">{{$item->name}}</a>
                         @endforeach
                     </div>
@@ -37,7 +38,7 @@
             <div class="footer__useful col-xl-2 col-lg-2 mt-lg-0 col-md-6 col-6 order-3 col-sm-6 col-6 mt-4">
                 <h2 class="info__title footer__title">{{__('Полезное:')}}</h2>
                 @foreach($footerUrl as $item)
-                    <a href="{{$item->url}}" class="useful__link" title="{{$item->title}}">{{$item->title}}</a>
+                    <a href="{{$item->url}}"  target="_blank" class="useful__link" title="{{$item->title}}">{{$item->title}}</a>
                 @endforeach
             </div>
 
