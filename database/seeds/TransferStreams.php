@@ -16,30 +16,13 @@ class TransferStreams extends Seeder
         Schema::table('streams', function (Blueprint $table) {
             Schema::disableForeignKeyConstraints();
         });
-
-        /**
-         * Drop forKeys
-         */
-        Schema::table('streams', function (Blueprint $table) {
-            $foreignKeys = $this->listTableForeignKeys('streams');
-            in_array('streams_user_id_foreign', $foreignKeys) === true ? $table->dropForeign('streams_user_id_foreign') : null;
-            in_array('streams_race_id_foreign', $foreignKeys) === true ? $table->dropForeign('streams_race_id_foreign') : null;
-            in_array('streams_country_id_foreign', $foreignKeys) === true ? $table->dropForeign('streams_country_id_foreign') : null;
-        });
         /**
          * Clear table
          */
-        Stream::query()->delete();
-        /**
-         * Remove autoIncr
-         */
-//        Schema::table('streams', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', false)->change();
-//        });
+        DB::table('streams')->delete();
         /**
          * Get and Insert data
          */
-
         DB::connection("mysql2")->table("streams")
             ->chunkById(100, function ($repsStreams) {
                 try {
@@ -66,25 +49,6 @@ class TransferStreams extends Seeder
                 }
             });
         /**
-         * Add autoIncr
-         */
-//        Schema::table('streams', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', true)->change();
-//        });
-        /**
-         * Add NewForKeys and columns
-         */
-        Schema::table('streams', function (Blueprint $table) {
-
-            $table->unsignedBigInteger('user_id')->nullable()->change();
-            $table->unsignedBigInteger('country_id')->nullable()->change();
-            $table->unsignedBigInteger('race_id')->nullable()->change();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('SET NULL');
-            $table->foreign('race_id')->references('id')->on('races')->onDelete('SET NULL');
-        });
-        /**
          * Enable forKeys
          */
         Schema::table('streams', function (Blueprint $table) {
@@ -92,16 +56,5 @@ class TransferStreams extends Seeder
         });
     }
 
-    /**
-     * @param $table
-     * @return array
-     */
-    public function listTableForeignKeys($table)
-    {
-        $conn = Schema::getConnection()->getDoctrineSchemaManager();
 
-        return array_map(function ($key) {
-            return $key->getName();
-        }, $conn->listTableForeignKeys($table));
-    }
 }

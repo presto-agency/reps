@@ -86,6 +86,7 @@ class Replay extends Section
             ])
             ->setHtmlAttribute('class', 'table-info text-center small')
             ->setDatatableAttributes(['bInfo' => false])
+            ->setOrder([[0, 'desc']])
             ->paginate(10);
 
         $display->setFilters(AdminDisplayFilter::related('approved')

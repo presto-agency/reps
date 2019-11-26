@@ -23,13 +23,7 @@ class TransferReplays extends Seeder
         /**
          * Clear table
          */
-        Replay::query()->delete();
-        /**
-         * Remove autoIncr
-         */
-//        Schema::table('replays', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', false)->change();
-//        });
+        DB::table('replays')->delete();
         /**
          * Get and Insert data
          */
@@ -73,12 +67,6 @@ class TransferReplays extends Seeder
                     dd($e, $item);
                 }
             });
-        /**
-         * Add autoIncr
-         */
-//        Schema::table('replays', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', true)->change();
-//        });
         /**
          * Enable forKeys
          */

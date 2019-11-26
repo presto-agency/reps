@@ -46,6 +46,7 @@ class PublicChat extends Section
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info table-hover text-center')
+            ->setOrder([[0, 'desc']])
             ->paginate(50);
         $display->setApply(function ($query) {
             $query->orderByDesc('created_at');

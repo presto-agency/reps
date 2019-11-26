@@ -60,7 +60,7 @@ class UserGalleryController extends Controller
 
         $userGallery          = new UserGallery;
         $userGallery->user_id = auth()->id();
-        $userGallery->sign    = $request->get('sign');
+        $userGallery->sign    = clean($request->get('sign'));
         if ($request->exists('sign') == false) {
             $userGallery->for_adults = 0;
         }

@@ -58,6 +58,7 @@ class Footer extends Section
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info')
+            ->setOrder([[0, 'desc']])
             ->paginate(1);
 
 

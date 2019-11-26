@@ -52,6 +52,7 @@ class InterviewQuestion extends Section
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info table-sm text-center ')
             ->with(['answers', 'userAnswers'])
+            ->setOrder([[0, 'desc']])
             ->paginate(10);
 
         $display->setColumns([

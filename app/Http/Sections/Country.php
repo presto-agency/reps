@@ -47,6 +47,7 @@ class Country extends Section
 
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
+            ->setOrder([[0, 'desc']])
             ->paginate(50);
 
         $display->setHtmlAttribute('class', 'table-info table-sm text-center ');

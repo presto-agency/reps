@@ -21,7 +21,7 @@ class ParserToHTML
             $bbCode->ignoreTag($ignoreTag);
         }
         $data = $bbCode->render($text);
-        return htmlspecialchars_decode($data);
+        return clean(htmlspecialchars_decode($data));
     }
 
 }

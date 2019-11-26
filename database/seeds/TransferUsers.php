@@ -23,18 +23,12 @@ class TransferUsers extends Seeder
         /**
          * Clear table
          */
-        User::query()->delete();
-        /**
-         * Remove autoIncr
-         */
-//        Schema::table('users', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', false)->change();
-//        });
+        DB::table('users')->delete();
         /**
          * Get and Insert data
          */
         DB::connection("mysql2")->table("users")
-            ->chunkById(100, function ($repsUsers) {
+            ->chunkById(200, function ($repsUsers) {
                 try {
                     $insertItems = [];
                     foreach ($repsUsers as $item) {
@@ -76,12 +70,6 @@ class TransferUsers extends Seeder
                     dd($e, $item);
                 }
             });
-        /**
-         * Add autoIncr
-         */
-//        Schema::table('users', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', true)->change();
-//        });
         /**
          * Enable forKeys
          */
