@@ -172,7 +172,7 @@ class DatabaseSeeder extends Seeder
          * reps.(<comments>)
          * loc.(<comments>).
          */
-//                $this->call(TransferComments::class);
+                $this->call(TransferComments::class);
 
         /**
          *
