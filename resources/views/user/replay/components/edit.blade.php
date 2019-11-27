@@ -12,7 +12,7 @@
                 c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                 C479.3,122.6,463.9,174.4,437.6,213.9z"/>
         </svg>
-        <p class="title__text">Редактировать Replay</p>
+        <p class="title__text">{{__('Редактировать Replay')}}</p>
     </div>
     <div class="create-replay__body night_modal">
         <form class="create-replay__form"
@@ -270,7 +270,7 @@
                     <div class="fileUpload btn btn--browse">
                         <span>Выбрать файл</span>
                         <input id="uploadBtn" type="file" class="upload"
-                               name="file"/>
+                              name="file"/>
                     </div>
                 </div>
             </div>
