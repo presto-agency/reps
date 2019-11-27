@@ -14,7 +14,7 @@
         <p class="title__text">{{__('Галерея')}}</p>
     </div>
     @isset($userImage)
-        <div class="gallery-detail__body">
+        <div class="gallery-detail__body night_modal border_shadow">
             <div class="body__items">
                 <div class="items__title">
                     {!! ParserToHTML::toHTML($userImage->sign,'size') !!}
@@ -23,7 +23,7 @@
                     @php
                         $modal = (!Auth::guest() && $userImage->user_id == Auth::user()->id) ?'#no-rating':'#vote-modal';
                     @endphp
-                    <a href="#vote-modal" class="rating__like positive-vote vote-replay-up" data-toggle="modal"
+                    <a href="#vote-modal" class="rating__like positive-vote vote-replay-up night_text" data-toggle="modal"
                        data-rating="1"
                        data-route="{{route('gallery.set_rating',['id'=>$userImage->id])}}">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px"
@@ -34,9 +34,9 @@
                             c-7.1,1.8-13.3,6.5-17,12.8c-4.3,7.2-3.8,15.7-5.4,23.7c-3.9,20.3-13.5,39.7-28.4,54.2c-26,25.3-106.6,98.3-106.6,98.3v267.5
                             h278.6c37.6,0,62.2-42,43.7-74.7c22.1-14.2,29.7-44,16.7-66.9c22.1-14.2,29.7-44,16.7-66.9C527.6,235.2,514.8,174.8,470.3,167.3z"></path>
                     </svg>
-                        <span>{{$userImage->positive_count}}</span>
+                        <span class="night_text">{{$userImage->positive_count}}</span>
                     </a>
-                    <a href="#vote-modal" class="rating__dislike negative-vote vote-replay-down" data-toggle="modal"
+                    <a href="#vote-modal" class="rating__dislike negative-vote vote-replay-down night_text" data-toggle="modal"
                        data-rating="-1"
                        data-route="{{route('gallery.set_rating',['id'=>$userImage->id])}}">
                         <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
@@ -45,11 +45,11 @@
                             <path
                                     d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"/>
                         </svg>
-                        <span>{{$userImage->negative_count}}</span>
+                        <span class="night_text">{{$userImage->negative_count}}</span>
                     </a>
                 </div>
                 <div class="items__reputation-button">
-                    <a href="{{route('gallery.get_rating',['id' => $userImage->id])}}">{{__('Рейтинг лист')}}</a>
+                    <a class="night_text" href="{{route('gallery.get_rating',['id' => $userImage->id])}}">{{__('Рейтинг лист')}}</a>
                 </div>
                 @if($routCheck)
                     <div class="items__slide-button">

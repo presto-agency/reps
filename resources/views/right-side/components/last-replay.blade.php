@@ -15,7 +15,7 @@
             @isset($lastReplaysRight)
                 @foreach($lastReplaysRight as $item)
                     <a class="href_tournament" href="{{ asset("replay/{$item->id}"."?type=user")}}">
-                        <span class="name_tournament" title="{{$item->title}}">{{$item->title}}</span>
+                        <span class="name_tournament" title="{!! ParserToHTML::toHTML($item->title,'size') !!}">{!! ParserToHTML::toHTML($item->title,'size') !!}</span>
                         <span class="count_tournament night_text" title="{{$item->comments_count}}">({{$item->comments_count}})</span>
                     </a>
                 @endforeach

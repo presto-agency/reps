@@ -118,12 +118,12 @@
                         <div class="info__match-up">
                             <span class="match-up__text night_text">Матчап: </span>
                             @isset($item->firstRaces)
-                                <span class="match-up__name name__first"
+                                <span class="match-up__name name__first night_text"
                                       title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</span>
                             @endisset
                             <span class="match-up__text match-up__versus night_text">vs</span>
                             @isset($item->secondRaces)
-                                <span class="match-up__name name__second"
+                                <span class="match-up__name name__second night_text"
                                       title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</span>
                             @endisset
                         </div>
@@ -156,7 +156,7 @@
                 @endphp
             @endforeach
 
-            <div id="load_replay_only_search" class="gocu-replays__button night_modal">
+            <div id="load_replay_only_search" class="gocu-replays__button">
                 <button type="button" name="load_replay_only_search_button"
                         class="button button__download-more night_text"
                         id="load_replay_only_search_button" data-id="{{ $last_id }}">

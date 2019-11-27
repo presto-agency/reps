@@ -21,6 +21,13 @@
         justify-content: space-between;
         align-items: center;
         .title_text{
+            p{
+                font-size: 1.167vw;
+                margin: 0 0 0 1.464vw;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
             font-size: 1.167vw;
             margin: 0 0 0 1.464vw;
             overflow: hidden;

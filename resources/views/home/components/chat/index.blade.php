@@ -71,22 +71,13 @@
                     </div>
                 </div>
                 <div class="video_twitch">
-                    {{--                    @dd(parse_url(htmlspecialchars_decode($stream->stream_url_iframe))['host'] == 'player.twitch.tv')--}}
-                    {{--                                    @if(parse_url(htmlspecialchars_decode($stream->stream_url_iframe))['host'] == 'player.twitch.tv')--}}
-                    {{--                                        @php--}}
-                    {{--                                            $chanel =   substr($stream->stream_url_iframe, strpos($stream->stream_url_iframe, "channel=") + 8);--}}
-                    {{--                                        $src = ;--}}
-                    {{--                                        @endphp--}}
-                    {{--                                    <iframe frameborder="0"--}}
-                    {{--                                            scrolling="no"--}}
-                    {{--                                            id="chatTwitch"--}}
-                    {{--                                            src=""--}}
-                    {{--                                            height="500"--}}
-                    {{--                                            width="350">--}}
-                    {{--                                    </iframe>--}}
-                    {{--                                        @endif--}}
-
-
+{{--                                                        <iframe frameborder="0"--}}
+{{--                                                                scrolling="no"--}}
+{{--                                                                id="chatTwitch"--}}
+{{--                                                                src=""--}}
+{{--                                                                height="500"--}}
+{{--                                                                width="350">--}}
+{{--                                                        </iframe>--}}
                     <iframe id="streamOnline" style="width: 99%; height: 100%;" allowfullscreen="true" scrolling="no"
                             autoplay="1" frameborder="0"
                             src="@isset($stream){{$stream->stream_url_iframe}}@endisset"></iframe>

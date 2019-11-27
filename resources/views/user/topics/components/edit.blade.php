@@ -30,7 +30,7 @@
             <div class="form-group">
                 <label for="create-topic__name" class="night_text">{{__('*Название:')}}</label>
                 <input type="text" class="form-control create-topic__name night_input" id="create-topic__name"
-                       placeholder="Название" name="title" value="{{old('title',$topic->title)}}" minlength="1"
+                       placeholder="Название" name="title" value="{!! old('title',ParserToHTML::toHTML($topic->title,'size')) !!}" minlength="1"
                        maxlength="255"
                        required>
             </div>
@@ -42,7 +42,7 @@
             <div class="upload-image">
                 <div class="row">
                     <div class="col-8">
-                        <input id="uploadFile3" class="f-input" placeholder="{{__('Выбрать картинку превью')}}"
+                        <input id="uploadFile3" class="f-input night_input" placeholder="{{__('Выбрать картинку превью')}}"
                                readonly/>
                     </div>
                     <div class="col-4 pl-0">

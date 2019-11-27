@@ -246,8 +246,7 @@
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
                         <span>Выбрать файл</span>
-                        <input id="uploadBtn" type="file" class="upload "
-                               name="file"/>
+                        <input id="uploadBtn" type="file" class="upload " name="file"/>
                     </div>
                 </div>
             </div>
