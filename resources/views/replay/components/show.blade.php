@@ -32,7 +32,6 @@
 
             <div class="title_block_gray change_gray">
                 <div class="title_top left_block">
-
                     {!! ParserToHTML::toHTML($replay->content,'size')  !!}</div>
                 <div class="right_block">
                     <a href="#">
