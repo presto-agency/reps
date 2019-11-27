@@ -16,7 +16,7 @@ class Country extends Model
 
     public function using()
     {
-        return $this->hasMany(User::class, 'country_id');
+        return $this->hasMany(User::class, 'country_id','id');
     }
 
     public function flagOrDefault()
