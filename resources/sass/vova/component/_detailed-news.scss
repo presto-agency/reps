@@ -292,6 +292,9 @@
                 font-weight: 400;
                 text-decoration: underline;
             }
+            img{
+                width: 100%;
+            }
         }
         .card-body__items {
             width: 100%;
@@ -306,6 +309,8 @@
                     border: 0;
                 }
                 .items__quote {
+                    background: transparent;
+                    border: 0;
                     text-decoration: none;
                     svg {
                         width: 20px;
@@ -385,6 +390,8 @@
         .card-body__items-wrap {
             .items__quote {
                 text-decoration: none;
+                background: transparent;
+                border: 0;
                 svg {
                     width: 20px;
                     height: 20px;
