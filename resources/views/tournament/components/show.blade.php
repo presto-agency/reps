@@ -142,7 +142,7 @@
                                                         @endforeach
                                                     @endisset
                                                 </div>
-                                                <div class="col-xl-8 col-lg-8 col-md-8 pl-2  big_block">
+                                                <div class="col-xl-8 col-lg-8 col-md-8  big_block">
                                                     <div class=" title_block ml-1">
                                                         <div class="left_content">
                                                             <span class="title_text">{{__('Maps')}}</span>

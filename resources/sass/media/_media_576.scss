@@ -38,7 +38,6 @@
     .button {
         font-size: 2.083vw;
         padding-top: 2.257vw;
-        padding-bottom: 2.604vw;
     }
     //block_title_gray
     .title_block_gray{
@@ -778,7 +777,7 @@
                         margin-right: 0.868vw;
                     }
                     .match-up__name {
-                        font-size: 4.431vw;
+                        font-size:2.431vw;
                         line-height: 3.299vw;
                     }
 
@@ -816,7 +815,7 @@
         }
     }
     .gocu-replays__button{
-        margin-bottom: 5.472vw;
+        //margin-bottom: 5.472vw;
     }
     .gocu-replays__numb-pages {
         margin-top: 4.340vw;
@@ -1164,7 +1163,7 @@
                         margin: 0 0.868vw;
                     }
                     & .blue_span{
-                        margin: 0 4.340vw 0 3.472vw;
+                       // margin: 0 4.340vw 0 3.472vw;
                     }
                 }
                 & .right_block{
@@ -3155,7 +3154,7 @@
     }
     //reputation-info
     .reputation-info {
-        margin-bottom: 3.472vw;
+        //margin-bottom: 3.472vw;
         .reputation-info__title {
             padding-top: 3.472vw;
             padding-bottom: 3.472vw;
@@ -3174,7 +3173,8 @@
             .panel {
                 padding: 0 3.125vw;
                 .panel__header {
-                    margin-top: 2.604vw;
+                    //margin-top: 2.604vw;
+                    padding-top: 1.736vw;
                     padding-bottom: 1.736vw;
                     .header__items {
                         .items__link {

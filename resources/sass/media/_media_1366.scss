@@ -2651,7 +2651,7 @@
         }
     }
     .reputation-info {
-        margin-bottom: 1.464vw;
+       // margin-bottom: 1.464vw;
         .reputation-info__title {
             padding-top: 1.464vw;
             padding-bottom: 1.464vw;
@@ -2673,7 +2673,8 @@
             .panel {
                 padding: 0 1.318vw;
                 .panel__header {
-                    margin-top: 1.098vw;
+                    //margin-top: 1.098vw;
+                    padding-top: 0.732vw;
                     padding-bottom: 0.732vw;
                     .header__items {
                         .items__link {

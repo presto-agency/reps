@@ -66,7 +66,7 @@
                             </a>
                         </div>--}}
 
-                        <div class="gocu-replays__button night_modal">
+                        <div class="gocu-replays__button night_modal litle_button">
                             <a class="button button__download-more night_text"
                                href="{{route('replay.get_rating',['id' => $item->id])}}">
                                 рейтинг лист</a>
@@ -152,12 +152,12 @@
                         <div class="info__match-up">
                             <span class="match-up__text night_text">Матчап: </span>
                             @isset($item->firstRaces)
-                                <span class="match-up__name name__first"
+                                <span class="match-up__name name__first night_text"
                                       title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</span>
                             @endisset
                             <span class="match-up__text match-up__versus night_text">vs</span>
                             @isset($item->secondRaces)
-                                <span class="match-up__name name__second"
+                                <span class="match-up__name name__second night_text"
                                       title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</span>
                             @endisset
                         </div>
@@ -190,8 +190,8 @@
                 @endphp
             @endforeach
 
-            <div id="load_more-replay" class="gocu-replays__button night_modal">
-                <button type="button" name="load_more-replay_button" class="button button__download-more night_text"
+            <div id="load_more-replay" class="gocu-replays__button night_modal ">
+                <button type="button" name="load_more-replay_button" class="button button__download-more night_text "
                         id="load_more-replay_button" data-id="{{ $last_id }}" data-user_id="{{$user_id}}">
                     {{__('Загрузить еще')}}
                 </button>

@@ -1091,6 +1091,7 @@
             padding: 2.018vw;
             .subtitle__name {
                 font-size: 1.615vw;
+                max-width: 34vw;
             }
             .subtitle__date {
                 font-size: 1.211vw;
@@ -2784,7 +2785,7 @@
         }
     }
     .reputation-info {
-        margin-bottom: 2.018vw;
+       // margin-bottom: 2.018vw;
         .reputation-info__title {
             padding-top: 2.018vw;
             padding-bottom: 2.018vw;
@@ -2806,7 +2807,8 @@
             .panel {
                 padding: 0 1.816vw;
                 .panel__header {
-                    margin-top: 1.514vw;
+                    //margin-top: 1.514vw;
+                    padding-top: 1.009vw;
                     padding-bottom: 1.009vw;
                     .header__items {
                         .items__link {
