@@ -8,7 +8,7 @@
         <div class="col-12 main_container">
             <div id="appchat">
                 <chat-room :auth="{{ Auth::check() ? Auth::user() : 0 }}"
-                           :not_user="{{ Auth::check() ? auth()->user()->isNotUser() : 0}}"/>
+                           :not_user="{{ Auth::check() ? Auth::user()->isNotUser() : 0}}"/>
             </div>
             <div class="block_stream_list">
                 <div class="title_video ">

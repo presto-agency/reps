@@ -92,6 +92,7 @@
                     text-decoration: underline;
                     color: $blue;
                     span{
+                       // color: white;
                         color: $blue;
                     }
                     .btn_modal{
@@ -254,6 +255,13 @@
                 & svg{
                     width: 20px;
                 }
+            }
+        }
+    }
+    .modal-body{
+        .title_block{
+            span{
+                color: white;
             }
         }
     }
