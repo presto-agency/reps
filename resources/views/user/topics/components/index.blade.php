@@ -3,12 +3,11 @@
         <p class="title__text">{{__('Мои темы')}}</p>
     </div>
     <div class="my-topics__accordion">
-        @isset($topics)
-            @foreach($topics as $items)
-                @if(!$items->topics->isEmpty())
+
+        @if(!empty($forumSections))
+            @foreach($forumSections as $items)
+                @if($items->topics->isNotEmpty())
                     <button class="accordion-button change_gray night_text">{{$items->title}}</button>
-                @endif
-                @if(isset($items->topics) && !$items->topics->isEmpty())
                     @foreach($items->topics as $item)
                         <div class="panel night_modal">
                             <div class="panel__wrap">
@@ -29,7 +28,7 @@
                                                     d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"/>
                                         </svg>
                                         <p class="items__info">{{$item->created_at->format('h:m d.m.Y')}}</p>
-                                        <p class="items__info info">#{{$item->id}}</p>
+                                        <p class="items__info info">{{'#'.$item->id}}</p>
                                     </div>
                                 </div>
                                 <div class="panel__body">
@@ -51,7 +50,6 @@
 
                                         <button class="items__items item__comment">
                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
                                                  version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 60 60"
                                                  xml:space="preserve">
 	                    <path
@@ -69,7 +67,7 @@
                                     <div class="footer__item">
                                         <button class="items__items item__like">
                                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                 x="0px" y="0px"
                                                  viewBox="0 0 512 512"
                                                  style="enable-background:new 0 0 512 512;" xml:space="preserve">
 		                    <path d="M83.6,167.3H16.7C7.5,167.3,0,174.7,0,184v300.9c0,9.2,7.5,16.7,16.7,16.7h66.9c9.2,0,16.7-7.5,16.7-16.7V184
@@ -99,7 +97,6 @@
                                         <a class="item__later"
                                            href="{{route('topic.show',['topic'=> $item->id])}}">
                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
                                                  version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 489.6 489.6"
                                                  xml:space="preserve">
                             <path
@@ -116,9 +113,8 @@
                             </div>
                         </div>
                     @endforeach
-
                 @endif
             @endforeach
-        @endisset
+        @endif
     </div>
 </div>

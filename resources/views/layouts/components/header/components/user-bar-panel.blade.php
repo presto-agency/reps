@@ -54,23 +54,23 @@
         <ul class="logged_active">
             <li>
                 <a href="{{route('user_profile',['id' => auth()->id()])}}"
-                   title="Мой аккаунт">Мой аккаунт</a>
+                   title="Мой аккаунт">{{__('Мой аккаунт')}}</a>
             </li>
             <li>
                 <a href="{{route('user-gallery.index',['id' => auth()->id()]) }}"
-                   title="Галерея">Галерея</a>
+                   title="Галерея">{{__('Галерея')}}</a>
             </li>
             <li>
                 <a href="{{route('user-rating-list.index',['id' => auth()->id()]) }}"
-                   title="Моя репутация">Моя репутация</a>
+                   title="Моя репутация">{{__('Моя репутация')}}</a>
             </li>
             <li>
                 <a href="{{route('user-replay.create',['id' => auth()->id()])}}"
-                   title="Отправить реплей">Отправить реплей</a>
+                   title="Отправить реплей">{{__('Отправить реплей')}}</a>
             </li>
             <li>
                 <a href="{{route('edit_profile',['id' => auth()->id()])}}"
-                   title="Настройки">Настройки</a>
+                   title="Настройки">{{__('Настройки')}}</a>
             </li>
         </ul>
     </div>

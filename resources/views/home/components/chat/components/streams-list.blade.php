@@ -11,12 +11,17 @@
                                 data-img-race="@if($item->races){{asset('images/default/game-races/'.$item->races->title.'.png')}}@endif"
                                 data-title-race="@if($item->races){{$item->races->title}}@endif"
                                 data-stream-title="{{$item->title}}"
-                                @if(parse_url(htmlspecialchars_decode($item->stream_url_iframe))['host']='player.twitch.tv')
                                 @php
-                                    $chanel =   substr($item->stream_url_iframe, strpos($item->stream_url_iframe, "channel=") + 8);
+                                    $checkTwitch =  parse_url(htmlspecialchars_decode($item->stream_url_iframe))['host'] == 'player.twitch.tv' ?
+                                    1 : 0;
+                                if ($checkTwitch == 1){
+                                $chanel =   substr($item->stream_url_iframe, strpos($item->stream_url_iframe, "channel=") + 8);
+                                }else{
+                                $chanel = 0;
+                                }
                                 @endphp
-                                data-stream-chat="https://www.twitch.tv/embed/{{$chanel}}/chat"
-                                @endif
+                                data-check-twitch="{{$checkTwitch}}"
+                                data-stream-chat="{{$chanel}}"
                         >
 
                             @if($item->countries)
@@ -50,6 +55,5 @@
         $('#streamOnlineName').attr('title', $(this).data('stream-title'));
         $('#streamOnlineName').text($(this).data('stream-title'));
 
-        $('#chatTwitch').attr('title', $(this).data('stream-chat'));
     });
 </script>
