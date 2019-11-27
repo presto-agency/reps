@@ -2,13 +2,12 @@
     <div class="reputation-info__title">
         <p class="title__text">{{__('Информация')}}</p>
     </div>
-
     <div class="reputation-info__body">
-
         <div class="panel">
             <div class="panel__header">
                 <div class="header__items">
-                    <a class="items__link" href="{{ $route ? route($route, $object->id) : '#' }}">{{ $object->title ?? $object->sign }}</a>
+                    <a class="items__link" href="{{ $route ? route($route, $object->id) : '#' }}">
+                        {!! ParserToHTML::toHTML($object->title,'size') ?? ParserToHTML::toHTML($object->sign,'size')!!}</a>
                 </div>
                 <div class="header__items">
                     <svg class="items__icon" xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 515.556 515.556" viewBox="0 0 515.556 515.556">
@@ -16,7 +15,7 @@
                         <path d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"/>
                     </svg>
                     {{--<p class="items__info">23:18</p>--}}
-                    <p class="items__info">{{ $object->created_at }}</p>
+                    <p class="items__info">{{ $object->created_at->format('h:m d.m.Y') }}</p>
                     <p class="items__info info">#{{ $object->id }}</p>
                 </div>
             </div>
