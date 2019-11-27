@@ -6,8 +6,8 @@
             </div>
             <ul class="punct">
                 <li><a class="nav_item" href="{{route('home.index')}}" title="{{__('ГЛАВНАЯ')}}">{{__('ГЛАВНАЯ')}}</a></li>
-                <li><a class="nav_item" href="{{route('forum.index')}}" title="{{__('ФОРУМ)}}">{{__('ФОРУМ)}}</a></li>
-                <li><a class="nav_item" href="{{route('replay.index',['type' => 'user'])}" title="{{__('РЕПЛЕИ)}}">{{__('РЕПЛЕИ)}}</a></li>
+                <li><a class="nav_item" href="{{route('forum.index')}}" title="{{__('ФОРУМ')}}">{{__('ФОРУМ')}}</a></li>
+                <li><a class="nav_item" href="{{route('replay.index',['type' => 'user'])}}" title="{{__('РЕПЛЕИ')}}">{{__('РЕПЛЕИ')}}</a></li>
                 <li><a class="nav_item" href="{{route('news.index')}}" title="{{__('НОВОСТИ')}}">{{__('НОВОСТИ')}}</a></li>
                 <li><a class="nav_item" href="{{route('tournament.index')}}" title="{{__('ТУРНИРЫ')}}">{{__('ТУРНИРЫ')}}</a></li>
                 <li><a class="nav_item" href="{{route('best.index')}}" title="{{__('ЛУЧШИЕ')}}">{{__('ЛУЧШИЕ')}}</a></li>

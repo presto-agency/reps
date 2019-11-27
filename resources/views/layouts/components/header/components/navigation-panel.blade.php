@@ -46,8 +46,8 @@
             <div class="col-xl-6 col-lg-5 col-md-2 col-sm-2 col-3 main_menu">
                 <nav class="menu_navigation">
                     <a href="{{route('home.index')}}" title="{{__('ГЛАВНАЯ')}}">{{__('ГЛАВНАЯ')}}</a>
-                    <a href="{{route('forum.index')}}" title="{{__('ФОРУМ)}}">{{__('ФОРУМ)}}</a>
-                    <a href="{{route('replay.index',['type' => 'user'])}}" title="{{__('РЕПЛЕИ)}}">{{__('РЕПЛЕИ)}}</a>
+                    <a href="{{route('forum.index')}}" title="{{__('ФОРУМ')}}">{{__('ФОРУМ')}}</a>
+                    <a href="{{route('replay.index',['type' => 'user'])}}" title="{{__('РЕПЛЕИ')}}">{{__('РЕПЛЕИ')}}</a>
                     <a href="{{route('news.index')}}" title="{{__('НОВОСТИ')}}">{{__('НОВОСТИ')}}</a>
                     <a href="{{route('tournament.index')}}" title="{{__('ТУРНИРЫ')}}">{{__('ТУРНИРЫ')}}</a>
                     <a href="{{route('best.index')}}" title="{{__('ЛУЧШИЕ')}}">{{__('ЛУЧШИЕ')}}</a>

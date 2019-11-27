@@ -116,7 +116,6 @@
                             </div>
                         </div>
                     @endforeach
-
                 @endif
             @endforeach
         @endisset
