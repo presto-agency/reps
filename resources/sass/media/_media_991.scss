@@ -784,6 +784,11 @@
                 .title__text {
                     font-size: 1.615vw;
                     margin-left: 2.018vw;
+                    p{
+                        font-size: 1.615vw;
+                        margin-left: 2.018vw;
+
+                    }
                 }
                 .title__avatar {
                     width: 2.825vw;
@@ -1232,6 +1237,9 @@
     /*ДЕТАЛЬНЫЕ НОВОСТИ*/
     .detailed-news {
         .detailed-news__title {
+            p{
+                max-width: 325px;
+            }
             padding: 2.018vw;
             .title__wrap {
                 .title__icon {
