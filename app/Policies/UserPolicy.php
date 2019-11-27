@@ -39,7 +39,7 @@ class UserPolicy
      */
     public function display(User $user, Users $section, User $item)
     {
-        dump('display');
+
         return true;
     }
 
@@ -52,8 +52,8 @@ class UserPolicy
      */
     public function edit(User $user, Users $section, User $item)
     {
-        dump('edit');
-        return $item->id > 2;
+
+        return true;
     }
 
     /**
@@ -65,8 +65,7 @@ class UserPolicy
      */
     public function delete(User $user, Users $section, User $item)
     {
-        dump('delete');
-        return $item->id > 2;
+        return true;
     }
 //    public function before(User $user, $ability, User $item)
 //    {
