@@ -60,7 +60,7 @@ class UserGalleryController extends Controller
 
         $userGallery          = new UserGallery;
         $userGallery->user_id = auth()->id();
-        $userGallery->sign    = $request->get('sign');
+        $userGallery->sign    = clean($request->get('sign'));
         if ($request->exists('sign') == false) {
             $userGallery->for_adults = 0;
         }
@@ -73,7 +73,7 @@ class UserGalleryController extends Controller
                 PathHelper::checkUploadsFileAndPath("/images/users/galleries");
                 // Upload file on server
                 $image                = $request->file('picture');
-                $filePath             = $image->store('image/user/gallery',
+                $filePath             = $image->store('images/users/galleries',
                     'public');
                 $userGallery->picture = 'storage/'.$filePath;
             } else {

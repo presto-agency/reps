@@ -16,13 +16,7 @@ class TransferTournamentsMatches extends Seeder
         /**
          * Clear table
          */
-        TourneyMatch::query()->whereNotNull('id')->delete();
-        /**
-         * Remove autoIncr
-         */
-//        Schema::table('tourney_matches', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', false)->change();
-//        });
+        DB::table('tourney_matches')->delete();
         /**
          * Get and Insert data
          */
@@ -72,11 +66,5 @@ class TransferTournamentsMatches extends Seeder
                     dd($e, $item);
                 }
             });
-        /**
-         * Add autoIncr
-         */
-//        Schema::table('tourney_matches', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', true)->change();
-//        });
     }
 }

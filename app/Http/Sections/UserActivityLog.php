@@ -44,12 +44,18 @@ class UserActivityLog extends Section
         return 'Лог активности';
     }
 
+    public $types;
     /**
      * @return DisplayDatatablesAsync
      * @throws FilterOperatorException
      */
     public function onDisplay()
     {
+
+        $getData = $this->getModel();
+        if ($getData) {
+            $this->types = $getData::$eventType;
+        }
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center')
@@ -69,14 +75,12 @@ class UserActivityLog extends Section
 
             $parameters = AdminColumn::custom('Описание', function ($model) {
                 return clean($this->getEventTitle($model));
-            })->setHtmlAttribute('class', 'text-left')
-                ->setWidth(500),
+            })->setHtmlAttribute('class', 'text-left'),
         ]);
 
         $display->setColumnFilters([
             $type = AdminColumnFilter::select()
-                ->setOptions((new UserActivityType())->pluck('name', 'name')
-                    ->toArray())
+                ->setOptions($this->types)
                 ->setOperator(FilterInterface::EQUAL)
                 ->setPlaceholder('Все события')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
@@ -86,9 +90,9 @@ class UserActivityLog extends Section
                 ->setHtmlAttributes(['style' => 'width: 100%']),
             $time = AdminColumnFilter::range()
                 ->setFrom(AdminColumnFilter::date()->setPlaceholder('С')
-                    ->setFormat('y-m-d '))
+                    ->setFormat('Y-m-d '))
                 ->setTo(AdminColumnFilter::date()->setPlaceholder('По')
-                    ->setFormat('y-m-d'))
+                    ->setFormat('Y-m-d'))
                 ->setHtmlAttributes(['style' => 'width: 100%']),
             $ip = AdminColumnFilter::text()
                 ->setOperator(FilterInterface::CONTAINS)

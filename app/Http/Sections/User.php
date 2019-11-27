@@ -61,7 +61,7 @@ class User extends Section
 
         $display = AdminDisplay::datatables()
             ->setName('usertables')
-            ->setOrder([[0, 'asc']])
+            ->setOrder([[0, 'desc']])
             ->setDisplaySearch(false)
             ->setHtmlAttribute('class', 'table-primary table-hover th-center')
             ->setHtmlAttribute('class', 'text-center small')

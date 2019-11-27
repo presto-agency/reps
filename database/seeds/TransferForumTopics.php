@@ -20,29 +20,14 @@ class TransferForumTopics extends Seeder
             Schema::disableForeignKeyConstraints();
         });
         /**
-         * Drop forKeys
-         */
-        Schema::table('forum_topics', function (Blueprint $table) {
-            $foreignKeys = $this->listTableForeignKeys('forum_topics');
-            in_array('forum_topics_forum_section_id_foreign', $foreignKeys) === true ? $table->dropForeign('forum_topics_forum_section_id_foreign') : null;
-            in_array('forum_topics_user_id_foreign', $foreignKeys) === true ? $table->dropForeign('forum_topics_user_id_foreign') : null;
-        });
-        /**
          * Clear table
          */
-//        ForumTopic::query()->whereNotNull('id')->delete();
-        /**
-         * Remove autoIncr
-         */
-        Schema::table('forum_topics', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', false)->change();
-            $table->longText('preview_content')->change();
-        });
+        DB::table('forum_topics')->delete();
         /**
          * Get and Insert data
          */
         DB::connection("mysql2")->table("forum_topics")
-            ->chunkById(100, function ($repsForumTopics) {
+            ->chunkById(200, function ($repsForumTopics) {
                 try {
                     $insertItems = [];
                     foreach ($repsForumTopics as $item) {
@@ -74,40 +59,10 @@ class TransferForumTopics extends Seeder
                 }
             });
         /**
-         * Add autoIncr
-         */
-//        Schema::table('forum_topics', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', true)->change();
-//        });
-        /**
-         * Add NewForKeys and columns
-         */
-        Schema::table('forum_topics', function (Blueprint $table) {
-
-            $table->unsignedBigInteger('forum_section_id')->nullable()->change();
-            $table->unsignedBigInteger('user_id')->nullable()->change();
-
-            $table->foreign('forum_section_id')->references('id')->on('forum_sections')->onDelete('SET NULL');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
-        });
-        /**
          * Enable forKeys
          */
         Schema::table('forum_topics', function (Blueprint $table) {
             Schema::enableForeignKeyConstraints();
         });
-    }
-
-    /**
-     * @param $table
-     * @return array
-     */
-    public function listTableForeignKeys($table)
-    {
-        $conn = Schema::getConnection()->getDoctrineSchemaManager();
-
-        return array_map(function ($key) {
-            return $key->getName();
-        }, $conn->listTableForeignKeys($table));
     }
 }

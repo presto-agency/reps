@@ -77,7 +77,7 @@ class ForumSections extends Section
 
         $display = AdminDisplay::datatables()
             ->setName('forumsectionstables')
-            ->setOrder([[0, 'asc']])
+            ->setOrder([[0, 'desc']])
             ->setDisplaySearch(false)
             ->paginate(5)
             ->setColumns($columns)

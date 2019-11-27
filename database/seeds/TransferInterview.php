@@ -27,26 +27,14 @@ class TransferInterview extends Seeder
         /**
          * Clear table
          */
-        \App\Models\InterviewQuestion::query()->whereNotNull('id')->delete();
-        \App\Models\InterviewUserAnswers::query()->whereNotNull('id')->delete();
-        \App\Models\InterviewVariantAnswer::query()->whereNotNull('id')->delete();
-        /**
-         * Remove autoIncr
-         */
-//        Schema::table('interview_questions', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', false)->change();
-//        });
-//        Schema::table('interview_user_answers', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', false)->change();
-//        });
-//        Schema::table('interview_variant_answers', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', false)->change();
-//        });
+        DB::table('interview_questions')->delete();
+        DB::table('interview_user_answers')->delete();
+        DB::table('interview_variant_answers')->delete();
         /**
          * Get and Insert data
          */
         DB::connection("mysql2")->table("interview_questions")
-            ->chunkById(200, function ($repsInterviewQuestions) {
+            ->chunkById(100, function ($repsInterviewQuestions) {
                 try {
                     $insertItems = [];
                     foreach ($repsInterviewQuestions as $item) {
@@ -65,7 +53,7 @@ class TransferInterview extends Seeder
                 }
             });
         DB::connection("mysql2")->table("interview_user_answers")
-            ->chunkById(200, function ($repsInterviewUserAnswers) {
+            ->chunkById(100, function ($repsInterviewUserAnswers) {
                 try {
                     $insertItems = [];
                     foreach ($repsInterviewUserAnswers as $item) {
@@ -84,7 +72,7 @@ class TransferInterview extends Seeder
                 }
             });
         DB::connection("mysql2")->table("interview_variants_answers")
-            ->chunkById(200, function ($repsInterviewVariantAnswers) {
+            ->chunkById(100, function ($repsInterviewVariantAnswers) {
                 try {
                     $insertItems = [];
                     foreach ($repsInterviewVariantAnswers as $item) {
@@ -101,19 +89,6 @@ class TransferInterview extends Seeder
                     dd($e, $item);
                 }
             });
-
-        /**
-         * Add autoIncr
-         */
-//        Schema::table('interview_questions', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', true)->change();
-//        });
-//        Schema::table('interview_user_answers', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', true)->change();
-//        });
-//        Schema::table('interview_variant_answers', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', true)->change();
-//        });
         /**
          * Enable forKeys
          */

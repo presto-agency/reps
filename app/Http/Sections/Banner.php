@@ -64,6 +64,7 @@ class Banner extends Section implements Initializable
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center')
+            ->setOrder([[0, 'desc']])
             ->paginate(10);
 
         $display->setColumns([

@@ -22,13 +22,7 @@ class TransferUserReputations extends Seeder
         /**
          * Clear table
          */
-        \App\Models\UserReputation::query()->whereNotNull('id')->delete();
-        /**
-         * Remove autoIncr
-         */
-        //        Schema::table('user_reputations', function (Blueprint $table) {
-        //            $table->integer('id')->change();
-        //        });
+        DB::table('user_reputations')->delete();
         /**
          * Get and Insert data
          */
@@ -54,18 +48,12 @@ class TransferUserReputations extends Seeder
                     dd($e, $item);
                 }
             });
-        //        /**
-        //         * Add autoIncr
-        //         */
-        //        Schema::table('user_reputations', function (Blueprint $table) {
-        //            $table->unsignedBigInteger('id', true)->change();
-        //        });
-        //        /**
-        //         * Enable forKeys
-        //         */
-        //        Schema::table('user_reputations', function (Blueprint $table) {
-        //            Schema::enableForeignKeyConstraints();
-        //        });
+        /**
+         * Enable forKeys
+         */
+        Schema::table('user_reputations', function (Blueprint $table) {
+            Schema::enableForeignKeyConstraints();
+        });
     }
 
 }

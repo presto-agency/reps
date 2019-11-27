@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\ForumSection;
 use Carbon\Carbon;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
@@ -21,20 +20,12 @@ class TransferForumSections extends Seeder
         Schema::table(
             'forum_sections', function (Blueprint $table) {
             Schema::disableForeignKeyConstraints();
-        }
-        );
+        });
         /**
          * Clear table
          */
-        ForumSection::query()->whereNotNull('id')->delete();
-        /**
-         * Remove autoIncr
-         */
-//        Schema::table(
-//            'forum_sections', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', false)->change();
-//        }
-//        );
+        DB::table('forum_sections')->delete();
+        //        ForumSection::query()->delete();
         /**
          * Get and Insert data
          */
@@ -60,24 +51,14 @@ class TransferForumSections extends Seeder
                 } catch (\Exception $e) {
                     dd($e, $item);
                 }
-            }
-            );
-        /**
-         * Add autoIncr
-         */
-//        Schema::table(
-//            'forum_sections', function (Blueprint $table) {
-//            $table->unsignedBigInteger('id', true)->change();
-//        }
-//        );
+            });
         /**
          * Enable forKeys
          */
         Schema::table(
             'forum_sections', function (Blueprint $table) {
             Schema::enableForeignKeyConstraints();
-        }
-        );
+        });
     }
 
 }
