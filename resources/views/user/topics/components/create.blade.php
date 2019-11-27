@@ -6,8 +6,8 @@
           enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="create-topic__section" class="night_text">{{__('*Раздел:')}}
-                <select name="forum_section_id" id="create-topic__section" class="section night_input" required>
+            <label for="create-topic__section" class="night_text ">{{__('*Раздел:')}}
+                <select name="forum_section_id" id="create-topic__section " class="section form-control night_input" required>
                     @isset($forumSection)
                         @foreach($forumSection as $item)
                             <option class="night_input" value="{{$item->id}}"
