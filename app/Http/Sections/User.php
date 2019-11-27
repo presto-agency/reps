@@ -65,123 +65,155 @@ class User extends Section
             ->setDisplaySearch(false)
             ->setHtmlAttribute('class', 'table-primary table-hover th-center')
             ->setHtmlAttribute('class', 'text-center small')
-            ->with([
-                'roles', 'countries',
-            ])
+            ->with(
+                [
+                    'roles', 'countries',
+                ]
+            )
             ->paginate(5);
 
-        $display->setFilters(AdminDisplayFilter::related('ban')
-            ->setModel(\App\User::class));
+        $display->setFilters(
+            AdminDisplayFilter::related('ban')
+                ->setModel(\App\User::class)
+        );
 
-        $display->setColumns([
+        $display->setColumns(
+            [
 
-            $id = AdminColumn::text('id', 'Id')
-                ->setWidth(70),
+                $id = AdminColumn::text('id', 'Id')
+                    ->setWidth(70),
 
-            $avatar = AdminColumn::image(function ($model) {
-                return $model->avatarOrDefault();
-            })->setLabel('Аватар')->setWidth(10),
+                $avatar = AdminColumn::image(
+                    function ($model) {
+                        return $model->avatarOrDefault();
+                    }
+                )->setLabel('Аватар')->setWidth(10),
 
-            $role_id = AdminColumn::text('roles.title', 'Роль'),
+                $role_id = AdminColumn::text('roles.title', 'Роль'),
 
-            $name = AdminColumn::text('name', 'Имя'),
+                $name = AdminColumn::text('name', 'Имя'),
 
-            $email = AdminColumn::text('email', 'Почта'),
+                $email = AdminColumn::text('email', 'Почта'),
 
-            $country_id = AdminColumn::relatedLink('countries.name', 'Страна')
-                ->setWidth(120),
+                $country_id = AdminColumn::relatedLink(
+                    'countries.name', 'Страна'
+                )
+                    ->setWidth(120),
 
-            $rating = AdminColumn::custom('Рейтинг', function ($model) {
-                $thumbsUp
-                        = '<span style="font-size: 1em; color: green;"><i class="fas fa-plus"></i></span>';
-                $equals = '<i class="fas fa-equals"></i>';
-                $thumbsDown
-                        = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
+                $rating = AdminColumn::custom(
+                    'Рейтинг', function ($model) {
+                    $thumbsUp
+                            = '<span style="font-size: 1em; color: green;"><i class="fas fa-plus"></i></span>';
+                    $equals = '<i class="fas fa-equals"></i>';
+                    $thumbsDown
+                            = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
 
-                return $thumbsUp."$model->count_positive".'<br/>'.$equals
-                    ."$model->rating".'<br/>'
-                    .$thumbsDown."$model->count_negative";
-            })->setWidth(10),
-
-            $count_topic = AdminColumn::custom('<small>Темы</small>',
-                function ($model) {
-                    return $model->topicsCount();
-                }),
-            $count_replay = AdminColumn::custom('<small>Replay</small>',
-                function ($model) {
-                    return $model->replaysCount();
-                }),
-            $count_picture = AdminColumn::custom('<small>Гале<br/>рея</small>',
-                function ($model) {
-                    return $model->imagesCount();
-                }),
-            $count_comment
-                = AdminColumn::custom('<small>Коме<br/>нтарии</small>',
-                function ($model) {
-                    return $model->commentsCount();
-                }),
-            $email_verified_at = AdminColumn::custom('<small>Почта</small>',
-                function ($model) {
-                    return ! empty($model->email_verified_at)
-                        ? '<i class="fa fa-check"></i>'
-                        : '<i class="fa fa-minus"></i>';
-                })->setFilterCallback(function ($column, $query, $search) {
-                if ($search == 'yes') {
-                    $query->whereNotNull('email_verified_at');
+                    return $thumbsUp."$model->count_positive".'<br/>'.$equals
+                        ."$model->rating".'<br/>'
+                        .$thumbsDown."$model->count_negative";
                 }
-                if ($search == 'no') {
-                    $query->whereNull('email_verified_at');
-                }
+                )->setWidth(10),
+
+                $count_topic = AdminColumn::custom(
+                    '<small>Темы</small>',
+                    function ($model) {
+                        return $model->topicsCount();
+                    }
+                ),
+                $count_replay = AdminColumn::custom(
+                    '<small>Replay</small>',
+                    function ($model) {
+                        return $model->replaysCount();
+                    }
+                ),
+                $count_picture = AdminColumn::custom(
+                    '<small>Гале<br/>рея</small>',
+                    function ($model) {
+                        return $model->imagesCount();
+                    }
+                ),
+                $count_comment
+                    = AdminColumn::custom(
+                    '<small>Коме<br/>нтарии</small>',
+                    function ($model) {
+                        return $model->commentsCount();
+                    }
+                ),
+                $email_verified_at = AdminColumn::custom(
+                    '<small>Почта</small>',
+                    function ($model) {
+                        return ! empty($model->email_verified_at)
+                            ? '<i class="fa fa-check"></i>'
+                            : '<i class="fa fa-minus"></i>';
+                    }
+                )->setFilterCallback(
+                    function ($column, $query, $search) {
+                        if ($search == 'yes') {
+                            $query->whereNotNull('email_verified_at');
+                        }
+                        if ($search == 'no') {
+                            $query->whereNull('email_verified_at');
+                        }
 
 
-            })->setWidth(10),
+                    }
+                )->setWidth(10),
 
-            $ban = AdminColumnEditable::checkbox('ban')
-                ->setLabel('<small>Бан</small>')
-                ->append(AdminColumn::filter('ban'))
-                ->setWidth(10),
+                $ban = AdminColumnEditable::checkbox('ban')
+                    ->setLabel('<small>Бан</small>')
+                    ->append(AdminColumn::filter('ban'))
+                    ->setWidth(10),
 
-            $activity_at = AdminColumn::datetime('activity_at',
-                '<small>Акти<br/>вность</small>')
-                ->setHtmlAttribute('class', 'small')
-                ->setFormat('d-m-Y H:i:s')
-                ->setWidth(50),
-        ]);
+                $activity_at = AdminColumn::datetime(
+                    'activity_at',
+                    '<small>Акти<br/>вность</small>'
+                )
+                    ->setHtmlAttribute('class', 'small')
+                    ->setFormat('d-m-Y H:i:s')
+                    ->setWidth(50),
+            ]
+        );
 
-        $display->setColumnFilters([
-            $id = AdminColumnFilter::text()
-                ->setOperator(FilterInterface::CONTAINS)
-                ->setPlaceholder('ID')
-                ->setHtmlAttributes(['style' => 'width: 100%']),
-            $avatar = null,
-            $role_id = AdminColumnFilter::select()
-                ->setOptions((new Role())->pluck('title', 'title')->toArray())
-                ->setOperator(FilterInterface::EQUAL)
-                ->setPlaceholder('Все роли')
-                ->setHtmlAttributes(['style' => 'width: 100%']),
-            $name = AdminColumnFilter::text()
-                ->setOperator(FilterInterface::CONTAINS)
-                ->setPlaceholder('Имя')
-                ->setHtmlAttributes(['style' => 'width: 100%']),
-            $email = AdminColumnFilter::text()
-                ->setOperator(FilterInterface::CONTAINS)
-                ->setPlaceholder('Почта')
-                ->setHtmlAttributes(['style' => 'width: 100%']),
-            $country = AdminColumnFilter::select()
-                ->setOptions((new Country())->pluck('name', 'name')->toArray())
-                ->setOperator(FilterInterface::EQUAL)
-                ->setPlaceholder('Все страны')
-                ->setHtmlAttributes(['style' => 'width: 100%']),
-            $rating = null,
-            $count_topic = null,
-            $count_replay = null,
-            $count_picture = null,
-            $count_comment = null,
-            $email_verified_at = AdminColumnFilter::select()
-                ->setOptions($this->emailVr())
-                ->setOperator(FilterInterface::EQUAL)
-                ->setHtmlAttributes(['style' => 'width: 100%']),
-        ]);
+        $display->setColumnFilters(
+            [
+                $id = AdminColumnFilter::text()
+                    ->setOperator(FilterInterface::CONTAINS)
+                    ->setPlaceholder('ID')
+                    ->setHtmlAttributes(['style' => 'width: 100%']),
+                $avatar = null,
+                $role_id = AdminColumnFilter::select()
+                    ->setOptions(
+                        (new Role())->pluck('title', 'title')->toArray()
+                    )
+                    ->setOperator(FilterInterface::EQUAL)
+                    ->setPlaceholder('Все роли')
+                    ->setHtmlAttributes(['style' => 'width: 100%']),
+                $name = AdminColumnFilter::text()
+                    ->setOperator(FilterInterface::CONTAINS)
+                    ->setPlaceholder('Имя')
+                    ->setHtmlAttributes(['style' => 'width: 100%']),
+                $email = AdminColumnFilter::text()
+                    ->setOperator(FilterInterface::CONTAINS)
+                    ->setPlaceholder('Почта')
+                    ->setHtmlAttributes(['style' => 'width: 100%']),
+                $country = AdminColumnFilter::select()
+                    ->setOptions(
+                        (new Country())->pluck('name', 'name')->toArray()
+                    )
+                    ->setOperator(FilterInterface::EQUAL)
+                    ->setPlaceholder('Все страны')
+                    ->setHtmlAttributes(['style' => 'width: 100%']),
+                $rating = null,
+                $count_topic = null,
+                $count_replay = null,
+                $count_picture = null,
+                $count_comment = null,
+                $email_verified_at = AdminColumnFilter::select()
+                    ->setOptions($this->emailVr())
+                    ->setOperator(FilterInterface::EQUAL)
+                    ->setHtmlAttributes(['style' => 'width: 100%']),
+            ]
+        );
         $display->getColumnFilters()->setPlacement('table.header');
 
 
@@ -193,6 +225,7 @@ class User extends Section
     }
 
     public $id;
+
     /**
      * @param  int  $id
      *
@@ -201,128 +234,159 @@ class User extends Section
     public function onEdit($id)
     {
         $this->id = $id;
-        $getData = $this->getModel()->select('avatar')->find($id);
+        $getData  = $this->getModel()->select('avatar')->find($id);
         if ($getData) {
             $this->imageOldPath = $getData->avatar;
         }
 
         $display = AdminForm::panel();
-        $display->setItems([
-            $avatar = AdminFormElement::image('avatar', 'Аватар')
-                ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage'
-                        .checkFile::checkUploadsFileAndPath("/images/users/avatars",
-                            $this->imageOldPath);
-                })
-                ->setValueSkipped(empty(request('avatar')))
-                ->setValidationRules([
-                    'nullable',
-                    'max:2048',
-                    'mimes:jpeg,png,jpg,gif,svg',
-                ]),
+        $display->setItems(
+            [
+                $avatar = AdminFormElement::image('avatar', 'Аватар')
+                    ->setUploadPath(
+                        function (UploadedFile $file) {
+                            return 'storage'
+                                .checkFile::checkUploadsFileAndPath(
+                                    "/images/users/avatars",
+                                    $this->imageOldPath
+                                );
+                        }
+                    )
+                    ->setValueSkipped(empty(request('avatar')))
+                    ->setValidationRules(
+                        [
+                            'nullable',
+                            'max:2048',
+                            'mimes:jpeg,png,jpg,gif,svg',
+                        ]
+                    ),
 
-            $email = AdminFormElement::text('email', 'Почта')
-                ->setHtmlAttribute('placeholder', 'Почта')
-                ->setHtmlAttribute('autocomplete', 'off')
-                ->setHtmlAttribute('maxlength', '30')
-                ->setHtmlAttribute('type', 'email')
-                ->setValidationRules([
-                    'required',
-                    'string',
-                    'email',
-                    'max:255',
-                    'unique:users,email,'.$this->id,
-                ]),
+                $email = AdminFormElement::text('email', 'Почта')
+                    ->setHtmlAttribute('placeholder', 'Почта')
+                    ->setHtmlAttribute('autocomplete', 'off')
+                    ->setHtmlAttribute('maxlength', '30')
+                    ->setHtmlAttribute('type', 'email')
+                    ->setValidationRules(
+                        [
+                            'required',
+                            'string',
+                            'email',
+                            'max:255',
+                            'unique:users,email,'.$this->id,
+                        ]
+                    ),
 
-            $name = AdminFormElement::text('name', 'Имя')
-                ->setHtmlAttribute('placeholder', 'Имя')
-                ->setHtmlAttribute('maxlength', '255')
-                ->setHtmlAttribute('minlength', '1')
-                ->setHtmlAttribute('autocomplete', 'off')
-                ->setValidationRules([
-                    'required',
-                    'string',
-                    'between:1,255',
-                    'unique:users,name,'.$this->id,
-                ]),
+                $name = AdminFormElement::text('name', 'Имя')
+                    ->setHtmlAttribute('placeholder', 'Имя')
+                    ->setHtmlAttribute('maxlength', '255')
+                    ->setHtmlAttribute('minlength', '1')
+                    ->setHtmlAttribute('autocomplete', 'off')
+                    ->setValidationRules(
+                        [
+                            'required',
+                            'string',
+                            'between:1,255',
+                            'unique:users,name,'.$this->id,
+                        ]
+                    ),
 
-            $birthday = AdminFormElement::date('birthday', 'День рождения')
-                ->setHtmlAttribute('placeholder',
-                    Carbon::now()->format('d-m-Y'))
-                ->setValidationRules([
-                    'nullable',
-                    'date_format:d-m-Y',
-                ]),
+                $birthday = AdminFormElement::date('birthday', 'День рождения')
+                    ->setHtmlAttribute(
+                        'placeholder',
+                        Carbon::now()->format('d-m-Y')
+                    )
+                    ->setValidationRules(
+                        [
+                            'nullable',
+                            'date_format:d-m-Y',
+                        ]
+                    ),
 
-            $homepage = AdminFormElement::text('homepage', 'Homepage')
-                ->setHtmlAttribute('placeholder', 'Homepage')
-                ->setHtmlAttribute('maxlength', '255')
-                ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules([
-                    'nullable',
-                    'string',
-                    'between:1,255',
-                ]),
+                $homepage = AdminFormElement::text('homepage', 'Homepage')
+                    ->setHtmlAttribute('placeholder', 'Homepage')
+                    ->setHtmlAttribute('maxlength', '255')
+                    ->setHtmlAttribute('minlength', '1')
+                    ->setValidationRules(
+                        [
+                            'nullable',
+                            'string',
+                            'between:1,255',
+                        ]
+                    ),
 
-            $discord = AdminFormElement::text('isq', 'Discord')
-                ->setHtmlAttribute('placeholder', 'Discord')
-                ->setHtmlAttribute('maxlength', '255')
-                ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules([
-                    'nullable',
-                    'string',
-                    'between:1,255',
-                ]),
+                $discord = AdminFormElement::text('isq', 'Discord')
+                    ->setHtmlAttribute('placeholder', 'Discord')
+                    ->setHtmlAttribute('maxlength', '255')
+                    ->setHtmlAttribute('minlength', '1')
+                    ->setValidationRules(
+                        [
+                            'nullable',
+                            'string',
+                            'between:1,255',
+                        ]
+                    ),
 
-            $skype = AdminFormElement::text('skype', 'Skype')
-                ->setHtmlAttribute('placeholder', 'Skype')
-                ->setHtmlAttribute('maxlength', '255')
-                ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules([
-                    'nullable',
-                    'string',
-                    'between:1,255',
-                ]),
+                $skype = AdminFormElement::text('skype', 'Skype')
+                    ->setHtmlAttribute('placeholder', 'Skype')
+                    ->setHtmlAttribute('maxlength', '255')
+                    ->setHtmlAttribute('minlength', '1')
+                    ->setValidationRules(
+                        [
+                            'nullable',
+                            'string',
+                            'between:1,255',
+                        ]
+                    ),
 
-            $vk_link = AdminFormElement::text('vk_link', 'Vkontakte')
-                ->setHtmlAttribute('placeholder', 'Vkontakte')
-                ->setHtmlAttribute('maxlength', '255')
-                ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules([
-                    'nullable',
-                    'string',
-                    'between:1,255',
-                ]),
+                $vk_link = AdminFormElement::text('vk_link', 'Vkontakte')
+                    ->setHtmlAttribute('placeholder', 'Vkontakte')
+                    ->setHtmlAttribute('maxlength', '255')
+                    ->setHtmlAttribute('minlength', '1')
+                    ->setValidationRules(
+                        [
+                            'nullable',
+                            'string',
+                            'between:1,255',
+                        ]
+                    ),
 
-            $fb_link = AdminFormElement::text('fb_link', 'Facebook')
-                ->setHtmlAttribute('placeholder', 'Facebook')
-                ->setHtmlAttribute('maxlength', '255')
-                ->setHtmlAttribute('minlength', '1')
-                ->setValidationRules([
-                    'nullable',
-                    'string',
-                    'between:1,255',
-                ]),
+                $fb_link = AdminFormElement::text('fb_link', 'Facebook')
+                    ->setHtmlAttribute('placeholder', 'Facebook')
+                    ->setHtmlAttribute('maxlength', '255')
+                    ->setHtmlAttribute('minlength', '1')
+                    ->setValidationRules(
+                        [
+                            'nullable',
+                            'string',
+                            'between:1,255',
+                        ]
+                    ),
 
-            $role_id = AdminFormElement::select('role_id', 'Роль')
-                ->setOptions($this->getRoles())
-                ->setDisplay('title')
-                ->setValidationRules(['required', 'exists:roles,id']),
 
-            $country_id = AdminFormElement::select('country_id', 'Страна')
-                ->setOptions((new Country())->pluck('name', 'id')->toArray())
-                ->setDisplay('name')
-                ->setValidationRules(['nullable', 'exists:countries,id']),
+                $role_id = AdminFormElement::select('role_id', 'Роль')
+                    ->setOptions($this->getRoles())
+                    ->setDisplay('title')
+                    ->setValidationRules(['required', 'exists:roles,id']),
 
-            $race_id = AdminFormElement::select('race_id', 'Раса')
-                ->setOptions((new Race())->pluck('title', 'id')->toArray())
-                ->setValidationRules(['nullable', 'exists:races,id'])
-                ->setDisplay('title'),
+                $country_id = AdminFormElement::select('country_id', 'Страна')
+                    ->setOptions(
+                        (new Country())->pluck('name', 'id')->toArray()
+                    )
+                    ->setDisplay('name')
+                    ->setValidationRules(['nullable', 'exists:countries,id']),
 
-            $ban = AdminFormElement::checkbox('ban', 'Ban')
-                ->setHtmlAttribute('title',
-                    'Внимание! Если пользователь в бане он не сможет зайти'),
-        ]);
+                $race_id = AdminFormElement::select('race_id', 'Раса')
+                    ->setOptions((new Race())->pluck('title', 'id')->toArray())
+                    ->setValidationRules(['nullable', 'exists:races,id'])
+                    ->setDisplay('title'),
+
+                $ban = AdminFormElement::checkbox('ban', 'Ban')
+                    ->setHtmlAttribute(
+                        'title',
+                        'Внимание! Если пользователь в бане он не сможет зайти'
+                    ),
+            ]
+        );
 
         return $display;
     }
@@ -372,23 +436,25 @@ class User extends Section
         return $this->emailVr;
     }
 
+    public $roles;
+
     /**
      * @return mixed
      */
     public function getRoles()
     {
+        $this->roles = (new Role())->pluck('title', 'id')->toArray();
         if (auth()->user()->superAdminRole() === true) {
-            return (new Role())->pluck('title', 'id')->toArray();
+            return $this->roles;
         } else {
-            $getData = (new Role())->pluck('title', 'id')->toArray();
-//            if (($key1 = array_search('Супер-админ', $getData)) !== false) {
-//                unset($getData[$key1]);
-//            }
-//            if (($key2 = array_search('Админ', $getData)) !== false) {
-//                unset($getData[$key2]);
-//            }
+            if (($key1 = array_search('Супер-админ', $this->roles)) !== false) {
+                unset($this->roles[$key1]);
+            }
+            if (($key2 = array_search('Админ', $this->roles)) !== false) {
+                unset($this->roles[$key2]);
+            }
 
-            return $getData;
+            return $this->roles;
         }
     }
 
@@ -397,13 +463,17 @@ class User extends Section
      */
     public function show()
     {
-        $link = new ControlLink(function (
-            Model $model
-        ) {
-            //            return asset('/admin/users/'.$model->getKey().'/send-email-create');
-            return route('admin.user.email-send.create',
-                ['id' => $model->getKey()]);
-        }, 'Написать Email', 50);
+        $link = new ControlLink(
+            function (
+                Model $model
+            ) {
+                //            return asset('/admin/users/'.$model->getKey().'/send-email-create');
+                return route(
+                    'admin.user.email-send.create',
+                    ['id' => $model->getKey()]
+                );
+            }, 'Написать Email', 50
+        );
         $link->hideText();
         $link->setIcon('far fa-envelope-open');
         $link->setHtmlAttribute('class', 'btn-info');
