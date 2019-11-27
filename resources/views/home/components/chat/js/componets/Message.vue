@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" v-if="auth.id>0">
+        <div class="form-group" v-if="auth.id>0 && auth.email_verified_at">
             <Smiles :status="chat_action.smile" @turnOffStatus="turnOffStatus" @insert_smile="addSmile($event)"></Smiles>
             <Images :status="chat_action.image" @turnOffStatus="turnOffStatus" @insert_image="addImage($event)"></Images>
             <Color :status="chat_action.color"  @turnOffStatus="turnOffStatus" @textarealistener="textareafoo($event)" :selection="selection" ></Color>
@@ -48,11 +48,17 @@
             <textarea v-model="textMessage" @keyup.enter="sendMessage" class="form-control night_input" id="pop_editor">
            </textarea>
         </div>
+        <div   class="login_block"  v-else-if=" auth.id>0 && !auth.email_verified_at">
+            <p>
+                <span>Verify</span> your email!
+            </p>
+        </div>
         <div   class="login_block" v-else>
             <p data-target="#authorizationModal" data-toggle="modal">
                 <span>LOGIN</span> to chat!
             </p>
         </div>
+
     </div>
 </template>
 <script>
