@@ -87,7 +87,7 @@
                 this.messagearray.unshift({
                     id: data.id,
                     flag: data.country_flag,
-                    ava: data.user.avatar,
+                    ava: chatHelper.CheckAvatar(data.user.avatar),
                     usernick: data.user_name,
                     date: data.time,
                     message: chatHelper.strParse(data.message),
