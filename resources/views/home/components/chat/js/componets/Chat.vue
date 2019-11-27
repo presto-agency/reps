@@ -56,12 +56,12 @@
         }),
         beforeCreate(){
             axios.get('/chat/get_messages').then((response) => {
-                console.log(response.data)
+                console.log(response.data);
                 response.data.forEach((item,index)=> {
                     this.messagearray.push({
                         id: item.id,
                         flag: item.country_flag,
-                        ava: chatHelper.CheckAvatar(item.user.avatar),
+                        ava: '/images/default/avatar/avatar.png',
                         usernick: item.user_name,
                         date: item.time,
                         message: chatHelper.strParse(item.message),
@@ -88,7 +88,7 @@
                 this.messagearray.unshift({
                     id: data.id,
                     flag: data.country_flag,
-                    ava: chatHelper.CheckAvatar(data.user.avatar),
+                    ava: '/images/default/avatar/avatar.png',
                     usernick: data.user_name,
                     date: data.time,
                     message: chatHelper.strParse(data.message),
