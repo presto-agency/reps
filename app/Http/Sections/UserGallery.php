@@ -66,15 +66,18 @@ class UserGallery extends Section
             ->setOrder([[0, 'desc']])
             ->paginate(10);
 
-        $display->setFilters(AdminDisplayFilter::related('for_adults')
-            ->setModel(\App\Models\UserGallery::class));
+        $display->setFilters(
+            AdminDisplayFilter::related('for_adults')
+                ->setModel(\App\Models\UserGallery::class)
+        );
 
         $display->setColumns(
             [
                 AdminColumn::text('id', 'Id')->setWidth(50),
-                AdminColumn::image(function ($model) {
-                    return $model->pictureOrDefault();
-                }
+                AdminColumn::image(
+                    function ($model) {
+                        return $model->pictureOrDefault();
+                    }
                 )->setLabel('Изображение')->setWidth(10),
                 AdminColumn::relatedLink('users.name', 'Пользователь'),
                 AdminColumn::text('sign', 'Подпись'),
@@ -133,9 +136,11 @@ class UserGallery extends Section
                     )
                     ->setHtmlAttribute('maxlength', '255')
                     ->setHtmlAttribute('minlength', '1')
-                    ->setValidationRules([
-                        'nullable', 'string', 'between:1,255',
-                    ]),
+                    ->setValidationRules(
+                        [
+                            'nullable', 'string', 'between:1,255',
+                        ]
+                    ),
             ]
         );
 
@@ -154,7 +159,9 @@ class UserGallery extends Section
                     ->setUploadPath(
                         function (UploadedFile $file) {
                             return 'storage'
-                                .PathHelper::checkUploadsFileAndPath("/images/users/galleries");
+                                .PathHelper::checkUploadsFileAndPath(
+                                    "/images/users/galleries"
+                                );
                         }
                     )
                     ->setValidationRules(

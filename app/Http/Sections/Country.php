@@ -59,7 +59,9 @@ class Country extends Section
             $code = AdminColumn::text('code', 'Код')
                 ->setHtmlAttribute('class', 'hidden-sm ')
                 ->setHtmlAttribute('title', 'Alpha-2 ISO 3166-1'),
-            $flag = AdminColumn::image('flag', 'Флаг'),
+            $flag = AdminColumn::image( function ($model) {
+                return asset($model->flagOrDefault());
+            })->setLabel('Флаг'),
             $count_using = AdminColumn::count('using', 'Используют'),
         ]);
 
