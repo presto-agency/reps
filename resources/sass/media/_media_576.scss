@@ -15,7 +15,7 @@
         padding: 3.472vw;
         min-height: 10.417vw;
         & img,svg{
-            width: 5.472vw;
+            width: 3.472vw;
         }
         & .title_text{
             font-size: 3.778vw;
@@ -1255,9 +1255,11 @@
                 font-size: 3.283vw;
                 p{
                     font-size: 3.283vw;
+                    max-width:130px;
                 }
             }
             .right_block {
+                max-width:130px;
                 a {
                     font-size: 3.283vw;
                     margin-left: 1.736vw;
@@ -1644,6 +1646,17 @@
     }
     //foru_article
     .forum_acticle{
+        .content_article{
+            .block_account{
+                span{
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 100px;
+                    display: inline-block;
+                }
+            }
+        }
         & .title_block{
             height: 10.417vw;
             border-top-left-radius: 0.868vw;
@@ -1754,7 +1767,7 @@
         p{
             font-size: 2.431vw;
             margin-left: 2.083vw;
-            max-width: 140px;
+            max-width: 80px;
         }
             padding: 3.472vw;
             .title__wrap {
