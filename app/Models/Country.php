@@ -16,12 +16,12 @@ class Country extends Model
 
     public function using()
     {
-        return $this->hasMany(User::class, 'country_id');
+        return $this->hasMany(User::class, 'country_id','id');
     }
 
     public function flagOrDefault()
     {
-        if (isset($this->flag) && !empty($this->flag) && checkFile::checkFileExists($this->flag)) {
+        if (!empty($this->flag) && checkFile::checkFileExists($this->flag)) {
             return $this->flag;
         } else {
             return 'images/default/flag/country.png';

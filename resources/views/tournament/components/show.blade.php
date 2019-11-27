@@ -116,7 +116,7 @@
                                                     <div class=" title_block">
                                                         <div class="left_content">
                                                             <span
-                                                                class="title_text">{{__('Приз')}}</span>
+                                                                    class="title_text">{{__('Приз')}}</span>
                                                         </div>
                                                     </div>
                                                     @isset($prizeList)
@@ -150,14 +150,14 @@
                                                     </div>
                                                     <div class="container">
                                                         <div class="row">
-                                                            <div class="title_block_gray">
-                                                                <span
-                                                                    class='title_text'>{{$item->name}}
-                                                                </span>
-                                                            </div>
                                                             @if($getMatchesMaps->isNotEmpty())
                                                                 @foreach($getMatchesMaps as $item)
-                                                                    <div class="col-xl-4 pl-1 pr-0 container_map">
+                                                                    <div class="col-4 pl-1 pr-0 container_map">
+                                                                        <div class="title_block_gray">
+                                                                            <span class='title_text'>
+                                                                                {{$item->name}}
+                                                                            </span>
+                                                                        </div>
                                                                         <div class='map'>
                                                                             @if (!empty($item->url) && checkFile::checkFileExists($item->url))
                                                                                 <img src="{{asset($item->url)}}"
@@ -221,13 +221,13 @@
                             </div>
                             <div class="right_block">
                                 @if($loop->iteration == 1)
-                                    <img src="{{asset("images/icons/goldMedal.png")}}"  alt="medal">
+                                    <img src="{{asset("images/icons/goldMedal.png")}}" alt="medal">
                                 @elseif($loop->iteration == 2)
-                                    <img src="{{asset("images/icons/silverMedal.svg")}}"  alt="medal">
+                                    <img src="{{asset("images/icons/silverMedal.svg")}}" alt="medal">
                                 @elseif($loop->iteration == 3)
-                                    <img src="{{asset("images/icons/bronzeMedal.svg")}}"  alt="medal">
+                                    <img src="{{asset("images/icons/bronzeMedal.svg")}}" alt="medal">
                                 @else
-                                    <img src="{{asset("images/icons/medal.svg")}}"  alt="medal">
+                                    <img src="{{asset("images/icons/medal.svg")}}" alt="medal">
                                 @endif
                             </div>
                         </div>

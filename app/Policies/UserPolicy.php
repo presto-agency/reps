@@ -2,101 +2,159 @@
 
 namespace App\Policies;
 
+use App\Http\Sections\User as Users;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
 {
     use HandlesAuthorization;
-
-    public function before(User $user, $ability, User $item)
-    {
-        return false;
-    }
     /**
-     * Determine whether the user can view any models.
+     * @param  User    $user
+     * @param  string  $ability
+     * @param  Users   $section
+     * @param  User    $item
      *
-     * @param  \App\User  $user
-     * @return mixed
+     * @return bool
      */
-    public function viewAny(User $user)
-    {
-        return false;
-    }
+    public function before(
+        User $user, $ability, Users $section, User $item = null
+    ) {
 
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\User  $model
-     * @return mixed
-     */
-    public function view(User $user, User $model)
-    {
-        return false;
+        if ($user->roles->name == 'super-admin' || 'admin') {
+            //if ($ability != 'display' && $ability != 'create' && !is_null($item) && $item->id <= 2) {
+            //    return false;
+            //  }
+
+            return true;
+        }
     }
 
     /**
-     * Determine whether the user can create models.
+     * @param  User   $user
+     * @param  Users  $section
+     * @param  User   $item
      *
-     * @param  \App\User  $user
-     * @return mixed
+     * @return bool
      */
-    public function create(User $user)
+    public function display(User $user, Users $section, User $item)
     {
-        return false;
+
+        return true;
     }
 
     /**
-     * Determine whether the user can update the model.
+     * @param  User   $user
+     * @param  Users  $section
+     * @param  User   $item
      *
-     * @param  \App\User  $user
-     * @param  \App\User  $model
-     * @return mixed
+     * @return bool
      */
-    public function update(User $user, User $model)
-    {
-        return false;
-    }
-
-    public function edit(User $user, User $model)
+    public function edit(User $user, Users $section, User $item)
     {
 
-        return false;
-    }
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\User  $model
-     * @return mixed
-     */
-    public function delete(User $user, User $model)
-    {
-        return false;
+        return true;
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * @param  User   $user
+     * @param  Users  $section
+     * @param  User   $item
      *
-     * @param  \App\User  $user
-     * @param  \App\User  $model
-     * @return mixed
+     * @return bool
      */
-    public function restore(User $user, User $model)
+    public function delete(User $user, Users $section, User $item)
     {
-        return false;
+        return true;
     }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\User  $model
-     * @return mixed
-     */
-    public function forceDelete(User $user, User $model)
-    {
-        return false;
-    }
+//    public function before(User $user, $ability, User $item)
+//    {
+//        return false;
+//    }
+//    /**
+//     * Determine whether the user can view any models.
+//     *
+//     * @param  \App\User  $user
+//     * @return mixed
+//     */
+//    public function viewAny(User $user)
+//    {
+//        return false;
+//    }
+//
+//    /**
+//     * Determine whether the user can view the model.
+//     *
+//     * @param  \App\User  $user
+//     * @param  \App\User  $model
+//     * @return mixed
+//     */
+//    public function view(User $user, User $model)
+//    {
+//        return false;
+//    }
+//
+//    /**
+//     * Determine whether the user can create models.
+//     *
+//     * @param  \App\User  $user
+//     * @return mixed
+//     */
+//    public function create(User $user)
+//    {
+//        return false;
+//    }
+//
+//    /**
+//     * Determine whether the user can update the model.
+//     *
+//     * @param  \App\User  $user
+//     * @param  \App\User  $model
+//     * @return mixed
+//     */
+//    public function update(User $user, User $model)
+//    {
+//        return false;
+//    }
+//
+//    public function edit(User $user, User $model)
+//    {
+//
+//        return false;
+//    }
+//    /**
+//     * Determine whether the user can delete the model.
+//     *
+//     * @param  \App\User  $user
+//     * @param  \App\User  $model
+//     * @return mixed
+//     */
+//    public function delete(User $user, User $model)
+//    {
+//        return false;
+//    }
+//
+//    /**
+//     * Determine whether the user can restore the model.
+//     *
+//     * @param  \App\User  $user
+//     * @param  \App\User  $model
+//     * @return mixed
+//     */
+//    public function restore(User $user, User $model)
+//    {
+//        return false;
+//    }
+//
+//    /**
+//     * Determine whether the user can permanently delete the model.
+//     *
+//     * @param  \App\User  $user
+//     * @param  \App\User  $model
+//     * @return mixed
+//     */
+//    public function forceDelete(User $user, User $model)
+//    {
+//        return false;
+//    }
 }

@@ -34,7 +34,8 @@ class TransferCountries extends Seeder
                     $insertItems = [];
                     foreach ($repsCountries as $item) {
                         $flag          = '/storage/images/countries/flags/'
-                            .$item->code.'.png';
+                            .mb_strtolower($item->code).'.png';
+
                         $insertItems[] = [
                             'id'         => $item->id,
                             'name'       => ! empty($item->name) === true

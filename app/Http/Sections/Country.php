@@ -48,6 +48,7 @@ class Country extends Section
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
             ->setOrder([[0, 'desc']])
+            ->with(['using'])
             ->paginate(50);
 
         $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
@@ -58,7 +59,9 @@ class Country extends Section
             $code = AdminColumn::text('code', 'Код')
                 ->setHtmlAttribute('class', 'hidden-sm ')
                 ->setHtmlAttribute('title', 'Alpha-2 ISO 3166-1'),
-            $flag = AdminColumn::image('flag', 'Флаг'),
+            $flag = AdminColumn::image( function ($model) {
+                return $model->flag;
+            })->setLabel('Флаг'),
             $count_using = AdminColumn::count('using', 'Используют'),
         ]);
 

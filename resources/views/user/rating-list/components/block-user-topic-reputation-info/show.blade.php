@@ -1,6 +1,6 @@
 <div class="reputation-info">
     <div class="reputation-info__title">
-        <p class="title__text">{{__('Мои темы')}}</p>
+        <p class="title__text">{{__('Информация')}}</p>
     </div>
 
     <div class="reputation-info__body">

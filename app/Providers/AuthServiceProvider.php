@@ -2,12 +2,9 @@
 
 namespace App\Providers;
 
-
-use App\Admin\Policies\UserSectionModelPolicy;
-//use App\Policies\UserModelPolicy;
-use App\User;
+use App\Http\Sections\User as UserSection;
+use App\Policies\UserPolicy as UserSectionPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-
 
 class AuthServiceProvider extends ServiceProvider
 {

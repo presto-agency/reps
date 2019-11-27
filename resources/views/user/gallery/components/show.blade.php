@@ -1,7 +1,7 @@
 <div class="gallery-detail">
     <div class="gallery-detail__title">
         <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             x="0px" y="0px"
              viewBox="0 0 512 512" xml:space="preserve">
             <path d="M437.019,74.98C388.667,26.629,324.38,0,256,0C187.619,0,123.331,26.629,74.98,74.98C26.628,123.332,0,187.62,0,256
                 s26.628,132.667,74.98,181.019C123.332,485.371,187.619,512,256,512c68.38,0,132.667-26.629,181.019-74.981
@@ -17,15 +17,16 @@
         <div class="gallery-detail__body">
             <div class="body__items">
                 <div class="items__title">
-                    <p>{{$userImage->sign}}</p>
+                    {!! ParserToHTML::toHTML($userImage->sign,'size') !!}
                 </div>
                 <div class="items__rating">
                     @php
-                            $modal = (!Auth::guest() && $userImage->user_id == Auth::user()->id) ?'#no-rating':'#vote-modal';
-                        @endphp
-                    <a href="#vote-modal" class="rating__like positive-vote vote-replay-up" data-toggle="modal" data-rating="1"
+                        $modal = (!Auth::guest() && $userImage->user_id == Auth::user()->id) ?'#no-rating':'#vote-modal';
+                    @endphp
+                    <a href="#vote-modal" class="rating__like positive-vote vote-replay-up" data-toggle="modal"
+                       data-rating="1"
                        data-route="{{route('gallery.set_rating',['id'=>$userImage->id])}}">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px"
                              y="0px" viewBox="0 0 512 512" xml:space="preserve">
 		                    <path d="M83.6,167.3H16.7C7.5,167.3,0,174.7,0,184v300.9c0,9.2,7.5,16.7,16.7,16.7h66.9c9.2,0,16.7-7.5,16.7-16.7V184
 			                    C100.3,174.7,92.8,167.3,83.6,167.3z"></path>
@@ -35,7 +36,8 @@
                     </svg>
                         <span>{{$userImage->positive_count}}</span>
                     </a>
-                    <a href="#vote-modal" class="rating__dislike negative-vote vote-replay-down" data-toggle="modal" data-rating="-1"
+                    <a href="#vote-modal" class="rating__dislike negative-vote vote-replay-down" data-toggle="modal"
+                       data-rating="-1"
                        data-route="{{route('gallery.set_rating',['id'=>$userImage->id])}}">
                         <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -49,37 +51,40 @@
                 <div class="items__reputation-button">
                     <a href="{{route('gallery.get_rating',['id' => $userImage->id])}}">{{__('Рейтинг лист')}}</a>
                 </div>
-                    @if($routCheck)
-                        <div class="items__slide-button">
-                            @isset($previous)
-                                <a href="{{route('galleries.show',['gallery' => $previous])}}">
-                                    <i class="fas fa-angle-double-left"></i>
-                                </a>
-                            @endisset
-                            @isset($next)
-                                <a href="{{route('galleries.show',['gallery' => $next])}}">
-                                    <i class="fas fa-angle-double-right"></i>
-                                </a>
-                            @endisset
-                        </div>
-                    @else
-                        <div class="items__slide-button">
-                            @if($previous)
-                                <a href="{{route('user-gallery.show',['id'=> $userImage->user_id,'user_gallery'=> $previous])}}">
-                                    <i class="fas fa-angle-double-left"></i>
-                                </a>
-                            @endif
-                            @if($next)
-                                <a href="{{route('user-gallery.show',['id'=> $userImage->user_id,'user_gallery'=> $next])}}">
-                                    <i class="fas fa-angle-double-right"></i>
-                                </a>
-                            @endif
-                        </div>
-                    @endif
+                @if($routCheck)
+                    <div class="items__slide-button">
+                        @isset($previous)
+                            <a href="{{route('galleries.show',['gallery' => $previous])}}">
+                                <i class="fas fa-angle-double-left"></i>
+                            </a>
+                        @endisset
+                        @isset($next)
+                            <a href="{{route('galleries.show',['gallery' => $next])}}">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        @endisset
+                    </div>
+                @else
+                    <div class="items__slide-button">
+                        @if($previous)
+                            <a href="{{route('user-gallery.show',['id'=> $userImage->user_id,'user_gallery'=> $previous])}}">
+                                <i class="fas fa-angle-double-left"></i>
+                            </a>
+                        @endif
+                        @if($next)
+                            <a href="{{route('user-gallery.show',['id'=> $userImage->user_id,'user_gallery'=> $next])}}">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        @endif
+                    </div>
+                @endif
             </div>
             <div class="body__img">
-                    <img src="{{asset($userImage->pictureOrDefault())}}" alt="image">
+                <img src="{{asset($userImage->pictureOrDefault())}}" alt="image">
             </div>
+            @if(auth()->check() && auth()->id() == $userImage->user_id)
+                @include('user.gallery.components.edit-form')
+            @endif
         </div>
     @endisset
 </div>

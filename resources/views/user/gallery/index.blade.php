@@ -11,7 +11,6 @@
 
 @section('content')
     @include('user.gallery.components.create')
-    {{--    @include('user.gallery.components.index')--}}
     <div id="load_more_user_gallery"></div>
 @endsection
 
