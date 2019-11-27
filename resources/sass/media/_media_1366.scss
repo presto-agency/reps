@@ -1009,6 +1009,15 @@
                 }
 
                 .subtitle__icons {
+                    svg {
+                        width: 1.537vw;
+                        height: 1.537vw;
+                    }
+                    span {
+                        font-size: 0.878vw;
+                        line-height: 1.391vw;
+                        margin-left: 0.732vw;
+                    }
                     .items__comment,
                     .items__download {
                         svg {
@@ -2475,7 +2484,7 @@
                 .panel__wrap {
                     .panel__header {
                         margin-top: 1.098vw;
-                        padding-bottom: 0.732vw;
+                        //padding-bottom: 0.732vw;
                         .header__items {
                             .items__link {
                                 font-size: 0.878vw;
@@ -2651,7 +2660,7 @@
         }
     }
     .reputation-info {
-        margin-bottom: 1.464vw;
+       // margin-bottom: 1.464vw;
         .reputation-info__title {
             padding-top: 1.464vw;
             padding-bottom: 1.464vw;
@@ -2673,7 +2682,8 @@
             .panel {
                 padding: 0 1.318vw;
                 .panel__header {
-                    margin-top: 1.098vw;
+                    //margin-top: 1.098vw;
+                    padding-top: 0.732vw;
                     padding-bottom: 0.732vw;
                     .header__items {
                         .items__link {
@@ -2769,7 +2779,6 @@
 
             .form-group {
                 #create-topic__section {
-                    height: 2.709vw;
                     margin-top: 0.586vw;
                 }
             }

@@ -229,7 +229,7 @@
                             <span id="downloadCount"
                                   data-count="{{$replay->downloaded}}">{{$replay->downloaded}}</span>
                         </a>
-                    </div>
+                    </d>
                 </div>
             </div>
         </div>

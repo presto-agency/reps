@@ -11,15 +11,7 @@
         padding: 20px;
         background: #0567cc;
         justify-content: space-between;
-        ul{
-            list-style: none;
-            li{
-                margin-top: 15px;
-                a{
-                    color: white;
-                }
-            }
-        }
+
         .bottom_menu{
             display: flex;
             justify-content: space-between;
@@ -31,7 +23,15 @@
             }
         }
         .main_punkt{
-
+            ul{
+                list-style: none;
+                li{
+                    margin-top: 15px;
+                    a{
+                        color: white;
+                    }
+                }
+            }
         }
     }
 
