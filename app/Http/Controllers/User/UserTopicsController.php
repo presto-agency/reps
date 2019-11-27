@@ -24,53 +24,64 @@ class UserTopicsController extends Controller
      */
     public function index($id)
     {
-        //        $user = User::findOrFail((int)$id);
-        //        $forumSections = ForumSection::with('topics.forumSection')
-        //            ->whereHas(
-        //                'topics', function ($query) use ($id) {
-        //                $query->where('user_id', $id);
-        //                $query->withCount('comments');
-        //            })->get();
-
-        //            $forumSections = ForumSection::findOrFail();
-        //         $request = request();
-        //        $topics = $forumSections->topics()->orderBy('created_at', 'desc')
-        //            ->skip(5)->take(10)->get();
-        ////        dd($forumSections, $topics);
-        //            if($request->ajax()) {
-        //            }\
+        //                $user = User::findOrFail((int)$id);
+//        $forumSections = ForumSection::with('topics.forumSection')
+//            ->whereHas(
+//                'topics', function ($query) use ($id) {
+//                $query->where('user_id', $id);
+//                $query->withCount('comments');
+//            })->get();
+        //                    $forumSections = ForumSection::findOrFail();
+        //                 $request = request();
+        //                $topics = $forumSections->topics()->orderBy('created_at', 'desc')
+        //                    ->skip(5)->take(10)->get();
+        //        //        dd($forumSections, $topics);
+        //                    if($request->ajax()) {
+        //                    }\
         return view('user.topics.index');
     }
 
     public function forumSectionsAjaxLoad($id)
     {
-
-        User::findOrFail(request('id'));
-        $row = [
-            'id',
-            'picture',
-            'user_id',
-        ];
-
         if (request()->ajax()) {
-            $visible_title = false;
-            $routCheck     = $this->routCheck;
-            if (request('find_id') > 0) {
-                $images = GalleryHelper::getAllUserImagesAjaxId(
-                    $row,
-                    request('id'), request('find_id')
-                );
-            } else {
-                $images = GalleryHelper::getAllUserImagesAjax(
-                    $row,
-                    request('id')
-                );
 
+            $visible_title = false;
+
+            if (request('section_id') > 0) {
+
+                $forumSections = ForumSection::orderByDesc('id')
+                    ->where('id', '<', request('section_id'))
+                    ->limit(5)
+                    ->get();
+            } else {
+                $forumSections = ForumSection::orderByDesc('id')
+                    ->limit(5)
+                    ->get();
                 $visible_title = true;
             }
+            return view('user.topics.components.index',
+                compact('forumSections', 'visible_title')
+            );
+        }
+    }
+    public function forumSectionsTopicsAjaxLoad($id)
+    {
+        if (request()->ajax()) {
+            $visible_title = false;
+            if (request('topics_id') > 0) {
 
-            return view('user.topics.index',
-                compact('images', 'routCheck', 'visible_title')
+//                $forumSectionsTopics = ForumSection::orderByDesc('id')
+//                    ->where('id', '<', request('topics_id'))
+//                    ->limit(5)
+//                    ->get();
+            } else {
+                $forumSectionsTopics = ForumSection::orderByDesc('id')
+                    ->limit(5)
+                    ->get();
+                $visible_title = true;
+            }
+            return view('user.topics.components.components.index',
+                compact('forumSectionsTopics', 'visible_title')
             );
         }
     }
@@ -86,12 +97,12 @@ class UserTopicsController extends Controller
     public function create($id)
     {
         $forumSection = ForumSection::where('is_active', 1)
-                                    ->where('user_can_add_topics', 1)
-                                    ->get([
-                                        'id',
-                                        'title',
-                                        'description',
-                                    ]);
+            ->where('user_can_add_topics', 1)
+            ->get([
+                'id',
+                'title',
+                'description',
+            ]);
 
         return view('user.topics.create', compact('forumSection'));
 
@@ -100,24 +111,24 @@ class UserTopicsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  UserTopicsStoreRequest  $request
+     * @param UserTopicsStoreRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(UserTopicsStoreRequest $request)
     {
         $check = ForumSection::find($request->get('forum_section_id'))
-                             ->value('user_can_add_topics');
+            ->value('user_can_add_topics');
         if ($check != 1) {
             return redirect()->to('/');
         }
-        $topic                   = new ForumTopic;
+        $topic = new ForumTopic;
         $topic->forum_section_id = $request->get('forum_section_id');
-        $topic->title            = clean($request->get('title'));
-        $topic->preview_content  = clean($request->get('preview_content'));
-        $topic->content          = clean($request->get('content'));
+        $topic->title = clean($request->get('title'));
+        $topic->preview_content = clean($request->get('preview_content'));
+        $topic->content = clean($request->get('content'));
         $this->checkImg($request, $topic);
-        $topic->user_id  = auth()->id();
+        $topic->user_id = auth()->id();
         $topic->start_on = Carbon::now();
         $topic->save();
 
@@ -128,7 +139,7 @@ class UserTopicsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -141,8 +152,8 @@ class UserTopicsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @param  int  $user_topic
+     * @param int $id
+     * @param int $user_topic
      *
      * @return \Illuminate\Http\Response
      */
@@ -164,19 +175,19 @@ class UserTopicsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  UserTopicsUpdateRequest  $request
-     * @param  int                      $id
-     * @param  int                      $user_topic
+     * @param UserTopicsUpdateRequest $request
+     * @param int $id
+     * @param int $user_topic
      *
      * @return \Illuminate\Http\Response
      */
     public function update(UserTopicsUpdateRequest $request, $id, $user_topic)
     {
-        $topic                   = ForumTopic::findOrFail($user_topic);
-        $topic->title            = clean($request->get('title'));
+        $topic = ForumTopic::findOrFail($user_topic);
+        $topic->title = clean($request->get('title'));
         $topic->forum_section_id = $request->get('forum_section_id');
-        $topic->preview_content  = clean($request->get('preview_content'));
-        $topic->content          = clean($request->get('content'));
+        $topic->preview_content = clean($request->get('preview_content'));
+        $topic->content = clean($request->get('content'));
         $this->checkImg($request, $topic);
         $topic->save();
 
@@ -186,7 +197,7 @@ class UserTopicsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -206,8 +217,8 @@ class UserTopicsController extends Controller
                     "/topics/images", $topic->preview_img
                 );
                 // Upload file on server
-                $image              = $request->file('preview_img');
-                $filePath           = $image->store('topic/image', 'public');
+                $image = $request->file('preview_img');
+                $filePath = $image->store('topic/image', 'public');
                 $topic->preview_img = 'storage/' . $filePath;
             } else {
                 back();
