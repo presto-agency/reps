@@ -28,7 +28,7 @@ class TransferComments extends Seeder
          * Get and Insert data
          */
         DB::connection("mysql2")->table("comments")
-            ->chunkById(500, function ($repsComments) {
+            ->chunkById(300, function ($repsComments) {
                 try {
                     $insertItems = [];
                     foreach ($repsComments as $item) {

@@ -235,8 +235,13 @@ class UserReplayController extends Controller
 
     private function replayDataSave($data, $request)
     {
+
         $data->user_id     = auth()->id();
-        $data->user_replay = Replay::REPLAY_USER;
+        if (auth()->user()->roles->name == 'user'){
+            $data->user_replay = Replay::REPLAY_USER;
+        }else{
+            $data->user_replay = $request->user_replay;
+        }
         $this->columns($data, $request);
         $this->saveFile($request, $data);
     }

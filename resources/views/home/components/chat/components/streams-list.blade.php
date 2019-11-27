@@ -11,18 +11,24 @@
                                 data-img-race="@if($item->races){{asset('images/default/game-races/'.$item->races->title.'.png')}}@endif"
                                 data-title-race="@if($item->races){{$item->races->title}}@endif"
                                 data-stream-title="{{$item->title}}"
-                                data-stream-chat=""
+                                @if(parse_url(htmlspecialchars_decode($item->stream_url_iframe))['host']='player.twitch.tv')
+                                @php
+                                    $chanel =   substr($item->stream_url_iframe, strpos($item->stream_url_iframe, "channel=") + 8);
+                                @endphp
+                                data-stream-chat="https://www.twitch.tv/embed/{{$chanel}}/chat"
+                                @endif
                         >
+
                             @if($item->countries)
-                            <img class="margin-left-5" src="{{asset($item->countries->flagOrDefault())}}" alt="flag"
-                                 title="{{$item->countries->name}}">
+                                <img class="margin-left-5" src="{{asset($item->countries->flagOrDefault())}}" alt="flag"
+                                     title="{{$item->countries->name}}">
                             @endif
-                             @if($item->races)
-                            <img class
-                                 ="margin-left-5"
-                                 src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}" alt="race"
-                                 title="{{$item->races->title}}">
-                           @endif
+                            @if($item->races)
+                                <img class
+                                     ="margin-left-5"
+                                     src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}" alt="race"
+                                     title="{{$item->races->title}}">
+                            @endif
                             <span class="color-blue night_text" title="{{$item->title}}">{{$item->title}}</span>
                         </button>
                     </div>
@@ -43,5 +49,7 @@
 
         $('#streamOnlineName').attr('title', $(this).data('stream-title'));
         $('#streamOnlineName').text($(this).data('stream-title'));
+
+        $('#chatTwitch').attr('title', $(this).data('stream-chat'));
     });
 </script>
