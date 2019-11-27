@@ -11,6 +11,11 @@
     br{
         display: none!important;
     }
+    .card-body__text{
+        img{
+            width: 100%;
+        }
+    }
 
     box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     border-radius: 5px;
