@@ -1237,6 +1237,9 @@
     /*ДЕТАЛЬНЫЕ НОВОСТИ*/
     .detailed-news {
         .detailed-news__title {
+            p{
+                max-width: 325px;
+            }
             padding: 2.018vw;
             .title__wrap {
                 .title__icon {
