@@ -111,11 +111,11 @@ class ReplayController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param ReplayUpdateRequest $request
+     * @param Request $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ReplayUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         return redirect()->to('/');
     }
