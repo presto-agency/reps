@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Http\Sections\User as UserSection;
 use App\Policies\UserPolicy as UserSectionPolicy;
+
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -16,8 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies
         = [
-//            User::class => UserSectionModelPolicy::class,
-//            User::class => UserModelPolicy::class,
+            UserSection::class => UserSectionPolicy::class,
         ];
 
     /**
@@ -29,7 +29,6 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
     }
 
 }
