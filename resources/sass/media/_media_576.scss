@@ -349,12 +349,14 @@
                 .card-body__items {
                     margin-bottom: 3.125vw;
                     .items__comment {
+                        display: flex;
+                        align-items: center;
                         svg {
-                            width: 3.646vw;
-                            height: 3.646vw;
+                            width: 2.910vw;
+                            height: 2.910vw;
                         }
                         span {
-                            font-size: 2.083vw;
+                            font-size: 3.083vw;
                             line-height: 3.299vw;
                             margin-left: 2.083vw;
                         }
@@ -367,6 +369,8 @@
                         }
                     }
                     .items__watch {
+                        display: flex;
+                        align-items: center;
                         svg {
                             width: 2.910vw;
                             height: 2.910vw;
