@@ -30,7 +30,7 @@
             <div class="form-group">
                 <label for="create-topic__name" class="night_text">{{__('*Название:')}}</label>
                 <input type="text" class="form-control create-topic__name night_input" id="create-topic__name"
-                       placeholder="Название" name="title" value="{{old('title',$topic->title)}}" minlength="1"
+                       placeholder="Название" name="title" value="{!! old('title',ParserToHTML::toHTML($topic->title,'size')) !!}" minlength="1"
                        maxlength="255"
                        required>
             </div>
