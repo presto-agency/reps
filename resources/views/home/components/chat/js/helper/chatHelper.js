@@ -74,6 +74,12 @@ export const parsePath = (mes,smiles,images) => {
             mes = mes.replace(/%([\s\S]*)%/gim, `%${images.filepath}%`);
     return mes;
 };
+export const CheckAvatar = (img) => {
+    if(img===null) {
+        img = '/images/default/avatar/avatar.png'
+    }
+    return img
+};
 export const getFilterUser = (text) => {
     var string_array = text.split(' ');
     var focus_word = '';
