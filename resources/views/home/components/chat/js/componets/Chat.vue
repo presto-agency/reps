@@ -82,6 +82,8 @@
         },
         mounted() {
             window.Echo.channel('chat').listen('NewChatMessageAdded', ({data}) => {
+                console.log('Ответ от сокета:');
+                console.log(data);
                 this.messagearray.unshift({
                     id: data.id,
                     flag: data.country_flag,
