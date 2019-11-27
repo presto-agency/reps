@@ -56,11 +56,12 @@
         }),
         beforeCreate(){
             axios.get('/chat/get_messages').then((response) => {
+                console.log(response.data);
                 response.data.forEach((item,index)=> {
                     this.messagearray.push({
                         id: item.id,
                         flag: item.country_flag,
-                        ava: item.user.avatar,
+                        ava: '/images/default/avatar/avatar.png',
                         usernick: item.user_name,
                         date: item.time,
                         message: chatHelper.strParse(item.message),
@@ -81,13 +82,13 @@
             }
         },
         mounted() {
-            window.Echo.channel('chat').listen('NewChatMessageAdded', ({data}) => {
+            window.Echo.channel('repschat').listen('NewChatMessageAdded', ({data}) => {
                 console.log('Ответ от сокета:');
                 console.log(data);
                 this.messagearray.unshift({
                     id: data.id,
                     flag: data.country_flag,
-                    ava: data.user.avatar,
+                    ava: '/images/default/avatar/avatar.png',
                     usernick: data.user_name,
                     date: data.time,
                     message: chatHelper.strParse(data.message),
