@@ -152,12 +152,12 @@
                                                         <div class="row">
                                                             @if($getMatchesMaps->isNotEmpty())
                                                                 @foreach($getMatchesMaps as $item)
-                                                                    <div class="title_block_gray">
+                                                                    <div class="col-xl-4 pl-1 pr-0 container_map">
+                                                                        <div class="title_block_gray">
                                                                 <span class='title_text'>
                                                                     {{$item->name}}
                                                                 </span>
-                                                                    </div>
-                                                                    <div class="col-xl-4 pl-1 pr-0 container_map">
+                                                                        </div>
                                                                         <div class='map'>
                                                                             @if (!empty($item->url) && checkFile::checkFileExists($item->url))
                                                                                 <img src="{{asset($item->url)}}"
