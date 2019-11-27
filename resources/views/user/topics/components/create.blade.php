@@ -36,11 +36,11 @@
         <div class="upload-image">
             <div class="row">
                 <div class="col-8">
-                    <input id="uploadFile3" class="f-input night_input" placeholder="Выбрать картинку превью" readonly/>
+                    <input id="uploadFile3" class="f-input night_input" placeholder="Выбрать" readonly/>
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
-                        <span>{{__('Выбрать превью')}}</span>
+                        <span>{{__('Выбрать')}}</span>
                         <input id="uploadBtn3" type="file" class="upload" value="{{old('preview_img')}}"
                                accept="image/*"
                                name="preview_img"/>
@@ -60,6 +60,36 @@
             </textarea>
             <script>
                 CKEDITOR.replace('preview_content', {
+                    // Define the toolbar groups as it is a more accessible solution.
+                    extraPlugins: 'autoembed',
+                    toolbarGroups: [
+                        {name: 'document', groups: ['mode', 'document', 'doctools']},
+                        {name: 'clipboard', groups: ['clipboard', 'undo']},
+                        {name: 'editing', groups: ['find', 'selection', 'spellchecker', 'editing']},
+                        {name: 'forms', groups: ['forms']},
+                        {name: 'styles', groups: ['styles']},
+                        {name: 'colors', groups: ['colors']},
+                        {name: 'tools', groups: ['tools']},
+                        {name: 'others', groups: ['others']},
+                        {name: 'about', groups: ['about']},
+                        {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
+                        {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']},
+                        {name: 'links', groups: ['links']},
+                        {name: 'insert', groups: ['insert']},
+
+                    ],
+                    // Remove the redundant buttons from toolbar groups defined above.
+                    removeButtons: 'Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Find,Replace,SelectAll,Scayt,Form,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,Strike,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Unlink,Image,Flash,Table,HorizontalRule,SpecialChar,PageBreak,ShowBlocks,Maximize,About,Checkbox'
+                });
+            </script>
+        </div>
+        <div class="form-group">
+            <label for="description" class="night_text">{{__('*Содержание')}}</label>
+            <textarea type="text" class="form-control create-topic__name night_input" id="description"
+                      name="description" minlength="1" maxlength="1000" rows="16" required>{{old('preview_content')}}
+            </textarea>
+            <script>
+                CKEDITOR.replace('description', {
                     // Define the toolbar groups as it is a more accessible solution.
                     extraPlugins: 'autoembed',
                     toolbarGroups: [

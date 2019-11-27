@@ -9,7 +9,7 @@
     .user_bar{
         top:15px;
         bottom: auto;
-        right: 50px;
+        right: 70px;
     }
     #left-sidebar {
         order: 1;
@@ -206,9 +206,21 @@
         }
     }
     .mob_menu{
+        .btn-round{
+            width: 70px;
+            height: 70px;
+        }
+        .close {
+            width: 45px;
+            height: 45px;
+        }
         & .nav-wrapper{
+            padding: 35px;
+            .main_punkt{
+                margin-top: 35px;
+            }
             & .nav_item{
-                font-size: 1.615vw;
+                font-size: 4.615vw;
             }
         }
     }
@@ -1121,6 +1133,15 @@
                 }
 
                 .subtitle__icons {
+                    svg {
+                        width: 2.119vw;
+                        height: 2.119vw;
+                    }
+                    span {
+                        font-size: 1.211vw;
+                        line-height: 1.917vw;
+                        margin-left: 1.009vw;
+                    }
                     .items__comment,
                     .items__download {
                         svg {
@@ -2609,7 +2630,7 @@
                 .panel__wrap {
                     .panel__header {
                         margin-top: 1.514vw;
-                        padding-bottom: 1.009vw;
+                        //padding-bottom: 1.009vw;
                         .header__items {
                             .items__link {
                                 font-size: 1.211vw;

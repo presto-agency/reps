@@ -1009,6 +1009,15 @@
                 }
 
                 .subtitle__icons {
+                    svg {
+                        width: 1.537vw;
+                        height: 1.537vw;
+                    }
+                    span {
+                        font-size: 0.878vw;
+                        line-height: 1.391vw;
+                        margin-left: 0.732vw;
+                    }
                     .items__comment,
                     .items__download {
                         svg {
@@ -2475,7 +2484,7 @@
                 .panel__wrap {
                     .panel__header {
                         margin-top: 1.098vw;
-                        padding-bottom: 0.732vw;
+                        //padding-bottom: 0.732vw;
                         .header__items {
                             .items__link {
                                 font-size: 0.878vw;
