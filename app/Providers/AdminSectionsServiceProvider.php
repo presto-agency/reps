@@ -54,9 +54,6 @@ class AdminSectionsServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(base_path("resources/views/admin"), 'admin');
 
-//        $this->registerPolicies('App\\Admin\\Policies\\');
-//        $this->registerPolicies('App\\Policies\\');
-
         $this->registerNavigation();
 
         parent::boot($admin);
