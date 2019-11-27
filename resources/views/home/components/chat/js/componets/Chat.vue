@@ -82,7 +82,7 @@
             }
         },
         mounted() {
-            window.Echo.channel('chat').listen('NewChatMessageAdded', ({data}) => {
+            window.Echo.channel('repschat').listen('NewChatMessageAdded', ({data}) => {
                 console.log('Ответ от сокета:');
                 console.log(data);
                 this.messagearray.unshift({
