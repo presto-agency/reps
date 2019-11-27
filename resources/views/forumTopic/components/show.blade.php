@@ -38,7 +38,7 @@
             </div>
 
         </div>
-        <div class="detailed-forum__info night_modal">
+        <div class="detailed-forum__info change_gray ">
             <div class="info__items">
                 <div class="left">
                     <a class="items__watch" href="#">
