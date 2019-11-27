@@ -60,7 +60,7 @@
                     this.messagearray.push({
                         id: item.id,
                         flag: item.country_flag,
-                        ava: item.user.avatar,
+                        ava: chatHelper.CheckAvatar(item.user.avatar),
                         usernick: item.user_name,
                         date: item.time,
                         message: chatHelper.strParse(item.message),
