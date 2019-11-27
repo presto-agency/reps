@@ -66,21 +66,25 @@ class UserTopicsController extends Controller
     }
     public function forumSectionsTopicsAjaxLoad($id)
     {
+
+
         if (request()->ajax()) {
             $visible_title = false;
-            if (request('topics_id') > 0) {
-
-//                $forumSectionsTopics = ForumSection::orderByDesc('id')
-//                    ->where('id', '<', request('topics_id'))
-//                    ->limit(5)
-//                    ->get();
+            if (request('topic_id') > 0) {
+                $forumSectionsTopics = ForumTopic::where('forum_section_id',request('forum_section_id'))
+                    ->where('id', '<', request('topic_id'))
+                    ->orderByDesc('id')
+                    ->limit(10)
+                    ->get();
             } else {
-                $forumSectionsTopics = ForumSection::orderByDesc('id')
-                    ->limit(5)
+                $forumSectionsTopics = ForumTopic::where('forum_section_id',request('forum_section_id'))
+                    ->orderByDesc('id')
+                    ->limit(10)
                     ->get();
                 $visible_title = true;
             }
-            return view('user.topics.components.components.index',
+            dump($forumSectionsTopics);
+            return view('user.topics.components.components.topics-in-sections',
                 compact('forumSectionsTopics', 'visible_title')
             );
         }
