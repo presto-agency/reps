@@ -27,6 +27,7 @@
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
+                max-width: 180px;
             }
             font-size: 1.167vw;
             margin: 0 0 0 1.464vw;
@@ -37,9 +38,13 @@
 
         .left_block{
             display: flex;
-            max-width: 50%;
+
         }
         .right_block{
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 220px;
             a{
                 text-decoration: none;
                 font-size: 12px;
