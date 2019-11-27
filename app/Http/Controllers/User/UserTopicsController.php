@@ -8,7 +8,6 @@ use App\Http\Requests\UserTopicsUpdateRequest;
 use App\Models\ForumSection;
 use App\Models\ForumTopic;
 use App\Services\ServiceAssistants\PathHelper;
-use App\User;
 use Carbon\Carbon;
 
 class UserTopicsController extends Controller
@@ -25,7 +24,7 @@ class UserTopicsController extends Controller
      */
     public function index($id)
     {
-//        $user = User::findOrFail((int)$id);
+        //        $user = User::findOrFail((int)$id);
         //        $forumSections = ForumSection::with('topics.forumSection')
         //            ->whereHas(
         //                'topics', function ($query) use ($id) {
@@ -33,47 +32,48 @@ class UserTopicsController extends Controller
         //                $query->withCount('comments');
         //            })->get();
 
-//            $forumSections = ForumSection::findOrFail();
-//         $request = request();
-//        $topics = $forumSections->topics()->orderBy('created_at', 'desc')
-//            ->skip(5)->take(10)->get();
-////        dd($forumSections, $topics);
-//            if($request->ajax()) {
-//            }\
+        //            $forumSections = ForumSection::findOrFail();
+        //         $request = request();
+        //        $topics = $forumSections->topics()->orderBy('created_at', 'desc')
+        //            ->skip(5)->take(10)->get();
+        ////        dd($forumSections, $topics);
+        //            if($request->ajax()) {
+        //            }\
         return view('user.topics.index');
     }
 
-//    public function forumSectionsAjaxLoad($id)
-//    {
-//        User::findOrFail(request('id'));
-//        $row = [
-//            'id',
-//            'picture',
-//            'user_id',
-//        ];
-//
-//        if (request()->ajax()) {
-//            $visible_title = false;
-//            $routCheck     = $this->routCheck;
-//            if (request('find_id') > 0) {
-//                $images = GalleryHelper::getAllUserImagesAjaxId(
-//                    $row,
-//                    request('id'), request('find_id')
-//                );
-//            } else {
-//                $images = GalleryHelper::getAllUserImagesAjax(
-//                    $row,
-//                    request('id')
-//                );
-//
-//                $visible_title = true;
-//            }
-//            echo view(
-//                'user.gallery.components.index',
-//                compact('images', 'routCheck', 'visible_title')
-//            );
-//        }
-//    }
+    public function forumSectionsAjaxLoad($id)
+    {
+
+        User::findOrFail(request('id'));
+        $row = [
+            'id',
+            'picture',
+            'user_id',
+        ];
+
+        if (request()->ajax()) {
+            $visible_title = false;
+            $routCheck     = $this->routCheck;
+            if (request('find_id') > 0) {
+                $images = GalleryHelper::getAllUserImagesAjaxId(
+                    $row,
+                    request('id'), request('find_id')
+                );
+            } else {
+                $images = GalleryHelper::getAllUserImagesAjax(
+                    $row,
+                    request('id')
+                );
+
+                $visible_title = true;
+            }
+
+            return view('user.topics.index',
+                compact('images', 'routCheck', 'visible_title')
+            );
+        }
+    }
 
 
     /**
@@ -86,14 +86,12 @@ class UserTopicsController extends Controller
     public function create($id)
     {
         $forumSection = ForumSection::where('is_active', 1)
-            ->where('user_can_add_topics', 1)
-            ->get(
-                [
-                    'id',
-                    'title',
-                    'description',
-                ]
-            );
+                                    ->where('user_can_add_topics', 1)
+                                    ->get([
+                                        'id',
+                                        'title',
+                                        'description',
+                                    ]);
 
         return view('user.topics.create', compact('forumSection'));
 
@@ -108,9 +106,8 @@ class UserTopicsController extends Controller
      */
     public function store(UserTopicsStoreRequest $request)
     {
-        $check = ForumSection::find($request->get('forum_section_id'))->value(
-            'user_can_add_topics'
-        );
+        $check = ForumSection::find($request->get('forum_section_id'))
+                             ->value('user_can_add_topics');
         if ($check != 1) {
             return redirect()->to('/');
         }
@@ -211,7 +208,7 @@ class UserTopicsController extends Controller
                 // Upload file on server
                 $image              = $request->file('preview_img');
                 $filePath           = $image->store('topic/image', 'public');
-                $topic->preview_img = 'storage/'.$filePath;
+                $topic->preview_img = 'storage/' . $filePath;
             } else {
                 back();
             }
