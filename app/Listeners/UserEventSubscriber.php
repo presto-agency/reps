@@ -33,7 +33,10 @@ class UserEventSubscriber
      */
     public function onUserLogout($event)
     {
-                $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGOUT, null);
+        if (!empty($event->user)){
+            $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGOUT, null);
+
+        }
     }
 
     /**

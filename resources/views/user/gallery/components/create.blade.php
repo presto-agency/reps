@@ -64,12 +64,4 @@
         </form>
     </div>
 </div>
-@push('ess21-custom-script')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#gallery__for-adults').on('change', function () {
-                this.value = this.checked ? 1 : 0;
-            }).change();
-        })
-    </script>
-@endpush
+
