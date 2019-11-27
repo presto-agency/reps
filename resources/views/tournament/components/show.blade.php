@@ -116,7 +116,7 @@
                                                     <div class=" title_block">
                                                         <div class="left_content">
                                                             <span
-                                                                    class="title_text">{{__('Приз')}}</span>
+                                                                class="title_text">{{__('Приз')}}</span>
                                                         </div>
                                                     </div>
                                                     @isset($prizeList)
@@ -150,13 +150,14 @@
                                                     </div>
                                                     <div class="container">
                                                         <div class="row">
+                                                            <div class="title_block_gray">
+                                                                <span
+                                                                    class='title_text'>{{$item->name}}
+                                                                </span>
+                                                            </div>
                                                             @if($getMatchesMaps->isNotEmpty())
                                                                 @foreach($getMatchesMaps as $item)
                                                                     <div class="col-xl-4 pl-1 pr-0 container_map">
-                                                                        <div class="title_block_gray">
-                                                                            <span
-                                                                                    class='title_text'>{{$item->name}}</span>
-                                                                        </div>
                                                                         <div class='map'>
                                                                             @if (!empty($item->url) && checkFile::checkFileExists($item->url))
                                                                                 <img src="{{asset($item->url)}}"
