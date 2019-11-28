@@ -54,7 +54,7 @@
                         @else
                             @isset($type)
                                 <a class="subtitle__name night_text"
-                                   href="{{ asset(url("replay/{$item->id}"."?type={$type}"))}}">
+                                   href="{{ asset("replay/{$item->id}"."?type={$type}")}}">
                                     {!! ParserToHTML::toHTML($item->title,'size') !!}
                                 </a>
                             @endisset

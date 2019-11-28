@@ -93,28 +93,22 @@
                     {{ Form::close() }}
                 </div>
                 <div class="table-content">
-                    @if(isset() && !empty($replay->comments))
+                    @if(!empty($replay->comments))
                         @foreach($replay->comments as $comment)
                             <div class="item row">
-                                @if(auth()->check() && auth()->user()->userViewAvatars())
-                                    <img src="{{asset($comment->user->avatarOrDefault())}}"
-                                         class="img-circle img-bordered-sm"
-                                         alt="avatar"/>
-                                @endif
-                                @guest()
-                                    <img src="{{asset($comment->user->avatarOrDefault())}}"
-                                         class="img-circle img-bordered-sm" alt="avatar"/>
-                                @endguest()
+                                <img src="{{asset($comment->user->avatarOrDefault())}}"
+                                     class="img-circle img-bordered-sm"
+                                     alt="avatar"/>
                                 <p class="message">
                                     <a href="#" class="name">
                                         <small class="text-muted pull-right"><i
-                                                    class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
+                                                class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
                                         </small>
                                         {{$comment->user->name}}
                                     </a>
                                     {{ Form::open(['method' => 'DELETE', 'route' => ['admin.replays.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
                                     <button class="btn btn-default text-red" title="Удалить запись"><i
-                                                class="fa fa-trash"></i></button>
+                                            class="fa fa-trash"></i></button>
                                     {{ Form::close() }}
                                     {!! ParserToHTML::toHTML($comment->content,'size') !!}
                                 </p>

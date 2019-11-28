@@ -25,7 +25,7 @@ class ReplayStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'             => 'required|string|between:1,255',
+            'title'             => 'required|string|between:5,255',
             'type_id'           => 'required|exists:replay_types,id',
             'map_id'            => 'required|exists:replay_maps,id',
             'first_race'        => 'required|exists:races,id',
@@ -34,7 +34,7 @@ class ReplayStoreRequest extends FormRequest
             'second_race'       => 'required|string|exists:races,id',
             'second_country_id' => 'required|string|exists:countries,id',
             'second_location'   => 'nullable|integer|min:1|max:20',
-            'content'           => 'required|string|between:1,10000',
+            'content'           => 'required|string|between:10,5000',
             'video_iframe'      => 'required_without:file|max:1000',
             'file'              => 'required_without:video_iframe|file|max:5120',
             'user_replay'       => 'required|in:1,0',

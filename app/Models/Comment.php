@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Comment extends Model
 {
+    const RELATION_FORUM_TOPIC  = 'App\Models\ForumTopic';
+    const RELATION_REPLAY       = 'App\Models\Replay';
+    const RELATION_USER_GALLERY = 'App\Models\UserGallery';
 
     protected $fillable
         = [
@@ -17,7 +20,7 @@ class Comment extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id','id');
     }
 
     /**

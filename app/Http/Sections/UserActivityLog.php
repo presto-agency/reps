@@ -61,7 +61,9 @@ class UserActivityLog extends Section
             ->setHtmlAttribute('class', 'table-info text-center')
             ->with(['users'])
             ->paginate(25);
-
+        $display->setApply(function ($query) {
+            $query->orderBy('time', 'desc');
+        });
         $display->setColumns([
             $type = AdminColumn::text('type', 'Событие')
                 ->setWidth(150),
@@ -74,7 +76,7 @@ class UserActivityLog extends Section
                 ->setWidth(150),
 
             $parameters = AdminColumn::custom('Описание', function ($model) {
-                return clean($this->getEventTitle($model));
+                return $this->getEventTitle($model);
             })->setHtmlAttribute('class', 'text-left'),
         ]);
 

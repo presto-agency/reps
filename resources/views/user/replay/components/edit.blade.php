@@ -24,7 +24,7 @@
             <div class="form-group">
                 <label for="create-replay-name" class="night_text">* Название:</label>
                 <input type="text" class="form-control night_input" id="create-replay-name" placeholder="Название"
-                       name="title" value="{{ old("title", ParserToHTML::toHTML($replay->title,'size'))}}" required minlength="1" maxlength="255">
+                       name="title" value="{{ strip_tags(old("title", ParserToHTML::toHTML($replay->title,'size')))}}" required minlength="1" maxlength="255">
             </div>
             @if ($errors->has('title'))
                 <div class="alert alert-danger">
