@@ -32,7 +32,7 @@
                                      class="author__avatar img-fluid">
                             @endguest()
                             @if($single_news->author->name)
-                                    <a href="#">   <p class="author__nickname">{{ $single_news->author->name }}</p></a>
+                                    <a href="#" title="{{ $single_news->author->name }}">   <p class="author__nickname">{{ $single_news->author->name }}</p></a>
                             @endif
                         @endif
                         @if($single_news->created_at)

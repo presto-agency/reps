@@ -26,7 +26,7 @@
                             <a href="{{route('user_profile',['id'=>$item['id']])}}">
                                 @auth()
                                     @if(auth()->user()->userViewAvatars())
-                                        @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
+                                        gocu-replays__subtitle                          @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
                                             <img src="{{asset($item['avatar'])}}" alt="avatar"
                                                  class="author__avatar img-fluid">
                                         @else

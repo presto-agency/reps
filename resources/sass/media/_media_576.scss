@@ -1734,7 +1734,10 @@
 
         }
         .detailed-news__info {
-            padding-bottom: 1.736vw;
+            padding-top: 2.778vw;
+            padding-bottom: 2.951vw;
+            padding-left: 3.472vw;
+            padding-right: 3.472vw;
             .info__items {
                 & .block_account{
                     & img{
@@ -1749,9 +1752,9 @@
                 }
                 .items__watch,
                 .items__comment {
-                    svg {
-                        width: 5.604vw;
-                        height: 4vw;
+                    svg, img {
+                        width: 2.604vw;
+                        height: 2.257vw;
                     }
                     span {
                         font-size: 3.083vw;
@@ -1760,6 +1763,17 @@
                     }
                 }
                 .items__comment {
+                    display: flex;
+                    align-items: center;
+                    svg, img{
+                        width: 2.604vw;
+                        height: 2.257vw;
+                    }
+                    span{
+                        font-size: 2.083vw;
+                        line-height: 3.299vw;
+                        margin-left: 1.736vw;
+                    }
                     margin-left: 5.556vw;
                 }
             }
