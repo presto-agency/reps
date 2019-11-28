@@ -1,13 +1,13 @@
 .nightMode{
     background:#01093b;
     color: white;
-    //.gocu-replays .litle_button .button__download-more,
-    //.rating .litle_button .button__download-more {
-    //    border-radius: 5px;
-    //    background: #01093b !important;
-    //    display: flex;
-    //    align-items: center;
-    //}
+    .night_select2{
+        background-color: #0567cc!important;
+        color:white!important;
+        &::placeholder{
+            color:white!important;
+        }
+    }
     .litle_button {
         margin: 0;
         .button__download-more{
