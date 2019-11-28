@@ -157,8 +157,6 @@
             var socketId = window.Echo.socketId();
 
             window.Echo.private('dialogue.' + '{{ $dialogue_id }}').listen('NewUserMessageAdded', ({message}) => {
-                console.log('Ответ эхо');
-                console.log(message);
 
                 appendUserMessage(message);
                 $('body').find('.messages-box').scrollTop($(".scroll-to").offset().top);
