@@ -15,7 +15,7 @@
                 c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
                 c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
             </svg>
-                <div class="title__text">{!! ParserToHTML::toHTML($topic->title,'size') !!}</div>
+                <div class="title__text" title="{!! ParserToHTML::toHTML($topic->title,'size') !!}">{!! ParserToHTML::toHTML($topic->title,'size') !!}</div>
             </div>
             <div class="title__wrap">
                 @if(isset($topic->author) && !empty($topic->author))
@@ -25,14 +25,14 @@
                     @guest()
                         <img src="{{asset($topic->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
                     @endguest()
-                    <p class="title__nickname">{{ $topic->author->name ? $topic->author->name : 'user' }}</p>
+                    <p class="title__nickname" title="{{ $topic->author->name ? $topic->author->name : 'user' }}">{{ $topic->author->name ? $topic->author->name : 'user' }}</p>
                       @if($topic->author->countries)
                     <img src="{{ asset($topic->author->countries->flagOrDefault()) }}" class="title__flag"
                          title="{{ $topic->author->countries->name }}" alt="flag">
                      @endif
                     <img src="{{asset("images/default/game-races/" . $topic->author->races->title . ".png")}}"
                          class="title__cube" title="{{ $topic->author->races->title }}" alt="race">
-                    <p class="title__text text_pts">{{ $topic->author->comments_count.'  pts' }}
+                    <p class="title__text text_pts" title="{{ $topic->author->comments_count.'  pts' }}">{{ $topic->author->comments_count.'  pts' }}
                         | {{ $topic->author->count_positive - $topic->author->count_negative.' кг' }}</p>
                 @endif
             </div>

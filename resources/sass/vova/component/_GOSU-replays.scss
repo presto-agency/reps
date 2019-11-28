@@ -101,6 +101,13 @@
             max-width: 18vw;
             p{
                 margin: 0;
+                color: #8086a6;
+                font-size: 16px;
+                font-weight: 400;
+                transition: .3s;
+                margin-bottom: 0;
+                text-decoration: none;
+                max-width: 18vw;
             }
             &:hover {
                 color: #0567cc;
@@ -310,17 +317,7 @@
         margin-top: 0;
         margin-bottom: 0;
     }
-    .litle_button {
-        margin: 0;
-        .button__download-more{
-            border-radius: 5px;
-            background: #01093b !important;
-            display: flex;
-            align-items: center;
-        }
 
-
-    }
 }
 
 

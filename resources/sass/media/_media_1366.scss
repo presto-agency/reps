@@ -561,7 +561,10 @@
                     }
                 }
             }
-            & .right_section_autorization{
+             .right_section_autorization{
+                svg{
+                    width: 2.928vw;
+                }
                 & p{
                     font-size: 1.171vw;
                 }
@@ -1556,7 +1559,7 @@
                         margin: 0 0.366vw;
                     }
                     & .blue_span{
-                        margin: 0 1.830vw 0 1.464vw;
+                        margin: 0 1.30vw 0 1.464vw;
                     }
                 }
                 & .right_block{

@@ -260,7 +260,7 @@
                                 </div>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-7 center_block">
                                     @isset($match->player1->user)
-                                        <div class="one_player">
+                                        <div class="one_player" >
                                             @if(auth()->check() && auth()->user()->userViewAvatars())
                                                 <img class="icon_bars"
                                                      src="{{asset($match->player1->user->avatarOrDefault())}}"
@@ -271,7 +271,7 @@
                                                      src="{{asset($match->player1->user->avatarOrDefault())}}"
                                                      alt="avatar">
                                             @endguest()
-                                            <span>{{$match->player1->user->name}}</span>
+                                            <span title="{{$match->player1->user->name}}">{{$match->player1->user->name}}</span>
                                         </div>
                                     @else
                                         {{__('- Freeslot -')}}
