@@ -2,43 +2,31 @@
     <h4>{{$userGallery->sign}}</h4>
     <br>
     <div class="row">
-        <div class="col-md-3 text-center">
-                <img class="img-bordered-sm" src="{{asset($userGallery->pictureOrDefault())}}" alt="picture">
+        <div class="col-4 text-center">
+            <img class="img-bordered-sm" src="{{asset($userGallery->pictureOrDefault())}}" alt="picture">
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3 text-center">
-            <span class="username">
-                    <img src="{{asset($userGallery->users->avatarOrDefault())}}" class="img-circle img-bordered-sm"
-                         alt="User avatar"/>
-            </span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3 text-center">
+
+        <div class="col-3 text-center">
             <span class="username">
                 <a href="">{{$userGallery->users->name}}</a>
             </span>
         </div>
-        <div class="col-md-3 text-center positive_count">
-            <span style="font-size: 2em; color: green;">
-                <i class="far fa-thumbs-up">{{$userGallery->positive_count}}</i>
-            </span>
-        </div>
-        <div class="col-md-3 text-center negative_count">
-            <span style="font-size: 2em; color: red;">
-                <i class="far fa-thumbs-down">{{$userGallery->negative_count}}</i>
-            </span>
-        </div>
-        <div class="col-md-3 text-center comments_count">
-            <span style="font-size: 2em;">
-                <i class="far fa-comment">{{$userGallery->commentsCount()}}</i>
-             </span>
-        </div>
     </div>
-    <div class="row">
-        <div class="col-md-3 text-center">
-            <p class="date">{{ $userGallery->created_at->format('h:m d.m.Y') }}</p>
+    <div class="icon_wrapper">
+        <div class="row">
+            <div class="col-12 container_user">
+                <img class="avatar img-circle img-bordered-sm" src="{{asset($userGallery->users->avatarOrDefault())}}"
+                     alt="User avatar"/>
+                <div class="block_text">
+                    <a class="username" href="#">{{$userGallery->users->name}}</a>
+                    <span class="date">{{ $userGallery->created_at->format('h:m d.m.Y') }}</span>
+                </div>
+            </div>
+            <div class="col-12 container_icon">
+                <i class="far fa-thumbs-up" style="color: green;">{{$userGallery->positive_count}}</i>
+                <i class="far fa-thumbs-down" style="color: red;">{{$userGallery->negative_count}}</i>
+                <i class="far fa-comment"style="color: green;">{{$userGallery->commentsCount()}}</i>
+            </div>
         </div>
     </div>
     <div class="box-container">
@@ -55,22 +43,27 @@
         <div class="box-body">
             @if( isset($userGallery->comments) && !empty($userGallery->comments))
                 @foreach($userGallery->comments as $comment)
-                    <div class="item row">
-                            <img src="{{asset($comment->user->avatarOrDefault())}}" class="img-circle img-bordered-sm"
+                    <div class="row coments_row">
+                        <div class="col-6 container_user">
+                            <img class="avatar img-circle img-bordered-sm" src="{{asset($comment->user->avatarOrDefault())}}"
                                  alt="User avatar"/>
-                        <p class="message">
-                            <a href="#" class="name">
-                                <small class="text-muted pull-right"><i
-                                            class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
-                                </small>
-                                {{$comment->user->name}}
-                            </a>
-                            {{ Form::open(['method' => 'DELETE', 'route' => ['admin.usergallery.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
-                            <button class="btn btn-default text-red" title="Удалить запись"><i
-                                        class="fa fa-trash"></i></button>
-                            {{ Form::close() }}
-                            {!! ParserToHTML::toHTML($comment->content,'size') !!}
-                        </p>
+                            <div class="block_text">
+                                <a class="username" href="#">{{$comment->user->name}}</a>
+                                {{ Form::open(['method' => 'DELETE', 'route' => ['admin.usergallery.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
+                                <div class="block_btn">
+                                    <button class="btn btn-default text-red" title="Удалить запись"><i
+                                            class="fa fa-trash"></i></button>
+                                    {!! ParserToHTML::toHTML($comment->content,'size') !!}
+                                </div>
+
+                                {{ Form::close() }}
+
+                            </div>
+
+                        </div>
+                        <div class="col-6 container_icon">
+                            <span class="date">{{$comment->created_at->format('h:m d.m.Y')}}</span>
+                        </div>
                     </div>
                 @endforeach
             @endif

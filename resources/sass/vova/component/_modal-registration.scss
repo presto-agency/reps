@@ -1,4 +1,5 @@
 #registrationModal {
+
     .modal-header {
         .modal-title {
             margin: 0 auto;
@@ -46,6 +47,7 @@
                 width: 100%!important;
                 margin-bottom: 16px;
                 height: 37px;
+
                 .select2-selection {
                     height: 37px;
                     color: #495057;
@@ -92,3 +94,12 @@
     }
 
 }
+.nightMode{
+    .select2-dropdown{
+        background: $blue;
+    }
+    .select2-search__field{
+        background: $blue;
+    }
+}
+
