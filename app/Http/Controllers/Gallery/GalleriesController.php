@@ -57,7 +57,7 @@ class GalleriesController extends Controller
     {
         $relation = ['comments'];
         $row = ['id', 'sign', 'positive_count', 'negative_count', 'picture',];
-        $userImage = GalleryHelper::getUserImage($id, $relation, $row);
+        $userImage = GalleryHelper::getUserImage($id, $relation);
 
         // get previous user id
         $previous = GalleryHelper::previousGalleriesImage($id, $relation, $row);

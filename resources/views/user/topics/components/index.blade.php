@@ -5,13 +5,12 @@
 @endif
 
 <div class="my-topics__accordion">
-
     @if($forumSections->isNotEmpty())
         @foreach($forumSections as $items)
             <button class="accordion-button change_gray night_text loadTopics"
                     data-forum_section_id="{{$items->id}}">{{$items->title}}</button>
             {{--        Load topics--}}
-            <div id="load_more_user_forum_sections_topics_{{$items->id}}"></div>
+            <div class="panel night_modal" id="load_more_user_forum_sections_topics_{{$items->id}}"></div>
             {{--        Load topics--}}
             @php
                 $last_sectionId = $items->id;

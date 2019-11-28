@@ -44,13 +44,11 @@
                         $('#load_more_user_forum_sections_button').remove();
                         $('#load_more_user_forum_sections').append(data);
 
-                        /**
-                         * Check first or second click
-                         */
+
                         $('.loadTopics').one("click", loadAjaxData);
 
                         function loadAjaxData() {
-                            alert("Run and show first slick");
+                            // alert("Run and show first slick");
                             /**
                              * First click load Data show list
                              */
@@ -87,13 +85,13 @@
                                 $('#load_more_user_forum_sections_topics_button').html('<b>Загрузка...</b>');
                                 load_more_user_forum_sections_topics(forum_section_id, topic_id, user_id, _token);
                             });
-                            /**
-                             * Second click  hidden list and stop script
-                             */
-                            $('.loadTopics').on("click", function () {
-                                alert("Stop and hidden second slick");
-                                return false;
-                            });
+                            // /**
+                            //  * Second click  hidden list and stop script
+                            //  */
+                            // $('.loadTopics').on("click", function () {
+                            //     alert("Stop and hidden second slick");
+                            //     return false;
+                            // });
                         }
                     }
                 })

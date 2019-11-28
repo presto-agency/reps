@@ -111,9 +111,9 @@ Route::group([
             ->name('load.more.user.gallery');
 
         Route::resource("{id}/user-topics", 'User\UserTopicsController');
-        /*** Ajax user-sections ***/
+        /*** Ajax pagination user-sections(topics) ***/
         Route::post('{id}/user-topics/load_sections', 'User\UserTopicsController@forumSectionsAjaxLoad')->name('user.topics.load.sections');
-        /*** Ajax user-sections-topics ***/
+        /*** Ajax pagination user-sections-topics ***/
         Route::post('{id}/user-topics/load_sections_topics', 'User\UserTopicsController@forumSectionsTopicsAjaxLoad')->name('user.topics.load.sections.topics');
 
         Route::resource("{id}/user-replay", 'User\UserReplayController');
@@ -122,10 +122,14 @@ Route::group([
             ->name('load.more.user.replay');
 
         Route::resource("{id}/user-comments", 'User\UserCommentsController');
-        Route::resource("{id}/user-rating-list",
-            'User\UserRatingListController');
-        Route::resource("{id}/user-topic-rating-list",
-            'User\UserTopicRatingListController');
+//        /*** Ajax pagination user-sections(comments) ***/
+//        Route::post('{id}/user-comments/load_sections', 'User\UserCommentsController@forumSectionsAjaxLoad')->name('user.comments.load.sections');
+        /*** Ajax pagination user-sections-topics ***/
+        Route::post('{id}/user-comments/load_sections_comments', 'User\UserCommentsController@forumSectionsCommentsAjaxLoad')->name('user.comments.load.sections.comments');
+
+        Route::resource("{id}/user-rating-list", 'User\UserRatingListController');
+
+        Route::resource("{id}/user-topic-rating-list", 'User\UserTopicRatingListController');
 
         Route::get('{id}/edit', 'UserController@edit')
             ->name('edit_profile');

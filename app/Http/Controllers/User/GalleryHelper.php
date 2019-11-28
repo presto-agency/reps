@@ -38,9 +38,9 @@ class GalleryHelper
             ->get($row);
     }
 
-    public static function getUserImage($id, $relation, $row)
+    public static function getUserImage($id, $relation)
     {
-        return UserGallery::with($relation)->select($row)->findOrFail($id);
+        return UserGallery::with($relation)->findOrFail($id);
     }
 
     public static function previousUserImage($userId, $id)

@@ -5,18 +5,17 @@
     <div class="form-group">
         <label for="gallery-name"> {{__('Подпись:')}}</label>
         <input type="text" class="form-control night_input" id="gallery-name" name="sign" placeholder="Подпись"
-               value="{!! ParserToHTML::toHTML(old('sign',$userImage->sign),'size')  !!}">
+               value="{!! strip_tags(ParserToHTML::toHTML(old('sign',$userImage->sign),'size') ) !!}">
     </div>
     @if ($errors->has('sign'))
         <div class="alert alert-danger">
             {{ $errors->first('sign') }}
         </div>
     @endif
-{{--    @dd($userImage->for_adults)--}}
     <div class="form-check">
         <input class="form-check-input night_input" type="checkbox" value="1"
                name="for_adults" id="gallery__for-adults"
-               @if(old('for_adults')) checked @endif
+            {{  old('for_adults',$userImage->for_adults) ? 'checked' : ''}}
         >
         <label class="form-check-label" for="gallery__for-adults">
             {{__('18+')}}

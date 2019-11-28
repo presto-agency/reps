@@ -1,6 +1,6 @@
 @if($forumSectionsTopics->isNotEmpty())
     @foreach($forumSectionsTopics as $item)
-        <div class="panel night_modal">
+{{--        <div class="panel night_modal">--}}
             <div class="panel__wrap">
                 <div class="panel__header">
                     <div class="header__items">
@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+{{--        </div>--}}
         @php
             $last_topic = $item->id;
             $user_id = $item->user_id;
