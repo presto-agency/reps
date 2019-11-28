@@ -45,4 +45,8 @@
 }
 .block_btn{
     display: flex;
+    align-items: center;
+}
+.block_btn button{
+    max-height: 36px;
 }
