@@ -249,6 +249,17 @@
 <script>
     $(function () {
 
+        $('#button__auth-modal').click(function() {
+            //активируем контент, имеющий id="myModal", как модальное окно
+            $('#vote-modal').modal('hide');
+            $('#authorizationModal').modal('show');
+        });
+        $('#button__register-modal').click(function() {
+            //активируем контент, имеющий id="myModal", как модальное окно
+            $('#vote-modal').modal('hide');
+            $('#registrationModal').modal('show');
+        });
+
         /**Vote - positive / negative vote - Separate Replay Page*/
         $('body').on('click', 'a.vote-replay-up, a.vote-replay-down', function (e) {
             var rating = $(this).attr('data-rating');

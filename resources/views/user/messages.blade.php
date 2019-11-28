@@ -133,6 +133,7 @@
             }
 
             function appendUserMessage(data) {
+
                 var contentText = $('<div class="content__text"></div>')
                     .append(data.message);
 
@@ -142,7 +143,7 @@
 
                 var messageInfo = $('<div class="message-info"></div>')
                     .append('<span class="user-name">' + data.sender.name + '</span>')
-                    .append('<img class="head__avatar" src="' + data.sender.avatar + '" alt="avatar">');
+                    .append('<img class="head__avatar" src="' + (data.sender.avatar ? window.location.origin + "/" + data.sender.avatar : window.location.origin +"/images/default/avatar/avatar.png") + '" alt="avatar">');
 
                 var userMessage = $('<div class="user-message"></div>')
                     .append(messageInfo)
@@ -156,11 +157,9 @@
             var socketId = window.Echo.socketId();
 
             window.Echo.private('dialogue.' + '{{ $dialogue_id }}').listen('NewUserMessageAdded', ({message}) => {
-                @if(isset($message) && $message->user_id != Auth()->id())
-                    appendUserMessage(message);
-                    $('body').find('.messages-box').scrollTop($(".scroll-to").offset().top);
-                @endif
 
+                appendUserMessage(message);
+                $('body').find('.messages-box').scrollTop($(".scroll-to").offset().top);
 
                 // визвати метод для вставки повідослення
                 //добавляем в масив текст сообщения
