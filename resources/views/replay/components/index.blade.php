@@ -62,14 +62,14 @@
                     @isset($userReplayRout)
                         @if($userReplayRout)
                             @isset($type)
-                                <a class="subtitle__name night_text"
+                                <a class="subtitle__name night_text" title="{!! ParserToHTML::toHTML($item->title,'size') !!}"
                                    href="{{ asset(url("user/{$item->users->id}/user-replay/{$item->id}"."?type={$type}"))}}">
                                    {!! ParserToHTML::toHTML($item->title,'size') !!}
                                 </a>
                             @endisset
                         @else
                             @isset($type)
-                                <a class="subtitle__name night_text"
+                                <a class="subtitle__name night_text" title="{!! ParserToHTML::toHTML($item->title,'size') !!}"
                                    href="{{ asset(url("replay/{$item->id}"."?type={$type}"))}}">
                                     {!! ParserToHTML::toHTML($item->title,'size') !!}
                                 </a>

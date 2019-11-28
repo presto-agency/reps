@@ -42,7 +42,7 @@
             <div class="upload-image">
                 <div class="row">
                     <div class="col-8">
-                        <input id="uploadFile3" class="f-input" placeholder="{{__('Выбрать картинку превью')}}"
+                        <input id="uploadFile3" class="f-input night_input" placeholder="{{__('Выбрать картинку превью')}}"
                                readonly/>
                     </div>
                     <div class="col-4 pl-0">

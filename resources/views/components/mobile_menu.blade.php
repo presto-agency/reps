@@ -22,7 +22,7 @@
                 <button class="registration" type="button" data-toggle="modal"
                         data-target="#registrationModal"><p>{{ __('Регистрация') }}</p></button>
             @else
-                @include('layouts.components.header.components.user-bar-panel')
+                @include('components.user_panel_mobile')
             @endguest
             {{--            <button>--}}
             {{--                <p>registration</p>--}}

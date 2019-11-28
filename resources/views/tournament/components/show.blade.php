@@ -142,7 +142,7 @@
                                                         @endforeach
                                                     @endisset
                                                 </div>
-                                                <div class="col-xl-8 col-lg-8 col-md-8 pl-2  big_block">
+                                                <div class="col-xl-8 col-lg-8 col-md-8  big_block">
                                                     <div class=" title_block ml-1">
                                                         <div class="left_content">
                                                             <span class="title_text">{{__('Maps')}}</span>
@@ -260,7 +260,7 @@
                                 </div>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-7 center_block">
                                     @isset($match->player1->user)
-                                        <div class="one_player">
+                                        <div class="one_player" >
                                             @if(auth()->check() && auth()->user()->userViewAvatars())
                                                 <img class="icon_bars"
                                                      src="{{asset($match->player1->user->avatarOrDefault())}}"
@@ -271,7 +271,7 @@
                                                      src="{{asset($match->player1->user->avatarOrDefault())}}"
                                                      alt="avatar">
                                             @endguest()
-                                            <span>{{$match->player1->user->name}}</span>
+                                            <span title="{{$match->player1->user->name}}">{{$match->player1->user->name}}</span>
                                         </div>
                                     @else
                                         {{__('- Freeslot -')}}

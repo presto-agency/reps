@@ -1,11 +1,11 @@
 <template>
     <div class="wrapper block_chat border_shadow ">
         <div class="container_titleChat">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_left">
+            <div class="col-xl-7col-lg-7 col-md-7 col-6 content_left">
                 <img id="img_menuMob" class="icon_bars" src="/images/speech-bubble.png"/>
-                <p class="title_text">{{username}}</p>
+                <p class="title_text" :title="username">{{username}}</p>
             </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-6 content_right">
+            <div class="col-xl-5 col-lg-5 col-md-5 col-6 content_right">
                 <div class="popup_chat">
                     <button type="button" class="btn btn-primary " data-toggle="modal"
                             data-target="#exampleModalLong">
@@ -83,8 +83,6 @@
         },
         mounted() {
             window.Echo.channel('repschat').listen('NewChatMessageAdded', ({data}) => {
-                console.log('Ответ от сокета:');
-                console.log(data);
                 this.messagearray.unshift({
                     id: data.id,
                     flag: data.country_flag,

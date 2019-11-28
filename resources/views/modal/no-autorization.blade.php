@@ -3,11 +3,11 @@
         {{__('Данная опция доступна только авторизированным пользователям')}}
     </p>
     <div class="conteiner_btn">
-        <a href="#" class="button button__download-more">
+        <button type="button" id="button__auth-modal" class="button button__download-more">
             {{__('Авторизироваться')}}
-        </a>
-        <a href="#" class="button button__download-more">
+        </button>
+        <button type="button" id="button__register-modal" class="button button__download-more">
             {{__('Зарегистрироваться')}}
-        </a>
+        </button>
     </div>
 </div>

@@ -9,7 +9,7 @@
     .user_bar{
         top:15px;
         bottom: auto;
-        right: 50px;
+        right: 70px;
     }
     #left-sidebar {
         order: 1;
@@ -206,9 +206,21 @@
         }
     }
     .mob_menu{
+        .btn-round{
+            width: 70px;
+            height: 70px;
+        }
+        .close {
+            width: 45px;
+            height: 45px;
+        }
         & .nav-wrapper{
+            padding: 35px;
+            .main_punkt{
+                margin-top: 35px;
+            }
             & .nav_item{
-                font-size: 1.615vw;
+                font-size: 4.615vw;
             }
         }
     }
@@ -686,6 +698,9 @@
                 }
             }
             & .right_section_autorization{
+                svg{
+                    width: 4.036vw;;
+                }
                 & p{
                     font-size: 1.615vw;
                 }
@@ -772,6 +787,11 @@
                 .title__text {
                     font-size: 1.615vw;
                     margin-left: 2.018vw;
+                    p{
+                        font-size: 1.615vw;
+                        margin-left: 2.018vw;
+
+                    }
                 }
                 .title__avatar {
                     width: 2.825vw;
@@ -1091,6 +1111,7 @@
             padding: 2.018vw;
             .subtitle__name {
                 font-size: 1.615vw;
+                max-width: 34vw;
             }
             .subtitle__date {
                 font-size: 1.211vw;
@@ -1120,6 +1141,15 @@
                 }
 
                 .subtitle__icons {
+                    svg {
+                        width: 2.119vw;
+                        height: 2.119vw;
+                    }
+                    span {
+                        font-size: 1.211vw;
+                        line-height: 1.917vw;
+                        margin-left: 1.009vw;
+                    }
                     .items__comment,
                     .items__download {
                         svg {
@@ -1210,6 +1240,9 @@
     /*ДЕТАЛЬНЫЕ НОВОСТИ*/
     .detailed-news {
         .detailed-news__title {
+            p{
+                max-width: 325px;
+            }
             padding: 2.018vw;
             .title__wrap {
                 .title__icon {
@@ -2608,7 +2641,7 @@
                 .panel__wrap {
                     .panel__header {
                         margin-top: 1.514vw;
-                        padding-bottom: 1.009vw;
+                        //padding-bottom: 1.009vw;
                         .header__items {
                             .items__link {
                                 font-size: 1.211vw;
@@ -2784,7 +2817,7 @@
         }
     }
     .reputation-info {
-        margin-bottom: 2.018vw;
+       // margin-bottom: 2.018vw;
         .reputation-info__title {
             padding-top: 2.018vw;
             padding-bottom: 2.018vw;
@@ -2806,7 +2839,8 @@
             .panel {
                 padding: 0 1.816vw;
                 .panel__header {
-                    margin-top: 1.514vw;
+                    //margin-top: 1.514vw;
+                    padding-top: 1.009vw;
                     padding-bottom: 1.009vw;
                     .header__items {
                         .items__link {
@@ -2902,11 +2936,14 @@
 
             .form-group {
                 #create-topic__section {
-                    height: 3.734vw;
                     margin-top: 0.807vw;
                 }
             }
         }
     }
+    .form-control{
 
+    }::placeholder{
+        font-size: 12px;
+         }
 }

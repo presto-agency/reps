@@ -38,7 +38,6 @@
     .button {
         font-size: 2.083vw;
         padding-top: 2.257vw;
-        padding-bottom: 2.604vw;
     }
     //block_title_gray
     .title_block_gray{
@@ -111,12 +110,25 @@
     //end header
     //mob_menu
     .mob_menu{
+        .btn-round{
+            width: 50px;
+            height: 50px;
+        }
+        .close {
+            width: 25px;
+            height: 25px;
+        }
         & .nav-wrapper{
+            padding: 15px;
+            .main_punkt{
+                margin-top: 0;
+            }
             & .nav_item{
                 font-size: 3.615vw;
             }
         }
     }
+
     // breadcrumb
     .breadcrumb {
         padding-top: 4.514vw;
@@ -337,12 +349,14 @@
                 .card-body__items {
                     margin-bottom: 3.125vw;
                     .items__comment {
+                        display: flex;
+                        align-items: center;
                         svg {
-                            width: 3.646vw;
-                            height: 3.646vw;
+                            width: 2.910vw;
+                            height: 2.910vw;
                         }
                         span {
-                            font-size: 2.083vw;
+                            font-size: 3.083vw;
                             line-height: 3.299vw;
                             margin-left: 2.083vw;
                         }
@@ -353,8 +367,11 @@
                             width: 3.125vw;
                             height: 3.472vw;
                         }
+
                     }
                     .items__watch {
+                        display: flex;
+                        align-items: center;
                         svg {
                             width: 2.910vw;
                             height: 2.910vw;
@@ -467,11 +484,18 @@
                 .panel__wrap {
                     .panel__header {
                         margin-top: 1.868vw;
-                        padding-bottom: 1.736vw;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        //padding-bottom: 1.736vw;
                         .header__items {
-                            width: 50%;
+                            max-width: 50%;
+
                             .items__link {
                                 font-size: 3.083vw;
+                                p{
+                                    margin-bottom: 5px;
+                                }
                             }
                             span {
                                 font-size: 3.083vw;
@@ -778,7 +802,7 @@
                         margin-right: 0.868vw;
                     }
                     .match-up__name {
-                        font-size: 4.431vw;
+                        font-size:2.431vw;
                         line-height: 3.299vw;
                     }
 
@@ -816,7 +840,7 @@
         }
     }
     .gocu-replays__button{
-        margin-bottom: 5.472vw;
+        //margin-bottom: 5.472vw;
     }
     .gocu-replays__numb-pages {
         margin-top: 4.340vw;
@@ -1164,7 +1188,7 @@
                         margin: 0 0.868vw;
                     }
                     & .blue_span{
-                        margin: 0 4.340vw 0 3.472vw;
+                       // margin: 0 4.340vw 0 3.472vw;
                     }
                 }
                 & .right_block{
@@ -1229,9 +1253,19 @@
         .title_block {
             .title_text{
                 font-size: 3.283vw;
+                p{
+                    font-size: 3.283vw;
+                    max-width:60px;
+                }
             }
             .right_block {
+
                 a {
+                    max-width: 50px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    display: inline-block;
                     font-size: 3.283vw;
                     margin-left: 1.736vw;
                 }
@@ -1617,6 +1651,17 @@
     }
     //foru_article
     .forum_acticle{
+        .content_article{
+            .block_account{
+                span{
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 100px;
+                    display: inline-block;
+                }
+            }
+        }
         & .title_block{
             height: 10.417vw;
             border-top-left-radius: 0.868vw;
@@ -1689,7 +1734,10 @@
 
         }
         .detailed-news__info {
-            padding-bottom: 1.736vw;
+            padding-top: 2.778vw;
+            padding-bottom: 2.951vw;
+            padding-left: 3.472vw;
+            padding-right: 3.472vw;
             .info__items {
                 & .block_account{
                     & img{
@@ -1704,9 +1752,9 @@
                 }
                 .items__watch,
                 .items__comment {
-                    svg {
-                        width: 5.604vw;
-                        height: 4vw;
+                    svg, img {
+                        width: 2.604vw;
+                        height: 2.257vw;
                     }
                     span {
                         font-size: 3.083vw;
@@ -1715,6 +1763,17 @@
                     }
                 }
                 .items__comment {
+                    display: flex;
+                    align-items: center;
+                    svg, img{
+                        width: 2.604vw;
+                        height: 2.257vw;
+                    }
+                    span{
+                        font-size: 2.083vw;
+                        line-height: 3.299vw;
+                        margin-left: 1.736vw;
+                    }
                     margin-left: 5.556vw;
                 }
             }
@@ -1724,6 +1783,11 @@
     //detailed_news
     .detailed-news {
         .detailed-news__title {
+        p{
+            font-size: 2.431vw;
+            margin-left: 2.083vw;
+            max-width: 80px;
+        }
             padding: 3.472vw;
             .title__wrap {
                 .title__icon {
@@ -1755,6 +1819,7 @@
                 .title__text {
                     font-size: 2.431vw;
                     margin-left: 2.083vw;
+
                 }
             }
         }
@@ -1896,6 +1961,11 @@
                 .title__text {
                     font-size: 3.472vw;
                     margin-left: 3.472vw;
+                    p{
+                        max-width: 130px;
+                        font-size: 3.472vw;
+                        margin-left: 3.472vw;
+                    }
                 }
                 .title__avatar {
                     width: 4.861vw;
@@ -2514,10 +2584,10 @@
         .btn--browse{
             padding: 1.736vw 1.736vw;
             border-radius: 1.736vw;
-            height: 7.292vw;
+            //height: 7.292vw;
         }
         .f-input{
-            height: 7.292vw;
+           // height: 7.292vw;
             padding: 0 11.736vw;
             border-radius: 1.736vw;
         }
@@ -3155,7 +3225,7 @@
     }
     //reputation-info
     .reputation-info {
-        margin-bottom: 3.472vw;
+        //margin-bottom: 3.472vw;
         .reputation-info__title {
             padding-top: 3.472vw;
             padding-bottom: 3.472vw;
@@ -3174,7 +3244,8 @@
             .panel {
                 padding: 0 3.125vw;
                 .panel__header {
-                    margin-top: 2.604vw;
+                    //margin-top: 2.604vw;
+                    padding-top: 1.736vw;
                     padding-bottom: 1.736vw;
                     .header__items {
                         .items__link {

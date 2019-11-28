@@ -47,7 +47,7 @@
             @foreach($list as $item)
                 <div class="body__wrap">
                     <div class="body__info change_gray">
-                        <p class="info__nickname night_text">{{$item->sender->name}}</p>
+                        <a href="#" class="info__nickname night_text">{{$item->sender->name}}</a>
                         @if($item->sender->avatar)
                             <img src="{{asset($item->sender->avatar) }}" class="info__flag" alt="flag">
                         @endif

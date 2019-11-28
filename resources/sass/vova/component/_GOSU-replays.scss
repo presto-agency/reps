@@ -98,8 +98,16 @@
             transition: .3s;
             margin-bottom: 0;
             text-decoration: none;
+            max-width: 18vw;
             p{
                 margin: 0;
+                color: #8086a6;
+                font-size: 16px;
+                font-weight: 400;
+                transition: .3s;
+                margin-bottom: 0;
+                text-decoration: none;
+                max-width: 18vw;
             }
             &:hover {
                 color: #0567cc;
@@ -309,6 +317,7 @@
         margin-top: 0;
         margin-bottom: 0;
     }
+
 }
 
 
@@ -328,6 +337,6 @@
 
 .gocu-replays__button {
     text-align: center; //выравнивает кнопку по центру
-    background-color: #ffffff;
+    border-radius: 5px;
     padding: 20px;
 }
