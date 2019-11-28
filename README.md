@@ -39,7 +39,7 @@ redis-cli
 - в .env: 
 ```
 BROADCAST_DRIVER=redis
-REDIS_PREFIX=null
+REDIS_PREFIX=reps
 ```
 ```
 php artisan config:cache

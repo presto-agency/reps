@@ -83,8 +83,6 @@
         },
         mounted() {
             window.Echo.channel('repschat').listen('NewChatMessageAdded', ({data}) => {
-                console.log('Ответ от сокета:');
-                console.log(data);
                 this.messagearray.unshift({
                     id: data.id,
                     flag: data.country_flag,
