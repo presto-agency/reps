@@ -95,7 +95,7 @@ class Replay extends Section
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'Id'),
-            
+
             $title = AdminColumn::text('title', 'Название')
                 ->setWidth(150),
 
@@ -305,7 +305,7 @@ class Replay extends Section
                         ->setValidationRules([
                             'required',
                             'string',
-                            'between:1,255',
+                            'between:5,255',
                         ]),
                 ], 3)
                 ->addColumn([
@@ -458,8 +458,7 @@ class Replay extends Section
                 ->setHtmlAttributes(['placeholder' => 'Краткое описание'])
                 ->setValidationRules([
                     'required',
-                    'string',
-                    'between:1,2000',
+                    'between:10,5000',
                 ]),
 
             AdminFormElement::columns()
