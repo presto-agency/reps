@@ -21,7 +21,7 @@ trait UserReputationRelation
      */
     public function sender()
     {
-        return $this->belongsTo('App\User', 'sender_id');
+        return $this->belongsTo('App\User', 'sender_id','id');
     }
 
     /**
@@ -31,7 +31,7 @@ trait UserReputationRelation
      */
     public function recipient()
     {
-        return $this->belongsTo('App\User', 'recipient_id');
+        return $this->belongsTo('App\User', 'recipient_id','id');
     }
 
     /**
@@ -41,7 +41,7 @@ trait UserReputationRelation
      */
     public function topic()
     {
-        return $this->belongsTo('App\Models\ForumTopic', 'object_id');
+        return $this->belongsTo('App\Models\ForumTopic', 'object_id','id');
     }
 
     /**
@@ -51,7 +51,7 @@ trait UserReputationRelation
      */
     public function replay()
     {
-        return $this->belongsTo('App\Models\Replay', 'object_id');
+        return $this->belongsTo('App\Models\Replay', 'object_id','id');
     }
 
     /**
@@ -61,7 +61,7 @@ trait UserReputationRelation
      */
     public function gallery()
     {
-        return $this->belongsTo('App\Models\UserGallery', 'object_id');
+        return $this->belongsTo('App\Models\UserGallery', 'object_id','id');
     }
 
     /**
@@ -69,9 +69,9 @@ trait UserReputationRelation
      *
      * @return BelongsTo
      */
-    public function comment()
+    public function commentRelation()
     {
-        return $this->belongsTo('App\Models\Comment', 'object_id');
+        return $this->belongsTo('App\Models\Comment', 'object_id','id');
     }
 
 }

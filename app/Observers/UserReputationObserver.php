@@ -17,7 +17,7 @@ class UserReputationObserver
      */
     public function created(UserReputation $userReputation)
     {
-        RatingService::refreshUserRating($userReputation->recipient_id);
+        RatingService::refreshUserRating($userReputation->recipient_id,$userReputation);
         RatingService::refreshObjectRating($userReputation->object_id,
             $userReputation->relation);
     }
@@ -31,7 +31,7 @@ class UserReputationObserver
      */
     public function updated(UserReputation $userReputation)
     {
-        RatingService::refreshUserRating($userReputation->recipient_id);
+        RatingService::refreshUserRating($userReputation->recipient_id,$userReputation);
         RatingService::refreshObjectRating($userReputation->object_id,
             $userReputation->relation);
     }
@@ -45,7 +45,7 @@ class UserReputationObserver
      */
     public function deleted(UserReputation $userReputation)
     {
-        RatingService::refreshUserRating($userReputation->recipient_id);
+        RatingService::refreshUserRating($userReputation->recipient_id,$userReputation);
         RatingService::refreshObjectRating($userReputation->object_id,
             $userReputation->relation);
     }
@@ -59,7 +59,7 @@ class UserReputationObserver
      */
     public function restored(UserReputation $userReputation)
     {
-        RatingService::refreshUserRating($userReputation->recipient_id);
+        RatingService::refreshUserRating($userReputation->recipient_id,$userReputation);
         RatingService::refreshObjectRating($userReputation->object_id,
             $userReputation->relation);
     }

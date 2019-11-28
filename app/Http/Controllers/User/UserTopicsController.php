@@ -24,20 +24,6 @@ class UserTopicsController extends Controller
      */
     public function index($id)
     {
-        //                $user = User::findOrFail((int)$id);
-//        $forumSections = ForumSection::with('topics.forumSection')
-//            ->whereHas(
-//                'topics', function ($query) use ($id) {
-//                $query->where('user_id', $id);
-//                $query->withCount('comments');
-//            })->get();
-        //                    $forumSections = ForumSection::findOrFail();
-        //                 $request = request();
-        //                $topics = $forumSections->topics()->orderBy('created_at', 'desc')
-        //                    ->skip(5)->take(10)->get();
-        //        //        dd($forumSections, $topics);
-        //                    if($request->ajax()) {
-        //                    }\
         return view('user.topics.index');
     }
 
@@ -71,19 +57,18 @@ class UserTopicsController extends Controller
         if (request()->ajax()) {
             $visible_title = false;
             if (request('topic_id') > 0) {
-                $forumSectionsTopics = ForumTopic::where('forum_section_id',request('forum_section_id'))
+                $forumSectionsTopics = ForumTopic::where('forum_section_id', request('forum_section_id'))
                     ->where('id', '<', request('topic_id'))
                     ->orderByDesc('id')
                     ->limit(10)
                     ->get();
             } else {
-                $forumSectionsTopics = ForumTopic::where('forum_section_id',request('forum_section_id'))
+                $forumSectionsTopics = ForumTopic::where('forum_section_id', request('forum_section_id'))
                     ->orderByDesc('id')
                     ->limit(10)
                     ->get();
                 $visible_title = true;
             }
-            dump($forumSectionsTopics);
             return view('user.topics.components.components.topics-in-sections',
                 compact('forumSectionsTopics', 'visible_title')
             );

@@ -9,6 +9,7 @@
 namespace App\Services\Rating;
 
 
+use App\Events\UserLike;
 use App\Http\Requests\SetRatingRequest;
 use App\Models\Comment;
 use App\Models\ForumTopic;
@@ -33,7 +34,7 @@ class RatingService
      */
     public static function getRatingView($id)
     {
-        $user            = User::findOrFail($id);
+        $user = User::findOrFail($id);
         $userReputations = null;
 
         return view('user.rating-list.index',
@@ -82,17 +83,20 @@ class RatingService
      * Refresh user Rating
      *
      * @param $user_id
+     * @param $userReputation
      */
-    public static function refreshUserRating($user_id)
+    public static function refreshUserRating($user_id, $userReputation)
     {
+        event(new UserLike($userReputation));
+
         $positive = UserReputation::where('recipient_id', $user_id)
             ->where('rating', '1')->count();
         $negative = UserReputation::where('recipient_id', $user_id)
             ->where('rating', '-1')->count();
-        $val      = $positive - $negative;
+        $val = $positive - $negative;
 
         User::where('id', $user_id)->update([
-            'rating'         => $val,
+            'rating' => $val,
             'count_negative' => $negative,
             'count_positive' => $positive,
         ]);
@@ -103,20 +107,23 @@ class RatingService
      *
      * @param $object_id
      * @param $relation_id
+     * @param $userReputation
      */
     public static function refreshObjectRating($object_id, $relation_id)
     {
+
         $class_name = RatingService::getModel($relation_id);
-        $positive   = UserReputation::where('object_id', $object_id)
+        $positive = UserReputation::where('object_id', $object_id)
             ->where('relation', $relation_id)->where('rating',
                 '1')->count();
-        $negative   = UserReputation::where('object_id', $object_id)
+        $negative = UserReputation::where('object_id', $object_id)
             ->where('relation', $relation_id)->where('rating',
                 '-1')->count();
-        $val        = $positive - $negative;
+        $val = $positive - $negative;
+
 
         $class_name::where('id', $object_id)->update([
-            'rating'         => $val,
+            'rating' => $val,
             'negative_count' => $negative,
             'positive_count' => $positive,
         ]);
@@ -151,7 +158,7 @@ class RatingService
     /**
      * Set rating
      *
-     * @param  SetRatingRequest  $request
+     * @param SetRatingRequest $request
      * @param $id
      * @param $relation
      *
@@ -162,18 +169,19 @@ class RatingService
         $id,
         $relation,
         $model
-    ) {
+    )
+    {
         $object = ($model)::find($id);
 
         $comment = self::getComment($request);
         if ($object) {
-            if ( ! self::checkUserVoteExist($object, $request, $relation)) {
+            if (!self::checkUserVoteExist($object, $request, $relation)) {
                 $ratingObject = UserReputation::updateOrCreate(
                     [
-                        'sender_id'    => Auth::id(),
+                        'sender_id' => Auth::id(),
                         'recipient_id' => $object->user_id,
-                        'object_id'    => $object->id,
-                        'relation'     => $relation,
+                        'object_id' => $object->id,
+                        'relation' => $relation,
                     ],
                     ['comment' => $comment, 'rating' => $request->get('rating')]
                 );
@@ -184,7 +192,7 @@ class RatingService
             }
 
             return [
-                'message'     => 'Вы уже проголосовали, Ваш голос:',
+                'message' => 'Вы уже проголосовали, Ваш голос:',
                 'user_rating' => $request->get('rating'),
             ];
         }
@@ -195,7 +203,7 @@ class RatingService
     /**
      * Get comment value
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return mixed|null
      */

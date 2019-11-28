@@ -25,6 +25,9 @@ trait UserGalleryRelationTrait
     {
         return $this->morphMany('App\Models\Comment', 'commentable')->count();
     }
+
+
+
     /**
      * @return HasMany
      */

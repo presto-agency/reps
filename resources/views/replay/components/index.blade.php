@@ -191,7 +191,7 @@
                     c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                     C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
-                            <span class="wins__text night_text">{{$item->positive_count - $item->negative_count}}</span>
+                            <span class="wins__text night_text">{{$item->rating}}</span>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@
     <div class="form-group">
         <label for="gallery-name"> {{__('Подпись:')}}</label>
         <input type="text" class="form-control" id="gallery-name" name="sign" placeholder="Подпись"
-               value="{!! ParserToHTML::toHTML(old('sign',$userImage->sign),'size')  !!}">
+               value="{!! strip_tags(ParserToHTML::toHTML(old('sign',$userImage->sign),'size'))  !!}">
     </div>
     @if ($errors->has('sign'))
         <div class="alert alert-danger">
