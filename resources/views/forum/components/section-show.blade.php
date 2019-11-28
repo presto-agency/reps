@@ -55,7 +55,6 @@
         @endif
         @if($section->topics->isNotEmpty())
             @foreach($section->topics as $topic)
-
                 <div class="content_article night_modal">
                     <div class="block_nameArticle">
                         <a href="{{ route('topic.show', $topic->id) }}">
