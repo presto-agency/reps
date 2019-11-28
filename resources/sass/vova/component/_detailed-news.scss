@@ -31,12 +31,11 @@
             color: #ffffff;
             font-size: 16px;
             font-weight: 400;
-            margin-left: 20px;
             margin-bottom: 0; //отмена стандартного отступа
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 180px;
+            max-width: 150px;
 
         }
 
@@ -166,7 +165,7 @@
     .detailed-news__card {
         border: 0px;
         img{
-            width: 100%;
+            max-width: 100%;
         }
         .card-body {
             .card-body__title {

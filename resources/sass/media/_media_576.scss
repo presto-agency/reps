@@ -1255,12 +1255,17 @@
                 font-size: 3.283vw;
                 p{
                     font-size: 3.283vw;
-                    max-width:130px;
+                    max-width:60px;
                 }
             }
             .right_block {
-                max-width:130px;
+
                 a {
+                    max-width: 50px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    display: inline-block;
                     font-size: 3.283vw;
                     margin-left: 1.736vw;
                 }
