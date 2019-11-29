@@ -33,11 +33,4 @@
             {{__('Загрузить еще')}}
         </button>
     </div>
-@else
-    <div class="gocu-replays__button night_modal">
-        <button type="button" name="load_more_user_posts_button" class="button button__download-more night_text"
-                id="load_more_user_posts_button">
-            {{__('Пусто')}}
-        </button>
-    </div>
 @endif

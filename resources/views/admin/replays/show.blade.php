@@ -102,7 +102,7 @@
                                 <p class="message">
                                     <a href="#" class="name">
                                         <small class="text-muted pull-right"><i
-                                                class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
+                                                class="fa fa-clock-o"></i> {{$comment->created_at->format('H:i d.m.Y')}}
                                         </small>
                                         {{$comment->user->name}}
                                     </a>

@@ -50,7 +50,7 @@
                         <span class="username">
 {{--                            <a href="#{{route('admin.user.profile', ['id' => $topic->author->id])}}">{{$topic->author->name}}</a>--}}
                         </span>
-                        <span class="description">{{$topic->created_at->format('h:m d.m.Y')}}</span>
+                        <span class="description">{{$topic->created_at->format('H:i d.m.Y')}}</span>
                     </div>
                     <ul class="list-inline">
                         <li class="pull-right">
@@ -96,7 +96,7 @@
                                         <p class="message">
                                             <a href="#" class="name">
                                                 <small class="text-muted pull-right"><i
-                                                        class="fa fa-clock-o"></i> {{$comment->created_at->format('h:m d.m.Y')}}
+                                                        class="fa fa-clock-o"></i> {{$comment->created_at->format('H:i d.m.Y')}}
                                                 </small>
                                                 {{$comment->user->name}}
                                             </a>
