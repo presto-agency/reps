@@ -235,11 +235,8 @@
         </div>
     </section>
     @if(!empty($replay->video_iframe))
-        <span>{{__('Видео:')}}</span>
-        <div class="replay_video border_shadow"></div>
+        <div class="replay_video border_shadow">{!! $replay->video_iframe !!}</div>
     @endif
-{{--    {!! $replay->video_iframe !!}--}}
-{{--    {!! $replay->video_iframe !!}--}}
 @endisset
 <script type="text/javascript">
     $('.download').click(function () {
