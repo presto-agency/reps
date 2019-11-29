@@ -1,5 +1,6 @@
 @inject('rout','App\Services\User\UserActivityLogService')
 @inject('commentModel','App\Models\Comment')
+
 @if($comments->isNotEmpty())
     @foreach($comments as $item)
         <div class="panel__wrap">

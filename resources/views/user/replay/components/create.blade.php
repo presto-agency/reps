@@ -196,7 +196,7 @@
             </div>
             <hr>
             <div class="form-group">
-                <label for="content" class="night_text">{{__('Краткое описание')}}</label>
+                <label for="content_descr" class="night_text">{{__('Краткое описание')}}</label>
                 <textarea name="content" class="form-control night_input"
                           id="content_descr">{!! old('content') !!}</textarea>
                 <script>

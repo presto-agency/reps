@@ -116,7 +116,7 @@
                                                     <div class=" title_block">
                                                         <div class="left_content">
                                                             <span
-                                                                    class="title_text">{{__('Приз')}}</span>
+                                                                    class="title_text_whiteModal">{{__('Приз')}}</span>
                                                         </div>
                                                     </div>
                                                     @isset($prizeList)
@@ -145,7 +145,7 @@
                                                 <div class="col-xl-8 col-lg-8 col-md-8  big_block">
                                                     <div class=" title_block ml-1">
                                                         <div class="left_content">
-                                                            <span class="title_text">{{__('Maps')}}</span>
+                                                            <span class="title_text_whiteModal">{{__('Maps')}}</span>
                                                         </div>
                                                     </div>
                                                     <div class="container">
