@@ -49,10 +49,10 @@ Breadcrumbs::register('tournament', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Турниры', route('tournament.index'));
 });
-Breadcrumbs::register('tournament-show', function ($breadcrumbs) {
+Breadcrumbs::register('tournament-show', function ($breadcrumbs,$id) {
     $breadcrumbs->parent('tournament');
     $breadcrumbs->push('Турнир',
-        route('tournament.show', ['id' => request('tournament')]));
+        route('tournament.show', ['tournament' => $id]));
 });
 
 Breadcrumbs::register('best', function ($breadcrumbs) {
