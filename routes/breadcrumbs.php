@@ -31,7 +31,7 @@ Breadcrumbs::register('replay-show', function ($breadcrumbs, $replay, $type) {
     $breadcrumbs->parent('replay', $type);
     $breadcrumbs->push('Реплей', route('replay.show', [
         'replay' => $replay,
-        'type'   => $type,
+        'type' => $type,
     ]));
 });
 
@@ -49,10 +49,9 @@ Breadcrumbs::register('tournament', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Турниры', route('tournament.index'));
 });
-Breadcrumbs::register('tournament-show', function ($breadcrumbs,$id) {
+Breadcrumbs::register('tournament-show', function ($breadcrumbs) {
     $breadcrumbs->parent('tournament');
-    $breadcrumbs->push('Турнир',
-        route('tournament.show', ['tournament' => $id]));
+    $breadcrumbs->push('Турнир', route('tournament.show', ['tournament' => request('tournament')]));
 });
 
 Breadcrumbs::register('best', function ($breadcrumbs) {
@@ -103,7 +102,7 @@ Breadcrumbs::register('user-rating-list', function ($breadcrumbs, $id) {
         ]));
 });
 
-Breadcrumbs::register('user-topic-rating-list', function ($breadcrumbs, $id,$userId) {
+Breadcrumbs::register('user-topic-rating-list', function ($breadcrumbs, $id, $userId) {
     $breadcrumbs->parent('user-topics', $userId);
     $breadcrumbs->push('Информация',
         route('forum.topic.get_rating', [
@@ -135,7 +134,7 @@ Breadcrumbs::register('user-topics-edit',
         $breadcrumbs->parent('user-topics', $id);
         $breadcrumbs->push('Редактировать тему пользователя',
             route('user-topics.edit', [
-                'id'         => $id,
+                'id' => $id,
                 'user_topic' => $user_topic,
             ]));
     });
@@ -150,7 +149,7 @@ Breadcrumbs::register('user-replay-create',
     function ($breadcrumbs, $id, $user_replay, $type) {
         $breadcrumbs->parent('user-replay', $id, $type);
         $breadcrumbs->push('Реплей пользователя', route('user-replay.create', [
-            'id'          => $id,
+            'id' => $id,
             'user_replay' => $user_replay,
         ]));
     });
@@ -159,7 +158,7 @@ Breadcrumbs::register('user-replay-edit',
     function ($breadcrumbs, $id, $user_replay, $type) {
         $breadcrumbs->parent('user-replay', $id, $type);
         $breadcrumbs->push('Реплей пользователя', route('user-replay.edit', [
-            'id'          => $id,
+            'id' => $id,
             'user_replay' => $user_replay,
         ]));
     });
@@ -168,7 +167,7 @@ Breadcrumbs::register('user-replay-show',
     function ($breadcrumbs, $id, $user_replay, $type) {
         $breadcrumbs->parent('user-replay', $id, $type);
         $breadcrumbs->push('Реплей пользователя', route('user-replay.show', [
-            'id'          => $id,
+            'id' => $id,
             'user_replay' => $user_replay,
         ]));
     });
