@@ -22,35 +22,8 @@
             @foreach($sectionItems as $item)
                 <div class="accordion__topic card border_shadow ">
                     <div class="topic__header  card-header js-accordion-title night_modal" id="forum-topicsOne" data-toggle="collapse" data-target="#forum-topicsCollapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <a href="{{ route('forum.show', $item->id) }}" class="header__title night_text">{{ $item->title }}</a>
-                        {{--<i class="fas fa-chevron-down"></i>--}}
-
+                        <a href="{{ route('forum.show', $item->id) }}" class="header__title night_text">{{ strip_tags($item->title) }}</a>
                     </div>
-
-                    {{--<div id="forum-topicsCollapseOne" class="topic__body collapse" aria-labelledby="forum-topicsOne">
-                        <div class="card-body">
-                            <div class="body__wrap">
-                                <a href="#" class="body__title">Господи, что стало с репсами</a>
-                                <span class="body__numb">(1)</span>
-                            </div>
-                            <div class="body__wrap">
-                                <a href="#" class="body__title">help</a>
-                                <span class="body__numb">(2)</span>
-                            </div>
-                            <div class="body__wrap">
-                                <a href="#" class="body__title">Что с Effort`ом?</a>
-                                <span class="body__numb">(2)</span>
-                            </div>
-                            <div class="body__wrap">
-                                <a href="#" class="body__title">Где сейчас можно поиграть в БВ?</a>
-                                <span class="body__numb">(12)</span>
-                            </div>
-                            <div class="body__wrap">
-                                <a href="#" class="body__title">Empty Topic</a>
-                                <span class="body__numb">(6)</span>
-                            </div>
-                        </div>
-                    </div>--}}
                 </div>
             @endforeach
         </div>
