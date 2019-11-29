@@ -30,17 +30,17 @@
                 <div class="container_block">
                     <div class="replay-desc-right"><p>{{(__('Registration time:'))}}</p></div>
                     <div class="replay-desc-left">
-                        <p>{{ Carbon\Carbon::parse($tournament->created_at)->format('h:m d.m.Y')}}</p></div>
+                        <p>{{ Carbon\Carbon::parse($tournament->created_at)->format('H:i d.m.Y')}}</p></div>
                 </div>
                 <div class="container_block">
                     <div class="replay-desc-right"><p>{{(__('Check-in time:'))}}</p></div>
                     <div class="replay-desc-left">
-                        <p>{{ Carbon\Carbon::parse($tournament->checkin_time)->format('h:m d.m.Y')}}</p></div>
+                        <p>{{ Carbon\Carbon::parse($tournament->checkin_time)->format('H:i d.m.Y')}}</p></div>
                 </div>
                 <div class="container_block">
                     <div class="replay-desc-right"><p>{{(__('Start of Tourney time:'))}}</p></div>
                     <div class="replay-desc-left">
-                        <p>{{ Carbon\Carbon::parse($tournament->start_time)->format('h:m d.m.Y')}}</p></div>
+                        <p>{{ Carbon\Carbon::parse($tournament->start_time)->format('H:i d.m.Y')}}</p></div>
                 </div>
                 <div class="container_block">
                     <div class="replay-desc-right"><p>{{(__('Prize Fond:'))}}</p></div>

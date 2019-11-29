@@ -74,22 +74,22 @@
                             @if($user->countries)
                                 <span>{{$user->countries->name}}</span>
                             @else
-                                <span>Не указано</span>
+                                <span>{{__('Не указано')}}</span>
                             @endif
                         </div>
                     </div>
                     <div class="information_block">
-                        <div class="left_block"><span>Раса:</span></div>
+                        <div class="left_block"><span>{{__('Раса:')}}</span></div>
                         <div class="right_block night_text">
                             @if(isset($user->races) && !empty($user->races))
                                 <span>{{ $user->races->title }}</span>
                             @else
-                                <span>Не указано</span>
+                                <span>{{__('Не указано')}}</span>
                             @endif
                         </div>
                     </div>
                     <div class="information_block">
-                        <div class="left_block"><span>Репутация:</span></div>
+                        <div class="left_block"><span>{{__('Репутация:')}}</span></div>
                         <div class="right_block night_text"><a
                                     href="{{route('user-rating-list.index',['id'=>$user->id])}}"
                                     title="Репутация"><span class="blue">{{$user->count_positive - $user->count_negative}} кг</span></a>

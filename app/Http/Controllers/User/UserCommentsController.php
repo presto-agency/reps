@@ -178,7 +178,7 @@ class UserCommentsController extends Controller
             'rating' => $item->rating,
             'negative_count' => $item->negative_count,
             'positive_count' => $item->positive_count,
-            'created_at' => $item->created_at->format('h:m d.m.Y'),
+            'created_at' => $item->created_at->format('H:i d.m.Y'),
             'route' => $route,
         ];
     }

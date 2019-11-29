@@ -61,7 +61,7 @@
                             <p class="name">{!! ParserToHTML::toHTML($topic->title,'size') !!}</p>
                         </a>
                         <div class="right">
-                            <p class="date">{{ $topic->created_at->format('h:m d.m.Y')}}</p>
+                            <p class="date">{{ $topic->created_at->format('H:i d.m.Y'))}}</p>
                         </div>
                     </div>
                     <div class="detailed-news__info night_modal">

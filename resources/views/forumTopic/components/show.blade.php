@@ -91,7 +91,7 @@
                             <span class="edit_text">{{__('Редактировать')}}</span>
 
                         </a>
-                        <p class="items__date">{{$topic->created_at->format('h:m d.m.Y')}}</p>
+                        <p class="items__date">{{$topic->created_at->format('H:i d.m.Y')}}</p>
                     </div>
                 @endif
             </div>
