@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('tournament-show'),$tournament->id }}
+    {{ Breadcrumbs::render('tournament-show') }}
 @endsection
 
 @section('sidebar-left')
