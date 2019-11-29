@@ -22,11 +22,6 @@ class UserCommentsController extends Controller
     }
 
 
-//    public function forumSectionsAjaxLoad()
-//    {
-
-//    }
-
 
     /**
      * @param \Request $request

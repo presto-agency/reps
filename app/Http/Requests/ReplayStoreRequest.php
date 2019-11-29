@@ -49,8 +49,8 @@ class ReplayStoreRequest extends FormRequest
     {
         return [
             'content.required'    => 'Краткое описание обязаельно для заполнения',
-            'content.string'         => 'Краткое описание должно быть  типом строки',
-            'content.between'         => 'Краткое описание должно быть между 10 и 5000 символов',
+            'content.string'      => 'Краткое описание должно быть  типом строки',
+            'content.between'     => 'Краткое описание должно быть между 10 и 5000 символов',
         ];
     }
 }

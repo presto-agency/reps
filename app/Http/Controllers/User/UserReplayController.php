@@ -4,8 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Replay\ReplayHelper;
-use App\Http\Requests\ReplayStoreRequest;
 use App\Http\Requests\ReplayUpdateRequest;
+use App\Http\Requests\ReplayStoreRequest;
 use App\Models\{Country, Race, Replay, ReplayMap, ReplayType};
 use App\Services\ServiceAssistants\PathHelper;
 use App\User;
@@ -64,12 +64,10 @@ class UserReplayController extends Controller
         );
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ReplayStoreRequest  $request
-     *
+     * @param ReplayStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(ReplayStoreRequest $request)
