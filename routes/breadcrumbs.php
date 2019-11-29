@@ -103,10 +103,10 @@ Breadcrumbs::register('user-rating-list', function ($breadcrumbs, $id) {
         ]));
 });
 
-Breadcrumbs::register('user-topic-rating-list', function ($breadcrumbs, $id) {
-    $breadcrumbs->parent('user-profile-show', $id);
+Breadcrumbs::register('user-topic-rating-list', function ($breadcrumbs, $id,$userId) {
+    $breadcrumbs->parent('user-topics', $userId);
     $breadcrumbs->push('Информация',
-        route('user-topic-rating-list.index', [
+        route('forum.topic.get_rating', [
             'id' => $id,
         ]));
 });

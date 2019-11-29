@@ -31,7 +31,7 @@
                                      class="author__avatar img-fluid">
                             @endguest()
                             <p class="author__nickname">{{ $single_news->author->name }}</p>
-                            <span class="author__date">{{\Carbon\Carbon::parse($single_news->author->created_at)->format('h:m d.m.Y')}}</span>
+                            <span class="author__date">{{\Carbon\Carbon::parse($single_news->author->created_at)->format('H:i d.m.Y')}}</span>
                         @endif
                     </div>
                     <a href="{{ route('news.show', $single_news->id) }}">
