@@ -50,7 +50,7 @@ class UserGalleryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  UserGalleryRequests  $request
+     * @param UserGalleryRequests $request
      * @param                       $id
      *
      * @return RedirectResponse
@@ -58,13 +58,15 @@ class UserGalleryController extends Controller
     public function store(UserGalleryRequests $request, $id)
     {
 
-        $userGallery          = new UserGallery;
+        $userGallery = new UserGallery;
         $userGallery->user_id = auth()->id();
-        $userGallery->sign    = clean($request->get('sign'));
-        if ($request->exists('for_adults') == false) {
+        $userGallery->sign = clean($request->get('sign'));
+        if ($request->has('for_adults')) {
+            $userGallery->for_adults = 1;
+        } else {
             $userGallery->for_adults = 0;
         }
-        $userGallery->for_adults = 1;
+
         // Check have upload file
         if ($request->hasFile('picture')) {
             // Check if upload file Successful Uploads
@@ -72,12 +74,12 @@ class UserGalleryController extends Controller
                 // Check path
                 PathHelper::checkUploadsFileAndPath("/images/users/galleries");
                 // Upload file on server
-                $image                = $request->file('picture');
-                $filePath             = $image->store(
+                $image = $request->file('picture');
+                $filePath = $image->store(
                     'images/users/galleries',
                     'public'
                 );
-                $userGallery->picture = 'storage/'.$filePath;
+                $userGallery->picture = 'storage/' . $filePath;
             } else {
                 back();
             }
@@ -103,7 +105,7 @@ class UserGalleryController extends Controller
 
         User::findOrFail($id);
         $relation = ['comments'];
-        $row      = [
+        $row = [
             'id',
             'sign',
             'positive_count',
@@ -112,10 +114,7 @@ class UserGalleryController extends Controller
             'user_id',
         ];
 
-        $userImage = GalleryHelper::getUserImage(
-            $user_gallery, $relation,
-            $row
-        );
+        $userImage = GalleryHelper::getUserImage($user_gallery, $relation);
         // get previous user id
         $previous = GalleryHelper::previousUserImage($id, $user_gallery);
 
@@ -123,7 +122,7 @@ class UserGalleryController extends Controller
         $next = GalleryHelper::nextUserImage($id, $user_gallery);
 
         $routCheck = $this->routCheck;
-        $user_id   = UserService::getUserId();
+        $user_id = UserService::getUserId();
 
         return view(
             'user.gallery.show',
@@ -135,16 +134,16 @@ class UserGalleryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @param  int  $user_gallery
+     * @param int $id
+     * @param int $user_gallery
      *
      * @return Response
      */
     public function edit($id, $user_gallery)
     {
         User::findOrFail($id);
-        $relation  = [];
-        $row       = [
+        $relation = [];
+        $row = [
             'id',
             'sign',
             'positive_count',
@@ -153,17 +152,14 @@ class UserGalleryController extends Controller
             'sign',
             'for_adults',
         ];
-        $userImage = GalleryHelper::getUserImage(
-            $user_gallery, $relation,
-            $row
-        );
+        $userImage = GalleryHelper::getUserImage($user_gallery, $relation);
 
         // get previous user id
 
         $previous = GalleryHelper::previousUserImage($user_gallery, $id);
 
         // get next user id
-        $next    = GalleryHelper::nextUserImage($user_gallery, $id);
+        $next = GalleryHelper::nextUserImage($user_gallery, $id);
         $user_id = UserService::getUserId();
 
         return view(
@@ -176,26 +172,27 @@ class UserGalleryController extends Controller
      *
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UserGalleryUpdateRequests  $request
+     * @param \App\Http\Requests\UserGalleryUpdateRequests $request
      * @param                                                $id
      * @param                                                $user_gallery
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(
-        UserGalleryUpdateRequests $request, $id, $user_gallery
-    ) {
+    public function update(UserGalleryUpdateRequests $request, $id, $user_gallery)
+    {
         User::findOrFail($id);
         $getData = UserGallery::findOrFail((int)$user_gallery);
         if ($getData->user_id !== auth()->id()) {
             return back();
         }
         $getData->user_id = auth()->id();
-        $getData->sign    = clean($request->sign);
-        if ($request->exists('for_adults') == false) {
+        $getData->sign = clean($request->sign);
+        if ($request->has('for_adults')) {
+            $getData->for_adults = 1;
+        } else {
             $getData->for_adults = 0;
         }
-        $getData->for_adults = 1;
+
         $getData->save();
 
         return back();
@@ -221,7 +218,7 @@ class UserGalleryController extends Controller
 
         if (request()->ajax()) {
             $visible_title = false;
-            $routCheck     = $this->routCheck;
+            $routCheck = $this->routCheck;
             if (request('find_id') > 0) {
                 $images = GalleryHelper::getAllUserImagesAjaxId(
                     $row,

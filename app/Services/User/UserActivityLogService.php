@@ -105,7 +105,6 @@ class UserActivityLogService
     public static function parametersForLike($userReputation)
     {
 
-
         $sender = $userReputation->sender;
         $senderName = $sender->name;
         $routSender = route('user_profile', ['id' => $sender->id]);
@@ -122,7 +121,7 @@ class UserActivityLogService
 
     public static function getLikeRoute($userReputation)
     {
-        
+
         switch ($userReputation->relation) {
             case UserReputation::RELATION_FORUM_TOPIC:
             {

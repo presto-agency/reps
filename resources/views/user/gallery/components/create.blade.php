@@ -50,7 +50,7 @@
             @endif
             <div class="form-check">
                 <input class="form-check-input night_input" type="checkbox" value="1" id="gallery__for-adults"
-                       {{ old('for_adults') == '1' ? 'checked' : '' }}
+                       {{ old('for_adults') ? 'checked' : '' }}
                        name='for_adults'>
                 <label class="label_group" class="form-check-label" for="gallery__for-adults">
                     {{__('18+')}}

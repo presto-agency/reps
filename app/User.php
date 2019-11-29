@@ -23,6 +23,15 @@ class User extends Authenticatable implements MustVerifyEmail
 
     use Notifiable, AvatarTrait, UserRelation;
 
+    const REPLAY = 1;
+    const GALLERY = 2;
+    const TOPICS = 3;
+    public static $sections
+        = [
+            self::REPLAY => 'Реплеи',
+            self::GALLERY => 'Галерея',
+            self::TOPICS => 'Форум',
+        ];
     /**
      * The attributes that are mass assignable.
      *
@@ -110,14 +119,17 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->roles->name == 'admin' ? true : false;
     }
+
     public function moderatorRole()
     {
         return $this->roles->name == 'moderator' ? true : false;
     }
+
     public function userRole()
     {
         return $this->roles->name == 'user' ? true : false;
     }
+
     /**
      * @param $id
      *
@@ -189,7 +201,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if (preg_match('/^(http|https):\/\//i', $str)) {
             $url = $str;
         } else {
-            $url = 'http://'.$str;
+            $url = 'http://' . $str;
         }
         if (filter_var($url, FILTER_VALIDATE_URL)) {
             return $url;
