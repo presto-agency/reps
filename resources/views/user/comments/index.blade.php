@@ -23,11 +23,11 @@
         /**
          * Check first or second click
          */
-        $(document).ready(function () {
+        // $(document).ready(function () {
             /**
              * Check first or second click
              */
-            $('.loadUserPosts').one("click", loadAjaxData);
+            $('.loadUserPosts').on("click", loadAjaxData);
 
             function loadAjaxData() {
                 // alert("Run and show first slick");
@@ -67,6 +67,6 @@
                 //     return false;
                 // });
             }
-        });
+        // });
     </script>
 @endsection

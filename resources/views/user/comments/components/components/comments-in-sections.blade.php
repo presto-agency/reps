@@ -1,5 +1,6 @@
 @inject('rout','App\Services\User\UserActivityLogService')
 @inject('commentModel','App\Models\Comment')
+@dump($comments->isNotEmpty())
 @if($comments->isNotEmpty())
     @foreach($comments as $item)
         <div class="panel__wrap">
@@ -35,8 +36,7 @@
     </div>
 @else
     <div class="gocu-replays__button night_modal">
-        <button type="button" name="load_more_user_posts_button" class="button button__download-more night_text"
-                id="load_more_user_posts_button">
+        <button type="button" name="load_more_user_posts_button" class="button button__download-more night_text">
             {{__('Пусто')}}
         </button>
     </div>
