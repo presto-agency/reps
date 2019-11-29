@@ -38,7 +38,6 @@ class UserCommentsController extends Controller
         $request = request();
 
         if ($request->ajax()) {
-
             $visible_title = false;
             if ($request->get('comment_id') > 0) {
                 $comments = Comment::orderByDesc('id')

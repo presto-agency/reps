@@ -29,7 +29,7 @@
     @endforeach
     <div id="load_more_user_posts_button" class="gocu-replays__button night_modal">
         <button type="button" name="load_more_user_posts_button" class="button button__download-more night_text"
-                id="load_more_user_posts_button" data-relation_id="{{ $relation_id }}" data-section_id="{{ $last_commentId }}">
+                id="load_more_user_posts_button" data-relation_id="{{ $relation_id }}" data-comment_id="{{ $last_commentId }}">
             {{__('Загрузить еще')}}
         </button>
     </div>
