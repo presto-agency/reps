@@ -40,5 +40,17 @@ class ReplayStoreRequest extends FormRequest
             'user_replay'       => 'required|in:1,0',
         ];
     }
-
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'content.required'    => 'Краткое описание обязаельно для заполнения',
+            'content.string'         => 'Краткое описание должно быть  типом строки',
+            'content.between'         => 'Краткое описание должно быть между 10 и 5000 символов',
+        ];
+    }
 }

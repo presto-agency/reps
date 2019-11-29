@@ -77,6 +77,7 @@ class UserReplayController extends Controller
 
         $data = new Replay;
         $this->replayDataSave($data, $request);
+
         $data->save();
         $type =  Replay::$type;
 
@@ -267,7 +268,7 @@ class UserReplayController extends Controller
         $data->first_location    = $request->first_location;
         $data->second_location   = $request->second_location;
         $data->content           = clean($request->content);
-        $data->video_iframe      = clean($request->video_iframe);
+        $data->video_iframe      = $request->video_iframe;
     }
 
     public function saveFile($request, $data)
