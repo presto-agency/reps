@@ -31,18 +31,18 @@
             color: #ffffff;
             font-size: 16px;
             font-weight: 400;
-            margin-left: 20px;
             margin-bottom: 0; //отмена стандартного отступа
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            max-width: 150px;
 
         }
 
         .title__wrap {
             display: flex;
             align-items: center;
-            max-width: 220px;
+
             .title__icon {
                 width: 20px;
                 height: 20px;
@@ -57,6 +57,9 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                p{
+                    max-width: 220px;
+                }
             }
             .title__avatar {
                 width: 28px;
@@ -162,7 +165,7 @@
     .detailed-news__card {
         border: 0px;
         img{
-            width: 100%;
+            max-width: 100%;
         }
         .card-body {
             .card-body__title {
@@ -186,7 +189,7 @@
                     text-decoration: underline;
                 }
                 img{
-                    width: 100%;
+                    max-width: 100%;
                 }
             }
             .card-body__items {

@@ -55,14 +55,13 @@
         @endif
         @if($section->topics->isNotEmpty())
             @foreach($section->topics as $topic)
-
                 <div class="content_article night_modal">
                     <div class="block_nameArticle">
                         <a href="{{ route('topic.show', $topic->id) }}">
                             <p class="name">{!! ParserToHTML::toHTML($topic->title,'size') !!}</p>
                         </a>
                         <div class="right">
-                            <p class="date">{{ $topic->created_at->format('h:m d.m.Y')}}</p>
+                            <p class="date">{{ $topic->created_at->format('H:i d.m.Y'))}}</p>
                         </div>
                     </div>
                     <div class="detailed-news__info night_modal">

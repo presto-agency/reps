@@ -44,6 +44,13 @@
                 justify-content: space-between;
                 align-items: center;
                 margin-bottom: 18px;
+                a{
+                    max-width: 257px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: inline-block;
+                }
 
                 .author__avatar {
                     width: 28px;

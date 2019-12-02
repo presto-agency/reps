@@ -23,8 +23,7 @@ class GalleryHelper
      */
     public static function getAllUserImagesAjax($row, $user_id)
     {
-        return UserGallery::
-        where('user_id', $user_id)
+        return UserGallery::where('user_id', $user_id)
             ->orderByDesc('id')
             ->limit(8)
             ->get($row);
@@ -39,22 +38,22 @@ class GalleryHelper
             ->get($row);
     }
 
-    public static function getUserImage($id, $relation, $row)
+    public static function getUserImage($id, $relation)
     {
-        return UserGallery::with($relation)->select($row)->findOrFail($id);
+        return UserGallery::with($relation)->findOrFail($id);
     }
 
     public static function previousUserImage($userId, $id)
     {
-        return UserGallery::where('user_id', (int) $userId)
-            ->where('id', '<', (int) $id)
+        return UserGallery::where('user_id', (int)$userId)
+            ->where('id', '<', (int)$id)
             ->max('id');
     }
 
     public static function nextUserImage($userId, $id)
     {
-        return UserGallery::where('user_id', (int) $userId)
-            ->where('id', '>', (int) $id)
+        return UserGallery::where('user_id', (int)$userId)
+            ->where('id', '>', (int)$id)
             ->min('id');
     }
 
@@ -104,7 +103,7 @@ class GalleryHelper
     public function saveComments()
     {
         $request = request();
-        $replay  = UserGallery::findOrFail($request->id);
+        $replay = UserGallery::findOrFail($request->id);
         $comment = new Comment([
             'user_id' => auth()->id(),
             'content' => $request->input('content'),

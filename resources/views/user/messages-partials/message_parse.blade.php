@@ -20,7 +20,7 @@ $revers_messages = collect($messages->items())->sortBy('created_at');
                     {!! $message->message !!}
                     {{--<img class="content__img" src="{{ asset($message->sender->avatar) }}" alt="message-image">--}}
                 </div>
-                <span class="content__date">{{ $message->created_at->format('h:m d.m.Y')}}</span>
+                <span class="content__date">{{ $message->created_at->format('H:i d.m.Y')}}</span>
             </div>
             <div class="message-info">
                 <span class="user-name">{{ $message->sender->name }}</span>
@@ -52,7 +52,7 @@ $revers_messages = collect($messages->items())->sortBy('created_at');
                     {!! ParserToHTML::toHTML($message->message,'size') !!}
                     {{--<img class="content__img" src="{{ asset($message->sender->avatar) }}" alt="message-image">--}}
                 </div>
-                <span class="content__date">{{ $message->created_at->format('h:m d.m.Y')}}</span>
+                <span class="content__date">{{ $message->created_at->format('H:i d.m.Y')}}</span>
             </div>
         </div>
     @endif

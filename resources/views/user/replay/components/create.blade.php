@@ -14,14 +14,14 @@
                 C479.3,122.6,463.9,174.4,437.6,213.9z"/>
         </svg>
 
-        <p class="title__text">Создать новый Replay</p>
+        <p class="title__text">{{__('Создать новый Replay')}}</p>
     </div>
     <div class="create-replay__body night_modal">
         <form class="create-replay__form" action="{{ route('user-replay.store',['id' => auth()->id()]) }}" method="POST"
               enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="create-replay-name" class="night_text">* Название:</label>
+                <label for="create-replay-name" class="night_text">{{__('* Название:')}}</label>
                 <input type="text" class="form-control night_input" id="create-replay-name" placeholder="Название"
                        name="title" value="{{old("title")}}" required minlength="1" maxlength="255">
             </div>
@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="create-replay__type" class="night_text">* Тип:
+                        <label for="create-replay__type" class="night_text">{{__('* Тип:')}}
                             <select name="type_id" id="create-replay__type night_input"
                                     class="create-replay__type night_input">
                                 @isset($types)
@@ -53,7 +53,7 @@
                 @if(Auth::user()->role_id != 4 )
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="create-replay__type" class="night_text">* Тип2:
+                            <label for="create-replay__type" class="night_text">{{__('* Тип2:')}}
                                 <select name="user_replay" id="create-replay__type night_input"
                                         class="create-replay__type night_input">
                                     @isset($userReplay)
@@ -75,7 +75,7 @@
                 @endif
             </div>
             <div class="form-group">
-                <label for="create-replay__map" class="night_text">* Карта:
+                <label for="create-replay__map" class="night_text">{{__('* Карта:')}}
                     <select name="map_id" class="js-example-basic-single night_input" id="create-replay__map">
                         @isset($maps)
                             @foreach($maps as $item)
@@ -94,7 +94,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="create-replay__first-race" class="night_text">* Первая раса:
+                        <label for="create-replay__first-race" class="night_text">{{__('* Первая раса:')}}
                             <select name="first_race" id="create-replay__first-race"
                                     class="create-replay__first-race night_input">
                                 @isset($races)
@@ -113,7 +113,7 @@
                 @endif
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="create-replay__first-country" class="night_text">* Первая страна:
+                        <label for="create-replay__first-country" class="night_text">{{__('* Первая страна:')}}
                             <select name="first_country_id" class="night_input js-example-basic-single"
                                     id="create-replay__first-country">
                                 @isset($countries)
@@ -131,7 +131,7 @@
                     </div>
                 @endif
                 <div class="col-md-6 form-group">
-                    <label for="create-replay__second-location" class="night_text">Первая локация:</label>
+                    <label for="create-replay__second-location" class="night_text">{{__('Первая локация:')}}</label>
                     <input type="text" name="first_location" class="form-control night_input"
                            id="create-replay__second-location" minlength="1"
                            maxlength="255" value="{{old('first_location')}}" placeholder="Первая локация">
@@ -142,7 +142,7 @@
                     </div>
                 @endif
                 <div class="col-md-6 form-group">
-                    <label for="create-replay__second-location" class="night_text">Вторая локация:</label>
+                    <label for="create-replay__second-location" class="night_text">{{__('Вторая локация:')}}</label>
                     <input type="text" name="second_location" class="form-control night_input"
                            id="create-replay__second-location" minlength="1"
                            maxlength="255" value="{{old('second_location')}}" placeholder="Вторая локация">
@@ -157,7 +157,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="create-replay__first-race" class="night_text">* Вторая раса:
+                        <label for="create-replay__first-race" class="night_text">{{__('* Вторая раса:')}}
                             <select name="second_race" id="create-replay__first-race"
                                     class="create-replay__first-race night_input">
                                 @isset($races)
@@ -176,7 +176,7 @@
                 @endif
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="create-replay__first-country" class="night_text">* Вторая страна:
+                        <label for="create-replay__first-country" class="night_text">{{__('* Вторая страна:')}}
                             <select name="second_country_id" class="js-example-basic-single"
                                     id="create-replay__first-country">
                                 @isset($countries)
@@ -196,9 +196,33 @@
             </div>
             <hr>
             <div class="form-group">
-                <label for="content" class="night_text">Краткое описание</label>
+                <label for="content_descr" class="night_text">{{__('Краткое описание')}}</label>
                 <textarea name="content" class="form-control night_input"
-                          id="content"></textarea>
+                          id="content_descr">{!! old('content') !!}</textarea>
+                <script>
+                    CKEDITOR.replace('content_descr', {
+                        // Define the toolbar groups as it is a more accessible solution.
+                        extraPlugins: 'autoembed',
+                        toolbarGroups: [
+                            {name: 'document', groups: ['mode', 'document', 'doctools']},
+                            {name: 'clipboard', groups: ['clipboard', 'undo']},
+                            {name: 'editing', groups: ['find', 'selection', 'spellchecker', 'editing']},
+                            {name: 'forms', groups: ['forms']},
+                            {name: 'styles', groups: ['styles']},
+                            {name: 'colors', groups: ['colors']},
+                            {name: 'tools', groups: ['tools']},
+                            {name: 'others', groups: ['others']},
+                            {name: 'about', groups: ['about']},
+                            {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
+                            {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']},
+                            {name: 'links', groups: ['links']},
+                            {name: 'insert', groups: ['insert']},
+
+                        ],
+                        // Remove the redundant buttons from toolbar groups defined above.
+                        removeButtons: 'Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Find,Replace,SelectAll,Scayt,Form,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,Strike,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Unlink,Image,Flash,Table,HorizontalRule,SpecialChar,PageBreak,ShowBlocks,Maximize,About,Checkbox'
+                    });
+                </script>
             </div>
             @if ($errors->has('content'))
                 <div class="alert alert-danger">
@@ -206,9 +230,9 @@
                 </div>
             @endif
             <div class="form-group">
-                <label for="replay_video_iframe" class="night_text">Вставить HTML код с видео реплеем</label>
+                <label for="replay_video_iframe" class="night_text">{{__('Вставить HTML код с видео реплеем')}}</label>
                 <textarea name="video_iframe" class="form-control night_input"
-                          id="replay_video_iframe"></textarea>
+                          id="replay_video_iframe">{!! old('video_iframe') !!}</textarea>
                 <script>
                     CKEDITOR.replace('replay_video_iframe', {
                         // Define the toolbar groups as it is a more accessible solution.
@@ -246,8 +270,7 @@
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
                         <span>Выбрать файл</span>
-                        <input id="uploadBtn" type="file" class="upload "
-                               name="file"/>
+                        <input id="uploadBtn" type="file" class="upload " name="file"/>
                     </div>
                 </div>
             </div>

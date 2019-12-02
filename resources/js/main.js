@@ -1,3 +1,39 @@
+/*accordion my topics script*/
+let acc = document.getElementsByClassName("accordion-button");
+let i;
+const _token = $('input[name="_token"]').val();
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        let panel = this.nextElementSibling;
+
+
+        if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+        } else {
+            panel.style.maxHeight = "100%";
+
+            if (panel.innerHTML === ""){
+                loadAjaxData(this.id, '', _token,panel)
+            }
+        }
+    });
+}
+// let acc = document.getElementsByClassName("accordion-button");
+// let i;
+//
+// for (i = 0; i < acc.length; i++) {
+//     acc[i].addEventListener("click", function () {
+//         this.classList.toggle("active");
+//         let panel = this.nextElementSibling;
+//         if (panel.style.maxHeight) {
+//             panel.style.maxHeight = null;
+//         } else {
+//             panel.style.maxHeight = panel.scrollHeight + "px";
+//         }
+//     });
+// }
+
 if(document.getElementById("uploadBtn")) {
     /*script upload image on gallery download page*/
     document.getElementById("uploadBtn").onchange = function () {
@@ -27,6 +63,7 @@ $('.burger_menu').click(function (event) {
     $('.mob_menu').css({"display": "block"});
    // $('.nav_item').css({"transform": "translateX(0)"});
     $('.nav_item').css({"opacity": "1"});
+    $('#settings').addClass('settings_mob ');
 
 });
 
@@ -79,7 +116,13 @@ $('#settings').click(function (event) {
     console.log(999);
 //    $('.mob_menu').removeClass('menuOff-active');
 });
-
+// user_cabinet: settings_mob
+$('#settings_mob').click(function (event) {
+    event.preventDefault();
+    $('.logged_links').addClass('active');
+    console.log(999);
+//    $('.mob_menu').removeClass('menuOff-active');
+});
 
 // stream_list
 $('.btn_streams_list').click(function (event) {
@@ -120,7 +163,7 @@ $('.big_video_left').click(function (event) {
 jQuery(function ($) {
     $(document).mouseup(function (e) { // событие клика по веб-документу
 
-        var div = $("#settings_div"); // тут указываем ID элемента
+        var div = $("#settings_div_mob"); // тут указываем ID элемента
 
         if (!div.is(e.target) // если клик был не по нашему блоку
             && div.has(e.target).length === 0) { // и не по его дочерним элементам
@@ -160,9 +203,6 @@ $(document).ready(function(){
         $(this).toggleClass('click');
     });
 });
-
-
-
 
 
 
@@ -267,22 +307,6 @@ for (let i = 0; i < bubblyButtons.length; i++) {
     bubblyButtons[i].addEventListener('click', animateButton, false);
 }
 
-
-/*accordion my topics script*/
-let acc = document.getElementsByClassName("accordion-button");
-let i;
-
-for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        let panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-        } else {
-            panel.style.maxHeight = panel.scrollHeight + "px";
-        }
-    });
-}
 
 
 

@@ -13,7 +13,7 @@
         border-top-right-radius: 5px;
         padding: 0 20px;
         & svg{
-            width: 40px;
+            width: 25px;
             margin-right: 15px;
             fill: white;
         }
@@ -74,9 +74,10 @@
         & .right_section_autorization{
             a{
                 display: flex;
+                align-items: center;
             }
             svg{
-                width: 25px;
+                width: 22px;
             }
             & button{
                 background: transparent;

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('user-topic-rating-list',request('id')) }}
+    {{ Breadcrumbs::render('user-topic-rating-list',request('id'),$object->user_id) }}
 @endsection
 
 @section('sidebar-left')

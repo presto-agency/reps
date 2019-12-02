@@ -62,14 +62,14 @@
                     @isset($userReplayRout)
                         @if($userReplayRout)
                             @isset($type)
-                                <a class="subtitle__name night_text"
+                                <a class="subtitle__name night_text" title="{!! ParserToHTML::toHTML($item->title,'size') !!}"
                                    href="{{ asset(url("user/{$item->users->id}/user-replay/{$item->id}"."?type={$type}"))}}">
                                    {!! ParserToHTML::toHTML($item->title,'size') !!}
                                 </a>
                             @endisset
                         @else
                             @isset($type)
-                                <a class="subtitle__name night_text"
+                                <a class="subtitle__name night_text" title="{!! ParserToHTML::toHTML($item->title,'size') !!}"
                                    href="{{ asset(url("replay/{$item->id}"."?type={$type}"))}}">
                                     {!! ParserToHTML::toHTML($item->title,'size') !!}
                                 </a>
@@ -81,7 +81,7 @@
                                 Репутация
                             </button>
                         </div>--}}
-                    <p class="subtitle__date night_text">{{$item->created_at->format('h:m d.m.Y')}}</p>
+                    <p class="subtitle__date night_text">{{$item->created_at->format('H:i d.m.Y')}}</p>
                 </div>
                 <div class="gocu-replays__match">
                     <div class="match__author">
@@ -191,7 +191,7 @@
                     c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                     C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
-                            <span class="wins__text night_text">{{$item->positive_count - $item->negative_count}}</span>
+                            <span class="wins__text night_text">{{$item->rating}}</span>
                         </div>
                     </div>
                 </div>

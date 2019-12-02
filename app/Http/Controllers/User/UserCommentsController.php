@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class UserCommentsController extends Controller
 {
@@ -17,9 +17,43 @@ class UserCommentsController extends Controller
      */
     public function index($id)
     {
-        User::findOrFail($id);
-        $comments = self::getUserComments($id);
-        return view('user.comments.index', compact('comments'));
+        $sections = User::$sections;
+        return view('user.comments.index', compact('sections'));
+    }
+
+
+
+    /**
+     * @param \Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function forumSectionsCommentsAjaxLoad($id)
+    {
+        $request = request();
+
+        if ($request->ajax()) {
+            $visible_title = false;
+            if ($request->get('comment_id') > 0) {
+                $comments = Comment::orderByDesc('id')
+                    ->where('commentable_type',self::getCommentTableType($request->relation_id))
+                    ->where('id', '<', $request->get('comment_id'))
+                    ->where('user_id', $id)
+                    ->limit(5)
+                    ->get();
+            } else {
+                $comments = Comment::orderByDesc('id')
+                    ->where('commentable_type',self::getCommentTableType($request->relation_id))
+                    ->where('user_id', $id)
+                    ->limit(5)
+                    ->get();
+                $visible_title = true;
+            }
+
+            return view('user.comments.components.components.comments-in-sections',
+                compact('comments', 'visible_title')
+            );
+        }
     }
 
     /**
@@ -58,6 +92,7 @@ class UserCommentsController extends Controller
                 }
             }
         }
+
         return $comments;
     }
 
@@ -138,25 +173,22 @@ class UserCommentsController extends Controller
             'rating' => $item->rating,
             'negative_count' => $item->negative_count,
             'positive_count' => $item->positive_count,
-            'created_at' => $item->created_at->format('h:m d.m.Y'),
+            'created_at' => $item->created_at->format('H:i d.m.Y'),
             'route' => $route,
         ];
     }
 
-    private static function convertModelClassName($full_class_name)
+    public static function getCommentTableType($relation_id)
     {
-        $prepareData = explode('\\', $full_class_name);
-        $modalName = end($prepareData);
-
-        switch ($modalName) {
-            case 'Replay':
-                return 'Реплеи';
+        switch ((int)$relation_id) {
+            case User::REPLAY:
+                return Comment::RELATION_REPLAY;
                 break;
-            case 'UserGallery':
-                return 'Галерея';
+            case User::GALLERY:
+                return Comment::RELATION_USER_GALLERY;
                 break;
-            case 'ForumTopic':
-                return 'Форум';
+            case User::TOPICS:
+                return Comment::RELATION_FORUM_TOPIC;
                 break;
             default:
                 return null;

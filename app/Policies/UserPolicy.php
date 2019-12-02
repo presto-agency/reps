@@ -47,7 +47,7 @@ class UserPolicy
      */
     public function edit(User $user, Users $section, User $item)
     {
-        if ($user->role_id == Role::getRoleId('admin')) {
+        if ($user->roles->name == 'admin') {
             if ($item->role_id == Role::getRoleId('user')) {
                 return true;
             }
@@ -70,7 +70,7 @@ class UserPolicy
      */
     public function delete(User $user, Users $section, User $item)
     {
-        if ($user->role_id == Role::getRoleId('admin')) {
+        if ($user->roles->name == 'admin') {
             if ($item->role_id == Role::getRoleId('user')) {
                 return true;
             }

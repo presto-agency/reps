@@ -2,6 +2,7 @@
     .wrapper{
         box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     }
+
     & .title_block{
         display: flex;
         justify-content: space-between;
@@ -258,6 +259,10 @@
             }
         }
     }
+    .title_text_whiteModal{
+        color: white!important;
+    }
+
     .modal-body{
         .title_block_white{
             span{
@@ -274,5 +279,27 @@
         opacity: 0.8;
         border-radius: 4px;
         height: 25px;
+    }
+    .modal-body{
+        .container{
+            .left_content{
+                title_text{
+                    color: white!important;
+                }
+            }
+        }
+
+    }
+    .modal-header{
+        align-items: center;
+        .modal-title{
+            font-size: 16px!important;
+            font-weight: bold;
+        }
+        .close{
+            span{
+                font-size: 35px!important;
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@
             <p class="title_text">{{__('Предстоящие турниры')}}</p>
         </div>
         <div class="block_futureTournament">
-            <p class="information_text night_text">{{__('Нет предстоящих турниров')}}</p>
+{{--            <p class="information_text night_text">{{__('Нет предстоящих турниров')}}</p>--}}
             <a href="{{route('tournament.index')}}" class="button button__download-more">{{__('ВСЕ ТУРНИРЫ')}}</a>
         </div>
     </div>

@@ -28,7 +28,7 @@
         }
     }
     .button {
-        font-size: 0.878vw;
+        font-size: 0.778vw;
         padding-top: 0.952vw;
         padding-bottom: 1.098vw;
     }
@@ -561,7 +561,10 @@
                     }
                 }
             }
-            & .right_section_autorization{
+             .right_section_autorization{
+                svg{
+                    width: 2.928vw;
+                }
                 & p{
                     font-size: 1.171vw;
                 }
@@ -1009,6 +1012,15 @@
                 }
 
                 .subtitle__icons {
+                    svg {
+                        width: 1.537vw;
+                        height: 1.537vw;
+                    }
+                    span {
+                        font-size: 0.878vw;
+                        line-height: 1.391vw;
+                        margin-left: 0.732vw;
+                    }
                     .items__comment,
                     .items__download {
                         svg {
@@ -1547,7 +1559,7 @@
                         margin: 0 0.366vw;
                     }
                     & .blue_span{
-                        margin: 0 1.830vw 0 1.464vw;
+                        margin: 0 1.30vw 0 1.464vw;
                     }
                 }
                 & .right_block{
@@ -2475,7 +2487,7 @@
                 .panel__wrap {
                     .panel__header {
                         margin-top: 1.098vw;
-                        padding-bottom: 0.732vw;
+                        //padding-bottom: 0.732vw;
                         .header__items {
                             .items__link {
                                 font-size: 0.878vw;
@@ -2651,7 +2663,7 @@
         }
     }
     .reputation-info {
-        margin-bottom: 1.464vw;
+       // margin-bottom: 1.464vw;
         .reputation-info__title {
             padding-top: 1.464vw;
             padding-bottom: 1.464vw;
@@ -2673,7 +2685,8 @@
             .panel {
                 padding: 0 1.318vw;
                 .panel__header {
-                    margin-top: 1.098vw;
+                    //margin-top: 1.098vw;
+                    padding-top: 0.732vw;
                     padding-bottom: 0.732vw;
                     .header__items {
                         .items__link {
@@ -2769,7 +2782,6 @@
 
             .form-group {
                 #create-topic__section {
-                    height: 2.709vw;
                     margin-top: 0.586vw;
                 }
             }

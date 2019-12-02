@@ -1,7 +1,7 @@
 .reputation-info {
     box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     border-radius: 5px;
-    margin-bottom: 20px;
+   // margin-bottom: 20px;
     .reputation-info__title {
         border-radius: 5px 5px 0 0;
         background-color: #0567cc;
@@ -36,7 +36,8 @@
                 .panel__header {
                     display: flex;
                     justify-content: space-between;
-                    margin-top: 15px;
+                    //margin-top: 15px;
+                    padding-top: 10px;
                     padding-bottom: 10px;
                     border-bottom: 1px solid #f1f1f3;
                     .header__items {
@@ -47,6 +48,9 @@
                             font-size: 12px;
                             font-weight: 400;
                             text-decoration: none;
+                            p{
+                                margin-bottom: 0;
+                            }
                         }
                         span {
                             margin-bottom: 0;

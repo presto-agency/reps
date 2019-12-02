@@ -57,6 +57,12 @@
         align-items: center;
        // border-bottom-left-radius:5px;
         border-top-left-radius:5px;
+        .title_text{
+            max-width: 100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
         & .content_left{
             display: flex;
             justify-content: flex-start;
@@ -247,8 +253,8 @@
 
             & img{
                 margin-right: 20px;
-                max-width: 40px;
-                max-height: 36px;
+                max-width: 30px;
+                max-height: 30px;
                 border-radius: 50%;
             }
             & .left_block{
@@ -257,7 +263,7 @@
                 align-items: center;
                 margin-left: 10px;
                 & svg{
-                    width: 40px;
+                    width: 35px;
                 }
             }
             & .right_block{

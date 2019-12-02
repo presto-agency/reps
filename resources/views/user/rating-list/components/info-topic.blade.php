@@ -2,7 +2,7 @@
     <div class="user-reputation-history__title">
 
         <svg class="title__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             x="0px" y="0px"
              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
         	<path d="M497,37h-65.7c0.2-7.3,0.4-14.6,0.4-22c0-8.3-6.7-15-15-15H95.3c-8.3,0-15,6.7-15,15c0,7.4,0.1,14.7,0.4,22H15
                 C6.7,37,0,43.7,0,52c0,67.2,17.6,130.6,49.5,178.6c31.5,47.4,73.5,74.6,118.9,77.2c10.3,11.2,21.2,20.3,32.5,27.3v66.7h-25.2
@@ -13,13 +13,11 @@
                 c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                 C479.3,122.6,463.9,174.4,437.6,213.9z"/>
         </svg>
-
-        <p class="title__text">История репутации</p>
-
+        <p class="title__text">{{__('История репутации')}}</p>
         <div class="title__reputation">
             <a class="icon__like" href="#">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     x="0px" y="0px"
                      viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                                 <path d="M83.6,167.3H16.7C7.5,167.3,0,174.7,0,184v300.9c0,9.2,7.5,16.7,16.7,16.7h66.9c9.2,0,16.7-7.5,16.7-16.7V184
                                     C100.3,174.7,92.8,167.3,83.6,167.3z"/>
@@ -32,9 +30,9 @@
             <a class="icon__dislike" href="#">
                 <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
                     <path
-                            d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"/>
+                        d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"/>
                     <path
-                            d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"/>
+                        d="M133.587 99.2662C132.851 99.3909 98.3852 99.2662 98.3852 99.2662L103.199 112.4C106.521 121.471 104.37 135.321 95.1537 140.246C92.1527 141.849 87.9598 142.654 84.5793 141.803C82.6406 141.316 80.9368 140.032 79.9213 138.312C78.7534 136.335 78.874 134.026 78.4581 131.833C77.4034 126.271 74.7752 120.982 70.705 117.013C63.6088 110.092 41.5645 90.1252 41.5645 90.1252V16.9942H117.742C128.021 16.9882 134.758 28.4671 129.688 37.4334C135.731 41.3039 137.798 49.4565 134.259 55.716C140.302 59.5865 142.369 67.7391 138.83 73.9986C149.257 80.6768 145.771 97.2056 133.587 99.2662Z"/>
                 </svg>
 
                 <span>{{$object->negative_count}}</span>
@@ -47,19 +45,28 @@
             @foreach($list as $item)
                 <div class="body__wrap">
                     <div class="body__info change_gray">
-                        <p class="info__nickname night_text">{{$item->sender->name}}</p>
-                        @if($item->sender->avatar)
-                            <img src="{{asset($item->sender->avatar) }}" class="info__flag" alt="flag">
+                        <a href="{{ route('user_profile',['id'=>$item->sender->id]) }}"
+                           class="info__nickname night_text">{{$item->sender->name}}</a>
+                        @if($item->sender)
+                            @if($item->sender->countries)
+                                <img src="{{asset($item->sender->countries->flagOrDefault()) }}" class="info__flag"
+                                     alt="flag">
+                            @endif
+                            @if($item->sender->races)
+                                <img
+                                    src="{{asset("images/default/game-races/" . $item->sender->races->title . ".png")}}"
+                                    class="info__cube" alt="race">
+                            @endif
+                            <p class="info__text night_text">{{ $item->sender->points ?? 0 }} pts
+                                | {{ $item->sender->rating ?? 0 }} кг</p>
                         @endif
-                        <img src="{{asset("images/default/game-races/" . $item->sender->races->title . ".png")}}" class="info__cube" alt="race">
-                        <p class="info__text night_text">{{ $item->sender->points ?? 0 }} pts | {{ $item->sender->rating ?? 0 }} кг</p>
-                        <span class="info__date night_text">{{ $item->created_at->format('h:m d.m.Y') }}</span>
+                        <span class="info__date night_text">{{ $item->created_at->format('H:i d.m.Y') }}</span>
                     </div>
                     <div class="body__content night_modal">
                         <p class="content__title night_text">{{ $item->comment ?? 'no comments' }}</p>
                         <a class="content__like night_text" href="#">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 x="0px" y="0px"
                                  viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                                 <path d="M83.6,167.3H16.7C7.5,167.3,0,174.7,0,184v300.9c0,9.2,7.5,16.7,16.7,16.7h66.9c9.2,0,16.7-7.5,16.7-16.7V184
                                     C100.3,174.7,92.8,167.3,83.6,167.3z"/>
@@ -72,7 +79,7 @@
                 </div>
             @endforeach
         @else
-            <p>История репутации пуста</p>
+            <p>{{__('История репутации пуста')}}</p>
         @endif
     </div>
 </div>

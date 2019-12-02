@@ -4,8 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Replay\ReplayHelper;
-use App\Http\Requests\ReplayStoreRequest;
 use App\Http\Requests\ReplayUpdateRequest;
+use App\Http\Requests\ReplayStoreRequest;
 use App\Models\{Country, Race, Replay, ReplayMap, ReplayType};
 use App\Services\ServiceAssistants\PathHelper;
 use App\User;
@@ -64,12 +64,10 @@ class UserReplayController extends Controller
         );
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ReplayStoreRequest  $request
-     *
+     * @param ReplayStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(ReplayStoreRequest $request)
@@ -77,6 +75,7 @@ class UserReplayController extends Controller
 
         $data = new Replay;
         $this->replayDataSave($data, $request);
+
         $data->save();
         $type =  Replay::$type;
 
@@ -267,7 +266,7 @@ class UserReplayController extends Controller
         $data->first_location    = $request->first_location;
         $data->second_location   = $request->second_location;
         $data->content           = clean($request->content);
-        $data->video_iframe      = clean($request->video_iframe);
+        $data->video_iframe      = $request->video_iframe;
     }
 
     public function saveFile($request, $data)

@@ -1,0 +1,52 @@
+.container_user img{
+   width: 40px;
+    height: 40px;
+}
+.icon_wrapper{
+    margin: 30px 0;
+}
+.container_icon i{
+    font-size: 12px;
+    margin-right: 5px;
+}
+.coments_row{
+    margin-top: 5px;
+}
+.avatar{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+}
+.container_user{
+    display: flex;
+    align-items: center;
+}
+.container_user .block_text{
+    display: flex;
+    flex-direction: column;
+}
+.block_text .username{
+    font-size: 16px;
+    font-weight: bold;
+}
+.date{
+    font-size: 12px;
+    color:#9ca0b6;
+}
+.container_icon{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.container_user p{
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+.block_btn{
+    display: flex;
+    align-items: center;
+}
+.block_btn button{
+    max-height: 36px;
+}

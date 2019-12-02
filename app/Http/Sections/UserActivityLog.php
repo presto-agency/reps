@@ -45,6 +45,7 @@ class UserActivityLog extends Section
     }
 
     public $types;
+
     /**
      * @return DisplayDatatablesAsync
      * @throws FilterOperatorException
@@ -61,12 +62,20 @@ class UserActivityLog extends Section
             ->setHtmlAttribute('class', 'table-info text-center')
             ->with(['users'])
             ->paginate(25);
-
+        $display->setApply(function ($query) {
+            $query->orderBy('time', 'desc');
+        });
         $display->setColumns([
             $type = AdminColumn::text('type', 'Событие')
                 ->setWidth(150),
-            $user_id = AdminColumn::relatedLink('users.name', 'Пользователь')
-                ->setWidth(200),
+            $user = AdminColumn::relatedLink('users.name', 'Пользователь')
+                ->setFilterCallback(function ($column, $query, $search) {
+                    if ($search) {
+                        $query->whereHas('users', function ($q) use ($search) {
+                            return $q->where('name', 'like', '%' . $search . '%');
+                        });
+                    }
+                })->setWidth(200),
             $time = AdminColumn::datetime('time', 'Время')
                 ->setWidth(250),
 
@@ -74,7 +83,7 @@ class UserActivityLog extends Section
                 ->setWidth(150),
 
             $parameters = AdminColumn::custom('Описание', function ($model) {
-                return clean($this->getEventTitle($model));
+                return $this->getEventTitle($model);
             })->setHtmlAttribute('class', 'text-left'),
         ]);
 
@@ -84,7 +93,7 @@ class UserActivityLog extends Section
                 ->setOperator(FilterInterface::EQUAL)
                 ->setPlaceholder('Все события')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
-            $user_id = AdminColumnFilter::text()
+            $user = AdminColumnFilter::text()
                 ->setOperator(FilterInterface::CONTAINS)
                 ->setPlaceholder('Пользователь')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
@@ -109,8 +118,8 @@ class UserActivityLog extends Section
 
     private function getEventTitle($model)
     {
-        $test  = json_decode($model->parameters);
-        $test2 = ! empty($test->description) === true ? $test->description : '';
+        $test = json_decode($model->parameters);
+        $test2 = !empty($test->description) === true ? $test->description : '';
 
         return $test2;
 
@@ -148,8 +157,8 @@ class UserActivityLog extends Section
     private function uploadReplayDescription($id)
     {
         $user_replay = Replay::where('id', $id)->value('title');
-        $for         = 'Replay ';
-        if ( ! empty($user_replay)) {
+        $for = 'Replay ';
+        if (!empty($user_replay)) {
             return $this->link($for, $this->replays, $id, $user_replay);
         }
 
@@ -163,9 +172,9 @@ class UserActivityLog extends Section
      */
     private function createPostDescription($id)
     {
-        $for   = 'Пост ';
+        $for = 'Пост ';
         $title = ForumTopic::where('id', $id)->value('title');
-        if ( ! empty($title)) {
+        if (!empty($title)) {
             return $this->link($for, $this->forum_topics, $id, $title);
         }
 
@@ -179,10 +188,10 @@ class UserActivityLog extends Section
      */
     private function uploadImageDescription($id)
     {
-        $for  = 'Изображение ';
+        $for = 'Изображение ';
         $sign = UserGallery::where('id', $id)->value('sign');
 
-        if ( ! empty($sign)) {
+        if (!empty($sign)) {
             return $this->link($for, $this->usergallery, $id, $sign);
         }
 
@@ -196,12 +205,12 @@ class UserActivityLog extends Section
      */
     private function commentDescription($id)
     {
-        $for  = 'Коментарий для ';
+        $for = 'Коментарий для ';
         $data = Comment::find($id);
-        if ( ! empty($data)) {
+        if (!empty($data)) {
             $commentable = $data->commentable;
-            $showId      = $commentable->id;
-            $className   = $this->getClassName($commentable);
+            $showId = $commentable->id;
+            $className = $this->getClassName($commentable);
             if ($className == 'Replay') {
                 return $this->link($for, $this->replays, $showId,
                     $commentable->title);
@@ -241,10 +250,10 @@ class UserActivityLog extends Section
      */
     private function link($for, $urlPart, $id, $linkTitle)
     {
-        $url  = url("admin/$urlPart/show/".$id);
+        $url = url("admin/$urlPart/show/" . $id);
         $link = "<a href='$url'>$linkTitle</a>";
 
-        return $for.$link;
+        return $for . $link;
     }
 
 }
