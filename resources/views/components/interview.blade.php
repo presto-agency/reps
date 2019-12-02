@@ -1,9 +1,10 @@
-<div class="vote border_shadow">
-    <div class="vote__title">
-        <svg class="title__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-             x="0px"
-             y="0px"
-             viewBox="0 0 227 227" xml:space="preserve">
+@if(!$votes->isEmpty())
+    <div class="vote border_shadow">
+        <div class="vote__title">
+            <svg class="title__icon" xmlns="http://www.w3.org/2000/svg"
+                 x="0px"
+                 y="0px"
+                 viewBox="0 0 227 227" xml:space="preserve">
             <path d="M224.2,67.3c-2.9-5.4-7.8-9.4-13.7-11.2c-5.9-1.8-12.1-1.2-17.6,1.7c-5.4,2.9-9.4,7.8-11.2,13.7c-1.2,3.9-1.3,8-0.4,11.9
                 l-24.9,13.3c-7.6-10.6-19.4-18-32.9-19.8V55.7c9.8-2.6,17.1-11.6,17.1-22.3c0-12.7-10.3-23.1-23.1-23.1S94.5,20.7,94.5,33.4
                 c0,10.6,7.2,19.6,17.1,22.3v21.3c-17.3,2.2-31.8,13.7-38.2,29.3l-27.3-7.3c0-4-1-7.9-3.1-11.5c-3.1-5.3-8-9.2-14-10.8
@@ -23,11 +24,9 @@
                 c2.2-2.2,5-3.2,7.8-3.2C189.7,182.5,192.5,183.6,194.7,185.8z"/>
         </svg>
 
-        <p class="title__text">{{__('Голосование')}}</p>
-    </div>
-    @if(!$votes->isEmpty())
+            <p class="title__text">{{__('Голосование')}}</p>
+        </div>
         @foreach($votes as $item)
-
             @if($item->for_login && auth()->user())
                 <div class="vote__content">
                     <div class="content__header change_gray">
@@ -143,5 +142,5 @@
                 </div>
             @endif
         @endforeach
-    @endif
-</div>
+    </div>
+@endif

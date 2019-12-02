@@ -19,7 +19,7 @@
                      alt="User avatar"/>
                 <div class="block_text">
                     <a class="username" href="#">{{$userGallery->users->name}}</a>
-                    <span class="date">{{ $userGallery->created_at->format('h:m d.m.Y') }}</span>
+                    <span class="date">{{ $userGallery->created_at->format('H:i d.m.Y') }}</span>
                 </div>
             </div>
             <div class="col-12 container_icon">
@@ -62,7 +62,7 @@
 
                         </div>
                         <div class="col-6 container_icon">
-                            <span class="date">{{$comment->created_at->format('h:m d.m.Y')}}</span>
+                            <span class="date">{{$comment->created_at->format('H:i d.m.Y')}}</span>
                         </div>
                     </div>
                 @endforeach

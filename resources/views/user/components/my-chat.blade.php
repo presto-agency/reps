@@ -15,7 +15,7 @@
 
                     if ($contact->messages_last){
                         $diff = Carbon\Carbon::now()->diffAsCarbonInterval($contact->messages_last);
-                        $date = $contact->messages_last->format('Y/m/d H:m:s');
+                        $date = $contact->messages_last->format('H:i:s d.m.Y');
 
                         if ($diff->d == 0 && $diff->y == 0 && $diff->m == 0){
                             if ($diff->h > 0){

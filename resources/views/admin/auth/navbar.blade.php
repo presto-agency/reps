@@ -19,7 +19,7 @@
                 @endguest()
                 <p>
                     {{ $user->name }} <small>({{ $user->roles->title }})</small>
-                    <small>@lang('sleeping_owl::lang.auth.since', ['date' => $user->created_at->format('h:m d.m.Y')])</small>
+                    <small>@lang('sleeping_owl::lang.auth.since', ['date' => $user->created_at->format('H:i d.m.Y')])</small>
                 </p>
             </li>
             <li class="user-footer">

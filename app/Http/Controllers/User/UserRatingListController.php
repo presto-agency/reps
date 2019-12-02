@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\User;
 
 
+use App\Http\Controllers\Controller;
 use App\Models\UserReputation;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class UserRatingListController extends Controller
 {
@@ -18,9 +18,15 @@ class UserRatingListController extends Controller
      */
     public function index($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail((int)$id);
 
-        $userReputations = UserReputation::where('recipient_id', $id)->with('sender.races')->paginate(30);
+        $userReputations = UserReputation::where('recipient_id', $id)
+            ->with([
+                'sender.races',
+                'sender.countries'
+            ])
+
+            ->paginate(30);
 
         return view('user.rating-list.index', compact('userReputations', 'user'));
     }

@@ -30,17 +30,17 @@
                 <div class="container_block">
                     <div class="replay-desc-right"><p>{{(__('Registration time:'))}}</p></div>
                     <div class="replay-desc-left">
-                        <p>{{ Carbon\Carbon::parse($tournament->created_at)->format('h:m d.m.Y')}}</p></div>
+                        <p>{{ Carbon\Carbon::parse($tournament->created_at)->format('H:i d.m.Y')}}</p></div>
                 </div>
                 <div class="container_block">
                     <div class="replay-desc-right"><p>{{(__('Check-in time:'))}}</p></div>
                     <div class="replay-desc-left">
-                        <p>{{ Carbon\Carbon::parse($tournament->checkin_time)->format('h:m d.m.Y')}}</p></div>
+                        <p>{{ Carbon\Carbon::parse($tournament->checkin_time)->format('H:i d.m.Y')}}</p></div>
                 </div>
                 <div class="container_block">
                     <div class="replay-desc-right"><p>{{(__('Start of Tourney time:'))}}</p></div>
                     <div class="replay-desc-left">
-                        <p>{{ Carbon\Carbon::parse($tournament->start_time)->format('h:m d.m.Y')}}</p></div>
+                        <p>{{ Carbon\Carbon::parse($tournament->start_time)->format('H:i d.m.Y')}}</p></div>
                 </div>
                 <div class="container_block">
                     <div class="replay-desc-right"><p>{{(__('Prize Fond:'))}}</p></div>
@@ -116,7 +116,7 @@
                                                     <div class=" title_block">
                                                         <div class="left_content">
                                                             <span
-                                                                    class="title_text">{{__('Приз')}}</span>
+                                                                    class="title_text_whiteModal">{{__('Приз')}}</span>
                                                         </div>
                                                     </div>
                                                     @isset($prizeList)
@@ -145,7 +145,7 @@
                                                 <div class="col-xl-8 col-lg-8 col-md-8  big_block">
                                                     <div class=" title_block ml-1">
                                                         <div class="left_content">
-                                                            <span class="title_text">{{__('Maps')}}</span>
+                                                            <span class="title_text_whiteModal">{{__('Maps')}}</span>
                                                         </div>
                                                     </div>
                                                     <div class="container">

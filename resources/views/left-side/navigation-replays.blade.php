@@ -36,7 +36,7 @@
                                 <div class="subtopic__header card-header change_gray">
                                     <a class="header__title night_text"
                                        href="{{route('replay.index',['type' => 'pro', 'subtype'=> $replayName->name])}}">
-                                        {{ $replayName->title }}
+                                        {{ strip_tags($replayName->title) }}
                                     </a>
                                 </div>
                                 <div class="subtopic__body">

@@ -1,6 +1,5 @@
 @inject('rout','App\Services\User\UserActivityLogService')
 @inject('commentModel','App\Models\Comment')
-@dump($comments->isNotEmpty())
 @if($comments->isNotEmpty())
     @foreach($comments as $item)
         <div class="panel__wrap">
@@ -28,16 +27,14 @@
             $relation_id = $commentModel::$relation[$item->commentable_type];
         @endphp
     @endforeach
-    <div id="load_more_user_posts_button" class="gocu-replays__button night_modal">
-        <button type="button" name="load_more_user_posts_button" class="button button__download-more night_text"
-                id="load_more_user_posts_button" data-relation_id="{{ $relation_id }}" data-comment_id="{{ $last_commentId }}">
+        <button type="button" name="load_more_user_posts_button" class="button button__download-more night_text buttonEventLoadPosts"
+               onclick="button_event(this.value,{{ $last_commentId }})"
+                id="load_more_user_posts_button_{{ $relation_id }}"
+                value="{{ $relation_id }}">
             {{__('Загрузить еще')}}
         </button>
-    </div>
 @else
-    <div class="gocu-replays__button night_modal">
-        <button type="button" name="load_more_user_posts_button" class="button button__download-more night_text">
-            {{__('Пусто')}}
-        </button>
-    </div>
+    <button type="button" name="load_more_user_posts_button" class="button button__download-more night_text">
+        {{__('Пусто')}}
+    </button>
 @endif

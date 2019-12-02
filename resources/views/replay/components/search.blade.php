@@ -42,7 +42,7 @@
                        href="{{ asset("replay/{$item->id}"."?type={$item::$type[$item->user_replay]}")}}">
                         {!!  ParserToHTML::toHTML($item->title,'size')!!}
                     </a>
-                    <p class="subtitle__date night_text">{{$item->created_at->format('h:m d.m.Y')}}</p>
+                    <p class="subtitle__date night_text">{{$item->created_at->format('H:i d.m.Y')}}</p>
                 </div>
                 <div class="gocu-replays__match">
                     <div class="match__author">
