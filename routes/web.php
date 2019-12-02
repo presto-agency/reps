@@ -81,8 +81,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'ban', 'verified'],],
 
     Route::resource("{id}/user-topics", 'User\UserTopicsController');
     /*** Ajax pagination user-sections(topics) ***/
-    Route::post('{id}/user-topics/load_sections', 'User\UserTopicsController@forumSectionsAjaxLoad')
-        ->name('user.topics.load.sections');
+//    Route::post('{id}/user-topics/load_sections', 'User\UserTopicsController@forumSectionsAjaxLoad')
+//        ->name('user.topics.load.sections');
     /*** Ajax pagination user-sections-topics ***/
     Route::post('{id}/user-topics/load_sections_topics', 'User\UserTopicsController@forumSectionsTopicsAjaxLoad')
         ->name('user.topics.load.sections.topics');
@@ -92,14 +92,11 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'ban', 'verified'],],
         ->name('load.more.user.replay');
 
     Route::resource("{id}/user-comments", 'User\UserCommentsController');
-//        /*** Ajax pagination user-sections(comments) ***/
-//        Route::post('{id}/user-comments/load_sections', 'User\UserCommentsController@forumSectionsAjaxLoad')->name('user.comments.load.sections');
     /*** Ajax pagination user-sections-topics ***/
     Route::post('{id}/user-comments/load_sections_comments', 'User\UserCommentsController@forumSectionsCommentsAjaxLoad')
         ->name('user.comments.load.sections.comments');
 
     Route::resource("{id}/user-rating-list", 'User\UserRatingListController');
-//        Route::resource("{id}/user-topic-rating-list", 'User\UserTopicRatingListController');
 
     Route::get('{id}/edit', 'UserController@edit')->name('edit_profile');
     Route::put('{id}/save', 'UserController@update')->name('save_profile');
