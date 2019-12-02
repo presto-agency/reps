@@ -112,7 +112,10 @@ class ForumController extends Controller
                     ->first();
                 $visible_title = true;
             }
-            echo view('forum.components.section-show', compact('section', 'visible_title'));
+
+            return view('forum.components.section-show',
+                compact('section', 'visible_title')
+            );
         }
     }
 
