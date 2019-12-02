@@ -4,10 +4,10 @@
  */
 
 CKEDITOR.config = function( config ) {
-    CKEDITOR.config.removePlugins = 'Underline,Subscript,Superscript,Image,Flash,Table,HorizontalRule,Smiley...';
-    CKEDITOR.config.magicline_color = '#0000FF';
-    config.removeButtons = '';
+   config.removePlugins = 'Underline,Subscript,Superscript,Image,Flash,Table,HorizontalRule,Smiley...';
+    config.magicline_color = '#0000FF';
     CKEDITOR.config.allowedContent = true;
+    console.log(222);
 
 };
 

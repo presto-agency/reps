@@ -203,6 +203,7 @@
                     CKEDITOR.replace('content_descr', {
                         // Define the toolbar groups as it is a more accessible solution.
                         extraPlugins: 'autoembed',
+                        // extraPlugins: 'youtube',
                         toolbarGroups: [
                             {name: 'document', groups: ['mode', 'document', 'doctools']},
                             {name: 'clipboard', groups: ['clipboard', 'undo']},
