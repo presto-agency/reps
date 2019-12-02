@@ -42,7 +42,7 @@
 
         }
             $.ready(button_event);
-        function button_event2(relation_id,comment_id) {
+        function button_event(relation_id,comment_id) {
             let button_id = '#load_more_user_posts_button_' + relation_id;
             let _token = $('input[name="_token"]').val();
             $(button_id).html('<b>Загрузка...</b>');
