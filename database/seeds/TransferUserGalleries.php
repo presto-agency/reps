@@ -47,7 +47,7 @@ class TransferUserGalleries extends Seeder
                             'reviews'        => $item->reviews,
                             'deleted_at'     => $item->deleted_at,
                             'created_at'     => $item->created_at,
-                            'updated_at'     => $item->comment,
+                            'updated_at'     => $item->updated_at,
                         ];
                     }
                     DB::table("user_galleries")->insertOrIgnore($insertItems);
