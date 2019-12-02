@@ -13,15 +13,15 @@
                                 data-stream-title="{{$item->title}}"
                                 @php
                                     $checkTwitch =  parse_url(htmlspecialchars_decode($item->stream_url_iframe))['host'] == 'player.twitch.tv' ?
-                                    1 : 0;
-                                if ($checkTwitch == 1){
+                                    "1" : "0";
+                                if ($checkTwitch == "1"){
                                 $chanel =   substr($item->stream_url_iframe, strpos($item->stream_url_iframe, "channel=") + 8);
                                 }else{
                                 $chanel = 0;
                                 }
                                 @endphp
                                 data-check-twitch="{{$checkTwitch}}"
-                                data-stream-chat="{{$chanel}}"
+                                data-twitch-name="{{$chanel}}"
                         >
 
                             @if($item->countries)
@@ -55,5 +55,11 @@
         $('#streamOnlineName').attr('title', $(this).data('stream-title'));
         $('#streamOnlineName').text($(this).data('stream-title'));
 
+        // if ($(this).data('check-twitch') == "1") {
+        //
+        //     let chatSrc = ' https://www.twitch.tv/embed/' + $(this).data('stream-title') + '/chat';
+        //     console.log(chatSrc);
+        //     $('#chatTwitch').attr('src', chatSrc);
+        // }
     });
 </script>
