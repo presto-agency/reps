@@ -20,7 +20,7 @@
 
 @section('ess21-custom-script')
     <script type="text/javascript">
-        function loadAjaxData2(forum_section_id, topic_id = '', _token, panel = '') {
+        function loadAjaxDataTopics(forum_section_id, topic_id = '', _token, panel = '') {
             $.ajax({
                 url: "{{ route('user.topics.load.sections.topics',['id'=> request('id')]) }}",
                 method: "POST",
@@ -47,7 +47,7 @@
             let _token = $('input[name="_token"]').val();
 
             $(button_id).html('<b>Загрузка...</b>');
-            loadAjaxData2(forum_section_id, topic_id, _token, '');
+            loadAjaxDataTopics(forum_section_id, topic_id, _token, '');
         }
     </script>
 @endsection

@@ -15,7 +15,7 @@ for (i = 0; i < acc.length; i++) {
             let path = window.location.pathname.split("/").pop();
             if (path === "user-topics") {
                 if (panel.innerHTML === "") {
-                    loadAjaxData2(this.id, '', _token, panel)
+                    loadAjaxDataTopics(this.id, '', _token, panel)
                 }
             }
             if (path === "user-comments") {
