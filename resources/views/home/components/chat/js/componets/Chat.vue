@@ -61,7 +61,7 @@
                     this.messagearray.push({
                         id: item.id,
                         flag: item.country_flag,
-                        ava: '/images/default/avatar/avatar.png',
+                        ava: chatHelper.CheckAvatar(item.user.avatar),
                         usernick: item.user_name,
                         date: item.time,
                         message: chatHelper.strParse(item.message),
@@ -83,12 +83,10 @@
         },
         mounted() {
             window.Echo.channel('repschat').listen('NewChatMessageAdded', ({data}) => {
-                console.log('Ответ от сокета:');
-                console.log(data);
                 this.messagearray.unshift({
                     id: data.id,
                     flag: data.country_flag,
-                    ava: '/images/default/avatar/avatar.png',
+                    ava: chatHelper.CheckAvatar(data.user.avatar),
                     usernick: data.user_name,
                     date: data.time,
                     message: chatHelper.strParse(data.message),
