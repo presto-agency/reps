@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.sendgrid.net'),
+    'host' => env('MAIL_HOST', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'info@reps.ru'),
-        'name' => env('MAIL_FROM_NAME', 'Reps.ru'),
+        'address' => env('MAIL_FROM_ADDRESS', ''),
+        'name' => env('MAIL_FROM_NAME', ''),
     ],
 
     /*
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME','Rus_Brain'),
+    'username' => env('MAIL_USERNAME'),
 
-    'password' => env('MAIL_PASSWORD','9mruruTEs9UVUeR9evBmHm'),
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------
