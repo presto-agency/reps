@@ -77,10 +77,10 @@ class Country extends Section
      */
     public function onEdit($id)
     {
-//        $getData = $this->getModel()->select('flag')->find($id);
-//        if ($getData) {
-//            $this->imageOldPath = $getData->flag;
-//        }
+        $getData = $this->getModel()->select('flag')->find($id);
+        if ($getData) {
+            $this->imageOldPath = $getData->flag;
+        }
 
         $form = AdminForm::panel();
         $form->setItems(
@@ -100,26 +100,26 @@ class Country extends Section
                             ]),
                     ];
                 })
-//                ->addColumn(function () {
-//                    return [
-//                        AdminFormElement::image('flag', 'Флаг')
-//                            ->setUploadPath(function (UploadedFile $file) {
-//                                return 'storage'
-//                                    .PathHelper::checkUploadsFileAndPath("/images/countries/flags",
-//                                        $this->imageOldPath);
-//                            })
-//                            ->setValidationRules(['required', 'max:2048'])
-//                            ->setUploadSettings([
-//                                'orientate' => [],
-//                                'resize'    => [
-//                                    25, null, function ($constraint) {
-//                                        $constraint->upsize();
-//                                        $constraint->aspectRatio();
-//                                    },
-//                                ],
-//                            ]),
-//                    ];
-//                })
+                ->addColumn(function () {
+                    return [
+                        AdminFormElement::image('flag', 'Флаг')
+                            ->setUploadPath(function (UploadedFile $file) {
+                                return 'storage'
+                                    .PathHelper::checkUploadsFileAndPath("/images/countries/flags",
+                                        $this->imageOldPath);
+                            })
+                            ->setValidationRules(['required', 'max:2048'])
+                            ->setUploadSettings([
+                                'orientate' => [],
+                                'resize'    => [
+                                    25, null, function ($constraint) {
+                                        $constraint->upsize();
+                                        $constraint->aspectRatio();
+                                    },
+                                ],
+                            ]),
+                    ];
+                })
         );
 
         return $form;
@@ -132,12 +132,8 @@ class Country extends Section
      */
     public function onCreate()
     {
-        \Log::info('hi');
-        $form =  AdminForm::panel()->addBody([
-            AdminFormElement::text('name', 'Название')->required(),
-        ])->setHtmlAttribute('enctype', 'multipart/form-data');
 
-        return $form;
+        return $this->onEdit(null);
 
     }
 
