@@ -1,5 +1,5 @@
 $(document).ready(function () {
-console.log(444);
+
     $(document).ready(function () {
 
         var editor = $('#editor-body');

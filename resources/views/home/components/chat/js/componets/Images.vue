@@ -40,8 +40,11 @@
                     });
                     i++;
                 }
-                this.all_images[0].active = true;
-                this.category_images = this.all_images[0];
+                if(this.all_images.length>0) {
+                    this.all_images[0].active = true;
+                    this.category_images = this.all_images[0];
+                }
+
             })
         },
         methods: {

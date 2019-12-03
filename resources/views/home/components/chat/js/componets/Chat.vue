@@ -56,7 +56,6 @@
         }),
         beforeCreate(){
             axios.get('/chat/get_messages').then((response) => {
-                console.log(response.data);
                 response.data.forEach((item,index)=> {
                     this.messagearray.push({
                         id: item.id,
