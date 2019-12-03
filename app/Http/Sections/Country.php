@@ -82,6 +82,8 @@ class Country extends Section
             if ($getData) {
                 $this->imageOldPath = $getData->flag;
             }
+        }else{
+            $this->imageOldPath = null;
         }
 
         $form = AdminForm::panel();
