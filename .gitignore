@@ -5,11 +5,16 @@
 /public/files
 /public/storage
 /storage/*.key
+/storage/db-dumps
+/storage/base.zip
+/storage/wget-log
 /vendor
 /.idea
+/v8-compile-cache-0
 .env
 .env.backup
 .phpunit.result.cache
+install.sh
 Homestead.json
 Homestead.yaml
 npm-debug.log
