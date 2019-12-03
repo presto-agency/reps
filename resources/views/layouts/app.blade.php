@@ -20,7 +20,7 @@
     <script src="https://cdn.ckeditor.com/4.13.0/full-all/ckeditor.js"></script>
 {{--    <script src="../../../public/ckeditor"></script>--}}
     <link rel="stylesheet" href="minified/themes/default.min.css"/>
-    <script src="minified/sceditor.min.js"></script>
+{{--    <script src="minified/sceditor.min.js"></script>--}}
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
 {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
