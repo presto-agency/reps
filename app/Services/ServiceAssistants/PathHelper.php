@@ -13,15 +13,13 @@ class PathHelper
     public static $path;
     public static $checkPath;
 
-    public static function checkUploadsFileAndPath(
-        $storagePath,
-        $oldFilePath = null
-    ) {
+    public static function checkUploadsFileAndPath($storagePath, $oldFilePath = null)
+    {
         /*Check path*/
         Storage::disk('public')->exists($storagePath) === false
             ? Storage::disk('public')->makeDirectory($storagePath) : null;
 
-        if ( ! empty($oldFilePath)) {
+        if (!empty($oldFilePath)) {
             self::$path = $oldFilePath;
             /*Check old file*/
             if (strpos($oldFilePath, '/storage') !== false) {
