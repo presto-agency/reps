@@ -77,14 +77,10 @@ class Country extends Section
      */
     public function onEdit($id)
     {
-//        if (!empty($id)){
-//            $getData = $this->getModel()->select('flag')->find($id);
-//            if ($getData) {
-//                $this->imageOldPath = $getData->flag;
-//            }
-//        }else{
-//            $this->imageOldPath = null;
-//        }
+        $getData = $this->getModel()->select('flag')->find($id);
+        if ($getData) {
+            $this->imageOldPath = $getData->flag;
+        }
 
         $form = AdminForm::panel();
         $form->setItems(
@@ -108,7 +104,8 @@ class Country extends Section
                         AdminFormElement::image('flag', 'Флаг')
                             ->setUploadPath(function (UploadedFile $file) {
                                 return 'storage'
-                                    .PathHelper::checkUploadsFileAndPath("/images/countries/flags");
+                                    .PathHelper::checkUploadsFileAndPath("/images/countries/flags",
+                                        $this->imageOldPath);
                             })
                             ->setValidationRules(['required', 'max:2048'])
                             ->setUploadSettings([
@@ -134,7 +131,7 @@ class Country extends Section
      */
     public function onCreate()
     {
-        return $this->onEdit(null);
+        return $this->onEdit('');
     }
 
     /**
