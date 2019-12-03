@@ -18,7 +18,7 @@ class ForumTopic extends Model
 
     public function forumSection()
     {
-        return $this->belongsTo(ForumSection::class, 'forum_section_id');
+        return $this->belongsTo(ForumSection::class, 'forum_section_id','id');
     }
 
     public function author()

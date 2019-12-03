@@ -12,29 +12,22 @@ for (i = 0; i < acc.length; i++) {
             panel.style.maxHeight = null;
         } else {
             panel.style.maxHeight = "100%";
-
-            if (panel.innerHTML === ""){
-                loadAjaxData(this.id, '', _token,panel)
+            let path = window.location.pathname.split("/").pop();
+            if (path === "user-topics") {
+                if (panel.innerHTML === "") {
+                    loadAjaxDataTopics(this.id, '', _token, panel)
+                }
+            }
+            if (path === "user-comments") {
+                if (panel.innerHTML === "") {
+                    loadAjaxData(this.id, '', _token, panel)
+                }
             }
         }
     });
 }
-// let acc = document.getElementsByClassName("accordion-button");
-// let i;
-//
-// for (i = 0; i < acc.length; i++) {
-//     acc[i].addEventListener("click", function () {
-//         this.classList.toggle("active");
-//         let panel = this.nextElementSibling;
-//         if (panel.style.maxHeight) {
-//             panel.style.maxHeight = null;
-//         } else {
-//             panel.style.maxHeight = panel.scrollHeight + "px";
-//         }
-//     });
-// }
 
-if(document.getElementById("uploadBtn")) {
+if (document.getElementById("uploadBtn")) {
     /*script upload image on gallery download page*/
     document.getElementById("uploadBtn").onchange = function () {
         document.getElementById("uploadFile").value = this.value.replace("C:\\fakepath\\", "");
@@ -54,14 +47,12 @@ if (document.getElementById("uploadBtn3")) {
 }
 
 
-
-
 //mob_menu
 
 $('.burger_menu').click(function (event) {
     event.preventDefault();
     $('.mob_menu').css({"display": "block"});
-   // $('.nav_item').css({"transform": "translateX(0)"});
+    // $('.nav_item').css({"transform": "translateX(0)"});
     $('.nav_item').css({"opacity": "1"});
     $('#settings').addClass('settings_mob ');
 
@@ -198,14 +189,11 @@ $('#day').click(function (event) {
 });
 
 
-$(document).ready(function(){
+$(document).ready(function () {
     $('№').click(function () {
         $(this).toggleClass('click');
     });
 });
-
-
-
 
 
 /*accordion replays script   start*/
@@ -308,19 +296,10 @@ for (let i = 0; i < bubblyButtons.length; i++) {
 }
 
 
-
-
-
-
 // $("#gallery__for-adults").on('change', function () {
 //     this.value = this.checked ? 1 : 0;
 // }).change();
 /////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
 
 
 /* Theatre Mode */
@@ -332,11 +311,11 @@ function theatre_mode(e) {
     console.log('ця хуйня запустилась')
     e.preventDefault();
     let streamArea = $("#block_chat-twitch");
-    if(streamArea.hasClass('theatre-on') == true) {
+    if (streamArea.hasClass('theatre-on') == true) {
         streamArea.removeClass('theatre-on')
         streamArea.addClass('theatre-off')
         $("body").removeClass('theatre');
-    }else {
+    } else {
         streamArea.removeClass('theatre-off')
         streamArea.addClass('theatre-on')
         $("body").addClass('theatre');
@@ -345,16 +324,16 @@ function theatre_mode(e) {
 
 
 // ===== Scroll to Top ====
-$(window).scroll(function() {
+$(window).scroll(function () {
     if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
         $('#return-to-top').fadeIn(200);    // Fade in the arrow
     } else {
         $('#return-to-top').fadeOut(200);   // Else fade out the arrow
     }
 });
-$('#return-to-top').click(function() {      // When arrow is clicked
+$('#return-to-top').click(function () {      // When arrow is clicked
     $('body,html').animate({
-        scrollTop : 0                       // Scroll to top of body
+        scrollTop: 0                       // Scroll to top of body
     }, 500);
 });
 ///////////////////////////////////////////////////quote

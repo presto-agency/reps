@@ -108,6 +108,9 @@
                 margin-bottom: 0;
                 text-decoration: none;
                 max-width: 18vw;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             &:hover {
                 color: #0567cc;

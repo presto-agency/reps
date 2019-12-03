@@ -24,32 +24,12 @@ class UserTopicsController extends Controller
      */
     public function index($id)
     {
-        return view('user.topics.index');
+        $forumSections = ForumSection::orderByDesc('id')->withCount(['topics' => function ($q) use ($id) {
+            $q->where('user_id', $id);
+        }])->get();
+        return view('user.topics.index', compact('forumSections'));
     }
 
-    public function forumSectionsAjaxLoad($id)
-    {
-        if (request()->ajax()) {
-
-            $visible_title = false;
-
-            if (request('section_id') > 0) {
-
-                $forumSections = ForumSection::orderByDesc('id')
-                    ->where('id', '<', request('section_id'))
-                    ->limit(5)
-                    ->get();
-            } else {
-                $forumSections = ForumSection::orderByDesc('id')
-                    ->limit(5)
-                    ->get();
-                $visible_title = true;
-            }
-            return view('user.topics.components.index',
-                compact('forumSections', 'visible_title')
-            );
-        }
-    }
     public function forumSectionsTopicsAjaxLoad($id)
     {
 
@@ -58,12 +38,16 @@ class UserTopicsController extends Controller
             $visible_title = false;
             if (request('topic_id') > 0) {
                 $forumSectionsTopics = ForumTopic::where('forum_section_id', request('forum_section_id'))
+                    ->with('forumSection')
+                    ->where('user_id', $id)
                     ->where('id', '<', request('topic_id'))
                     ->orderByDesc('id')
                     ->limit(10)
                     ->get();
             } else {
                 $forumSectionsTopics = ForumTopic::where('forum_section_id', request('forum_section_id'))
+                    ->with('forumSection')
+                    ->where('user_id', $id)
                     ->orderByDesc('id')
                     ->limit(10)
                     ->get();
