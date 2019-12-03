@@ -131,7 +131,8 @@ class Country extends Section
      */
     public function onCreate()
     {
-        return $this->onEdit('');
+        \Log::info('hi');
+//        return $this->onEdit('');
     }
 
     /**
