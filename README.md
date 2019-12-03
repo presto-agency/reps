@@ -34,6 +34,7 @@ DB_PASSWORD2=
 - устрановка і запуск Redis сервера:
 ```
 sudo apt install redis-server
+sudo systemctl start redis-server
 redis-cli
 ```
 - в .env: 
@@ -45,6 +46,13 @@ REDIS_PREFIX=reps
 php artisan config:cache
 npm install -g laravel-echo-server
 laravel-echo-server init
+- Development mode: no or yes
+- Port: 6001
+- Host: enter your host
+- http or https
+- Generate client key for HTTP API: no
+- access API: no
+
 laravel-echo-server start
 ```
 5.Cache settings info
