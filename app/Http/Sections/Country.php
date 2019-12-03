@@ -77,9 +77,13 @@ class Country extends Section
      */
     public function onEdit($id)
     {
-        $getData = $this->getModel()->select('flag')->find($id);
-        if ($getData) {
-            $this->imageOldPath = $getData->flag;
+        if (!empty($id)){
+            $getData = $this->getModel()->select('flag')->find($id);
+            if ($getData) {
+                $this->imageOldPath = $getData->flag;
+            }
+        }else{
+            $this->imageOldPath = null;
         }
 
         $form = AdminForm::panel();
