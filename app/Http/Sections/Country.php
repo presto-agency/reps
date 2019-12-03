@@ -99,7 +99,8 @@ class Country extends Section
                                 'required', 'min:2', 'max:10',
                             ]),
                     ];
-                })->addColumn(function () {
+                })
+                ->addColumn(function () {
                     return [
                         AdminFormElement::image('flag', 'Флаг')
                             ->setUploadPath(function (UploadedFile $file) {
@@ -131,7 +132,9 @@ class Country extends Section
      */
     public function onCreate()
     {
+
         return $this->onEdit(null);
+
     }
 
     /**

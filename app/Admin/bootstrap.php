@@ -7,4 +7,4 @@
 //Meta::addJs('dashboard',(mix('js/app.js')),['admin-default']);
 
 ////Meta::addJs('InterviewQuestion.questionClone.blade',    asset('js/test.js'),'admin-default');
-//Meta::addCss('extend2', asset('fonts/comments.css'));
+Meta::addCss('extend2', asset('fonts/comments.css'));
