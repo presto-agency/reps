@@ -289,3 +289,10 @@
     text-align: center; //выравнивает кнопку по центру
     background-color: #ffffff;
 }
+.card-body__text{
+        p{
+            img{
+                max-width: 100%;
+            }
+        }
+}
