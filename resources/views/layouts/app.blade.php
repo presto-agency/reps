@@ -27,7 +27,7 @@
 {{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
 
 <!-- Include SCEditor -->
-    <link rel="stylesheet" href="{{ asset('js/sceditor/themes/default.min.css') }} "/>
+{{--    <link rel="stylesheet" href="{{ asset('js/sceditor/themes/default.min.css') }} "/>--}}
 
     <!-- Styles -->
     <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
