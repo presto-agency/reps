@@ -34,6 +34,7 @@ DB_PASSWORD2=
 - устрановка і запуск Redis сервера:
 ```
 sudo apt install redis-server
+apt-get install php-redis -y
 sudo systemctl start redis-server
 redis-cli
 ```
