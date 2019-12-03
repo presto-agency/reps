@@ -77,10 +77,10 @@ class Country extends Section
      */
     public function onEdit($id)
     {
-        $getData = $this->getModel()->select('flag')->find($id);
-        if ($getData) {
-            $this->imageOldPath = $getData->flag;
-        }
+//        $getData = $this->getModel()->select('flag')->find($id);
+//        if ($getData) {
+//            $this->imageOldPath = $getData->flag;
+//        }
 
         $form = AdminForm::panel();
         $form->setItems(
@@ -99,26 +99,27 @@ class Country extends Section
                                 'required', 'min:2', 'max:10',
                             ]),
                     ];
-                })->addColumn(function () {
-                    return [
-                        AdminFormElement::image('flag', 'Флаг')
-                            ->setUploadPath(function (UploadedFile $file) {
-                                return 'storage'
-                                    .PathHelper::checkUploadsFileAndPath("/images/countries/flags",
-                                        $this->imageOldPath);
-                            })
-                            ->setValidationRules(['required', 'max:2048'])
-                            ->setUploadSettings([
-                                'orientate' => [],
-                                'resize'    => [
-                                    25, null, function ($constraint) {
-                                        $constraint->upsize();
-                                        $constraint->aspectRatio();
-                                    },
-                                ],
-                            ]),
-                    ];
                 })
+//                ->addColumn(function () {
+//                    return [
+//                        AdminFormElement::image('flag', 'Флаг')
+//                            ->setUploadPath(function (UploadedFile $file) {
+//                                return 'storage'
+//                                    .PathHelper::checkUploadsFileAndPath("/images/countries/flags",
+//                                        $this->imageOldPath);
+//                            })
+//                            ->setValidationRules(['required', 'max:2048'])
+//                            ->setUploadSettings([
+//                                'orientate' => [],
+//                                'resize'    => [
+//                                    25, null, function ($constraint) {
+//                                        $constraint->upsize();
+//                                        $constraint->aspectRatio();
+//                                    },
+//                                ],
+//                            ]),
+//                    ];
+//                })
         );
 
         return $form;
@@ -132,7 +133,7 @@ class Country extends Section
     public function onCreate()
     {
         \Log::info('hi');
-//        return $this->onEdit('');
+        return $this->onEdit(null);
     }
 
     /**
