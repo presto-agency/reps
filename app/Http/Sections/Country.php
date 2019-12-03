@@ -133,7 +133,28 @@ class Country extends Section
     public function onCreate()
     {
         \Log::info('hi');
-        return $this->onEdit(null);
+        $form = AdminForm::panel();
+        $form->setItems(
+            AdminFormElement::columns()
+                ->addColumn(function () {
+                    return [
+                        AdminFormElement::text('name', 'Название')
+                            ->setHtmlAttribute('placeholder', 'Название')
+                            ->setValidationRules([
+                                'required', 'min:2', 'max:255',
+                            ]),
+                        AdminFormElement::text('code', 'Код страны')
+                            ->setHtmlAttribute('placeholder', 'Код страны')
+                            ->setHtmlAttribute('title', 'Alpha-2 ISO 3166-1')
+                            ->setValidationRules([
+                                'required', 'min:2', 'max:10',
+                            ]),
+                    ];
+                })
+        );
+
+        return $form;
+
     }
 
     /**
