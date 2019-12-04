@@ -9,14 +9,8 @@
                     class="footer__link col-xl-2 offset-xl-1 col-lg-2 mt-lg-0 offset-lg-1 col-md-6 col-sm-6 col-6 order-2 mt-4">
                 <a class="link-list__item" href="{{route('home.index')}}" title="Главная">{{__('Главная')}}</a>
                 <a class="link-list__item" href="{{route('forum.index')}}" title="Форум">{{__('Форум')}}</a>
-                <a class="link-list__item" href="{{route('replay.index',['type' => 'user'])}}"
-                   title="Пользовательские реплеи">{{__('Пользовательские
-                    реплеи')}}</a>
-                <a class="link-list__item" href="{{route('replay.index',['type' => 'pro'])}}"
-                   title="Профессиональные реплеи">{{__('Профессиональные
-                    реплеи')}}</a>
-                <a class="link-list__item" href="{{route('news.index')}}" title="Новости">
-                    {{__('Новости')}}</a>
+                <a class="link-list__item" href="{{route('replay.index',['type' => 'user'])}}" title="Реплеи">{{__('Реплеи')}}</a>
+                <a class="link-list__item" href="{{route('news.index')}}" title="Новости">{{__('Новости')}}</a>
             </div>
             <div class="footer__info col-xl-2 col-lg-2  mt-lg-0 col-md-6 col-sm-12 col-12 order-5 mt-4 ">
                 <div class="footer__text">

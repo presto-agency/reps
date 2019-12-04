@@ -36,10 +36,11 @@ class EmailController extends Controller
         $user->email = $request->to_email;
         try {
             $user->notify(new CustomEmail($request->subject, $request->message));
+            $request->session()->flash('email-send', 'Вы отправили письмо к ' . $request->to_email);
         } catch (\Exception $e) {
+            $request->session()->flash('email-send', 'Ошибка при отправки письма к ' . $request->to_email);
             \Log::error($e);
         }
-        $request->session()->flash('email-send', 'Вы отправили письмо ' . $request->to_email);
 
         return back();
     }
