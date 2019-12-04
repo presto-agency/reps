@@ -26,7 +26,6 @@
                     </div>
                 </div>
                 <div class=" block_userMessage">
-                    <span class="user_nick">{{item.usernick}}</span>
                     <span class="user_text night_text" v-html="item.message"></span>
                 </div>
             </div>

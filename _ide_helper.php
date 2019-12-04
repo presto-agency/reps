@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.5.2 on 2019-12-03.
+ * Generated for Laravel 6.5.2 on 2019-12-04.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -7569,6 +7569,93 @@ namespace Illuminate\Support\Facades {
         public static function hasMacro($name)
         {
             return \Illuminate\Routing\Redirector::hasMacro($name);
+        }
+         
+    }
+
+    class Redis {
+        
+        /**
+         * Get a Redis connection by name.
+         *
+         * @param string|null $name
+         * @return \Illuminate\Redis\Connections\Connection 
+         * @static 
+         */ 
+        public static function connection($name = null)
+        {
+            return \Illuminate\Redis\RedisManager::connection($name);
+        }
+        
+        /**
+         * Resolve the given connection by name.
+         *
+         * @param string|null $name
+         * @return \Illuminate\Redis\Connections\Connection 
+         * @throws \InvalidArgumentException
+         * @static 
+         */ 
+        public static function resolve($name = null)
+        {
+            return \Illuminate\Redis\RedisManager::resolve($name);
+        }
+        
+        /**
+         * Return all of the created connections.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function connections()
+        {
+            return \Illuminate\Redis\RedisManager::connections();
+        }
+        
+        /**
+         * Enable the firing of Redis command events.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function enableEvents()
+        {
+            \Illuminate\Redis\RedisManager::enableEvents();
+        }
+        
+        /**
+         * Disable the firing of Redis command events.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function disableEvents()
+        {
+            \Illuminate\Redis\RedisManager::disableEvents();
+        }
+        
+        /**
+         * Set the default driver.
+         *
+         * @param string $driver
+         * @return void 
+         * @static 
+         */ 
+        public static function setDriver($driver)
+        {
+            \Illuminate\Redis\RedisManager::setDriver($driver);
+        }
+        
+        /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return \Illuminate\Redis\RedisManager 
+         * @static 
+         */ 
+        public static function extend($driver, $callback)
+        {
+            return \Illuminate\Redis\RedisManager::extend($driver, $callback);
         }
          
     }
@@ -20925,6 +21012,8 @@ namespace  {
     class Queue extends \Illuminate\Support\Facades\Queue {}
 
     class Redirect extends \Illuminate\Support\Facades\Redirect {}
+
+    class Redis extends \Illuminate\Support\Facades\Redis {}
 
     class Request extends \Illuminate\Support\Facades\Request {}
 
