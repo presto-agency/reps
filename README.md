@@ -37,6 +37,10 @@ sudo apt install redis-server
 sudo systemctl start redis-server
 redis-cli
 ```
+```
+composer require predis/predis
+```
+
 - в .env: 
 ```
 BROADCAST_DRIVER=redis

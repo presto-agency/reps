@@ -47,21 +47,9 @@
                this.messages.push(data.message);
             });
         },
-        /*created(){
-            console.log('Component created.');
 
-            this.getMessages();
-        },*/
         methods: {
-            getMessages(){
 
-                axios.get('/chat/get_messages').then((response) => {
-                    console.log('Полученые список сообщений GET: ');
-                    console.log(response.data);
-                    // this.messages = response.data;
-                });
-
-            },
             sendMessage(){
                 // console.log(this.auth);
                 axios.post('/chat/insert_message', {
