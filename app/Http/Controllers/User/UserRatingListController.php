@@ -25,7 +25,7 @@ class UserRatingListController extends Controller
                 'sender.races',
                 'sender.countries'
             ])
-
+            ->orderBy('created_at', 'desc')
             ->paginate(30);
 
         return view('user.rating-list.index', compact('userReputations', 'user'));
