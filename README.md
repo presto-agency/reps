@@ -2,6 +2,7 @@
 
 ```$xslt
 composer install
+sudo apt-get install php-imagick
 ```
 2.Update data in .env file
 
