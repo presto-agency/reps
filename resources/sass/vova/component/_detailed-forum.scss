@@ -173,6 +173,14 @@
                     font-weight: 400;
                     text-decoration: underline;
                 }
+                p{
+                    img{
+                        max-width: 100%;
+                    }
+                }
+                img{
+                    max-width: 100%;
+                }
             }
             .card-body__items {
                 width: 100%;
