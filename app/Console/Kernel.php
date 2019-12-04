@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         /*** Check Stream ***/
-        $schedule->command('broadcast:check')->everyMinute();
+        $schedule->command('broadcast:check')->everyFiveMinutes();
 
     }
 
