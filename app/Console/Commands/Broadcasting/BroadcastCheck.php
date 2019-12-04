@@ -47,7 +47,7 @@ class BroadcastCheck extends Command
                         $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
                         $getResult['status'] == config('streams.status') ? $active = true : $active = false;
                         Stream::where('id', $item->id)->update(['active' => $active]);
-                        \Log::info('Успешное бновления стрима id=' . $item->id . ' | ' . Carbon::now());
+                        \Log::info('Обновление статуса(онлайн) стрима id=' . $item->id . ' | ' . Carbon::now());
                     } else {
                         Stream::where('id', $item->id)->update(['active' => false]);
                     }
