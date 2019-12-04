@@ -50,7 +50,7 @@ class BroadcastCheck extends Command
                         Stream::where('id', $item->id)->update(['active' => false]);
                     }
                 } catch (\Exception $e) {
-                    \Log::info('Ошибка обновления стрима id=' . $item->id);
+                    \Log::error('Ошибка обновления стрима id=' . $item->id);
                 }
             }
 
