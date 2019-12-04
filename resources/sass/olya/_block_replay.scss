@@ -48,6 +48,7 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
+            justify-content: space-between;
             margin-bottom: 5px;
             & img{
                 width: 16px;
@@ -56,7 +57,7 @@
             }
             & .text_matchap{
                 font-size:12px;
-               margin: 0 9.5px;
+               margin: 0 6.5px;
 
             }
             & .text{

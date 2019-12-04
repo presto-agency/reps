@@ -2,6 +2,7 @@
 
 ```$xslt
 composer install
+sudo apt-get install php-imagick
 ```
 2.Update data in .env file
 
@@ -34,9 +35,14 @@ DB_PASSWORD2=
 - устрановка і запуск Redis сервера:
 ```
 sudo apt install redis-server
+apt-get install php-redis -y
 sudo systemctl start redis-server
 redis-cli
 ```
+```
+composer require predis/predis
+```
+
 - в .env: 
 ```
 BROADCAST_DRIVER=redis
