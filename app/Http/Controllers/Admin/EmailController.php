@@ -19,24 +19,27 @@ class EmailController extends Controller
 
         $user = User::select('email')->findOrFail($id);
 
-        $content = view('admin.send-email.create',compact('user'));
+        $content = view('admin.send-email.create', compact('user'));
 
         return \AdminSection::view($content, 'Отправка Email');
     }
 
     /**
-     * @param  \App\Http\Requests\EmailSendRequest  $request
+     * @param \App\Http\Requests\EmailSendRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function emailSend(EmailSendRequest $request)
     {
 
-        $user        = new User();
+        $user = new User();
         $user->email = $request->to_email;
-        $user->notify(new CustomEmail($request->subject, $request->message));
-        $request->session()->flash('email-send','Вы отправили письмо '
-            .$request->to_email);
+        try {
+            $user->notify(new CustomEmail($request->subject, $request->message));
+        } catch (\Exception $e) {
+            \Log::error($e);
+        }
+        $request->session()->flash('email-send', 'Вы отправили письмо ' . $request->to_email);
 
         return back();
     }
