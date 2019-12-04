@@ -50,7 +50,7 @@
                         {!! ParserToHTML::toHTML($single_news->preview_content,'size') !!}
                     </div>
                     <div class="card-body__items">
-                        <a class="items__comment" href="#">
+                        <div class="items__comment">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                  x="0px" y="0px"
                                  viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
@@ -69,7 +69,7 @@
                         </svg>
 
                             <span>{{ $single_news->comments_count }}</span>
-                        </a>
+                        </div>
                         <a class="items__watch" href="#">
                             <svg id="Capa_1" enable-background="new 0 0 515.556 515.556" height="512"
                                  viewBox="0 0 515.556 515.556" width="512" xmlns="http://www.w3.org/2000/svg">
