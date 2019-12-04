@@ -4,6 +4,7 @@ namespace App\Console\Commands\Broadcasting;
 
 use App\Models\Stream;
 use App\Services\Broadcasting\{AfreecaTV, GoodGame, Twitch};
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class BroadcastCheck extends Command
@@ -46,6 +47,7 @@ class BroadcastCheck extends Command
                         $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
                         $getResult['status'] == config('streams.status') ? $active = true : $active = false;
                         Stream::where('id', $item->id)->update(['active' => $active]);
+                        \Log::info('Успешное бновления стрима id=' . $item->id . ' | ' . Carbon::now());
                     } else {
                         Stream::where('id', $item->id)->update(['active' => false]);
                     }
