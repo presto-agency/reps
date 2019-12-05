@@ -22,17 +22,17 @@ class UserObserver
 
     public function updating(User $user)
     {
-        if (auth()->user()->roles->name == 'admin') {
+        if (auth()->check() && auth()->user()->roles->name == 'admin') {
             $getRoleId = $user->getAttribute('role_id');
             if ($getRoleId == Role::getRoleId('admin') || $getRoleId == Role::getRoleId('super-admin')
             ) {
                 unset($user['role_id']);
             }
         }
-        if (auth()->user()->roles->name == 'user') {
+        if (auth()->check() &&auth()->user()->roles->name == 'user') {
             unset($user['role_id']);
         }
-        if (auth()->user()->roles->name == 'moderator') {
+        if (auth()->check() &&auth()->user()->roles->name == 'moderator') {
             unset($user['role_id']);
         }
     }

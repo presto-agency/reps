@@ -78,6 +78,13 @@ For production, it is recommended to change the driver to 'memcached'
 In the .emn file you need configure the email sending configuration
 ```
 ```
+0.Server:(
+        sudo apt-get install php-mail
+        sudo apt-get install sendmail
+        sudo sendmailconfig
+        php.ini  -> sendmail_path =  /usr/sbin/sendmail -t -i
+)
+
 1.Set urs settings:
 MAIL_FROM_ADDRESS=info@reps.ru
 MAIL_FROM_NAME=Reps.ru
@@ -95,4 +102,15 @@ MAIL_ENCRYPTION=
 ```
 The project has tasks. To complete them, you need to configure the task scheduler on the server.
 exemple:* * * * * php /path/to/artisan schedule:run >>/dev/null 2>&1
+```
+
+7.Log Root server
+```
+got to  cd /path/to/ur-project
+
+sudo chown -R $USER:www-data storage
+sudo chown -R $USER:www-data bootstrap/cache
+
+chmod -R 775 storage
+chmod -R 775 bootstrap/cache
 ```
