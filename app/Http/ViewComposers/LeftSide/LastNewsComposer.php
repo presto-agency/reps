@@ -27,7 +27,7 @@ class LastNewsComposer
     private static function getLastNews()
     {
         return ForumTopic::withCount('comments')
-            ->orderByDesc('id')
+            ->latest('commented_at')
             ->take(5)
             ->get(['id', 'title']);
     }
