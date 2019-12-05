@@ -7,6 +7,11 @@
                 {{ session('email-send')}}
             </div>
         @endif
+        @if (session('email-send-error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('email-send-error')}}
+            </div>
+        @endif
 
         {!! Form::open(['method' => 'POST', 'route' => ['admin.user.email-send.send']]) !!}
         <div class="form-group row required">
