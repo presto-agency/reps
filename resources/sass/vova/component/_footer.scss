@@ -21,7 +21,8 @@
             font-weight: 400;
             line-height: 32px;
             text-transform: uppercase;
-            text-decoration: none;
+            text-decoration: underline;
+            text-decoration-color: $blue;
             transition: .3s;
             &:hover {
                 color: #0567cc;
@@ -140,6 +141,7 @@
     }
 
 }
+//
 
 .footer__copyright {
     text-align: center;
