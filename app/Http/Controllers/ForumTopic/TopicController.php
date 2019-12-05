@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ForumTopic;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\ForumTopic;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 class TopicController extends Controller
 {
@@ -109,11 +110,14 @@ class TopicController extends Controller
     {
 
         $replay = ForumTopic::find(request('id'));
+        $replay->commented_at = Carbon::now();
+
         $comment = new Comment([
             'user_id' => auth()->id(),
             'content' => clean(request('content')),
         ]);
         $replay->comments()->save($comment);
+        $replay->save();
         return back();
     }
 }
