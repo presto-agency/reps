@@ -10,8 +10,6 @@ use Illuminate\View\View;
 class LastReplayComposer
 {
 
-    private static $ttl = 300;
-
     /**
      * @param  View  $view
      */
@@ -46,7 +44,7 @@ class LastReplayComposer
         if (\Cache::has($cache_name) && ! \Cache::get($cache_name)->isEmpty()) {
             $data_cache = \Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl,
+            $data_cache = \Cache::remember($cache_name, 300,
                 function () {
                     return self::getLastReplay();
                 });
