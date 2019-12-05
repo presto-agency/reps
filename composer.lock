@@ -1270,16 +1270,16 @@
         },
         {
             "name": "ezyang/htmlpurifier",
-            "version": "v4.11.0",
+            "version": "v4.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "83ab08bc1af7d808a9e0fbf024f1c24bfd73c0a7"
+                "reference": "a617e55bc62a87eec73bd456d146d134ad716f03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/83ab08bc1af7d808a9e0fbf024f1c24bfd73c0a7",
-                "reference": "83ab08bc1af7d808a9e0fbf024f1c24bfd73c0a7",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/a617e55bc62a87eec73bd456d146d134ad716f03",
+                "reference": "a617e55bc62a87eec73bd456d146d134ad716f03",
                 "shasum": ""
             },
             "require": {
@@ -1313,7 +1313,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2019-07-14T18:58:38+00:00"
+            "time": "2019-10-28T03:44:26+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -2464,20 +2464,20 @@
         },
         {
             "name": "mews/purifier",
-            "version": "3.1.2",
+            "version": "3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mewebstudio/Purifier.git",
-                "reference": "585be0f0f25f31c3542a5bc2debd9d0f000dcf07"
+                "reference": "f0a258d04e681267cfc8b8e0711050fad6fec2c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mewebstudio/Purifier/zipball/585be0f0f25f31c3542a5bc2debd9d0f000dcf07",
-                "reference": "585be0f0f25f31c3542a5bc2debd9d0f000dcf07",
+                "url": "https://api.github.com/repos/mewebstudio/Purifier/zipball/f0a258d04e681267cfc8b8e0711050fad6fec2c0",
+                "reference": "f0a258d04e681267cfc8b8e0711050fad6fec2c0",
                 "shasum": ""
             },
             "require": {
-                "ezyang/htmlpurifier": "4.11.*",
+                "ezyang/htmlpurifier": "4.12.*",
                 "illuminate/config": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || ~6",
                 "illuminate/filesystem": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || ~6",
                 "illuminate/support": "5.1.* || 5.2.* || 5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || ~6",
@@ -2538,7 +2538,7 @@
                 "security",
                 "xss"
             ],
-            "time": "2019-10-22T00:45:36+00:00"
+            "time": "2019-12-05T11:14:40+00:00"
         },
         {
             "name": "monolog/monolog",
