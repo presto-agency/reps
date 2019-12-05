@@ -15,6 +15,9 @@ Auth::routes([
     'verify' => true,
 ]);
 
+Route::get('/php-info',function (){
+    return phpinfo();
+});
 /***---Home---***/
 Route::get('/', 'HomeController@index')->name('home.index');
 
