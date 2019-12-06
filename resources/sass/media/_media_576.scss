@@ -318,6 +318,9 @@
             padding-right: 3.819vw;
             padding-top: 4.340vw;
             .card-body {
+                a{
+                    font-size: 3.025vw;
+                }
                 .card-body__author {
                     margin-bottom: 3.125vw;
 
@@ -1542,7 +1545,7 @@
         .footer__link {
             .link-list__item {
                 font-size:3.083vw;
-                line-height: 5.556vw;
+               padding-bottom: 4vw;
             }
         }
         .footer__info {

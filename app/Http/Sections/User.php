@@ -177,7 +177,7 @@ class User extends Section
         $display->setColumnFilters(
             [
                 $id = AdminColumnFilter::text()
-                    ->setOperator(FilterInterface::CONTAINS)
+                    ->setOperator(FilterInterface::EQUAL)
                     ->setPlaceholder('ID')
                     ->setHtmlAttributes(['style' => 'width: 100%']),
                 $avatar = null,
