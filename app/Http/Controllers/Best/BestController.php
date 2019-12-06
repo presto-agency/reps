@@ -19,16 +19,16 @@ class BestController extends Controller
     {
         $checkProLS = true;
 
-        $points = $this->getPoints();
-        $rating = $this->getRating();
-        $news   = $this->getNews();
-        $replay = $this->getReplay();
-
+        $points = self::getCacheData('top100UserPoints', self::getTop100UserPoints());
+        $rating = self::getCacheData('top100UserRating', self::getTop100UserRating());
+        $news = self::getCacheData('top100UserNews', self::getTop100UserNews());
+        $replay = self::getCacheData('top100UserReplay', self::getTop100UserReplay());
 
         return view('best.index',
             compact('checkProLS', 'points', 'rating', 'news', 'replay')
         );
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -56,7 +56,7 @@ class BestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -69,7 +69,7 @@ class BestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -83,7 +83,7 @@ class BestController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -96,7 +96,7 @@ class BestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -106,118 +106,56 @@ class BestController extends Controller
 
     }
 
-    public function getPoints()
+    public static function getTop100UserPoints()
     {
-        $getData = User::with('countries:id,flag,name', 'races:id,title')
+        return User::with('countries:id,flag,name', 'races:id,title')
             ->withCount('comments')
             ->orderByDesc('comments_count')
             ->limit(100)
             ->get();
-        $data    = null;
-        if ( ! $getData->isEmpty()) {
-            $data = $this->getDataArray($getData, 'comments');
-        }
-
-        return $data;
     }
 
-    public function getRating()
+    public static function getTop100UserRating()
     {
-        $getData = User::with('countries:id,flag,name', 'races:id,title')
-            ->orderByRaw("(count_positive - count_negative) DESC")
-            ->whereRaw("(count_positive - count_negative) >= 0")
+        return User::with('countries:id,flag,name', 'races:id,title')
+            ->where('rating', '>=', 0)
+            ->orderByDesc('rating')
             ->limit(100)
             ->get();
-        $data    = null;
-        if ( ! $getData->isEmpty()) {
-            $data = $this->getDataArray($getData, 'rating');
-        }
-
-        return $data;
     }
 
-    public function getNews()
+    public static function getTop100UserNews()
     {
-        $data = null;
-
-        $getData = User::with('countries:id,flag,name', 'races:id,title')
+        return User::with('countries:id,flag,name', 'races:id,title')
             ->withCount('news')
             ->orderByDesc('news_count')
             ->limit(100)
             ->get();
-        if ( ! $getData->isEmpty()) {
-            $data = $this->getDataArray($getData, 'news');
-        }
-
-        return $data;
     }
 
-    public function getReplay()
+    public static function getTop100UserReplay()
     {
-        $getData = User::with('countries:id,flag,name', 'races:id,title')
+        return User::with('countries:id,flag,name', 'races:id,title')
             ->withCount('replays')
             ->orderByDesc('replays_count')
             ->limit(100)
             ->get();
-        $data    = null;
-        if ( ! $getData->isEmpty()) {
-            $data = $this->getDataArray($getData, 'replays');
-        }
-
-        return $data;
     }
 
     /**
-     * @param $setData
-     * @param $type
-     *
-     * @return array
+     * @param $cache_name
+     * @param $data
+     * @return mixed
      */
-    public function getDataArray($setData, $type)
+    public static function getCacheData($cache_name, $data)
     {
-        $data = null;
-        foreach ($setData as $item) {
-            $data[] = [
-                'id'               => $item->id,
-                'name'             => $item->name,
-                'avatar'           => $item->avatar,
-                'raceIcon'         => "images/default/game-races/".$item->races->title.".png",
-                'raceTitle'        => $item->races->title,
-                'countryFlag25x20' => $item->countries->flagOrDefault(),
-                'countryName'      => $item->countries->name,
-                'max'              => $this->setMaxType($type, $item),
-            ];
+        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, 300, function () use ($data) {
+                return $data;
+            });
         }
-
-        return $data;
-
+        return $data_cache;
     }
-
-    /**
-     * @param $type
-     * @param $item
-     *
-     * @return |null
-     */
-    public function setMaxType($type, $item)
-    {
-        switch ($type) {
-            case 'comments':
-                return $item->comments_count;
-                break;
-            case 'rating':
-                return $item->count_positive - $item->count_negative;
-                break;
-            case 'news':
-                return $item->news_count;
-                break;
-            case 'replays':
-                return $item->replays_count;
-                break;
-            default:
-                return null;
-                break;
-        }
-    }
-
 }

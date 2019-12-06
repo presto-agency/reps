@@ -29,11 +29,8 @@ class LastRegisteredUsersComposer
     {
         return User::with('countries:id,flag,name', 'races:id,code,title')
             ->latest('created_at')
-            ->take(5)
-            ->get(['id',
-                   'name',
-                   'race_id',
-                   'country_id']);
+            ->limit(5)
+            ->get(['id', 'name', 'race_id', 'country_id']);
     }
 
     private static function getBanners()
@@ -48,7 +45,7 @@ class LastRegisteredUsersComposer
      */
     public static function getCache($cache_name, $data)
     {
-        if (\Cache::has($cache_name) && !\Cache::get($cache_name)->isEmpty()) {
+        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
             $data_cache = \Cache::get($cache_name);
         } else {
             $data_cache = \Cache::remember($cache_name, self::$ttl, function () use ($data) {

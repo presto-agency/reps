@@ -655,8 +655,8 @@ class Replay extends Section
                     'required_without:file',
                     'max:1000',
                 ]),
-            $content = AdminFormElement::wysiwyg('content', 'Контент')
-                ->setHtmlAttributes(['placeholder' => 'Контент'])
+            $content = AdminFormElement::wysiwyg('content', 'Краткое описание')
+                ->setHtmlAttributes(['placeholder' => 'Краткое описание'])
                 ->setValidationRules([
                     'nullable',
                     'string',

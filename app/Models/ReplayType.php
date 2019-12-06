@@ -9,19 +9,14 @@ class ReplayType extends Model
 {
 
 //    use HasEagerLimit;
-    protected $fillable
-        = [
-            'name', 'title',
-        ];
+    protected $fillable = ['name', 'title',];
 
     public function replays()
     {
         return $this->hasMany(Replay::class, 'type_id', 'id')
             ->where('approved', 1)
             ->where('user_replay', Replay::REPLAY_PRO)
-            ->orderByDesc('id')
-//            ->take(3)
-            ;
+            ->orderByDesc('id');
     }
 
 }
