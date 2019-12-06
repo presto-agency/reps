@@ -1,3 +1,19 @@
+@if($banners->isNotEmpty())
+    <section class="banner">
+        <div class="wrapper">
+            <div class="title_block">
+                <p class="title_text">{{__('Рекомендуем')}}</p>
+            </div>
+            @foreach($banners as $item)
+                <div class="block_content">
+                    <a href="{{$item->url_redirect}}" title="{{$item->title}}">
+                        <img src="{{asset($item->image)}}" alt="banner"/>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </section>
+@endisset
 @if(!$votes->isEmpty())
     <div class="vote border_shadow">
         <div class="vote__title">
