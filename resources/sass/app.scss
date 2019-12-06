@@ -26,6 +26,10 @@ $gray: #9ca0b6;
 body {
     font-family: 'Montserrat', sans-serif !important;
     background-color: #ffffff;
+    img{
+        max-width: 100%;
+
+    }
 }
 
 body.theatre {
