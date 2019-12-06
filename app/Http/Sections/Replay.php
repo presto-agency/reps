@@ -94,10 +94,12 @@ class Replay extends Section
 
         $display->setColumns([
 
-            $id = AdminColumn::text('id', 'Id'),
+            $id = AdminColumn::text('id', 'Id')
+                ->setWidth(70),
 
-            $title = AdminColumn::text('title', 'Название')
-                ->setWidth(150),
+            $title = AdminColumn::text(function ($model){
+               return strip_tags($model->title);
+            })->setLabel('Название')->setWidth(150),
 
             $map = AdminColumn::relatedLink('maps.name', 'Карта')
                 ->setFilterCallback(function ($column, $query, $search) {
@@ -216,7 +218,7 @@ class Replay extends Section
 
         $display->setColumnFilters([
             $id = AdminColumnFilter::text()
-                ->setOperator(FilterInterface::CONTAINS)
+                ->setOperator(FilterInterface::EQUAL)
                 ->setPlaceholder('ID')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
             $user = AdminColumnFilter::text()
@@ -655,8 +657,8 @@ class Replay extends Section
                     'required_without:file',
                     'max:1000',
                 ]),
-            $content = AdminFormElement::wysiwyg('content', 'Контент')
-                ->setHtmlAttributes(['placeholder' => 'Контент'])
+            $content = AdminFormElement::wysiwyg('content', 'Краткое описание')
+                ->setHtmlAttributes(['placeholder' => 'Краткое описание'])
                 ->setValidationRules([
                     'nullable',
                     'string',

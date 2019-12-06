@@ -50,10 +50,6 @@ trait ReplayRelationTrait
     {
         return $this->belongsTo(Race::class, 'second_race', 'id');
     }
-    public function replayComments()
-    {
-       return \App\Models\Comment::where('commentable_id',$this->id)->where('commentable_type','App\Models\Replay')->count();
-    }
 
     /**
      * Get all of the topic comments.
@@ -63,8 +59,9 @@ trait ReplayRelationTrait
         return $this->morphMany('App\Models\Comment', 'commentable');
     }
 
+
     /**
-     * @return HasMany
+     * @return mixed
      */
     public function positive()
     {
@@ -74,12 +71,30 @@ trait ReplayRelationTrait
     }
 
     /**
-     * @return HasMany
+     * @return mixed
      */
     public function negative()
     {
         return $this->hasMany('App\Models\UserReputation', 'object_id')
             ->where('relation', UserReputation::RELATION_REPLAY)
             ->where('rating', '-1');
+    }
+
+    /**
+     * Get all of the comments for the User Replay.
+     *
+     * @return mixed
+     */
+    public function replayUserComments()
+    {
+        return $this->hasManyThrough(
+            'App\Models\Comment',
+            'App\User',
+            'id',
+            'user_id',
+            'user_id',
+            'id'
+        );
+
     }
 }

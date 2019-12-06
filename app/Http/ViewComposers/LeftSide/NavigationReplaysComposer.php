@@ -31,15 +31,10 @@ class NavigationReplaysComposer
 
     public function __construct()
     {
-        self::$pro = ReplayHelper::checkUrlType() == 1 ? true
-            : false;
-
-        self::$type = ReplayHelper::checkUrlType()
-        == Replay::REPLAY_USER ? 'pro' : 'user';
-
-        self::$replayTypeName = ReplayHelper::checkUrlType() == 1
-            ? 'Пользовательские' : 'Профессиональные';
-        $this->replayNav      = self::getCacheReplayPro('proReplayNav');
+        self::$pro = ReplayHelper::checkUrlType() == 1 ? true : false;
+        self::$type = ReplayHelper::checkUrlType() == Replay::REPLAY_USER ? 'pro' : 'user';
+        self::$replayTypeName = ReplayHelper::checkUrlType() == 1 ? 'Пользовательские' : 'Профессиональные';
+        $this->replayNav = self::getCacheReplayPro('proReplayNav');
     }
 
     public function compose(View $view)
@@ -54,15 +49,13 @@ class NavigationReplaysComposer
 
     private static function getCacheReplayPro($cache_name)
     {
-        if (\Cache::has($cache_name) && ! \Cache::get($cache_name)->isEmpty()) {
+        if (\Cache::has($cache_name) && !\Cache::get($cache_name)->isEmpty()) {
             $data_cache = \Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, 600,
-                function () {
-                    return self::getReplay();
-                });
+            $data_cache = \Cache::remember($cache_name, 600, function () {
+                return self::getReplay();
+            });
         }
-
         return $data_cache;
     }
 
@@ -76,19 +69,12 @@ class NavigationReplaysComposer
          * In Models:ReplayType,Replay
          * this dont want work on  server
          */
-//         return  ReplayType::with('replays')->get();
 
-        /**
-         * Old Version using map
-         *
-         */
+       $getData =  ReplayType::with('replays')->get()->map(function ($query) {
+            return $query->setRelation('replays', $query->replays->take(3));
+        });
 
-        return ReplayType::with('replays')->get()->map
-            (function ($query) {
-                $query->setRelation('replays',
-                    $query->replays->take(3));
-                return $query;
-            });
+        return $getData;
     }
 
 }

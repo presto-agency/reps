@@ -3,7 +3,7 @@
         <div class="title_block">
             <div class="left_content">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     x="0px" y="0px"
                      viewBox="0 0 475.1 475.1" style="enable-background:new 0 0 475.1 475.1;" xml:space="preserve">
                     <path d="M475.1,186.6c0-7-5.3-11.4-16-13.1l-143.3-20.8L251.5,22.7c-3.6-7.8-8.3-11.7-14-11.7c-5.7,0-10.4,3.9-14,11.7l-64.2,129.9
                         L16,173.4c-10.7,1.7-16,6.1-16,13.1c0,4,2.4,8.6,7.1,13.7l103.9,101.1L86.5,444.1c-0.4,2.7-0.6,4.6-0.6,5.7c0,4,1,7.4,3,10.1
@@ -18,47 +18,37 @@
             <p class="title_playersText change_gray">{{__('Top-100 pts')}}</p>
         </div>
         <div class="container_players">
-            @if(isset($points) && !empty($points))
+            @if($points->isNotEmpty())
                 @foreach($points as $item)
                     <div class="players_content">
                         <div class="left_block">
-                            <span class="number night_text">#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
-                            <a href="{{route('user_profile',['id'=>$item['id']])}}">
-                                @auth()
+                            <span class="number night_text">{{'#'. $loop->iteration }} {{-- Starts with 1 --}}</span>
+                            <a href="{{route('user_profile',['id'=>$item->id])}}">
+                                @auth
                                     @if(auth()->user()->userViewAvatars())
-                                        @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
-                                            <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                                 class="author__avatar img-fluid">
-                                        @else
-                                            <img src="{{asset('images/default/avatar/avatar.png')}}"
-                                                 class="author__avatar img-fluid" alt="avatar">
-                                        @endif
-                                    @endif
-                                @else
-                                    @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
-                                        <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                             class="author__avatar img-fluid">
-                                    @else
-                                        <img src="{{asset('images/default/avatar/avatar.png')}}"
+                                        <img src="{{asset($item->avatarOrDefault())}}"
                                              class="author__avatar img-fluid" alt="avatar">
                                     @endif
-                                @endauth
-                                <span class="name_player" title="{{$item['name']}}">{{$item['name']}}</span>
+                                @else
+                                    <img src="{{asset($item->avatarOrDefault())}}" alt="avatar"
+                                         class="author__avatar img-fluid">
+                                @endif
+                                <span class="name_player" title="{{$item->name}}">{{$item->name}}</span>
                             </a>
                         </div>
                         <div class="center_block">
-                            @if(!empty($item['countryFlag25x20']) && checkFile::checkFileExists($item['countryFlag25x20']))
-                                <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag"
-                                     title="{{$item['countryName']}}">
-                            @else
-                                <img src="{{asset('images/default/flag/country.png')}}"
-                                     class="author__avatar img-fluid" alt="avatar">
+                            @if($item->countries)
+                                <img src="{{asset($item->countries->flagOrDefault())}}"
+                                     title="{{$item->countries->name}}"
+                                     class="info__flag" alt="flag">
                             @endif
-                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="race"
-                                 title="{{$item['raceTitle']}}">
+                            @if($item->races)
+                                <img src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}"
+                                     title="{{$item->races->title}}" class="info__cube" alt="race">
+                            @endif
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item['max'].' pts'}}</p>
+                            <p class="night_text">{{$item->comments_count.' pts'}}</p>
                         </div>
                     </div>
                 @endforeach
@@ -68,150 +58,117 @@
             <p class="title_playersText">{{__('Top-100 кг')}}</p>
         </div>
         <div class="container_players">
-            @if(isset($rating) && !empty($rating))
+            @if($rating->isNotEmpty())
                 @foreach($rating as $item)
                     <div class="players_content">
                         <div class="left_block">
-                            <span class="number night_text">#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
-                            <a href="{{route('user_profile',['id'=>$item['id']])}}">
-                                @auth()
+                            <span class="number night_text">{{'#'. $loop->iteration }} {{-- Starts with 1 --}}</span>
+                            <a href="{{route('user_profile',['id'=>$item->id])}}">
+                                @auth
                                     @if(auth()->user()->userViewAvatars())
-                                        @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
-                                            <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                                 class="author__avatar img-fluid">
-                                        @else
-                                            <img src="{{asset('images/default/avatar/avatar.png')}}"
-                                                 class="author__avatar img-fluid" alt="avatar">
-                                        @endif
-                                    @endif
-                                @else
-                                    @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
-                                        <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                             class="author__avatar img-fluid">
-                                    @else
-                                        <img src="{{asset('images/default/avatar/avatar.png')}}"
+                                        <img src="{{asset($item->avatarOrDefault())}}"
                                              class="author__avatar img-fluid" alt="avatar">
                                     @endif
-                                @endauth
-                                <span class="name_player" title="{{$item['name']}}">{{$item['name']}}</span>
+                                @else
+                                    <img src="{{asset($item->avatarOrDefault())}}" alt="avatar"
+                                         class="author__avatar img-fluid">
+                                @endif
+                                <span class="name_player" title="{{$item->name}}">{{$item->name}}</span>
                             </a>
                         </div>
                         <div class="center_block">
-                            @if(!empty($item['countryFlag25x20']) && checkFile::checkFileExists($item['countryFlag25x20']))
-                                <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag"
-                                     title="{{$item['countryName']}}">
-                            @else
-                                <img src="{{asset('images/default/flag/country.png')}}"
-                                     class="author__avatar img-fluid" alt="avatar">
+                            @if($item->countries)
+                                <img src="{{asset($item->countries->flagOrDefault())}}"
+                                     title="{{$item->countries->name}}"
+                                     class="info__flag" alt="flag">
                             @endif
-                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="race"
-                                 title="{{$item['raceTitle']}}">
+                            @if($item->races)
+                                <img src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}"
+                                     title="{{$item->races->title}}" class="info__cube" alt="race">
+                            @endif
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item['max'].' кг'}}</p>
+                            <p class="night_text">{{$item->rating.' кг'}}</p>
                         </div>
                     </div>
                 @endforeach
             @endif
         </div>
-        {{--top-100-news--}}
         <div class="title_players change_gray">
             <p class="title_playersText">{{__('Top-100 news')}}</p>
         </div>
         <div class="container_players">
-            @if(isset($news) && !empty($news))
+            @if($news->isNotEmpty())
                 @foreach($news as $item)
                     <div class="players_content">
                         <div class="left_block">
-                            <span class="number night_text">{{'#'.$loop->iteration }} {{-- Starts with 1 --}}</span>
-                            <a href="{{route('user_profile',['id'=>$item['id']])}}">
-                                @auth()
+                            <span class="number night_text">{{'#'. $loop->iteration }} {{-- Starts with 1 --}}</span>
+                            <a href="{{route('user_profile',['id'=>$item->id])}}">
+                                @auth
                                     @if(auth()->user()->userViewAvatars())
-                                        @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
-                                            <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                                 class="author__avatar img-fluid">
-                                        @else
-                                            <img src="{{asset('images/default/avatar/avatar.png')}}"
-                                                 class="author__avatar img-fluid" alt="avatar">
-                                        @endif
-                                    @endif
-                                @else
-                                    @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
-                                        <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                             class="author__avatar img-fluid">
-                                    @else
-                                        <img src="{{asset('images/default/avatar/avatar.png')}}"
+                                        <img src="{{asset($item->avatarOrDefault())}}"
                                              class="author__avatar img-fluid" alt="avatar">
                                     @endif
-                                @endauth
-                                <span class="name_player" title="{{$item['name']}}"
-                                      title="{{$item['name']}}">{{$item['name']}}</span>
+                                @else
+                                    <img src="{{asset($item->avatarOrDefault())}}" alt="avatar"
+                                         class="author__avatar img-fluid">
+                                @endif
+                                <span class="name_player" title="{{$item->name}}">{{$item->name}}</span>
                             </a>
                         </div>
                         <div class="center_block">
-                            @if(!empty($item['countryFlag25x20']) && checkFile::checkFileExists($item['countryFlag25x20']))
-                                <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag"
-                                     title="{{$item['countryName']}}">
-                            @else
-                                <img src="{{asset('images/default/flag/country.png')}}"
-                                     class="author__avatar img-fluid" alt="avatar">
+                            @if($item->countries)
+                                <img src="{{asset($item->countries->flagOrDefault())}}"
+                                     title="{{$item->countries->name}}"
+                                     class="info__flag" alt="flag">
                             @endif
-                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="race"
-                                 title="{{$item['raceTitle']}}">
+                            @if($item->races)
+                                <img src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}"
+                                     title="{{$item->races->title}}" class="info__cube" alt="race">
+                            @endif
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item['max']}}</p>
+                            <p class="night_text">{{$item->news_count}}</p>
                         </div>
                     </div>
                 @endforeach
             @endif
         </div>
-        {{--top-100-replays--}}
         <div class="title_players change_gray">
             <p class="title_playersText">{{__('Top-100 replays')}}</p>
         </div>
         <div class="container_players">
-            @if(isset($replay) && !empty($replay))
+            @if($replay->isNotEmpty())
                 @foreach($replay as $item)
                     <div class="players_content">
                         <div class="left_block">
-                            <span class="number night_text">#{{ $loop->iteration }} {{-- Starts with 1 --}}</span>
-                            <a href="{{route('user_profile',['id'=>$item['id']])}}">
-                                @auth()
+                            <span class="number night_text">{{'#'. $loop->iteration }} {{-- Starts with 1 --}}</span>
+                            <a href="{{route('user_profile',['id'=>$item->id])}}">
+                                @auth
                                     @if(auth()->user()->userViewAvatars())
-                                        @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
-                                            <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                                 class="author__avatar img-fluid">
-                                        @else
-                                            <img src="{{asset('images/default/avatar/avatar.png')}}"
-                                                 class="author__avatar img-fluid" alt="avatar">
-                                        @endif
-                                    @endif
-                                @else
-                                    @if(!empty($item['avatar']) && checkFile::checkFileExists($item['avatar']))
-                                        <img src="{{asset($item['avatar'])}}" alt="avatar"
-                                             class="author__avatar img-fluid">
-                                    @else
-                                        <img src="{{asset('images/default/avatar/avatar.png')}}"
+                                        <img src="{{asset($item->avatarOrDefault())}}"
                                              class="author__avatar img-fluid" alt="avatar">
                                     @endif
-                                @endauth
-                                <span class="name_player" title="{{$item['name']}}">{{$item['name']}}</span>
+                                @else
+                                    <img src="{{asset($item->avatarOrDefault())}}" alt="avatar"
+                                         class="author__avatar img-fluid">
+                                @endif
+                                <span class="name_player" title="{{$item->name}}">{{$item->name}}</span>
                             </a>
                         </div>
                         <div class="center_block">
-                            @if(!empty($item['countryFlag25x20']) && checkFile::checkFileExists($item['countryFlag25x20']))
-                                <img src="{{asset($item['countryFlag25x20'])}}" class="info__flag" alt="flag"
-                                     title="{{$item['countryName']}}">
-                            @else
-                                <img src="{{asset('images/default/flag/country.png')}}"
-                                     class="author__avatar img-fluid" alt="avatar">
+                            @if($item->countries)
+                                <img src="{{asset($item->countries->flagOrDefault())}}"
+                                     title="{{$item->countries->name}}"
+                                     class="info__flag" alt="flag">
                             @endif
-                            <img src="{{asset($item['raceIcon'])}}" class="info__cube" alt="race"
-                                 title="{{$item['raceTitle']}}">
+                            @if($item->races)
+                                <img src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}"
+                                     title="{{$item->races->title}}" class="info__cube" alt="race">
+                            @endif
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item['max']}}</p>
+                            <p class="night_text">{{$item->replays_count}}</p>
                         </div>
                     </div>
                 @endforeach
