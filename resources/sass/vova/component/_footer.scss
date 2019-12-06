@@ -19,11 +19,12 @@
             color: #ffffff;
             font-size: 12px;
             font-weight: 400;
-            line-height: 32px;
+            padding-bottom: 12px;
             text-transform: uppercase;
             text-decoration: underline;
             text-decoration-color: $blue;
             transition: .3s;
+            font-weight: 600;
             &:hover {
                 color: #0567cc;
             }
