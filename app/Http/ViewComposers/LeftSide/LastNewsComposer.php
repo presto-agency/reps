@@ -28,7 +28,7 @@ class LastNewsComposer
     {
         return ForumTopic::withCount('comments')
             ->latest('commented_at')
-            ->take(5)
+            ->take(10)
             ->get(['id', 'title']);
     }
 
