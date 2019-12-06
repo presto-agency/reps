@@ -71,7 +71,7 @@ class Stream extends Section implements Initializable
 
         $display->setColumns([
 
-            $id = AdminColumn::text('id', 'ID'),
+            $id = AdminColumn::text('id', 'ID')->setWidth(70),
             $user_id = AdminColumn::relatedLink('users.name', 'Пользователь'),
             $title = AdminColumn::text('title', 'Название'),
             $approved = AdminColumnEditable::checkbox('approved')

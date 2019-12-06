@@ -76,12 +76,15 @@ class ForumTopics extends Section
                 ->setModel(ForumSection::class),
             AdminDisplayFilter::related('user_id')->setModel(User::class)
         );
-
+       
         $display->setColumns([
+
             $id = AdminColumn::text('id', 'ID')
-                ->setWidth('15px'),
-            $title = AdminColumn::text('title', 'Название')
-                ->setHtmlAttribute('class', 'text-left')
+                ->setWidth('70px'),
+            $title = AdminColumn::text(function ($model) {
+                return strip_tags($model->title);
+            })->setHtmlAttribute('class', 'text-left')
+                ->setLabel('Название')
                 ->setWidth('100px'),
             $section = AdminColumn::text('forumSection.title', 'Раздел')
                 ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md')
@@ -102,7 +105,7 @@ class ForumTopics extends Section
 
         ]);
 
-        $control    = $display->getColumns()->getControlColumn();
+        $control = $display->getColumns()->getControlColumn();
         $buttonShow = $this->show($display);
         $control->addButton($buttonShow);
 
@@ -124,7 +127,7 @@ class ForumTopics extends Section
     public $imageOldPath;
 
     /**
-     * @param  int  $id
+     * @param int $id
      *
      * @return FormInterface
      */
@@ -157,7 +160,7 @@ class ForumTopics extends Section
                 'Загрузить картинку превью')
                 ->setUploadPath(function (UploadedFile $file) {
                     return 'storage'
-                        .PathHelper::checkUploadsFileAndPath("/images/topics",
+                        . PathHelper::checkUploadsFileAndPath("/images/topics",
                             $this->imageOldPath);
                 })
                 ->setValidationRules([
@@ -226,7 +229,7 @@ class ForumTopics extends Section
         $link = new ControlLink(function (
             Model $model
         ) {
-            $id  = $model->getKey();
+            $id = $model->getKey();
             $url = url("admin/forum_topics/$id/show");
 
             return $url; // Генерация ссылки
