@@ -131,7 +131,11 @@
                    // width: 24px;
                     transition: 1.5s;
                     width: 20px;
-
+                    button{
+                        img{
+                            max-width:200px;
+                        }
+                    }
                 }
                 & .active_button_input{
                     //width: 170px;
