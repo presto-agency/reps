@@ -63,6 +63,10 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "post-install-cmd": [
+            "php artisan sleepingowl:update",
+            "php artisan view:clear"
+        ],
         "post-update-cmd": [
             "php artisan sleepingowl:update",
             "php artisan view:clear"
