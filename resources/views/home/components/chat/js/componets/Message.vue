@@ -146,6 +146,7 @@ export default {
                 file_path: "",
                 message: mes,
                 imo: ""});
+            this.turnOffStatus()
             this.textMessage = '';
             this.user_id = '';
             this.user_nick = '';
