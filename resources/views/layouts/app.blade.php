@@ -34,7 +34,6 @@
 
 </head>
 <body>
-<!--SECTION HEADER-->
 <a href="javascript:" id="return-to-top">
     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up"
          class="svg-inline--fa fa-chevron-up fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -44,67 +43,39 @@
     </svg>
 </a>
 <header>
-    {{--    @include('header.index')--}}
     @include('layouts.components.header.index')
 </header>
-<!--END SECTION HEADER-->
-
-<!--SECTION BREADCRUMBS-->
 <section class="container">
     <div class="row">
         <div class="col-12">
             @section('breadcrumbs')
-                {{--                {{ Breadcrumbs::render('home') }}--}}
             @show
-
         </div>
-{{--        <div class="col-6">--}}
-{{--            @include('rating.rating')--}}
-{{--        </div>--}}
     </div>
 </section>
-<!--END SECTION BREADCRUMBS-->
-
-<!--SECTION STREAM-->
 @yield('stream')
-<!--END SECTION STREAM-->
-
-<!--SECTION CONTENT-->
 <section class="container">
     <div class="row">
-
-        <!--SIDEBAR LEFT-->
         <div id="left-sidebar" class="col-xl-3 col-lg-3 col-md-6 col-12">
-            <button id="pulse-button-info" class="pulse-button">Информация</button>
+            <button id="pulse-button-info" class="pulse-button">{{__('Информация')}}</button>
             <div id="left-sidebar-wrap" class="left-sidebar-wrap no-height">
                 @yield('sidebar-left')
             </div>
         </div>
-        <!--END SIDEBAR LEFT-->
-
-        <!--CONTENT-->
         <div id="content" class="col-xl-6 col-lg-6 col-md-12 col-12 content">
             @yield('content')
         </div>
-        <!--END CONTENT-->
-
-        <!-- RIGHT SIDEBAR-->
         <div id="right-sidebar" class="col-xl-3 col-lg-3 col-md-6 col-12">
-            <button id="pulse-button-top" class="pulse-button">Топ</button>
+            <button id="pulse-button-top" class="pulse-button">{{__('Топ')}}</button>
             <div id="right-sidebar-wrap" class="right-sidebar-wrap no-height">
                 @section('right-side')
                     @include('right-side.index')
                 @show
             </div>
         </div>
-        <!--END SIDEBAR RIGHT-->
-
     </div>
 </section>
-<!--END SECTION CONTENT-->
-
 <footer>
-    {{--    @include('footer.index')--}}
     @include('layouts.components.footer.index')
 </footer>
 
@@ -115,7 +86,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content ">
             <div class="modal-header">
-                <h5 class="modal-title" id="likeModalLabel">Оставте коментарий</h5>
+                <h5 class="modal-title" id="likeModalLabel">{{__('Оставте коментарий')}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="close_modal">&times;</span>
                 </button>
