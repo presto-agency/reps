@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Traits\ModelRelations\ReplayRelationTrait;
 use Eloquent;
 use Illuminate\Database\Eloquent\Model;
-use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
+
 /**
  * Class Replay
  *
@@ -24,18 +24,17 @@ class Replay extends Model
 
     public static $userReplaysType
         = [
-            Replay::REPLAY_PRO  => 'Профессиональный',
+            Replay::REPLAY_PRO => 'Профессиональный',
             Replay::REPLAY_USER => 'Пользовательский',
         ];
 
     public static $type
         = [
-            Replay::REPLAY_PRO  => 'pro',
+            Replay::REPLAY_PRO => 'pro',
             Replay::REPLAY_USER => 'user',
         ];
     protected $fillable
         = [
-
             'user_id',
             'title',
             'map_id',
@@ -57,15 +56,17 @@ class Replay extends Model
             'second_name',
             'second_apm',
             'content',
-            'video_iframe',
             'downloaded',
             'start_date',
             'file',
 
         ];
+    protected $hidden = [
+        'video_iframe'
+    ];
 
-
-    public static function checkUser4Update(){
+    public static function checkUser4Update()
+    {
         /*User role cannot add PRO-Replay*/
         if (request('user_replay') == Replay::REPLAY_PRO) {
             if (auth()->user()->isUser()) {

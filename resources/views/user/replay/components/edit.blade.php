@@ -216,7 +216,7 @@
             </div>
             <hr>
             <div class="form-group">
-                <label for="content" class="night_text">Краткое описание</label>
+                <label for="content" class="night_text">{{__('Краткое описание')}}</label>
                 <textarea name="content" class="form-control night_input"
                           id="content">{!! old('content',ParserToHTML::toHTML($replay->content,'size')) !!}</textarea>
             </div>
@@ -227,39 +227,18 @@
             @endif
 
             <div class="form-group">
-                <label for="video_iframe" class="night_text">Вставить HTML код с видео реплеем</label>
-                <textarea name="video_iframe" class="form-control night_input"
-                          id="video_iframe">{{old('video_iframe',$replay->video_iframe)}}</textarea>
-                <script>
-                    CKEDITOR.replace('video_iframe', {
-                        // Define the toolbar groups as it is a more accessible solution.
-                        extraPlugins: 'autoembed',
-                        toolbarGroups: [
-                            {name: 'document', groups: ['mode', 'document', 'doctools']},
-                            '/',
-                            {name: 'clipboard', groups: ['clipboard', 'undo']},
-                            {name: 'editing', groups: ['find', 'selection', 'spellchecker', 'editing']},
-                            {name: 'forms', groups: ['forms']},
-                            '/',
-                            {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
-                            {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']},
-                            {name: 'links', groups: ['links']},
-                            {name: 'insert', groups: ['insert']},
-                            '/',
-                            {name: 'styles', groups: ['styles']},
-                            {name: 'colors', groups: ['colors']},
-                            {name: 'tools', groups: ['tools']},
-                            {name: 'others', groups: ['others']},
-                            {name: 'about', groups: ['about']}
-                        ],
-                        // Remove the redundant buttons from toolbar groups defined above.
-                        removeButtons: 'Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Find,Replace,SelectAll,Scayt,Form,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,Strike,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Unlink,Image,Flash,Table,HorizontalRule,SpecialChar,PageBreak,ShowBlocks,Maximize,About,Checkbox'
-                    });
-                </script>
+                <label for="video_iframe_url" class="night_text">{{__('Вставить HTML код с видео реплеем')}}</label>
+                <input name="video_iframe_url" class="form-control night_input"
+                       id="video_iframe_url" value="{{old('video_iframe_url',$replay->video_iframe_url)}}" maxlength="1000">
             </div>
-            @if ($errors->has('replay_video_iframe'))
+            @if ($errors->has('video_iframe_url'))
                 <div class="alert alert-danger">
-                    {{ $errors->first('replay_video_iframe') }}
+                    {{ $errors->first('video_iframe_url') }}
+                </div>
+            @endif
+            @if (session('not_supported_url_iframe'))
+                <div class="alert alert-danger">
+                    {{ session('not_supported_url_iframe') }}
                 </div>
             @endif
             <div class="row gallery-file__container upload-image">

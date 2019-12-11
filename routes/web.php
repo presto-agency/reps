@@ -90,6 +90,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'ban', 'verified'],],
         ->name('user.topics.load.sections.topics');
 
     Route::resource("{id}/user-replay", 'User\UserReplayController');
+    Route::post('replay_set_iframe','User\UserReplayController@iframe')->name('set.iframe');
     Route::post('{id}/loadmore/load_replay', 'User\UserReplayController@loadReplay')
         ->name('load.more.user.replay');
 

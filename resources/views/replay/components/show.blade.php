@@ -230,10 +230,10 @@
                             <span id="downloadCount"
                                   data-count="{{$replay->downloaded}}">{{$replay->downloaded}}</span>
                         </a>
-                        </d>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
     @if(!empty($replay->video_iframe))
         <div class="replay_video border_shadow">{!! $replay->video_iframe !!}</div>
@@ -254,11 +254,9 @@
                 id: id,
             },
             success: function (data) {
-                $('#downloadCount').html(data.downloaded);
-                console.log(data.downloaded);
+                $('#downloadCount').html(data.downloaded);;
             },
             error: function (request, status, error) {
-                console.log('code: ' + request.status + "\n" + 'message: ' + request.responseText + "\n" + 'error: ' + error);
             }
         });
     });

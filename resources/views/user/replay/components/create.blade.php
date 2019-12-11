@@ -2,7 +2,7 @@
     <div class="create-replay__title">
 
         <svg class="title__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             x="0px" y="0px"
              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
         	<path d="M497,37h-65.7c0.2-7.3,0.4-14.6,0.4-22c0-8.3-6.7-15-15-15H95.3c-8.3,0-15,6.7-15,15c0,7.4,0.1,14.7,0.4,22H15
                 C6.7,37,0,43.7,0,52c0,67.2,17.6,130.6,49.5,178.6c31.5,47.4,73.5,74.6,118.9,77.2c10.3,11.2,21.2,20.3,32.5,27.3v66.7h-25.2
@@ -231,34 +231,18 @@
                 </div>
             @endif
             <div class="form-group">
-                <label for="replay_video_iframe" class="night_text">{{__('Вставить HTML код с видео реплеем')}}</label>
-                <textarea name="video_iframe" class="form-control night_input"
-                          id="replay_video_iframe">{!! old('video_iframe') !!}</textarea>
-                <script>
-                    CKEDITOR.replace('replay_video_iframe', {
-                        // Define the toolbar groups as it is a more accessible solution.
-                        extraPlugins: 'autoembed',
-                        toolbarGroups: [
-                            {name: 'document', groups: ['mode', 'document', 'doctools']},
-                            {name: 'clipboard', groups: ['clipboard', 'undo']},
-                            {name: 'editing', groups: ['find', 'selection', 'spellchecker', 'editing']},
-                            {name: 'forms', groups: ['forms']},
-                            {name: 'styles', groups: ['styles']},
-                            {name: 'colors', groups: ['colors']},
-                            {name: 'tools', groups: ['tools']},
-                            {name: 'others', groups: ['others']},
-                            {name: 'about', groups: ['about']},
-                            {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
-                            {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']},
-                            {name: 'links', groups: ['links']},
-                            {name: 'insert', groups: ['insert']},
-
-                        ],
-                        // Remove the redundant buttons from toolbar groups defined above.
-                        removeButtons: 'Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Find,Replace,SelectAll,Scayt,Form,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,Strike,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Unlink,Image,Flash,Table,HorizontalRule,SpecialChar,PageBreak,ShowBlocks,Maximize,About,Checkbox'
-                    });
-                </script>
+                <label for="video_iframe_url" class="night_text">{{__('Вставить HTML код с видео реплеем')}}</label>
+                <input name="video_iframe_url" class="form-control night_input"
+                       data-url="{{route('set.iframe')}}"
+                       id="video_iframe_url" value="{{old('video_iframe_url')}}" maxlength="1000">
+                <input id="video_iframe" name="video_iframe" type="hidden">
             </div>
+            <span id="video_iframe_urlmr"></span>
+            @if ($errors->has('video_iframe_url'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('video_iframe_url') }}
+                </div>
+            @endif
             @if ($errors->has('video_iframe'))
                 <div class="alert alert-danger">
                     {{ $errors->first('video_iframe') }}
@@ -282,11 +266,66 @@
             @endif
             <div class="create-replay__button">
                 <button class="button button__download-more">
-                    Написать
+                    {{__('Создать')}}
                 </button>
             </div>
         </form>
     </div>
-
 </div>
+<script type="text/javascript">
+    let timer = 0;
+    let findString = document.getElementById('video_iframe_url');
 
+    console.log(findString);
+    // if(findString){
+    //     findString.onkeydown = function(){
+    //         clearInterval(timer);
+    //         timer = setTimeout(sendAjax, 1000);
+    //
+    //     };
+    //
+    // }
+    //
+    //
+    //
+    // // $('#video_iframe_url').on('input', sendAjax());
+    //
+    // function sendAjax() {
+    //     let timerId = setTimeout(getIframe, 1000);
+    //     clearTimeout(timerId);
+    //     function getIframe() {
+    //         let token = $('meta[name="csrf-token"]').attr('content');
+    //         let video_iframe_url = $(this).val();
+    //         let url = $(this).data('url');
+    //         if (video_iframe_url !== '') {
+    //             $.ajax({
+    //                 method: 'POST',
+    //                 url: url,
+    //                 dataType: 'json',
+    //                 async: false,
+    //                 data: {
+    //                     _token: token,
+    //                     video_iframe_url: video_iframe_url,
+    //                 },
+    //                 success: function (data) {
+    //                     if (data.success) {
+    //                         $('#video_iframe').val(data.video_iframe);
+    //                         $("#video_iframe_urlmr").html(data.video_iframe);
+    //                     } else {
+    //                         $("#video_iframe_urlmr").css('color', '#fc0059').html(data.video_iframe);
+    //                         $('#video_iframe').val('');
+    //                     }
+    //                 },
+    //                 error: function (data) {
+    //                     $("#video_iframe_urlmr").css('color', '#fc0059').html(data.responseJSON.errors.video_iframe_url);
+    //                     $('#video_iframe').val('')
+    //                 }
+    //             });
+    //         } else {
+    //             $("#video_iframe_urlmr").html('');
+    //             $('#video_iframe').val('')
+    //         }
+    //     }
+    // }
+
+</script>

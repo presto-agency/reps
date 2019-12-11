@@ -35,8 +35,8 @@ class ReplayUpdateRequest extends FormRequest
             'second_country_id' => 'string|exists:countries,id',
             'second_location'   => 'nullable|integer|min:1|max:20',
             'content'           => 'string|between:1,10000',
-            'video_iframe'      => 'required_without:file|max:1000',
-            'file'              => 'required_without:video_iframe|file|max:5120',
+            'video_iframe_url'      => 'required_without:file|max:1000|url',
+            'file'              => 'required_without:video_iframe_url|file|max:5120',
             'user_replay'       => 'required|in:1,0',
         ];
     }

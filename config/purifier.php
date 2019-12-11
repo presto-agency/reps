@@ -24,9 +24,11 @@ return [
     'settings'      => [
         'default' => [
             'HTML.Doctype'             => 'HTML 4.01 Transitional',
-            'HTML.Allowed'             => 'div[class][style],b[class][style],strong[class|style],i[class|style],em,u,a[href|title|class],ul,ol,li,p[class],br,span[class|style],img[width|height|alt|src|class]',
-            'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align',
-            'AutoFormat.AutoParagraph' => true,
+//            'HTML.Allowed'             => 'div[class][style],b[class][style],strong[class|style],i[class|style],em,u,a[href|title|class],ul,ol,li,p[class],br,span[class|style],img[width|height|alt|src|class]',
+            'HTML.Allowed'             => '',
+//            'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align',
+            'CSS.AllowedProperties'    => '',
+            'AutoFormat.AutoParagraph' => false,
             'AutoFormat.RemoveEmpty'   => true,
         ],
         'test'    => [
