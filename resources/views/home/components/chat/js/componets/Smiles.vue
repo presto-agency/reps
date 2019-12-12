@@ -1,8 +1,9 @@
 <template>
     <transition name="fade">
         <div v-if="status" class="component_smiles">
-            <div class="">
-                <img v-for="(smile, index) in smiles" :key="`smile-${index}`"
+            <img class="close-smiles" src="../../icons/cancel.png" alt="close" @click="CloseSmiles">
+            <div class="smiles-list">
+                <img class="smiles-list-item" v-for="(smile, index) in smiles" :key="`smile-${index}`"
                      :src="`storage/chat/smiles/${smile.src}`"
                      :alt="`${smile.charactor}`"
                      :title="`${smile.charactor}`" @click="selSmile(smile.charactor)">
@@ -34,6 +35,8 @@
             selSmile: function (smile) {
                 let str = smile.replace(smile, ';' + smile + ';');
                 this.$emit("insert_smile", {'str': str, 'smlies': this.smiles});
+            },
+            CloseSmiles() {
                 this.$emit("turnOffStatus");
             }
         }
@@ -51,9 +54,17 @@
         background: white;
         box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
         z-index: 150;
-
-        div {
-            img {
+        .close-smiles {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: 5px;
+            top: 10px;
+            cursor: pointer;
+            }
+        .smiles-list {
+            max-width: 90%;
+            .smiles-list-item {
                 padding: 2px;
                 cursor: pointer;
 
