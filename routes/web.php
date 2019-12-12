@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 /*The Email Verification*/
 Auth::routes([
     'verify' => true,
@@ -61,12 +62,12 @@ Route::get("tournament/{tourney}/{match}/{rep}/download-match",
     'Tournament\TournamentController@downloadMatch')->name('download.match');
 //Route::post("{tournament}/download-all-match", 'Tournament\TournamentController@downloadMultipleMatch')->name('download.all.match');
 Route::post('tournament/loadmore/load_tournament', 'Tournament\TournamentController@loadTournament')
-    ->name('load.more.tournament');
+     ->name('load.more.tournament');
 
 Route::group(['middleware' => ['auth', 'ban', 'verified']], function () {
     /**comments rating: like/dislike*/
     Route::post('comment/{id}/set_rating', 'CommentsRatingController@setRating')
-        ->name('comment.set_rating');
+         ->name('comment.set_rating');
     //    Route::get('comment/{id}/get_rating', 'CommentsRatingController@getRating')->name('comment.ger_rating');
 });
 
@@ -83,21 +84,21 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'ban', 'verified'],],
 
     Route::resource("{id}/user-topics", 'User\UserTopicsController');
     /*** Ajax pagination user-sections(topics) ***/
-//    Route::post('{id}/user-topics/load_sections', 'User\UserTopicsController@forumSectionsAjaxLoad')
-//        ->name('user.topics.load.sections');
+    //    Route::post('{id}/user-topics/load_sections', 'User\UserTopicsController@forumSectionsAjaxLoad')
+    //        ->name('user.topics.load.sections');
     /*** Ajax pagination user-sections-topics ***/
     Route::post('{id}/user-topics/load_sections_topics', 'User\UserTopicsController@forumSectionsTopicsAjaxLoad')
-        ->name('user.topics.load.sections.topics');
+         ->name('user.topics.load.sections.topics');
 
     Route::resource("{id}/user-replay", 'User\UserReplayController');
-    Route::post('replay_set_iframe','User\UserReplayController@iframe')->name('set.iframe');
+    Route::post('replay_set_iframe', 'User\UserReplayController@iframe')->name('set.iframe');
     Route::post('{id}/loadmore/load_replay', 'User\UserReplayController@loadReplay')
-        ->name('load.more.user.replay');
+         ->name('load.more.user.replay');
 
     Route::resource("{id}/user-comments", 'User\UserCommentsController');
     /*** Ajax pagination user-sections-topics ***/
     Route::post('{id}/user-comments/load_sections_comments', 'User\UserCommentsController@forumSectionsCommentsAjaxLoad')
-        ->name('user.comments.load.sections.comments');
+         ->name('user.comments.load.sections.comments');
 
     Route::resource("{id}/user-rating-list", 'User\UserRatingListController');
 
@@ -112,11 +113,10 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'ban', 'verified'],],
     Route::get('/message/{dialogue_id}/load', 'UserMessagingController@loadMoreMessages')->name('user.message_load');
 
     /**get user reputation list*/
-//        Route::get('{id}/get_rating', 'RatingController@getRatingUser')->name('user.get_rating');
+    //        Route::get('{id}/get_rating', 'RatingController@getRatingUser')->name('user.get_rating');
 });
 
 Route::group(['prefix' => 'chat'], function () {
-
     /*Route::get('/', function (){
         return view('stream-section.test-chat');
     });*/

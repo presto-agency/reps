@@ -273,15 +273,14 @@
     </div>
 </div>
 <script type="text/javascript">
-    let timer = 0;
-    let findString = document.getElementById('video_iframe_url');
-
-    console.log(findString);
-    // if(findString){
-    //     findString.onkeydown = function(){
-    //         clearInterval(timer);
-    //         timer = setTimeout(sendAjax, 1000);
+    // let timer = 0;
+    // let findString = document.getElementById('video_iframe_url');
     //
+    //
+    // if (findString) {
+    //     findString.onkeydown = function () {
+    //         clearInterval(timer);
+    //         timer = setTimeout(sendAjax, 2000);
     //     };
     //
     // }
@@ -291,41 +290,42 @@
     // // $('#video_iframe_url').on('input', sendAjax());
     //
     // function sendAjax() {
-    //     let timerId = setTimeout(getIframe, 1000);
-    //     clearTimeout(timerId);
-    //     function getIframe() {
-    //         let token = $('meta[name="csrf-token"]').attr('content');
-    //         let video_iframe_url = $(this).val();
-    //         let url = $(this).data('url');
-    //         if (video_iframe_url !== '') {
-    //             $.ajax({
-    //                 method: 'POST',
-    //                 url: url,
-    //                 dataType: 'json',
-    //                 async: false,
-    //                 data: {
-    //                     _token: token,
-    //                     video_iframe_url: video_iframe_url,
-    //                 },
-    //                 success: function (data) {
-    //                     if (data.success) {
-    //                         $('#video_iframe').val(data.video_iframe);
-    //                         $("#video_iframe_urlmr").html(data.video_iframe);
-    //                     } else {
-    //                         $("#video_iframe_urlmr").css('color', '#fc0059').html(data.video_iframe);
-    //                         $('#video_iframe').val('');
-    //                     }
-    //                 },
-    //                 error: function (data) {
-    //                     $("#video_iframe_urlmr").css('color', '#fc0059').html(data.responseJSON.errors.video_iframe_url);
-    //                     $('#video_iframe').val('')
-    //                 }
-    //             });
-    //         } else {
-    //             $("#video_iframe_urlmr").html('');
-    //             $('#video_iframe').val('')
-    //         }
-    //     }
+    //     console.log('hi');
+        //     let timerId = setTimeout(getIframe, 1000);
+        //     clearTimeout(timerId);
+        //     function getIframe() {
+        //         let token = $('meta[name="csrf-token"]').attr('content');
+        //         let video_iframe_url = $(this).val();
+        //         let url = $(this).data('url');
+        //         if (video_iframe_url !== '') {
+        //             $.ajax({
+        //                 method: 'POST',
+        //                 url: url,
+        //                 dataType: 'json',
+        //                 async: false,
+        //                 data: {
+        //                     _token: token,
+        //                     video_iframe_url: video_iframe_url,
+        //                 },
+        //                 success: function (data) {
+        //                     if (data.success) {
+        //                         $('#video_iframe').val(data.video_iframe);
+        //                         $("#video_iframe_urlmr").html(data.video_iframe);
+        //                     } else {
+        //                         $("#video_iframe_urlmr").css('color', '#fc0059').html(data.video_iframe);
+        //                         $('#video_iframe').val('');
+        //                     }
+        //                 },
+        //                 error: function (data) {
+        //                     $("#video_iframe_urlmr").css('color', '#fc0059').html(data.responseJSON.errors.video_iframe_url);
+        //                     $('#video_iframe').val('')
+        //                 }
+        //             });
+        //         } else {
+        //             $("#video_iframe_urlmr").html('');
+        //             $('#video_iframe').val('')
+        //         }
+        //     }
     // }
 
 </script>

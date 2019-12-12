@@ -236,11 +236,6 @@
                     {{ $errors->first('video_iframe_url') }}
                 </div>
             @endif
-            @if (session('not_supported_url_iframe'))
-                <div class="alert alert-danger">
-                    {{ session('not_supported_url_iframe') }}
-                </div>
-            @endif
             <div class="row gallery-file__container upload-image">
                 <div class="col-8">
                     <input id="uploadFile" class="f-input night_text night_input" readonly/>
