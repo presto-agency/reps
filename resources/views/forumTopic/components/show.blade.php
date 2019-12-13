@@ -16,7 +16,7 @@
                 c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
             </svg>
                 <div class="title__text"
-                     title="{!! ParserToHTML::toHTML(clean($topic->title),'size') !!}">{!! ParserToHTML::toHTML(clean($topic->title),'size') !!}</div>
+                     title="{{clean($topic->title)}}">{{clean($topic->title)}}</div>
             </div>
             <div class="title__wrap">
                 @if(!empty($topic->author))
@@ -43,7 +43,7 @@
         <div class="detailed-forum__info change_gray ">
             <div class="info__items">
                 <div class="left">
-                    <a class="items__watch" href="#">
+                    <div class="items__watch">
                         <svg id="Capa_1" enable-background="new 0 0 515.556 515.556" viewBox="0 0 515.556 515.556"
                              xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -52,8 +52,8 @@
                                 d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"/>
                         </svg>
                         <span>{{$topic->reviews}}</span>
-                    </a>
-                    <a class="items__comment" href="#">
+                    </div>
+                    <div class="items__comment">
                         <svg xmlns="http://www.w3.org/2000/svg"
                              x="0px" y="0px"
                              viewBox="0 0 511.6 511.6" style="enable-background:new 0 0 511.6 511.6;"
@@ -78,7 +78,7 @@
                             c-2.8-3.5-5.1-7.2-7.1-11c-2-3.8-3.9-8-5.9-12.6C459.3,374.9,477.8,358.1,491.3,338.2z"/>
                     </svg>
                         <span>{{ $topic->comments_count }}</span>
-                    </a>
+                    </div>
                 </div>
                 @if(Auth::user() && Auth::user()->isNotUser())
                     <div class="right">
@@ -101,7 +101,7 @@
         <hr>
         <div class="detailed-forum__card card">
             <div class="card-body night_modal">
-                @if(!empty($topic->preview_img) && File::exists($topic->preview_img))
+                @if(!empty($topic->preview_img) && checkFile::checkFileExists($topic->preview_img))
                     <img src="{{ asset($topic->preview_img) }}" class="card-img-top" alt="forum image">
                 @endif
 
@@ -110,7 +110,7 @@
                     class="card-body__text night_text">{!! ParserToHTML::toHTML(clean($topic->content),'size') !!}</div>
                 <div class="card-body__items">
                     <div class="card-body__items-wrap">
-                        <a class="items__quote night_text" href="#">
+                        <div class="items__quote night_text">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                  x="0px" y="0px"
                                  viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -121,7 +121,7 @@
                                 <path d="M326.9,262.8c-3.2,0-8.9,1.7-10.5,1.7c3.2-27.2,25.8-61.1,51.6-79L338.2,160c-37,27.2-65.2,75.6-65.2,127.4
 			                c0,41.6,23.3,64.6,50,64.6c24.1,0,43.5-20.4,43.5-45.9C366.4,281.5,349.5,262.8,326.9,262.8z"/>
                     </svg>
-                        </a>
+                        </div>
                     </div>
                     <div class="card-body__items-wrap">
                         @php
