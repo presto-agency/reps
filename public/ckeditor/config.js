@@ -12,6 +12,7 @@ CKEDITOR.editorConfig = function( config ) {
     CKEDITOR.config.protectedSource.push(/<\?[\s\S]*?\?>/g);// разрешить php-код
     CKEDITOR.config.allowedContent = true; /* all tags */
     config.extraPlugins = 'uploadimage';
+    config.extraPlugins = 'bbcode';
     config.uploadUrl = '/upload/upload.php';
 	// Define changes to default configuration here.
 	// For complete reference see:
