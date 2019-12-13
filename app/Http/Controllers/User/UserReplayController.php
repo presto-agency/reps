@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Replay\ReplayHelper;
-use App\Http\Requests\ReplayIframeRequest;
 use App\Http\Requests\ReplayStoreRequest;
 use App\Http\Requests\ReplayUpdateRequest;
 use App\Models\{Country, Race, Replay, ReplayMap, ReplayType};
@@ -71,6 +70,20 @@ class UserReplayController extends Controller
      */
     public function store(ReplayStoreRequest $request)
     {
+        $title      = clean($request->get('title'));
+        $content    = clean($request->get('content'));
+        $src_iframe = clean($request->get('src_iframe'));
+        $file       = $request->file('file');
+        if (empty($title)) {
+            return back();
+        }
+        if (empty($content)) {
+            return back();
+        }
+        if (empty($src_iframe) && empty($file)) {
+            return back();
+        }
+
         $data = new Replay;
         $this->replayDataSave($data, $request);
         $data->save();
@@ -131,6 +144,22 @@ class UserReplayController extends Controller
      */
     public function update(ReplayUpdateRequest $request, $id, $user_replay)
     {
+        $title      = clean($request->get('title'));
+        $content    = clean($request->get('content'));
+        $src_iframe = clean($request->get('src_iframe'));
+        $file       = $request->file('file');
+        if (empty($title)) {
+            return back();
+        }
+        if (empty($content)) {
+            return back();
+        }
+        if (empty($src_iframe) && empty($file)) {
+            return back();
+        }
+        if (empty($title) || empty($content) || empty($src_iframe)) {
+            return back();
+        }
         $data = Replay::find($user_replay);
         $this->replayDataUpdate($data, $request);
         $data->save();
@@ -226,7 +255,7 @@ class UserReplayController extends Controller
 
     public function columns($data, $request)
     {
-        $data->title             = strip_tags($request->title);
+        $data->title             = clean($request->title);
         $data->map_id            = $request->map_id;
         $data->first_country_id  = $request->first_country_id;
         $data->second_country_id = $request->second_country_id;
@@ -236,28 +265,39 @@ class UserReplayController extends Controller
         $data->first_location    = $request->first_location;
         $data->second_location   = $request->second_location;
         $data->content           = clean($request->content);
-        $data->video_iframe      = clean($request->video_iframe);
+        $data->src_iframe        = clean($request->src_iframe);
     }
 
-    public function iframe(ReplayIframeRequest $request)
+    public function iframe()
     {
-        $embed = Embed::make($request->video_iframe_url)->parseUrl();
-        if ($embed == false || empty($embed)) {
+        $request = request();
+        if ($request->ajax()) {
+            $embed = Embed::make($request->video_iframe_url)->parseUrl();
+            if ($embed == false || empty($embed)) {
+                return \Response::json([
+                    'success' => 'false',
+                    'message' => 'Указаный сервис не поддерживаеться',
+                ], 400);
+            }
+            $embed->setAttribute([
+                'width'  => '100%',
+                'height' => '100%',
+            ]);
+            $iframe_string = $embed->getHtml();
+            try {
+                preg_match('/src="([^"]+)"/', $iframe_string, $match);
+                $src = $match[1];
+            } catch (\Exception $e) {
+                \Log::error($e);
+            }
+
             return \Response::json([
-                'success'      => false,
-                'video_iframe' => 'Указаный сервис не поддерживаеться',
+                'success' => 'true',
+                'message' => $src,
             ], 200);
         }
-        $embed->setAttribute([
-            'width'  => '100%',
-            'height' => '100%',
-        ]);
-        $iframe = $embed->getHtml();
 
-        return \Response::json([
-            'success'      => true,
-            'video_iframe' => $iframe,
-        ], 200);
+        return null;
     }
 
     public function saveFile($request, $data)

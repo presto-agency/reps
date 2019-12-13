@@ -1,6 +1,5 @@
 <div class="create-replay border_shadow">
     <div class="create-replay__title">
-
         <svg class="title__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
              x="0px" y="0px"
              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -13,17 +12,16 @@
                 c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                 C479.3,122.6,463.9,174.4,437.6,213.9z"/>
         </svg>
-
         <p class="title__text">{{__('Создать новый Replay')}}</p>
     </div>
     <div class="create-replay__body night_modal">
-        <form class="create-replay__form" action="{{ route('user-replay.store',['id' => auth()->id()]) }}" method="POST"
-              enctype="multipart/form-data">
+        <form class="create-replay__form" method="POST" enctype="multipart/form-data"
+              action="{{ route('user-replay.store',['id' => auth()->id()]) }}">
             @csrf
             <div class="form-group">
                 <label for="create-replay-name" class="night_text">{{__('* Название:')}}</label>
                 <input type="text" class="form-control night_input" id="create-replay-name" placeholder="Название"
-                       name="title" value="{{old("title")}}" required minlength="1" maxlength="255">
+                       name="title" value="{{old("title")}}" required maxlength="255">
             </div>
             @if ($errors->has('title'))
                 <div class="alert alert-danger">
@@ -133,8 +131,8 @@
                 <div class="col-md-6 form-group">
                     <label for="create-replay__second-location" class="night_text">{{__('Первая локация:')}}</label>
                     <input type="text" name="first_location" class="form-control night_input"
-                           id="create-replay__second-location" minlength="1"
-                           maxlength="255" value="{{old('first_location')}}" placeholder="Первая локация">
+                           id="create-replay__second-location"
+                           value="{{old('first_location')}}" placeholder="Первая локация">
                 </div>
                 @if ($errors->has('first_location'))
                     <div class="alert alert-danger">
@@ -144,8 +142,8 @@
                 <div class="col-md-6 form-group">
                     <label for="create-replay__second-location" class="night_text">{{__('Вторая локация:')}}</label>
                     <input type="text" name="second_location" class="form-control night_input"
-                           id="create-replay__second-location" minlength="1"
-                           maxlength="255" value="{{old('second_location')}}" placeholder="Вторая локация">
+                           id="create-replay__second-location"
+                           value="{{old('second_location')}}" placeholder="Вторая локация">
                 </div>
                 @if ($errors->has('second_location'))
                     <div class="alert alert-danger">
@@ -198,12 +196,11 @@
             <div class="form-group">
                 <label for="content_descr" class="night_text">{{__('Краткое описание')}}</label>
                 <textarea name="content" class="form-control night_input"
-                          id="content_descr">{!! old('content') !!}</textarea>
+                          id="content_descr">{{ old('content') }}</textarea>
                 <script>
                     CKEDITOR.replace('content_descr', {
                         // Define the toolbar groups as it is a more accessible solution.
                         extraPlugins: 'autoembed',
-                        // extraPlugins: 'youtube',
                         toolbarGroups: [
                             {name: 'document', groups: ['mode', 'document', 'doctools']},
                             {name: 'clipboard', groups: ['clipboard', 'undo']},
@@ -218,7 +215,6 @@
                             {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']},
                             {name: 'links', groups: ['links']},
                             {name: 'insert', groups: ['insert']},
-
                         ],
                         // Remove the redundant buttons from toolbar groups defined above.
                         removeButtons: 'Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Find,Replace,SelectAll,Scayt,Form,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,Strike,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Unlink,Image,Flash,Table,HorizontalRule,SpecialChar,PageBreak,ShowBlocks,Maximize,About,Checkbox'
@@ -231,30 +227,29 @@
                 </div>
             @endif
             <div class="form-group">
-                <label for="video_iframe_url" class="night_text">{{__('Вставить HTML код с видео реплеем')}}</label>
-                <input name="video_iframe_url" class="form-control night_input"
+                <label for="video_iframe_url" class="night_text">{{__('Вставить URL для Video Iframe')}}</label>
+                <input id="video_iframe_url" name="video_iframe_url" class="form-control night_input" maxlength="500"
+                       placeholder="{{__('Вставить URL для Video Iframe')}}"
                        data-url="{{route('set.iframe')}}"
-                       id="video_iframe_url" value="{{old('video_iframe_url')}}" maxlength="1000">
-                <input id="video_iframe" name="video_iframe" type="hidden">
+                       value="{{old('video_iframe_url')}}">
+                <input name="src_iframe" type="hidden" id="src_iframe" tabindex="-1" readonly
+                       data-check="{{\Request::route()->getName()}}" value="">
             </div>
-            <span id="video_iframe_urlmr"></span>
-            @if ($errors->has('video_iframe_url'))
+            <iframe id="video_iframe_set" class="d-none"></iframe>
+                        <div id="video_iframe_error" class="alert alert-danger d-none"></div>
+            @if ($errors->has('src_iframe'))
                 <div class="alert alert-danger">
-                    {{ $errors->first('video_iframe_url') }}
-                </div>
-            @endif
-            @if ($errors->has('video_iframe'))
-                <div class="alert alert-danger">
-                    {{ $errors->first('video_iframe') }}
+                    {{ $errors->first('src_iframe') }}
                 </div>
             @endif
             <div class="row gallery-file__container upload-image">
                 <div class="col-8">
-                    <input id="uploadFile" class="f-input night_modal_special night_text night_input" readonly/>
+                    <input id="uploadFile" class="f-input night_modal_special night_text night_input"
+                           placeholder="{{__('Выбрать файл')}}" readonly/>
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
-                        <span>Выбрать файл</span>
+                        <span>{{__('Выбрать файл')}}</span>
                         <input id="uploadBtn" type="file" class="upload " name="file"/>
                     </div>
                 </div>
@@ -266,66 +261,10 @@
             @endif
             <div class="create-replay__button">
                 <button class="button button__download-more">
-                    {{__('Создать')}}
+                    {{__('Отправить')}}
                 </button>
             </div>
         </form>
     </div>
 </div>
-<script type="text/javascript">
-    // let timer = 0;
-    // let findString = document.getElementById('video_iframe_url');
-    //
-    //
-    // if (findString) {
-    //     findString.onkeydown = function () {
-    //         clearInterval(timer);
-    //         timer = setTimeout(sendAjax, 2000);
-    //     };
-    //
-    // }
-    //
-    //
-    //
-    // // $('#video_iframe_url').on('input', sendAjax());
-    //
-    // function sendAjax() {
-    //     console.log('hi');
-        //     let timerId = setTimeout(getIframe, 1000);
-        //     clearTimeout(timerId);
-        //     function getIframe() {
-        //         let token = $('meta[name="csrf-token"]').attr('content');
-        //         let video_iframe_url = $(this).val();
-        //         let url = $(this).data('url');
-        //         if (video_iframe_url !== '') {
-        //             $.ajax({
-        //                 method: 'POST',
-        //                 url: url,
-        //                 dataType: 'json',
-        //                 async: false,
-        //                 data: {
-        //                     _token: token,
-        //                     video_iframe_url: video_iframe_url,
-        //                 },
-        //                 success: function (data) {
-        //                     if (data.success) {
-        //                         $('#video_iframe').val(data.video_iframe);
-        //                         $("#video_iframe_urlmr").html(data.video_iframe);
-        //                     } else {
-        //                         $("#video_iframe_urlmr").css('color', '#fc0059').html(data.video_iframe);
-        //                         $('#video_iframe').val('');
-        //                     }
-        //                 },
-        //                 error: function (data) {
-        //                     $("#video_iframe_urlmr").css('color', '#fc0059').html(data.responseJSON.errors.video_iframe_url);
-        //                     $('#video_iframe').val('')
-        //                 }
-        //             });
-        //         } else {
-        //             $("#video_iframe_urlmr").html('');
-        //             $('#video_iframe').val('')
-        //         }
-        //     }
-    // }
-
-</script>
+<script src="{{ mix('/js/embed-video-for-iframe.js') }}" type="text/javascript"></script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Services\Base\RegexService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ReplayStoreRequest extends FormRequest
@@ -34,9 +35,10 @@ class ReplayStoreRequest extends FormRequest
             'second_race'       => 'required|string|exists:races,id',
             'second_country_id' => 'required|string|exists:countries,id',
             'second_location'   => 'nullable|integer|min:1|max:20',
-            'content'           => 'required|string|between:10,5000',
-            'video_iframe'      => 'required_without:file|max:1000',
-            'file'              => 'required_without:video_iframe|file|max:5120',
+            'content'           => 'required|string|between:10,1000',
+            //            'video_iframe'      => 'required_without:file|max:1000',
+            'src_iframe'        => 'required_without:file|nullable|url|max:255',
+            'file'              => 'required_without:src_iframe|file|max:5120',
             'user_replay'       => 'required|in:1,0',
         ];
     }
@@ -48,9 +50,10 @@ class ReplayStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'content.required'    => 'Краткое описание обязаельно для заполнения',
-            'content.string'      => 'Краткое описание должно быть  типом строки',
-            'content.between'     => 'Краткое описание должно быть между 10 и 5000 символов',
+            'content.required'     => 'Краткое описание обязаельно для заполнения',
+            'content.string'       => 'Краткое описание должно быть  типом строки',
+            'content.between'      => 'Краткое описание должно быть между 10 и 1000 символов',
         ];
     }
+
 }

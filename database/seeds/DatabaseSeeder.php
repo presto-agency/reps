@@ -102,6 +102,7 @@ class DatabaseSeeder extends Seeder
          * loc.(<replays>).
          */
         $this->call(TransferReplays::class);
+        $this->call(SeederGetIframeSrc::class);
 
         /**
          *

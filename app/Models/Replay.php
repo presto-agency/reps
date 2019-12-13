@@ -62,7 +62,7 @@ class Replay extends Model
 
         ];
     protected $hidden = [
-        'video_iframe'
+        'src_iframe'
     ];
 
     public static function checkUser4Update()
