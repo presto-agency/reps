@@ -25,7 +25,7 @@
             <div class="form-group">
                 <label for="content-comment" class="night_text">  {{__('Коментарий')}}</label>
                 <textarea name="content" class="form-control night_input"
-                          id="content-comment">{{old('content')}}</textarea>
+                          id="content-comment">{{clean(old('content'))}}</textarea>
                 <script type="text/javascript">
                     CKEDITOR.replace('content-comment', {
                         // Define the toolbar groups as it is a more accessible solution.
