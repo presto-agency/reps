@@ -14,7 +14,7 @@
                         @isset($forumSection)
                             @foreach($forumSection as $item)
                                 <option class="night_input" value="{{$item->id}}"
-                                        {{ old('forum_section_id',$topic->forum_section_id) == $item->id ? "selected":""}}>
+                                    {{ old('forum_section_id',$topic->forum_section_id) == $item->id ? "selected":""}}>
                                     {{$item->title}}
                                 </option>
                             @endforeach
@@ -30,7 +30,8 @@
             <div class="form-group">
                 <label for="create-topic__name" class="night_text">{{__('*Название:')}}</label>
                 <input type="text" class="form-control create-topic__name night_input" id="create-topic__name"
-                       placeholder="Название" name="title" value="{!! old('title',ParserToHTML::toHTML($topic->title,'size')) !!}" minlength="1"
+                       placeholder="{{__('*Название:')}}" name="title"
+                       value="{{clean(old('title',$topic->title))}}" minlength="1"
                        maxlength="255"
                        required>
             </div>
@@ -42,7 +43,8 @@
             <div class="upload-image">
                 <div class="row">
                     <div class="col-8">
-                        <input id="uploadFile3" class="f-input night_input" placeholder="{{__('Выбрать картинку превью')}}"
+                        <input id="uploadFile3" class="f-input night_input"
+                               placeholder="{{__('Выбрать картинку превью')}}"
                                readonly/>
                     </div>
                     <div class="col-4 pl-0">
@@ -64,14 +66,11 @@
                 <label for="preview_content" class="night_text">{{__('*Краткое содержание')}}</label>
                 <textarea type="text" class="form-control create-topic__name night_input" id="preview_content"
                           name="preview_content" minlength="1" maxlength="1000" rows="16" required>
-                    {!! old('preview_content', $topic->preview_content) !!}
+                    {{clean(old('preview_content',$topic->preview_content))}}
             </textarea>
                 <script>
-
-                    CKEDITOR.replace('preview_content', {
-                    });
+                    CKEDITOR.replace('preview_content', {});
                 </script>
-
             </div>
             @if ($errors->has('preview_content'))
                 <div class="alert alert-danger">
@@ -79,14 +78,13 @@
                 </div>
             @endif
             <div class="form-group">
-                <label for="content" class="night_text">{{__('*Содержание')}}</label>
-                <textarea type="text" class="form-control create-topic__name night_input" id="preview_content1"
-                          name="content" minlength="1" maxlength="50000" rows="32" required>
-                   {!!old('content',$topic->content)!!}
+                <label for="main_content" class="night_text">{{__('*Содержание')}}</label>
+                <textarea type="text" class="form-control create-topic__name night_input" id="main_content"
+                          name="content" maxlength="50000" rows="32" required>
+                   {{clean(old('content',$topic->content))}}
             </textarea>
                 <script>
-                    CKEDITOR.replace('preview_content1', {
-                    });
+                    CKEDITOR.replace('main_content', {});
                 </script>
             </div>
             @if ($errors->has('content'))

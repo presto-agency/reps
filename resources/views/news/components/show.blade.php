@@ -23,17 +23,18 @@
 			c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
 			c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
             </svg>
-            <p class="title__text night_text"
-               title="{!! ParserToHTML::toHTML($news->title,'size') !!}">{!! ParserToHTML::toHTML($news->title,'size') !!}</p>
+            <p class="title__text night_text" title="{{ clean(ParserToHTML::toHTML($news->title,'size')) }}">
+                {{ clean(ParserToHTML::toHTML($news->title,'size')) }}
+            </p>
         </div>
         @if(!empty($news->author))
             <div class="title__wrap">
                 @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
                 @endif
-                @guest()
+                @guest
                     <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
-                @endguest()
+                @endguest
                 <a href="{{ route('user_profile',['id'=>$news->author->id]) }}" class="title__nickname night_text"
                    title="{{ $news->author->name ? $news->author->name : 'user' }}">{{ $news->author->name ? $news->author->name : 'user' }}</a>
                 @if(!empty($news->author->countries))
@@ -60,7 +61,7 @@
                         <img src="{{asset('images/svg/comments.svg')}}" alt="comments">
                         <span> {{ $news->comments_count }}</span>
                     </span>
-                        @if(Auth::user() && Auth::user()->isNotUser())
+                        @if(Auth::check() && Auth::user()->isNotUser())
                             <div class="right">
                                 <a href="{{route('user-topics.edit',['id' => $news->user_id,'user_topic'=>$news->id])}}">
                                     <img src="{{asset('images/svg/edit-regular.svg')}}" alt="edit">
@@ -76,8 +77,12 @@
                     @if(!empty($news->preview_img) && File::exists($news->preview_img))
                         <img src="{{ asset($news->preview_img) }}" class="img-fluid" alt="news">
                     @endif
-                    <h2 class="card-body__title night_text"> {!! ParserToHTML::toHTML($news->preview_content,'size') !!}</h2>
-                    <div class="card-body__text night_text">{!! ParserToHTML::toHTML($news->content,'size') !!}</div>
+                    <h2 class="card-body__title night_text">
+                        {!! ParserToHTML::toHTML($news->preview_content,'size') !!}
+                    </h2>
+                    <div class="card-body__text night_text">
+                        {!!  ParserToHTML::toHTML($news->content,'size') !!}
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,7 +91,6 @@
             <div class="card-body__items">
                 <div class="card-body__items-wrap">
                     <button onclick="QuoteNews({{$news->id}})" class="items__quote">
-                        {{--                    <a class="items__quote" href="#">--}}
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                              x="0px" y="0px"
                              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
