@@ -46,7 +46,7 @@
                                         {{$comment->user->name}}</a>
                                     @if($comment->user->countries)
                                         <img src="{{asset($comment->user->countries->flagOrDefault())}}"
-                                             class="info__flag" alt="flag" title="{{$comment->countries->name}}">
+                                             class="info__flag" alt="flag" title="{{$comment->user->countries->name}}">
                                     @endif
                                     <img
                                         src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
