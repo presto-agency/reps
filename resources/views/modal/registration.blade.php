@@ -17,9 +17,9 @@
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="form-group">
-                        <input class="form-control night_input@error('name') is-invalid @enderror"
+                        <input class="form-control night_input @error('name') is-invalid @enderror"
                                type="text" id="registration-name" name="name" autocomplete="name"
-                               required autofocus value="{{ old('name') }}" placeholder="{{ __('Name') }}">
+                               required autofocus value="{{ old('name') }}" placeholder="{{__('Name')}}">
 
                         @error('name')
                         <span class="invalid-feedback" role="alert">

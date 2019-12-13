@@ -4,40 +4,40 @@
             <p class="title_text">{{__('Реплеи')}}</p>
         </div>
         <div class="row row_game">
-            @isset($replaysProLsHome)
+            @if(isset($replaysProLsHome) && $replaysProLsHome->isNotEmpty())
                 @foreach($replaysProLsHome as $item)
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-3 col-4 wrapper_game">
                         <div class="game_oneSection">
                             <a href="{{route('replay.show',['replay'=>$item->id, 'type' => 'pro'])}}" class="name_game"
-                               title="{!! strip_tags(ParserToHTML::toHTML($item->title,'size')) !!}">{!! ParserToHTML::toHTML($item->title,'size') !!}</a>
+                               title="{{clean($item->title)}}">{{clean($item->title)}}</a>
                             <div class="content_game">
-                                <p class="text">Страны:</p>
-                                @isset($item->firstCountries)
+                                <p class="text">{{__('Страны:')}}</p>
+                                @if($item->firstCountries)
                                     <img class="icon_bars" src="{{asset($item->firstCountries->flagOrDefault())}}"
                                          alt="flag" title="{{$item->firstCountries->name}}"/>
-                                @endisset
-                                <p class="text">vs</p>
-                                @isset($item->secondCountries)
+                                @endif
+                                <p class="text">{{__('vs')}}</p>
+                                @if($item->secondCountries)
                                     <img class="icon_bars" src="{{asset($item->secondCountries->flagOrDefault())}}"
                                          alt="flag" title="{{$item->secondCountries->name}}"/>
-                                @endisset
+                                @endif
                             </div>
                             <div class="content_game">
-                                <p class="text">Матчап:</p>
-                                @isset($item->firstRaces)
+                                <p class="text">{{__('Матчап:')}}</p>
+                                @if($item->firstRaces)
                                     <p class="text_matchap"
                                        title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</p>
-                                @endisset
-                                <p class="text">vs</p>
-                                @isset($item->secondRaces)
+                                @endif
+                                <p class="text">{{__('vs')}}</p>
+                                @if($item->secondRaces)
                                     <p class="text_matchap"
                                        title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</p>
-                                @endisset
+                                @endif
                             </div>
                         </div>
                     </div>
                 @endforeach
-            @endisset
+            @endif
         </div>
         <div class="container_btn">
             <a href="{{route('replay.index',['type' =>'pro'])}}" class="name_game" title="ДРУГИЕ ГОСУ РЕПЛЕИ">
@@ -45,40 +45,40 @@
             </a>
         </div>
         <div class="row row_game">
-            @isset($replaysUserLsHome)
+            @if(isset($replaysUserLsHome) && $replaysProLsHome->isNotEmpty())
                 @foreach($replaysUserLsHome as $item)
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-3 col-4 wrapper_game">
                         <div class="game_oneSection">
                             <a href="{{route('replay.show',['replay'=>$item->id, 'type' => 'user'])}}" class="name_game"
-                               title="{!! strip_tags(ParserToHTML::toHTML($item->title,'size')) !!}">{!! ParserToHTML::toHTML($item->title,'size') !!}</a>
+                               title="{{clean($item->title)}}">{{clean($item->title)}}</a>
                             <div class="content_game">
                                 <p class="text">{{__('Страны:')}}</p>
-                                @isset($item->firstCountries)
+                                @if($item->firstCountries)
                                     <img class="icon_bars" src="{{asset($item->firstCountries->flagOrDefault())}}"
                                          alt="flag" title="{{$item->firstCountries->name}}"/>
-                                @endisset
+                                @endif
                                 <p class="text">{{__('vs')}}</p>
-                                @isset($item->secondCountries)
+                                @if($item->secondCountries)
                                     <img class="icon_bars" src="{{asset($item->secondCountries->flagOrDefault())}}"
                                          alt="flag" title="{{$item->secondCountries->name}}"/>
-                                @endisset
+                                @endif
                             </div>
                             <div class="content_game">
                                 <p class="text">{{__('Матчап:')}}</p>
-                                @isset($item->firstRaces)
+                                @if($item->firstRaces)
                                     <p class="text_matchap"
                                        title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</p>
-                                @endisset
+                                @endif
                                 <p class="text">{{__('vs')}}</p>
-                                @isset($item->secondRaces)
+                                @if($item->secondRaces)
                                     <p class="text_matchap"
                                        title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</p>
-                                @endisset
+                                @endif
                             </div>
                         </div>
                     </div>
                 @endforeach
-            @endisset
+            @endif
         </div>
         <div class="container_btn">
             <a href="{{route('replay.index',['type' =>'user'])}}" class="name_game">
