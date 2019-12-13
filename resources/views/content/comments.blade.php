@@ -42,17 +42,20 @@
                                              alt="avatar">
                                     @endguest()
                                     <a href="{{route('user_profile',['id'=>$comment->user->id])}}"
-                                       class="info__nickname">{{$comment->user->name}}</a>
+                                       title="{{$comment->user->name}}" class="info__nickname">
+                                        {{$comment->user->name}}</a>
                                     @if($comment->user->countries)
                                         <img src="{{asset($comment->user->countries->flagOrDefault())}}"
-                                             class="info__flag" alt="flag">
+                                             class="info__flag" alt="flag" title="{{$comment->countries->name}}">
                                     @endif
                                     <img
                                         src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
-                                        class="info__cube" alt="race">
+                                        class="info__cube" alt="race" title="{{$comment->user->races->title}}">
                                     @if($comment->user->races)
-                                        <p class="info__text">{{$comment->user->comments_count.' pts'}}
-                                            | {{$comment->user->count_positive - $comment->user->count_negative.' кг'}}</p>
+                                        <p class="info__text"
+                                           title="{{$comment->user->comments_count.' pts | '. $comment->user->rating.' кг'}}">
+                                            {{$comment->user->comments_count.' pts | '. $comment->user->rating.' кг'}}
+                                        </p>
                                     @endif
                                     <span class="info__date">{{$comment->created_at->format('H:i d.m.Y')}}</span>
                                 </div>
