@@ -12,15 +12,14 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script type="text/javascript"   src="{{ asset('ckeditor\ckeditor.js') }}">
+    console.log('hfuhgu');
+    </script>
 {{--    <link rel="stylesheet" href="minified/themes/default.min.css"/>--}}
-    {{--    <script src="minified/sceditor.min.js"></script>--}}
-    {{--    <script src="//cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>--}}
-{{--        <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>--}}
-    <script src="https://cdn.ckeditor.com/4.13.0/full-all/ckeditor.js"></script>
-{{--    <script src="../../../public/ckeditor"></script>--}}
-{{--    <script src="minified/sceditor.min.js"></script>--}}
+{{--    //old--}}
+{{--    <script src="https://cdn.ckeditor.com/4.13.0/full-all/ckeditor.js"></script>--}}
     <!-- Fonts -->
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
 {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
 {{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}

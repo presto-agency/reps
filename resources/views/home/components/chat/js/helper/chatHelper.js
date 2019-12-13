@@ -14,11 +14,16 @@ export const getSelection = () => {
     return sel;
 };
 export const strParse= (str) => {
-
-    str= str.replace(/\[url\]([\s\S]*)\[\/url\]/gim, '<a href="$1" target="_blank">Ссылка</a>');
-    str= str.replace(/%([\s\S]*)%/gim, '<img src="$1"  alt="picture"/>');
-    str= str.replace(/;([\s\S]*);/gim, '<img src="storage/chat/smiles/$1" style="display: inline;" alt="smile"/>');
-    str = str.replace(/\[img\]([\s\S]*)\[\/img\]/gim, '<img src="$1" style="max-width: 100%;" alt="Incorrect image link"/>');
+    str= str.replace(/\[b\]/g, `<b>`);
+    str= str.replace(/\[\/b\]/g, `</b>`);
+    str= str.replace(/\[i\]/g, `<i>`);
+    str= str.replace(/\[\/i\]/g, `</i>`);
+    str= str.replace(/\[u\]/g, `<u>`);
+    str= str.replace(/\[\/u\]/g, `</u>`);
+    str= str.replace(/\[url\]([\s\S]*)\[\/url\]/g, '<a href="$1" target="_blank">Ссылка</a>');
+    str= str.replace(/%([^%]*)%/g, '<img src="$1"  alt="picture"/>');
+    str= str.replace(/;([^;]*);/g, '<img src="storage/chat/smiles/$1"style="display: inline;" alt="smile"/>');
+    str = str.replace(/\[img\]([\s\S]*)\[\/img\]/g, '<img src="$1" style="max-width: 100%;" alt="Incorrect image link"/>');
     for(let i=1; i<=6; i++) {
         if(str.search(`c${i}`)>-1) {
             if(i===1) {
@@ -65,13 +70,14 @@ export const parseUser = (str,id,usernick,messagearray) => {
 };
 export const parsePath = (mes,smiles,images) => {
     if(mes.search(';')>-1){
+        console.log(smiles)
         smiles.forEach((item)=>{
             if(mes.search(item.charactor)>-1)
-                mes = mes.replace(/;([\s\S]*);/gim, `;${item.src};`);
+                mes = mes.replace(/;([^;]+);/g, `;${item.src};`);
         })
     }
     if(mes.search('%')>-1)
-            mes = mes.replace(/%([\s\S]*)%/gim, `%${images.filepath}%`);
+            mes = mes.replace(/%([^%]+)%/g, `%${images.filepath}%`);
     return mes;
 };
 export const CheckAvatar = (img) => {
@@ -94,9 +100,9 @@ export const bold = (text) => {
     textareaObj().value = text;
     let sel = document.getSelection().toString();
     if (sel.length > 0) {
-        textareaObj().value = textareaObj().value.replace(sel, '<b>'+sel+'</b>');
+        textareaObj().value = textareaObj().value.replace(sel, '[b]'+sel+'[/b]');
     } else {
-        insertText('<b></b>')
+        insertText('[b][/b]')
     }
     textareaObj().focus();
     return textareaObj().value
@@ -110,10 +116,10 @@ export const italic = (text) => {
     textareaObj().value = text;
     let sel = document.getSelection().toString();
     if (sel.length > 0) {
-        let newValue = textareaObj().value.replace(sel, '<i>'+sel+'</i>');
+        let newValue = textareaObj().value.replace(sel, '[i]'+sel+'[/i]');
         textareaObj().value = newValue;
     }  else {
-        insertText('<i></i>')
+        insertText('[i][/i]')
     }
     textareaObj().focus();
     return textareaObj().value
@@ -138,10 +144,10 @@ export const underline = (text) => {
     textareaObj().value = text;
     let sel = document.getSelection().toString();
     if (sel.length > 0) {
-        let newValue = textareaObj().value.replace(sel, '<u>'+sel+'</u>');
+        let newValue = textareaObj().value.replace(sel, '[u]'+sel+'[/u]');
         textareaObj().value = newValue;
     } else {
-        insertText('<u></u>')
+        insertText('[u][/u]')
     }
     textareaObj().focus();
     return textareaObj().value

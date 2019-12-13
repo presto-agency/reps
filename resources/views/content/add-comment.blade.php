@@ -26,37 +26,9 @@
                 <label for="content-comment" class="night_text">  {{__('Коментарий')}}</label>
                 <textarea name="content" class="form-control night_input"
                           id="content-comment">{{old('content')}}</textarea>
-                <script>
-                    CKEDITOR.config.allowedContent = true;
-                    CKEDITOR.config.fillEmptyBlocks = false;
-                    CKEDITOR.config.indentClasses = ["i","ul-grey", "ul-red", "text-red", "ul-content-red", "circle", "style-none", "decimal", "paragraph-portfolio-top", "ul-portfolio-top", "url-portfolio-top", "text-grey"];
-                    CKEDITOR.config.protectedSource.push(/<(style)[^>]*>.*<\/style>/ig);
-                    // CKEDITOR.config.protectedSource.push(/<(script)[^>]*>.*<\/script>/ig);// разрешить теги <script>
-                    CKEDITOR.config.protectedSource.push(/<\?[\s\S]*?\?>/g);// разрешить php-код
-                    CKEDITOR.config.allowedContent = true; /* all tags */
+                <script type="text/javascript">
                     CKEDITOR.replace('content-comment', {
                         // Define the toolbar groups as it is a more accessible solution.
-
-                        extraPlugins: 'autoembed',
-                        toolbarGroups: [
-                            {name: 'document', groups: ['mode', 'document', 'doctools']},
-                            {name: 'clipboard', groups: ['clipboard', 'undo']},
-                            {name: 'editing', groups: ['find', 'selection', 'spellchecker', 'editing']},
-                            {name: 'forms', groups: ['forms']},
-                            {name: 'styles', groups: ['styles']},
-                            {name: 'colors', groups: ['colors']},
-                            {name: 'tools', groups: ['tools']},
-                            {name: 'others', groups: ['others']},
-                            {name: 'about', groups: ['about']},
-                            {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
-                            {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']},
-                            {name: 'links', groups: ['links']},
-                            {name: 'insert', groups: ['insert']},
-
-
-                        ],
-                        // Remove the redundant buttons from toolbar groups defined above.
-                        removeButtons: 'Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteText,PasteFromWord,Undo,Redo,Find,Replace,SelectAll,Scayt,Form,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,Strike,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Anchor,Unlink,Image,Flash,Table,HorizontalRule,SpecialChar,PageBreak,ShowBlocks,Maximize,About,Checkbox'
                     });
                 </script>
                 <div class="messenger__button add-comment__btn">
