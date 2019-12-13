@@ -36,7 +36,6 @@ class ReplayStoreRequest extends FormRequest
             'second_country_id' => 'required|string|exists:countries,id',
             'second_location'   => 'nullable|integer|min:1|max:20',
             'content'           => 'required|string|between:10,1000',
-            //            'video_iframe'      => 'required_without:file|max:1000',
             'src_iframe'        => 'required_without:file|nullable|url|max:255',
             'file'              => 'required_without:src_iframe|file|max:5120',
             'user_replay'       => 'required|in:1,0',
