@@ -40,12 +40,10 @@
                     <div class="userText_block">
                         <span class="title night_text">{{ $user->name }}</span>
                     @if($user->isOnline())
-                        <!-- if online displays this -->
                             <span class="date">
                                 {{__('online')}}
                             </span>
                     @else
-                        <!-- if INACTIVE displays this -->
                             <div class="date">
                                 {{\Carbon\Carbon::parse($user->activity_at)->diffForHumans()}}
                             </div>

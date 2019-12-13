@@ -34,20 +34,19 @@
 
         </div>
     @endif
-    @isset($replay)
-        @if(!$replay->isEmpty())
+        @if(isset($replay) && $replay->isNotEmpty())
             @foreach($replay as $item)
                 <div class="gocu-replays__subtitle change_gray">
                     <a class="subtitle__name night_text"
                        href="{{ asset("replay/{$item->id}"."?type={$item::$type[$item->user_replay]}")}}">
-                        {!!  ParserToHTML::toHTML($item->title,'size')!!}
+                        {{clean($item->title)}}
                     </a>
                     <p class="subtitle__date night_text">{{$item->created_at->format('H:i d.m.Y')}}</p>
                 </div>
                 <div class="gocu-replays__match">
                     <div class="match__author">
                         <div class="subtitle__info">
-                            @if(isset($item->users) && !empty($item->users))
+                            @if($item->users)
                                 @if(auth()->check() && auth()->user()->userViewAvatars())
                                     <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
                                 @endif
@@ -56,8 +55,8 @@
                                 @endguest()
                                 <span class="comment-author__nickname"
                                       title="{{$item->users->name}}">{{$item->users->name}}</span>
-                            @endisset
-                            <span class="comment-author__replay-item night_text">Видео реплай</span>
+                            @endif
+                            <span class="comment-author__replay-item night_text">{{__('Видео реплей')}}</span>
                         </div>
                         <div class="subtitle__icons">
                             <svg version="1.1" id="Capa_1"
@@ -101,37 +100,37 @@
                             </a>
                         </div>
                     </div>
-                    <p class="match__comment">{!!ParserToHTML::toHTML($item->content,'size')!!}</p>
+                    <p class="match__comment">{!!ParserToHTML::toHTML(clean($item->content),'size')!!}</p>
                     <div class="match__info">
                         <div class="info__country">
-                            <span class="country__text night_text">Страны:</span>
-                            @isset($item->firstCountries)
+                            <span class="country__text night_text">{{__('Страны:')}}</span>
+                            @if($item->firstCountries)
                                 <img class="country__img country-first" src="{{asset($item->firstCountries->flagOrDefault())}}"
                                      alt="flag" title="{{$item->firstCountries->name}}">
-                            @endisset
-                            <span class="country__text night_text">vs</span>
-                            @isset($item->secondCountries)
+                            @endif
+                            <span class="country__text night_text">{{__('vs')}}</span>
+                            @if($item->secondCountries)
                                 <img src="{{asset($item->secondCountries->flagOrDefault())}}"
                                      alt="flag" title="{{$item->secondCountries->name}}">
-                            @endisset
+                            @endif
                         </div>
                         <div class="info__match-up">
-                            <span class="match-up__text night_text">Матчап: </span>
-                            @isset($item->firstRaces)
+                            <span class="match-up__text night_text">{{__('Матчап:')}}</span>
+                            @if($item->firstRaces)
                                 <span class="match-up__name name__first night_text"
                                       title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</span>
-                            @endisset
-                            <span class="match-up__text match-up__versus night_text">vs</span>
-                            @isset($item->secondRaces)
+                            @endif
+                            <span class="match-up__text match-up__versus night_text">{{__('vs')}}</span>
+                            @if($item->secondRaces)
                                 <span class="match-up__name name__second night_text"
                                       title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</span>
-                            @endisset
+                            @endif
                         </div>
                         <div class="info__maps">
-                            <span class="maps__text night_text">Карта:</span>
-                            @isset($item->maps)
+                            <span class="maps__text night_text">{{__('Карта:')}}</span>
+                            @if($item->maps)
                                 <span class="maps__name">{{$item->maps->name}}</span>
-                            @endisset
+                            @endif
                         </div>
                         <div class="info__wins">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +145,7 @@
                     c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                     C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
-                            <span class="wins__text night_text">{{$item->positive_count - $item->negative_count}}</span>
+                            <span class="wins__text night_text">{{$item->rating}}</span>
                         </div>
                     </div>
                 </div>
@@ -171,7 +170,6 @@
                 </button>
             </div>
         @endif
-    @endisset
 </div>
 <script type="text/javascript">
     $('.download').click(function () {
@@ -190,10 +188,8 @@
             success: function (data) {
                 let it = "#downloadCount" + id;
                 $(it).html(data.downloaded);
-                console.log(data.downloaded);
             },
-            error: function (request, status, error) {
-                console.log('code: ' + request.status + "\n" + 'message: ' + request.responseText + "\n" + 'error: ' + error);
+            error: function () {
             }
         });
     });

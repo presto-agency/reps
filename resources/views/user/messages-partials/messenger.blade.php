@@ -2,7 +2,6 @@
     <div class="messenger__title">
         <p class="title__text">Мои сообщения</p>
     </div>
-
     <div class="messenger__head">
         <img class="head__avatar" src="{{ url('/images/avatar.jpg') }}" alt="avatar">
         <span class="head__nickname">lorem</span>
