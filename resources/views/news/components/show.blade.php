@@ -1,9 +1,6 @@
 <script>
     function QuoteNews(id) {
         let block = document.getElementById(id);
-        console.log(block);
-        console.log(id);
-
         $('#coments_id').addClass('news_shadow');
         CKEDITOR.instances['content-comment'].insertHtml(block.innerHTML);
     }
@@ -23,8 +20,8 @@
 			c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
 			c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
             </svg>
-            <p class="title__text night_text" title="{{ clean(ParserToHTML::toHTML($news->title,'size')) }}">
-                {{ clean(ParserToHTML::toHTML($news->title,'size')) }}
+            <p class="title__text night_text" title="{{ clean($news->title) }}">
+                {{ clean($news->title) }}
             </p>
         </div>
         @if(!empty($news->author))
@@ -36,15 +33,19 @@
                     <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
                 @endguest
                 <a href="{{ route('user_profile',['id'=>$news->author->id]) }}" class="title__nickname night_text"
-                   title="{{ $news->author->name ? $news->author->name : 'user' }}">{{ $news->author->name ? $news->author->name : 'user' }}</a>
+                   title="{{ $news->author->name ? $news->author->name : 'user' }}">
+                    {{ $news->author->name ? $news->author->name : 'user' }}
+                </a>
                 @if(!empty($news->author->countries))
                     <img src="{{ asset($news->author->countries->flagOrDefault()) }}"
-                         class="title__flag" alt="flag">
+                         class="title__flag" alt="flag" title="{{$news->author->countries->name}}">
                 @endif
                 <img src="{{asset("images/default/game-races/" . $news->author->races->title . ".png")}}"
-                     class="title__cube" alt="race">
-                <p class="title__text night_text">{{ $news->author->comments_count.'  pts' }}
-                    | {{ $news->author->count_positive - $news->author->count_negative.' кг' }}</p>
+                     class="title__cube" alt="race" title="{{$news->author->races->title}}">
+                <p class="title__text night_text"
+                   title="{{ $news->author->comments_count.'  pts | '.$news->author->rating .' кг' }}">
+                    {{ $news->author->comments_count.'  pts | '.$news->author->rating .' кг' }}
+                </p>
             </div>
         @endif
     </div>
@@ -74,14 +75,14 @@
                 </div>
                 <hr>
                 <div class="card-body ">
-                    @if(!empty($news->preview_img) && File::exists($news->preview_img))
+                    @if(!empty($news->preview_img) && checkFile::checkFileExists($news->preview_img))
                         <img src="{{ asset($news->preview_img) }}" class="img-fluid" alt="news">
                     @endif
                     <h2 class="card-body__title night_text">
-                        {!! ParserToHTML::toHTML($news->preview_content,'size') !!}
+                        {!! ParserToHTML::toHTML(clean($news->preview_content),'size') !!}
                     </h2>
                     <div class="card-body__text night_text">
-                        {!!  ParserToHTML::toHTML($news->content,'size') !!}
+                        {!!  ParserToHTML::toHTML(clean($news->content),'size') !!}
                     </div>
                 </div>
             </div>
