@@ -9,7 +9,7 @@
                           d="M643.4,540.1c84.4-49.4,141.2-140.7,141.2-245.5C784.6,137.4,657.2,10,500,10c-157.2,0-284.6,127.4-284.6,284.6c0,104.8,56.8,196.2,141.2,245.5c-174,59.6-299.3,224.2-299.3,418.4c0,17.4,14.1,31.5,31.5,31.5c17.4,0,31.5-14.1,31.5-31.5h0.2C120.5,748.9,290.4,579,500,579c209.6,0,379.5,169.9,379.5,379.5h0.2c0,17.4,14.1,31.5,31.5,31.5c17.4,0,31.5-14.1,31.5-31.5C942.6,764.3,817.4,599.7,643.4,540.1z M500,515.9c-10.1,0-19.9,0.9-29.8,1.5c-108.1-14.9-191.5-108.8-191.5-222.8c0-124.3,99.1-225.1,221.3-225.1c122.2,0,221.3,100.8,221.3,225.1c0,114-83.4,208-191.5,222.8C519.9,516.7,510.1,515.9,500,515.9z"/>
                 </g>
             </svg>
-            <p class="title_text">Профиль пользователя</p>
+            <p class="title_text">{{__('Профиль пользователя')}}</p>
         </div>
         <div class="userInfo_block">
             <div class="row">
@@ -42,7 +42,7 @@
                     @if($user->isOnline())
                         <!-- if online displays this -->
                             <span class="date">
-                                online
+                                {{__('online')}}
                             </span>
                     @else
                         <!-- if INACTIVE displays this -->
@@ -52,24 +52,23 @@
                         @endif
                     </div>
                     <div class="information_block">
-                        <div class="left_block"><span>Статус:</span></div>
+                        <div class="left_block"><span>{{__('Статус:')}}</span></div>
                         <div class="right_block night_text">
-                            <span>{{$user->getUserStatus($user->comments_count)}} {{ $user->comments_count.' pts' }}</span>
+                            <span>{{$user->getUserStatus($user->comments_count).' '.$user->comments_count.' pts'}}</span>
                         </div>
                     </div>
                     <div class="information_block">
-                        <div class="left_block"><span>ДР:</span></div>
+                        <div class="left_block"><span>{{__('День рождения')}}</span></div>
                         <div class="right_block night_text">
                             @if($user->birthday)
                                 <span>{{$user->birthday}}</span>
                             @else
-                                <span>Не указано</span>
+                                <span>{{__('Не указано')}}</span>
                             @endif
-
                         </div>
                     </div>
                     <div class="information_block">
-                        <div class="left_block"><span>Страна:</span></div>
+                        <div class="left_block"><span>{{__('Страна:')}}</span></div>
                         <div class="right_block night_text">
                             @if($user->countries)
                                 <span>{{$user->countries->name}}</span>
@@ -81,7 +80,7 @@
                     <div class="information_block">
                         <div class="left_block"><span>{{__('Раса:')}}</span></div>
                         <div class="right_block night_text">
-                            @if(isset($user->races) && !empty($user->races))
+                            @if($user->races)
                                 <span>{{ $user->races->title }}</span>
                             @else
                                 <span>{{__('Не указано')}}</span>
@@ -90,24 +89,26 @@
                     </div>
                     <div class="information_block">
                         <div class="left_block"><span>{{__('Репутация:')}}</span></div>
-                        <div class="right_block night_text"><a
-                                href="{{route('user-rating-list.index',['id'=>$user->id])}}"
-                                title="Репутация"><span class="blue">{{$user->count_positive - $user->count_negative}} кг</span></a>
+                        <div class="right_block night_text">
+                            <a title="{{__('Репутация')}}" href="{{route('user-rating-list.index',['id'=>$user->id])}}">
+                                <span class="blue">{{$user->rating .' кг'}}</span>
+                            </a>
                         </div>
                     </div>
                 </div>
                 @if(Auth::id() != $user->id)
-                    <a href="{{route('user.add_friend',['id'=>$user->id])}}" class="button button__download-more">ДОБАВИТЬ</a>
-                    <a href="{{ route('user.messages', ['id' => $user->id]) }}" class="button button__download-more">НАПИСАТЬ</a>
+                    <a href="{{route('user.add_friend',['id'=>$user->id])}}"
+                       class="button button__download-more">{{__('ДОБАВИТЬ')}}</a>
+                    <a href="{{ route('user.messages', ['id' => $user->id]) }}"
+                       class="button button__download-more">{{__('НАПИСАТЬ')}}</a>
                 @endif
             </div>
         </div>
-
         <div class="block_userInformation">
             <div class="row">
                 <div class="col-xl-6 col-lg-6  col-md-6 col-12 container_left">
                     <div class="title_top_userProfile change_gray">
-                        <p class="title_Text">Список друзей</p>
+                        <p class="title_Text">{{__('Список друзей')}}</p>
                     </div>
                     @if(isset($friends) && count($friends) > 0)
                         <div class="friends_block">
@@ -117,48 +118,34 @@
                                         <div class="left_block">
                                             <a href="{{route('user_profile',['id' => $friend->id])}}">
                                                 @if(auth()->check() && auth()->user()->userViewAvatars())
-                                                    <img src="{{asset($friend->avatarOrDefault())}}" alt="avatar"
-                                                         class="author__avatar img-fluid">
+                                                    <img class="author__avatar img-fluid" alt="avatar"
+                                                         src="{{asset($friend->avatarOrDefault())}}">
                                                 @endif
                                                 @guest()
-                                                    <img src="{{asset($friend->avatarOrDefault())}}" alt="avatar"
-                                                         class="author__avatar img-fluid">
+                                                    <img class="author__avatar img-fluid" alt="avatar"
+                                                         src="{{asset($friend->avatarOrDefault())}}">
                                                 @endguest()
                                                 <span class="name_player">{{$friend->name}}</span>
                                             </a>
                                         </div>
                                         <div class="right_block">
                                             @if($friend->countries)
-                                                <img src="{{asset($friend->countries->flagOrDefault())}}"
-                                                     class="info__flag" alt="flag">
+                                                <img class="info__flag" alt="flag"
+                                                     src="{{asset($friend->countries->flagOrDefault())}}">
                                             @endif
-                                            <img
-                                                src="{{asset('/images/default/game-races/'.$friend->races->title.'.png')}}"
-                                                class="info__cube"
-                                                alt="race">
+                                            <img class="info__cube" alt="race"
+                                                 src="{{asset('/images/default/game-races/'.$friend->races->title.'.png')}}">
                                         </div>
                                     </div>
-                                    {{--<a href="{{route('user_profile',['id' => $friend->id])}}">
-                                        @if($friend->country_id)
-                                            <span class="flag-icon flag-icon-{{mb_strtolower($countries[$friend->country_id]->code)}}"></span>
-                                        @else
-                                            <span>NO</span>
-                                        @endif
-                                        <span>{{$friend->name}}</span>
-                                    </a>--}}
-
                                 @endif
                             @endforeach
                         </div>
                     @else
-                        <p>Список пуст</p>
+                        <span>{{__('Список пуст')}}</span>
                     @endif
-
-
                     <div class="title_top_userProfile change_gray">
-                        <p class="title_Text">В друзьях</p>
+                        <p class="title_Text">{{__('В друзьях')}}</p>
                     </div>
-
                     @if(isset($friendly) && count($friendly) > 0)
                         <div class="friends_block">
                             @foreach($friendly as $friend)
@@ -167,76 +154,82 @@
                                         <div class="left_block">
                                             <a href="{{route('user_profile',['id' => $friend->id])}}">
                                                 @if(auth()->check() && auth()->user()->userViewAvatars())
-                                                    <img src="{{asset($friend->avatarOrDefault())}}" alt="avatar"
-                                                         class="author__avatar img-fluid">
+                                                    <img class="author__avatar img-fluid" alt="avatar"
+                                                         src="{{asset($friend->avatarOrDefault())}}">
                                                 @endif
                                                 @guest()
-                                                    <img src="{{asset($friend->avatarOrDefault())}}" alt="avatar"
-                                                         class="author__avatar img-fluid">
+                                                    <img class="author__avatar img-fluid" alt="avatar"
+                                                         src="{{asset($friend->avatarOrDefault())}}">
                                                 @endguest()
                                                 <span class="name_player">{{$friend->name}}</span>
                                             </a>
                                         </div>
                                         <div class="right_block">
                                             @isset($friend->countries)
-                                                <img src="{{ asset($friend->countries->flagOrDefault()) }}"
-                                                     class="info__flag"
-                                                     title="{{$friend->countries->name}}" alt="flag">
+                                                <img class="info__flag" title="{{$friend->countries->name}}" alt="flag"
+                                                     src="{{ asset($friend->countries->flagOrDefault()) }}">
                                             @endisset
                                             @isset($friend->races)
-                                                <img
-                                                    src="{{asset('images/default/game-races/'.$friend->races->title.'.png') }}"
-                                                    class="info__cube"
-                                                    title="{{$friend->races->title}}" alt="race">
+                                                <img class="info__cube" alt="race" title="{{$friend->races->title}}"
+                                                     src="{{asset('images/default/game-races/'.$friend->races->title.'.png') }}">
                                             @endisset
                                         </div>
                                     </div>
-
                                 @endif
                             @endforeach
                         </div>
                     @else
-                        <p>Список пуст</p>
+                        <span>{{__('Список пуст')}}</span>
                     @endif
                 </div>
                 <div class="col-xl-6 col-lg-6  col-md-6 col-12  container_right">
                     <div class="title_top_userProfile change_gray">
-                        <p class="title_Text">Информация</p>
+                        <p class="title_Text">{{__('Информация')}}</p>
                     </div>
                     <div class="wrapper_information">
                         <div class="block_inform">
-                            <div class="left_block"><span>Темы:</span></div>
-                            <div class="right_block"><a href="{{route('user-topics.index',['id' => $user->id])}}"><span
-                                        class="blue" title="Темы">{{$user->topics_count}}</span></a></div>
-                        </div>
-                        <div class="block_inform">
-                            <div class="left_block"><span>Посты:</span></div>
-                            <div class="right_block"><a
-                                    href="{{route('user-comments.index',['id' => $user->id])}}"><span
-                                        class="blue" title="Посты">{{$user->comments_count}}</span></a>
+                            <div class="left_block"><span>{{__('Темы:')}}</span></div>
+                            <div class="right_block">
+                                <a class="blue" title="{{__('Темы')}}"
+                                   href="{{route('user-topics.index',['id' => $user->id])}}">
+                                    <span>{{$user->topics_count}}</span>
+                                </a>
                             </div>
                         </div>
                         <div class="block_inform">
-                            <div class="left_block"><span>Профессиональные реплеи:</span></div>
-                            <div class="right_block"><a
-                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'pro'])}}"><span
-                                        class="blue" title="Профессиональные реплеи">{{$user->gosu_replay_count}}</span></a>
+                            <div class="left_block"><span>{{__('Посты:')}}</span></div>
+                            <div class="right_block">
+                                <a class="blue" title="{{__('Посты')}}"
+                                   href="{{route('user-comments.index',['id' => $user->id])}}">
+                                    <span>{{$user->comments_count}}</span>
+                                </a>
                             </div>
                         </div>
                         <div class="block_inform">
-                            <div class="left_block"><span>Пользовательские реплеи:</span></div>
-                            <div class="right_block"><a
-                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}"><span
-                                        class="blue" title="Пользовательские реплеи">{{$user->user_replay_count}}</span></a>
+                            <div class="left_block"><span>{{__('Профессиональные реплеи:')}}</span></div>
+                            <div class="right_block">
+                                <a class="blue" title="{{__('Профессиональные реплеи')}}"
+                                   href="{{route('user-replay.index',['id' => $user->id, 'type' => 'pro'])}}">
+                                    <span>{{$user->gosu_replay_count}}</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="block_inform">
+                            <div class="left_block"><span>{{__('Пользовательские реплеи:')}}</span></div>
+                            <div class="right_block">
+                                <a class="blue" title="{{__('Пользовательские реплеи')}}"
+                                   href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}">
+                                    <span>{{$user->user_replay_count}}</span>
+                                </a>
                             </div>
                         </div>
                     </div>
                     <div class="title_top_userProfile change_gray">
-                        <p class="title_Text">Контакты</p>
+                        <p class="title_Text">{{__('Контакты')}}</p>
                     </div>
                     <div class="wrapper_contacts">
                         <div class="block_contact">
-                            <div class="left_block"><span>E-mail:</span></div>
+                            <div class="left_block"><span>{{__('E-mail:')}}</span></div>
                             <div class="right_block">
                                 @if(Auth::id() == $user->id)
                                     <span class="night_text">{{$user->email ?? 'не указано'}}</span>
@@ -246,24 +239,24 @@
                             </div>
                         </div>
                         <div class="block_contact">
-                            <div class="left_block"><span>Сайт:</span></div>
-
+                            <div class="left_block"><span>{{__('Сайт:')}}</span></div>
                             <div class="right_block">
                                 @if(!$user->checkUserLink($user->homepage))
                                     <span>{{$user->homepage ?? 'не указано'}}</span>
                                 @else
-                                    <a href="{{$user->checkUserLink($user->homepage)}}"><span
-                                            class="small">{{$user->homepage}}</span></a>
+                                    <a href="{{$user->checkUserLink($user->homepage)}}">
+                                        <span class="small">{{$user->homepage}}</span>
+                                    </a>
                                 @endif
                             </div>
                         </div>
                         <div class="block_contact">
-                            <div class="left_block"><span>Discord:</span></div>
+                            <div class="left_block"><span>{{__('Discord:')}}</span></div>
                             <div class="right_block"><span class="night_text">{{$user->isq ?? 'не указано'}}</span>
                             </div>
                         </div>
                         <div class="block_contact">
-                            <div class="left_block"><span>Skype:</span></div>
+                            <div class="left_block"><span>{{__('Skype:')}}</span></div>
                             <div class="right_block"><span class="night_text">{{$user->skype ?? 'не указано'}}</span>
                             </div>
                         </div>

@@ -2,6 +2,7 @@
 /public/hot
 /public/css
 /public/js/app.js
+/public/js/embed-video-for-iframe.js
 /public/files
 /public/storage
 /storage/*.key
@@ -22,3 +23,4 @@ yarn-error.log
 laravel-echo-server.json
 laravel-echo-server.lock
 /public/packages/sleepingowl/
+/npm
