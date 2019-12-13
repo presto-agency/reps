@@ -26,10 +26,10 @@ class UserTopicsUpdateRequest extends FormRequest
     {
         return [
             'forum_section_id' => 'exists:forum_sections,id',
-            'title'            => 'between:1,255|string',
-            'preview_content'  => 'between:1,10000|string',
-            'content'          => 'between:1,50000|string',
+            'title'            => 'string|between:5,255',
             'preview_img'      => 'nullable|image|max:2048',
+            'preview_content'  => 'string|between:10,10000',
+            'content'          => 'string|between:10,50000',
         ];
     }
 

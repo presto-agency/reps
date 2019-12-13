@@ -26,7 +26,8 @@
         "laravelrus/sleepingowl": "dev-bs4",
         "mews/purifier": "^3.1",
         "predis/predis": "^1.1",
-        "staudenmeir/eloquent-eager-limit": "^1.0"
+        "staudenmeir/eloquent-eager-limit": "^1.0",
+        "cohensive/embed": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

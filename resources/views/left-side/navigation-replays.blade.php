@@ -34,9 +34,9 @@
                         <div class="card-body">
                             <div class="subtopic__topic card night_modal border_shadow">
                                 <div class="subtopic__header card-header change_gray">
-                                    <a class="header__title night_text"
+                                    <a class="header__title night_text" title="{{ $replayName->title }}"
                                        href="{{route('replay.index',['type' => 'pro', 'subtype'=> $replayName->name])}}">
-                                        {{ strip_tags($replayName->title) }}
+                                        {{ $replayName->title }}
                                     </a>
                                 </div>
                                 <div class="subtopic__body">
@@ -45,9 +45,11 @@
                                             @foreach($replayName->replays as $replayNavItem)
                                                 <div class="body__wrap">
                                                     <a href="{{route('replay.show',['replay'=>$replayNavItem->id, 'type' => !isset($type) ? $type : 'pro', 'subtype'=> $replayName->name])}}"
-                                                       class="body__title night_text">{!! ParserToHTML::toHTML($replayNavItem->title,'size') !!}</a>
-                                                    <span
-                                                            class="body__numb">{{$replayNavItem->comments()->count()}}</span>
+                                                       class="body__title night_text"
+                                                       title="{{clean($replayNavItem->title)}}">{{clean($replayNavItem->title)}}</a>
+                                                    <span class="body__numb">
+                                                        {{$replayNavItem->comments()->count()}}
+                                                    </span>
                                                 </div>
                                             @endforeach
                                         @endisset

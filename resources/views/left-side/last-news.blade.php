@@ -15,8 +15,8 @@
             <div class="block_futureTournament">
                 @foreach($lastNewsLeft as $item)
                     <a class="href_tournament" href="{{route('topic.show',['topic'=>$item->id] )}}">
-                        <span class="name_tournament" title="{{strip_tags($item->title)}}">{{strip_tags($item->title)}}</span>
-                        <span class="count_tournament night_text" title="{{$item->comments_count}}">({{$item->comments_count}})</span>
+                        <span class="name_tournament" title="{{clean($item->title)}}">{{clean($item->title)}}</span>
+                        <span class="count_tournament night_text" title="{{$item->comments_count}}">{{"($item->comments_count)"}}</span>
                     </a>
                 @endforeach
             </div>

@@ -169,6 +169,7 @@ return [
         SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Cohensive\Embed\EmbedServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -231,6 +232,7 @@ return [
         'Image'        => Intervention\Image\Facades\Image::class,
         'checkFile'    => App\Services\ServiceAssistants\PathHelper::class,
         'ParserToHTML' => App\Services\BBCode\ParserToHTML::class,
+        'Embed'        => Cohensive\Embed\Facades\Embed::class,
     ],
 
 ];

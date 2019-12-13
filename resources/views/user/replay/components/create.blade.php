@@ -1,8 +1,7 @@
 <div class="create-replay border_shadow">
     <div class="create-replay__title">
-
         <svg class="title__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             x="0px" y="0px"
              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
         	<path d="M497,37h-65.7c0.2-7.3,0.4-14.6,0.4-22c0-8.3-6.7-15-15-15H95.3c-8.3,0-15,6.7-15,15c0,7.4,0.1,14.7,0.4,22H15
                 C6.7,37,0,43.7,0,52c0,67.2,17.6,130.6,49.5,178.6c31.5,47.4,73.5,74.6,118.9,77.2c10.3,11.2,21.2,20.3,32.5,27.3v66.7h-25.2
@@ -13,17 +12,16 @@
                 c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                 C479.3,122.6,463.9,174.4,437.6,213.9z"/>
         </svg>
-
         <p class="title__text">{{__('Создать новый Replay')}}</p>
     </div>
     <div class="create-replay__body night_modal">
-        <form class="create-replay__form" action="{{ route('user-replay.store',['id' => auth()->id()]) }}" method="POST"
-              enctype="multipart/form-data">
+        <form class="create-replay__form" method="POST" enctype="multipart/form-data"
+              action="{{ route('user-replay.store',['id' => auth()->id()]) }}">
             @csrf
             <div class="form-group">
                 <label for="create-replay-name" class="night_text">{{__('* Название:')}}</label>
-                <input type="text" class="form-control night_input" id="create-replay-name" placeholder="Название"
-                       name="title" value="{{old("title")}}" required minlength="1" maxlength="255">
+                <input type="text" class="form-control night_input" id="create-replay-name" placeholder="{{__('Название')}}"
+                       name="title" value="{{clean(old("title"))}}" required maxlength="255">
             </div>
             @if ($errors->has('title'))
                 <div class="alert alert-danger">
@@ -132,9 +130,9 @@
                 @endif
                 <div class="col-md-6 form-group">
                     <label for="create-replay__second-location" class="night_text">{{__('Первая локация:')}}</label>
-                    <input type="text" name="first_location" class="form-control night_input"
-                           id="create-replay__second-location" minlength="1"
-                           maxlength="255" value="{{old('first_location')}}" placeholder="Первая локация">
+                    <input type="number" name="first_location" class="form-control night_input"
+                           id="create-replay__second-location"
+                           value="{{old('first_location')}}" placeholder="Первая локация">
                 </div>
                 @if ($errors->has('first_location'))
                     <div class="alert alert-danger">
@@ -143,9 +141,9 @@
                 @endif
                 <div class="col-md-6 form-group">
                     <label for="create-replay__second-location" class="night_text">{{__('Вторая локация:')}}</label>
-                    <input type="text" name="second_location" class="form-control night_input"
-                           id="create-replay__second-location" minlength="1"
-                           maxlength="255" value="{{old('second_location')}}" placeholder="Вторая локация">
+                    <input type="number" name="second_location" class="form-control night_input"
+                           id="create-replay__second-location"
+                           value="{{old('second_location')}}" placeholder="Вторая локация">
                 </div>
                 @if ($errors->has('second_location'))
                     <div class="alert alert-danger">
@@ -196,11 +194,11 @@
             </div>
             <hr>
             <div class="form-group">
-                <label for="content_descr" class="night_text">{{__('Краткое описание')}}</label>
+                <label for="preview_content" class="night_text">{{__('Краткое описание')}}</label>
                 <textarea name="content" class="form-control night_input"
-                          id="content_descr">{!! old('content') !!}</textarea>
+                          id="preview_content">{{clean(old("content"))}}</textarea>
                 <script>
-                    CKEDITOR.replace('content_descr', {
+                    CKEDITOR.replace('preview_content', {
                     });
                 </script>
             </div>
@@ -210,26 +208,29 @@
                 </div>
             @endif
             <div class="form-group">
-                <label for="replay_video_iframe" class="night_text">{{__('Вставить HTML код с видео реплеем')}}</label>
-                <textarea name="video_iframe" class="form-control night_input"
-                          id="replay_video_iframe">{!! old('video_iframe') !!}</textarea>
-                <script>
-                    CKEDITOR.replace('replay_video_iframe', {
-                    });
-                </script>
+                <label for="video_iframe_url" class="night_text">{{__('Вставте URL для Video Iframe')}}</label>
+                <input id="video_iframe_url" name="video_iframe_url" class="form-control night_input" maxlength="500"
+                       placeholder="{{__('Вставте URL для Video Iframe')}}"
+                       data-url="{{route('set.iframe')}}"
+                       value="{{old('video_iframe_url')}}">
+                <input name="src_iframe" type="hidden" id="src_iframe" tabindex="-1" readonly
+                       data-check="{{\Request::route()->getName()}}" value="">
             </div>
-            @if ($errors->has('video_iframe'))
+            <iframe id="video_iframe_set" class="d-none"></iframe>
+                        <div id="video_iframe_error" class="alert alert-danger d-none"></div>
+            @if ($errors->has('src_iframe'))
                 <div class="alert alert-danger">
-                    {{ $errors->first('video_iframe') }}
+                    {{ $errors->first('src_iframe') }}
                 </div>
             @endif
             <div class="row gallery-file__container upload-image">
                 <div class="col-8">
-                    <input id="uploadFile" class="f-input night_modal_special night_text night_input" readonly/>
+                    <input id="uploadFile" class="f-input night_modal_special night_text night_input"
+                           placeholder="{{__('Выбрать файл')}}" readonly/>
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
-                        <span>Выбрать файл</span>
+                        <span>{{__('Выбрать файл')}}</span>
                         <input id="uploadBtn" type="file" class="upload " name="file"/>
                     </div>
                 </div>
@@ -241,11 +242,10 @@
             @endif
             <div class="create-replay__button">
                 <button class="button button__download-more">
-                    Написать
+                    {{__('Отправить')}}
                 </button>
             </div>
         </form>
     </div>
-
 </div>
-
+<script src="{{ mix('/js/embed-video-for-iframe.js') }}" type="text/javascript"></script>

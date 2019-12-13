@@ -1,9 +1,6 @@
 <script>
     function QuoteNews(id) {
         let block = document.getElementById(id);
-        console.log(block);
-        console.log(id);
-
         $('#coments_id').addClass('news_shadow');
         CKEDITOR.instances['content-comment'].insertHtml(block.innerHTML);
     }
@@ -23,27 +20,32 @@
 			c-5.857-5.857-15.355-5.857-21.213,0c-5.858,5.857-5.858,15.355,0,21.213l80.333,80.333c2.929,2.929,6.768,4.393,10.606,4.393
 			c3.838,0,7.678-1.465,10.606-4.393l143.066-143.066C384.163,189.215,384.163,179.717,378.305,173.859z"/>
             </svg>
-            <p class="title__text night_text"
-               title="{!! ParserToHTML::toHTML($news->title,'size') !!}">{!! ParserToHTML::toHTML($news->title,'size') !!}</p>
+            <p class="title__text night_text" title="{{ clean($news->title) }}">
+                {{ clean($news->title) }}
+            </p>
         </div>
         @if(!empty($news->author))
             <div class="title__wrap">
                 @if(auth()->check() && auth()->user()->userViewAvatars())
                     <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
                 @endif
-                @guest()
+                @guest
                     <img src="{{asset($news->author->avatarOrDefault())}}" class="title__avatar" alt="avatar">
-                @endguest()
+                @endguest
                 <a href="{{ route('user_profile',['id'=>$news->author->id]) }}" class="title__nickname night_text"
-                   title="{{ $news->author->name ? $news->author->name : 'user' }}">{{ $news->author->name ? $news->author->name : 'user' }}</a>
+                   title="{{ $news->author->name ? $news->author->name : 'user' }}">
+                    {{ $news->author->name ? $news->author->name : 'user' }}
+                </a>
                 @if(!empty($news->author->countries))
                     <img src="{{ asset($news->author->countries->flagOrDefault()) }}"
-                         class="title__flag" alt="flag">
+                         class="title__flag" alt="flag" title="{{$news->author->countries->name}}">
                 @endif
                 <img src="{{asset("images/default/game-races/" . $news->author->races->title . ".png")}}"
-                     class="title__cube" alt="race">
-                <p class="title__text night_text">{{ $news->author->comments_count.'  pts' }}
-                    | {{ $news->author->count_positive - $news->author->count_negative.' кг' }}</p>
+                     class="title__cube" alt="race" title="{{$news->author->races->title}}">
+                <p class="title__text night_text"
+                   title="{{ $news->author->comments_count.'  pts | '.$news->author->rating .' кг' }}">
+                    {{ $news->author->comments_count.'  pts | '.$news->author->rating .' кг' }}
+                </p>
             </div>
         @endif
     </div>
@@ -60,7 +62,7 @@
                         <img src="{{asset('images/svg/comments.svg')}}" alt="comments">
                         <span> {{ $news->comments_count }}</span>
                     </span>
-                        @if(Auth::user() && Auth::user()->isNotUser())
+                        @if(Auth::check() && Auth::user()->isNotUser())
                             <div class="right">
                                 <a href="{{route('user-topics.edit',['id' => $news->user_id,'user_topic'=>$news->id])}}">
                                     <img src="{{asset('images/svg/edit-regular.svg')}}" alt="edit">
@@ -73,11 +75,15 @@
                 </div>
                 <hr>
                 <div class="card-body ">
-                    @if(!empty($news->preview_img) && File::exists($news->preview_img))
+                    @if(!empty($news->preview_img) && checkFile::checkFileExists($news->preview_img))
                         <img src="{{ asset($news->preview_img) }}" class="img-fluid" alt="news">
                     @endif
-                    <h2 class="card-body__title night_text"> {!! ParserToHTML::toHTML($news->preview_content,'size') !!}</h2>
-                    <div class="card-body__text night_text">{!! ParserToHTML::toHTML($news->content,'size') !!}</div>
+                    <h2 class="card-body__title night_text">
+                        {!! ParserToHTML::toHTML(clean($news->preview_content),'size') !!}
+                    </h2>
+                    <div class="card-body__text night_text">
+                        {!!  ParserToHTML::toHTML(clean($news->content),'size') !!}
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,7 +92,6 @@
             <div class="card-body__items">
                 <div class="card-body__items-wrap">
                     <button onclick="QuoteNews({{$news->id}})" class="items__quote">
-                        {{--                    <a class="items__quote" href="#">--}}
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                              x="0px" y="0px"
                              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">

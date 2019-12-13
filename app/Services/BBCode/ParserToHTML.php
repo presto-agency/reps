@@ -20,11 +20,6 @@ class ParserToHTML
         if ( ! empty($ignoreTag)) {
             $bbCode->ignoreTag($ignoreTag);
         }
-        $data = $bbCode->render($text);
-        $data1 = htmlspecialchars_decode($data);
-//        html_entity_decode()
-//        return
-        return clean($data1);
+        return $bbCode->render($text);
     }
-
 }

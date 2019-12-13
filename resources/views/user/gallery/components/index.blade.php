@@ -5,7 +5,7 @@
     @if($visible_title)
         <div class="gallery__title">
             <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 x="0px" y="0px"
                  viewBox="0 0 512 512" xml:space="preserve">
             <path d="M437.019,74.98C388.667,26.629,324.38,0,256,0C187.619,0,123.331,26.629,74.98,74.98C26.628,123.332,0,187.62,0,256
                 s26.628,132.667,74.98,181.019C123.332,485.371,187.619,512,256,512c68.38,0,132.667-26.629,181.019-74.981
@@ -19,40 +19,40 @@
         </div>
     @endif
     <div class="gallery__body">
-        @isset($images)
-            @if(!$images->isEmpty())
-                @foreach($images as $item)
-                    <div class="img-wrapper">
-                        @isset($routCheck)
-                            @if($routCheck)
-                                <a class="img-link" href="{{route('galleries.show',['gallery' => $item->id])}}">
-                                        <img src="{{asset($item->pictureOrDefault())}}" alt="image">
-                                </a>
-                            @else
-                                <a class="img-link"
-                                   href="{{route('user-gallery.show',['id'=> $item->user_id,'user_gallery'=> $item->id])}}">
-                                        <img src="{{asset($item->pictureOrDefault())}}" alt="image">
-                                </a>
-                            @endif
-                        @endisset
-                    </div>
-                    @php
-                        $last_id = $item->id;
-                    @endphp
-                @endforeach
-                <div id="load_more_user_gallery" class="gocu-replays__button night_modal">
-                    <button type="button" name="load_more_user_gallery_button" class="button button__download-more night_text"
-                            id="load_more_user_gallery_button" data-id="{{ $last_id }}">
-                        {{__('Загрузить еще')}}
-                    </button>
+        @if(isset($images) && $images->isNotEmpty())
+            @foreach($images as $item)
+                <div class="img-wrapper">
+                    @isset($routCheck)
+                        @if($routCheck)
+                            <a class="img-link" href="{{route('galleries.show',['gallery' => $item->id])}}">
+                                <img src="{{asset($item->pictureOrDefault())}}" alt="image">
+                            </a>
+                        @else
+                            <a class="img-link"
+                               href="{{route('user-gallery.show',['id'=> $item->user_id,'user_gallery'=> $item->id])}}">
+                                <img src="{{asset($item->pictureOrDefault())}}" alt="image">
+                            </a>
+                        @endif
+                    @endisset
                 </div>
-            @else
-                <div id="load_more_user_gallery" class="gocu-replays__button night_modal">
-                    <button type="button" name="load_more_user_gallery_button" class="button button__download-more night_text">
-                        {{__('Пусто')}}
-                    </button>
-                </div>
-            @endif
-        @endisset
+                @php
+                    $last_id = $item->id;
+                @endphp
+            @endforeach
+            <div id="load_more_user_gallery" class="gocu-replays__button night_modal">
+                <button type="button" name="load_more_user_gallery_button"
+                        class="button button__download-more night_text"
+                        id="load_more_user_gallery_button" data-id="{{ $last_id }}">
+                    {{__('Загрузить еще')}}
+                </button>
+            </div>
+        @else
+            <div id="load_more_user_gallery" class="gocu-replays__button night_modal">
+                <button type="button" name="load_more_user_gallery_button"
+                        class="button button__download-more night_text">
+                    {{__('Пусто')}}
+                </button>
+            </div>
+        @endif
     </div>
 </div>

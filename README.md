@@ -67,11 +67,10 @@ This application uses the cache given to reduce queries to the database.
 The default is the 'file' cache driver.
 ```
 ```
-For production, it is recommended to change the driver to 'memcached'
-1.You need install memcached on server;
-2.Change .env CACHE_DRIVER=;
-3.php artisan config:clear
-4.php artisan config:cache
+For production, it is recommended to change the driver to 'redis'
+1.Change .env CACHE_DRIVER=;
+2.php artisan config:clear
+3.php artisan config:cache
 ```
 6.Mail settings info
 ```
@@ -104,13 +103,9 @@ The project has tasks. To complete them, you need to configure the task schedule
 exemple:* * * * * php /path/to/artisan schedule:run >>/dev/null 2>&1
 ```
 
-7.Log Root server
+7.Add Root for project
 ```
-got to  cd /path/to/ur-project
-
-sudo chown -R $USER:www-data storage
-sudo chown -R $USER:www-data bootstrap/cache
-
-chmod -R 775 storage
-chmod -R 775 bootstrap/cache
+cd /var/www/
+chmod -R 755 reps/
+chown -R www-data:www-data reps/
 ```

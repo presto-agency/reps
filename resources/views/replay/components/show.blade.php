@@ -11,11 +11,11 @@
                     </svg>
 
                     <span class="title_text night_text"
-                          title="{{ strip_tags(ParserToHTML::toHTML($replay->title,'size')) }}">{!! ParserToHTML::toHTML($replay->title,'size') !!}</span>
+                          title="{{ clean($replay->title) }}">{{ clean($replay->title) }}</span>
                 </div>
                 <div class="right_block">
-                    @if(isset($replay->users) && !empty($replay->users))
-                        <a href="{{route('user_profile',['id'=>$replay->users->id])}}">{{$replay->users->name}}</a>
+                    @if(!empty($replay->users))
+                        <a href="{{route('user_profile',['id'=>$replay->users->id])}}" title="{{$replay->users->name}}">{{$replay->users->name}}</a>
                         @auth()
                             @if(auth()->user()->userViewAvatars())
                                 <img class="icon_bars" src="{{asset($replay->users->avatarOrDefault())}}"
@@ -25,17 +25,16 @@
                             <img class="icon_bars" src="{{asset($replay->users->avatarOrDefault())}}"
                                  alt="avatar"/>
                         @endauth
-                        <span>{{$replay->users->rating .' кг'}}</span>
-                        <a href="{{route('user-comments.index',['id'=>$replay->users->id])}}">{{$replay->users->comments_count.' pts'}}</a>
+                        <span title="{{$replay->users->rating .' кг'}}">{{$replay->users->rating .' кг'}}</span>
+                        <a href="{{route('user-comments.index',['id'=>$replay->users->id])}}" title="{{$replay->users->comments_count.' pts'}}">{{$replay->users->comments_count.' pts'}}</a>
                     @endif
                 </div>
             </div>
 
             <div class="title_block_gray change_gray">
                 <div class="title_top left_block">
-                    {!! ParserToHTML::toHTML($replay->content,'size')  !!}</div>
+                    {!! ParserToHTML::toHTML(clean($replay->content),'size')  !!}</div>
                 <div class="right_block">
-                    <a href="#">
                         <svg class="night_svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60 60"
                              style="enable-background:new 0 0 60 60;" xml:space="preserve">
@@ -61,7 +60,6 @@
                                 d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path>
                         </svg>
                         <span>{{$replay->created_at->format('H:i d.m.Y')}}</span>
-                    </a>
                 </div>
             </div>
             <div class="replay-content">
@@ -82,8 +80,6 @@
                             @endisset
                         </div>
                     </div>
-
-
                     <div class="content_left">
                         <div class="left_block">
                             <span class="night_text">{{__('Матчап:')}}</span>
@@ -92,7 +88,7 @@
                             @isset($replay->firstRaces)
                                 <span class="night_text">{{$replay->firstRaces->title}}</span>
                             @endisset
-                            <span class="night_text"> vs </span>
+                            <span class="night_text">{{__('vs')}}</span>
                             @isset($replay->secondRaces)
                                 <span class="night_text">{{$replay->secondRaces->title}}</span>
                             @endisset
@@ -106,7 +102,7 @@
                             @isset($replay->first_location)
                                 <span class="night_text">{{$replay->first_location}}</span>
                             @endisset
-                            <span class="night_text"> vs </span>
+                            <span class="night_text">{{__('vs')}}</span>
                             @isset($replay->second_location)
                                 <span class="night_text">{{$replay->second_location}}</span>
                             @endisset
@@ -147,11 +143,7 @@
                         <img class="img-fluid" src="{{asset('images/default/map/nominimap.png')}}" alt="map">
                     @endif
                     <div class="replay-rating">
-                        {{--@php
-                            $modal = (!Auth::guest() && $replay->user_id == Auth::user()->id) ?'#no-rating':'#vote-modal';
-                        @endphp--}}
                         <a href="#vote-modal" class="positive-vote vote-replay-up" data-toggle="modal" data-rating="1"
-                           {{--data-target="#vote-modal"--}}
                            data-route="{{route('replay.set_rating',['id'=>$replay->id])}}">
                             <svg class="night_svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -164,28 +156,9 @@
                             </svg>
                             <span>{{$replay->positive_count}}</span>
                         </a>
-                        {{--<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="likeModal"
-                             aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content ">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="likeModalLabel">Оставте коментарий</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" class="close_modal">&times;</span>
-                                        </button>
-                                    </div>
-                                    --}}{{--                                    авторизований--}}{{--
-
-                                    --}}{{--                                    @include('modal.like_autorization');--}}{{--
-                                    --}}{{-- не авторизований--}}{{--
-
-                                    @include('modal.like_autorization')
-                                </div>
-                            </div>
-                        </div>--}}
                         <a href="#vote-modal" class="negative-vote vote-replay-down" data-toggle="modal"
                            data-rating="-1"
-                           data-route="{{route('replay.set_rating',['id'=>$replay->id])}}" {{--data-target="#vote-modal"--}}>
+                           data-route="{{route('replay.set_rating',['id'=>$replay->id])}}">
                             <svg class="night_svg" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M27.8534 99.2646H9.57079C7.05735 99.2646 5 97.2177 5 94.6941V12.4218C5 9.89933 7.04832 7.85183 9.57079 7.85183H27.8534C30.3759 7.85183 32.4242 9.89961 32.4242 12.4218V94.6941C32.4242 97.2177 30.3666 99.2646 27.8534 99.2646Z"></path>
@@ -194,24 +167,6 @@
                             </svg>
                             <span>{{$replay->negative_count}}</span>
                         </a>
-                        {{--<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog"
-                             aria-labelledby="likeModal" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content ">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="likeModalLabel">Оставте коментарий</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" class="close_modal">&times;</span>
-                                        </button>
-                                    </div>
-                                    --}}{{--                                    авторизований--}}{{--
-
-                                    --}}{{--@include('modal.diselike_autorization');--}}{{--
-                                    --}}{{-- не авторизований--}}{{--
-                                    @include('modal.like_autorization')
-                                </div>
-                            </div>
-                        </div>--}}
                     </div>
                     <div class="replay-download">
                         <svg class="night_svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -230,13 +185,13 @@
                             <span id="downloadCount"
                                   data-count="{{$replay->downloaded}}">{{$replay->downloaded}}</span>
                         </a>
-                        </d>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
-    @if(!empty($replay->video_iframe))
-        <div class="replay_video border_shadow">{!! $replay->video_iframe !!}</div>
+    @if(!empty($replay->src_iframe))
+        <iframe class="replay_video border_shadow" src="{{$replay->src_iframe}}"></iframe>
     @endif
 @endisset
 <script type="text/javascript">
@@ -255,10 +210,8 @@
             },
             success: function (data) {
                 $('#downloadCount').html(data.downloaded);
-                console.log(data.downloaded);
             },
             error: function (request, status, error) {
-                console.log('code: ' + request.status + "\n" + 'message: ' + request.responseText + "\n" + 'error: ' + error);
             }
         });
     });

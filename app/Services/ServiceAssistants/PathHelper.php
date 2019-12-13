@@ -19,18 +19,15 @@ class PathHelper
         Storage::disk('public')->exists($storagePath) === false
             ? Storage::disk('public')->makeDirectory($storagePath) : null;
 
-        if (!empty($oldFilePath)) {
+        if ( ! empty($oldFilePath)) {
             self::$path = $oldFilePath;
             /*Check old file*/
             if (strpos($oldFilePath, '/storage') !== false) {
-                self::$path = Str::replaceFirst('/storage', 'public',
-                    $oldFilePath);
+                self::$path = Str::replaceFirst('/storage', 'public', $oldFilePath);
             }
             if (strpos($oldFilePath, 'storage') !== false) {
-                self::$path = Str::replaceFirst('storage', 'public',
-                    $oldFilePath);
+                self::$path = Str::replaceFirst('storage', 'public', $oldFilePath);
             }
-
             if (Storage::exists(self::$path)) {
                 Storage::delete(self::$path);
             }
@@ -52,7 +49,6 @@ class PathHelper
         }
 
         return Storage::exists(self::$checkPath);
-
     }
 
 }

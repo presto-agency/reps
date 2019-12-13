@@ -34,19 +34,7 @@ class ForumSection extends Model
         return $general_forum = ForumSection::where('is_active', 1)
             ->orderBy('position');
     }
-    //ForumSection
-    //id - integer
-    //name - string
-    //
-    //ForumTopic
-    //id - integer
-    //forum_section_id - integer
-    //name - string
-    //
-    //comments
-    //id - integer
-    //commentable_id - integer
-    //title - string
+
     /**
      * Get all of the comments for the ForumSection.
      */

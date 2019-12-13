@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d85a7fbb8ea6d50f9818016fd14233fc",
+    "content-hash": "37e390c07af8eb38aa2982f81d9d6172",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -336,6 +336,52 @@
                 "bbcode"
             ],
             "time": "2018-06-17T13:58:51+00:00"
+        },
+        {
+            "name": "cohensive/embed",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KaneCohen/embed.git",
+                "reference": "9b013068d900bad8fd06d66c2f5977e0de057748"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KaneCohen/embed/zipball/9b013068d900bad8fd06d66c2f5977e0de057748",
+                "reference": "9b013068d900bad8fd06d66c2f5977e0de057748",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Cohensive\\Embed": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kane Cohen",
+                    "email": "kanecohen@gmail.com"
+                }
+            ],
+            "description": "Media Embed (for Laravel or as a standalone).",
+            "keywords": [
+                "embed",
+                "laravel",
+                "media",
+                "vimeo",
+                "youtube"
+            ],
+            "time": "2019-10-19T15:07:43+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -7165,7 +7211,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "laravelrus/sleepingowl": 20
+        "laravelrus/sleepingowl": 20,
+        "cohensive/embed": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
