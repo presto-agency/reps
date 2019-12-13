@@ -64,7 +64,7 @@
                 <label for="preview_content" class="night_text">{{__('*Краткое содержание')}}</label>
                 <textarea type="text" class="form-control create-topic__name night_input" id="preview_content"
                           name="preview_content" minlength="1" maxlength="1000" rows="16" required>
-                    {!! old('preview_content', ParserToHTML::toHTML($topic->preview_content,'size')) !!}
+                    {!! old('preview_content', $topic->preview_content) !!}
             </textarea>
                 <script>
 
@@ -82,10 +82,9 @@
                 <label for="content" class="night_text">{{__('*Содержание')}}</label>
                 <textarea type="text" class="form-control create-topic__name night_input" id="preview_content1"
                           name="content" minlength="1" maxlength="50000" rows="32" required>
-                   {!!old('content',ParserToHTML::toHTML($topic->content,'size'))!!}
+                   {!!old('content',$topic->content)!!}
             </textarea>
                 <script>
-
                     CKEDITOR.replace('preview_content1', {
                     });
                 </script>
