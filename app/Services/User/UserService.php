@@ -66,7 +66,7 @@ class UserService
     public static function isFriendExists($user_id, $friend_user_id)
     {
         if (UserFriend::where('user_id', $user_id)
-            ->where('friend_user_id', $friend_user_id)->exists()
+                      ->where('friend_user_id', $friend_user_id)->exists()
         ) {
             return true;
         }
@@ -75,12 +75,6 @@ class UserService
     }
 
 
-    public static function getUserId()
-    {
-        return request('id') === null ? auth()->id() : request('id');
-
-    }
-
     public static function saveFile($request)
     {
         // Check have input file
@@ -88,25 +82,18 @@ class UserService
             // Check if upload file Successful Uploads
             if ($request->file('avatar')->isValid()) {
                 //Check path Check old file4delete
-                $path
-                    = PathHelper::checkUploadsFileAndPath('images/users/avatars',
-                    auth()->user()->avatar);
+                $path  = PathHelper::checkUploadsFileAndPath('images/users/avatars', auth()->user()->avatar);
                 $image = $request->file('avatar');
                 if ($image->getClientOriginalExtension() == "gif") {
-                    $filePath = 'storage/'.
-                        $f = $image->store('images/users/avatars', 'public');
+                    $filePath = 'storage/'.$image->store('images/users/avatars', 'public');
                 } else {
                     //resize
-                    $filePath = ResizeImage::resizeImg($image, 125, 125, true,
-                        $path);
+                    $filePath = ResizeImage::resizeImg($image, 125, 125, true, $path);
                 }
-
                 return $filePath;
-            } else {
-                back();
             }
+            return null;
         }
-
         return null;
     }
 

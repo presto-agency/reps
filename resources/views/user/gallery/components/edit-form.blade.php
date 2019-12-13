@@ -1,11 +1,11 @@
-<form action="{{route('user-gallery.update',['id'=>$userImage->user_id,'user_gallery'=>$userImage->id])}}"
-      class="body__edit-image-form" method="POST" enctype="multipart/form-data">
+<form class="body__edit-image-form" method="POST" enctype="multipart/form-data"
+      action="{{route('user-gallery.update',['id'=>$userImage->user_id,'user_gallery'=>$userImage->id])}}">
     @method('PUT')
     @csrf
     <div class="form-group">
         <label for="gallery-name"> {{__('Подпись:')}}</label>
         <input type="text" class="form-control night_input" id="gallery-name" name="sign" placeholder="Подпись"
-               value="{!! strip_tags(ParserToHTML::toHTML(old('sign',$userImage->sign),'size') ) !!}">
+               maxlength="255" value="{{ clean(old('sign',$userImage->sign)) }}">
     </div>
     @if ($errors->has('sign'))
         <div class="alert alert-danger">

@@ -11,10 +11,10 @@
                     </svg>
 
                     <span class="title_text night_text"
-                          title="{{ strip_tags(ParserToHTML::toHTML($replay->title,'size')) }}">{!! ParserToHTML::toHTML($replay->title,'size') !!}</span>
+                          title="{{ clean($replay->title) }}">{{ clean($replay->title) }}</span>
                 </div>
                 <div class="right_block">
-                    @if(isset($replay->users) && !empty($replay->users))
+                    @if(!empty($replay->users))
                         <a href="{{route('user_profile',['id'=>$replay->users->id])}}">{{$replay->users->name}}</a>
                         @auth()
                             @if(auth()->user()->userViewAvatars())
@@ -33,7 +33,7 @@
 
             <div class="title_block_gray change_gray">
                 <div class="title_top left_block">
-                    {!! ParserToHTML::toHTML($replay->content,'size')  !!}</div>
+                    {!! ParserToHTML::toHTML(clean($replay->content),'size')  !!}</div>
                 <div class="right_block">
                     <a href="#">
                         <svg class="night_svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@
                             @isset($replay->firstRaces)
                                 <span class="night_text">{{$replay->firstRaces->title}}</span>
                             @endisset
-                            <span class="night_text"> vs </span>
+                            <span class="night_text">{{__('vs')}}</span>
                             @isset($replay->secondRaces)
                                 <span class="night_text">{{$replay->secondRaces->title}}</span>
                             @endisset
@@ -104,7 +104,7 @@
                             @isset($replay->first_location)
                                 <span class="night_text">{{$replay->first_location}}</span>
                             @endisset
-                            <span class="night_text"> vs </span>
+                            <span class="night_text">{{__('vs')}}</span>
                             @isset($replay->second_location)
                                 <span class="night_text">{{$replay->second_location}}</span>
                             @endisset
@@ -211,7 +211,7 @@
                 id: id,
             },
             success: function (data) {
-                $('#downloadCount').html(data.downloaded);;
+                $('#downloadCount').html(data.downloaded);
             },
             error: function (request, status, error) {
             }

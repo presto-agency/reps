@@ -1,4 +1,4 @@
-@isset($topic)
+@if(!empty($topic))
     <div class="create-topic border_shadow">
         <div class="create-topic__title">
             <p class="title__text">{{__('Редактирование темы')}}</p>
@@ -89,4 +89,4 @@
             </div>
         </form>
     </div>
-@endisset
+@endif

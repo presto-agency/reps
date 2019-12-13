@@ -20,8 +20,8 @@
             @csrf
             <div class="form-group">
                 <label for="create-replay-name" class="night_text">{{__('* Название:')}}</label>
-                <input type="text" class="form-control night_input" id="create-replay-name" placeholder="Название"
-                       name="title" value="{{old("title")}}" required maxlength="255">
+                <input type="text" class="form-control night_input" id="create-replay-name" placeholder="{{__('Название')}}"
+                       name="title" value="{{clean(old("title"))}}" required maxlength="255">
             </div>
             @if ($errors->has('title'))
                 <div class="alert alert-danger">
@@ -130,7 +130,7 @@
                 @endif
                 <div class="col-md-6 form-group">
                     <label for="create-replay__second-location" class="night_text">{{__('Первая локация:')}}</label>
-                    <input type="text" name="first_location" class="form-control night_input"
+                    <input type="number" name="first_location" class="form-control night_input"
                            id="create-replay__second-location"
                            value="{{old('first_location')}}" placeholder="Первая локация">
                 </div>
@@ -141,7 +141,7 @@
                 @endif
                 <div class="col-md-6 form-group">
                     <label for="create-replay__second-location" class="night_text">{{__('Вторая локация:')}}</label>
-                    <input type="text" name="second_location" class="form-control night_input"
+                    <input type="number" name="second_location" class="form-control night_input"
                            id="create-replay__second-location"
                            value="{{old('second_location')}}" placeholder="Вторая локация">
                 </div>
@@ -194,11 +194,11 @@
             </div>
             <hr>
             <div class="form-group">
-                <label for="content_descr" class="night_text">{{__('Краткое описание')}}</label>
+                <label for="preview_content" class="night_text">{{__('Краткое описание')}}</label>
                 <textarea name="content" class="form-control night_input"
-                          id="content_descr">{{ old('content') }}</textarea>
+                          id="preview_content">{{clean(old("content"))}}</textarea>
                 <script>
-                    CKEDITOR.replace('content_descr', {
+                    CKEDITOR.replace('preview_content', {
                     });
                 </script>
             </div>
@@ -208,9 +208,9 @@
                 </div>
             @endif
             <div class="form-group">
-                <label for="video_iframe_url" class="night_text">{{__('Вставить URL для Video Iframe')}}</label>
+                <label for="video_iframe_url" class="night_text">{{__('Вставте URL для Video Iframe')}}</label>
                 <input id="video_iframe_url" name="video_iframe_url" class="form-control night_input" maxlength="500"
-                       placeholder="{{__('Вставить URL для Video Iframe')}}"
+                       placeholder="{{__('Вставте URL для Video Iframe')}}"
                        data-url="{{route('set.iframe')}}"
                        value="{{old('video_iframe_url')}}">
                 <input name="src_iframe" type="hidden" id="src_iframe" tabindex="-1" readonly

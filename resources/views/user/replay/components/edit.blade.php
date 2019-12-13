@@ -21,9 +21,9 @@
             @csrf
             <div class="form-group">
                 <label for="create-replay-name" class="night_text">{{__('* Название:')}}</label>
-                <input type="text" class="form-control night_input" id="create-replay-name" placeholder="Название"
-                       name="title" value="{{ clean(old('title',$replay->title))}}"
-                       required maxlength="255">
+                <input type="text" class="form-control night_input" id="create-replay-name"
+                       name="title" required maxlength="255" placeholder="{{__('Название')}}"
+                       value="{{ clean(old('title',$replay->title))}}">
             </div>
             @if ($errors->has('title'))
                 <div class="alert alert-danger">
@@ -121,7 +121,7 @@
                 @endif
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="create-replay__first-country" class="night_text">* Первая страна:
+                        <label for="create-replay__first-country" class="night_text">{{__('* Первая страна:')}}
                             <select name="first_country_id" class="js-example-basic-single night_input"
                                     id="create-replay__first-country">
                                 @isset($countries)
@@ -215,12 +215,11 @@
             </div>
             <hr>
             <div class="form-group">
-                <label for="content_descr" class="night_text">{{__('Краткое описание')}}</label>
+                <label for="preview_content" class="night_text">{{__('Краткое описание')}}</label>
                 <textarea name="content" class="form-control night_input"
-                          id="content_descr">{{ old('content',$replay->content) }}</textarea>
+                          id="preview_content">{{ clean(old('content',$replay->content)) }}</textarea>
                 <script>
-                    CKEDITOR.replace('content_descr', {
-                    });
+                    CKEDITOR.replace('preview_content', {});
                 </script>
             </div>
             @if ($errors->has('content'))
@@ -235,7 +234,8 @@
                        data-url="{{route('set.iframe')}}"
                        value="{{old('video_iframe_url')}}">
                 <input name="src_iframe" type="hidden" id="src_iframe" tabindex="-1" readonly
-                       data-check="{{\Request::route()->getName()}}" data-src="{{ $replay->src_iframe }}" value="">
+                       data-check="{{\Request::route()->getName()}}" data-src="{{ clean($replay->src_iframe) }}"
+                       value="">
             </div>
             <iframe id="video_iframe_set" class="d-none"></iframe>
             <div id="video_iframe_error" class="alert alert-danger d-none"></div>
@@ -246,14 +246,14 @@
             @endif
             <div class="row gallery-file__container upload-image">
                 <div class="col-8">
-                    <input id="uploadFile" class="f-input night_text night_input" placeholder="{{__('Выбрать файл')}}"
-                           readonly/>
+                    <input id="uploadFile" class="f-input night_text night_input" readonly
+                           placeholder="{{__('Файл')}}"/>
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
                         <span>{{__('Выбрать файл')}}</span>
-                        <input id="uploadBtn" type="file" class="upload" data-file="{{$replay->file}}"
-                               name="file"/>
+                        <input id="uploadBtn" type="file" class="upload" name="file"
+                               data-file="{{$replay->file}}"/>
                     </div>
                 </div>
             </div>

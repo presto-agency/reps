@@ -11,7 +11,6 @@
 @endsection
 
 @section('content')
-    {{--    @include('user.replay.components.index')--}}
     <div id="last_replay"></div>
 @endsection
 
