@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="panel__body">
-                <p class="body__comment night_text">{!! ParserToHTML::toHTML(clean($item->content),'size') !!}</p>
+                <p class="body__comment night_text">{!! ParserToHTML::toHTML($item->content,'size') !!}</p>
             </div>
             <div class="panel__footer">
                 <div class="footer__item">

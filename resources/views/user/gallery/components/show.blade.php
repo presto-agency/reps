@@ -17,7 +17,7 @@
         <div class="gallery-detail__body night_modal border_shadow">
             <div class="body__items">
                 <div class="items__title">
-                    {!! ParserToHTML::toHTML(clean($userImage->sign),'size') !!}
+                    {{ clean($userImage->sign) }}
                 </div>
                 <div class="items__rating">
                     @php
