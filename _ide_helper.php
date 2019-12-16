@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.5.2 on 2019-12-11.
+ * Generated for Laravel 6.5.2 on 2019-12-14.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -13704,6 +13704,27 @@ namespace App\Services\BBCode {
  
 }
 
+namespace Cohensive\Embed\Facades { 
+
+    class Embed {
+        
+        /**
+         * Create a new Embed instance.
+         *
+         * @param array $url
+         * @param array $options Extra options like iframe attributes or params.
+         * @return \Cohensive\Embed\Cohenisve\Embed\Embed 
+         * @static 
+         */ 
+        public static function make($url = null, $options = null)
+        {
+            return \Cohensive\Embed\Factory::make($url, $options);
+        }
+         
+    }
+ 
+}
+
 namespace Barryvdh\Debugbar { 
 
     class Facade {
@@ -21040,6 +21061,8 @@ namespace  {
     class checkFile extends \App\Services\ServiceAssistants\PathHelper {}
 
     class ParserToHTML extends \App\Services\BBCode\ParserToHTML {}
+
+    class Embed extends \Cohensive\Embed\Facades\Embed {}
 
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
 
