@@ -82,7 +82,7 @@
                         {!! ParserToHTML::toHTML(clean($news->preview_content),'size') !!}
                     </h2>
                     <div class="card-body__text night_text">
-                        {!!  ParserToHTML::toHTML(clean($news->content),'size') !!}
+                        {!!  ParserToHTML::toHTML($news->content,'size') !!}
                     </div>
                 </div>
             </div>

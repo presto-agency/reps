@@ -15,7 +15,7 @@
         <p class="title__text">{{__('Редактировать Replay')}}</p>
     </div>
     <div class="create-replay__body night_modal">
-        <form class="create-replay__form" method="POST" enctype="multipart/form-data"
+        <form class="create-replay__form" id="replay-edit" method="POST" enctype="multipart/form-data"
               action="{{ route('user-replay.update',['id' => $replay->user_id,'user_replay'=>$replay->id]) }}">
             @method('PUT')
             @csrf
@@ -233,9 +233,8 @@
                        placeholder="{{__('Вставить URL для Video Iframe')}}"
                        data-url="{{route('set.iframe')}}"
                        value="{{old('video_iframe_url')}}">
-                <input name="src_iframe" type="hidden" id="src_iframe" tabindex="-1" readonly
-                       data-check="{{\Request::route()->getName()}}" data-src="{{ clean($replay->src_iframe) }}"
-                       value="">
+                <input name="src_iframe" type="hidden" id="src_iframe" tabindex="-1" readonly value=""
+                       data-src="{{ clean($replay->src_iframe) }}">
             </div>
             <iframe id="video_iframe_set" class="d-none"></iframe>
             <div id="video_iframe_error" class="alert alert-danger d-none"></div>
@@ -246,20 +245,27 @@
             @endif
             <div class="row gallery-file__container upload-image">
                 <div class="col-8">
-                    <input id="uploadFile" class="f-input night_text night_input" readonly
-                           placeholder="{{__('Файл')}}"/>
+                    <input id="uploadFile" class="f-input night_text night_input" type="text" value=""
+                           readonly placeholder="{{__('Файл')}}"/>
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
                         <span>{{__('Выбрать файл')}}</span>
-                        <input id="uploadBtn" type="file" class="upload" name="file"
-                               data-file="{{$replay->file}}"/>
+                        <input id="uploadBtn" name="file" type="file" class="upload"/>
                     </div>
                 </div>
             </div>
             @if ($errors->has('file'))
                 <div class="alert alert-danger">
                     {{ $errors->first('file') }}
+                </div>
+            @endif
+            @if((!empty($replay->file) && checkFile::checkFileExists($replay->file)))
+                <div class="replay-download">
+                    <a href="{{route('replay.download',['id' =>$replay->id])}}">
+                    <span data-url="{{url("replay/$replay->id/download_count")}}" class="download"
+                          data-id="{{$replay->id}}" title="{{basename($replay->file)}}">{{__('Скачать')}}</span>
+                    </a>
                 </div>
             @endif
             <div class="create-replay__button">
@@ -270,7 +276,109 @@
         </form>
     </div>
 </div>
-<script src="{{ mix('/js/embed-video-for-iframe.js') }}" type="text/javascript">
-</script>
+@section('ess21-custom-script')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($('#video_iframe_url').val()) {
+
+                if (localStorage.success === 'true') {
+                    updateDataIfSuccess()
+                }
+                if (localStorage.success === 'false') {
+                    updateDataIfError()
+                }
+                if (localStorage.success !== 'false' && localStorage.success !== 'true') {
+                    refreshAllData();
+                }
+            } else {
+
+                if ($('#src_iframe').data('src')) {
+                    $('#video_iframe_set').removeClass('d-none').attr('src', $('#src_iframe').data('src'));
+                }else{
+                    refreshAllData();
+                }
+            }
+        });
+
+        //setup before functions
+        let typingTimer;                //timer identifier
+        let doneTypingInterval = 1500;  //time in ms (1.5 seconds)
+        //on keyup, start the countdown
+        $('#video_iframe_url').keyup(function () {
+            clearTimeout(typingTimer);
+            if ($('#video_iframe_url').val()) {
+                typingTimer = setTimeout(doneTyping, doneTypingInterval);
+            } else {
+                refreshAllData();
+            }
+        });
+
+        //user is "finished typing," do something
+        function doneTyping() {
+            const token = $('meta[name="csrf-token"]').attr('content');
+            let video_iframe_url = $('#video_iframe_url').val();
+            let url = $('#video_iframe_url').data('url');
+            sendAjax(token, video_iframe_url, url)
+        }
+
+        function sendAjax(token, video_iframe_url, url) {
+            $.ajax({
+                url: url,
+                method: 'POST',
+                data: {
+                    _token: token,
+                    video_iframe_url: video_iframe_url,
+                },
+                success: function (data) {
+                    updateLocalStorage(data.success, data.message);
+                    updateDataIfSuccess()
+                },
+                error: function (data) {
+                    updateLocalStorage(data.responseJSON.success, data.responseJSON.message);
+                    updateDataIfError();
+                }
+            });
+        }
+
+        function updateDataIfSuccess() {
+            $('#src_iframe').val(localStorage.message);
+            $('#video_iframe_set').removeClass('d-none').attr('src', localStorage.message);
+            $("#video_iframe_error").addClass('d-none').html('');
+        }
+
+        function updateDataIfError() {
+            $('#src_iframe').val('');
+            $('#video_iframe_set').addClass('d-none').attr('src', '');
+            $("#video_iframe_error").removeClass('d-none').html(localStorage.message);
+        }
+
+        function updateLocalStorage(success, message) {
+            delete localStorage.success;
+            delete localStorage.message;
+            localStorage.success = success;
+            localStorage.message = message;
+        }
+
+        function refreshAllData() {
+            delete localStorage.success;
+            delete localStorage.message;
+            $('#src_iframe').val('');
+            $('#video_iframe_set').addClass('d-none').attr('src', '');
+            $("#video_iframe_error").addClass('d-none').html('');
+        }
+
+        /*** file ***/
+        $('#replay-edit').submit(function () {
+            if ($('#uploadBtn').val() === '') {
+                $('input[name="file"]').prop('disabled', true);
+            }
+            if($('#src_iframe').val() === ''){
+                $('input[name="src_iframe"]').prop('disabled', true);
+            }
+        });
+    </script>
+
+@endsection
+
 
 

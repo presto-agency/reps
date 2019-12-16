@@ -2,7 +2,6 @@
 /public/hot
 /public/css
 /public/js/app.js
-/public/js/embed-video-for-iframe.js
 /public/files
 /public/storage
 /public/packages/sleepingowl/
@@ -15,6 +14,7 @@
 /.idea
 /v8-compile-cache-0
 /npm
+_ide_helper.php
 .env
 .env.backup
 .phpunit.result.cache
