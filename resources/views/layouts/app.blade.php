@@ -222,8 +222,6 @@
                 url: url,
                 data: selectData,
                 success: function (response) {
-                    console.log('Ответ аджакс: ');
-                    console.log(response);
                     if (response.message) {
                         if (response.user_rating === "-1") {
                             imgClass = 'negative-vote-img';
