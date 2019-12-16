@@ -40,12 +40,11 @@
                 <form action="{{ route('user.send_message') }}" method="POST" class="user-message-form">
                     @csrf
                     <label for="editor_messenger" class="night_text"></label>
+
                     <textarea name="message" class="form-control night_input" id="editor_messenger"></textarea>
                     <script>
                         CKEDITOR.replace('editor_messenger', {});
                     </script>
-                    <input type="hidden" name="to_user_id" value="15">
-                    <input type="hidden" name="dialog_id" value="1">
                     <div class="messenger__button">
                         <button class="button button__download-more">
                             {{__('Отправить')}}

@@ -35,10 +35,10 @@
                         @endif
                     </div>
                     <a href="{{ route('news.show', $single_news->id) }}">
-                        <h2 class="card-body__title night_text">{!! ParserToHTML::toHTML($single_news->title,'size') !!}</h2>
+                        <h2 class="card-body__title night_text">{!! ParserToHTML::toHTML(clean($single_news->title),'size') !!}</h2>
                     </a>
                     <p class="card-body__text night_text">
-                        {!! ParserToHTML::toHTML($single_news->preview_content,'size') !!}
+                        {!! ParserToHTML::toHTML(clean($single_news->preview_content),'size') !!}
                     </p>
                     <div class="card-body__items">
                         <a class="items__comment" href="#">

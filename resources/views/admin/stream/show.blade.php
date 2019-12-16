@@ -9,7 +9,7 @@
             <p>{{__('Раса:')}}{!! $stream->races->title !!}</p>
               @endif
             <p>{{__('Подтвержден:')}}{!! $stream->approved == 1 ? "<i class='fa fa-check'></i>" : "<i class='fa fa-minus'></i>"!!}</p>
-            <p>{{__('Коментарий:')}}{!! ParserToHTML::toHTML($stream->content,'size') !!}</p>
+            <p>{{__('Коментарий:')}}{!! ParserToHTML::toHTML(clean($stream->content),'size') !!}</p>
             <p>{{__('Stream:url')}} = {{$stream->stream_url}}</p>
             <iframe src="{{$stream->stream_url_iframe}}"
                     allowfullscreen="true"

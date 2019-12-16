@@ -125,7 +125,7 @@
                         </a>
                     </div>
                 </div>
-                <p class="match__comment">{!! ParserToHTML::toHTML($item->content,'size')!!}</p>
+                <p class="match__comment">{!! ParserToHTML::toHTML(clean($item->content),'size')!!}</p>
                 <div class="match__info">
                     <div class="info__country">
                         <span class="country__text night_text">{{__('Страны:')}}</span>
@@ -213,7 +213,6 @@
             success: function (data) {
                 let it = "#downloadCountUser" + id;
                 $(it).html(data.downloaded);
-                console.log(data.downloaded);
             },
             error: function (request, status, error) {
                 console.log('code: ' + request.status + "\n" + 'message: ' + request.responseText + "\n" + 'error: ' + error);

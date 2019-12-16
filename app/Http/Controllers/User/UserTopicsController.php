@@ -216,10 +216,10 @@ class UserTopicsController extends Controller
             // Check if upload file Successful Uploads
             if ($request->file('preview_img')->isValid()) {
                 // Check path and old file
-                PathHelper::checkUploadsFileAndPath("/topics/images", $topic->preview_img);
+                PathHelper::checkUploadsFileAndPath('/topics/images', $topic->preview_img);
                 // Upload file on server
                 $image              = $request->file('preview_img');
-                $filePath           = $image->store('topic/image', 'public');
+                $filePath           = $image->store('topics/images', 'public');
                 $topic->preview_img = 'storage/'.$filePath;
             } else {
                 return null;

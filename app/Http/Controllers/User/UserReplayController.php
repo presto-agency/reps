@@ -73,14 +73,14 @@ class UserReplayController extends Controller
         $title      = clean($request->get('title'));
         $content    = clean($request->get('content'));
         $src_iframe = clean($request->get('src_iframe'));
-        $file       = $request->file('file');
         if (empty($title)) {
             return back();
         }
         if (empty($content)) {
             return back();
         }
-        if (empty($src_iframe) && empty($file)) {
+
+        if (empty($src_iframe) && !$request->hasFile('file')) {
             return back();
         }
 
@@ -144,22 +144,16 @@ class UserReplayController extends Controller
      */
     public function update(ReplayUpdateRequest $request, $id, $user_replay)
     {
-        $title      = clean($request->get('title'));
-        $content    = clean($request->get('content'));
-        $src_iframe = clean($request->get('src_iframe'));
-        $file       = $request->file('file');
+
+        $title   = clean($request->get('title'));
+        $content = clean($request->get('content'));
         if (empty($title)) {
             return back();
         }
         if (empty($content)) {
             return back();
         }
-        if (empty($src_iframe) && empty($file)) {
-            return back();
-        }
-        if (empty($title) || empty($content) || empty($src_iframe)) {
-            return back();
-        }
+
         $data = Replay::find($user_replay);
         $this->replayDataUpdate($data, $request);
         $data->save();
@@ -265,7 +259,9 @@ class UserReplayController extends Controller
         $data->first_location    = $request->first_location;
         $data->second_location   = $request->second_location;
         $data->content           = clean($request->content);
-        $data->src_iframe        = clean($request->src_iframe);
+        if ($request->has('src_iframe')) {
+            $data->src_iframe = clean($request->src_iframe);
+        }
     }
 
     public function iframe()
@@ -304,16 +300,12 @@ class UserReplayController extends Controller
     {
         // Check have input file
         if ($request->hasFile('file')) {
-            // Check if upload file Successful Uploads
-            if ($request->file('file')->isValid()) {
-                // Check path
-                PathHelper::checkUploadsFileAndPath("/files/replays");
-                // Upload file on server
-                $image    = $request->file('file');
-                $filePath = $image->store('files/replays', 'public');
-
-                $data->file = 'storage/'.$filePath;
-            }
+            // Check path
+            PathHelper::checkUploadsFileAndPath("/files/replays");
+            // Upload file on server
+            $image      = $request->file('file');
+            $filePath   = $image->store('files/replays', 'public');
+            $data->file = 'storage/'.$filePath;
         }
     }
 
