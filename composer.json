@@ -69,13 +69,15 @@
             "php artisan sleepingowl:update",
             "php artisan view:clear",
             "php artisan rout:clear",
-            "php artisan view:cache"
+            "php artisan view:cache",
+            "php artisan debugbar:clear"
         ],
         "post-update-cmd": [
             "php artisan sleepingowl:update",
             "php artisan view:clear",
             "php artisan rout:clear",
-            "php artisan view:cache"
+            "php artisan view:cache",
+            "php artisan debugbar:clear"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
