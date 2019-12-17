@@ -14,7 +14,7 @@
                 C479.3,122.6,463.9,174.4,437.6,213.9z"/>
         </svg>
 
-        <p class="title__text">История репутации {{$user->name}}</p>
+        <p class="title__text">{{'История репутации  '.$user->name}}</p>
 
         <div class="title__reputation">
             <a class="icon__like" href="#">
@@ -43,13 +43,13 @@
     </div>
 
     <div class="user-reputation-history__body">
-        @isset($userReputations)
+        @if(!empty($userReputations))
             @foreach($userReputations as $item)
                 <div class="body__wrap">
                     <div class="body__info change_gray">
+                        @if($item->sender)
                         <a href="{{route('user_profile',['id'=>$item->sender->id])}}"
                            class="info__nickname night_text">{{$item->sender->name}}</a>
-                        @if($item->sender)
                             @if($item->sender->countries)
                                 <img src="{{asset($item->sender->countries->flagOrDefault()) }}" class="info__flag"
                                      alt="flag">
@@ -91,6 +91,6 @@
                 </div>
             @endforeach
             {{ $userReputations->links() }}
-        @endisset
+        @endif
     </div>
 </div>
