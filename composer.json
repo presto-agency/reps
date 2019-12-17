@@ -67,17 +67,20 @@
     "scripts": {
         "post-install-cmd": [
             "php artisan sleepingowl:update",
-            "php artisan view:clear",
-            "php artisan rout:clear",
+            "php artisan optimize:clear",
+            "php artisan debugbar:clear",
             "php artisan view:cache",
-            "php artisan debugbar:clear"
+            "php artisan config:cache",
+            "php artisan event:cache"
+
         ],
         "post-update-cmd": [
             "php artisan sleepingowl:update",
-            "php artisan view:clear",
-            "php artisan rout:clear",
+            "php artisan optimize:clear",
+            "php artisan debugbar:clear",
             "php artisan view:cache",
-            "php artisan debugbar:clear"
+            "php artisan config:cache",
+            "php artisan event:cache"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
