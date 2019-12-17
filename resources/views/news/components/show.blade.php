@@ -79,7 +79,7 @@
                         <img src="{{ asset($news->preview_img) }}" class="img-fluid" alt="news">
                     @endif
                     <h2 class="card-body__title night_text">
-                        {!! ParserToHTML::toHTML(clean($news->preview_content),'size') !!}
+                        {!! ParserToHTML::toHTML($news->preview_content,'size') !!}
                     </h2>
                     <div class="card-body__text night_text">
                         {!!  ParserToHTML::toHTML($news->content,'size') !!}

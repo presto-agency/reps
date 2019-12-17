@@ -38,13 +38,13 @@
                 <div class="gocu-replays__subtitle change_gray">
                     @if($item::$type[$item->user_replay] == 'pro')
                         <a class="subtitle__name night_text"
-                           href="{{ asset(url("replay/{$item->id}"."?type=pro"))}}">
-                            {!! ParserToHTML::toHTML(clean($item->title),'size') !!}
+                           href="{{ asset("replay/{$item->id}"."?type=pro")}}">
+                            {{ clean($item->title) }}
                         </a>
                     @else
                         <a class="subtitle__name night_text"
-                           href="{{ asset(url("replay/{$item->id}"."?type=user"))}}">
-                            {!! ParserToHTML::toHTML(clean($item->title),'size') !!}
+                           href="{{ asset("replay/{$item->id}"."?type=user")}}">
+                            {{ clean($item->title) }}
                         </a>
                     @endif
                     <p class="subtitle__date night_text">{{$item->created_at->format('H:i d.m.Y')}}</p>
