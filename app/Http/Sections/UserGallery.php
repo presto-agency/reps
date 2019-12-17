@@ -80,7 +80,9 @@ class UserGallery extends Section
                     }
                 )->setLabel('Изображение')->setWidth(10),
                 AdminColumn::relatedLink('users.name', 'Пользователь'),
-                AdminColumn::text('sign', 'Подпись'),
+                AdminColumn::text(function ($model){
+                    return clean($model->sign);
+                })->setLabel('Подпись'),
                 AdminColumnEditable::checkbox('for_adults')
                     ->setLabel('18+')
                     ->setWidth(50)

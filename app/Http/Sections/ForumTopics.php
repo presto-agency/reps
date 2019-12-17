@@ -76,13 +76,13 @@ class ForumTopics extends Section
                 ->setModel(ForumSection::class),
             AdminDisplayFilter::related('user_id')->setModel(User::class)
         );
-       
+
         $display->setColumns([
 
             $id = AdminColumn::text('id', 'ID')
                 ->setWidth('70px'),
             $title = AdminColumn::text(function ($model) {
-                return strip_tags($model->title);
+                return clean($model->title);
             })->setHtmlAttribute('class', 'text-left')
                 ->setLabel('Название')
                 ->setWidth('100px'),
