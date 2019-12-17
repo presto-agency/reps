@@ -22,6 +22,7 @@ class UserRatingListController extends Controller
 
         $userReputations = UserReputation::where('recipient_id', $id)
             ->with([
+                'sender',
                 'sender.races',
                 'sender.countries'
             ])
