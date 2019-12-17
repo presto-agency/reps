@@ -59,7 +59,7 @@
             <div class="form-group">
                 <label for="preview_content" class="night_text">{{__('*Краткое описание')}}</label>
                 <textarea type="text" class="form-control create-topic__name night_input" id="preview_content"
-                          name="preview_content">{{clean(old('preview_content',$topic->preview_content))}}</textarea>
+                          name="preview_content">{{ clean(old('preview_content',$topic->preview_content)) }}</textarea>
                 <script>
                     CKEDITOR.replace('preview_content', {});
                 </script>
@@ -72,7 +72,7 @@
             <div class="form-group">
                 <label for="main_content" class="night_text">{{__('*Содержание')}}</label>
                 <textarea type="text" class="form-control create-topic__name night_input" id="main_content"
-                          name="content">{{clean(old('content',$topic->content))}}</textarea>
+                          name="content">{{ clean(old('content',$topic->content)) }}</textarea>
                 <script>
                     CKEDITOR.replace('main_content', {});
                 </script>

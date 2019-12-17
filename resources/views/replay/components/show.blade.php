@@ -33,7 +33,7 @@
 
             <div class="title_block_gray change_gray">
                 <div class="title_top left_block">
-                    {!! ParserToHTML::toHTML(clean($replay->content),'size')  !!}</div>
+                    {!! ParserToHTML::toHTML($replay->content,'size')  !!}</div>
                 <div class="right_block">
                         <svg class="night_svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60 60"

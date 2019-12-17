@@ -94,8 +94,9 @@ class UserTopicsController extends Controller
     public function store(UserTopicsStoreRequest $request)
     {
         $title           = clean($request->title);
-        $content         = clean($request->get('content'));
         $preview_content = clean($request->preview_content);
+        $content         = clean($request->get('content'));
+
 
         if (empty($title)) {
             return back();
@@ -119,6 +120,7 @@ class UserTopicsController extends Controller
         $this->checkImg($request, $topic);
         $topic->user_id  = auth()->id();
         $topic->start_on = Carbon::now();
+
         $topic->save();
 
         return redirect()->to(route('topic.show', ['topic' => $topic->id]));
@@ -186,6 +188,7 @@ class UserTopicsController extends Controller
         $topic->preview_content  = $preview_content;
         $topic->content          = $content;
         $this->checkImg($request, $topic);
+
         $topic->save();
 
         return redirect()->to(route('topic.show', ['topic' => $topic->id]));

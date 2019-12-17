@@ -78,7 +78,7 @@
                     <p>Контент:</p>
                 </div>
                 <div class="col-md-10">
-                    {!! ParserToHTML::toHTML(clean($replay->content),'size') !!}
+                    {!! ParserToHTML::toHTML($replay->content,'size') !!}
                 </div>
             </div>
             <div class="box-container">
@@ -110,7 +110,7 @@
                                     <button class="btn btn-default text-red" title="Удалить запись"><i
                                             class="fa fa-trash"></i></button>
                                     {{ Form::close() }}
-                                    {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
+                                    {!! ParserToHTML::toHTML($comment->content,'size') !!}
                                 </p>
                             </div>
                         @endforeach

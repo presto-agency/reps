@@ -10,7 +10,7 @@
         <div class="box-header with-border">
             <h3 class="box-title text-blue">{{__('Заголовок секция | ')}}{{$topic->forumSection->title}}</h3>
             <hr>
-            <h4 class="box-title text-blue">{{__('Заголовок топик | ')}} {!! ParserToHTML::toHTML($topic->title,'size') !!}</h4>
+            <h4 class="box-title text-blue">{{__('Заголовок топик | ')}} {{ clean($topic->title) }}</h4>
             <hr>
         </div>
         <div class="box-body">
@@ -30,7 +30,7 @@
                     <h4>{{__('Контетн превю')}}</h4>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            {!! ParserToHTML::toHTML(clean($topic->preview_content),'size') !!}
+                            {!! ParserToHTML::toHTML($topic->preview_content,'size') !!}
                         </div>
                     </div>
                     <hr>
@@ -38,7 +38,7 @@
                     <h4>{{__('Контетн')}}</h4>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            {!! ParserToHTML::toHTML(clean($topic->content),'size') !!}
+                            {!! ParserToHTML::toHTML($topic->content,'size') !!}
                         </div>
                     </div>
                     <hr>

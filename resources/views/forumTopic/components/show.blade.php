@@ -105,9 +105,8 @@
                     <img src="{{ asset($topic->preview_img) }}" class="card-img-top" alt="forum image">
                 @endif
 
-                <h2 class="card-body__text night_text">{!! ParserToHTML::toHTML(clean($topic->preview_content),'size')  !!}</h2>
-                <div
-                    class="card-body__text night_text">{!! ParserToHTML::toHTML(clean($topic->content),'size') !!}</div>
+                <h2 class="card-body__text night_text">{!! ParserToHTML::toHTML($topic->preview_content,'size')  !!}</h2>
+                <div class="card-body__text night_text">{!! ParserToHTML::toHTML($topic->content,'size') !!}</div>
                 <div class="card-body__items">
                     <div class="card-body__items-wrap">
                         <div class="items__quote night_text">
