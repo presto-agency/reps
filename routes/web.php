@@ -149,4 +149,7 @@ Route::group(['prefix' => 'replay-news-search'], function () {
         Route::post('load_search_replays', 'Search\SearchController@loadReplay')->name('load.more.search.replays');
     });
 });
-Auth::routes();
+Route::middleware(['ban'])->group(function () {
+    Auth::routes();
+});
+
