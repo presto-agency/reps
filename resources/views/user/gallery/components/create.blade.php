@@ -1,7 +1,7 @@
 <div class="gallery-download night_modal border_shadow">
     <div class="gallery-download__title">
         <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             x="0px" y="0px"
              viewBox="0 0 512 512" xml:space="preserve">
 
             <path d="M437.019,74.98C388.667,26.629,324.38,0,256,0C187.619,0,123.331,26.629,74.98,74.98C26.628,123.332,0,187.62,0,256
@@ -23,13 +23,12 @@
             @csrf
             <div class="row gallery-file__container upload-image">
                 <div class="col-8">
-                    <input id="uploadFile " class="f-input night_input input_gallery" readonly/>
+                    <input id="uploadFile" class="f-input night_input input_gallery" readonly/>
                 </div>
                 <div class="col-4 pl-0">
                     <div class="fileUpload btn btn--browse">
                         <span>{{__('Выбрать файл')}}</span>
-                        <input id="uploadBtn" type="file" class="upload" value="{{old('picture')}}" accept="image/*"
-                               name="picture"/>
+                        <input id="uploadBtn" type="file" class="upload" accept="image/*" name="picture"/>
                     </div>
                 </div>
             </div>
@@ -41,7 +40,7 @@
             <div class="form-group">
                 <label class="label_group" for="gallery-name">{{__('Подпись:')}}</label>
                 <input type="text" name="sign" class="form-control night_input" id="gallery-name"
-                       value="{{old('sign')}}" placeholder="Подпись">
+                       maxlength="255" value="{{clean(old('sign'))}}" placeholder="Подпись">
             </div>
             @if ($errors->has('sign'))
                 <div class="alert alert-danger">

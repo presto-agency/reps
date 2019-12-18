@@ -17,7 +17,7 @@ class ReplayObserver
     }
 
     /**
-     * @param  Replay  $replay
+     * @param Replay $replay
      */
     public function created(Replay $replay)
     {
@@ -60,5 +60,4 @@ class ReplayObserver
         return $data['user_id'] = auth()->id();
 
     }
-
 }

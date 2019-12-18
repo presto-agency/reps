@@ -3,7 +3,9 @@
 
 namespace App\Services\BBCode;
 
-use ChrisKonnertz\BBCode\BBCode;
+
+use ChrisKonnertz\BBCode\BBCode as ChrisKonnertzBBCode;
+use PheRum\BBCode\Facades\BBCode as PheRumBBCode;
 
 class ParserToHTML
 {
@@ -16,15 +18,11 @@ class ParserToHTML
      */
     public static function toHTML($text, $ignoreTag = null)
     {
-        $bbCode = new BBCode();
-        if ( ! empty($ignoreTag)) {
-            $bbCode->ignoreTag($ignoreTag);
-        }
-        $data = $bbCode->render($text);
-        $data1 = htmlspecialchars_decode($data);
-//        html_entity_decode()
-//        return
-        return clean($data1);
-    }
+        $bbCode = new ChrisKonnertzBBCode();
+        $first_conversion = PheRumBBCode::parse($text);
+        $second_conversion = $bbCode->render($first_conversion);
+        $third_transformation = html_entity_decode($second_conversion);
+        return $third_transformation;
 
+    }
 }

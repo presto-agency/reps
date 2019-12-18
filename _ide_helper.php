@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.5.2 on 2019-12-12.
+ * Generated for Laravel 6.5.2 on 2019-12-17.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -16292,6 +16292,115 @@ namespace Mews\Purifier\Facades {
  
 }
 
+namespace PheRum\BBCode\Facades { 
+
+    class BBCode {
+        
+        /**
+         * Parses the BBCode string
+         *
+         * @param $source
+         * @param bool $caseInsensitive
+         * @return string 
+         * @static 
+         */ 
+        public static function parse($source, $caseInsensitive = false)
+        {
+            return \PheRum\BBCode\BBCodeParser::parse($source, $caseInsensitive);
+        }
+        
+        /**
+         * Remove all BBCode
+         *
+         * @param string $source
+         * @return string Parsed text
+         * @static 
+         */ 
+        public static function stripBBCodeTags($source)
+        {
+            return \PheRum\BBCode\BBCodeParser::stripBBCodeTags($source);
+        }
+        
+        /**
+         * Helper function to parse case sensitive
+         *
+         * @param string $source String containing the BBCode
+         * @return string Parsed text
+         * @static 
+         */ 
+        public static function parseCaseSensitive($source)
+        {
+            return \PheRum\BBCode\BBCodeParser::parseCaseSensitive($source);
+        }
+        
+        /**
+         * Helper function to parse case insensitive
+         *
+         * @param string $source String containing the BBCode
+         * @return string Parsed text
+         * @static 
+         */ 
+        public static function parseCaseInsensitive($source)
+        {
+            return \PheRum\BBCode\BBCodeParser::parseCaseInsensitive($source);
+        }
+        
+        /**
+         * Limits the parsers to only those you specify
+         *
+         * @param mixed $only parsers
+         * @return object BBCodeParser object
+         * @static 
+         */ 
+        public static function only($only = null)
+        {
+            return \PheRum\BBCode\BBCodeParser::only($only);
+        }
+        
+        /**
+         * Removes the parsers you want to exclude
+         *
+         * @param mixed $except parsers
+         * @return object BBCodeParser object
+         * @static 
+         */ 
+        public static function except($except = null)
+        {
+            return \PheRum\BBCode\BBCodeParser::except($except);
+        }
+        
+        /**
+         * List of chosen parsers
+         *
+         * @return array array of parsers
+         * @static 
+         */ 
+        public static function getParsers()
+        {
+            return \PheRum\BBCode\BBCodeParser::getParsers();
+        }
+        
+        /**
+         * Sets the parser pattern and replace.
+         * 
+         * This can be used for new parsers or overwriting existing ones.
+         *
+         * @param string $name Parser name
+         * @param string $pattern Pattern
+         * @param string $replace Replace pattern
+         * @param string $content Parsed text pattern
+         * @return void 
+         * @static 
+         */ 
+        public static function setParser($name, $pattern, $replace, $content)
+        {
+            \PheRum\BBCode\BBCodeParser::setParser($name, $pattern, $replace, $content);
+        }
+         
+    }
+ 
+}
+
 namespace KodiCMS\Assets\Facades { 
 
     class PackageManager {
@@ -21103,6 +21212,8 @@ namespace  {
     class Html extends \Collective\Html\HtmlFacade {}
 
     class Purifier extends \Mews\Purifier\Facades\Purifier {}
+
+    class BBCode extends \PheRum\BBCode\Facades\BBCode {}
 
     class PackageManager extends \KodiCMS\Assets\Facades\PackageManager {}
 

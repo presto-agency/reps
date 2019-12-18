@@ -9,7 +9,7 @@
             <div class="panel__header">
                 <div class="header__items">
                     <a class="items__link" href="{{ $route ? route($route, $object->id) : '#' }}">
-                        {!! ParserToHTML::toHTML($object->title,'size') ?? ParserToHTML::toHTML($object->sign,'size')!!}</a>
+                        {{ clean($object->title ?? clean($object->sign }}</a>
                 </div>
                 <div class="header__items">
                     <svg class="items__icon" xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 515.556 515.556" viewBox="0 0 515.556 515.556">
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="panel__body">
-                <p class="body__comment night_text">{!! ParserToHTML::toHTML($object->content,'size') !!}</p>
+                <p class="body__comment night_text">{!! ParserToHTML::toHTML(clean($object->content),'size') !!}</p>
             </div>
             <div class="panel__footer">
                 <div class="footer__item">

@@ -12,11 +12,11 @@
             @endisset
         </div>
         <div class="block_futureTournament">
-            @isset($lastReplaysRight)
+            @if(isset($lastReplaysRight) && $lastReplaysRight->isNotEmpty())
                 @foreach($lastReplaysRight as $item)
                     <a class="href_tournament" href="{{ asset("replay/{$item->id}"."?type=user")}}">
-                        <span class="name_tournament" title="{!!strip_tags( ParserToHTML::toHTML($item->title,'size')) !!}">{!! ParserToHTML::toHTML($item->title,'size') !!}</span>
-                        <span class="count_tournament night_text" title="{{$item->comments_count}}">({{$item->comments_count}})</span>
+                        <span class="name_tournament" title="{{ clean($item->title) }}">{{ clean($item->title) }}</span>
+                        <span class="count_tournament night_text" title="{{$item->comments_count}}">{{"($item->comments_count)"}}</span>
                     </a>
                 @endforeach
             @endisset

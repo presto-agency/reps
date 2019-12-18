@@ -73,11 +73,8 @@ $('.btn-round').click(function (event) {
 });
 $(function () {
     //do something
-
     $(".btn-round").click({animateIn: "closeButton", animateOut: "plusButton"}, animate_function);
     $(".btn-square").click({animateIn: "circleShape", animateOut: "squareShape"}, animate_function);
-
-
     function animate_function(event) {
         if ($(this).hasClass(event.data.animateIn)) {
             $(this).removeClass(event.data.animateIn).addClass(event.data.animateOut);

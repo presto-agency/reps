@@ -42,14 +42,10 @@ class UpdateProfileRequest extends FormRequest
             ],
             'country'      => 'exists:countries,id',
             'race'         => 'exists:races,id',
-            'homepage'     => 'nullable|url|regex:'.RegexService::regex('url')
-                .'|max:255',
-            'vk_link'      => 'nullable|url|regex:'.RegexService::regex('url')
-                .'|max:255',
-            'fb_link'      => 'nullable|url|regex:'.RegexService::regex('url')
-                .'|max:255',
-            'skype'        => 'nullable|string|regex:'
-                .RegexService::regex('skype').'|max:255',
+            'homepage'     => 'nullable|url|regex:'.RegexService::regex('url').'|max:255',
+            'vk_link'      => 'nullable|url|regex:'.RegexService::regex('url').'|max:255',
+            'fb_link'      => 'nullable|url|regex:'.RegexService::regex('url').'|max:255',
+            'skype'        => 'nullable|string|regex:'.RegexService::regex('skype').'|max:255',
             'isq'          => 'nullable|string|max:255',
             'signature'    => 'nullable|string|max:255',
             'birthday'     => 'nullable|string|max:255',

@@ -3,7 +3,7 @@
         <p class="title__text">{{__('Мои темы')}}</p>
     </div>
     <div class="my-topics__accordion">
-        @if($forumSections->isNotEmpty())
+        @if(isset($forumSections) && $forumSections->isNotEmpty())
             @foreach($forumSections as $items)
                 <button class="accordion-button change_gray night_text"
                         id="{{$items->id}}">{{$items->title .' | ' . $items->topics_count}}</button>

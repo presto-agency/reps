@@ -127,7 +127,6 @@ export const italic = (text) => {
 export function pickColor(color) {
     let textareaObj = document.getElementById('pop_editor');
     // let textareaObj = document.getElementById('pop_editor');
-    console.log(textareaObj);
     let sel = getSelection();
     //if (sel.length > 0) {
        let newValue = textareaObj.value.replace(sel, '[' + color.key + ']' + sel +'[/' + color.key + ']');
@@ -137,7 +136,6 @@ export function pickColor(color) {
     //}
     textareaObj.value= "s";
     textareaObj.focus();
-   console.log(textareaObj.value)
 
 }
 export const underline = (text) => {

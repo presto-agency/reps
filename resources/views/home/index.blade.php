@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('stream')
     <section class="container chat_overflow">
         <div class="row">
@@ -18,5 +17,4 @@
 
 @section('content')
     <div id="last_news"></div>
-    {{--@include('content.last_news')--}}
 @endsection

@@ -98,7 +98,7 @@ class Replay extends Section
                 ->setWidth(70),
 
             $title = AdminColumn::text(function ($model){
-               return strip_tags($model->title);
+               return clean($model->title);
             })->setLabel('Название')->setWidth(150),
 
             $map = AdminColumn::relatedLink('maps.name', 'Карта')
@@ -283,6 +283,7 @@ class Replay extends Section
     }
 
     public $fileOldPath;
+    public $srcIframe;
 
     /**
      * @param $id
@@ -292,9 +293,10 @@ class Replay extends Section
      */
     public function onEdit($id)
     {
-        $getData = $this->getModel()->select('file')->find($id);
+        $getData = $this->getModel()->select(['file','src_iframe'])->find($id);
         if ($getData) {
             $this->fileOldPath = $getData->file;
+            $this->srcIframe = $getData->src_iframe;
         }
         $form = AdminForm::panel();
         $form->addHeader([
@@ -449,12 +451,6 @@ class Replay extends Section
         );
 
         $form->addBody([
-            $video_iframe = AdminFormElement::wysiwyg('video_iframe', 'Видео')
-                ->setHtmlAttributes(['placeholder' => 'Видео'])
-                ->setValidationRules([
-                    'required_without:file',
-                    'max:1000',
-                ]),
 
             $content = AdminFormElement::wysiwyg('content', 'Краткое описание')
                 ->setHtmlAttributes(['placeholder' => 'Краткое описание'])
@@ -463,20 +459,27 @@ class Replay extends Section
                     'between:10,5000',
                 ]),
 
+            $src_iframe = AdminFormElement::hidden('src_iframe')
+                    ->setHtmlAttribute('id','src_iframe')
+                    ->setHtmlAttribute('type','hidden')
+                    ->setHtmlAttribute('tabindex','-1')
+                    ->setHtmlAttribute('data-src',"$this->srcIframe")
+                    ->setValidationRules([
+                        'url',
+                        'max:255'
+                    ]),
+            AdminFormElement::view('admin.replays.edit',$data=[],function ($model){}),
+
             AdminFormElement::columns()
                 ->addColumn(function () {
                     return [
                         $file = AdminFormElement::file('file', 'Файл')
                             ->setValidationRules([
-                                'required_without:video_iframe',
-                                'nullable',
                                 'file',
                                 'max:5120',
                             ])
                             ->setUploadPath(function (UploadedFile $file) {
-                                return 'storage'
-                                    .PathHelper::checkUploadsFileAndPath("/files/replays",
-                                        $this->fileOldPath);
+                                return 'storage'.PathHelper::checkUploadsFileAndPath("/files/replays", $this->fileOldPath);
                             }),
                     ];
                 })
@@ -651,26 +654,30 @@ class Replay extends Section
         );
         $form->addBody([
 
-            $video_iframe = AdminFormElement::wysiwyg('video_iframe', 'Видео')
-                ->setHtmlAttributes(['placeholder' => 'Видео'])
-                ->setValidationRules([
-                    'required_without:file',
-                    'max:1000',
-                ]),
             $content = AdminFormElement::wysiwyg('content', 'Краткое описание')
-                ->setHtmlAttributes(['placeholder' => 'Краткое описание'])
-                ->setValidationRules([
-                    'nullable',
-                    'string',
-                    'between:1,1000',
-                ]),
+                                       ->setHtmlAttributes(['placeholder' => 'Краткое описание'])
+                                       ->setValidationRules([
+                                           'nullable',
+                                           'string',
+                                           'between:10,1000',
+                                       ]),
+            AdminFormElement::view('admin.replays.create',$data=[],function (){}),
+            $src_iframe = AdminFormElement::hidden('src_iframe')
+                                          ->setHtmlAttribute('id','src_iframe')
+                                          ->setHtmlAttribute('type','hidden')
+                                          ->setHtmlAttribute('tabindex','-1')
+                                          ->setHtmlAttribute('data-src','')
+                                          ->setValidationRules([
+                                            'required_without:file',
+                                            'url',
+                                            'max:255'
+                                            ]),
             AdminFormElement::columns()
                 ->addColumn(function () {
                     return [
                         $file = AdminFormElement::file('file', 'Файл')
                             ->setValidationRules([
-                                'required_without:video_iframe',
-                                'nullable',
+                                'required_without:src_iframe',
                                 'file',
                                 'max:5120',
                             ])

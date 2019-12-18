@@ -1,4 +1,3 @@
-
 <section class="block_top">
     <div class="wrapper border_shadow">
         <div class="title_block">
@@ -13,8 +12,7 @@
             <p class="title_text">{{__('Новые пользователи')}}</p>
         </div>
         <div class="block_topUsers">
-
-            @isset($newUsers)
+            @if(isset($newUsers) && $newUsers->isNotEmpty() )
                 @foreach($newUsers as $item)
                     <div class="row row_container">
                         <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
@@ -22,8 +20,8 @@
                         </div>
                         <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
                             @if($item->countries)
-                            <img class="icon_bars" src="{{asset($item->countries->flagOrDefault())}}" alt="flag"
-                                 title="{{$item->countries->name}}"/>
+                                <img class="icon_bars" src="{{asset($item->countries->flagOrDefault())}}" alt="flag"
+                                     title="{{$item->countries->name}}"/>
                             @endif
                             <img class="icon_bars"
                                  src="{{asset("images/default/game-races/" . $item->races->title . ".png")}}" alt="race"
@@ -36,7 +34,7 @@
                         </div>
                     </div>
                 @endforeach
-            @endisset
+            @endif
         </div>
         <div class="title_block_gray change_gray">
             <a href="{{route('best.index')}}">
@@ -44,8 +42,7 @@
             </a>
         </div>
         <div class="block_topUsers">
-
-            @if(!$top10Rating->isEmpty())
+            @if(isset($top10Rating) && $top10Rating->isNotEmpty())
                 @foreach($top10Rating as $item)
                     <div class="row row_container">
                         <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
@@ -57,7 +54,8 @@
                                      title="{{$item->countries->name}}"/>
                             @endif
                             @if($item->races)
-                                <img class="icon_bars" src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}" alt="race"
+                                <img class="icon_bars"
+                                     src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}" alt="race"
                                      title="{{$item->races->title}}"/>
                             @endif
                         </div>
@@ -74,7 +72,7 @@
             <a href="{{route('best.index')}}"><p class="title_text night_text">{{__('TOP 10 pts')}}</p></a>
         </div>
         <div class="block_topUsers">
-            @if(!$top10Points->isEmpty())
+            @if(isset($top10Points) && $top10Points->isNotEmpty())
                 @foreach($top10Points as $item)
                     <div class="row row_container">
                         <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
@@ -86,7 +84,8 @@
                                      title="{{$item->countries->name}}"/>
                             @endif
                             @if($item->races)
-                                <img class="icon_bars" src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}" alt="race"
+                                <img class="icon_bars"
+                                     src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}" alt="race"
                                      title="{{$item->races->title}}"/>
                             @endif
                         </div>

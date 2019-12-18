@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Replay;
 
 use App\Models\Comment;
 use App\Models\Replay;
-use Illuminate\Http\Request;
 
 class ReplayHelper
 {
@@ -23,49 +22,43 @@ class ReplayHelper
     public static function findReplayWithType2($relations, $id, $user_replay)
     {
         return Replay::with($relations)
-            ->withCount('comments')
-            ->with([
-                'comments.user' => function ($query) {
-                    $query->withCount('comments');
-                },
-            ])
-            ->with([
-                'users' => function ($query) {
-                    $query->withCount('comments');
-                },
-            ])
-            ->where('approved', 1)
-            ->where('user_replay', $user_replay)
-            ->where('id', $id)
-            ->firstOrFail();
+                     ->withCount('comments')
+                     ->with([
+                         'comments.user' => function ($query) {
+                             $query->withCount('comments');
+                         },
+                     ])
+                     ->with([
+                         'users' => function ($query) {
+                             $query->withCount('comments');
+                         },
+                     ])
+                     ->where('approved', 1)
+                     ->where('user_replay', $user_replay)
+                     ->where('id', $id)
+                     ->firstOrFail();
     }
 
-    public static function findReplaysWithType(
-        $relations,
-        $id,
-        $user_replay,
-        $type
-    ) {
-
-        return Replay::with($relations)
-            ->withCount('comments')
-            ->with([
-                'comments.user' => function ($query) {
-                    $query->withCount('comments');
-                },
-            ])
-            ->with([
-                'users' => function ($query) {
-                    $query->withCount('comments');
-                },
-            ])
-            ->where('approved', 1)
-            ->whereHas('types', function ($query) use ($type) {
-                $query->where('name', $type);
-            })
-            ->where('user_replay', $user_replay)
-            ->where('id', $id)
-            ->firstOrFail();
+    public static function findReplaysWithType($relations, $id, $user_replay, $type)
+    {
+        return Replay::with($relations)->withCount('comments')
+                     ->with([
+                         'comments.user' => function ($query) {
+                             $query->withCount('comments');
+                         },
+                     ])
+                     ->with([
+                         'users' => function ($query) {
+                             $query->withCount('comments');
+                         },
+                     ])
+                     ->where('approved', 1)
+                     ->whereHas('types', function ($query) use ($type) {
+                         $query->where('name', $type);
+                     })
+                     ->where('user_replay', $user_replay)
+                     ->where('id', $id)
+                     ->firstOrFail();
     }
 
     public function download()
@@ -90,18 +83,16 @@ class ReplayHelper
         };
 
         return response()->download($checkPath);
-
     }
 
     public function downloadCount()
     {
         if (request()->ajax()) {
-
             $filePath = Replay::where('id', request('id'))->value('file');
 
-            $file     = $filePath;
+            $file = $filePath;
             if (empty($file)) {
-                return;
+                return null;
             }
 
             if (strpos($filePath, '/storage') !== false) {
@@ -117,9 +108,8 @@ class ReplayHelper
                 $replay = Replay::find(request('id'));
                 $replay->increment('downloaded', 1);
                 $replay->save();
-                echo json_encode(['downloaded' => $replay->downloaded]);
+                return response()->json(['downloaded' => $replay->downloaded],200);
             };
-
         }
     }
 
@@ -137,7 +127,6 @@ class ReplayHelper
 
     public static function getReplayType()
     {
-
         if (request()->has('type') && request()->filled('type')) {
             if (request('type') === 'user') {
                 return $type = Replay::REPLAY_USER;

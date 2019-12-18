@@ -4,6 +4,8 @@
 /public/js/app.js
 /public/files
 /public/storage
+/public/packages/sleepingowl/
+/public/mix-manifest.json
 /storage/*.key
 /storage/db-dumps
 /storage/base.zip
@@ -11,6 +13,8 @@
 /vendor
 /.idea
 /v8-compile-cache-0
+/npm
+_ide_helper.php
 .env
 .env.backup
 .phpunit.result.cache
@@ -21,4 +25,5 @@ npm-debug.log
 yarn-error.log
 laravel-echo-server.json
 laravel-echo-server.lock
-/public/packages/sleepingowl/
+
+

@@ -1,6 +1,6 @@
 @inject('rout','App\Services\User\UserActivityLogService')
 @inject('commentModel','App\Models\Comment')
-@if($comments->isNotEmpty())
+@if(isset($comments) && $comments->isNotEmpty())
     @foreach($comments as $item)
         <div class="panel__wrap">
             <div class="panel__header">
@@ -17,9 +17,8 @@
             </div>
             <div class="panel__body">
                 <a class="body__numb" href="{{asset($rout::getCommentRoute($item))}}">{{$item->id}}</a>
-                <a class="body__nick"
-                   href="{{route('user_profile',['id'=>$item->user_id])}}">{{$item->user_name}}</a>
-                <p class="body__text night_text">{!! ParserToHTML::toHTML($item->content) !!}</p>
+                <a class="body__nick" href="{{route('user_profile',['id'=>$item->user_id])}}">{{$item->user_name}}</a>
+                <p class="body__text night_text">{!! ParserToHTML::toHTML(clean($item->content)) !!}</p>
             </div>
         </div>
         @php
@@ -27,12 +26,13 @@
             $relation_id = $commentModel::$relation[$item->commentable_type];
         @endphp
     @endforeach
-        <button type="button" name="load_more_user_posts_button" class="button button__download-more night_text buttonEventLoadPosts"
-               onclick="button_event(this.value,{{ $last_commentId }})"
-                id="load_more_user_posts_button_{{ $relation_id }}"
-                value="{{ $relation_id }}">
-            {{__('Загрузить еще')}}
-        </button>
+    <button type="button" name="load_more_user_posts_button"
+            class="button button__download-more night_text buttonEventLoadPosts"
+            onclick="button_event(this.value,{{ $last_commentId }})"
+            id="load_more_user_posts_button_{{ $relation_id }}"
+            value="{{ $relation_id }}">
+        {{__('Загрузить еще')}}
+    </button>
 @else
     <button type="button" name="load_more_user_posts_button" class="button button__download-more night_text">
         {{__('Пусто')}}

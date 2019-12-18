@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Services\Base\RegexService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ReplayUpdateRequest extends FormRequest
@@ -30,14 +31,27 @@ class ReplayUpdateRequest extends FormRequest
             'map_id'            => 'exists:replay_maps,id',
             'first_race'        => 'exists:races,id',
             'first_country_id'  => 'string|exists:countries,id',
-            'first_location'    => 'nullable|integer|min:1|max:20',
+            'first_location'    => 'nullable|between:1,20|numeric',
             'second_race'       => 'string|exists:races,id',
             'second_country_id' => 'string|exists:countries,id',
-            'second_location'   => 'nullable|integer|min:1|max:20',
-            'content'           => 'string|between:1,10000',
-            'video_iframe'      => 'required_without:file|max:1000',
-            'file'              => 'required_without:video_iframe|file|max:5120',
+            'second_location'   => 'nullable|between:1,20|numeric',
+            'content'           => 'string|nullable|between:10,1000',
+            'src_iframe'        => 'url|max:255',
+            'file'              => 'file|max:5120',
             'user_replay'       => 'required|in:1,0',
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'video_iframe_url.url' => 'Указанный URL для Video Iframe имеет ошибочный формат.',
+            'video_iframe_url.max' => 'Указанный URL для Video Iframe не должен быть длионй до 500 символов',
         ];
     }
 

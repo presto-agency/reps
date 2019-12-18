@@ -24,12 +24,24 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-basic-styles": "^16.0.0",
+        "@ckeditor/ckeditor5-build-classic": "^16.0.0",
+        "@ckeditor/ckeditor5-build-decoupled-document": "^16.0.0",
+        "@ckeditor/ckeditor5-dev-utils": "^12.0.5",
+        "@ckeditor/ckeditor5-editor-classic": "^16.0.0",
+        "@ckeditor/ckeditor5-essentials": "^16.0.0",
+        "@ckeditor/ckeditor5-paragraph": "^16.0.0",
+        "@ckeditor/ckeditor5-theme-lark": "^16.0.0",
         "express": "^4.17.1",
         "laravel-echo": "^1.6.1",
         "moment": "^2.24.0",
+        "postcss-loader": "^3.0.0",
+        "raw-loader": "^3.1.0",
         "select2": "^4.0.10",
         "socket.io": "^2.3.0",
         "socket.io-client": "^2.3.0",
-        "vue-socket.io": "^3.0.7"
+        "style-loader": "^1.0.1",
+        "vue-socket.io": "^3.0.7",
+        "webpack-cli": "^3.3.10"
     }
 }
