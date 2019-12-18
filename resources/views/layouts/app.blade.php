@@ -180,6 +180,9 @@
             $('#authorizationModal').modal('show');
             @endif
             @endif
+            @if(!empty(Session::get('showModal')) && Session::get('showModal') == 'ban')
+            $('#userInBanModal').modal('show');
+            @endif
         });
     </script>
 @show
