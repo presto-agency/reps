@@ -13,20 +13,18 @@ class UserActivityLogService
 
     public static function parametersForCreateImage($userGallery)
     {
-
-
         if ($userGallery->getTitle()) {
-            $route = route('user-gallery.show', [
-                'id' => $userGallery->user_id,
+            $route       = route('user-gallery.show', [
+                'id'           => $userGallery->user_id,
                 'user_gallery' => $userGallery->id,
             ]);
-            $description = 'Изображение <a target="_blank" href="' . asset($route) . '">' . $userGallery->getTitle() . '</a>';
+            $description = 'Изображение <a target="_blank" href="'.asset($route).'">'.$userGallery->getTitle().'</a>';
         } else {
-            $route = route('user-gallery.show', [
-                'id' => $userGallery->user_id,
+            $route       = route('user-gallery.show', [
+                'id'           => $userGallery->user_id,
                 'user_gallery' => $userGallery->id,
             ]);
-            $description = '<a target="_blank" href="' . asset($route) . '">Изображение</a>';
+            $description = '<a target="_blank" href="'.asset($route).'">Изображение</a>';
         }
 
         return json_encode(['description' => $description]);
@@ -35,25 +33,27 @@ class UserActivityLogService
 
     public static function parametersForCreateReplay($replay)
     {
-        $type = Replay::$type[$replay->user_replay];
-        $route = "replay/{$replay->id}" . "?type=$type";
-        $description = 'Replay <a target="_blank" href="' . asset($route) . '">' . $replay->title . '</a>';
+        $type        = Replay::$type[$replay->user_replay];
+        $route       = "replay/{$replay->id}"."?type=$type";
+        $description = 'Replay <a target="_blank" href="'.asset($route).'">'.$replay->title.'</a>';
+
         return json_encode(['description' => $description,]);
     }
 
     public static function parametersForCreateTopic($forumTopic)
     {
-        $route = route('topic.show', ['topic' => $forumTopic->id]);
-        $description = 'Пост <a target="_blank" href="' . asset($route) . '">' . $forumTopic->title . '</a>';
+        $route       = route('topic.show', ['topic' => $forumTopic->id]);
+        $description = 'Пост <a target="_blank" href="'.asset($route).'">'.$forumTopic->title.'</a>';
+
         return json_encode(['description' => $description,]);
     }
 
     public static function parametersForComment($comment)
     {
-        $userName = $comment->user->name;
-        $route = self::getCommentRoute($comment);
-        $title = self::getCommentTitle($comment);
-        $description = 'Комментарий от ' . $userName . ' для <a target="_blank" href="' . asset($route) . '">' . $title . '</a>';
+        $userName    = $comment->user->name;
+        $route       = self::getCommentRoute($comment);
+        $title       = self::getCommentTitle($comment);
+        $description = 'Комментарий от '.$userName.' для <a target="_blank" href="'.asset($route).'">'.$title.'</a>';
 
         return json_encode(['description' => $description,]);
     }
@@ -63,15 +63,29 @@ class UserActivityLogService
         switch ($comment->commentable_type) {
             case Comment::RELATION_FORUM_TOPIC:
             {
-                return self::getTopicShowRoute($comment->commentable->id);
+                if ($comment->commentable) {
+                    $dataTopic = $comment->commentable->id;
+
+                    return self::getTopicShowRoute($dataTopic);
+                }
             }
             case Comment::RELATION_REPLAY:
             {
-                return self::getReplayShowRoute($comment->commentable->id, $comment->commentable->user_replay);
+                if ($comment->commentable) {
+                    $dataReplay1 = $comment->commentable->id;
+                    $dataReplay2 = $comment->commentable->user_replay;
+
+                    return self::getReplayShowRoute($dataReplay1, $dataReplay2);
+                }
             }
             case Comment::RELATION_USER_GALLERY:
             {
-                return self::getUserGalleryShowRoute($comment->commentable->user_id, $comment->commentable->id);
+                if ($comment->commentable) {
+                    $dataGallery1 = $comment->commentable->user_id;
+                    $dataGallery2 = $comment->commentable->id;
+
+                    return self::getUserGalleryShowRoute($dataGallery1, $dataGallery2);
+                }
             }
             default:
             {
@@ -85,15 +99,21 @@ class UserActivityLogService
         switch ($comment->commentable_type) {
             case Comment::RELATION_FORUM_TOPIC:
             {
-                return $comment->commentable->title;
+                if ($comment->commentable) {
+                    return $comment->commentable->title;
+                }
             }
             case Comment::RELATION_REPLAY:
             {
-                return $comment->commentable->title;
+                if ($comment->commentable) {
+                    return $comment->commentable->title;
+                }
             }
             case Comment::RELATION_USER_GALLERY:
             {
-                return $comment->commentable->sign;
+                if ($comment->commentable) {
+                    return $comment->commentable->sign;
+                }
             }
             default:
             {
@@ -104,16 +124,15 @@ class UserActivityLogService
 
     public static function parametersForLike($userReputation)
     {
-
-        $sender = $userReputation->sender;
+        $sender     = $userReputation->sender;
         $senderName = $sender->name;
         $routSender = route('user_profile', ['id' => $sender->id]);
-        $route = self::getLikeRoute($userReputation);
-        $title = self::getLikeTitle($userReputation);
+        $route      = self::getLikeRoute($userReputation);
+        $title      = self::getLikeTitle($userReputation);
 
         $part = $userReputation->relation == UserReputation::RELATION_COMMENT ? 'Лайк комментария от' : 'Лайк от';
 
-        $description = $part . ' <a target="_blank" href="' . asset($routSender) . '">' . $senderName . '</a> для <a target="_blank" href="' . asset($route) . '">' . $title . '</a>';
+        $description = $part.' <a target="_blank" href="'.asset($routSender).'">'.$senderName.'</a> для <a target="_blank" href="'.asset($route).'">'.$title.'</a>';
 
 
         return json_encode(['description' => $description,]);
@@ -121,23 +140,30 @@ class UserActivityLogService
 
     public static function getLikeRoute($userReputation)
     {
-
         switch ($userReputation->relation) {
             case UserReputation::RELATION_FORUM_TOPIC:
             {
-                return self::getTopicShowRoute($userReputation->topic->id);
+                if ($userReputation->topic) {
+                    return self::getTopicShowRoute($userReputation->topic->id);
+                }
             }
             case UserReputation::RELATION_REPLAY:
             {
-                return self::getReplayShowRoute($userReputation->replay->id, $userReputation->replay->user_replay);
+                if ($userReputation->replay) {
+                    return self::getReplayShowRoute($userReputation->replay->id, $userReputation->replay->user_replay);
+                }
             }
             case UserReputation::RELATION_USER_GALLERY:
             {
-                return self::getUserGalleryShowRoute($userReputation->gallery->user_id, $userReputation->gallery->id);
+                if ($userReputation->gallery) {
+                    return self::getUserGalleryShowRoute($userReputation->gallery->user_id, $userReputation->gallery->id);
+                }
             }
             case UserReputation::RELATION_COMMENT:
             {
-                return self::getCommentRoute($userReputation->commentRelation);
+                if ($userReputation->commentRelation) {
+                    return self::getCommentRoute($userReputation->commentRelation);
+                }
             }
             default:
             {
@@ -148,23 +174,30 @@ class UserActivityLogService
 
     public static function getLikeTitle($userReputation)
     {
-
         switch ($userReputation->relation) {
             case UserReputation::RELATION_FORUM_TOPIC:
             {
-                return $userReputation->topic->title;
+                if ($userReputation->topic) {
+                    return $userReputation->topic->title;
+                }
             }
             case UserReputation::RELATION_REPLAY:
             {
-                return $userReputation->replay->title;
+                if ($userReputation->replay) {
+                    return $userReputation->replay->title;
+                }
             }
             case UserReputation::RELATION_USER_GALLERY:
             {
-                return $userReputation->gallery->sign;
+                if ($userReputation->gallery) {
+                    return $userReputation->gallery->sign;
+                }
             }
             case UserReputation::RELATION_COMMENT:
             {
-                return self::getCommentTitle($userReputation->commentRelation);
+                if ($userReputation->commentRelation) {
+                    return self::getCommentTitle($userReputation->commentRelation);
+                }
             }
             default:
             {
@@ -181,7 +214,8 @@ class UserActivityLogService
     public static function getReplayShowRoute($replayId, $userReplay)
     {
         $type = Replay::$type[$userReplay];
-        return "replay/{$replayId}" . "?type=$type";
+
+        return "replay/{$replayId}"."?type=$type";
     }
 
     public static function getUserGalleryShowRoute($userId, $id)

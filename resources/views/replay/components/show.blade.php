@@ -10,7 +10,8 @@
                               d="M552 64H448V24c0-13.3-10.7-24-24-24H152c-13.3 0-24 10.7-24 24v40H24C10.7 64 0 74.7 0 88v56c0 35.7 22.5 72.4 61.9 100.7 31.5 22.7 69.8 37.1 110 41.7C203.3 338.5 240 360 240 360v72h-48c-35.3 0-64 20.7-64 56v12c0 6.6 5.4 12 12 12h296c6.6 0 12-5.4 12-12v-12c0-35.3-28.7-56-64-56h-48v-72s36.7-21.5 68.1-73.6c40.3-4.6 78.6-19 110-41.7 39.3-28.3 61.9-65 61.9-100.7V88c0-13.3-10.7-24-24-24zM99.3 192.8C74.9 175.2 64 155.6 64 144v-16h64.2c1 32.6 5.8 61.2 12.8 86.2-15.1-5.2-29.2-12.4-41.7-21.4zM512 144c0 16.1-17.7 36.1-35.3 48.8-12.5 9-26.7 16.2-41.8 21.4 7-25 11.8-53.6 12.8-86.2H512v16z"></path>
                     </svg>
                     <span class="title_text night_text" title="{{ clean($replay->title) }}">
-                        {{ clean($replay->title) }}</span>
+                          {{ clean($replay->title) }}
+                    </span>
                 </div>
                 <div class="right_block">
                     @if(!empty($replay->users))
@@ -26,40 +27,44 @@
                                  alt="avatar"/>
                         @endauth
                         <span title="{{$replay->users->rating .' кг'}}">{{$replay->users->rating .' кг'}}</span>
-                        <a href="{{route('user-comments.index',['id'=>$replay->users->id])}}" title="{{$replay->users->comments_count.' pts'}}">{{$replay->users->comments_count.' pts'}}</a>
+                        <a href="{{route('user-comments.index',['id'=>$replay->users->id])}}"
+                           title="{{$replay->users->comments_count.' pts'}}">{{$replay->users->comments_count.' pts'}}</a>
                     @endif
                 </div>
             </div>
 
             <div class="title_block_gray change_gray">
                 <div class="title_top left_block">
-                    {!! ParserToHTML::toHTML($replay->content,'size')  !!}</div>
+                    <p>
+                        {!! ParserToHTML::toHTML($replay->content,'size')  !!}
+                    </p>
+                </div>
                 <div class="right_block">
-                        <svg class="night_svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60 60"
-                             style="enable-background:new 0 0 60 60;" xml:space="preserve">
+                    <svg class="night_svg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60 60"
+                         style="enable-background:new 0 0 60 60;" xml:space="preserve">
                             <path d="M30.5,0C14.233,0,1,13.233,1,29.5c0,5.146,1.346,10.202,3.896,14.65L0.051,58.684c-0.116,0.349-0.032,0.732,0.219,1
                                 C0.462,59.888,0.728,60,1,60c0.085,0,0.17-0.011,0.254-0.033l15.867-4.176C21.243,57.892,25.86,59,30.5,59
                                 C46.767,59,60,45.767,60,29.5S46.767,0,30.5,0z M30.5,57c-3.469,0-6.919-0.673-10.132-1.945l4.849-1.079
                                 c0.539-0.12,0.879-0.654,0.759-1.193c-0.12-0.539-0.653-0.877-1.193-0.759l-7.76,1.727c-0.006,0.001-0.01,0.006-0.016,0.007
                                 c-0.007,0.002-0.014,0-0.021,0.001L2.533,57.563l4.403-13.209c0.092-0.276,0.059-0.578-0.089-0.827C4.33,39.292,3,34.441,3,29.5
                                 C3,14.336,15.336,2,30.5,2S58,14.336,58,29.5S45.664,57,30.5,57z"></path>
-                            <path
-                                d="M17,23.015h14c0.552,0,1-0.448,1-1s-0.448-1-1-1H17c-0.552,0-1,0.448-1,1S16.448,23.015,17,23.015z"></path>
-                            <path
-                                d="M44,29.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,29.015,44,29.015z"></path>
-                            <path
-                                d="M44,37.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,37.015,44,37.015z"></path>
+                        <path
+                            d="M17,23.015h14c0.552,0,1-0.448,1-1s-0.448-1-1-1H17c-0.552,0-1,0.448-1,1S16.448,23.015,17,23.015z"></path>
+                        <path
+                            d="M44,29.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,29.015,44,29.015z"></path>
+                        <path
+                            d="M44,37.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,37.015,44,37.015z"></path>
                     </svg>
-                        <span class="comment_count">{{$replay->comments_count}}</span>
-                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="clock"
-                             class="svg-inline--fa fa-clock fa-w-16 night_svg" role="img"
-                             xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 512 512">
-                            <path
-                                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path>
-                        </svg>
-                        <span>{{$replay->created_at->format('H:i d.m.Y')}}</span>
+                    <span class="comment_count">{{$replay->comments_count}}</span>
+                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="clock"
+                         class="svg-inline--fa fa-clock fa-w-16 night_svg" role="img"
+                         xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 512 512">
+                        <path
+                            d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path>
+                    </svg>
+                    <span>{{$replay->created_at->format('H:i d.m.Y')}}</span>
                 </div>
             </div>
             <div class="replay-content">
@@ -85,13 +90,19 @@
                             <span class="night_text">{{__('Матчап:')}}</span>
                         </div>
                         <div class="right_block">
-                            @isset($replay->firstRaces)
-                                <span class="night_text">{{$replay->firstRaces->title}}</span>
-                            @endisset
+                            @if($replay->firstRaces)
+                                <img class="icon_bars"
+                                     src="{{asset("images/default/game-races/" . $replay->firstRaces->title . ".png")}}"
+                                     alt="race"
+                                     title="{{$replay->firstRaces->title}}"/>
+                            @endif
                             <span class="night_text">{{__('vs')}}</span>
-                            @isset($replay->secondRaces)
-                                <span class="night_text">{{$replay->secondRaces->title}}</span>
-                            @endisset
+                            @if($replay->secondRaces)
+                                <img class="icon_bars"
+                                     src="{{asset("images/default/game-races/" . $replay->secondRaces->title . ".png")}}"
+                                     alt="race"
+                                     title="{{$replay->secondRaces->title}}"/>
+                            @endif
                         </div>
                     </div>
                     <div class="content_left">
