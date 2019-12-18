@@ -89,11 +89,7 @@
             text-transform: uppercase;
             text-decoration: underline;
             text-decoration-color: $blue;
-            transition: .3s;
             font-weight: 600;
-            &:hover {
-                color: #0567cc;
-            }
         }
     }
     .produced {
