@@ -21,7 +21,6 @@
                 <h2 class="info__title footer__title">{{__('Наши именинники:')}}</h2>
                 <div class="row">
                     <div class="col-4">
-
                         @foreach($footerUser as $item)
                             <a class="our-birthday__nickname" target="_blank"
                                href="{{route('user_profile',['id'=>$item->id])}}">{{$item->name}}</a>
