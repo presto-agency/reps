@@ -27,6 +27,7 @@
                         @endforeach
                     </div>
                 </div>
+                </div>
             </div>
             <div class="footer__useful col-xl-2 col-lg-2 mt-lg-0 col-md-6 col-6 order-3 col-sm-6 col-6 mt-4">
                 <h2 class="info__title footer__title">{{__('Полезное:')}}</h2>
