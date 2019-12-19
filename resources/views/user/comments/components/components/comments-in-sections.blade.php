@@ -27,8 +27,8 @@
             $relation_id = $commentModel::$relation[$item->commentable_type];
         @endphp
     @endforeach
-        <button type="button" name="load_more_user_posts_button btn_center"
-                class="button button__download-more night_text buttonEventLoadPosts"
+        <button type="button" name="load_more_user_posts_button"
+                class="button button__download-more night_text buttonEventLoadPosts btn_center"
                 onclick="button_event(this.value,{{ $last_commentId }})"
                 id="load_more_user_posts_button_{{ $relation_id }}"
                 value="{{ $relation_id }}">
