@@ -83,7 +83,7 @@
         }
     }
     & .messanger{
-        max-height:385px;
+        max-height: 50vh !important;
         overflow:auto;
 
     }
@@ -317,6 +317,15 @@
         width: 10px;
 }
 .messanger::-webkit-scrollbar-thumb {
+    background-color: #e2e5e9;
+    opacity: 0.8;
+    border-radius: 4px;
+    height: 227px;
+}
+.component_question::-webkit-scrollbar {
+    width: 10px;
+}
+.component_question::-webkit-scrollbar-thumb {
     background-color: #e2e5e9;
     opacity: 0.8;
     border-radius: 4px;

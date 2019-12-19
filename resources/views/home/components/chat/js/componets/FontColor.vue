@@ -14,7 +14,7 @@
 
     export default {
         name: "FontColor",
-        props: ["status", "selection"],
+        props: ["status", "selection","textareaId"],
         data() {
             return {
                 colors: [
@@ -32,14 +32,14 @@
 
         methods: {
             selColor(color) {
-                let textareaObj = chatHelper.textareaObj();
+                let textareaObj = chatHelper.textareaObj(this.textareaId);
                 let sel = this.selection;
                 let text;
                 if (sel.length > 0) {
                     let newValue = textareaObj.value.replace(sel, '[' + color.key + ']' + sel + '[/' + color.key + ']');
                     text = textareaObj.value = newValue;
                 } else {
-                    chatHelper.insertText('[' + color.key + '][/' + color.key + ']');
+                    chatHelper.insertText('[' + color.key + '][/' + color.key + ']' , this.textareaId);
                     text = textareaObj.value;
                 }
                 this.$emit("turnOffStatus");
