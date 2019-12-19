@@ -1,6 +1,6 @@
 @inject('rout','App\Services\User\UserActivityLogService')
 @inject('commentModel','App\Models\Comment')
-@if(!empty($comments))
+@if(isset($comments) && $comments->isNotEmpty())
     @foreach($comments as $item)
         <div class="panel__wrap">
             <div class="panel__header">
@@ -12,7 +12,7 @@
                         <path
                             d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"/>
                     </svg>
-                    <p class="items__info">{{$item->created_at->format('H:i d.m.Y')}}</p>
+                    <p class="items__info">{{$item->created_at}}</p>
                 </div>
             </div>
             <div class="panel__body">
@@ -21,7 +21,6 @@
                 <p class="body__text night_text">{!! ParserToHTML::toHTML(clean($item->content)) !!}</p>
             </div>
         </div>
-
         @php
             $last_commentId = $item->id;
             $relation_id = $commentModel::$relation[$item->commentable_type];

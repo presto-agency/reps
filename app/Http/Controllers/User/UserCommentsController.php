@@ -18,7 +18,6 @@ class UserCommentsController extends Controller
     public function index($id)
     {
         $sections = User::$sections;
-
         return view('user.comments.index', compact('sections'));
     }
 
@@ -37,19 +36,17 @@ class UserCommentsController extends Controller
             $visible_title = false;
             if ($request->get('comment_id') > 0) {
                 $comments = Comment::orderByDesc('id')
-                    ->with('commentable')
-                    ->where('commentable_type', self::getCommentTableType($request->relation_id))
-                    ->where('id', '<', $request->comment_id)
-                    ->where('user_id', $id)
-                    ->limit(5)
-                    ->get();
+                                   ->where('commentable_type', self::getCommentTableType($request->relation_id))
+                                   ->where('id', '<', $request->get('comment_id'))
+                                   ->where('user_id', $id)
+                                   ->limit(5)
+                                   ->get();
             } else {
                 $comments      = Comment::orderByDesc('id')
-                    ->with('commentable')
-                    ->where('commentable_type', self::getCommentTableType($request->relation_id))
-                    ->where('user_id', $id)
-                    ->limit(5)
-                    ->get();
+                                        ->where('commentable_type', self::getCommentTableType($request->relation_id))
+                                        ->where('user_id', $id)
+                                        ->limit(5)
+                                        ->get();
                 $visible_title = true;
             }
 
@@ -58,7 +55,6 @@ class UserCommentsController extends Controller
             );
         }
     }
-
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
