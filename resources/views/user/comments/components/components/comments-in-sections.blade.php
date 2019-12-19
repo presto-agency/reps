@@ -27,15 +27,19 @@
             $relation_id = $commentModel::$relation[$item->commentable_type];
         @endphp
     @endforeach
-    <button type="button" name="load_more_user_posts_button"
-            class="button button__download-more night_text buttonEventLoadPosts"
-            onclick="button_event(this.value,{{ $last_commentId }})"
-            id="load_more_user_posts_button_{{ $relation_id }}"
-            value="{{ $relation_id }}">
-        {{__('Загрузить еще')}}
-    </button>
+    <div class="btn_flex">
+        <button type="button" name="load_more_user_posts_button"
+                class="button button__download-more night_text buttonEventLoadPosts"
+                onclick="button_event(this.value,{{ $last_commentId }})"
+                id="load_more_user_posts_button_{{ $relation_id }}"
+                value="{{ $relation_id }}">
+            {{__('Загрузить еще')}}
+        </button>
+    </div>
 @else
-    <button type="button" name="load_more_user_posts_button" class="button button__download-more night_text">
-        {{__('Пусто')}}
-    </button>
+    <div class="btn_flex">
+        <button type="button" name="load_more_user_posts_button" class="button button__download-more night_text">
+            {{__('Пусто')}}
+        </button>
+    </div>
 @endif
