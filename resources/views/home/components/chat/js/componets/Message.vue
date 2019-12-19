@@ -85,7 +85,7 @@ export default {
         textMessage: '',
         textarea: '',
         smiles: [],
-        images: {},
+        images: [],
         linkProfile: '',
         selection: '',
         user_id: '',
@@ -145,7 +145,7 @@ export default {
         },
         addImage(image_object) {
             this.textMessage += image_object.str;
-            this.images = image_object.images;
+            this.images.push(image_object.images) ;
         },
         sendMessage(){
             let mes = chatHelper.parsePath(this.textMessage, this.smiles, this.images);
