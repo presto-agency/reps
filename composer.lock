@@ -251,17 +251,20 @@
         },
         {
             "name": "caouecs/laravel-lang",
-            "version": "4.0.7",
+            "version": "4.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/caouecs/Laravel-lang.git",
-                "reference": "13c8551427e5d935fc287a19d7ba1c9fd42d83d5"
+                "reference": "b508ae398fc1a8453a6877229e57460dd07ecfa2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/13c8551427e5d935fc287a19d7ba1c9fd42d83d5",
-                "reference": "13c8551427e5d935fc287a19d7ba1c9fd42d83d5",
+                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/b508ae398fc1a8453a6877229e57460dd07ecfa2",
+                "reference": "b508ae398fc1a8453a6877229e57460dd07ecfa2",
                 "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.10"
@@ -290,7 +293,7 @@
                 "laravel",
                 "lpm"
             ],
-            "time": "2019-11-20T05:44:33+00:00"
+            "time": "2019-12-19T09:38:31+00:00"
         },
         {
             "name": "chriskonnertz/bbcode",
