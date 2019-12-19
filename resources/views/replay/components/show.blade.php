@@ -91,17 +91,13 @@
                         </div>
                         <div class="right_block">
                             @if($replay->firstRaces)
-                                <img class="icon_bars"
-                                     src="{{asset("images/default/game-races/" . $replay->firstRaces->title . ".png")}}"
-                                     alt="race"
-                                     title="{{$replay->firstRaces->title}}"/>
+                                <img class="icon_bars" alt="race" title="{{$replay->firstRaces->title}}"
+                                     src="{{asset("images/default/game-races/" . $replay->firstRaces->title . ".png")}}"/>
                             @endif
-                            <span class="night_text">{{__('vs')}}</span>
+                            <span class="night_text">{{__(' vs ')}}</span>
                             @if($replay->secondRaces)
-                                <img class="icon_bars"
-                                     src="{{asset("images/default/game-races/" . $replay->secondRaces->title . ".png")}}"
-                                     alt="race"
-                                     title="{{$replay->secondRaces->title}}"/>
+                                <img class="icon_bars" alt="race" title="{{$replay->secondRaces->title}}"
+                                     src="{{asset("images/default/game-races/" . $replay->secondRaces->title . ".png")}}"/>
                             @endif
                         </div>
                     </div>
