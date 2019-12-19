@@ -20,13 +20,12 @@
                         </div>
                         <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
                             @if($item->countries)
-                                <img class="icon_bars" title="{{$item->countries->name}}" alt="flag"
-                                     src="{{asset($item->countries->flagOrDefault())}}"/>
+                                <img class="icon_bars" src="{{asset($item->countries->flagOrDefault())}}" alt="flag"
+                                     title="{{$item->countries->name}}"/>
                             @endif
-                            @if($item->races)
-                                <img class="icon_bars" title="{{$item->races->title}}" alt="race"
-                                     src="{{asset("images/default/game-races/" . $item->races->title . ".png")}}"/>
-                            @endif
+                            <img class="icon_bars"
+                                 src="{{asset("images/default/game-races/" . $item->races->title . ".png")}}" alt="race"
+                                 title="{{$item->races->title}}"/>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_login">
                             <a href="{{route('user_profile',['id'=>$item->id])}}">
