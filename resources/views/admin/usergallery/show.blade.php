@@ -18,14 +18,15 @@
                 <img class="avatar img-circle img-bordered-sm" src="{{asset($userGallery->users->avatarOrDefault())}}"
                      alt="User avatar"/>
                 <div class="block_text">
-                    <a class="username" href="#">{{$userGallery->users->name}}</a>
+                    <a class="username"
+                       href="{{route('user_profile',['id'=>$userGallery->users->id])}}">{{$userGallery->users->name}}</a>
                     <span class="date">{{ $userGallery->created_at->format('H:i d.m.Y') }}</span>
                 </div>
             </div>
             <div class="col-12 container_icon">
                 <i class="far fa-thumbs-up" style="color: green;">{{$userGallery->positive_count}}</i>
                 <i class="far fa-thumbs-down" style="color: red;">{{$userGallery->negative_count}}</i>
-                <i class="far fa-comment"style="color: green;">{{$userGallery->commentsCount()}}</i>
+                <i class="far fa-comment" style="color: green;">{{$userGallery->commentsCount()}}</i>
             </div>
         </div>
     </div>
@@ -45,10 +46,18 @@
                 @foreach($userGallery->comments as $comment)
                     <div class="row coments_row">
                         <div class="col-6 container_user">
-                            <img class="avatar img-circle img-bordered-sm" src="{{asset($comment->user->avatarOrDefault())}}"
-                                 alt="User avatar"/>
+                            @if($comment->user)
+                                <img class="avatar img-circle img-bordered-sm" alt="User avatar"
+                                     src="{{asset($comment->user->avatarOrDefault())}}"/>
+                            @endif
                             <div class="block_text">
-                                <a class="username" href="#">{{$comment->user->name}}</a>
+                                @if($comment->user)
+                                <a class="username" href="{{route('user_profile',['id'=>$comment->user->id])}}">
+                                    {{$comment->user->name}}
+                                    <small class="text-muted pull-right">
+                                        <i class="fas fa-clock">{{$comment->created_at->format('H:i d.m.Y')}}</i>
+                                    </small></a>
+                                @endif
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['admin.usergallery.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
                                 <div class="block_btn">
                                     <button class="btn btn-default text-red" title="Удалить запись"><i
