@@ -152,6 +152,7 @@
     .detailed-forum__card {
         border: 0px;
         .card-body {
+            word-wrap: break-word;
             .card-body__title {
                 color: #010b4a;
                 font-size: 16px;
