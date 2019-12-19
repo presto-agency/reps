@@ -53,12 +53,13 @@
                 @endisset
             </div>
         @endif
-        @if($section->topics->isNotEmpty())
+        @if(isset($section->topics) && $section->topics->isNotEmpty())
+
             @foreach($section->topics as $topic)
                 <div class="content_article night_modal">
                     <div class="block_nameArticle">
                         <a href="{{ route('topic.show', $topic->id) }}">
-                            <p class="name">{!! ParserToHTML::toHTML($topic->title,'size') !!}</p>
+                            <p class="name" title="{{clean($topic->title)}}">{{clean($topic->title)}}</p>
                         </a>
                         <div class="right">
                             <p class="date">{{ $topic->created_at->format('H:i d.m.Y')}}</p>
@@ -71,9 +72,9 @@
                                     <svg id="Capa_1" enable-background="new 0 0 515.556 515.556"
                                          viewBox="0 0 515.556 515.556" xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                                d="m257.778 64.444c-119.112 0-220.169 80.774-257.778 193.334 37.609 112.56 138.666 193.333 257.778 193.333s220.169-80.774 257.778-193.333c-37.609-112.56-138.666-193.334-257.778-193.334zm0 322.223c-71.184 0-128.889-57.706-128.889-128.889 0-71.184 57.705-128.889 128.889-128.889s128.889 57.705 128.889 128.889c0 71.182-57.705 128.889-128.889 128.889z"></path>
+                                            d="m257.778 64.444c-119.112 0-220.169 80.774-257.778 193.334 37.609 112.56 138.666 193.333 257.778 193.333s220.169-80.774 257.778-193.333c-37.609-112.56-138.666-193.334-257.778-193.334zm0 322.223c-71.184 0-128.889-57.706-128.889-128.889 0-71.184 57.705-128.889 128.889-128.889s128.889 57.705 128.889 128.889c0 71.182-57.705 128.889-128.889 128.889z"></path>
                                         <path
-                                                d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"></path>
+                                            d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"></path>
                                     </svg>
                                     <span>{{$topic->reviews}}</span>
                                 </a>
@@ -105,16 +106,16 @@
                                     <span>{{ $topic->comments_count }}</span>
                                 </a>
                             </div>
-                            @if(isset($topic->author) && !empty($topic->author))
+                            @if($topic->author)
                                 <a class="block_account"
                                    href="{{route('user_profile',['id'=>$topic->author->id])}}">
                                     @if(auth()->check() && auth()->user()->userViewAvatars())
-                                        <img class="search_img" src="{{ asset($topic->author->avatarOrDefault()) }}"
-                                             alt="avatar">
+                                        <img class="search_img" alt="avatar"
+                                             src="{{asset($topic->author->avatarOrDefault())}}">
                                     @endif
                                     @guest()
-                                        <img class="search_img"
-                                             src="{{ asset($topic->author->avatarOrDefault()) }}" alt="avatar">
+                                        <img class="search_img" alt="avatar"
+                                             src="{{asset($topic->author->avatarOrDefault())}}">
                                     @endguest()
                                     <span>{{ $topic->author->name }}</span>
                                 </a>

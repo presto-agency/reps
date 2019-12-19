@@ -10,7 +10,7 @@
         <div class="box-header with-border">
             <h3 class="box-title text-blue">{{__('Заголовок секция | ')}}{{$topic->forumSection->title}}</h3>
             <hr>
-            <h4 class="box-title text-blue">{{__('Заголовок топик | ')}} {!! ParserToHTML::toHTML($topic->title,'size') !!}</h4>
+            <h4 class="box-title text-blue">{{__('Заголовок топик | ')}} {{ clean($topic->title) }}</h4>
             <hr>
         </div>
         <div class="box-body">
@@ -101,7 +101,7 @@
                                                 {{$comment->user->name}}
                                             </a>
                                             {{--<a type="button" class="btn btn-default text-red"  title="Удалить запись" href="#{{route('admin.comments.remove', ['id' => $comment->id])}}"><i class="fa fa-trash"></i></a>--}}
-                                            {!! ParserToHTML::toHTML($comment->content,'size') !!}
+                                            {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
                                         </p>
                                     </div>
                                 @endforeach

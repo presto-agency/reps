@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\User;
 use Closure;
 
 class LoginAccess
@@ -17,13 +18,19 @@ class LoginAccess
      */
     public function handle($request, Closure $next)
     {
+        $user = User::where('email', $request->email)->value('ban');
 
-        if (auth()->user()->ban == 1) {
+        if ($user == 1) {
+            \Session::flash('showModal', 'ban');
+            return back();
+        }
+        if (auth()->check() && auth()->user()->ban == 1){
             auth()->logout();
+            \Session::flash('showModal', 'ban');
+            return back();
         }
 
         return $next($request);
-
     }
 
 }

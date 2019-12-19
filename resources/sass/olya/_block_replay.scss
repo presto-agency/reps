@@ -33,6 +33,14 @@
         }
         & .name_game{
             color: $blue;
+            font-size: 14px;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 0px 0 5px 0;
+            max-width: 90px;
+            display: block;
             & p{
                 font-size: 14px;
                 font-weight: bold;

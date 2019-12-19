@@ -53,7 +53,7 @@
                                 <div class="block_btn">
                                     <button class="btn btn-default text-red" title="Удалить запись"><i
                                             class="fa fa-trash"></i></button>
-                                    {!! ParserToHTML::toHTML($comment->content,'size') !!}
+                                    {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
                                 </div>
 
                                 {{ Form::close() }}

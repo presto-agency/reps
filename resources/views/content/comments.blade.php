@@ -1,8 +1,6 @@
 <script>
     function Quote(id) {
         let block = document.getElementById(id);
-        console.log(block);
-
         CKEDITOR.instances['content-comment'].insertHtml(block.innerHTML);
     }
 </script>
@@ -28,7 +26,7 @@
             <p class="title__text">{{__('Комментарии')}}</p>
         </div>
 
-        @if($comments->isNotEmpty())
+        @if(isset($comments) && $comments->isNotEmpty())
             @foreach($comments as $comment)
                 <div class="citation border_shadow">
                     <div id="{{$comment->id}}">
@@ -44,24 +42,27 @@
                                              alt="avatar">
                                     @endguest()
                                     <a href="{{route('user_profile',['id'=>$comment->user->id])}}"
-                                       class="info__nickname">{{$comment->user->name}}</a>
+                                       title="{{$comment->user->name}}" class="info__nickname">
+                                        {{$comment->user->name}}</a>
                                     @if($comment->user->countries)
                                         <img src="{{asset($comment->user->countries->flagOrDefault())}}"
-                                             class="info__flag" alt="flag">
+                                             class="info__flag" alt="flag" title="{{$comment->user->countries->name}}">
                                     @endif
                                     <img
                                         src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
-                                        class="info__cube" alt="race">
+                                        class="info__cube" alt="race" title="{{$comment->user->races->title}}">
                                     @if($comment->user->races)
-                                        <p class="info__text">{{$comment->user->comments_count.' pts'}}
-                                            | {{$comment->user->count_positive - $comment->user->count_negative.' кг'}}</p>
+                                        <p class="info__text"
+                                           title="{{$comment->user->comments_count.' pts | '. $comment->user->rating.' кг'}}">
+                                            {{$comment->user->comments_count.' pts | '. $comment->user->rating.' кг'}}
+                                        </p>
                                     @endif
                                     <span class="info__date">{{$comment->created_at->format('H:i d.m.Y')}}</span>
                                 </div>
                             @endif
                             <div class="comments__content">
                                 <div class="content__title night_text">
-                                    {!! ParserToHTML::toHTML($comment->content,'size') !!}
+                                    {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
                                 </div>
                             </div>
                         </div>
@@ -69,7 +70,6 @@
                     <div class="comments__items">
                         <div class="items__wrap">
                             <button onclick="Quote({{$comment->id}})" class="items__quote" id="btn_quote">
-                                {{--                                <a  href="#" >--}}
                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                      x="0px" y="0px"
                                      viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
@@ -81,9 +81,7 @@
                                     <path d="M326.9,262.8c-3.2,0-8.9,1.7-10.5,1.7c3.2-27.2,25.8-61.1,51.6-79L338.2,160c-37,27.2-65.2,75.6-65.2,127.4
                                     c0,41.6,23.3,64.6,50,64.6c24.1,0,43.5-20.4,43.5-45.9C366.4,281.5,349.5,262.8,326.9,262.8z"/>
                             </svg>
-                                {{--                                </a>--}}
                             </button>
-                            {{--               д--}}
                         </div>
                         <div class="items__wrap">
                             @php
@@ -118,8 +116,6 @@
                         </div>
                     </div>
                 </div>
-
-
             @endforeach
         @else
             <p class="none_comments night_text"> {{__('Нет комментариев')}}</p>

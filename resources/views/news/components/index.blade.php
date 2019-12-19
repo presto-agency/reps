@@ -11,8 +11,7 @@
             <p class="title__text ">{{__('Последние новости')}}</p>
         </div>
     @endif
-
-    @if($news->isNotEmpty())
+    @if(isset($news) && $news->isNotEmpty())
         @foreach($news as $single_news)
             <div class="breaking-news__news-card card night_modal">
                 @if(!empty($single_news->preview_img) && checkFile::checkFileExists($single_news->preview_img))
@@ -22,7 +21,7 @@
                 @endif
                 <div class="card-body night_text">
                     <div class="card-body__author">
-                        @if(isset($single_news->author) && !empty($single_news->author))
+                        @if($single_news->author)
                             @if(auth()->check() && auth()->user()->userViewAvatars())
                                 <img src="{{ asset($single_news->author->avatarOrDefault()) }}" alt="avatar"
                                      class="author__avatar img-fluid">
@@ -33,21 +32,24 @@
                             @endguest()
                             @if($single_news->author->name)
                                 <a href="{{route('user_profile',['id'=>$single_news->author->id])}}"
-                                   title="{{ $single_news->author->name }}"><p
-                                        class="author__nickname">{{ $single_news->author->name }}</p></a>
+                                   title="{{ $single_news->author->name }}">
+                                    <p class="author__nickname">{{ $single_news->author->name }}</p>
+                                </a>
                             @endif
                         @endif
                         @if($single_news->created_at)
-                            <span
-                                class="author__date">{{\Carbon\Carbon::parse($single_news->created_at)->format('H:i d.m.Y')}}</span>
+                            <span class="author__date">
+                                {{\Carbon\Carbon::parse($single_news->created_at)->format('H:i d.m.Y')}}
+                            </span>
                         @endif
                     </div>
 
                     <a href="{{ route('news.show', $single_news->id) }}">
-                        <h2 class="card-body__title night_text">{!! ParserToHTML::toHTML($single_news->title,'size') !!} </h2>
+                        <h2 class="card-body__title night_text"
+                            title="{{clean($single_news->title)}}">{{clean($single_news->title)}}</h2>
                     </a>
                     <div class="card-body__text night_text">
-                        {!! ParserToHTML::toHTML($single_news->preview_content,'size') !!}
+                        {!! ParserToHTML::toHTML(clean($single_news->preview_content),'size') !!}
                     </div>
                     <div class="card-body__items">
                         <div class="items__comment">
@@ -70,7 +72,7 @@
 
                             <span>{{ $single_news->comments_count }}</span>
                         </div>
-                        <a class="items__watch" href="#">
+                        <div class="items__watch">
                             <svg id="Capa_1" enable-background="new 0 0 515.556 515.556" height="512"
                                  viewBox="0 0 515.556 515.556" width="512" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -79,7 +81,7 @@
                                     d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"/>
                             </svg>
                             <span>{{$single_news->reviews ?? '0'}}</span>
-                        </a>
+                        </div>
                     </div>
                     <hr class="card-body__horizontal-line">
                 </div>
@@ -96,7 +98,7 @@
             </button>
         </div>
     @else
-        <div id="load_more" class="breaking-news__button night_modal">
+        <div class="breaking-news__button night_modal">
             <button type="button" name="load_more_button" class="button button__download-more night_text">
                 {{__('Пусто')}}
             </button>

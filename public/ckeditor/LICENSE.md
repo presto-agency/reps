@@ -1,8 +1,8 @@
 Software License Agreement
 ==========================
 
-CKEditor - The text editor for Internet - https://ckeditor.com/
-Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+CKEditor - The text editor for Internet - http://ckeditor.com
+Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
 
 Licensed under the terms of any of the following licenses at your
 choice:
@@ -37,10 +37,9 @@ done by developers outside of CKSource with their express permission.
 
 The following libraries are included in CKEditor under the MIT license (see Appendix D):
 
-* CKSource Samples Framework (included in the samples) - Copyright (c) 2014-2019, CKSource - Frederico Knabben.
+* CKSource Samples Framework (included in the samples) - Copyright (c) 2014-2017, CKSource - Frederico Knabben.
 * PicoModal (included in `samples/js/sf.js`) - Copyright (c) 2012 James Frasca.
 * CodeMirror (included in the samples) - Copyright (C) 2014 by Marijn Haverbeke <marijnh@gmail.com> and others.
-* ES6Promise - Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors.
 
 Parts of code taken from the following libraries are included in CKEditor under the MIT license (see Appendix D):
 
@@ -124,7 +123,7 @@ program will individually obtain patent licenses, in effect making the
 program proprietary.  To prevent this, we have made it clear that any
 patent must be licensed for everyone's free use or not licensed at all.
 
-  The precise terms and conditions for copying, distribution and
+  The precise terms of use for copying, distribution and
 modification follow.
 
 GNU GENERAL PUBLIC LICENSE
@@ -254,13 +253,13 @@ distribute the Program or its derivative works.  These actions are
 prohibited by law if you do not accept this License.  Therefore, by
 modifying or distributing the Program (or any work based on the
 Program), you indicate your acceptance of this License to do so, and
-all its terms and conditions for copying, distributing or modifying
+all its terms of use for copying, distributing or modifying
 the Program or works based on it.
 
   6. Each time you redistribute the Program (or any work based on the
 Program), the recipient automatically receives a license from the
 original licensor to copy, distribute or modify the Program subject to
-these terms and conditions.  You may not impose any further
+these terms of use.  You may not impose any further
 restrictions on the recipients' exercise of the rights granted herein.
 You are not responsible for enforcing compliance by third parties to
 this License.
@@ -312,7 +311,7 @@ address new problems or concerns.
 
 Each version is given a distinguishing version number.  If the Program
 specifies a version number of this License which applies to it and "any
-later version", you have the option of following the terms and conditions
+later version", you have the option of following the terms of use
 either of that version or of any later version published by the Free
 Software Foundation.  If the Program does not specify a version number of
 this License, you may choose any version ever published by the Free Software
@@ -463,7 +462,7 @@ users' freedom, it does ensure that the user of a program that is
 linked with the Library has the freedom and the wherewithal to run
 that program using a modified version of the Library.
 
-  The precise terms and conditions for copying, distribution and
+  The precise terms of use for copying, distribution and
 modification follow.  Pay close attention to the difference between a
 "work based on the library" and a "work that uses the library".  The
 former contains code derived from the library, whereas the latter must
@@ -717,13 +716,13 @@ distribute the Library or its derivative works.  These actions are
 prohibited by law if you do not accept this License.  Therefore, by
 modifying or distributing the Library (or any work based on the
 Library), you indicate your acceptance of this License to do so, and
-all its terms and conditions for copying, distributing or modifying
+all its terms of use for copying, distributing or modifying
 the Library or works based on it.
 
   10. Each time you redistribute the Library (or any work based on the
 Library), the recipient automatically receives a license from the
 original licensor to copy, distribute, link with or modify the Library
-subject to these terms and conditions.  You may not impose any further
+subject to these terms of use.  You may not impose any further
 restrictions on the recipients' exercise of the rights granted herein.
 You are not responsible for enforcing compliance by third parties with
 this License.

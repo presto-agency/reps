@@ -10,7 +10,9 @@ require('select2');
 
 require('./main');
 require('../views/home/components/chat/js/chat');
+// require( '../../node_modules/@ckeditor/ckeditor5-build-classic/ckeditor5-build-classic@16.0.0');
 
+// require( '@ckeditor/ckeditor5-build-classic' );
 //window.Vue = require('vue');
 
 /**
@@ -38,4 +40,21 @@ require('../views/home/components/chat/js/chat');
     //el: '#app',
 //});
 
-
+//
+// import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
+// import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
+// import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
+// import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
+// import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
+// //
+// ClassicEditor
+//     .create( document.querySelector( '#editor' ), {
+//          plugins: [ Essentials, Paragraph, Bold, Italic ],
+//         toolbar: [ 'bold', 'italic' ]
+//     } )
+//     .then( editor => {
+//         console.log( 'Editor was initialized', editor );
+//     } )
+//     .catch( error => {
+//         console.error( error.stack );
+//     } );

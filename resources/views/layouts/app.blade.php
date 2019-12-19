@@ -3,35 +3,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
+    {{--    CSRF Token  --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
+    <title>{{ config('app.name', 'Reps.Ru') }}</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-{{--    <link rel="stylesheet" href="minified/themes/default.min.css"/>--}}
-    {{--    <script src="minified/sceditor.min.js"></script>--}}
-    {{--    <script src="//cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>--}}
-{{--        <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>--}}
-    <script src="https://cdn.ckeditor.com/4.13.0/full-all/ckeditor.js"></script>
-{{--    <script src="../../../public/ckeditor"></script>--}}
-{{--    <script src="minified/sceditor.min.js"></script>--}}
-    <!-- Fonts -->
+    <script type="text/javascript" src="{{ asset('ckeditor\ckeditor.js') }}"></script>
+    {{--    <link rel="stylesheet" href="minified/themes/default.min.css"/>--}}
+    {{--    <script src="https://cdn.ckeditor.com/4.13.0/full-all/ckeditor.js"></script>--}}
+    {{--    Fonts   --}}
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
-{{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
-{{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
-
-<!-- Include SCEditor -->
-{{--    <link rel="stylesheet" href="{{ asset('js/sceditor/themes/default.min.css') }} "/>--}}
-
-    <!-- Styles -->
+    {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
+    {{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
+    {{--    <link rel="stylesheet" href="{{ asset('js/sceditor/themes/default.min.css') }} "/>--}}
+    {{--    Styles   --}}
     <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-
 </head>
 <body>
 <a href="javascript:" id="return-to-top">
@@ -78,9 +64,7 @@
 <footer>
     @include('layouts.components.footer.index')
 </footer>
-
-
-<!-- ========ALL MODAL WINDOWS ============== -->
+{{-- ========ALL MODAL WINDOWS ============== --}}
 <div class="modal fade modal_like-diselike" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="likeModal"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -98,20 +82,13 @@
             @endif
             <div class="modal-body unregistered-info-wrapper info-block">
                 <div class="notice"></div>
-                <img class="positive-vote-img d-none" src="{{asset('images/icons/thumbs-up.png')}}" alt="">
-                <img class="negative-vote-img d-none" src="{{asset('images/icons/thumbs-down.png')}}" alt="">
+                <img class="positive-vote-img d-none" src="{{asset('images/icons/thumbs-up.png')}}" alt="thumbs-up">
+                <img class="negative-vote-img d-none" src="{{asset('images/icons/thumbs-down.png')}}" alt="thumbs-down">
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-<!-- ********************************* -->
+{{-- ********************************* --}}
 {{--<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -163,24 +140,19 @@
         </div>
     </div>
 </div>--}}
-<!-- ========== END ALL MODAL WINDOWS ============ -->
+{{--========== END ALL MODAL WINDOWS ============--}}
 
 
-<!--SCEditor-->
+{{--SCEditor--}}
 <script src="{{ asset('js/sceditor/sceditor.min.js') }}"></script>
 <script src="{{ asset('js/sceditor/formats/bbcode.js') }}"></script>
-
 <script src="https://kit.fontawesome.com/75f3a42e45.js"></script>
 
-
-{{--    </div>--}}
 @yield('ess21-custom-script')
 @section('custom-script')
     <script>
-
         $(document).ready(function () {
             var _token = $('input[name="_token"]').val();
-
             load_news('', _token);
 
             function load_news(id = "", _token) {
@@ -200,12 +172,7 @@
                 $('#load_more_button').html('<b>Загрузка...</b>');
                 load_news(id, _token);
             });
-
-            /*
-            якщо є помилки при валідації під час реєстрації,
-            відбувається редірект з відкритим модальним вікном
-            і списком помилок в ньому
-            */
+            //if validation error redirect and open modal
             @if (count($errors) > 0)
             @if(!empty(Session::get('showModal')) && Session::get('showModal') == 'registration')
             $('#registrationModal').modal('show');
@@ -213,24 +180,24 @@
             $('#authorizationModal').modal('show');
             @endif
             @endif
+            @if(!empty(Session::get('showModal')) && Session::get('showModal') == 'ban')
+            $('#userInBanModal').modal('show');
+            @endif
         });
     </script>
 @show
-
 <script>
     $(function () {
-
-        $('#button__auth-modal').click(function() {
-            //активируем контент, имеющий id="myModal", как модальное окно
+        $('#button__auth-modal').click(function () {
+            //active content with  id="myModal" as modal window
             $('#vote-modal').modal('hide');
             $('#authorizationModal').modal('show');
         });
-        $('#button__register-modal').click(function() {
-            //активируем контент, имеющий id="myModal", как модальное окно
+        $('#button__register-modal').click(function () {
+            //active content with  id="myModal" as modal window
             $('#vote-modal').modal('hide');
             $('#registrationModal').modal('show');
         });
-
         /**Vote - positive / negative vote - Separate Replay Page*/
         $('body').on('click', 'a.vote-replay-up, a.vote-replay-down', function (e) {
             var rating = $(this).attr('data-rating');
@@ -239,7 +206,6 @@
             modal.find('form input#rating').val(rating);
             modal.find('form').attr('action', url);
             modal.find('.unregistered-info-wrapper').addClass('d-none');
-
             if (rating === '1') {
                 modal.find('.positive').removeClass('d-none');
                 modal.find('.negative').addClass('d-none');
@@ -249,7 +215,6 @@
                 modal.find('.negative').removeClass('d-none');
             }
         });
-
         $('body').on('submit', '#rating-vote-form', function (e) {
             e.preventDefault();
             var url = $(this).attr('action');
@@ -260,8 +225,6 @@
                 url: url,
                 data: selectData,
                 success: function (response) {
-                    console.log('Ответ аджакс: ');
-                    console.log(response);
                     if (response.message) {
                         if (response.user_rating === "-1") {
                             imgClass = 'negative-vote-img';
@@ -284,7 +247,6 @@
         });
     });
 </script>
-
 @yield('java-script')
 </body>
 </html>

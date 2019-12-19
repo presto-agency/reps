@@ -3,9 +3,10 @@
         <a href="{{route('user_profile',['id'=> Auth::id()])}}" class="user-avatar">
             @if(auth()->check() && auth()->user()->userViewAvatars() )
                 <img src="{{asset(auth()->user()->avatarOrDefault())}}" alt="avatar">
-            @else
-                <img src="{{asset(auth()->user()->avatarOrDefault())}}" alt="avatar">
             @endif
+            @guest()
+                <img src="{{asset(auth()->user()->avatarOrDefault())}}" alt="avatar">
+            @endguest
         </a>
         <a href="{{route('user_profile',['id'=> Auth::id()])}}" class="user-nickname"
            title="{{Auth::user()->name}}">{{Auth::user()->name}}</a>

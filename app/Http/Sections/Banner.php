@@ -105,22 +105,12 @@ class Banner extends Section implements Initializable
         $form->setItems([
             $image = AdminFormElement::image('image', 'Image')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage'
-                        .PathHelper::checkUploadsFileAndPath("/banners",
-                            $this->imageOldPath);
+                    return 'storage'.PathHelper::checkUploadsFileAndPath("/banners", $this->imageOldPath);
                 })
                 ->setValidationRules([
                     'required',
-                    'max:2048',
-                ])->setUploadSettings([
-                    'orientate' => [],
-                    'resize'    => [
-                        400,
-                        function ($constraint) {
-                            $constraint->upsize();
-                            $constraint->aspectRatio();
-                        },
-                    ],
+                    'image',
+                    'max:5120',
                 ]),
             $title = AdminFormElement::text('title', 'Title')->required(),
             $url = AdminFormElement::text('url_redirect', 'URL')->required(),

@@ -1,7 +1,6 @@
 <div class="modal-body autorization modal_like-diselike">
     <form id="rating-vote-form" action="" method="POST">
         @csrf
-
         <div class="positive">
             <p class="modal_like_text">Голос:
             <svg class="night_svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"

@@ -73,11 +73,8 @@ $('.btn-round').click(function (event) {
 });
 $(function () {
     //do something
-
     $(".btn-round").click({animateIn: "closeButton", animateOut: "plusButton"}, animate_function);
     $(".btn-square").click({animateIn: "circleShape", animateOut: "squareShape"}, animate_function);
-
-
     function animate_function(event) {
         if ($(this).hasClass(event.data.animateIn)) {
             $(this).removeClass(event.data.animateIn).addClass(event.data.animateOut);
@@ -104,14 +101,12 @@ $('.search_img').click(function (event) {
 $('#settings').click(function (event) {
     event.preventDefault();
     $('.logged_links').addClass('active');
-    console.log(999);
 //    $('.mob_menu').removeClass('menuOff-active');
 });
 // user_cabinet: settings_mob
 $('#settings_mob').click(function (event) {
     event.preventDefault();
     $('.logged_links').addClass('active');
-    console.log(999);
 //    $('.mob_menu').removeClass('menuOff-active');
 });
 
@@ -171,7 +166,6 @@ if (localStorage.getItem('nightMode') == 1) {
 //day-night
 $('#night').click(function (event) {
     event.preventDefault();
-    console.log("11");
     $('body').addClass('nightMode');
     //localStorage.setItem('nightMode', theme);
     localStorage.setItem('nightMode', 1);
@@ -183,7 +177,6 @@ $('#night').click(function (event) {
 });
 $('#day').click(function (event) {
     event.preventDefault();
-    console.log("21");
     $('body').removeClass('nightMode');
     localStorage.setItem('nightMode', 2);
 });
@@ -308,7 +301,6 @@ $('#btn_theatre_mode').click(function (e) {
 });
 
 function theatre_mode(e) {
-    console.log('ця хуйня запустилась')
     e.preventDefault();
     let streamArea = $("#block_chat-twitch");
     if (streamArea.hasClass('theatre-on') == true) {

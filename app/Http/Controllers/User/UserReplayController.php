@@ -4,11 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Replay\ReplayHelper;
-use App\Http\Requests\ReplayUpdateRequest;
 use App\Http\Requests\ReplayStoreRequest;
+use App\Http\Requests\ReplayUpdateRequest;
 use App\Models\{Country, Race, Replay, ReplayMap, ReplayType};
 use App\Services\ServiceAssistants\PathHelper;
 use App\User;
+use Cohensive\Embed\Facades\Embed;
 
 class UserReplayController extends Controller
 {
@@ -27,11 +28,10 @@ class UserReplayController extends Controller
      */
     public function index($id, $type = '')
     {
-
         User::findOrFail($id);
 
-        $type           = ReplayHelper::getReplayType() == Replay::REPLAY_USER
-            ? 'user' : 'pro';
+        $type = ReplayHelper::getReplayType() == Replay::REPLAY_USER ? 'user' : 'pro';
+
         $userReplayRout = ReplayHelper::checkUrl() === true ? true : false;
         $user_id        = $id;
         $visible_title  = false;
@@ -39,24 +39,21 @@ class UserReplayController extends Controller
         return view('user.replay.index',
             compact('type', 'user_id', 'userReplayRout', 'visible_title')
         );
-
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-
         Replay::checkUser4Update();
 
         $userReplay = Replay::$userReplaysType;
         $types      = self::getCacheData('replayUserTypes', self::getTypes());
         $maps       = self::getCacheData('replayUserMaps', self::getMaps());
-        $countries  = self::getCacheData('replayUserCountries',
-            self::getCountries());
+        $countries  = self::getCacheData('replayUserCountries', self::getCountries());
         $races      = self::getCacheData('replayUserRaces', self::getRaces());
 
         return view('user.replay.create',
@@ -64,20 +61,33 @@ class UserReplayController extends Controller
         );
     }
 
+
     /**
-     * Store a newly created resource in storage.
+     * @param  ReplayStoreRequest  $request
      *
-     * @param ReplayStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(ReplayStoreRequest $request)
     {
+        $title      = clean($request->get('title'));
+        $content    = clean($request->get('content'));
+        $src_iframe = clean($request->get('src_iframe'));
+        if (empty($title)) {
+            return back();
+        }
+        if (empty($content)) {
+            return back();
+        }
+
+        if (empty($src_iframe) && !$request->hasFile('file')) {
+            return back();
+        }
 
         $data = new Replay;
         $this->replayDataSave($data, $request);
-
         $data->save();
-        $type =  Replay::$type;
+        $type = Replay::$type;
 
         return redirect()->to(asset("replay/{$data->id}"."?type=".$type[$data->user_replay]));
     }
@@ -89,7 +99,7 @@ class UserReplayController extends Controller
      * @param  int  $user_replay
      * @param  int  $type
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function show($id, $user_replay, $type = null)
     {
@@ -102,13 +112,12 @@ class UserReplayController extends Controller
      * @param  int  $id
      * @param  int  $user_replay
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      */
     public function edit($id, $user_replay)
     {
-
-        if ((auth()->user() != null && auth()->user()->role_id != 4)
-            === false
+        if ((auth()->user() != null && auth()->user()->role_id != 4) === false
         ) {
             return redirect()->to('/');
         }
@@ -116,8 +125,7 @@ class UserReplayController extends Controller
         $userReplay = Replay::$userReplaysType;
         $types      = self::getCacheData('replayUserTypes', self::getTypes());
         $maps       = self::getCacheData('replayUserMaps', self::getMaps());
-        $countries  = self::getCacheData('replayUserCountries',
-            self::getCountries());
+        $countries  = self::getCacheData('replayUserCountries', self::getCountries());
         $races      = self::getCacheData('replayUserRaces', self::getRaces());
 
         return view('user.replay.edit',
@@ -136,10 +144,21 @@ class UserReplayController extends Controller
      */
     public function update(ReplayUpdateRequest $request, $id, $user_replay)
     {
+
+        $title   = clean($request->get('title'));
+        $content = clean($request->get('content'));
+        if (empty($title)) {
+            return back();
+        }
+        if (empty($content)) {
+            return back();
+        }
+
         $data = Replay::find($user_replay);
         $this->replayDataUpdate($data, $request);
         $data->save();
-        $type =  Replay::$type;
+        $type = Replay::$type;
+
         return redirect()->to(asset("replay/{$data->id}"."?type=".$type[$data->user_replay]));
     }
 
@@ -148,7 +167,7 @@ class UserReplayController extends Controller
      *
      * @param  int  $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
@@ -171,12 +190,9 @@ class UserReplayController extends Controller
             $type          = ReplayHelper::getReplayType();
 
             if (request('id') > 0) {
-                $replay = self::getUserReplayAjaxId($relations, $type,
-                    request('id'), request('user_id'));
-
+                $replay = self::getUserReplayAjaxId($relations, $type, request('id'), request('user_id'));
             } else {
-                $replay        = self::getUserReplayAjax($relations, $type,
-                    request('user_id'));
+                $replay        = self::getUserReplayAjax($relations, $type, request('user_id'));
                 $visible_title = true;
             }
             $type           = $type == Replay::REPLAY_USER ? 'user' : 'pro';
@@ -190,55 +206,34 @@ class UserReplayController extends Controller
     }
 
 
-    public static function getUserReplayAjaxId(
-        $relations,
-        $user_replay,
-        $id,
-        $user_id
-    ) {
+    public static function getUserReplayAjaxId($relations, $user_replay, $id, $user_id)
+    {
         return Replay::with($relations)
-            ->orderByDesc('id')
-            ->withCount('comments')
-            ->where('user_id', $user_id)
-            ->where('user_replay', $user_replay)
-            ->where('id', '<', $id)
-            ->limit(5)
-            ->get();
+                     ->orderByDesc('id')
+                     ->withCount('comments')
+                     ->where('user_id', $user_id)
+                     ->where('user_replay', $user_replay)
+                     ->where('id', '<', $id)
+                     ->limit(5)
+                     ->get();
     }
 
     public static function getUserReplayAjax($relations, $user_replay, $user_id)
     {
         return Replay::with($relations)
-            ->orderByDesc('id')
-            ->withCount('comments')
-            ->where('user_id', $user_id)
-            ->where('user_replay', $user_replay)
-            ->limit(5)
-            ->get();
-    }
-
-
-    public static function getCacheData($cache_name, $data)
-    {
-        if (\Cache::has($cache_name) && ! \Cache::get($cache_name)->isEmpty()) {
-            $data_cache = \Cache::get($cache_name);
-        } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl,
-                function () use ($data) {
-                    return $data;
-                });
-        }
-
-        return $data_cache;
+                     ->orderByDesc('id')
+                     ->withCount('comments')
+                     ->where('user_id', $user_id)
+                     ->where('user_replay', $user_replay)
+                     ->limit(5)
+                     ->get();
     }
 
     private function replayDataSave($data, $request)
     {
-
-        $data->user_id     = auth()->id();
-        if (auth()->user()->roles->name == 'user'){
+        if (auth()->user()->roles->name == 'user') {
             $data->user_replay = Replay::REPLAY_USER;
-        }else{
+        } else {
             $data->user_replay = $request->user_replay;
         }
         $this->columns($data, $request);
@@ -250,8 +245,6 @@ class UserReplayController extends Controller
         $data->user_replay = $request->user_replay;
         $this->columns($data, $request);
         $this->saveFile($request, $data);
-
-
     }
 
     public function columns($data, $request)
@@ -266,58 +259,87 @@ class UserReplayController extends Controller
         $data->first_location    = $request->first_location;
         $data->second_location   = $request->second_location;
         $data->content           = clean($request->content);
-        $data->video_iframe      = $request->video_iframe;
+        if ($request->has('src_iframe')) {
+            $data->src_iframe = clean($request->src_iframe);
+        }
+    }
+
+    public function iframe()
+    {
+        $request = request();
+        if ($request->ajax()) {
+            $embed = Embed::make($request->video_iframe_url)->parseUrl();
+            if ($embed == false || empty($embed)) {
+                return \Response::json([
+                    'success' => 'false',
+                    'message' => 'Указаный сервис не поддерживаеться',
+                ], 400);
+            }
+            $embed->setAttribute([
+                'width'  => '100%',
+                'height' => '100%',
+            ]);
+            $iframe_string = $embed->getHtml();
+            try {
+                preg_match('/src="([^"]+)"/', $iframe_string, $match);
+                $src = $match[1];
+            } catch (\Exception $e) {
+                \Log::error($e);
+            }
+
+            return \Response::json([
+                'success' => 'true',
+                'message' => $src,
+            ], 200);
+        }
+
+        return null;
     }
 
     public function saveFile($request, $data)
     {
         // Check have input file
         if ($request->hasFile('file')) {
-            // Check if upload file Successful Uploads
-            if ($request->file('file')->isValid()) {
-                // Check path
-                PathHelper::checkUploadsFileAndPath("/files/replays");
-                // Upload file on server
-                $image      = $request->file('file');
-                $filePath   = $image->store('files/replays', 'public');
-
-                $data->file = 'storage/'.$filePath;
-            }
+            // Check path
+            PathHelper::checkUploadsFileAndPath("/files/replays");
+            // Upload file on server
+            $image      = $request->file('file');
+            $filePath   = $image->store('files/replays', 'public');
+            $data->file = 'storage/'.$filePath;
         }
+    }
+
+    public static function getCacheData($cache_name, $data)
+    {
+        if (\Cache::has($cache_name) && ! \Cache::get($cache_name)->isEmpty()) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, self::$ttl, function () use ($data) {
+                return $data;
+            });
+        }
+
+        return $data_cache;
     }
 
     private static function getRaces()
     {
-        return Race::all([
-            'id',
-            'title',
-        ]);
+        return Race::all(['id', 'title',]);
     }
 
     private static function getCountries()
     {
-        return Country::all([
-            'id',
-            'name',
-            'flag',
-        ]);
+        return Country::all(['id', 'name', 'flag',]);
     }
 
     private static function getTypes()
     {
-        return ReplayType::all([
-            'id',
-            'name',
-        ]);
+        return ReplayType::all(['id', 'name',]);
     }
 
     private static function getMaps()
     {
-        return ReplayMap::all([
-            'id',
-            'name',
-            'url',
-        ]);
+        return ReplayMap::all(['id', 'name', 'url',]);
     }
 
 }

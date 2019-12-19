@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 
 class UserCommentsController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * @param $id
      *
-     * @param  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index($id)
     {
@@ -22,10 +22,10 @@ class UserCommentsController extends Controller
     }
 
 
-
     /**
-     * @param \Request $request
+     * @param  \Request  $request
      * @param $id
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function forumSectionsCommentsAjaxLoad($id)
@@ -36,17 +36,17 @@ class UserCommentsController extends Controller
             $visible_title = false;
             if ($request->get('comment_id') > 0) {
                 $comments = Comment::orderByDesc('id')
-                    ->where('commentable_type',self::getCommentTableType($request->relation_id))
-                    ->where('id', '<', $request->get('comment_id'))
-                    ->where('user_id', $id)
-                    ->limit(5)
-                    ->get();
+                                   ->where('commentable_type', self::getCommentTableType($request->relation_id))
+                                   ->where('id', '<', $request->get('comment_id'))
+                                   ->where('user_id', $id)
+                                   ->limit(5)
+                                   ->get();
             } else {
-                $comments = Comment::orderByDesc('id')
-                    ->where('commentable_type',self::getCommentTableType($request->relation_id))
-                    ->where('user_id', $id)
-                    ->limit(5)
-                    ->get();
+                $comments      = Comment::orderByDesc('id')
+                                        ->where('commentable_type', self::getCommentTableType($request->relation_id))
+                                        ->where('user_id', $id)
+                                        ->limit(5)
+                                        ->get();
                 $visible_title = true;
             }
 
@@ -55,51 +55,8 @@ class UserCommentsController extends Controller
             );
         }
     }
-
     /**
-     * @param $id
-     * @return mixed
-     */
-    private static function getUserComments($id)
-    {
-        $columns = [
-            'id',
-            'user_id',
-            'commentable_type',
-            'commentable_id',
-            'title',
-            'content',
-            'rating',
-            'negative_count',
-            'positive_count',
-            'created_at',
-        ];
-        $comments = null;
-        $data = Comment::where('user_id', $id)->get($columns);
-        if (!$data->isEmpty()) {
-            foreach ($data as $item) {
-                if (self::convertModelClassName($item->commentable_type) == 'Реплеи') {
-                    $route = route('replay.show', ['replay' => $item->commentable_id]);
-                    $comments['Реплеи'][] = self::getData($item, $route);
-                }
-                if (self::convertModelClassName($item->commentable_type) == 'Галерея') {
-                    $route = route('galleries.show', ['gallery' => $item->commentable_id]);
-                    $comments['Галерея'][] = self::getData($item, $route);
-                }
-                if (self::convertModelClassName($item->commentable_type) == 'Форум') {
-                    $route = route('topic.show', ['topic' => $item->commentable_id]);
-                    $comments['Форум'][] = self::getData($item, $route);
-                }
-            }
-        }
-
-        return $comments;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create()
     {
@@ -107,10 +64,9 @@ class UserCommentsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @param  \Illuminate\Http\Request  $request
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -118,10 +74,9 @@ class UserCommentsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @param $id
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function show($id)
     {
@@ -129,10 +84,9 @@ class UserCommentsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @param $id
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function edit($id)
     {
@@ -140,11 +94,10 @@ class UserCommentsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @param  \Illuminate\Http\Request  $request
+     * @param $id
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -152,35 +105,23 @@ class UserCommentsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @param $id
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         return redirect()->to('/');
     }
 
-    private static function getData($item, $route)
-    {
-        return [
-            'id' => $item->id,
-            'user_name' => auth()->user()->name,
-            'user_id' => $item->user_id,
-            'title' => $item->title,
-            'content' => $item->content,
-            'rating' => $item->rating,
-            'negative_count' => $item->negative_count,
-            'positive_count' => $item->positive_count,
-            'created_at' => $item->created_at->format('H:i d.m.Y'),
-            'route' => $route,
-        ];
-    }
-
+    /**
+     * @param $relation_id
+     *
+     * @return string|null
+     */
     public static function getCommentTableType($relation_id)
     {
-        switch ((int)$relation_id) {
+        switch ((int) $relation_id) {
             case User::REPLAY:
                 return Comment::RELATION_REPLAY;
                 break;
@@ -195,4 +136,5 @@ class UserCommentsController extends Controller
                 break;
         }
     }
+
 }

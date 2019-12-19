@@ -82,11 +82,14 @@
             text-transform: uppercase;
         }
         .useful__link {
-            color: #0567cc;
+            color: #ffffff;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 400;
+            padding-bottom: 12px;
+            text-transform: uppercase;
             text-decoration: underline;
-            margin-bottom: 20px;
+            text-decoration-color: $blue;
+            font-weight: 600;
         }
     }
     .produced {
