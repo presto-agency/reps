@@ -62,9 +62,7 @@ class ChatPicture extends Section
                 ->setWidth('100px'),
 
             $image = AdminColumn::image(function ($model) {
-                if ( ! empty($model->image)
-                    && PathHelper::checkFileExists($model->image)
-                ) {
+                if ( ! empty($model->image) && PathHelper::checkFileExists($model->image)) {
                     return asset($model->image);
                 }
             })->setWidth('100px'),
@@ -98,7 +96,6 @@ class ChatPicture extends Section
         ]);
 
         return $display;
-
     }
 
     public $imageOldPath;
@@ -117,26 +114,15 @@ class ChatPicture extends Section
         $form = AdminForm::panel();
         $form->setItems([
             /*Init FormElement*/
-            $image = AdminFormElement::image('image', 'Image')
+            $image = AdminFormElement::file('image', 'Image')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage'
-                        .PathHelper::checkUploadsFileAndPath("/chat/pictures",
-                            $this->imageOldPath);
+                    return 'storage'.PathHelper::checkUploadsFileAndPath("/chat/pictures",$this->imageOldPath);
                 })
                 ->setValidationRules([
                     'required',
+                    'image',
+                    'mimes:jpeg,jpg,png,gif',
                     'max:2048',
-                ])
-                ->setUploadSettings([
-                    'orientate' => [],
-                    'resize'    => [
-                        120,
-                        120,
-                        function ($constraint) {
-                            $constraint->upsize();
-                            $constraint->aspectRatio();
-                        },
-                    ],
                 ]),
             $comment = AdminFormElement::text('comment', 'Comment'),
             $charactor = AdminFormElement::text('charactor', 'Charactor')
