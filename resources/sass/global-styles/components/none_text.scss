@@ -3,3 +3,10 @@
     padding: 20px;
 
 }
+.title_text{
+    max-width: 460px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
