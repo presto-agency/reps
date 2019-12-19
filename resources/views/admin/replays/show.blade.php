@@ -96,16 +96,19 @@
                     @if(!empty($replay->comments))
                         @foreach($replay->comments as $comment)
                             <div class="item row">
-                                <img src="{{asset($comment->user->avatarOrDefault())}}"
-                                     class="img-circle img-bordered-sm"
-                                     alt="avatar"/>
+                                @if($comment->user)
+                                    <img src="{{asset($comment->user->avatarOrDefault())}}"
+                                         class="img-circle img-bordered-sm" alt="avatar"/>
+                                @endif
                                 <p class="message">
-                                    <a href="#" class="name">
-                                        <small class="text-muted pull-right"><i
-                                                class="fa fa-clock-o"></i> {{$comment->created_at->format('H:i d.m.Y')}}
-                                        </small>
-                                        {{$comment->user->name}}
-                                    </a>
+                                    @if($comment->user)
+                                        <a href="{{route('user_profile',['id'=>$comment->user->id])}}" class="name">
+                                            <small class="text-muted pull-right">
+                                                <i class="fas fa-clock">{{$comment->created_at->format('H:i d.m.Y')}}</i>
+                                            </small>
+                                            {{$comment->user->name}}
+                                        </a>
+                                    @endif
                                     {{ Form::open(['method' => 'DELETE', 'route' => ['admin.replays.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
                                     <button class="btn btn-default text-red" title="Удалить запись"><i
                                             class="fa fa-trash"></i></button>
