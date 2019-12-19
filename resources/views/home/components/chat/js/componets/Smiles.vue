@@ -15,7 +15,7 @@
 <script>
     export default {
         name: "Smiles",
-        props: ['status'],
+        props: ['status', 'textareaId'],
         data() {
             return {
                 smiles: []

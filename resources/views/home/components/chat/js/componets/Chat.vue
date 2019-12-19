@@ -29,7 +29,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body popup_contant messanger night_modal">
-                                           <chat-message :messagearray="messagearray" :not_user="not_user" :auth="auth" @on_delete="deleteMessage($event)"/>
+                                           <chat-message :textareaId="textareaId2" :messagearray="messagearray" :not_user="not_user" :auth="auth" @on_delete="deleteMessage($event)"/>
                                         </div>
                                     </div>
                                 </div>
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-            <chat-message :messagearray="messagearray" :not_user="not_user" :auth="auth" @on_delete="deleteMessage($event)"/>
+            <chat-message :textareaId="textareaId1" :messagearray="messagearray" :not_user="not_user" :auth="auth" @on_delete="deleteMessage($event)"/>
     </div>
 </template>
 
@@ -52,7 +52,9 @@
         data: ()=>({
             isUser: true,
             messagearray: [],
-            username: ''
+            username: '',
+            textareaId1: 'pop_editor1',
+            textareaId2: 'pop_editor2'
         }),
         beforeCreate(){
             axios.get('/chat/get_messages').then((response) => {

@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div class="messanger">
             <div class="row_contentChat" v-for="(item,index) in messagearray" :key="index">
                 <div class=" block_user_akk">
@@ -31,20 +32,22 @@
             </div>
         </div>
         <div class="form-group" v-if="auth.id>0 && auth.email_verified_at">
-            <Smiles :status="chat_action.smile" @turnOffStatus="turnOffStatus" @insert_smile="addSmile($event)"></Smiles>
-            <Images :status="chat_action.image" @turnOffStatus="turnOffStatus" @insert_image="addImage($event)"></Images>
-            <Color :status="chat_action.color"  @turnOffStatus="turnOffStatus" @textarealistener="textareafoo($event)" :selection="selection" ></Color>
+            <Smiles :textareaId="textareaId" :status="chat_action.smile" @turnOffStatus="turnOffStatus" @insert_smile="addSmile($event)"></Smiles>
+            <Images :textareaId="textareaId" :status="chat_action.image" @turnOffStatus="turnOffStatus" @insert_image="addImage($event)"></Images>
+            <Color :textareaId="textareaId" :status="chat_action.color"  @turnOffStatus="turnOffStatus" @textarealistener="textareafoo($event)" :selection="selection" ></Color>
+            <Question v-if="questionShow"/>
             <div class="form-group-toolbar">
-                <img src="../../icons/bold.svg" alt="" class="toolbar_item" @click="bold()">
-                <img src="../../icons/italic.svg" alt="" class="toolbar_item" @click="italic()">
-                <img src="../../icons/underline.svg" alt="" class="toolbar_item" @click="underline()">
-                <img src="../../icons/font.svg" alt="" class="toolbar_item" @click="selectItem('color')">
-                <img src="../../icons/link.svg" alt="" class="toolbar_item" @click="link()">
-                <img src="../../icons/picture.svg" alt="" class="toolbar_item" @click="img()">
+                <img src="../../icons/bold.svg" alt="" class="toolbar_item" @click="bold(textareaId)">
+                <img src="../../icons/italic.svg" alt="" class="toolbar_item" @click="italic(textareaId)">
+                <img src="../../icons/underline.svg" alt="" class="toolbar_item" @click="underline(textareaId)">
+                <img src="../../icons/font.svg" alt="" class="toolbar_item" @click="selectItem('color',textareaId)">
+                <img src="../../icons/link.svg" alt="" class="toolbar_item" @click="link(textareaId)">
+                <img src="../../icons/picture.svg" alt="" class="toolbar_item" @click="img(textareaId)">
                 <img src="../../icons/smile.svg" alt="" class="toolbar_item" @click="selectItem('smile')">
                 <img src="../../icons/folder.svg" alt="" class="toolbar_item" @click="selectItem('image')">
+                <img src="../../icons/question.png" alt="" class="toolbar_item" @click="questionShow=!questionShow">
             </div>
-            <textarea v-model="textMessage" @keyup.enter="sendMessage" class="form-control night_input" id="pop_editor">
+            <textarea v-model="textMessage" @keyup.enter="sendMessage" class="form-control night_input" :id="textareaId">
            </textarea>
         </div>
         <div   class="login_block"  v-else-if=" auth.id>0 && !auth.email_verified_at">
@@ -65,11 +68,12 @@
     import Smiles from './Smiles.vue'
     import Images from './Images.vue'
     import Color from './FontColor'
+    import Question from "./Question";
 
 export default {
-    props: ['messagearray','not_user','auth'],
+    props: ['messagearray','not_user','auth','textareaId'],
     components: {
-        Smiles,Images,Color
+        Question,Smiles,Images,Color
     },
     data: ()=>({
         ignored_users: [{}],
@@ -85,34 +89,39 @@ export default {
         linkProfile: '',
         selection: '',
         user_id: '',
-        user_nick: ''
+        user_nick: '',
+        questionShow: false,
     }),
     methods: {
         deleteMessage(id) {
             this.$emit('on_delete',id);
             axios.delete(`chat/delete/${id}\'`);
         },
-        bold() {
-             this.textMessage=chatHelper.bold(this.textMessage)
+        bold(id) {
+             this.textMessage=chatHelper.bold(this.textMessage,id)
         },
-        italic() {
-            this.textMessage = chatHelper.italic(this.textMessage)
+        italic(id) {
+            this.textMessage = chatHelper.italic(this.textMessage,id)
         },
-        underline() {
-            this.textMessage=chatHelper.underline(this.textMessage)
+        underline(id) {
+            this.textMessage=chatHelper.underline(this.textMessage,id)
         },
-        link() {
-           this.textMessage= chatHelper.link(this.textMessage)
+        link(id) {
+           this.textMessage= chatHelper.link(this.textMessage,id)
         },
-        img() {
-            this.textMessage= chatHelper.img(this.textMessage)
+        img(id) {
+            this.textMessage= chatHelper.img(this.textMessage,id)
         } ,
-        selectItem: function(type) {
-            this.selection = chatHelper.color(this.textMessage);
+        selectItem: function(type,id) {
+
             let self = this;
             Object.keys(self.chat_action).forEach(function(key) {
                 if(type === key){
+                    if(type==="color") {
+                        self.selection = chatHelper.color(self.textMessage,id);
+                    }
                     self.chat_action[key] = !self.chat_action[key];
+
                 }
                 else self.chat_action[key] = false;
             })
@@ -146,7 +155,7 @@ export default {
                 file_path: "",
                 message: mes,
                 imo: ""});
-            this.turnOffStatus()
+            this.turnOffStatus();
             this.textMessage = '';
             this.user_id = '';
             this.user_nick = '';
@@ -194,6 +203,4 @@ export default {
     position: relative;
 
 }
-
-
 </style>
