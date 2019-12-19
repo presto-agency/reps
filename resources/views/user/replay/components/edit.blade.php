@@ -143,7 +143,7 @@
                 @endif
                 <div class="col-md-6 form-group">
                     <label for="create-replay__second-location" class="night_text">{{__('Первая локация:')}}</label>
-                    <input type="text" name="first_location" class="form-control night_input"
+                    <input type="number" min="1" max="20" name="first_location" class="form-control night_input"
                            id="create-replay__second-location" placeholder="{{__('Первая локация:')}}"
                            value="{{old('first_location',$replay->first_location)}}"
                     >
@@ -155,7 +155,7 @@
                 @endif
                 <div class="col-md-6 form-group">
                     <label for="create-replay__second-location" class="night_text">{{__('Вторая локация:')}}</label>
-                    <input type="text" name="second_location" class="form-control night_input"
+                    <input type="number" min="1" max="20" name="second_location" class="form-control night_input"
                            id="create-replay__second-location" placeholder="{{__('Вторая локация')}}"
                            value="{{old('second_location',$replay->second_location)}}"
                     >
