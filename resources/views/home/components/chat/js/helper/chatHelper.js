@@ -78,8 +78,15 @@ export const parsePath = (mes,smiles,images) => {
             }
         })
     }
-    if(mes.search('%')>-1)
-            mes = mes.replace(/%([^%]+)%/g, `%${images.filepath}%`);
+    if(mes.search('%')>-1) {
+        images.forEach((item)=>{
+            if(mes.search(item.charactor)>-1) {
+                let regex = new RegExp('%'+item.charactor+ '%','g');
+                mes = mes.replace(regex, `%${item.filepath}%`);
+            }
+        });
+
+    }
     return mes;
 };
 export const CheckAvatar = (img) => {
