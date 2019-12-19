@@ -25,7 +25,6 @@
         </svg>
             <p class="title__text">{{__('Комментарии')}}</p>
         </div>
-
         @if(isset($comments) && $comments->isNotEmpty())
             @foreach($comments as $comment)
                 <div class="citation border_shadow">
@@ -42,7 +41,7 @@
                                              alt="avatar">
                                     @endguest()
                                     <a href="{{route('user_profile',['id'=>$comment->user->id])}}"
-                                       title="{{$comment->user->name}}" class="info__nickname">
+                                       title="{{$comment->user->name}}" class="info__nickname night_text">
                                         {{$comment->user->name}}</a>
                                     @if($comment->user->countries)
                                         <img src="{{asset($comment->user->countries->flagOrDefault())}}"

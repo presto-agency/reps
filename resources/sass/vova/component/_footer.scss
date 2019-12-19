@@ -66,10 +66,14 @@
             text-transform: uppercase;
         }
         .our-birthday__nickname {
-            color: #0567cc;
-            font-size: 14px;
+            color: #ffffff;
+            font-size: 12px;
             font-weight: 400;
-            margin-bottom: 16px;
+            padding-bottom: 12px;
+            text-transform: uppercase;
+            text-decoration: underline;
+            text-decoration-color: $blue;
+            font-weight: 600;
         }
     }
     .footer__useful {

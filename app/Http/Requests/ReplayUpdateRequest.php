@@ -38,7 +38,7 @@ class ReplayUpdateRequest extends FormRequest
             'content'           => 'string|nullable|between:10,1000',
             'src_iframe'        => 'url|max:255',
             'file'              => 'file|max:5120',
-            'user_replay'       => 'required|in:1,0',
+            'user_replay'       => 'in:1,0',
         ];
     }
 

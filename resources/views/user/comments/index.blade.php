@@ -33,6 +33,7 @@
                     _token: _token,
                 },
                 success: function (data) {
+                    console.log('hi');
                     let div_id = '#load_more_user_posts_' + relation_id;
                     let button_id =  '#load_more_user_posts_button_' + relation_id;
                     $(button_id).remove();
