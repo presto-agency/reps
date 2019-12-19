@@ -106,7 +106,7 @@
                             </a>
                         </div>
                     </div>
-                    <p class="match__comment night_text">{!!ParserToHTML::toHTML($item->content,'size')!!}</p>
+                    <p class="match__comment night_text night_text">{!!ParserToHTML::toHTML($item->content,'size')!!}</p>
                     <div class="match__info">
                         <div class="info__country">
                             <span class="country__text night_text">{{__('Страны:')}}</span>
