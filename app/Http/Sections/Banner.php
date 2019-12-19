@@ -69,19 +69,17 @@ class Banner extends Section implements Initializable
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
-                ->setWidth('15px'),
-
-            $image = AdminColumn::image('image', 'Image')
-                ->setWidth('100px'),
-
-            $title = AdminColumn::text('title', 'Title')
-                ->setWidth('60px'),
-
-            $url = AdminColumn::text('url_redirect', 'URL')
                 ->setWidth('50px'),
 
+            $image = AdminColumn::image('image', 'Image'),
+
+            $title = AdminColumn::text('title', 'Title')
+                ->setWidth('300px'),
+
+            $url = AdminColumn::text('url_redirect', 'URL'),
+
             $isActive = AdminColumnEditable::checkbox('is_active', 'Yes', 'No')
-                ->setLabel('Active'),
+                ->setLabel('Active')->setWidth('75px'),
 
         ]);
 
