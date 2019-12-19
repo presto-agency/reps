@@ -10,3 +10,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.card-body__text{
+word-wrap: break-word;
+}
+.btn_center{
+margin: 0 auto;
+    display: block;
+}

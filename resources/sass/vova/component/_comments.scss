@@ -1,5 +1,6 @@
 .nightMode{
     .comments{
+        word-wrap: break-word;
         .comments__content{
             iframe{
                 max-width: 100%;
@@ -16,7 +17,7 @@
     }
     .card-body__text{
         img{
-            width: 100%;
+            max-width: 100%;
         }
     }
 
