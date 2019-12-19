@@ -1394,6 +1394,7 @@
                 .info__nickname {
                     font-size: 1.413vw;
                     margin-left: 1.312vw;
+                    max-width: 30vw;
                 }
 
                 .info__flag {
@@ -1632,7 +1633,7 @@
                 font-size: 1.615vw;
             }
             & a{
-                font-size: 1.211vw;
+                font-size: 1.413vw;
             }
         }
         & .container_players{
@@ -1753,7 +1754,7 @@
             height: 6.054vw;
             padding: 2.018vw;
             & a{
-                font-size: 1.615vw;
+                font-size: 1.413vw;
             }
         }
         & .tournament_info{
@@ -1817,7 +1818,7 @@
                 font-size: 1.615vw;
             }
             & a{
-                font-size: 1.211vw;
+                font-size: 1.413vw;
             }
         }
         & .container_players{
@@ -2489,9 +2490,12 @@
     }
     .page_replay{
         .title_block{
+            .title_text{
+                max-width: 40vw;
+            }
             .right_block{
                 a{
-                    font-size: 1.211vw;
+                    font-size: 1.413vw;
                     margin-left: 1.009vw;
                 }
                 span{

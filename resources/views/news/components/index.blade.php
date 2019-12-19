@@ -49,7 +49,9 @@
                             title="{{clean($single_news->title)}}">{{clean($single_news->title)}}</h2>
                     </a>
                     <div class="card-body__text night_text">
-                        {!! ParserToHTML::toHTML(clean($single_news->preview_content),'size') !!}
+                        <p>
+                            {!! ParserToHTML::toHTML(clean($single_news->preview_content),'size') !!}
+                        </p>
                     </div>
                     <div class="card-body__items">
                         <div class="items__comment">

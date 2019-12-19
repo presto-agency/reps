@@ -40,6 +40,11 @@
             font-size: 16px;
             color: white;
             margin: 0;
+            max-width: 460px;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
     & .block_replay_content{
@@ -134,6 +139,11 @@
             font-size: 16px;
             color: $gray;
             margin: 0;
+            max-width: 460px;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         & a{
             font-size: 14px;
@@ -165,7 +175,6 @@
                     border-radius: 50%;
                 }
                 & a{
-
                     width: 170px;
                     display: block;
                     white-space: nowrap;
