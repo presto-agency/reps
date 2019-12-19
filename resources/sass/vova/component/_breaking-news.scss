@@ -34,6 +34,7 @@
         border: 0px; //отмена бутстраповской рамки
 
         .card-body {
+            word-wrap: break-word;
             padding-left: 0px; //отмена бутстраповского padding отступа
             padding-right: 0px; //отмена бутстраповского padding отступа
             padding-bottom: 0px; //отмена бутстраповского padding отступа

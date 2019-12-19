@@ -1542,6 +1542,7 @@
                 display: none;
             }
         }
+
         .footer__link {
             .link-list__item {
                 font-size:3.083vw;
@@ -1552,7 +1553,9 @@
             .footer__title {
                 font-size: 3.083vw;
                 letter-spacing: 1.2px;
-                margin-bottom: 1.556vw;
+                line-height: 1.2vw;
+                padding-bottom: 4vw;
+                margin: 0;
             }
             .footer__text {
                 font-size: 3.083vw;
