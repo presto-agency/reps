@@ -51,9 +51,14 @@
                     </div>
                 </div>
             </div>
-            @if ($errors->has('preview_img'))
+            @if($errors->has('preview_img'))
                 <div class="alert alert-danger">
                     {{ $errors->first('preview_img') }}
+                </div>
+            @endif
+            @if(!empty($topic->preview_img) && checkFile::checkFileExists($topic->preview_img))
+                <div class="upload-image">
+                    <img src="{{asset($topic->preview_img)}}" alt="preview_img">
                 </div>
             @endif
             <div class="form-group">
