@@ -38,7 +38,7 @@ class ReplayStoreRequest extends FormRequest
             'content'           => 'required|string|nullable|between:10,1000',
             'src_iframe'        => 'required_without:file|url|max:255',
             'file'              => 'required_without:src_iframe|file|max:5120',
-            'user_replay'       => 'required|in:1,0',
+            'user_replay'       => 'nullable|in:1,0',
         ];
     }
     /**
