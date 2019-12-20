@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\NewChatMessageAdded;
 use App\Models\ChatPicture;
 use App\Models\ChatSmile;
+use App\Models\Help;
 use App\Models\PublicChat;
 use App\Services\GeneralViewHelper;
 use Illuminate\Http\Request;
@@ -169,6 +170,22 @@ class ChatController extends Controller
             'status' => "ok",
             'images' => $images,
         ], 200);
+    }
+
+    public function get_helps(){
+        $helps = Help::where('key','helps_for_chat')->first();
+        if ($helps){
+            return response()->json([
+                'status' => true,
+                'message' => 'ok',
+                'helps' => $helps->value,
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Not Found'
+            ], 404);
+        }
     }
 
 }

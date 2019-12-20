@@ -131,6 +131,7 @@ Route::group(['prefix' => 'chat'], function () {
 
     Route::get('/get_externalsmiles', 'ChatController@get_externalsmiles')->name('chat.get_smiles');
     Route::get('/get_externalimages', 'ChatController@get_externalimages')->name('chat.get_images');
+    Route::get('/helps', 'ChatController@get_helps')->name('chat.get_helps');
 });
 /***---Galleries---***/
 Route::resource('galleries', 'Gallery\GalleriesController');
