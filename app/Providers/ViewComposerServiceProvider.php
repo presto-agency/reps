@@ -13,6 +13,7 @@ use App\Http\ViewComposers\{admin\DashboardCountComposer,
     LeftSide\NavigationReplaysComposer,
     LeftSide\LastUserProReplaysComposer,
     LeftSide\SearchReplaysComposer,
+    Smiles,
     Stream\OnlineStreamListComposer,
     Registration\RegistrationComposer,
     RightSide\LastRegisteredUsersComposer,
@@ -57,6 +58,8 @@ class ViewComposerServiceProvider extends ServiceProvider
         $this->compose('modal.registration', RegistrationComposer::class);
         /*footer*/
         $this->compose('layouts.components.footer.index', FooterComposer::class);
+
+        $this->compose('layouts.app', Smiles::class);
 
     }
 
