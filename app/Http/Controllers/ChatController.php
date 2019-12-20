@@ -188,4 +188,7 @@ class ChatController extends Controller
         }
     }
 
+    public function popup(){
+        return view('chat.popup');
+    }
 }
