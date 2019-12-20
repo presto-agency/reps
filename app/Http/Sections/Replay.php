@@ -380,8 +380,7 @@ class Replay extends Section
                             ->setValidationRules([
                                 'nullable',
                                 'numeric',
-                                'min:1',
-                                'max:20',
+                                'between:1,20',
                             ])
                             ->setValueSkipped(function () {
                                 return is_null(request('first_location'));
@@ -430,8 +429,7 @@ class Replay extends Section
                             ->setValidationRules([
                                 'nullable',
                                 'numeric',
-                                'min:1',
-                                'max:20',
+                                'between:1,20',
                             ])
                             ->setValueSkipped(function () {
                                 return is_null(request('second_location'));
@@ -455,7 +453,8 @@ class Replay extends Section
             $content = AdminFormElement::wysiwyg('content', 'Краткое описание')
                 ->setHtmlAttributes(['placeholder' => 'Краткое описание'])
                 ->setValidationRules([
-                    'required',
+                    'nullable',
+                    'string',
                     'between:10,5000',
                 ]),
 
@@ -585,8 +584,7 @@ class Replay extends Section
                             ->setValidationRules([
                                 'nullable',
                                 'numeric',
-                                'min:1',
-                                'max:20',
+                                'between:1,20',
                             ])
                             ->setValueSkipped(function () {
                                 return is_null(request('first_location'));
@@ -633,8 +631,7 @@ class Replay extends Section
                             ->setValidationRules([
                                 'nullable',
                                 'numeric',
-                                'min:1',
-                                'max:20',
+                                'between:1,20',
                             ])
                             ->setValueSkipped(function () {
                                 return is_null(request('second_location'));
@@ -659,7 +656,7 @@ class Replay extends Section
                                        ->setValidationRules([
                                            'nullable',
                                            'string',
-                                           'between:10,1000',
+                                           'between:10,5000',
                                        ]),
             AdminFormElement::view('admin.replays.create',$data=[],function (){}),
             $src_iframe = AdminFormElement::hidden('src_iframe')

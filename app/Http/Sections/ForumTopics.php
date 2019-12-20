@@ -141,14 +141,13 @@ class ForumTopics extends Section
         $form->setItems([
             /*Init FormElement*/
             $title = AdminFormElement::text('title', 'Название:')
-                ->setHtmlAttribute('placeholder', 'Название:')
+                ->setHtmlAttribute('placeholder', 'Название')
                 ->setValidationRules([
                     'required',
                     'between:1,255',
                     'string',
                 ]),
-            $sections_id = AdminFormElement::select('forum_section_id',
-                'Раздел:', ForumSection::class)
+            $sections_id = AdminFormElement::select('forum_section_id', 'Раздел:', ForumSection::class)
                 ->setValidationRules([
                     'required',
                     'exists:forum_sections,id',
@@ -156,19 +155,16 @@ class ForumTopics extends Section
                 ->setDisplay('title'),
             $user_id = AdminFormElement::hidden('user_id')
                 ->setDefaultValue(auth()->user()->id),
-            $preview_img = AdminFormElement::image('preview_img',
-                'Загрузить картинку превью')
+            $preview_img = AdminFormElement::image('preview_img', 'Загрузить картинку превью')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage'
-                        . PathHelper::checkUploadsFileAndPath("/images/topics",
-                            $this->imageOldPath);
+                    return 'storage'. PathHelper::checkUploadsFileAndPath("/images/topics", $this->imageOldPath);
                 })
                 ->setValidationRules([
                     'nullable',
                     'max:2048',
                 ]),
-            $preview_content = AdminFormElement::wysiwyg('preview_content',
-                'Сокращенное содержание:')
+            $preview_content = AdminFormElement::wysiwyg('preview_content', 'Краткое содержание')
+                ->setHtmlAttribute('placeholder', 'Краткое содержание')
                 ->setValidationRules([
                     'required',
                     'string',
@@ -176,6 +172,7 @@ class ForumTopics extends Section
                 ])
                 ->disableFilter(),
             $content = AdminFormElement::wysiwyg('content', 'Содержание:')
+                ->setHtmlAttribute('placeholder', 'Содержание')
                 ->setValidationRules([
                     'required',
                     'string',
