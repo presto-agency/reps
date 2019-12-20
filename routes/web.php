@@ -121,6 +121,7 @@ Route::group(['prefix' => 'chat'], function () {
         return view('stream-section.test-chat');
     });*/
 
+    Route::get('/', 'ChatController@separate_window')->name('chat.separate_window');
     Route::group(['middleware' => ['auth', 'ban', 'verified']], function () {
         Route::post('/insert_message', 'ChatController@insert_message')->name('chat.add_message');
         Route::delete('/delete/{id}', 'ChatController@destroy')->name('chat.delete_message');
@@ -132,7 +133,6 @@ Route::group(['prefix' => 'chat'], function () {
     Route::get('/get_externalsmiles', 'ChatController@get_externalsmiles')->name('chat.get_smiles');
     Route::get('/get_externalimages', 'ChatController@get_externalimages')->name('chat.get_images');
     Route::get('/helps', 'ChatController@get_helps')->name('chat.get_helps');
-    Route::get('/popup', 'ChatController@popup')->name('chat.popup');
 });
 /***---Galleries---***/
 Route::resource('galleries', 'Gallery\GalleriesController');
