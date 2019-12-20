@@ -188,7 +188,7 @@ class ChatController extends Controller
         }
     }
 
-    public function popup(){
-        return view('chat.popup');
+    public function separate_window(){
+        return view('chat.separate_window');
     }
 }
