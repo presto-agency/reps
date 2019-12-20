@@ -226,6 +226,8 @@ class DatabaseSeeder extends Seeder
          * loc.(<user_friends>).
          */
         $this->call(TransferUsersFriends::class);
+
+        $this->call(HelpsTableSeeder::class);
     }
 
 }

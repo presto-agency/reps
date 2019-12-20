@@ -221,6 +221,15 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="block_inform">
+                            <div class="left_block"><span>{{__('Галерея:')}}</span></div>
+                            <div class="right_block">
+                                <a class="blue" title="{{__('Галерея')}}"
+                                   href="{{route('user-gallery.index',['id' => $user->id])}}">
+                                    <span></span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="title_top_userProfile change_gray">
                         <p class="title_Text">{{__('Контакты')}}</p>

@@ -35,7 +35,7 @@ class ReplayUpdateRequest extends FormRequest
             'second_race'       => 'string|exists:races,id',
             'second_country_id' => 'string|exists:countries,id',
             'second_location'   => 'nullable|between:1,20|numeric',
-            'content'           => 'string|nullable|between:10,1000',
+            'content'           => 'nullable|string|between:10,1000',
             'src_iframe'        => 'url|max:255',
             'file'              => 'file|max:5120',
             'user_replay'       => 'in:1,0',
