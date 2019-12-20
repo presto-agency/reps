@@ -50,3 +50,9 @@
 .block_btn button{
     max-height: 36px;
 }
+.preview-image-wrapper img{
+    width: 50%;
+}
+.text-center{
+text-align: left!important;
+}

@@ -9,10 +9,10 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Проверьте свой адрес электронной почты') }}</div>
-                    <div class="card-body">
+            <div class="col-md-12">
+                <div class="card night_modal border_shadow">
+                    <div class="card-header night_modal" style="text-align: center">{{ __('Проверьте свой адрес электронной почты') }}</div>
+                    <div class="card-body night_modal" style="text-align: center">
                         @if (session('resent'))
                             <div class="alert alert-success" role="alert">
                                 {{ __('На ваш адрес электронной почты была отправлена ​​новая ссылка для подтверждения.') }}

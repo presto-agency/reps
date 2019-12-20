@@ -71,15 +71,11 @@ class UserReplayController extends Controller
     public function store(ReplayStoreRequest $request)
     {
         $title      = clean($request->get('title'));
-        $content    = clean($request->get('content'));
         $src_iframe = clean($request->get('src_iframe'));
         if (empty($title)) {
             return back();
         }
-        if (empty($content)) {
-            return back();
-        }
-
+        //if iframe empty after clean and no file
         if (empty($src_iframe) && !$request->hasFile('file')) {
             return back();
         }
@@ -146,11 +142,7 @@ class UserReplayController extends Controller
     {
 
         $title   = clean($request->get('title'));
-        $content = clean($request->get('content'));
         if (empty($title)) {
-            return back();
-        }
-        if (empty($content)) {
             return back();
         }
 

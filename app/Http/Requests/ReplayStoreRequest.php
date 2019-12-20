@@ -35,7 +35,7 @@ class ReplayStoreRequest extends FormRequest
             'second_race'       => 'required|string|exists:races,id',
             'second_country_id' => 'required|string|exists:countries,id',
             'second_location'   => 'nullable|between:1,20|numeric',
-            'content'           => 'required|string|nullable|between:10,1000',
+            'content'           => 'nullable|string|between:10,1000',
             'src_iframe'        => 'required_without:file|url|max:255',
             'file'              => 'required_without:src_iframe|file|max:5120',
             'user_replay'       => 'nullable|in:1,0',

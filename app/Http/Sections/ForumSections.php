@@ -102,22 +102,27 @@ class ForumSections extends Section
         $display = AdminForm::panel();
         $display->setItems([
             $name = AdminFormElement::text('name', 'Название:')
+                ->setHtmlAttribute('placeholder', 'Название')
                 ->setValidationRules([
                     'required',
                     'max:255',
                 ]),
             $title = AdminFormElement::text('title', 'Имя:')
+                ->setHtmlAttribute('placeholder', 'Имя')
                 ->setValidationRules([
                     'required',
                     'max:255',
                 ]),
             $position = AdminFormElement::number('position', 'Позиция:')
+                ->setHtmlAttribute('placeholder', 'Позиция')
+                ->setStep('1')
+                ->setMin('0')
                 ->setValidationRules([
                     'required',
                     'min:0',
                 ]),
-            $description = AdminFormElement::textarea('description',
-                'Описание:')
+            $description = AdminFormElement::textarea('description', 'Описание:')
+                ->setHtmlAttribute('placeholder', 'Описание')
                 ->setValidationRules([
                     'required',
                     'max:255',

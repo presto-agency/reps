@@ -1,5 +1,5 @@
 @if(isset($banners) && $banners->isNotEmpty())
-    <section class="banner">
+    <section class="banner border_shadow">
         <div class="wrapper">
             <div class="title_block">
                 <p class="title_text">{{__('Рекомендуем')}}</p>
