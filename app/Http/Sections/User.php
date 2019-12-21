@@ -266,15 +266,13 @@ class User extends Section
                     ->setHtmlAttribute('autocomplete', 'off')
                     ->setHtmlAttribute('maxlength', '30')
                     ->setHtmlAttribute('type', 'email')
-                    ->setValidationRules(
-                        [
+                    ->setValidationRules([
                             'required',
                             'string',
                             'email',
                             'max:255',
                             'unique:users,email,'.$this->id,
-                        ]
-                    ),
+                        ]),
 
                 $name = AdminFormElement::text('name', 'Имя')
                     ->setHtmlAttribute('placeholder', 'Имя')
