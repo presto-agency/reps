@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChatSmile;
 use App\Models\ForumTopic;
 use Illuminate\Http\Request;
 
@@ -67,6 +68,7 @@ class NewsController extends Controller
 
 
         event('topicHasViewed', $news);
+
 
 
         return view('news.show', compact('news'));
