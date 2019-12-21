@@ -93,6 +93,14 @@
                             </a>
                         </div>
                     </div>
+                    <div class="information_block">
+                        <div class="left_block"><span>{{__('Галерея:')}}</span></div>
+                        <div class="right_block night_text">
+                            <a title="{{__('Галерея')}}" href="#">
+                                <span class="blue">*</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 @if(Auth::id() != $user->id)
                     <a href="{{route('user.add_friend',['id'=>$user->id])}}"
@@ -218,15 +226,6 @@
                                 <a class="blue" title="{{__('Пользовательские реплеи')}}"
                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}">
                                     <span>{{$user->user_replay_count}}</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="block_inform">
-                            <div class="left_block"><span>{{__('Галерея:')}}</span></div>
-                            <div class="right_block">
-                                <a class="blue" title="{{__('Галерея')}}"
-                                   href="{{route('user-gallery.index',['id' => $user->id])}}">
-                                    <span></span>
                                 </a>
                             </div>
                         </div>
