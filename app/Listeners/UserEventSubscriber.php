@@ -78,6 +78,7 @@ class UserEventSubscriber
      */
     public function onUserComment($event)
     {
+
         $this->saveLog($event->userComment->user_id, UserActivityLog::EVENT_USER_COMMENT, UserActivityLogService::parametersForComment($event->userComment));
     }
 
