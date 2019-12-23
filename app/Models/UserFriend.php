@@ -58,7 +58,7 @@ class UserFriend extends Model
      */
     public static function getFriends(User $user)
     {
-        $user_friends = $user->user_friends()->with('friend_user')->get()
+        $user_friends = $user->user_friends()->with(['friend_user','friend_user.countries','friend_user.races'])->get()
             ->transform(function ($friend) {
                 if (isset($friend) && ! empty($friend->friend_user)) {
                     $friend->friend_user->friendly_data = $friend->created_at;
@@ -77,7 +77,7 @@ class UserFriend extends Model
      */
     public static function getFriendlies(User $user)
     {
-        return $user->user_friendly()->with('user.countries')->get()
+        return $user->user_friendly()->with(['user','user.countries','user.races'])->get()
             ->transform(function ($friend) {
                 if (isset($friend) && ! empty($friend->user)) {
                     $friend->user->friendly_data = $friend->created_at;

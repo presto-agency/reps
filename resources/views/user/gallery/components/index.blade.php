@@ -22,8 +22,7 @@
         @if(isset($images) && $images->isNotEmpty())
             @foreach($images as $item)
                 <div class="img-wrapper">
-                    @isset($routCheck)
-                        @if($routCheck)
+                        @if(!empty($routCheck))
                             <a class="img-link" href="{{route('galleries.show',['gallery' => $item->id])}}">
                                 <img src="{{asset($item->pictureOrDefault())}}" alt="image">
                             </a>
@@ -33,7 +32,6 @@
                                 <img src="{{asset($item->pictureOrDefault())}}" alt="image">
                             </a>
                         @endif
-                    @endisset
                 </div>
                 @php
                     $last_id = $item->id;

@@ -96,8 +96,8 @@
                     <div class="information_block">
                         <div class="left_block"><span>{{__('Галерея:')}}</span></div>
                         <div class="right_block night_text">
-                            <a title="{{__('Галерея')}}" href="#">
-                                <span class="blue">*</span>
+                            <a title="{{__('Галерея')}}" href="{{route('user-gallery.index',['id'=>$user->id])}}">
+                                <span class="blue">{{$user->images_count}}</span>
                             </a>
                         </div>
                     </div>

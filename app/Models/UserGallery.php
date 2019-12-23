@@ -28,8 +28,7 @@ class UserGallery extends Model
     /*$user->picture*/
     public function pictureOrDefault()
     {
-        if ( ! empty($this->picture)
-            && checkFile::checkFileExists($this->picture)
+        if ( ! empty($this->picture) && checkFile::checkFileExists($this->picture)
         ) {
             return $this->picture;
         } else {
