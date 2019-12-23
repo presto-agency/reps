@@ -13,10 +13,9 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function index()
     {
@@ -24,9 +23,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create()
     {
@@ -34,10 +31,9 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @param  \Illuminate\Http\Request  $request
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -45,10 +41,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @param $id
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -63,10 +58,9 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @param $id
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -77,12 +71,12 @@ class UserController extends Controller
         return view('user.profile-edit', compact('user', 'countries', 'races'));
     }
 
+
     /**
-     * Update the specified resource in storage.
+     * @param  \App\Http\Requests\UpdateProfileRequest  $request
+     * @param $id
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateProfileRequest $request, $id)
     {
@@ -93,10 +87,9 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @param $id
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
@@ -115,6 +108,9 @@ class UserController extends Controller
         return $data_cache;
     }
 
+    /**
+     * @return \App\Models\Race[]|\Illuminate\Database\Eloquent\Collection
+     */
     private static function getRaces()
     {
         return Race::all([
@@ -123,6 +119,9 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * @return \App\Models\Country[]|\Illuminate\Database\Eloquent\Collection
+     */
     private static function getCountries()
     {
         return Country::all([

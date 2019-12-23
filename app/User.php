@@ -138,7 +138,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function getUserDataById($id)
     {
         return User::with('roles', 'countries', 'races')
-            ->withCount('topics', 'comments', 'user_replay', 'gosu_replay')
+            ->withCount('topics', 'comments', 'user_replay', 'gosu_replay','images')
             ->findOrFail($id);
     }
 
