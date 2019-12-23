@@ -12,7 +12,6 @@
         "ext-curl": "*",
         "ext-gd": "*",
         "ext-json": "*",
-        "ext-zip": "*",
         "barryvdh/laravel-debugbar": "^3.2",
         "barryvdh/laravel-translation-manager": "^0.5.5",
         "caouecs/laravel-lang": "~4.0",

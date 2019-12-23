@@ -27,9 +27,11 @@
                 <textarea name="content" class="form-control night_input"
                           id="content-comment">{{clean(old('content'))}}</textarea>
                 <script type="text/javascript">
+
                     CKEDITOR.replace('content-comment', {
                         // Define the toolbar groups as it is a more accessible solution.
                     });
+
                 </script>
                 <div class="messenger__button add-comment__btn">
                     <button class="button button__download-more">

@@ -1584,9 +1584,13 @@
         .footer__useful {
             .footer__title {
                 font-size: 3.083vw;
+                line-height: 0;
+                margin-bottom: 18px;
             }
             .useful__link {
                 font-size: 3.083vw;
+                line-height: 0;
+                margin-bottom: 8px;
                 //margin-bottom: 3.472vw;
             }
         }

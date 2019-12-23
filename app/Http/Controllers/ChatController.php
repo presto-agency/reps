@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\NewChatMessageAdded;
 use App\Models\ChatPicture;
 use App\Models\ChatSmile;
+use App\Models\Help;
 use App\Models\PublicChat;
 use App\Services\GeneralViewHelper;
 use Illuminate\Http\Request;
@@ -103,7 +104,7 @@ class ChatController extends Controller
             'time'         => $msg->created_at->format('H:i'),
             'country_flag' => $country_flag,
             'is_hidden'    => $msg->is_hidden,
-            'user'         => $msg->user,
+            'avatar'       => $msg->user->avatar,
         ];
     }
 
@@ -171,4 +172,23 @@ class ChatController extends Controller
         ], 200);
     }
 
+    public function get_helps(){
+        $helps = Help::where('key','helps_for_chat')->first();
+        if ($helps){
+            return response()->json([
+                'status' => true,
+                'message' => 'ok',
+                'helps' => $helps->value,
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Not Found'
+            ], 404);
+        }
+    }
+
+    public function separate_window(){
+        return view('chat.separate_window');
+    }
 }

@@ -19,7 +19,7 @@
                     <hr>
                     <h4>{{__('Картинка превю')}}</h4>
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-2 preview-image-wrapper text-center">
+                        <div class="col-md-8 col-md-offset-2 preview-image-wrapper">
                             @if($topic->preview_img)
                                 <img class="img-bordered-sm" src="{{ asset($topic->preview_img) }}" alt="user image">
                             @endif
@@ -37,7 +37,7 @@
                     <br>
                     <h4>{{__('Контетн')}}</h4>
                     <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
+                        <div class="col-md-10 col-md-offset-1 preview-image-wrapper">
                             {!! ParserToHTML::toHTML($topic->content,'size') !!}
                         </div>
                     </div>
