@@ -1,13 +1,6 @@
-.chat_overflow{
-    overflow-x: hidden;
-}
-#appchat {
-    width: 25%;
-}
-.block_chat-twitch{
-    padding-bottom: 40px;
+
     .main_row{
-       height: 100%;
+        height: 100%;
     }
     .active_big_video{
         .block_chat{
@@ -20,17 +13,18 @@
         }
 
     }
-    & .wrapper{
+    .wrapper{
+        padding-bottom: 40px;
         box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     }
     .main_container{
         display: flex;
     }
-     .block_chat{
+    .block_chat{
         padding-bottom: 20px;
         width: 100%;
-         background: white;
-         height: 100%;
+        background: white;
+        height: 100%;
     }
     .title_text_modal{
         padding: 0;
@@ -38,24 +32,24 @@
         color:white;
         margin: 0;
     }
-    & .title_text{
+    .title_text{
         font-size: 16px;
         color:white;
         margin: 0;
         margin: 0 0 0 20px;
     }
-    & .text_support{
+    .text_support{
         font-size: 18px;
         //padding: 30px 0;
         margin: 0;
     }
-    & .container_titleChat{
+    .container_titleChat{
         background: $blue;
         height: 60px;
         border: 0;
         display: flex;
         align-items: center;
-       // border-bottom-left-radius:5px;
+        // border-bottom-left-radius:5px;
         border-top-left-radius:5px;
         .title_text{
             max-width: 100px;
@@ -63,38 +57,38 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        & .content_left{
+        .content_left{
             display: flex;
             justify-content: flex-start;
             align-items: center;
 
         }
-        & .content_right{
+        .content_right{
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            & button{
+            button{
                 background: none;
                 border:0;
-                & svg{
+                svg{
                     width: 35px;
                 }
             }
         }
     }
-    & .messanger{
-        max-height: 50vh !important;
+    .messanger{
+        max-height: 65vh !important;
         overflow:auto;
 
     }
-    & .login_block{
+    .login_block{
         padding: 40px 0;
         margin: auto;
         display: flex;
         justify-content: center;
-        & a{
+        a{
             font-size: 14px;
-            & span{
+            span{
                 border-bottom: 1px solid;
                 font-weight: bold;
             }
@@ -107,24 +101,24 @@
 
         }
         #cke_1_bottom{
-              display: none!important;
+            display: none!important;
         }
     }
     .row_contentChat{
         padding: 30px 10px 0;
         width: 100%;
-        & svg{
+        svg{
             height: 15px;
             width: 15px;
         }
 
-        & .block_user_akk{
+        .block_user_akk{
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0;
             white-space: nowrap;
-            & .blue_text{
+            .blue_text{
                 color: $blue;
                 font-size: 14px;
                 font-weight: bold;
@@ -143,13 +137,13 @@
                 a{
                     display: flex;
                 }
-                 .number_mess{
+                .number_mess{
                     color:black;
-                     max-width: 50px;
-                     overflow: hidden;
-                     white-space: nowrap;
-                     overflow: hidden;
-                     text-overflow: ellipsis;
+                    max-width: 50px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 img{
                     width: 22px;
@@ -163,40 +157,40 @@
                 }
             }
         }
-        & .block_close{
+        .block_close{
             display: flex;
             justify-content: center;
             align-items: center;
-            & button{
+            button{
                 display: flex;
                 background: none;
                 border: none;
             }
         }
-        & .block_date{
+        .block_date{
             font-size: 14px;
             color: $gray;
         }
-        & .block_userMessage{
+        .block_userMessage{
             padding: 20px 0;
             border-bottom: 1px solid $light-gray;
-            & .user_nick{
+            .user_nick{
                 font-size: 14px;
                 color:#ff8400;
             }
-            & img{
+            img{
                 max-width: 40%;
                 display: block;
                 padding: 10px 0;
             }
-            & .user_text {
+            .user_text {
                 word-wrap: break-word;
                 padding-left: 5%;
             }
 
         }
     }
-     .block_stream_list{
+    .block_stream_list{
         position: relative;
         width: 75%;
     }
@@ -209,23 +203,23 @@
             color: white;
         }
     }
-    & .title_video{
+    .title_video{
         background: $blue;
         border-top-right-radius:5px;
         height: 60px;
         display: flex;
-        & .btn_streams_close{
+        .btn_streams_close{
             width: 0;
-            & .svg_close{
+            .svg_close{
                 visibility: hidden;
                 width: 40px;
             }
         }
 
-        & .title_Text{
+        .title_Text{
             padding: 0;
         }
-        & .video_header{
+        .video_header{
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -250,13 +244,13 @@
                 }
             }
 
-            & img{
+            img{
                 margin-right: 20px;
                 max-width: 30px;
                 max-height: 30px;
                 border-radius: 50%;
             }
-            & .left_block{
+            .left_block{
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -265,23 +259,23 @@
                     width: 35px;
                 }
             }
-            & .right_block{
+            .right_block{
                 display: flex;
-                & button{
+                button{
                     background: none;
                     border: 0;
                 }
                 .svg_close{
                     width: 25px;
                 }
-                & svg{
+                svg{
                     width: 35px;
                     margin-right: 10px;
                 }
             }
         }
     }
-    & .video_twitch{
+    .video_twitch{
         padding: 40px 0;
         background: black;
         justify-content: center;
@@ -291,41 +285,6 @@
 
     }
 
-    & .pl-controls-bottom pl-flex qa-controls-bottom{
+    .pl-controls-bottom pl-flex qa-controls-bottom{
         display: none;
     }
-}
-.block_chat-twitch.theatre-on {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    margin: 0;
-    padding: 0;
-    right: 0;
-    border: darkblue;
-    bottom: 0;
-    overflow: hidden;
-    z-index: 9555;
-}
- .player-streaminfo{
-    background: red;
-}
-.messanger::-webkit-scrollbar {
-        width: 10px;
-}
-.messanger::-webkit-scrollbar-thumb {
-    background-color: #e2e5e9;
-    opacity: 0.8;
-    border-radius: 4px;
-    height: 227px;
-}
-.component_question::-webkit-scrollbar {
-    width: 10px;
-}
-.component_question::-webkit-scrollbar-thumb {
-    background-color: #e2e5e9;
-    opacity: 0.8;
-    border-radius: 4px;
-    height: 227px;
-}
