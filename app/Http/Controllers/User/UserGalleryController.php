@@ -53,31 +53,23 @@ class UserGalleryController extends Controller
      */
     public function store(UserGalleryRequests $request, $id)
     {
-        $sign = clean($request->sign);
-        if (empty($sign)) {
-            return back();
-        }
+
         $userGallery          = new UserGallery;
         $userGallery->user_id = auth()->id();
-        $userGallery->sign    = $sign;
+        $userGallery->sign    = clean($request->sign);
         if ($request->has('for_adults')) {
             $userGallery->for_adults = 1;
         } else {
             $userGallery->for_adults = 0;
         }
-
         // Check have upload file
         if ($request->hasFile('picture')) {
             // Check if upload file Successful Uploads
             if ($request->file('picture')->isValid()) {
                 // Check path
-                PathHelper::checkUploadsFileAndPath("/images/users/galleries");
+                PathHelper::checkUploadsFileAndPath('/images/users/galleries');
                 // Upload file on server
-                $image                = $request->file('picture');
-                $filePath             = $image->store(
-                    'images/users/galleries',
-                    'public'
-                );
+                $filePath             = $request->file('picture')->store('images/users/galleries', 'public');
                 $userGallery->picture = 'storage/'.$filePath;
             } else {
                 return back();
@@ -103,14 +95,6 @@ class UserGalleryController extends Controller
     {
         User::findOrFail($id);
         $relation = ['comments'];
-        $row      = [
-            'id',
-            'sign',
-            'positive_count',
-            'negative_count',
-            'picture',
-            'user_id',
-        ];
 
         $userImage = GalleryHelper::getUserImage($user_gallery, $relation);
         // get previous user id
@@ -172,13 +156,9 @@ class UserGalleryController extends Controller
         if ($getData->user_id !== auth()->id()) {
             return back();
         }
-        $sign = clean($request->sign);
-        if (empty($sign)) {
-            return back();
-        }
 
         $getData->user_id = auth()->id();
-        $getData->sign    = $sign;
+        $getData->sign    = clean($request->sign);
         if ($request->has('for_adults')) {
             $getData->for_adults = 1;
         } else {

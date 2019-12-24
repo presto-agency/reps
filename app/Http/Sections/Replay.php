@@ -65,7 +65,6 @@ class Replay extends Section
      */
     public function onDisplay()
     {
-
         $getData = $this->getModel();
         if ($getData) {
             foreach ($getData::$userReplaysType as $item) {
@@ -97,8 +96,8 @@ class Replay extends Section
             $id = AdminColumn::text('id', 'Id')
                 ->setWidth(70),
 
-            $title = AdminColumn::text(function ($model){
-               return clean($model->title);
+            $title = AdminColumn::text(function ($model) {
+                return clean($model->title);
             })->setLabel('Название')->setWidth(150),
 
             $map = AdminColumn::relatedLink('maps.name', 'Карта')
@@ -293,10 +292,10 @@ class Replay extends Section
      */
     public function onEdit($id)
     {
-        $getData = $this->getModel()->select(['file','src_iframe'])->find($id);
+        $getData = $this->getModel()->select(['file', 'src_iframe'])->find($id);
         if ($getData) {
             $this->fileOldPath = $getData->file;
-            $this->srcIframe = $getData->src_iframe;
+            $this->srcIframe   = $getData->src_iframe;
         }
         $form = AdminForm::panel();
         $form->addHeader([
@@ -459,15 +458,16 @@ class Replay extends Section
                 ]),
 
             $src_iframe = AdminFormElement::hidden('src_iframe')
-                    ->setHtmlAttribute('id','src_iframe')
-                    ->setHtmlAttribute('type','hidden')
-                    ->setHtmlAttribute('tabindex','-1')
-                    ->setHtmlAttribute('data-src',"$this->srcIframe")
-                    ->setValidationRules([
-                        'url',
-                        'max:255'
-                    ]),
-            AdminFormElement::view('admin.replays.edit',$data=[],function ($model){}),
+                ->setHtmlAttribute('id', 'src_iframe')
+                ->setHtmlAttribute('type', 'hidden')
+                ->setHtmlAttribute('tabindex', '-1')
+                ->setHtmlAttribute('data-src', "$this->srcIframe")
+                ->setValidationRules([
+                    'url',
+                    'max:255',
+                ]),
+            AdminFormElement::view('admin.replays.edit', $data = [], function ($model) {
+            }),
 
             AdminFormElement::columns()
                 ->addColumn(function () {
@@ -652,23 +652,24 @@ class Replay extends Section
         $form->addBody([
 
             $content = AdminFormElement::wysiwyg('content', 'Краткое описание')
-                                       ->setHtmlAttributes(['placeholder' => 'Краткое описание'])
-                                       ->setValidationRules([
-                                           'nullable',
-                                           'string',
-                                           'between:10,5000',
-                                       ]),
-            AdminFormElement::view('admin.replays.create',$data=[],function (){}),
+                ->setHtmlAttributes(['placeholder' => 'Краткое описание'])
+                ->setValidationRules([
+                    'nullable',
+                    'string',
+                    'between:10,5000',
+                ]),
+            AdminFormElement::view('admin.replays.create', $data = [], function () {
+            }),
             $src_iframe = AdminFormElement::hidden('src_iframe')
-                                          ->setHtmlAttribute('id','src_iframe')
-                                          ->setHtmlAttribute('type','hidden')
-                                          ->setHtmlAttribute('tabindex','-1')
-                                          ->setHtmlAttribute('data-src','')
-                                          ->setValidationRules([
-                                            'required_without:file',
-                                            'url',
-                                            'max:255'
-                                            ]),
+                ->setHtmlAttribute('id', 'src_iframe')
+                ->setHtmlAttribute('type', 'hidden')
+                ->setHtmlAttribute('tabindex', '-1')
+                ->setHtmlAttribute('data-src', '')
+                ->setValidationRules([
+                    'required_without:file',
+                    'url',
+                    'max:255',
+                ]),
             AdminFormElement::columns()
                 ->addColumn(function () {
                     return [
@@ -686,12 +687,12 @@ class Replay extends Section
                 })
                 ->addColumn(function () {
                     return [
-                        $date = AdminFormElement::date('start_date',
-                            'Дата начала')
+                        $date = AdminFormElement::date('start_date', 'Дата начала')
                             ->setHtmlAttributes([
                                 'placeholder' => Carbon::now()->format('Y-m-d'),
                             ])
-                            ->setFormat('Y-m-d'),
+                            ->setFormat('Y-m-d')
+                        ,
                         $approved = AdminFormElement::checkbox('approved',
                             'Подтвержден')
                             ->setHtmlAttribute('checked', 'checked')

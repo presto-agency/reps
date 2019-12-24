@@ -58,6 +58,7 @@ class NewsController extends Controller
             'comments.user.countries:id,name,flag',
             'comments.user.races:id,title'
         )
+            ->withCount('comments')
             ->with(['author' => function ($query) {
                 $query->withCount('comments');
             }])
