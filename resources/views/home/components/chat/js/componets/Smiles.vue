@@ -13,6 +13,8 @@
 </template>
 
 <script>
+    import {bus} from "../chat";
+
     export default {
         name: "Smiles",
         props: ['status', 'textareaId'],
@@ -22,13 +24,8 @@
             }
         },
         created() {
-            axios.get('/chat/get_externalsmiles').then((response) => {
-                response.data.smiles.forEach((item, index) => {
-                    this.smiles.push({
-                        src: item.filename,
-                        charactor: item.charactor
-                    })
-                })
+            bus.$on('got-smiles',(array)=>{
+                this.smiles = array;
             })
         },
         methods: {

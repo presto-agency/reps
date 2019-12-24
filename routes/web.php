@@ -145,7 +145,7 @@ Route::group(['prefix' => 'replay-search'], function () {
 });
 /***---Search---***/
 Route::get('replay-news-search', 'Search\SearchController@index')->name('search');
-Route::group(['prefix' => 'replay-news-search'], function () {
+Route::group(['prefix' => 'replay-news-seasrch'], function () {
     Route::group(['prefix' => 'loadmore'], function () {
         Route::post('load_search_news', 'Search\SearchController@loadNews')->name('load.more.search.news');
         Route::post('load_search_replays', 'Search\SearchController@loadReplay')->name('load.more.search.replays');
