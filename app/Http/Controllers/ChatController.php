@@ -106,6 +106,7 @@ class ChatController extends Controller
             'is_hidden'    => $msg->is_hidden,
             //'avatar'       => $msg->user->avatarOrDefault()??'images/default/avatar/avatar.png',
             'avatar'       => isset($msg->user->avatar),
+            'user' => $msg->user
         ];
     }
 
