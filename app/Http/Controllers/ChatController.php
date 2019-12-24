@@ -27,7 +27,7 @@ class ChatController extends Controller
      */
     public function get_messages()
     {
-        $messages = PublicChat::select('id', 'user_id', 'user_name', 'message', 'is_hidden', 'to', 'file_path', 'imo', 'created_at')->with('user')
+        $messages = PublicChat::/*select('id', 'user_id', 'user_name', 'message', 'is_hidden', 'to', 'file_path', 'imo', 'created_at')->*/with('user')
             ->orderBy('created_at', 'desc')
             ->limit(100)
             ->get();
@@ -104,7 +104,8 @@ class ChatController extends Controller
             'time'         => $msg->created_at->format('H:i'),
             'country_flag' => $country_flag,
             'is_hidden'    => $msg->is_hidden,
-            'avatar'       => $msg->user->avatarOrDefault(),
+            //'avatar'       => $msg->user->avatarOrDefault()??'images/default/avatar/avatar.png',
+            'avatar'       => isset($msg->user->avatar),
         ];
     }
 
