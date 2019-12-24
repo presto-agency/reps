@@ -46,7 +46,7 @@
                     this.messagearray.push({
                         id: item.id,
                         flag: item.country_flag,
-                        ava: chatHelper.CheckAvatar(item.avatar),
+                        ava: item.avatar,
                         usernick: item.user_name,
                         date: item.time,
                         message: chatHelper.strParse(item.message),
@@ -71,14 +71,14 @@
             axios.get('/chat/helps').then((response) => {
                 this.helper_text = response.data.helps;
                 bus.$emit('got-helper', this.helper_text)
-            })
+            });
             axios.get('/chat/get_externalsmiles').then((response) => {
                 response.data.smiles.forEach((item, index) => {
                     this.smiles.push({
                         src: item.filename,
                         charactor: item.charactor
                     })
-                })
+                });
                 bus.$emit('got-smiles', this.smiles)
             });
             axios.get('chat/get_externalimages').then((response) => {
