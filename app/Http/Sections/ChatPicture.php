@@ -63,22 +63,18 @@ class ChatPicture extends Section implements Initializable
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
-                ->setWidth('50px'),
+                ->setWidth('100px'),
 
             $user = AdminColumn::text('user.name', 'User')
                 ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md')
-                ->setWidth('100px'),
+                ->setWidth('200px'),
 
-            $image = AdminColumn::image(function ($model) {
-                if ( ! empty($model->image) && PathHelper::checkFileExists($model->image)) {
-                    return asset($model->image);
-                }
-            })->setWidth('100px'),
+            $image = AdminColumn::image('image','Image')->setWidth('100px'),
             $comment = AdminColumn::text('comment', 'Comment')
-                ->setWidth('150px'),
+                ->setWidth('250px'),
 
             $charactor = AdminColumn::text('charactor', 'Charactor')
-                ->setWidth('50px'),
+                ->setWidth('100px'),
 
             $tags = AdminColumn::lists('tags.display_name', 'Tags'),
             /*$tag = AdminColumn::text('tag', 'Tag')
@@ -87,7 +83,7 @@ class ChatPicture extends Section implements Initializable
                     AdminColumn::filter('tag')
                 ),*/
             $date = AdminColumn::datetime('created_at', 'Date')
-                ->setFormat('Y-m-d')->setWidth('100px'),
+                ->setFormat('Y-m-d'),
 
         ]);
 
