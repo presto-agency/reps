@@ -101,11 +101,11 @@
                 this.messagearray.unshift({
                     id: data.id,
                     flag: data.country_flag,
-                    ava: chatHelper.CheckAvatar(data.user.avatar),
+                    ava: data.avatar,
                     usernick: data.user_name,
                     date: data.time,
                     message: chatHelper.strParse(data.message),
-                    user_id: data.user.id,
+                    user_id: data.user_id,
                     user_path: '/user/',
                     visible: true
                 });
