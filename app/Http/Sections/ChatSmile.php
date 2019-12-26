@@ -104,12 +104,12 @@ class ChatSmile extends Section
             /*Init FormElement*/
             $image = AdminFormElement::file('image', 'Image')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage'.PathHelper::checkUploadsFileAndPath("/chat/smiles", $this->imageOldPath);
+                    return 'storage'.PathHelper::checkUploadsFileAndPath('/chat/smiles');
                 })
                 ->setValidationRules([
                     'required',
                     'image',
-                    'mimes:jpeg,jpg,png,gif',
+                    'mimes:jpeg,jpg,png,gif,svg',
                     'max:2048',
                 ]),
             $comment = AdminFormElement::text('comment', 'Comment'),

@@ -10,8 +10,8 @@ use AdminFormElement;
 use App\Models\Tag;
 use App\Services\ServiceAssistants\PathHelper;
 use Illuminate\Http\UploadedFile;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -21,7 +21,7 @@ use SleepingOwl\Admin\Section;
  * @property \App\Models\ChatPicture $model
  *
  */
-class ChatPicture extends Section
+class ChatPicture extends Section implements Initializable
 {
 
     /**
@@ -42,7 +42,15 @@ class ChatPicture extends Section
     protected $alias;
 
     /**
-     * @return DisplayInterface
+     * Initialize class.
+     */
+    public function initialize()
+    {
+    }
+
+    /**
+     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
+     * @throws \SleepingOwl\Admin\Exceptions\FilterOperatorException
      */
     public function onDisplay()
     {
@@ -116,12 +124,12 @@ class ChatPicture extends Section
             /*Init FormElement*/
             $image = AdminFormElement::file('image', 'Image')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage'.PathHelper::checkUploadsFileAndPath("/chat/pictures",$this->imageOldPath);
+                    return 'storage'.PathHelper::checkUploadsFileAndPath('/chat/pictures');
                 })
                 ->setValidationRules([
                     'required',
                     'image',
-                    'mimes:jpeg,jpg,png,gif',
+                    'mimes:jpeg,jpg,png,gif,svg',
                     'max:2048',
                 ]),
             $comment = AdminFormElement::text('comment', 'Comment'),

@@ -56,7 +56,7 @@
             </div>
         @endif
         <div class="form-group">
-            <label for="preview_content" class="night_text">{{__('*Краткое описание')}}</label>
+            <label for="preview_content" class="night_text">{{__('Краткое описание')}}</label>
             <textarea type="text" class="form-control create-topic__name night_input" id="preview_content"
                       name="preview_content">{{ clean(old('preview_content')) }}</textarea>
             <script>
