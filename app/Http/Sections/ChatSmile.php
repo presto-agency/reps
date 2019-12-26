@@ -63,23 +63,22 @@ class ChatSmile extends Section
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
-                ->setWidth('15px'),
+                ->setWidth('100px'),
 
             $user = AdminColumn::text('user.name', 'User')
                 ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md')
-                ->setWidth('50px'),
+                ->setWidth('200px'),
 
             $image = AdminColumn::image(function ($model) {
                 return $model->imageOrDefault();
-            })->setLabel('Image')->setWidth('100px'),
-            $title = AdminColumn::text('comment', 'Comment')
-                ->setWidth('60px'),
+            })->setLabel('Image'),
+            $title = AdminColumn::text('comment', 'Comment'),
 
             $position = AdminColumn::text('charactor', 'Charactor')
-                ->setWidth('50px'),
+                ->setWidth('200px'),
 
             $date = AdminColumn::datetime('created_at', 'Date')
-                ->setFormat('Y-m-d')->setWidth('20px'),
+                ->setFormat('Y-m-d'),
 
         ]);
 
@@ -104,12 +103,12 @@ class ChatSmile extends Section
             /*Init FormElement*/
             $image = AdminFormElement::file('image', 'Image')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage'.PathHelper::checkUploadsFileAndPath("/chat/smiles", $this->imageOldPath);
+                    return 'storage'.PathHelper::checkUploadsFileAndPath('/chat/smiles');
                 })
                 ->setValidationRules([
                     'required',
                     'image',
-                    'mimes:jpeg,jpg,png,gif',
+                    'mimes:jpeg,jpg,png,gif,svg',
                     'max:2048',
                 ]),
             $comment = AdminFormElement::text('comment', 'Comment'),

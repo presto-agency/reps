@@ -28,7 +28,7 @@ class UserTopicsUpdateRequest extends FormRequest
             'forum_section_id' => 'exists:forum_sections,id',
             'title'            => 'string|between:5,255',
             'preview_img'      => 'nullable|image|max:2048',
-            'preview_content'  => 'string|between:10,10000',
+            'preview_content'  => 'nullable|string|between:10,10000',
             'content'          => 'string|between:10,50000',
         ];
     }
