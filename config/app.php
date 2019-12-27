@@ -165,12 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
-        Intervention\Image\ImageServiceProvider::class,
-        SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
-        Barryvdh\TranslationManager\ManagerServiceProvider::class,
-        Illuminate\View\ViewServiceProvider::class,
-        Cohensive\Embed\EmbedServiceProvider::class,
-        PheRum\BBCode\BBCodeServiceProvider::class,
+
+
         /*
          * Application Service Providers...
          */

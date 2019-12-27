@@ -1,9 +1,3 @@
-<script>
-    function Quote(id) {
-        let block = document.getElementById(id);
-        CKEDITOR.instances['content-comment'].insertHtml(block.innerHTML);
-    }
-</script>
 @isset($comments)
     <div class="comments border_shadow">
         <div class="comments__title" id="comments_id">
@@ -22,7 +16,7 @@
                     d="M44,29.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,29.015,44,29.015z"/>
                 <path
                     d="M44,37.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,37.015,44,37.015z"/>
-        </svg>
+            </svg>
             <p class="title__text">{{__('Комментарии')}}</p>
         </div>
         @if(isset($comments) && $comments->isNotEmpty())
@@ -59,16 +53,16 @@
                                     <span class="info__date">{{$comment->created_at->format('H:i d.m.Y')}}</span>
                                 </div>
                             @endif
-                            <div class="comments__content">
-                                <div class="content__title night_text">
-                                    {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
-                                </div>
+                        </div>
+                        <div class="comments__content">
+                            <div class="content__title night_text">
+                                {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
                             </div>
                         </div>
                     </div>
                     <div class="comments__items">
                         <div class="items__wrap">
-                            <button onclick="Quote({{$comment->id}})" class="items__quote" id="btn_quote">
+                            <button onclick="quote({{$comment->id}})" class="items__quote" id="btn_quote">
                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                      x="0px" y="0px"
                                      viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
@@ -121,3 +115,25 @@
         @endif
     </div>
 @endisset
+@section('ess21-custom-script')
+    <script type="text/javascript">
+        function quote(id) {
+            $.ajax({
+                url: "{{ route('quote') }}",
+                method: "POST",
+                data: {
+                    id: id,
+                    _token: '{{csrf_token()}}',
+                },
+                success: function (data) {
+                    // console.log(data.quoteContent);
+                    if (data.quote) {
+                        CKEDITOR.instances['content-comment'].insertHtml(data.quote);
+                    }
+
+                }
+            })
+        }
+
+    </script>
+@endsection

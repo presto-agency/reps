@@ -109,6 +109,7 @@ class TopicController extends Controller
     public function saveComments()
     {
 
+
         $replay = ForumTopic::find(request('id'));
         $replay->commented_at = Carbon::now();
 
@@ -116,6 +117,7 @@ class TopicController extends Controller
             'user_id' => auth()->id(),
             'content' => clean(request('content')),
         ]);
+
         $replay->comments()->save($comment);
         $replay->save();
         return back();

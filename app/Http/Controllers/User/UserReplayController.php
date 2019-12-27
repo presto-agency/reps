@@ -72,6 +72,7 @@ class UserReplayController extends Controller
     {
         $title      = clean($request->get('title'));
         $src_iframe = clean($request->get('src_iframe'));
+
         if (empty($title)) {
             return back();
         }

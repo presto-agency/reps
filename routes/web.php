@@ -151,6 +151,8 @@ Route::group(['prefix' => 'replay-news-seasrch'], function () {
         Route::post('load_search_replays', 'Search\SearchController@loadReplay')->name('load.more.search.replays');
     });
 });
+Route::post('quote', 'QuoteController@getQuote')->name('quote');
+
 Route::middleware(['ban'])->group(function () {
     Auth::routes();
 });
