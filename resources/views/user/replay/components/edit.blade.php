@@ -219,7 +219,9 @@
                 <textarea name="content" class="form-control night_input"
                           id="preview_content">{{ clean(old('content',$replay->content)) }}</textarea>
                 <script>
-                    CKEDITOR.replace('preview_content', {});
+                    CKEDITOR.replace('preview_content', {
+
+                    });
                 </script>
             </div>
             @if ($errors->has('content'))
