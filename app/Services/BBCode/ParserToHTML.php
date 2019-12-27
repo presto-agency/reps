@@ -20,12 +20,13 @@ class ParserToHTML
     {
 
         $bbCode           = new ChrisKonnertzBBCode();
+
         $first_conversion = PheRumBBCode::parse($text);
+
         $bbCode->addTag('quote-shell', function ($tag, &$html, $openingTag) {
             if ($tag->opening) {
                 return '<div class="comments__wrapp wrapp_comments">';
             }
-
 //            else {
 //                return '</div>';
 //            }
@@ -33,6 +34,7 @@ class ParserToHTML
 
 
         $second_conversion = $bbCode->render($first_conversion);
+
 
         $third_transformation = html_entity_decode($second_conversion);
 
