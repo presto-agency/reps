@@ -464,6 +464,7 @@ class Replay extends Section
                 ->setHtmlAttribute('data-src', "$this->srcIframe")
                 ->setValidationRules([
                     'url',
+                    'nullable',
                     'max:255',
                 ]),
             AdminFormElement::view('admin.replays.edit', $data = [], function ($model) {
@@ -475,6 +476,7 @@ class Replay extends Section
                         $file = AdminFormElement::file('file', 'Файл')
                             ->setValidationRules([
                                 'file',
+                                'nullable',
                                 'max:5120',
                             ])
                             ->setUploadPath(function (UploadedFile $file) {
@@ -668,6 +670,7 @@ class Replay extends Section
                 ->setValidationRules([
                     'required_without:file',
                     'url',
+                    'nullable',
                     'max:255',
                 ]),
             AdminFormElement::columns()
@@ -677,11 +680,12 @@ class Replay extends Section
                             ->setValidationRules([
                                 'required_without:src_iframe',
                                 'file',
+                                'nullable',
                                 'max:5120',
                             ])
                             ->setUploadPath(function (UploadedFile $file) {
-                                return 'storage'
-                                    .PathHelper::checkUploadsFileAndPath("/files/replays");
+//                                return 'storage'.PathHelper::checkUploadsFileAndPath('/files/replays');
+                                return 'storage/files/replays';
                             }),
                     ];
                 })

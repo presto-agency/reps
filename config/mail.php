@@ -84,11 +84,11 @@ return [
     |
     */
 
-//    'username' => env("MAIL_USERNAME"),
-    'username' => "bot@reps.ru",
+    'username' => env("MAIL_USERNAME"),
+//    'username' => "bot@reps.ru",
 
-//    'password' => env("MAIL_PASSWORD"),
-    'password' => "2[[z8/ca3h$`xfkPZ@`w47",
+    'password' => env("MAIL_PASSWORD"),
+//    'password' => "2[[z8/ca3h$`xfkPZ@`w47",
 
     /*
     |--------------------------------------------------------------------------

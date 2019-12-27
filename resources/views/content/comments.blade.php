@@ -22,7 +22,7 @@
         @if(isset($comments) && $comments->isNotEmpty())
             @foreach($comments as $comment)
                 <div class="citation border_shadow">
-                    <div id="{{$comment->id}}">
+{{--                    <div id="{{$comment->id}}">--}}
                         <div class="comments__wrapp wrapp_comments">
                             @if(isset($comment->user) && !empty($comment->user))
                                 <div class="comments__info change_gray">
@@ -53,13 +53,13 @@
                                     <span class="info__date">{{$comment->created_at->format('H:i d.m.Y')}}</span>
                                 </div>
                             @endif
-                        </div>
+
                         <div class="comments__content">
                             <div class="content__title night_text">
                                 {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
                             </div>
                         </div>
-                    </div>
+{{--                    </div>--}}
                     <div class="comments__items">
                         <div class="items__wrap">
                             <button onclick="quote({{$comment->id}})" class="items__quote" id="btn_quote">
@@ -108,6 +108,7 @@
                             </a>
                         </div>
                     </div>
+                        </div>
                 </div>
             @endforeach
         @else

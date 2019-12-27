@@ -166,7 +166,12 @@ return [
          * Package Service Providers...
          */
 
-
+        \Genert\BBCode\BBCodeServiceProvider::class,
+        \SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
+        \Barryvdh\TranslationManager\ManagerServiceProvider::class,
+        \Intervention\Image\ImageServiceProvider::class,
+        \Cohensive\Embed\EmbedServiceProvider::class,
+        \PheRum\BBCode\BBCodeServiceProvider::class,
         /*
          * Application Service Providers...
          */
