@@ -166,7 +166,7 @@ class ForumTopics extends Section
             $preview_content = AdminFormElement::wysiwyg('preview_content', 'Краткое содержание')
                 ->setHtmlAttribute('placeholder', 'Краткое содержание')
                 ->setValidationRules([
-                    'required',
+                    'nullable',
                     'string',
                     'between:1,10000',
                 ])

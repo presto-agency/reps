@@ -19,6 +19,7 @@
 
 <script>
     import * as chatHelper from "../helper/chatHelper";
+    import {bus} from "../chat";
 
     export default {
         name: "Images",
@@ -31,35 +32,12 @@
             }
         },
         created() {
-            axios.get('chat/get_externalimages').then((response) => {
-                let i = 0;
-                for (let key in response.data.images) {
-                    this.all_images.push({
-                        category: key,
-                        active: false,
-                        array: Object.values(response.data.images)[i]
-                    });
-                    i++;
-                }
-                if(this.all_images.length>0) {
-                    this.all_images[0].active = true;
-                    this.category_images = this.all_images[0];
-                }
-
+            bus.$on('got-images',(obj)=>{
+                this.all_images = obj.images;
+                this.category_images = obj.category;
             })
         },
         methods: {
-            get_images() {
-                axios.get('/get_externalimages').then((response) => {
-                    response.data.forEach((item, index) => {
-                        this.images.push({
-                            src: item.src,
-                            charactor: item.charactor
-                        })
-                    });
-                    if (response.data.length > 0) this.tabIndex = Object.keys(this.images)[0];
-                })
-            },
             change_Category(selected_index) {
                 this.all_images.forEach((item) => {
                     item.active = false;
