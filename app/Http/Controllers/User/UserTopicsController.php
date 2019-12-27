@@ -97,7 +97,6 @@ class UserTopicsController extends Controller
         $preview_content = clean($request->preview_content);
         $content         = clean($request->get('content'));
 
-
         if (empty($title)) {
             return back();
         }
