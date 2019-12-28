@@ -88,7 +88,7 @@
             </div>
         </div>
 
-        <div class="detailed-news__card card night_modal night_text border_shadow">
+        <div class="detailed-news__card card night_modal night_text">
             <div class="card-body__items">
                 <div class="card-body__items-wrap">
                     <button onclick="QuoteNews({{$news->id}})" class="items__quote">
