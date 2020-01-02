@@ -60,7 +60,9 @@
                     </div>
                     <div class="comments__items">
                         <div class="items__wrap">
-                            <button onclick="quote({{$comment->id}})" class="items__quote" id="btn_quote">
+                            <button
+{{--                                onclick="quote({{$comment->id}})"--}}
+                                class="items__quote" id="btn_quote">
                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                      x="0px" y="0px"
                                      viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
