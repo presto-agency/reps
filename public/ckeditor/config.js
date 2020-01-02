@@ -15,7 +15,7 @@ CKEDITOR.editorConfig = function( config ) {
      config.extraPlugins ='smiley,bbcode,uploadimage' ;
 
 
-    config.uploadUrl = '/upload/upload.php';
+    // config.uploadUrl = '/upload/upload.php';
 	// Define changes to default configuration here.
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
