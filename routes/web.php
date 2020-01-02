@@ -44,13 +44,13 @@ Route::resource('interview', 'Interview\InterviewController');
 /***---Best---***/
 Route::resource('best', 'Best\BestController');
 /***---Replay---***/
-Route::resource("replay", 'Replay\ReplayController');
+Route::resource('replay', 'Replay\ReplayController');
 
 Route::group(['prefix' => 'replay'], function () {
-    Route::post('loadmore/load_replay', 'Replay\ReplayController@loadReplay')->name('load.more.replay');
-    Route::get('{id}/download', 'Replay\ReplayHelper@download')->name('replay.download');
-    Route::post('{id}/download_count', 'Replay\ReplayHelper@downloadCount')->name('replay.download.count');
-    Route::post('{id}/send_comment', 'Replay\ReplayHelper@saveComments')->name('replay.send_comment');
+    Route::post('load-more-replay', 'Replay\ReplayController@loadReplay')->name('load.more.replay.index');
+    Route::get('{id}/download', 'Replay\ReplayController@download')->name('replay.download');
+    Route::post('{id}/increment-downloaded', 'Replay\ReplayController@downloadCount')->name('replay.increment.downloaded');
+    Route::post('{id}/replay-send-comment', 'Replay\ReplayController@saveComments')->name('replay.send-comment');
 
     /**set reputation like/dislike*/
     Route::get('{id}/get_rating', 'ReplayRatingController@getRating')->name('replay.get_rating');
@@ -58,16 +58,15 @@ Route::group(['prefix' => 'replay'], function () {
 });
 /***---Tournament---***/
 Route::resource("tournament", 'Tournament\TournamentController');
-Route::get("tournament/{tourney}/{match}/{rep}/download-match",
-    'Tournament\TournamentController@downloadMatch')->name('download.match');
+Route::get('download-tournament-match/{match}/{rep}', 'Tournament\TournamentController@downloadMatchFile')->name('download.tournament.match');
 //Route::post("{tournament}/download-all-match", 'Tournament\TournamentController@downloadMultipleMatch')->name('download.all.match');
 Route::post('tournament/loadmore/load_tournament', 'Tournament\TournamentController@loadTournament')
-     ->name('load.more.tournament');
+    ->name('load.more.tournament');
 
 Route::group(['middleware' => ['auth', 'ban', 'verified']], function () {
     /**comments rating: like/dislike*/
     Route::post('comment/{id}/set_rating', 'CommentsRatingController@setRating')
-         ->name('comment.set_rating');
+        ->name('comment.set_rating');
     //    Route::get('comment/{id}/get_rating', 'CommentsRatingController@getRating')->name('comment.ger_rating');
 });
 
@@ -79,26 +78,26 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'ban', 'verified'],],
     Route::get('/user-gallery/{id}/get_rating', 'UserGalleryRatingController@getRating')->name('gallery.get_rating');
     Route::post('/user-gallery/{id}/set_rating', 'UserGalleryRatingController@setRating')->name('gallery.set_rating');
     Route::get('{id}', 'UserController@show')->name('user_profile');
-    Route::resource("{id}/user-gallery", 'User\UserGalleryController');
-    Route::post('{id}/loadmore/load_gallery', 'User\UserGalleryController@loadGallery')->name('load.more.user.gallery');
-
+    /***---User Gallery---***/
+    Route::resource('{id}/user-gallery', 'User\UserGalleryController');
+    Route::post('{id}/load-more-user-images', 'User\UserGalleryController@loadUserImages')->name('load.more.user.images');
+    /***---User Topics---***/
     Route::resource("{id}/user-topics", 'User\UserTopicsController');
     /*** Ajax pagination user-sections(topics) ***/
     //    Route::post('{id}/user-topics/load_sections', 'User\UserTopicsController@forumSectionsAjaxLoad')
     //        ->name('user.topics.load.sections');
     /*** Ajax pagination user-sections-topics ***/
     Route::post('{id}/user-topics/load_sections_topics', 'User\UserTopicsController@forumSectionsTopicsAjaxLoad')
-         ->name('user.topics.load.sections.topics');
-
-    Route::resource("{id}/user-replay", 'User\UserReplayController');
+        ->name('user.topics.load.sections.topics');
+    /***---User Replay---***/
+    Route::resource('{id}/user-replay', 'User\UserReplayController');
     Route::post('replay_set_iframe', 'User\UserReplayController@iframe')->name('set.iframe');
-    Route::post('{id}/loadmore/load_replay', 'User\UserReplayController@loadReplay')
-         ->name('load.more.user.replay');
-
-    Route::resource("{id}/user-comments", 'User\UserCommentsController');
+    Route::post('{id}/load-more-user-replay', 'User\UserReplayController@loadUserReplay')->name('load.more.user.replay.index');
+    /***---User Comments---***/
+    Route::resource('{id}/user-comments', 'User\UserCommentsController');
     /*** Ajax pagination user-sections-topics ***/
     Route::post('{id}/user-comments/load_sections_comments', 'User\UserCommentsController@forumSectionsCommentsAjaxLoad')
-         ->name('user.comments.load.sections.comments');
+        ->name('user.comments.load.sections.comments');
 
     Route::resource("{id}/user-rating-list", 'User\UserRatingListController');
 
@@ -121,6 +120,7 @@ Route::group(['prefix' => 'chat'], function () {
         return view('stream-section.test-chat');
     });*/
 
+    Route::get('/', 'ChatController@separate_window')->name('chat.separate_window');
     Route::group(['middleware' => ['auth', 'ban', 'verified']], function () {
         Route::post('/insert_message', 'ChatController@insert_message')->name('chat.add_message');
         Route::delete('/delete/{id}', 'ChatController@destroy')->name('chat.delete_message');
@@ -131,25 +131,29 @@ Route::group(['prefix' => 'chat'], function () {
 
     Route::get('/get_externalsmiles', 'ChatController@get_externalsmiles')->name('chat.get_smiles');
     Route::get('/get_externalimages', 'ChatController@get_externalimages')->name('chat.get_images');
+    Route::get('/helps', 'ChatController@get_helps')->name('chat.get_helps');
 });
 /***---Galleries---***/
 Route::resource('galleries', 'Gallery\GalleriesController');
-Route::post('galleries/loadmore/load_galleries', 'Gallery\GalleriesController@loadGalleries')->name('load.more.galleries');
-Route::post('galleries/{id}/send_comment', 'User\GalleryHelper@saveComments')->name('galleries.send.comment');
+Route::post('galleries/load-more-images', 'Gallery\GalleriesController@loadImages')->name('load.more.images');
+Route::post('galleries/{id}/send-comment', 'Gallery\GalleriesController@saveComments')->name('galleries.send.comment');
 /***---Search Replay---***/
 Route::get('replay-search', 'Replay\ReplaySearchController@index')->name('replay.only.search');
 Route::group(['prefix' => 'replay-search'], function () {
-    Route::post('loadmore/load_search_replays_only', 'Replay\ReplaySearchController@loadReplay')->name('load.more.replay.only.search');
+    Route::post('load-more-search-replays', 'Replay\ReplaySearchController@loadReplay')->name('load.more.replay.only.search');
 });
 /***---Search---***/
-Route::get('replay-news-search', 'Search\SearchController@index')->name('search');
-Route::group(['prefix' => 'replay-news-search'], function () {
-    Route::group(['prefix' => 'loadmore'], function () {
-        Route::post('load_search_news', 'Search\SearchController@loadNews')->name('load.more.search.news');
-        Route::post('load_search_replays', 'Search\SearchController@loadReplay')->name('load.more.search.replays');
-    });
+Route::get('search', 'Search\SearchController@index')->name('search');
+Route::group(['prefix' => 'search'], function () {
+    Route::post('load-more-news', 'Search\SearchController@loadNews')->name('load.more.search.news');
+    Route::post('load-more-replays', 'Search\SearchController@loadReplay')->name('load.more.search.replays');
 });
+
 Route::middleware(['ban'])->group(function () {
     Auth::routes();
 });
 
+/**
+ * Ajax quote
+ */
+Route::post('quote', 'QuoteController@getQuote')->name('quote');

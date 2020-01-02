@@ -4,6 +4,7 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
+
     CKEDITOR.config.allowedContent = true;
     CKEDITOR.config.fillEmptyBlocks = false;
     CKEDITOR.config.indentClasses = ["i","ul-grey", "ul-red", "text-red", "ul-content-red", "circle", "style-none", "decimal", "paragraph-portfolio-top", "ul-portfolio-top", "url-portfolio-top", "text-grey"];
@@ -11,8 +12,9 @@ CKEDITOR.editorConfig = function( config ) {
     // CKEDITOR.config.protectedSource.push(/<(script)[^>]*>.*<\/script>/ig);// разрешить теги <script>
     CKEDITOR.config.protectedSource.push(/<\?[\s\S]*?\?>/g);// разрешить php-код
     CKEDITOR.config.allowedContent = true; /* all tags */
-    config.extraPlugins = 'uploadimage';
-    config.extraPlugins = 'bbcode';
+     config.extraPlugins ='smiley,bbcode,uploadimage' ;
+
+
     config.uploadUrl = '/upload/upload.php';
 	// Define changes to default configuration here.
 	// For complete reference see:
@@ -20,6 +22,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
+
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
 		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
 		{ name: 'links' },
@@ -39,12 +42,14 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
-	config.removeButtons = 'Underline,Subscript,Superscript';
+	config.removeButtons = 'Underline,Subscript,Superscript,Table,Anchor';
 
 	// Set the most common block elements.
-	config.format_tags = 'p;h1;h2;h3;pre';
+	// config.format_tags = 'p;h1;h2;h3;pre';
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+
+
 };
 

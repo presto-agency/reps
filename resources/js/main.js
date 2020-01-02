@@ -15,12 +15,12 @@ for (i = 0; i < acc.length; i++) {
             let path = window.location.pathname.split("/").pop();
             if (path === "user-topics") {
                 if (panel.innerHTML === "") {
-                    loadAjaxDataTopics(this.id, '', _token, panel)
+                    loadAjaxDataTopics(this.id, '',  panel)
                 }
             }
             if (path === "user-comments") {
                 if (panel.innerHTML === "") {
-                    loadAjaxData(this.id, '', _token, panel)
+                    loadAjaxData(this.id, '',  panel)
                 }
             }
         }
@@ -289,9 +289,6 @@ for (let i = 0; i < bubblyButtons.length; i++) {
 }
 
 
-// $("#gallery__for-adults").on('change', function () {
-//     this.value = this.checked ? 1 : 0;
-// }).change();
 /////////////////////////////////////////////////////////////////////////////
 
 

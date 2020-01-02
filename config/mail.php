@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'info@reps.ru'),
+        'address' => env('MAIL_FROM_ADDRESS', 'bot@reps.ru'),
         'name' => env('MAIL_FROM_NAME', 'Reps.ru'),
     ],
 
@@ -85,8 +85,10 @@ return [
     */
 
     'username' => env("MAIL_USERNAME"),
+//    'username' => "bot@reps.ru",
 
     'password' => env("MAIL_PASSWORD"),
+//    'password' => "2[[z8/ca3h$`xfkPZ@`w47",
 
     /*
     |--------------------------------------------------------------------------

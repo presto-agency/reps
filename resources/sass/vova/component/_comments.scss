@@ -1,5 +1,6 @@
 .nightMode{
     .comments{
+        word-wrap: break-word;
         .comments__content{
             iframe{
                 max-width: 100%;
@@ -16,11 +17,11 @@
     }
     .card-body__text{
         img{
-            width: 100%;
+            max-width: 100%;
         }
     }
 
-    box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+    //box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
     border-radius: 5px;
     .citation{
         box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
@@ -32,6 +33,18 @@
             box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
             border-radius: 5px;
             padding-bottom: 10px;
+            padding: 20px;
+        }
+        blockquote{
+            a{
+                display: flex;
+                align-items: center;
+                background-color: #f0f4f8;
+                padding-top: 16px;
+                padding-bottom: 17px;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
         }
     }
 
@@ -63,7 +76,6 @@
     }
 
     .comments__wrapp {
-
         .comments__info {
             display: flex;
             align-items: center;

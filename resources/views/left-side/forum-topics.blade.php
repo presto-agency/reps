@@ -1,4 +1,4 @@
-@if($sectionItems)
+@if(isset($sectionItems) && $sectionItems->isNotEmpty())
     <div class="forum-topics night_modal">
         <div class="forum-topics__title">
 

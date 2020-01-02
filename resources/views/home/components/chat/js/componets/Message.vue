@@ -35,7 +35,7 @@
             <Smiles :textareaId="textareaId" :status="chat_action.smile" @turnOffStatus="turnOffStatus" @insert_smile="addSmile($event)"></Smiles>
             <Images :textareaId="textareaId" :status="chat_action.image" @turnOffStatus="turnOffStatus" @insert_image="addImage($event)"></Images>
             <Color :textareaId="textareaId" :status="chat_action.color"  @turnOffStatus="turnOffStatus" @textarealistener="textareafoo($event)" :selection="selection" ></Color>
-            <Question v-if="questionShow"/>
+            <Question v-show="questionShow"/>
             <div class="form-group-toolbar">
                 <img src="../../icons/bold.svg" alt="" class="toolbar_item" @click="bold(textareaId)">
                 <img src="../../icons/italic.svg" alt="" class="toolbar_item" @click="italic(textareaId)">

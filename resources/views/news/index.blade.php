@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('sidebar-left')
-    @include('left-side.forum-topics')
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('topic-news-index') }}
 @endsection
 
-@section('breadcrumbs')
-    {{ Breadcrumbs::render('news') }}
+@section('sidebar-left')
+    @include('left-side.forum-topics')
 @endsection
 
 @section('content')

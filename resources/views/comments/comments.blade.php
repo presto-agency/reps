@@ -1,11 +1,5 @@
-<script>
-    function Quote(id) {
-        let block = document.getElementById(id);
-        CKEDITOR.instances['content-comment'].insertHtml(block.innerHTML);
-    }
-</script>
 @isset($comments)
-    <div class="comments border_shadow">
+    <div class="comments ">
         <div class="comments__title" id="comments_id">
             <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                  x="0px" y="0px"
@@ -22,53 +16,53 @@
                     d="M44,29.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,29.015,44,29.015z"/>
                 <path
                     d="M44,37.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,37.015,44,37.015z"/>
-        </svg>
+            </svg>
             <p class="title__text">{{__('Комментарии')}}</p>
         </div>
         @if(isset($comments) && $comments->isNotEmpty())
             @foreach($comments as $comment)
-                <div class="citation border_shadow">
-                    <div id="{{$comment->id}}">
-                        <div class="comments__wrapp wrapp_comments">
-                            @if(isset($comment->user) && !empty($comment->user))
-                                <div class="comments__info change_gray">
-                                    @if(auth()->check() && auth()->user()->userViewAvatars())
-                                        <img src="{{asset($comment->user->avatarOrDefault())}}" class="info__avatar"
-                                             alt="avatar">
-                                    @endif
-                                    @guest()
-                                        <img src="{{asset($comment->user->avatarOrDefault())}}" class="info__avatar"
-                                             alt="avatar">
-                                    @endguest()
-                                    <a href="{{route('user_profile',['id'=>$comment->user->id])}}"
-                                       title="{{$comment->user->name}}" class="info__nickname night_text">
-                                        {{$comment->user->name}}</a>
-                                    @if($comment->user->countries)
-                                        <img src="{{asset($comment->user->countries->flagOrDefault())}}"
-                                             class="info__flag" alt="flag" title="{{$comment->user->countries->name}}">
-                                    @endif
-                                    <img
-                                        src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
-                                        class="info__cube" alt="race" title="{{$comment->user->races->title}}">
-                                    @if($comment->user->races)
-                                        <p class="info__text"
-                                           title="{{$comment->user->comments_count.' pts | '. $comment->user->rating.' кг'}}">
-                                            {{$comment->user->comments_count.' pts | '. $comment->user->rating.' кг'}}
-                                        </p>
-                                    @endif
-                                    <span class="info__date">{{$comment->created_at->format('H:i d.m.Y')}}</span>
-                                </div>
-                            @endif
-                            <div class="comments__content">
-                                <div class="content__title night_text">
-                                    {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
-                                </div>
+                <div class="citation border_shadow comments__wrapp wrapp_comments">
+{{--                    <div class="comments__wrapp wrapp_comments">--}}
+                        @if(isset($comment->user) && !empty($comment->user))
+                            <div class="comments__info change_gray">
+                                @if(auth()->check() && auth()->user()->userViewAvatars())
+                                    <img src="{{asset($comment->user->avatarOrDefault())}}" class="info__avatar"
+                                         alt="avatar">
+                                @endif
+                                @guest()
+                                    <img src="{{asset($comment->user->avatarOrDefault())}}" class="info__avatar"
+                                         alt="avatar">
+                                @endguest()
+                                <a href="{{route('user_profile',['id'=>$comment->user->id])}}"
+                                   title="{{$comment->user->name}}" class="info__nickname night_text">
+                                    {{$comment->user->name}}</a>
+                                @if($comment->user->countries)
+                                    <img src="{{asset($comment->user->countries->flagOrDefault())}}"
+                                         class="info__flag" alt="flag" title="{{$comment->user->countries->name}}">
+                                @endif
+                                <img
+                                    src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
+                                    class="info__cube" alt="race" title="{{$comment->user->races->title}}">
+                                @if($comment->user->races)
+                                    <p class="info__text"
+                                       title="{{$comment->user->comments_count.' pts | '. $comment->user->rating.' кг'}}">
+                                        {{$comment->user->comments_count.' pts | '. $comment->user->rating.' кг'}}
+                                    </p>
+                                @endif
+                                <span class="info__date">{{$comment->created_at->format('H:i d.m.Y')}}</span>
                             </div>
+                        @endif
+{{--                    </div>--}}
+                    <div class="comments__content">
+                        <div class="content__title night_text">
+                            {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
                         </div>
                     </div>
                     <div class="comments__items">
                         <div class="items__wrap">
-                            <button onclick="Quote({{$comment->id}})" class="items__quote" id="btn_quote">
+                            <button
+{{--                                onclick="quote({{$comment->id}})"--}}
+                                class="items__quote" id="btn_quote">
                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                      x="0px" y="0px"
                                      viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
@@ -121,3 +115,24 @@
         @endif
     </div>
 @endisset
+@section('custom-script')
+    <script type="text/javascript">
+        function quote(id) {
+            $.ajax({
+                url: "{{ route('quote') }}",
+                method: "POST",
+                data: {
+                    id: id,
+                    _token: '{{csrf_token()}}',
+                },
+                success: function (data) {
+                    if (data.quote) {
+                        CKEDITOR.instances['content-comment'].insertHtml(data.quote);
+                    }
+
+                }
+            })
+        }
+
+    </script>
+@endsection

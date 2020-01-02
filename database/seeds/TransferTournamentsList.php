@@ -1,11 +1,12 @@
 <?php
 
 use App\Models\TourneyList;
-use Illuminate\Database\Schema\Blueprint;
+use App\Services\Tournament\TourneyService;
 use Illuminate\Database\Seeder;
 
 class TransferTournamentsList extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -13,48 +14,63 @@ class TransferTournamentsList extends Seeder
      */
     public function run()
     {
-
         /**
          * Clear table
          */
-        DB::table('tourney_lists')->delete();
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('tourney_lists_map_pools')->truncate();
+        DB::table('tourney_lists')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("tourney_lists")
-            ->chunkById(100, function ($repsTournamentsList) {
+        DB::connection('mysql3')->table('lis_tourney')
+            ->chunkById(50, function ($repsTournamentsList) {
                 try {
-                    $insertItems = [];
                     foreach ($repsTournamentsList as $item) {
+                        if ( ! empty($item->maps)) {
+                            $mapArrayVal = TourneyService::mapValForSeeder(trim($item->maps));
+                        }
+
                         $insertItems[] = [
-                            'id'             => $item->id,
-                            'tourney_id'     => $item->tourney_id,
-                            'admin_id'       => $item->admin_id,
-                            'name'           => $item->name,
-                            'place'          => $item->place,
-                            'prize_pool'     => $item->prize_pool,
-                            'status'         => $item->status,
-                            'visible'        => $item->visible,
-                            'maps'           => $item->maps,
-                            'rules_link'     => $item->rules_link,
-                            'vod_link'       => $item->vod_link,
-                            'logo_link'      => $item->logo_link,
-                            'map_selecttype' => $item->map_selecttype,
-                            'importance'     => $item->importance,
-                            'is_ranking'     => $item->is_ranking,
-                            'password'       => $item->password,
-                            'checkin_time'   => $item->checkin_time,
-                            'start_time'     => $item->start_time,
-                            'created_at'     => $item->created_at,
-                            'updated_at'     => $item->updated_at,
+                            'id'              => $item->id,
+                            'user_id'         => null,
+                            'name'            => $item->name,
+                            'place'           => $item->place,
+                            'prize_pool'      => $item->prize_pool,
+                            'rules_link'      => $item->rules_link,
+                            'vod_link'        => $item->vod_link,
+                            'logo_link'       => $item->logo_link,
+                            'password'        => $item->password,
+                            'maps'            => $item->maps,
+                            'status'          => array_search(trim($item->state), TourneyList::$status),
+                            'map_select_type' => array_search(trim($item->map_selecttype), TourneyList::$map_types),
+                            'importance'      => $item->importance,
+                            'visible'         => trim($item->visible) == 'VISIBLE' ? 1 : 0,
+                            'ranking'         => trim($item->is_ranking) == 'YES' ? 1 : 0,
+                            'checkin_time'    => date('Y-m-d H:i:s', $item->time_checkin),
+                            'start_time'      => date('Y-m-d H:i:s', $item->time_start),
+                            'created_at'      => date('Y-m-d H:i:s', $item->time_reg),
+                            'updated_at'      => date('Y-m-d H:i:s', $item->time_reg),
                         ];
 
+                        if ( ! empty($mapArrayVal)) {
+                            foreach ($mapArrayVal as $key => $mapId) {
+                                $insert2Items[] = [
+                                    'tourney_id' => $item->id,
+                                    'map_id'     => $mapId,
+                                ];
+                            }
+                        }
                     }
-                    DB::table("tourney_lists")->insert($insertItems);
+                    DB::table('tourney_lists')->insert($insertItems);
+                    DB::table('tourney_lists_map_pools')->insert($insert2Items);
                 } catch (\Exception $e) {
                     dd($e, $item);
                 }
             });
-
     }
+
 }

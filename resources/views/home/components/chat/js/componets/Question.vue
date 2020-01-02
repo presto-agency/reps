@@ -1,19 +1,25 @@
 <template>
     <transition name="fade">
         <div class="component_question">
-            <p>1a nice content place here  a nice content place here</p>
-            <p>2a nice content place here  a nice content place here</p>
-            <p>3a nice content place here  a nice content place here</p>
-            <p>4a nice content place here  a nice content place here</p>
-            <p>5a nice content place here  a nice content place here</p>
-            <p>6a nice content place here  a nice content place here</p>
+            <p v-html="helper_text"></p>
         </div>
     </transition>
 </template>
 
 <script>
+    import {bus} from "../chat";
     export default {
         name: "Question",
+        data() {
+            return {
+                helper_text: ''
+            }
+        },
+        created() {
+            bus.$on('got-helper', (text)=> {
+                this.helper_text = text;
+            })
+        }
     }
 </script>
 
@@ -23,6 +29,7 @@
         padding: 4px;
         bottom: 105px;
         width: 100%;
+        border: 1px solid #ccc;
         max-height: 51vh;
         min-height: 51vh;
         background: white;

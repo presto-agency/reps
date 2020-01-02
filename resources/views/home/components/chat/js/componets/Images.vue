@@ -2,6 +2,7 @@
     <transition name="fade">
         <div v-if="status" class="component_image">
             <div class="categories ">
+                <img class="close-images" src="../../icons/cancel.png" alt="close" @click="CloseImages">
                 <p class="category__item" :class="{active: category.active}" v-for="(category,index) in all_images" @click="change_Category(index)">{{category.category}}</p>
             </div>
             <div class=" row images">
@@ -18,6 +19,7 @@
 
 <script>
     import * as chatHelper from "../helper/chatHelper";
+    import {bus} from "../chat";
 
     export default {
         name: "Images",
@@ -30,35 +32,12 @@
             }
         },
         created() {
-            axios.get('chat/get_externalimages').then((response) => {
-                let i = 0;
-                for (let key in response.data.images) {
-                    this.all_images.push({
-                        category: key,
-                        active: false,
-                        array: Object.values(response.data.images)[i]
-                    });
-                    i++;
-                }
-                if(this.all_images.length>0) {
-                    this.all_images[0].active = true;
-                    this.category_images = this.all_images[0];
-                }
-
+            bus.$on('got-images',(obj)=>{
+                this.all_images = obj.images;
+                this.category_images = obj.category;
             })
         },
         methods: {
-            get_images() {
-                axios.get('/get_externalimages').then((response) => {
-                    response.data.forEach((item, index) => {
-                        this.images.push({
-                            src: item.src,
-                            charactor: item.charactor
-                        })
-                    });
-                    if (response.data.length > 0) this.tabIndex = Object.keys(this.images)[0];
-                })
-            },
             change_Category(selected_index) {
                 this.all_images.forEach((item) => {
                     item.active = false;
@@ -69,6 +48,9 @@
             selImage: function (title, index) {
                 let str = title.replace(title, '%' + title + '%');
                 this.$emit("insert_image", {'str': str, 'images': this.category_images.array[index]});
+
+            },
+            CloseImages() {
                 this.$emit("turnOffStatus");
             }
 
@@ -80,19 +62,28 @@
 <style lang="scss" scoped>
     .component_image {
         position: absolute;
-        bottom: 100px;
         padding: 4px;
+        bottom: 105px;
         width: 100%;
-        min-height: 400px;
-
+        max-height: 51vh;
+        min-height: 51vh;
         background: white;
+        overflow-y: auto;
 
         .categories {
+            position: relative;
             padding: 10px 0;
             overflow-x: auto;
             display: flex;
             flex-wrap: wrap;
-
+            .close-images {
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                right: 1px;
+                top: 1px;
+                cursor: pointer;
+            }
             .category__item {
                 display: inline;
                 cursor: pointer;

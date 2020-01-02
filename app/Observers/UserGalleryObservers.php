@@ -11,9 +11,7 @@ class UserGalleryObservers
 
     public function creating(UserGallery $userGallery)
     {
-
-        $this->setUserIdAttribute($userGallery);
-
+        $userGallery->setAttribute('user_id', auth()->id());
     }
 
     /**
@@ -27,7 +25,7 @@ class UserGalleryObservers
 
     public function updating(UserGallery $userGallery)
     {
-        $this->setUserIdAttribute($userGallery);
+        $userGallery->setAttribute('user_id', auth()->id());
     }
 
     public function updated(UserGallery $userGallery)
@@ -51,12 +49,6 @@ class UserGalleryObservers
     public function forceDeleted(UserGallery $userGallery)
     {
         //
-    }
-
-    private function setUserIdAttribute($data)
-    {
-        return $data['user_id'] = auth()->user()->id;
-
     }
 
 }

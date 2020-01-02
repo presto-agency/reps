@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Country;
-use App\Models\Race;
 use App\Models\Role;
 use App\Services\Base\RegexService;
 use App\User;
@@ -78,6 +76,12 @@ class RegisterController extends Controller
                 'between:8,30',
                 'confirmed',
             ],
+            'country'  => [
+                'exists:countries,id',
+            ],
+            'race'     => [
+                'exists:races,id',
+            ],
         ]);
     }
 
@@ -94,9 +98,8 @@ class RegisterController extends Controller
         return User::create([
             'name'       => $data['name'],
             'email'      => $data['email'],
-            'country_id' => Country::where('code', $data['country'])
-                ->value('id'),
-            'race_id'    => Race::where('code', $data['race'])->value('id'),
+            'country_id' => (int) $data['country'],
+            'race_id'    => (int) $data['race'],
             'role_id'    => Role::where('name', 'user')->value('id'),
             'password'   => Hash::make($data['password']),
         ]);
@@ -113,7 +116,14 @@ class RegisterController extends Controller
 
         $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all())));
+        try {
+            /**
+             * On this Event send mail
+             */
+            event(new Registered($user = $this->create($request->all())));
+        }catch (\Exception $e){
+            \Log::error($e);
+        }
 
         $this->guard()->login($user);
 

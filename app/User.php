@@ -5,32 +5,27 @@ namespace App;
 use App\Traits\AvatarTrait;
 use App\Traits\ModelRelations\UserRelation;
 use Carbon\Carbon;
-use Eloquent;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-/**
- * Class User
- *
- * @package App
- * @property  integer id
- * @property  string avatar
- * @mixin Eloquent
- */
+
 class User extends Authenticatable implements MustVerifyEmail
 {
 
     use Notifiable, AvatarTrait, UserRelation;
 
     const REPLAY = 1;
+
     const GALLERY = 2;
+
     const TOPICS = 3;
+
     public static $sections
         = [
-            self::REPLAY => 'Реплеи',
+            self::REPLAY  => 'Реплеи',
             self::GALLERY => 'Галерея',
-            self::TOPICS => 'Форум',
+            self::TOPICS  => 'Форум',
         ];
     /**
      * The attributes that are mass assignable.
@@ -63,6 +58,10 @@ class User extends Authenticatable implements MustVerifyEmail
             'view_avatars',
         ];
 
+    protected $guarded
+        = [
+            'role_id', 'ban', 'count_negative', 'count_positive', 'rating', 'activity_at',
+        ];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -77,7 +76,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function userViewAvatars()
     {
-        if ($this->view_avatars == 1) {
+        if ($this->view_avatars == true) {
             return true;
         }
 
@@ -138,7 +137,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function getUserDataById($id)
     {
         return User::with('roles', 'countries', 'races')
-            ->withCount('topics', 'comments', 'user_replay', 'gosu_replay')
+            ->withCount('topics', 'comments', 'user_replay', 'gosu_replay', 'images')
             ->findOrFail($id);
     }
 
@@ -201,7 +200,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if (preg_match('/^(http|https):\/\//i', $str)) {
             $url = $str;
         } else {
-            $url = 'http://' . $str;
+            $url = 'http://'.$str;
         }
         if (filter_var($url, FILTER_VALIDATE_URL)) {
             return $url;

@@ -59,63 +59,39 @@ class UserCommentsController extends Controller
         }
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function create()
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function store(Request $request)
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
-    /**
-     * @param $id
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function show($id)
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
-    /**
-     * @param $id
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function edit($id)
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     * @param $id
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function update(Request $request, $id)
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
-    /**
-     * @param $id
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function destroy($id)
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
     /**

@@ -10,31 +10,70 @@ use Illuminate\View\View;
 class Top10KgPtsComposer
 {
 
-    public function compose(View $view)
+    private $ttl = 300;// 5 mints
+
+    private $topUserRating;
+    private $topUserPoints;
+
+    public function __construct()
     {
-        $view->with('top10Rating', self::getCache('top10UserRating', self::getTop10UserRating()));
-        $view->with('top10Points', self::getCache('top10UserPoints', self::getTop10UserPoints()));
+        $this->topUserRating = collect();
+        $this->topUserPoints = collect();
+
+        $topUserRating = $this->getCacheTopUserRating('top10Rating');
+        $topUserPoints = $this->getCacheTopUserPoints('top10Points');
+
+        $this->topUserRating = $topUserRating;
+        $this->topUserPoints = $topUserPoints;
     }
 
+    public function compose(View $view)
+    {
+        $view->with('top10Rating', $this->topUserRating);
+        $view->with('top10Points', $this->topUserPoints);
+    }
+
+
     /**
-     * @param $cache_name
+     * @param  string  $cache_name
      *
      * @return mixed
      */
-    public static function getCache($cache_name, $data)
+    private function getCacheTopUserRating(string $cache_name)
     {
         if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
             $data_cache = \Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, 300, function () use ($data) {
-                return $data;
+            $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
+                return $this->getTopUserRating();
             });
         }
 
         return $data_cache;
     }
 
-    public static function getTop10UserRating()
+    /**
+     * @param  string  $cache_name
+     *
+     * @return mixed
+     */
+    private function getCacheTopUserPoints(string $cache_name)
+    {
+        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
+                return $this->getTopUserPoints();
+            });
+        }
+
+        return $data_cache;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    private function getTopUserRating()
     {
         return User::with('countries:id,flag,name', 'races:id,title')
             ->where('rating', '>=', 0)
@@ -43,7 +82,10 @@ class Top10KgPtsComposer
             ->get(['id', 'name', 'rating', 'race_id', 'country_id']);
     }
 
-    public static function getTop10UserPoints()
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    private function getTopUserPoints()
     {
         return User::with('countries:id,flag,name', 'races:id,code,title')
             ->withCount('comments')

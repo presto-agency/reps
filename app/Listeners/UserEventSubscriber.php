@@ -17,7 +17,9 @@ class UserEventSubscriber
      */
     public function onUserVerified($event)
     {
-        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_VERIFIED, null);
+        if ( ! empty($event->user)) {
+            $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_VERIFIED, null);
+        }
     }
 
     /**
@@ -25,8 +27,9 @@ class UserEventSubscriber
      */
     public function onUserLogin($event)
     {
-
-        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGIN, null);
+        if ( ! empty($event->user)) {
+            $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGIN, null);
+        }
     }
 
     /**
@@ -34,9 +37,8 @@ class UserEventSubscriber
      */
     public function onUserLogout($event)
     {
-        if (!empty($event->user)) {
+        if ( ! empty($event->user)) {
             $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_LOGOUT, null);
-
         }
     }
 
@@ -45,8 +47,9 @@ class UserEventSubscriber
      */
     public function onUserRegistered($event)
     {
-
-        $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_REGISTER, null);
+        if ( ! empty($event->user)) {
+            $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_REGISTER, null);
+        }
     }
 
     /**
@@ -54,7 +57,9 @@ class UserEventSubscriber
      */
     public function onUserUploadImage($event)
     {
-        $this->saveLog($event->userGallery->user_id, UserActivityLog::EVENT_CREATE_IMAGE, UserActivityLogService::parametersForCreateImage($event->userGallery));
+        if ( ! empty($event->userGallery)) {
+            $this->saveLog($event->userGallery->user_id, UserActivityLog::EVENT_CREATE_IMAGE, UserActivityLogService::parametersForCreateImage($event->userGallery));
+        }
     }
 
     /**
@@ -62,7 +67,9 @@ class UserEventSubscriber
      */
     public function onUserUploadReplay($event)
     {
-        $this->saveLog($event->userReplay->user_id, UserActivityLog::EVENT_CREATE_REPLAY, UserActivityLogService::parametersForCreateReplay($event->userReplay));
+        if ( ! empty($event->userReplay)) {
+            $this->saveLog($event->userReplay->user_id, UserActivityLog::EVENT_CREATE_REPLAY, UserActivityLogService::parametersForCreateReplay($event->userReplay));
+        }
     }
 
     /**
@@ -70,7 +77,9 @@ class UserEventSubscriber
      */
     public function onUserUploadForumTopic($event)
     {
-        $this->saveLog($event->userForumTopic->user_id, UserActivityLog::EVENT_CREATE_POST, UserActivityLogService::parametersForCreateTopic($event->userForumTopic));
+        if ( ! empty($event->userForumTopic)) {
+            $this->saveLog($event->userForumTopic->user_id, UserActivityLog::EVENT_CREATE_POST, UserActivityLogService::parametersForCreateTopic($event->userForumTopic));
+        }
     }
 
     /**
@@ -78,7 +87,9 @@ class UserEventSubscriber
      */
     public function onUserComment($event)
     {
-        $this->saveLog($event->userComment->user_id, UserActivityLog::EVENT_USER_COMMENT, UserActivityLogService::parametersForComment($event->userComment));
+        if ( ! empty($event->userComment)) {
+            $this->saveLog($event->userComment->user_id, UserActivityLog::EVENT_USER_COMMENT, UserActivityLogService::parametersForComment($event->userComment));
+        }
     }
 
     /**
@@ -86,7 +97,9 @@ class UserEventSubscriber
      */
     public function onUserLike($event)
     {
-        $this->saveLog($event->userReputation->sender_id, UserActivityLog::EVENT_USER_COMMENT, UserActivityLogService::parametersForLike($event->userReputation));
+        if ( ! empty($event->userReputation)) {
+            $this->saveLog($event->userReputation->sender_id, UserActivityLog::EVENT_USER_COMMENT, UserActivityLogService::parametersForLike($event->userReputation));
+        }
     }
 
     /**
@@ -96,7 +109,6 @@ class UserEventSubscriber
      */
     public function subscribe($events)
     {
-
         $events->listen(
             'Illuminate\Auth\Events\Verified',
             'App\Listeners\UserEventSubscriber@onUserVerified'
@@ -139,7 +151,6 @@ class UserEventSubscriber
             'App\Events\UserLike',
             'App\Listeners\UserEventSubscriber@onUserLike'
         );
-
     }
 
     /**
@@ -149,12 +160,11 @@ class UserEventSubscriber
      */
     private function saveLog($user_id, $type, $parameters)
     {
-
-        $log = new UserActivityLog;
-        $log->type = $type;
-        $log->user_id = $user_id;
-        $log->time = Carbon::now();
-        $log->ip = !empty(\Request::getClientIp())
+        $log             = new UserActivityLog;
+        $log->type       = $type;
+        $log->user_id    = $user_id;
+        $log->time       = Carbon::now();
+        $log->ip         = ! empty(\Request::getClientIp())
             ? \Request::getClientIp() : '';
         $log->parameters = $parameters;
         $log->save();

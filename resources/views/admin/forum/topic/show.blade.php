@@ -19,7 +19,7 @@
                     <hr>
                     <h4>{{__('Картинка превю')}}</h4>
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-2 preview-image-wrapper text-center">
+                        <div class="col-md-8 col-md-offset-2 preview-image-wrapper">
                             @if($topic->preview_img)
                                 <img class="img-bordered-sm" src="{{ asset($topic->preview_img) }}" alt="user image">
                             @endif
@@ -37,7 +37,7 @@
                     <br>
                     <h4>{{__('Контетн')}}</h4>
                     <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
+                        <div class="col-md-10 col-md-offset-1 preview-image-wrapper">
                             {!! ParserToHTML::toHTML($topic->content,'size') !!}
                         </div>
                     </div>
@@ -82,24 +82,23 @@
                             </form>
                         </div>
                         <div class="table-content">
-                            @if(isset($topic->comments) && !empty($topic->comments))
+                            @if(!empty($topic->comments))
                                 @foreach($topic->comments as $comment)
                                     <div class="item row">
-                                        @if(auth()->check() && auth()->user()->userViewAvatars())
+                                        @if($comment->user)
                                             <img class="img-circle img-bordered-sm"
                                                  src="{{asset($comment->user->avatarOrDefault())}}" alt="avatar">
                                         @endif
-                                        @guest()
-                                            <img class="img-circle img-bordered-sm"
-                                                 src="{{asset($comment->user->avatarOrDefault())}}" alt="avatar">
-                                        @endguest()
                                         <p class="message">
-                                            <a href="#" class="name">
-                                                <small class="text-muted pull-right"><i
-                                                        class="fa fa-clock-o"></i> {{$comment->created_at->format('H:i d.m.Y')}}
-                                                </small>
-                                                {{$comment->user->name}}
-                                            </a>
+                                            @if($comment->user)
+                                                <a href="{{route('user_profile',['id'=>$comment->user->id])}}"
+                                                   class="name">
+                                                    <small class="text-muted pull-right">
+                                                        <i class="fas fa-clock">{{$comment->created_at->format('H:i d.m.Y')}}</i>
+                                                    </small>
+                                                    {{$comment->user->name}}
+                                                </a>
+                                            @endif
                                             {{--<a type="button" class="btn btn-default text-red"  title="Удалить запись" href="#{{route('admin.comments.remove', ['id' => $comment->id])}}"><i class="fa fa-trash"></i></a>--}}
                                             {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
                                         </p>

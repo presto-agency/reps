@@ -10,8 +10,8 @@ use AdminFormElement;
 use App\Models\Tag;
 use App\Services\ServiceAssistants\PathHelper;
 use Illuminate\Http\UploadedFile;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -21,7 +21,7 @@ use SleepingOwl\Admin\Section;
  * @property \App\Models\ChatPicture $model
  *
  */
-class ChatPicture extends Section
+class ChatPicture extends Section implements Initializable
 {
 
     /**
@@ -42,7 +42,15 @@ class ChatPicture extends Section
     protected $alias;
 
     /**
-     * @return DisplayInterface
+     * Initialize class.
+     */
+    public function initialize()
+    {
+    }
+
+    /**
+     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
+     * @throws \SleepingOwl\Admin\Exceptions\FilterOperatorException
      */
     public function onDisplay()
     {
@@ -55,22 +63,18 @@ class ChatPicture extends Section
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
-                ->setWidth('50px'),
+                ->setWidth('100px'),
 
             $user = AdminColumn::text('user.name', 'User')
                 ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md')
-                ->setWidth('100px'),
+                ->setWidth('200px'),
 
-            $image = AdminColumn::image(function ($model) {
-                if ( ! empty($model->image) && PathHelper::checkFileExists($model->image)) {
-                    return asset($model->image);
-                }
-            })->setWidth('100px'),
+            $image = AdminColumn::image('image','Image')->setWidth('100px'),
             $comment = AdminColumn::text('comment', 'Comment')
-                ->setWidth('150px'),
+                ->setWidth('250px'),
 
             $charactor = AdminColumn::text('charactor', 'Charactor')
-                ->setWidth('50px'),
+                ->setWidth('100px'),
 
             $tags = AdminColumn::lists('tags.display_name', 'Tags'),
             /*$tag = AdminColumn::text('tag', 'Tag')
@@ -79,7 +83,7 @@ class ChatPicture extends Section
                     AdminColumn::filter('tag')
                 ),*/
             $date = AdminColumn::datetime('created_at', 'Date')
-                ->setFormat('Y-m-d')->setWidth('100px'),
+                ->setFormat('Y-m-d'),
 
         ]);
 
@@ -116,12 +120,12 @@ class ChatPicture extends Section
             /*Init FormElement*/
             $image = AdminFormElement::file('image', 'Image')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage'.PathHelper::checkUploadsFileAndPath("/chat/pictures",$this->imageOldPath);
+                    return 'storage'.PathHelper::checkUploadsFileAndPath('/chat/pictures');
                 })
                 ->setValidationRules([
                     'required',
                     'image',
-                    'mimes:jpeg,jpg,png,gif',
+                    'mimes:jpeg,jpg,png,gif,svg',
                     'max:2048',
                 ]),
             $comment = AdminFormElement::text('comment', 'Comment'),

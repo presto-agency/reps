@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.5.2 on 2019-12-19.
+ * Generated for Laravel 6.5.2 on 2020-01-02.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -14886,6 +14886,94 @@ namespace Facade\Ignition\Facades {
  
 }
 
+namespace Genert\BBCode\Facades { 
+
+    class BBCode {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function only($only = null)
+        {
+            return \Genert\BBCode\BBCode::only($only);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function except($except = null)
+        {
+            return \Genert\BBCode\BBCode::except($except);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function stripBBCodeTags($text)
+        {
+            return \Genert\BBCode\BBCode::stripBBCodeTags($text);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function convertFromHtml($text)
+        {
+            return \Genert\BBCode\BBCode::convertFromHtml($text);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function convertToHtml($text, $caseSensitive = null)
+        {
+            return \Genert\BBCode\BBCode::convertToHtml($text, $caseSensitive);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addParser($name, $pattern, $replace, $content)
+        {
+            return \Genert\BBCode\BBCode::addParser($name, $pattern, $replace, $content);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addHtmlParser($name, $pattern, $replace, $content)
+        {
+            return \Genert\BBCode\BBCode::addHtmlParser($name, $pattern, $replace, $content);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addLinebreakParser()
+        {
+            return \Genert\BBCode\BBCode::addLinebreakParser();
+        }
+         
+    }
+ 
+}
+
 namespace Collective\Html { 
 
     class FormFacade {
@@ -21231,6 +21319,8 @@ namespace  {
     class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
 
     class Flare extends \Facade\Ignition\Facades\Flare {}
+
+    class Invoice extends \Genert\BBCode\Facades\BBCode {}
 
     class Form extends \Collective\Html\FormFacade {}
 

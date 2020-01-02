@@ -2,123 +2,266 @@
 
 namespace App\Http\Controllers\Gallery;
 
-use App\Http\Controllers\User\GalleryHelper;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentsStoreRequests;
+use App\Models\Comment;
+use App\Models\UserGallery;
+use Illuminate\Http\Request;
 
 class GalleriesController extends Controller
 {
-    public $routCheck;
 
-    public function __construct()
-    {
-        $this->routCheck = GalleryHelper::checkUrlGalleries();
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('gallery.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        return redirect()->to('/');
-
+        return abort(404);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $relation = ['comments'];
-        $row = ['id', 'sign', 'positive_count', 'negative_count', 'picture',];
-        $userImage = GalleryHelper::getUserImage($id, $relation);
-
-        // get previous user id
-        $previous = GalleryHelper::previousGalleriesImage($id, $relation, $row);
-
-        // get next user id
-        $next = GalleryHelper::nextGalleriesImage($id, $relation, $row);
-
-        $routCheck = $this->routCheck;
-
-        return view('gallery.show', compact('userImage', 'previous', 'next', 'routCheck'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        return redirect()->to('/');
+        return abort(404);
+    }
 
+    public function destroy($id)
+    {
+        return abort(404);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @param  int  $id
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function destroy($id)
+    public function show(int $id)
     {
-        return redirect()->to('/');
+        $previous = GalleriesController::getPreviousImage($id);
+        $image    = GalleriesController::getImage($id);
+        $next     = GalleriesController::getNextImage($id);
 
+
+        return view('gallery.show', compact('previous', 'image', 'next'));
     }
 
-    public function loadGalleries()
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function loadImages()
     {
-        $row = ['id', 'picture', 'user_id'];
-        if (request()->ajax()) {
+        $request = request();
+        if ($request->ajax()) {
             $visible_title = false;
-            $routCheck = $this->routCheck;
-            if (request('id') > 0) {
-                $images = GalleryHelper::getGalleriesImagesAjaxId($row,request('id'));
+
+            if ($request->id > 0) {
+                $images = GalleriesController::ajaxLoadGalleryId($request->id);
             } else {
-                $images = GalleryHelper::getGalleriesImagesAjax($row);
+                $images = GalleriesController::ajaxLoadGallery();
+
                 $visible_title = true;
             }
-            echo view('gallery.components.index', compact('images', 'routCheck', 'visible_title'));
+
+            return view('gallery.components.index', compact('images', 'visible_title'));
         }
     }
+
+    /**
+     * @param  int  $id
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
+     */
+    public static function getImage(int $id)
+    {
+        return UserGallery::with([
+            'comments',
+            'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive',
+            'comments.user.countries:id,name,flag',
+            'comments.user.races:id,title',
+            'comments.user' => function ($query) {
+                $query->withCount('comments');
+            },
+        ])->findOrFail($id);
+    }
+
+    /**
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public static function getNextImage(int $id)
+    {
+        return UserGallery::with([
+            'comments',
+            'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive',
+            'comments.user.countries:id,name,flag',
+            'comments.user.races:id,title',
+            'comments.user' => function ($query) {
+                $query->withCount('comments');
+            },
+        ])->where('id', '>', $id)->min('id');
+    }
+
+    /**
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public static function getPreviousImage(int $id)
+    {
+        return UserGallery::with([
+            'comments',
+            'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive',
+            'comments.user.countries:id,name,flag',
+            'comments.user.races:id,title',
+            'comments.user' => function ($query) {
+                $query->withCount('comments');
+            },
+        ])->where('id', '<', $id)->max('id');
+    }
+
+    /**
+     * @param  int  $user_gallery
+     * @param  int  $user_id
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
+     */
+    public static function getUserImage(int $user_gallery, int $user_id)
+    {
+        return UserGallery::with([
+            'comments',
+            'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive',
+            'comments.user.countries:id,name,flag',
+            'comments.user.races:id,title',
+            'comments.user' => function ($query) {
+                $query->withCount('comments');
+            },
+        ])->where('user_id', $user_id)->findOrFail($user_gallery);
+    }
+
+
+    /**
+     * @param  int  $user_gallery
+     * @param  int  $user_id
+     *
+     * @return mixed
+     */
+    public static function getNextUserImage(int $user_gallery, int $user_id)
+    {
+        return UserGallery::with([
+            'comments',
+            'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive',
+            'comments.user.countries:id,name,flag',
+            'comments.user.races:id,title',
+            'comments.user' => function ($query) {
+                $query->withCount('comments');
+            },
+        ])->where('user_id', $user_id)->where('id', '>', $user_gallery)->min('id');
+    }
+
+    /**
+     * @param  int  $user_gallery
+     * @param  int  $user_id
+     *
+     * @return mixed
+     */
+    public static function getPreviousUserImage(int $user_gallery, int $user_id)
+    {
+        return UserGallery::with([
+            'comments',
+            'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive',
+            'comments.user.countries:id,name,flag',
+            'comments.user.races:id,title',
+            'comments.user' => function ($query) {
+                $query->withCount('comments');
+            },
+        ])->where('user_id', $user_id)->where('id', '<', $user_gallery)->max('id');
+    }
+
+    /**
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public static function ajaxLoadGalleryId(int $id)
+    {
+        return UserGallery::where('id', '<', $id)
+            ->orderByDesc('id')
+            ->limit(8)
+            ->get(['id', 'picture', 'user_id',]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function ajaxLoadGallery()
+    {
+        return UserGallery::orderByDesc('id')
+            ->limit(8)
+            ->get(['id', 'picture', 'user_id',]);
+    }
+
+    /**
+     * @param  int  $user_id
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public static function ajaxLoadUserGalleryId(int $user_id, int $id)
+    {
+        return UserGallery::where('user_id', $user_id)
+            ->where('id', '<', $id)
+            ->orderByDesc('id')
+            ->limit(8)
+            ->get(['id', 'picture', 'user_id',]);
+    }
+
+    /**
+     * @param  int  $user_id
+     *
+     * @return mixed
+     */
+    public static function ajaxLoadUserGallery(int $user_id)
+    {
+        return UserGallery::where('user_id', $user_id)
+            ->orderByDesc('id')
+            ->limit(8)
+            ->get(['id', 'picture', 'user_id',]);
+    }
+
+    /**
+     * @param  \App\Http\Requests\CommentsStoreRequests  $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function saveComments(CommentsStoreRequests $request)
+    {
+        $content = clean($request->input('content'));
+
+        if (empty($content)) {
+            return redirect()->back();
+        }
+        $model   = UserGallery::findOrFail($request->get('id'));
+        $comment = new Comment([
+            'user_id' => auth()->id(),
+            'content' => $content,
+        ]);
+
+        $model->comments()->save($comment);
+
+        return redirect()->back();
+    }
+
 }

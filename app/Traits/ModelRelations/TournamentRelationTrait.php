@@ -3,42 +3,46 @@
 namespace App\Traits\ModelRelations;
 
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\TourneyListsMapPool;
+use App\Models\TourneyMatch;
+use App\Models\TourneyPlayer;
+use App\User;
+
 
 trait TournamentRelationTrait
 {
 
     /**
-     * Relations.
-     *
-     * @return HasMany
+     * @return mixed
      */
-
-    public function matches()
+    public function user()
     {
-        return $this->hasMany('App\Models\TourneyMatch', 'tourney_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    /**
+     * @return mixed
+     */
     public function players()
     {
-        return $this->hasMany('App\Models\TourneyPlayer', 'tourney_id', 'id');
+        return $this->hasMany(TourneyPlayer::class, 'tourney_id', 'id');
     }
 
-    public function admin_user()
+    /**
+     * @return mixed
+     */
+    public function mapsPool()
     {
-        return $this->belongsTo('App\User', 'admin_id');
+        return $this->hasMany(TourneyListsMapPool::class, 'tourney_id', 'id');
     }
 
-    public function checkin_players()
+    /**
+     * @return mixed
+     */
+    public function matches()
     {
-        return $this->hasMany('App\Models\TourneyPlayer', 'tourney_id', 'id')
-            ->where('check_in', 1);
+        return $this->hasMany(TourneyMatch::class, 'tourney_id', 'id');
     }
 
-    public function win_player()
-    {
-        return $this->hasMany('App\Models\TourneyPlayer', 'tourney_id', 'id')
-            ->where('place_result', 1);
-    }
 
 }

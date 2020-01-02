@@ -20,6 +20,21 @@
     <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+<script>
+    const c = JSON.parse('{!! $smiles !!}');
+
+    const imgs= c.map(function (item) {
+        return item.filename;
+    });
+    // const cod= c.map(function (item) {
+    //     return item.charactor;
+    // });
+    window.imgs = imgs;
+    // CKEDITOR.config.smiley_descriptions = cod;
+    CKEDITOR.config.smiley_images = imgs;
+    CKEDITOR.config.smiley_path = '/storage/chat/smiles/';
+
+</script>
 <a href="javascript:" id="return-to-top">
     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up"
          class="svg-inline--fa fa-chevron-up fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +163,6 @@
 <script src="{{ asset('js/sceditor/formats/bbcode.js') }}"></script>
 <script src="https://kit.fontawesome.com/75f3a42e45.js"></script>
 
-@yield('ess21-custom-script')
 @section('custom-script')
     <script>
         $(document).ready(function () {
@@ -247,6 +261,7 @@
         });
     });
 </script>
+
 @yield('java-script')
 </body>
 </html>

@@ -20,19 +20,12 @@ class ForumSection extends Model
 
     public function topics()
     {
-        return $this->hasMany('App\Models\ForumTopic', 'forum_section_id',
-            'id');
+        return $this->hasMany('App\Models\ForumTopic', 'forum_section_id', 'id');
     }
 
     public function topicsCount()
     {
         return $this->hasMany('App\Models\ForumTopic', 'forum_section_id', 'id')->count();
-    }
-
-    public static function active()
-    {
-        return $general_forum = ForumSection::where('is_active', 1)
-            ->orderBy('position');
     }
 
     /**

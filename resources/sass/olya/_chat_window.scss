@@ -1,0 +1,290 @@
+
+    .main_row{
+        height: 100%;
+    }
+    .active_big_video{
+        .block_chat{
+            display: none;
+            width: 0;
+        }
+
+        .block_stream_list{
+            width: 100%;
+        }
+
+    }
+    .wrapper{
+        padding-bottom: 40px;
+        box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13);
+    }
+    .main_container{
+        display: flex;
+    }
+    .block_chat{
+        padding-bottom: 20px;
+        width: 100%;
+        background: white;
+        height: 100%;
+    }
+    .title_text_modal{
+        padding: 0;
+        font-size: 16px;
+        color:white;
+        margin: 0;
+    }
+    .title_text{
+        font-size: 16px;
+        color:white;
+        margin: 0;
+        margin: 0 0 0 20px;
+    }
+    .text_support{
+        font-size: 18px;
+        //padding: 30px 0;
+        margin: 0;
+    }
+    .container_titleChat{
+        background: $blue;
+        height: 60px;
+        border: 0;
+        display: flex;
+        align-items: center;
+        // border-bottom-left-radius:5px;
+        border-top-left-radius:5px;
+        .title_text{
+            max-width: 100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .content_left{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+        }
+        .content_right{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            button{
+                background: none;
+                border:0;
+                svg{
+                    width: 35px;
+                }
+            }
+        }
+    }
+    .messanger{
+        max-height: 65vh !important;
+        overflow:auto;
+
+    }
+    .login_block{
+        padding: 40px 0;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        a{
+            font-size: 14px;
+            span{
+                border-bottom: 1px solid;
+                font-weight: bold;
+            }
+        }
+        .form-group{
+            width: 100%;
+            .cke_contents{
+                height: 60px!important;
+            }
+
+        }
+        #cke_1_bottom{
+            display: none!important;
+        }
+    }
+    .row_contentChat{
+        padding: 30px 10px 0;
+        width: 100%;
+        svg{
+            height: 15px;
+            width: 15px;
+        }
+
+        .block_user_akk{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0;
+            white-space: nowrap;
+            .blue_text{
+                color: $blue;
+                font-size: 14px;
+                font-weight: bold;
+                display: inline-block;
+                max-width: 90px;
+                overflow: hidden;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: 0 5px;
+            }
+            .user{
+                min-width: 160px;
+                display: flex;
+                align-items: center;
+                a{
+                    display: flex;
+                }
+                .number_mess{
+                    color:black;
+                    max-width: 50px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                img{
+                    width: 22px;
+                    height: 22px;
+                    border-radius: 50%;
+                    margin-left: 5px;
+                }
+                .icon_avatar {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+        .block_close{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            button{
+                display: flex;
+                background: none;
+                border: none;
+            }
+        }
+        .block_date{
+            font-size: 14px;
+            color: $gray;
+        }
+        .block_userMessage{
+            padding: 20px 0;
+            border-bottom: 1px solid $light-gray;
+            .user_nick{
+                font-size: 14px;
+                color:#ff8400;
+            }
+            img{
+                max-width: 40%;
+                display: block;
+                padding: 10px 0;
+            }
+            .user_text {
+                word-wrap: break-word;
+                padding-left: 5%;
+            }
+
+        }
+    }
+    .block_stream_list{
+        position: relative;
+        width: 75%;
+    }
+    .modal-header_chat{
+        img{
+            display: none;
+        }
+        .close_btn{
+            font-size: 30px;
+            color: white;
+        }
+    }
+    .title_video{
+        background: $blue;
+        border-top-right-radius:5px;
+        height: 60px;
+        display: flex;
+        .btn_streams_close{
+            width: 0;
+            .svg_close{
+                visibility: hidden;
+                width: 40px;
+            }
+        }
+
+        .title_Text{
+            padding: 0;
+        }
+        .video_header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            .big_video_left{
+                display: none;
+                background: transparent;
+                border:0;
+                svg{
+                    fill:white;
+                    width: 15px;
+                    padding-right: 20px;
+                }
+            }
+            .big_video_right{
+                background: transparent;
+                border:0;
+                svg{
+                    fill:white;
+                    width: 15px;
+                    padding-right: 20px;
+                }
+            }
+
+            img{
+                margin-right: 20px;
+                max-width: 30px;
+                max-height: 30px;
+                border-radius: 50%;
+            }
+            .left_block{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 10px;
+                & svg{
+                    width: 35px;
+                }
+            }
+            .right_block{
+                display: flex;
+                button{
+                    background: none;
+                    border: 0;
+                }
+                .svg_close{
+                    width: 25px;
+                }
+                svg{
+                    width: 35px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    .video_twitch{
+        padding: 40px 0;
+        background: black;
+        justify-content: center;
+        align-items: center;
+        height: calc(100% - 60px);
+        min-height: 400px;
+
+    }
+
+    .pl-controls-bottom pl-flex qa-controls-bottom{
+        display: none;
+    }

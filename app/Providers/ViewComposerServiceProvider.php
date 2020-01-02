@@ -4,21 +4,20 @@ namespace App\Providers;
 
 
 use App\Http\ViewComposers\{admin\DashboardCountComposer,
+    admin\InterviewVariantAnswerComposer,
     Footer\FooterComposer,
     ForumNavigationComposer,
+    GlobalView\GlobalComposer,
     HeadlineComposer,
-    admin\InterviewVariantAnswerComposer,
     LeftOrRightSide\InterviewComposer,
     LeftSide\LastNewsComposer,
-    LeftSide\NavigationReplaysComposer,
-    LeftSide\LastUserProReplaysComposer,
-    LeftSide\SearchReplaysComposer,
-    Stream\OnlineStreamListComposer,
-    Registration\RegistrationComposer,
+    LeftSide\LastReplaysComposer,
     RightSide\LastRegisteredUsersComposer,
-    RightSide\Top10KgPtsComposer,
     RightSide\LastReplayComposer,
-    Stream\StreamComposer};
+    RightSide\Top10KgPtsComposer,
+    Smiles,
+    Stream\OnlineStreamListComposer,
+};
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,35 +28,32 @@ class ViewComposerServiceProvider extends ServiceProvider
 
     public function boot(Factory $viewFactory)
     {
-
-//  toAllViews      $this->compose('*', InterviewQuestionObserver::class);
-
         $this->views = $viewFactory;
+
+        $this->compose('*', GlobalComposer::class);
 
         $this->compose('admin.dashboard', DashboardCountComposer::class);
         $this->compose('admin.interviewQuestion.answers', InterviewVariantAnswerComposer::class);
+
         /*header*/
         $this->compose('home.components.chat.index', HeadlineComposer::class);
         $this->compose('home.components.chat.components.streams-list', OnlineStreamListComposer::class);
-        $this->compose('home.components.chat.index', StreamComposer::class);
+
         /*left-side*/
         $this->compose('left-side.forum-topics', ForumNavigationComposer::class);
-        $this->compose('left-side.navigation-replays', NavigationReplaysComposer::class);
-        $this->compose('left-side.last-replays', LastUserProReplaysComposer::class);
+        $this->compose('left-side.last-replays', LastReplaysComposer::class);
         $this->compose('left-side.last-news', LastNewsComposer::class);
-        $this->compose('left-side.search-replays', SearchReplaysComposer::class);
         /*right-side*/
-
         $this->compose('right-side.index', LastRegisteredUsersComposer::class);
         $this->compose('right-side.index', Top10KgPtsComposer::class);
         $this->compose('right-side.components.last-replay', LastReplayComposer::class);
         /*left-or-right-side*/
         $this->compose('components.interview', InterviewComposer::class);
-        /*modal*/
-        $this->compose('modal.registration', RegistrationComposer::class);
-        /*footer*/
+
+
         $this->compose('layouts.components.footer.index', FooterComposer::class);
 
+        $this->compose('layouts.app', Smiles::class);
     }
 
 
