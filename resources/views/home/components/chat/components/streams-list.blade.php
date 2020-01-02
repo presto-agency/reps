@@ -43,6 +43,7 @@
     </div>
 </section>
 @section('custom-script')
+    @parent
     <script type="text/javascript">
         $(document).ready(function () {
             let element = document.getElementById("1");

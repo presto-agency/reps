@@ -164,28 +164,35 @@
 <script src="https://kit.fontawesome.com/75f3a42e45.js"></script>
 
 @section('custom-script')
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
-            var _token = $('input[name="_token"]').val();
-            load_news('', _token);
+            /**
+             * load News
+             */
+            loadNewsMainPage('');
 
-            function load_news(id = "", _token) {
+            function loadNewsMainPage(id = '') {
                 $.ajax({
-                    url: "{{ route('loadmore.load_news') }}",
+                    url: "{{ route('load.news.main-page') }}",
                     method: "POST",
-                    data: {id: id, _token: _token},
+                    data: {
+                        id: id,
+                        _token: '{{csrf_token()}}'
+                    },
                     success: function (data) {
-                        $('#load_more_button').remove();
-                        $('#last_news').append(data);
+                        $('#load_news_list-main-page').remove();
+                        $('#load_news_list').append(data);
                     }
                 })
             }
 
-            $(document).on('click', '#load_more_button', function () {
-                let id = $(this).data('id');
-                $('#load_more_button').html('<b>Загрузка...</b>');
-                load_news(id, _token);
+            $(document).on('click', '#load_news_list-main-page', function () {
+                $('#load_news_list-main-page').html('<b>Загрузка...</b>');
+                loadNewsMainPage($(this).data('id'));
             });
+            /**
+             * Modal
+             */
             //if validation error redirect and open modal
             @if (count($errors) > 0)
             @if(!empty(Session::get('showModal')) && Session::get('showModal') == 'registration')
@@ -200,7 +207,7 @@
         });
     </script>
 @show
-<script>
+<script type="text/javascript">
     $(function () {
         $('#button__auth-modal').click(function () {
             //active content with  id="myModal" as modal window

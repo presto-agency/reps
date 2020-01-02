@@ -19,6 +19,7 @@
 @endsection
 
 @section('custom-script')
+    @parent
     <script type="text/javascript">
         /**
          * Ajax Load Request

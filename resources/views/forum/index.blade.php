@@ -18,6 +18,7 @@
 @endsection
 
 @section('custom-script')
+    @parent
     <script type="text/javascript">
         $(document).ready(function () {
             loadForumSections('',);

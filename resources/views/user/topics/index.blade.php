@@ -19,6 +19,7 @@
 @endsection
 
 @section('custom-script')
+    @parent
     <script type="text/javascript">
         function loadAjaxDataTopics(forum_section_id, topic_id = '', panel = '') {
             $.ajax({
