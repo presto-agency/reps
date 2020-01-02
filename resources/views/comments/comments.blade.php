@@ -1,5 +1,5 @@
 @isset($comments)
-    <div class="comments border_shadow">
+    <div class="comments ">
         <div class="comments__title" id="comments_id">
             <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                  x="0px" y="0px"
@@ -21,8 +21,8 @@
         </div>
         @if(isset($comments) && $comments->isNotEmpty())
             @foreach($comments as $comment)
-                <div class="citation border_shadow">
-                    <div class="comments__wrapp wrapp_comments">
+                <div class="citation border_shadow comments__wrapp wrapp_comments">
+{{--                    <div class="comments__wrapp wrapp_comments">--}}
                         @if(isset($comment->user) && !empty($comment->user))
                             <div class="comments__info change_gray">
                                 @if(auth()->check() && auth()->user()->userViewAvatars())
@@ -52,10 +52,10 @@
                                 <span class="info__date">{{$comment->created_at->format('H:i d.m.Y')}}</span>
                             </div>
                         @endif
-                        <div class="comments__content">
-                            <div class="content__title night_text">
-                                {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
-                            </div>
+{{--                    </div>--}}
+                    <div class="comments__content">
+                        <div class="content__title night_text">
+                            {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
                         </div>
                     </div>
                     <div class="comments__items">
