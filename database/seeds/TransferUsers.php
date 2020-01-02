@@ -23,16 +23,16 @@ class TransferUsers extends Seeder
         /**
          * Clear table
          */
-        DB::table('users')->delete();
+        DB::table('users')->truncate();
         /**
          * Get and Insert data
          */
-        DB::connection("mysql2")->table("users")
-            ->chunkById(200, function ($repsUsers) {
+        DB::connection('mysql2')->table('users')
+            ->chunkById(100, function ($repsUsers) {
                 try {
                     $insertItems = [];
                     foreach ($repsUsers as $item) {
-                        $avatar = DB::connection("mysql2")->table("files")->where('id', $item->file_id)->value('link');
+                        $avatar = DB::connection('mysql2')->table('files')->where('id', $item->file_id)->value('link');
                         $roleId = Role::where('id', $item->user_role_id)->value('id');
                         $raceId = Race::where('code', $item->race)->value('id');
                         $countryId = Country::where('id', $item->country_id)->value('id');
@@ -65,7 +65,7 @@ class TransferUsers extends Seeder
 
                         ];
                     }
-                    DB::table("users")->insertOrIgnore($insertItems);
+                    DB::table('users')->insert($insertItems);
                 } catch (\Exception $e) {
                     dd($e, $item);
                 }

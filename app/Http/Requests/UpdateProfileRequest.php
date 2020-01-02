@@ -48,9 +48,9 @@ class UpdateProfileRequest extends FormRequest
             'skype'        => 'nullable|string|regex:'.RegexService::regex('skype').'|max:255',
             'isq'          => 'nullable|string|max:255',
             'signature'    => 'nullable|string|max:255',
-            'birthday'     => 'nullable|string|max:255',
-            'avatar'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'view_avatars' => 'nullable|in:1',
+            'birthday'     => 'nullable|date',
+            'avatar'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'view_avatars' => 'boolean',
         ];
     }
 

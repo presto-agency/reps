@@ -5,7 +5,7 @@
     @if($visible_title)
         <div class="gocu-replays__title">
             <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 x="0px" y="0px"
                  viewBox="0 0 275.6 275.6" style="enable-background:new 0 0 275.6 275.6;" xml:space="preserve">
 		    <path d="M19.6,122l0,0.6c-0.2,4.8,1.3,9.1,4.1,12c4.2,4.3,10.9,5.3,17.4,2.4l25.1-13.7l24.6,13.4l0.5,0.2c2.5,1.1,5,1.7,7.4,1.7
 			c3.8,0,7.4-1.5,9.9-4.1c2.9-3,4.3-7.2,4.1-12l-3.3-28.2l18.6-19.1l0.6-0.7c3.5-4.7,4.6-10.1,3-15c-1.7-4.9-5.9-8.5-11.5-10
@@ -29,51 +29,36 @@
 			c-0.6-0.9-0.6-1.4-0.6-1.5c0-0.1,0.4-0.5,1.4-0.8l31.4-5.3l17.4-30.6c0.7-0.9,1.2-1,1.3-1c0.1,0,0.6,0.2,1.3,1.1l15.2,30.5
 			l34.4,5.5c0.9,0.3,1.3,0.6,1.4,0.7C186.9,189.1,186.8,189.7,186.2,190.4z"/>
         </svg>
-            @if(request()->has('subtype') && request()->exists('subtype'))
-                @if(request('subtype') =='duel')
+            @if(request()->filled('subtype'))
+                @if(request()->get('subtype') =='duel')
                     <p class="title__text night_text">{{__('1X1')}}</p>
-                @elseif(request('subtype') =='pack')
+                @elseif(request()->get('subtype') =='pack')
                     <p class="title__text night_text">{{__('PARK / ARCHIVE')}}</p>
-                @elseif(request('subtype') =='gotw')
+                @elseif(request()->get('subtype') =='gotw')
                     <p class="title__text night_text">{{__('GAME OF THE WEEK')}}</p>
-                @elseif(request('subtype') =='team')
+                @elseif(request()->get('subtype') =='team')
                     <p class="title__text night_text">{{__('2X2, 3X3, 4X4')}}</p>
-                @else
-                    <p class="title__text night_text">{{__('Реплеи')}}</p>
                 @endif
             @else
-                @if(isset($type) && !empty($type))
-                    @if($type == "user")
-                        <p class="title__text night_text">{{__('Пользовательские')}}</p>
-                    @elseif($type == "pro")
-                        <p class="title__text night_text">{{__('Профессиональные')}}</p>
-                    @endif
-                @else
-                    <p class="title__text night_text">{{__('Реплеи')}}</p>
+                @if(request()->get('type') == 'user')
+                    <p class="title__text night_text">{{__('Пользовательские')}}</p>
+                @endif
+                @if(request()->get('type') == 'pro')
+                    <p class="title__text night_text">{{__('Профессиональные')}}</p>
                 @endif
             @endif
+
+
         </div>
     @endif
-    @if(isset($replay) && $replay->isNotEmpty())
-        @foreach($replay as $item)
+
+    @if(isset($replaysAjaxLoad) && $replaysAjaxLoad->isNotEmpty())
+        @foreach($replaysAjaxLoad as $item)
             <div class="gocu-replays__subtitle change_gray">
-                @isset($userReplayRout)
-                    @if($userReplayRout)
-                        @isset($type)
-                            <a class="subtitle__name night_text" title="{{clean($item->title)}}"
-                               href="{{ asset("user/{$item->users->id}/user-replay/{$item->id}"."?type={$type}")}}">
-                                {{clean($item->title)}}
-                            </a>
-                        @endisset
-                    @else
-                        @isset($type)
-                            <a class="subtitle__name night_text" title="{{clean($item->title)}}"
-                               href="{{ asset("replay/{$item->id}"."?type={$type}")}}">
-                                {{clean($item->title)}}
-                            </a>
-                        @endisset
-                    @endif
-                @endisset
+                <a class="subtitle__name night_text" title="{{clean($item->title)}}"
+                   href="{{ route('replay.show',['replay'=>$item->id]).'?type='.request()->get('type')}}">
+                    {{clean($item->title)}}
+                </a>
                 <p class="subtitle__date night_text">{{$item->created_at->format('H:i d.m.Y')}}</p>
             </div>
             <div class="gocu-replays__match">
@@ -87,8 +72,8 @@
                                 <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
                             @endguest()
                             <a href="{{route('user_profile',['id'=>$item->users->id])}}">
-                                <span class="comment-author__nickname"
-                                      title="{{$item->users->name}}">{{$item->users->name}}</span>
+                                <span class="comment-author__nickname" title="{{$item->users->name}}">
+                                    {{$item->users->name}}</span>
                             </a>
                         @endif
                         @if(!empty($item->file) && checkFile::checkFileExists($item->file))
@@ -100,7 +85,6 @@
                     <div class="subtitle__icons">
                         <svg version="1.1" id="Capa_1"
                              xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink"
                              x="0px" y="0px"
                              viewBox="0 0 60 60" xml:space="preserve">
                             <path d="M30.5,0C14.233,0,1,13.233,1,29.5c0,5.146,1.346,10.202,3.896,14.65L0.051,58.684c-0.116,0.349-0.032,0.732,0.219,1
@@ -116,14 +100,11 @@
                             <path
                                 d="M44,37.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,37.015,44,37.015z"/>
                         </svg>
-                        <span
-                            class="night_text">{{$item->comments_count}}</span>
-                        <a class="items__download night_text download"
-                           data-id="{{$item->id}}"
-                           data-url="{{asset("replay/$item->id/download_count")}}"
-                           href="{{route('replay.download',['id' =>$item->id])}}">
+                        <span class="night_text">{{$item->comments_count}}</span>
+                        <a class="items__download night_text downloaded" data-id="{{$item->id}}"
+                           href="{{route('replay.download',['id' =>$item->id])}}"
+                           data-url="{{route('replay.increment.downloaded',['id'=>$item->id])}}">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink"
                                  version="1.1"
                                  id="Capa_1" x="0px" y="0px"
                                  viewBox="0 0 471.2 471.2"
@@ -134,8 +115,7 @@
                                 <path
                                     d="M226.1,346.8c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-62.7,62.8V30.8    c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"/>
                         </svg>
-                            <span class="night_text" id="{{'downloadCount'.$item->id}}"
-                                  data-count="{{$item->downloaded}}">{{$item->downloaded}}</span>
+                            <span class="night_text" id="downloaded_{{$item->id}}">{{$item->downloaded}}</span>
                         </a>
                     </div>
                 </div>
@@ -143,38 +123,38 @@
                 <div class="match__info">
                     <div class="info__country">
                         <span class="country__text night_text">{{__('Страны:')}}</span>
-                        @if($item->firstCountries)
+                        @if(!empty($item->firstCountries))
                             <img class="country__img country-first"
                                  src="{{asset($item->firstCountries->flagOrDefault())}}"
                                  alt="flag" title="{{$item->firstCountries->name}}">
                         @endif
                         <span class="country__text night_text">vs</span>
-                        @if($item->secondCountries)
+                        @if(!empty($item->secondCountries))
                             <img src="{{asset($item->secondCountries->flagOrDefault())}}"
                                  alt="flag" title="{{$item->secondCountries->name}}">
                         @endif
                     </div>
                     <div class="info__match-up">
                         <span class="match-up__text night_text">{{__('Матчап:')}}</span>
-                        @if($item->firstRaces)
-                            <span class="match-up__name name__first night_text"
-                                  title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</span>
+                        @if(!empty($item->firstRaces))
+                            <img class="icon_bars" alt="race" title="{{$item->firstRaces->title}}"
+                                  src="{{asset('images/default/game-races/' . $item->firstRaces->title . '.png')}}"/>
                         @endif
                         <span class="match-up__text match-up__versus night_text">{{__('vs:')}}</span>
-                        @if($item->secondRaces)
-                            <span class="match-up__name name__second night_text"
-                                  title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</span>
+                        @if(!empty($item->secondRaces))
+                            <img class="icon_bars" alt="race" title="{{$item->secondRaces->title}}"
+                                 src="{{asset('images/default/game-races/' . $item->secondRaces->title . '.png')}}"/>
                         @endif
                     </div>
                     <div class="info__maps">
                         <span class="maps__text night_text">{{__('Карта:')}}</span>
-                        @if($item->maps)
+                        @if(!empty($item->maps))
                             <span class="maps__name">{{$item->maps->name}}</span>
                         @endif
                     </div>
                     <div class="info__wins">
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             x="0px" y="0px"
                              viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 	                <path d="M497,37h-65.7c0.2-7.3,0.4-14.6,0.4-22c0-8.3-6.7-15-15-15H95.3c-8.3,0-15,6.7-15,15c0,7.4,0.1,14.7,0.4,22H15
                     C6.7,37,0,43.7,0,52c0,67.2,17.6,130.6,49.5,178.6c31.5,47.4,73.5,74.6,118.9,77.2c10.3,11.2,21.2,20.3,32.5,27.3v66.7h-25.2
@@ -195,40 +175,39 @@
             @endphp
         @endforeach
 
-        <div id="load_more-replay" class="gocu-replays__button night_modal">
-            <button type="button" name="load_more-replay_button" class="button button__download-more night_text"
-                    id="load_more-replay_button" data-id="{{ $last_id }}" data-subtype="{{$subtype}}">
+        <div class="gocu-replays__button night_modal">
+            <button type="button" class="button button__download-more night_text"
+                    id="load_more-replay" data-id="{{ $last_id }}">
                 {{__('Загрузить еще')}}
             </button>
         </div>
     @else
-        <div id="load_more-replay" class="gocu-replays__button night_modal">
-            <button type="button" name="load_more-replay_button" class="button button__download-more night_text">
+        <div class="gocu-replays__button night_modal">
+            <button type="button" class="button button__download-more night_text">
                 {{__('Пусто')}}
             </button>
         </div>
     @endif
 </div>
 <script type="text/javascript">
-    $('.download').click(function () {
+    /**
+     * Replay File download
+     */
+    $('.downloaded').click(function () {
         let id = $(this).data('id');
-        let token = $('meta[name="csrf-token"]').attr('content');
-        let url = $(this).data('url');
         $.ajax({
             method: 'POST',
-            url: url,
-            dataType: 'json',
-            async: false,
+            url: $(this).data('url'),
             data: {
-                _token: token,
+                _token: '{{csrf_token()}}',
                 id: id,
             },
             success: function (data) {
-                let it = "#downloadCount" + id;
-                $(it).html(data.downloaded);
+                $('#downloaded_' + id).html(data.downloaded);
             },
             error: function (data) {
             }
         });
     });
 </script>
+

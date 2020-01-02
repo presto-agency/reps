@@ -10,56 +10,83 @@ use Illuminate\View\View;
 
 class LastRegisteredUsersComposer
 {
-    private static $ttl = 300;
 
-    /**
-     * @param View $view
-     */
+    private $ttl = 300;// 5 mints
+    private $banners;
+    private $users;
+
+    public function __construct()
+    {
+        $this->banners = collect();
+        $this->users   = collect();
+
+        $banners = $this->getCacheBanners('banners', 30000);// 10 hours
+        $users   = $this->getCacheUsers('newUsers');
+
+        $this->banners = $banners;
+        $this->users   = $users;
+    }
+
     public function compose(View $view)
     {
-        $view->with('banners', self::getCache('banners', self::getBanners()));
-        $view->with('newUsers', self::getCache('newUsers', self::getNewUsers()));
-        $view->with('voteRight', self::checkVoteRight());
+        $view->with('banners', $this->banners);
+        $view->with('newUsers', $this->users);
     }
 
     /**
-     * @return array
+     * @param  string  $cache_name
+     * @param  int  $ttl
+     *
+     * @return mixed
      */
-    private static function getNewUsers()
+    public function getCacheBanners(string $cache_name, int $ttl)
+    {
+        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, $ttl, function () {
+                return $this->getBanners();
+            });
+        }
+
+        return $data_cache;
+    }
+
+    /**
+     * @param  string  $cache_name
+     *
+     * @return mixed
+     */
+    public function getCacheUsers(string $cache_name)
+    {
+        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
+                return $this->getNewUsers();
+            });
+        }
+
+        return $data_cache;
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getBanners()
+    {
+        return Banner::whereNotNull('image')->where('is_active', true)->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    private function getNewUsers()
     {
         return User::with('countries:id,flag,name', 'races:id,code,title')
             ->latest('created_at')
             ->limit(5)
             ->get(['id', 'name', 'race_id', 'country_id']);
-    }
-
-    private static function getBanners()
-    {
-        return Banner::whereNotNull('image')->where('is_active', 1)->get();
-    }
-
-    /**
-     * @param $cache_name
-     * @param $data
-     * @return mixed
-     */
-    public static function getCache($cache_name, $data)
-    {
-        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
-            $data_cache = \Cache::get($cache_name);
-        } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl, function () use ($data) {
-                return $data;
-            });
-        }
-        return $data_cache;
-    }
-
-    public static function checkVoteRight()
-    {
-        $url = collect(request()->segments());
-        $data = \Str::contains($url, 'user') === true ? false : true;
-        return $data;
     }
 
 }

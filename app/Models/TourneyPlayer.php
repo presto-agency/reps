@@ -10,33 +10,26 @@ class TourneyPlayer extends Model
 {
 
     use Notifiable, TourneyPlayerRelation;
-    /**
-     * Using table name
-     *
-     * @var string
-     */
-    protected $table = 'tourney_players';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable
         = [
-            'defiler_player_id',
-            'tourney_id',
-            'user_id',
-            'check_in',
+            'check',
             'description',
             'place_result',
         ];
 
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = true;
+    protected $guarded
+        = [
+            'tourney_id',
+            'user_id',
+        ];
+    protected $casts
+        = [
+            'check'        => 'boolean',
+            'description'  => 'string',
+            'place_result' => 'integer',
+            'tourney_id'   => 'integer',
+            'user_id'      => 'integer',
+        ];
 
 }

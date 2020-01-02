@@ -25,44 +25,7 @@ class DatabaseSeeder extends Seeder
          */
         $this->call(TransferReplayMaps::class);
 
-        /**
-         *
-         * Transfer data from reps.<tourney_lists> in loc.<tourney_lists>.
-         *
-         * Attention!!!
-         *
-         * 1.The table loc.<tourney_lists> will be cleared.
-         * 2.This process uses the following tables:
-         * reps.(<tourney_lists>,<files>)
-         * loc.(<tourney_lists>).
-         */
-        $this->call(TransferTournamentsList::class);
 
-        /**
-         *
-         * Transfer data from reps.<tourney_matches> in loc.<tourney_matches>
-         *
-         * Attention!!!
-         *
-         * 1.The table loc.<tourney_matches> will be cleared.
-         * 2.This process uses the following tables:
-         * reps.(<tourney_matches>,<files>)
-         * loc.(<tourney_matches>).
-         */
-        $this->call(TransferTournamentsMatches::class);
-
-        /**
-         *
-         * Transfer data from reps reps.<tourney_players> in loc.<tourney_players>
-         *
-         * Attention!!!
-         *
-         * 1.The table loc.<tourney_players> will be cleared.
-         * 2.This process uses the following tables:
-         * reps.(<tourney_players>)
-         * loc.(<tourney_players>).
-         */
-        $this->call(TransferTournamentsPlayers::class);
 
         /**
          *
@@ -228,6 +191,49 @@ class DatabaseSeeder extends Seeder
         $this->call(TransferUsersFriends::class);
 
         $this->call(HelpsTableSeeder::class);
+
+
+        /**
+         *
+         * Transfer data from   mysql3.<lis_tourney> in loc.<tourney_lists>,
+         * <tourney_lists_prize_pools>,<tourney_lists_map_pools>,<replay_maps>.
+         *
+         * Attention!!!
+         *
+         * 1.The table loc.<tourney_lists> will be cleared.
+         * 2.This process uses the following tables:
+         * mysql3.(<lis_tourney>)
+         * loc.(<tourney_lists>,<tourney_lists_prize_pools>,<tourney_lists_map_pools>,<replay_maps>).
+         */
+        $this->call(TransferTournamentsList::class);
+
+        /**
+         *
+         * Transfer data from reps mysql3.<user> in loc.<tourney_players>,<users>
+         *
+         * Attention!!!
+         *
+         * 1.The table loc.<user> will be cleared.
+         * 2.This process uses the following tables:
+         * mysql3.(<tourney_players>)
+         * loc.(<tourney_players>,<users>).
+         */
+        $this->call(TransferTournamentsUsers::class);
+        $this->call(TransferTournamentsPlayers::class);
+        /**
+         *
+         * Transfer data from mysql3.<user> in loc.<tourney_matches>
+         *
+         * Attention!!!
+         *
+         * 1.The table loc.<tourney_matches> will be cleared.
+         * 2.This process uses the following tables:
+         * reps.(<tourney_matches>,<user>)
+         * loc.(<tourney_matches>).
+         */
+        $this->call(TransferTournamentsMatches::class);
+
+
     }
 
 }

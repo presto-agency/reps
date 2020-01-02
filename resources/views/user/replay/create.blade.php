@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('user-replay-create',request('id'),request('user_replay'),request('type','user')) }}
+    {{ Breadcrumbs::render('user-replay-create',request('id'),'user') }}
 @endsection
 
 @section('sidebar-left')

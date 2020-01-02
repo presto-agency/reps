@@ -11,35 +11,39 @@
 
 @section('content')
     @include('user.gallery.components.create')
-    <div id="load_more_user_gallery"></div>
+    <div id="load_user-gallery-list"></div>
 @endsection
 
 @section('right-side')
     @parent
     @include('right-side.components.last-replay')
 @endsection
-@section('ess21-custom-script')
+
+@section('custom-script')
     <script type="text/javascript">
         $(document).ready(function () {
-                let _token = $('input[name="_token"]').val();
-                load_more_user_gallery('', _token);
+                loadUserGallery('',);
 
-                function load_more_user_gallery(find_id = "", _token) {
+                function loadUserGallery(id = '',) {
                     $.ajax({
-                        url: "{{ route('load.more.user.gallery',['id'=>request('id')]) }}",
-                        method: "POST",
-                        data: {find_id: find_id, _token: _token, id: "{{request('id')}}"},
+                        url: '{{ route('load.more.user.images',['id'=>request('id')]) }}',
+                        method: 'POST',
+                        data: {
+                            _token: '{{csrf_token()}}',
+                            user_id: '{{request('id')}}',
+                            id: id,
+                        },
+
                         success: function (data) {
-                            $('#load_more_user_gallery_button').remove();
-                            $('#load_more_user_gallery').append(data);
+                            $('#load_more_user_gallery').remove();
+                            $('#load_user-gallery-list').append(data);
                         }
                     })
                 }
 
-                $(document).on('click', '#load_more_user_gallery_button', function () {
-                    let find_id = $(this).data('id');
-                    $('#load_more_user_gallery_button').html('<b>Загрузка...</b>');
-                    load_more_user_gallery(find_id, _token);
+                $(document).on('click', '#load_more_user_gallery', function () {
+                    $('#load_more_user_gallery').html('<b>Загрузка...</b>');
+                    loadUserGallery($(this).data('id'));
                 });
             }
         );

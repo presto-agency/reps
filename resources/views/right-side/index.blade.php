@@ -14,9 +14,7 @@
         </div>
     </section>
 @endisset
-@isset($voteRight)
-    @if($voteRight)
-        @include('components.interview')
-    @endif
-@endisset
+@if(request()->route()->getName() != 'user_profile')
+    @include('components.interview')
+@endif
 @include('right-side.components.top-and-user')

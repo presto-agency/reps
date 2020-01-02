@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('forum-show',request('forum')) }}
+    {{ Breadcrumbs::render('forum-sections-show',request('forum')) }}
 @endsection
 
 @section('sidebar-left')
@@ -17,28 +17,30 @@
     @include('right-side.components.last-replay')
 @endsection
 
-@section('ess21-custom-script')
+@section('custom-script')
     <script type="text/javascript">
         $(document).ready(function () {
-            let _token = $('input[name="_token"]').val();
-            load_forum_sections_show('', _token);
 
-            function load_forum_sections_show(id = "", _token) {
+            loadForumSectionsShow('');
+
+            function loadForumSectionsShow(id = '') {
                 $.ajax({
                     url: "{{ route('load.more.forum.show',['forum'=>request('forum')]) }}",
                     method: "POST",
-                    data: {id: id, _token: _token},
+                    data: {
+                        id: id,
+                        _token: '{{csrf_token()}}'
+                    },
                     success: function (data) {
-                        $('#load_forum_sections_show_button').remove();
+                        $('#load_forum_sections').remove();
                         $('#load_forum_sections_show').append(data);
                     }
                 })
             }
 
-            $(document).on('click', '#load_forum_sections_show_button', function () {
-                let id = $(this).data('id');
-                $('#load_forum_sections_show_button').html('<b>Загрузка...</b>');
-                load_forum_sections_show(id, _token);
+            $(document).on('click', '#load_forum_sections', function () {
+                $('#load_forum_sections').html('<b>Загрузка...</b>');
+                loadForumSectionsShow($(this).data('id'));
             });
         });
     </script>

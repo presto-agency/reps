@@ -34,19 +34,32 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-
-                        <select class="js-example-basic-single" name="country">
-                            @foreach($countries as $country)
-                                <option value="{{ $country->code }}">{{ $country->name }}</option>
-                            @endforeach
-                        </select>
-
-                        <select name="race" id="race" class="race night_input">
-                            @foreach($race as $item)
-                                <option value="{{ $item->code }}">{{ $item->title }}</option>
-                            @endforeach
-                        </select>
-
+                        @if(isset($countries) && $countries->isNotEmpty())
+                            <select class="js-example-basic-single" name="country">
+                                @foreach($countries as $item)
+                                    <option {{old('country',request('country')) == $item->id ?  'selected' : ''}}
+                                            value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('country')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        @endif
+                        @if(isset($race) && $race->isNotEmpty())
+                            <select name="race" id="race" class="race night_input">
+                                @foreach($race as $item)
+                                    <option {{old('race',request('race')) == $item->id ?  'selected' : ''}}
+                                            value="{{ $item->id }}">{{ $item->title }}</option>
+                                @endforeach
+                            </select>
+                            @error('race')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        @endif
                         <input class="form-control night_input @error('password') is-invalid @enderror"
                                type="password" id="registration-password" name="password" autocomplete="new-password"
                                required placeholder="{{ __('Password') }}">

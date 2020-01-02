@@ -8,10 +8,15 @@ use App\Models\ForumTopic;
 class ForumTopicObserver
 {
 
+    public function creating(ForumTopic $forumTopic)
+    {
+        $forumTopic->setAttribute('user_id', auth()->id());
+    }
+
     /**
      * Handle the forum topic "created" event.
      *
-     * @param ForumTopic $forumTopic
+     * @param  ForumTopic  $forumTopic
      *
      * @return void
      */
@@ -20,10 +25,15 @@ class ForumTopicObserver
         event(new UserUploadForumTopic($forumTopic));
     }
 
+    public function updating(ForumTopic $forumTopic)
+    {
+        $forumTopic->setAttribute('user_id', auth()->id());
+    }
+
     /**
      * Handle the forum topic "updated" event.
      *
-     * @param ForumTopic $forumTopic
+     * @param  ForumTopic  $forumTopic
      *
      * @return void
      */
@@ -35,7 +45,7 @@ class ForumTopicObserver
     /**
      * Handle the forum topic "deleted" event.
      *
-     * @param ForumTopic $forumTopic
+     * @param  ForumTopic  $forumTopic
      *
      * @return void
      */
@@ -47,7 +57,7 @@ class ForumTopicObserver
     /**
      * Handle the forum topic "restored" event.
      *
-     * @param ForumTopic $forumTopic
+     * @param  ForumTopic  $forumTopic
      *
      * @return void
      */
@@ -59,7 +69,7 @@ class ForumTopicObserver
     /**
      * Handle the forum topic "force deleted" event.
      *
-     * @param ForumTopic $forumTopic
+     * @param  ForumTopic  $forumTopic
      *
      * @return void
      */

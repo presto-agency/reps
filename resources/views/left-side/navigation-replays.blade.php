@@ -28,38 +28,36 @@
                     {{__('Профессиональные реплеи')}}
                 </a>
             </div>
-            @isset($replayNav)
-                @foreach($replayNav as $replayName)
+            @if(isset($replayTypes) && $replayTypes->isNotEmpty())
+                @foreach($replayTypes as $items)
                     <div class="topic__body">
                         <div class="card-body">
                             <div class="subtopic__topic card night_modal border_shadow">
                                 <div class="subtopic__header card-header change_gray">
-                                    <a class="header__title night_text" title="{{ $replayName->title }}"
-                                       href="{{route('replay.index',['type' => 'pro', 'subtype'=> $replayName->name])}}">
-                                        {{ $replayName->title }}
+                                    <a class="header__title night_text" title="{{ $items->title }}"
+                                       href="{{route('replay.index',['type' => 'pro', 'subtype'=> $items->name])}}">
+                                        {{ $items->title }}
                                     </a>
                                 </div>
-                                <div class="subtopic__body">
+                                <div class="subtopic__body" id="replaysLF_{{$items->id}}">
                                     <div class="card-body">
-                                        @isset($replayName->replays)
-                                            @foreach($replayName->replays as $replayNavItem)
-                                                <div class="body__wrap">
-                                                    <a href="{{route('replay.show',['replay'=>$replayNavItem->id, 'type' => !isset($type) ? $type : 'pro', 'subtype'=> $replayName->name])}}"
-                                                       class="body__title night_text"
-                                                       title="{{clean($replayNavItem->title)}}">{{clean($replayNavItem->title)}}</a>
-                                                    <span class="body__numb">
-                                                        {{$replayNavItem->comments()->count()}}
-                                                    </span>
-                                                </div>
-                                            @endforeach
-                                        @endisset
+                                        @foreach(\App\Models\Replay::getNavigationReplays($items->id,3) as $item)
+                                            <div class="body__wrap">
+                                                <a
+                                                    href="{{route('replay.show',['replay'=>$item->id, 'type' => $item::$type[$item->user_replay], 'subtype'=> $item->types->name])}}"
+                                                    class="body__title night_text"
+                                                    title="{{clean($item->title)}}">{{clean($item->title)}}</a>
+                                                <span class="body__numb">{{$item->comments_count}}</span>
+                                            </div>
+                                        @endforeach
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
-            @endisset
+            @endif
         </div>
     </div>
 </div>

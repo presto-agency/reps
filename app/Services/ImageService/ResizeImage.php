@@ -10,28 +10,20 @@ use Str;
 class ResizeImage
 {
 
-
     /**
-     * Resize image
-     *
      * @param $imageFile
-     * @param  int  $width
-     * @param  int  $height
+     * @param $width
+     * @param $height
      * @param $aspectRatio
+     * @param $path
      *
-     * @return string $path
+     * @return string
      */
-
-    public static function resizeImg(
-        $imageFile,
-        $width,
-        $height,
-        $aspectRatio,
-        $path
-    ) {
-        $ext = $imageFile->getClientOriginalExtension();
+    public static function resizeImg($imageFile, $width, $height, $aspectRatio, $path)
+    {
+        $ext         = $imageFile->getClientOriginalExtension();
         $newFileName = Str::random(32);
-        $savePath = 'storage/'.$path.'/'.$newFileName.'.'.$ext;
+        $savePath    = 'storage/'.$path.'/'.$newFileName.'.'.$ext;
 
         if ($aspectRatio === true) {
             $aspectRatio = function ($constraint) {

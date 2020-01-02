@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('topic-news-show', $news->id) }}
+    {{ Breadcrumbs::render('topic-news-show') }}
 @endsection
 
 @section('sidebar-left')
@@ -10,9 +10,10 @@
 
 @section('content')
     @include('news.components.show')
-    @include('content.comments', ['comments' => $news->comments])
-    @include('content.add-comment', [
-        'route' => route('topic.send_comment', ['id' =>$news->id])
+    @include('comments.comments', ['comments' => $news->comments])
+    @include('comments.add-comment', [
+        'route' => route('topic.send_comment', ['id' =>$news->id]),
+        'id' => $news->id,
      ])
 @endsection
 

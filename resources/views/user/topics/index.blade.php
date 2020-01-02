@@ -18,16 +18,16 @@
     @include('right-side.components.last-replay')
 @endsection
 
-@section('ess21-custom-script')
+@section('custom-script')
     <script type="text/javascript">
-        function loadAjaxDataTopics(forum_section_id, topic_id = '', _token, panel = '') {
+        function loadAjaxDataTopics(forum_section_id, topic_id = '', panel = '') {
             $.ajax({
                 url: "{{ route('user.topics.load.sections.topics',['id'=> request('id')]) }}",
                 method: "POST",
                 data: {
                     forum_section_id: forum_section_id,
                     topic_id: topic_id,
-                    _token: _token,
+                    _token: '{{csrf_token()}}',
                 },
                 success: function (data) {
                     let div_id = '#load_more_user_forum_sections_topics_' + forum_section_id;
@@ -44,10 +44,8 @@
 
         function button_event2(forum_section_id, topic_id) {
             let button_id = '#load_more_user_forum_sections_topics_button_' + forum_section_id;
-            let _token = $('input[name="_token"]').val();
-
             $(button_id).html('<b>Загрузка...</b>');
-            loadAjaxDataTopics(forum_section_id, topic_id, _token, '');
+            loadAjaxDataTopics(forum_section_id, topic_id, '');
         }
     </script>
 @endsection

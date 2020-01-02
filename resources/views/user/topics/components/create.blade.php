@@ -7,12 +7,12 @@
         @csrf
         <div class="form-group">
             <label for="create-topic__section" class="night_text ">{{__('*Раздел:')}}
-                <select name="forum_section_id" id="create-topic__section " class="section form-control night_input"
+                <select name="forum_section" id="create-topic__section " class="section form-control night_input"
                         required>
                     @isset($forumSection)
                         @foreach($forumSection as $item)
                             <option class="night_input" title="{{$item->description}}"
-                                    {{ old('forum_section_id') == $item->id ? 'selected' : ''  }}
+                                    {{ old('forum_section') == $item->id ? 'selected' : ''  }}
                                     value="{{$item->id}}">
                                 {{$item->title}}</option>
                         @endforeach
@@ -20,22 +20,22 @@
                 </select>
             </label>
         </div>
-        @if ($errors->has('forum_section_id'))
-            <div class="alert alert-danger">
-                {{ $errors->first('forum_section_id') }}
-            </div>
-        @endif
+        @error('forum_section')
+        <div class="alert alert-danger" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
+        @enderror
         <div class="form-group">
             <label for="create-topic__name" class="night_text">{{__('*Название:')}}</label>
             <input type="text" class="form-control create-topic__name night_input" id="create-topic__name"
                    value="{{clean(old('title'))}}" placeholder="{{__('Название:')}}"
                    maxlength="255" name="title" required>
         </div>
-        @if ($errors->has('title'))
-            <div class="alert alert-danger">
-                {{ $errors->first('title') }}
-            </div>
-        @endif
+        @error('title')
+        <div class="alert alert-danger" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
+        @enderror
         <div class="upload-image">
             <div class="row">
                 <div class="col-8">
@@ -50,11 +50,11 @@
                 </div>
             </div>
         </div>
-        @if ($errors->has('preview_img'))
-            <div class="alert alert-danger">
-                {{ $errors->first('preview_img') }}
-            </div>
-        @endif
+        @error('preview_img')
+        <div class="alert alert-danger" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
+        @enderror
         <div class="form-group">
             <label for="preview_content" class="night_text">{{__('Краткое описание')}}</label>
             <textarea type="text" class="form-control create-topic__name night_input" id="preview_content"
@@ -63,11 +63,11 @@
                 CKEDITOR.replace('preview_content', {});
             </script>
         </div>
-        @if ($errors->has('preview_content'))
-            <div class="alert alert-danger">
-                {{ $errors->first('preview_content') }}
-            </div>
-        @endif
+        @error('preview_content')
+        <div class="alert alert-danger" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
+        @enderror
         <div class="form-group">
             <label for="main_content" class="night_text">{{__('*Содержание')}}</label>
             <textarea type="text" class="form-control create-topic__name night_input" id="main_content"
@@ -76,11 +76,11 @@
                 CKEDITOR.replace('main_content', {});
             </script>
         </div>
-        @if ($errors->has('content'))
-            <div class="alert alert-danger">
-                {{ $errors->first('content') }}
-            </div>
-        @endif
+        @error('content')
+        <div class="alert alert-danger" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
+        @enderror
         <div class="modal-body__enter-btn">
             <button class="button button__download-more">
                 {{__('Опубликовать')}}

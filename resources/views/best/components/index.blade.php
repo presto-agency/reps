@@ -18,7 +18,7 @@
             <p class="title_playersText change_gray">{{__('Top-100 pts')}}</p>
         </div>
         <div class="container_players">
-            @if($points->isNotEmpty())
+            @if(isset($points) && $points->isNotEmpty())
                 @foreach($points as $item)
                     <div class="players_content">
                         <div class="left_block">
@@ -37,12 +37,12 @@
                             </a>
                         </div>
                         <div class="center_block">
-                            @if($item->countries)
+                            @if(!empty($item->countries))
                                 <img src="{{asset($item->countries->flagOrDefault())}}"
                                      title="{{$item->countries->name}}"
                                      class="info__flag" alt="flag">
                             @endif
-                            @if($item->races)
+                            @if(!empty($item->races))
                                 <img src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}"
                                      title="{{$item->races->title}}" class="info__cube" alt="race">
                             @endif
@@ -58,7 +58,7 @@
             <p class="title_playersText">{{__('Top-100 кг')}}</p>
         </div>
         <div class="container_players">
-            @if($rating->isNotEmpty())
+            @if(isset($rating) && $rating->isNotEmpty())
                 @foreach($rating as $item)
                     <div class="players_content">
                         <div class="left_block">
@@ -77,12 +77,12 @@
                             </a>
                         </div>
                         <div class="center_block">
-                            @if($item->countries)
+                            @if(!empty($item->countries))
                                 <img src="{{asset($item->countries->flagOrDefault())}}"
                                      title="{{$item->countries->name}}"
                                      class="info__flag" alt="flag">
                             @endif
-                            @if($item->races)
+                            @if(!empty($item->races))
                                 <img src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}"
                                      title="{{$item->races->title}}" class="info__cube" alt="race">
                             @endif
@@ -98,7 +98,7 @@
             <p class="title_playersText">{{__('Top-100 news')}}</p>
         </div>
         <div class="container_players">
-            @if($news->isNotEmpty())
+            @if(isset($news) && $news->isNotEmpty())
                 @foreach($news as $item)
                     <div class="players_content">
                         <div class="left_block">
@@ -117,12 +117,12 @@
                             </a>
                         </div>
                         <div class="center_block">
-                            @if($item->countries)
+                            @if(!empty($item->countries))
                                 <img src="{{asset($item->countries->flagOrDefault())}}"
                                      title="{{$item->countries->name}}"
                                      class="info__flag" alt="flag">
                             @endif
-                            @if($item->races)
+                            @if(!empty($item->races))
                                 <img src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}"
                                      title="{{$item->races->title}}" class="info__cube" alt="race">
                             @endif
@@ -138,7 +138,7 @@
             <p class="title_playersText">{{__('Top-100 replays')}}</p>
         </div>
         <div class="container_players">
-            @if($replay->isNotEmpty())
+            @if(isset($replay) && $replay->isNotEmpty())
                 @foreach($replay as $item)
                     <div class="players_content">
                         <div class="left_block">
@@ -157,12 +157,12 @@
                             </a>
                         </div>
                         <div class="center_block">
-                            @if($item->countries)
+                            @if(!empty($item->countries))
                                 <img src="{{asset($item->countries->flagOrDefault())}}"
                                      title="{{$item->countries->name}}"
                                      class="info__flag" alt="flag">
                             @endif
-                            @if($item->races)
+                            @if(!empty($item->races))
                                 <img src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}"
                                      title="{{$item->races->title}}" class="info__cube" alt="race">
                             @endif

@@ -113,7 +113,7 @@
         @endif
     </div>
 @endisset
-@section('ess21-custom-script')
+@section('custom-script')
     <script type="text/javascript">
         function quote(id) {
             $.ajax({
@@ -124,7 +124,6 @@
                     _token: '{{csrf_token()}}',
                 },
                 success: function (data) {
-                    // console.log(data.quoteContent);
                     if (data.quote) {
                         CKEDITOR.instances['content-comment'].insertHtml(data.quote);
                     }

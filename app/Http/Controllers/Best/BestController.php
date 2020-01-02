@@ -5,108 +5,29 @@ namespace App\Http\Controllers\Best;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class BestController extends Controller
 {
 
+    private $ttl = 300;//5 mints;
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $checkProLS = true;
+        $points = $this->getCachePoints('top100UserPoints');
+        $rating = $this->getCacheRating('top100UserRating');
+        $news   = $this->getCacheNews('top100UserNews');
+        $replay = $this->getCacheReplay('top100UserReplay');
 
-        $points = self::getCacheData('top100UserPoints', self::getTop100UserPoints());
-        $rating = self::getCacheData('top100UserRating', self::getTop100UserRating());
-        $news = self::getCacheData('top100UserNews', self::getTop100UserNews());
-        $replay = self::getCacheData('top100UserReplay', self::getTop100UserReplay());
-
-        return view('best.index',
-            compact('checkProLS', 'points', 'rating', 'news', 'replay')
-        );
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return redirect()->to('/');
+        return view('best.index', compact('points', 'rating', 'news', 'replay'));
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     *
-     * @return Response
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function store(Request $request)
-    {
-        return redirect()->to('/');
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        return redirect()->to('/');
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return redirect()->to('/');
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        return redirect()->to('/');
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        return redirect()->to('/');
-
-    }
-
-    public static function getTop100UserPoints()
+    public function getTop100UserPoints()
     {
         return User::with('countries:id,flag,name', 'races:id,title')
             ->withCount('comments')
@@ -115,7 +36,10 @@ class BestController extends Controller
             ->get();
     }
 
-    public static function getTop100UserRating()
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getTop100UserRating()
     {
         return User::with('countries:id,flag,name', 'races:id,title')
             ->where('rating', '>=', 0)
@@ -124,7 +48,10 @@ class BestController extends Controller
             ->get();
     }
 
-    public static function getTop100UserNews()
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getTop100UserNews()
     {
         return User::with('countries:id,flag,name', 'races:id,title')
             ->withCount('news')
@@ -133,7 +60,10 @@ class BestController extends Controller
             ->get();
     }
 
-    public static function getTop100UserReplay()
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getTop100UserReplay()
     {
         return User::with('countries:id,flag,name', 'races:id,title')
             ->withCount('replays')
@@ -143,19 +73,105 @@ class BestController extends Controller
     }
 
     /**
-     * @param $cache_name
-     * @param $data
+     * @param  string  $cache_name
+     *
      * @return mixed
      */
-    public static function getCacheData($cache_name, $data)
+    public function getCachePoints(string $cache_name)
     {
         if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
             $data_cache = \Cache::get($cache_name);
         } else {
-            $data_cache = \Cache::remember($cache_name, 300, function () use ($data) {
-                return $data;
+            $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
+                return $this->getTop100UserPoints();
             });
         }
+
         return $data_cache;
     }
+
+    /**
+     * @param  string  $cache_name
+     *
+     * @return mixed
+     */
+    public function getCacheRating(string $cache_name)
+    {
+        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
+                return $this->getTop100UserRating();
+            });
+        }
+
+        return $data_cache;
+    }
+
+    /**
+     * @param  string  $cache_name
+     *
+     * @return mixed
+     */
+    public function getCacheNews(string $cache_name)
+    {
+        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
+                return $this->getTop100UserNews();
+            });
+        }
+
+        return $data_cache;
+    }
+
+    /**
+     * @param  string  $cache_name
+     *
+     * @return mixed
+     */
+    public function getCacheReplay(string $cache_name)
+    {
+        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
+                return $this->getTop100UserReplay();
+            });
+        }
+
+        return $data_cache;
+    }
+
+    public function create()
+    {
+        return abort(404);
+    }
+
+    public function store(Request $request)
+    {
+        return abort(404);
+    }
+
+    public function show($id)
+    {
+        return abort(404);
+    }
+
+    public function edit($id)
+    {
+        return abort(404);
+    }
+
+    public function update(Request $request, $id)
+    {
+        return abort(404);
+    }
+
+    public function destroy($id)
+    {
+        return abort(404);
+    }
+
 }

@@ -24,18 +24,18 @@ class Replay extends Model
 
     public static $userReplaysType
         = [
-            Replay::REPLAY_PRO => 'Профессиональный',
+            Replay::REPLAY_PRO  => 'Профессиональный',
             Replay::REPLAY_USER => 'Пользовательский',
         ];
 
     public static $type
         = [
-            Replay::REPLAY_PRO => 'pro',
+            Replay::REPLAY_PRO  => 'pro',
             Replay::REPLAY_USER => 'user',
         ];
+
     protected $fillable
         = [
-            'user_id',
             'title',
             'map_id',
             'first_country_id',
@@ -61,18 +61,31 @@ class Replay extends Model
             'file',
 
         ];
-    protected $hidden = [
-        'src_iframe'
-    ];
+    protected $hidden
+        = [
+            'src_iframe',
+        ];
 
-    public static function checkUser4Update()
+    protected $guarded
+        = [
+            'user_id',
+        ];
+
+    /**
+     * @param  int  $type_id
+     * @param  int  $take
+     *
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
+     */
+    public static function getNavigationReplays(int $type_id, int $take)
     {
-        /*User role cannot add PRO-Replay*/
-        if (request('user_replay') == Replay::REPLAY_PRO) {
-            if (auth()->user()->isUser()) {
-                return back();
-            }
-        }
-        return null;
+        return Replay::with('types:id,name')
+            ->where('approved', true)
+            ->orderByDesc('id')
+            ->withCount('comments')
+            ->where('type_id', $type_id)
+            ->take($take)
+            ->get();
     }
+
 }
