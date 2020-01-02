@@ -273,6 +273,7 @@
     </div>
 </div>
 @section('custom-script')
+    @parent
     <script type="text/javascript">
         /*** ajax-video-iframe ***/
         $(document).ready(function () {

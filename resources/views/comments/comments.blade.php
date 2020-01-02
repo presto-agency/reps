@@ -116,6 +116,7 @@
     </div>
 @endisset
 @section('custom-script')
+    @parent
     <script type="text/javascript">
         function quote(id) {
             $.ajax({

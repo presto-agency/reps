@@ -13,6 +13,7 @@
     <div id="set_found_replays"></div>
 @endsection
 @section('custom-script')
+    @parent
     <script type="text/javascript">
         $(document).ready(function () {
             loadReplaysSearch('',);

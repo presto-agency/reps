@@ -16,5 +16,6 @@
 @endsection
 
 @section('content')
-    <div id="last_news"></div>
+    <div id="load_news_list"></div>
 @endsection
+

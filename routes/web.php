@@ -24,7 +24,7 @@ Route::get('/', 'HomeController@index')->name('home.index');
 /***---News---***/
 Route::resource('news', 'NewsController');
 Route::post('news/{id}/send_comment', 'NewsController@comment_send')->name('news.comment_send');
-Route::post('/loadmore/load_news', 'NewsController@load_news')->name('loadmore.load_news');
+Route::post('load-more-news-main-page', 'NewsController@load_news')->name('load.news.main-page');
 /***---Forum---***/
 Route::resource('forum', 'Forum\ForumController');
 Route::group(['prefix' => 'forum'], function () {
