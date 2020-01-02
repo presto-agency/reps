@@ -64,33 +64,30 @@ class NewsController extends Controller
         return view('news.show', compact('news'));
     }
 
-    public function load_news(Request $request)
+    public function load_news()
     {
+        $request = request();
         if ($request->ajax()) {
             $visible_title = false;
             if ($request->id > 0) {
-                $data = ForumTopic::with('author:id,avatar,name')
+                $news = ForumTopic::with('author:id,avatar,name')
                     ->withCount('comments')
-                    ->where('news', true)
+                    ->where('news', 1)
                     ->where('id', '<', $request->id)
                     ->orderByDesc('id')
                     ->limit(5)
                     ->get();
             } else {
-                $data          = ForumTopic::with('author:id,avatar,name')
+                $news          = ForumTopic::with('author:id,avatar,name')
                     ->withCount('comments')
-                    ->where('news', true)
+                    ->where('news', 1)
                     ->orderByDesc('id')
                     ->limit(5)
                     ->get();
                 $visible_title = true;
             }
 
-            $output = view('news.components.index', [
-                'news'          => $data,
-                'visible_title' => $visible_title,
-            ]);
-            echo $output;
+            return view('news.components.index', compact('news', 'visible_title'));
         }
     }
 

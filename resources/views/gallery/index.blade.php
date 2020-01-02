@@ -18,6 +18,7 @@
     @include('right-side.components.last-replay')
 @endsection
 @section('custom-script')
+    @parent
     <script type="text/javascript">
         $(document).ready(function () {
                 loadGalleries('',);

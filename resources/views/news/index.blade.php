@@ -9,10 +9,13 @@
 @endsection
 
 @section('content')
-    <div id="last_news"></div>
+    <div id="load_news_list"></div>
 @endsection
 
 @section('right-side')
     @parent
     @include('right-side.components.last-replay')
 @endsection
+
+
+
