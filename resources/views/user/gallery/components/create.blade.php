@@ -32,21 +32,21 @@
                     </div>
                 </div>
             </div>
-            @if ($errors->has('picture'))
-                <div class="alert alert-danger">
-                    {{ $errors->first('picture') }}
-                </div>
-            @endif
+            @error('picture')
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ $message }}</strong>
+            </div>
+            @enderror
             <div class="form-group">
                 <label class="label_group" for="gallery-name">{{__('Подпись:')}}</label>
                 <input type="text" name="sign" class="form-control night_input" id="gallery-name"
-                       maxlength="255" value="{{clean(old('sign'))}}" placeholder="Подпись">
+                       maxlength="255" value="{{clean(old('sign'))}}" placeholder="{{__('Подпись')}}">
             </div>
-            @if ($errors->has('sign'))
-                <div class="alert alert-danger">
-                    {{ $errors->first('sign') }}
-                </div>
-            @endif
+            @error('sign')
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ $message }}</strong>
+            </div>
+            @enderror
             <div class="form-check">
                 <input class="form-check-input night_input" type="checkbox" value="1" id="gallery__for-adults"
                        {{ old('for_adults') ? 'checked' : '' }}
@@ -55,6 +55,11 @@
                     {{__('18+')}}
                 </label>
             </div>
+            @error('for_adults')
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ $message }}</strong>
+            </div>
+            @enderror
             <div class="modal-body__add-btn">
                 <button class="button button__download-more">
                     {{__('Добавить')}}

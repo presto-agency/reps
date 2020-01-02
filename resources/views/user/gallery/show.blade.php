@@ -11,9 +11,10 @@
 
 @section('content')
     @include('user.gallery.components.show')
-    @include('content.comments', ['comments' => $userImage->comments])
-    @include('content.add-comment', [
-        'route' => route('galleries.send.comment', ['id' =>$userImage->id])
+    @include('comments.comments', ['comments' => $image->comments])
+    @include('comments.add-comment', [
+        'route' => route('galleries.send.comment', ['id' =>$image->id]),
+        'id' => $image->id,
     ])
 @endsection
 

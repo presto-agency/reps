@@ -3,57 +3,25 @@
 namespace App\Traits\ModelRelations;
 
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\TourneyList;
+use App\Models\TourneyPlayer;
 
 trait TourneyMatchRelation
 {
 
     /**
-     * @return BelongsTo
-     */
-    //    public function file1()
-    //    {
-    //        return $this->belongsTo('App\Models\File', 'rep1');
-    //    }
-    //    public function file2()
-    //    {
-    //        return $this->belongsTo('App\Models\File', 'rep2');
-    //    }
-    //    public function file3()
-    //    {
-    //        return $this->belongsTo('App\Models\File', 'rep3');
-    //    }
-    //    public function file4()
-    //    {
-    //        return $this->belongsTo('App\Models\File', 'rep4');
-    //    }
-    //    public function file5()
-    //    {
-    //        return $this->belongsTo('App\Models\File', 'rep5');
-    //    }
-    //    public function file6()
-    //    {
-    //        return $this->belongsTo('App\Models\File', 'rep6');
-    //    }
-    //    public function file7()
-    //    {
-    //        return $this->belongsTo('App\Models\File', 'rep7');
-    //    }
-
-    /**
-     * @return BelongsTo
+     * @return mixed
      */
     public function player1()
     {
-        return $this->belongsTo('App\Models\TourneyPlayer', 'player1_id');
+        return $this->belongsTo(TourneyPlayer::class, 'player1_id', 'id');
     }
 
     /**
-     * @return BelongsTo
+     * @return mixed
      */
     public function player2()
     {
-        return $this->belongsTo('App\Models\TourneyPlayer', 'player2_id');
+        return $this->belongsTo(TourneyPlayer::class, 'player2_id', 'id');
     }
-
 }

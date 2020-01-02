@@ -9,22 +9,45 @@ use Illuminate\View\View;
 
 class LastNewsComposer
 {
-    private static $ttl = 300;
 
-    /**
-     * @param View $view
-     */
-    public function compose(View $view)
+    public $ttl = 300;//5 mints
+    private $category;
+
+    public function __construct()
     {
-        $view->with('lastNewsTitleLeft', 'Последние новости');
-        $view->with('lastNewsLeft', self::getCacheLastNews('lastNewsLeft'));
+        $this->category = collect();
+
+        $data = $this->getCacheLastNews('lastNewsLeft');
+
+        $this->category = $data;
     }
 
 
     /**
+     * @param  View  $view
+     */
+    public function compose(View $view)
+    {
+        $view->with('lastNewsLeft', $this->category);
+    }
+
+    public function getCacheLastNews(string $cache_name)
+    {
+        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
+                return $this->getLastNews();
+            });
+        }
+
+        return $data_cache;
+    }
+
+    /**
      * @return mixed
      */
-    private static function getLastNews()
+    private function getLastNews()
     {
         return ForumTopic::withCount('comments')
             ->latest('commented_at')
@@ -32,19 +55,4 @@ class LastNewsComposer
             ->get(['id', 'title']);
     }
 
-    /**
-     * @param $cache_name
-     * @return mixed
-     */
-    public static function getCacheLastNews($cache_name)
-    {
-        if (\Cache::has($cache_name) && !\Cache::get($cache_name)->isEmpty()) {
-            $data_cache = \Cache::get($cache_name);
-        } else {
-            $data_cache = \Cache::remember($cache_name, self::$ttl, function () {
-                return self::getLastNews();
-            });
-        }
-        return $data_cache;
-    }
 }

@@ -19,35 +19,34 @@
         </div>
     @endif
     <div class="gallery__body">
-        @if(isset($images) && $images->isNotEmpty())
-            @foreach($images as $item)
+        @if(isset($userImages) && $userImages->isNotEmpty())
+            @foreach($userImages as $item)
                 <div class="img-wrapper">
-                        @if(!empty($routCheck))
-                            <a class="img-link" href="{{route('galleries.show',['gallery' => $item->id])}}">
-                                <img src="{{asset($item->pictureOrDefault())}}" alt="image">
-                            </a>
-                        @else
-                            <a class="img-link"
-                               href="{{route('user-gallery.show',['id'=> $item->user_id,'user_gallery'=> $item->id])}}">
-                                <img src="{{asset($item->pictureOrDefault())}}" alt="image">
-                            </a>
-                        @endif
+                    @if(request()->route()->getName() == 'load.more.user.images')
+                        <a class="img-link"
+                           href="{{route('user-gallery.show',['id'=> $item->user_id,'user_gallery'=> $item->id])}}">
+                            <img src="{{asset($item->pictureOrDefault())}}" alt="image">
+                        </a>
+
+                    @else
+                        <a class="img-link" href="{{route('galleries.show',['gallery' => $item->id])}}">
+                            <img src="{{asset($item->pictureOrDefault())}}" alt="image">
+                        </a>
+                    @endif
                 </div>
                 @php
                     $last_id = $item->id;
                 @endphp
             @endforeach
-            <div id="load_more_user_gallery" class="gocu-replays__button night_modal">
-                <button type="button" name="load_more_user_gallery_button"
-                        class="button button__download-more night_text"
-                        id="load_more_user_gallery_button" data-id="{{ $last_id }}">
+            <div class="gocu-replays__button night_modal">
+                <button type="button" class="button button__download-more night_text"
+                        id="load_more_user_gallery" data-id="{{ $last_id }}">
                     {{__('Загрузить еще')}}
                 </button>
             </div>
         @else
-            <div id="load_more_user_gallery" class="gocu-replays__button night_modal">
-                <button type="button" name="load_more_user_gallery_button"
-                        class="button button__download-more night_text">
+            <div class="gocu-replays__button night_modal">
+                <button type="button" class="button button__download-more night_text">
                     {{__('Пусто')}}
                 </button>
             </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('user-profile-show', request('id')) }}
+    {{ Breadcrumbs::render('user-profile-show', $user->id) }}
 @endsection
 
 @section('sidebar-left')

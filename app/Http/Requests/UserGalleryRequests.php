@@ -25,9 +25,9 @@ class UserGalleryRequests extends FormRequest
     public function rules()
     {
         return [
-            'picture'    => 'required|image|max:2048',
+            'picture'    => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'sign'       => 'nullable|string|between:1,255',
-            'for_adults' => 'nullable|in:1',
+            'for_adults' => 'boolean',
         ];
     }
 

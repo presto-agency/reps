@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('replay-show', request('replay'), request('type')) }}
+    {{ Breadcrumbs::render('replay-show', request('type')) }}
 @endsection
 
 @section('sidebar-left')
@@ -11,8 +11,9 @@
 
 @section('content')
     @include('replay.components.show')
-    @include('content.comments', ['comments' => $replay->comments])
-    @include('content.add-comment', [
-        'route' => route('replay.send_comment', ['id' =>$replay->id])
+    @include('comments.comments', ['comments' => $replayShow->comments])
+    @include('comments.add-comment', [
+        'route' => route('replay.send-comment', ['id' =>$replayShow->id]),
+        'id' => $replayShow->id,
     ])
 @endsection

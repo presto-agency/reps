@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\VerifiesEmails;
 
 class VerificationController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Email Verification Controller
@@ -29,21 +30,21 @@ class VerificationController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
+
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * VerificationController constructor.
      */
     public function __construct()
     {
-        $this->middleware('auth');
         try {
+            $this->middleware('auth');
             $this->middleware('signed')->only('verify');
             $this->middleware('throttle:6,1')->only('verify', 'resend');
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             \Log::error($e);
+
             return back();
         }
-
     }
+
 }

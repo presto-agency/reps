@@ -3,69 +3,68 @@
 namespace App\Http\Controllers\ForumTopic;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentsStoreRequests;
 use App\Models\Comment;
 use App\Models\ForumTopic;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+
 class TopicController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        return redirect()->to('/');
+        return abort(404);
+    }
+
+    public function edit($id)
+    {
+        return abort(404);
+    }
+
+    public function update(Request $request, $id)
+    {
+        return abort(404);
+    }
+
+    public function destroy($id)
+    {
+        return abort(404);
     }
 
     /**
-     * Display the specified resource.
+     * @param $id
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
-        $topic = ForumTopic::with(
+        $topic = ForumTopic::with([
 
             'author:id,avatar,name,country_id,race_id,count_negative,count_positive',
             'author.countries:id,name,flag',
             'author.races:id,title',
-
+            'author'        => function ($query) {
+                $query->withCount('comments');
+            },
             'comments',
             'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive',
             'comments.user.countries:id,name,flag',
-            'comments.user.races:id,title'
-        )
-            ->with(['author' => function ($query) {
+            'comments.user.races:id,title',
+            'comments.user' => function ($query) {
                 $query->withCount('comments');
-            }])
-            ->with(['comments.user' => function ($query) {
-                $query->withCount('comments');
-            }])
-            ->withCount('comments','positive','negative')->findOrFail($id);
+            },
+
+        ])->withCount('comments', 'positive', 'negative')->findOrFail($id);
 
         event('topicHasViewed', $topic);
 
@@ -73,53 +72,26 @@ class TopicController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @param  \App\Http\Requests\CommentsStoreRequests  $request
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function edit($id)
+    public function saveComments(CommentsStoreRequests $request)
     {
-        return redirect()->to('/');
-    }
+        $content = clean($request->input('content'));
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        return redirect()->to('/');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        return redirect()->to('/');
-    }
-
-    public function saveComments()
-    {
-
-
-        $replay = ForumTopic::find(request('id'));
-        $replay->commented_at = Carbon::now();
-
+        if (empty($content)) {
+            return redirect()->back();
+        }
+        $model   = ForumTopic::findOrFail($request->get('id'));
         $comment = new Comment([
             'user_id' => auth()->id(),
-            'content' => clean(request('content')),
+            'content' => $content,
         ]);
 
-        $replay->comments()->save($comment);
-        $replay->save();
-        return back();
+        $model->comments()->save($comment);
+
+        return redirect()->back();
     }
+
 }

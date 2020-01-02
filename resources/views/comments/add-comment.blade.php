@@ -10,11 +10,11 @@
             c-0.007,0.002-0.014,0-0.021,0.001L2.533,57.563l4.403-13.209c0.092-0.276,0.059-0.578-0.089-0.827C4.33,39.292,3,34.441,3,29.5
             C3,14.336,15.336,2,30.5,2S58,14.336,58,29.5S45.664,57,30.5,57z"/>
             <path
-                    d="M17,23.015h14c0.552,0,1-0.448,1-1s-0.448-1-1-1H17c-0.552,0-1,0.448-1,1S16.448,23.015,17,23.015z"/>
+                d="M17,23.015h14c0.552,0,1-0.448,1-1s-0.448-1-1-1H17c-0.552,0-1,0.448-1,1S16.448,23.015,17,23.015z"/>
             <path
-                    d="M44,29.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,29.015,44,29.015z"/>
+                d="M44,29.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,29.015,44,29.015z"/>
             <path
-                    d="M44,37.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,37.015,44,37.015z"/>
+                d="M44,37.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,37.015,44,37.015z"/>
         </svg>
         <p class="title__text">{{__('Добавить комментарий')}}</p>
     </div>
@@ -22,16 +22,20 @@
         <form class="add-comment__form" action="{{$route}}" method="POST">
             @method('POST')
             @csrf
+            <input type="hidden" name="id" tabindex="-1" value="{{$id}}">
             <div class="form-group">
                 <label for="content-comment" class="night_text">  {{__('Коментарий')}}</label>
-                <textarea name="content" class="form-control night_input"
-                          id="content-comment">{{clean(old('content'))}}</textarea>
+                <textarea class="form-control night_input" id="content-comment" name="content">
+                    {{clean(old('content'))}}</textarea>
+                @error('content')
+                <div class="alert alert-danger" role="alert">
+                    <strong>{{ $message }}</strong>
+                </div>
+                @enderror
                 <script type="text/javascript">
-
                     CKEDITOR.replace('content-comment', {
                         // Define the toolbar groups as it is a more accessible solution.
                     });
-
                 </script>
                 <div class="messenger__button add-comment__btn">
                     <button class="button button__download-more">

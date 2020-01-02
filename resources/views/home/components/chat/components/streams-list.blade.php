@@ -1,10 +1,10 @@
 <section class="streams_list stream-list-wrapper night_modal">
     <div class="widget-wrapper">
         <div class="streams_list_container">
-            @isset($streamList)
+            @if(isset($streamList) && $streamList->isNotEmpty())
                 @foreach($streamList as $item)
                     <div class="widget-stream-lists">
-                        <button class="streamEvent" id="{{$item->id}}"
+                        <button class="streamEvent" id="{{$loop->iteration }}"
                                 data-src="{{$item->stream_url_iframe}}"
                                 data-img-flag="@if($item->countries){{asset($item->countries->flagOrDefault())}} @endif"
                                 data-name-flag="@if($item->countries){{$item->countries->name}} @endif"
@@ -38,28 +38,37 @@
                         </button>
                     </div>
                 @endforeach
-            @endisset
+            @endif
         </div>
     </div>
 </section>
-<script>
-    $('.streamEvent').click(function () {
-        $('#streamOnline').attr('src', $(this).data('src'));
+@section('custom-script')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let element = document.getElementById("1");
+            $('#streamOnline').attr('src', element.getAttribute('data-src'));
+            $('#streamOnlineFlag').attr('src', element.getAttribute('data-img-flag'));
+            $('#streamOnlineFlag').attr('title', element.getAttribute('data-name-flag'));
+            $('#streamOnlineRace').attr('src', element.getAttribute('data-img-race'));
+            $('#streamOnlineRace').attr('title', element.getAttribute('data-title-race'));
+            $('#streamOnlineName').attr('title', element.getAttribute('data-stream-title'));
+            $('#streamOnlineName').text(element.getAttribute('data-stream-title'));
 
-        $('#streamOnlineFlag').attr('src', $(this).data('img-flag'));
-        $('#streamOnlineFlag').attr('title', $(this).data('name-flag'));
-
-        $('#streamOnlineRace').attr('src', $(this).data('img-race'));
-        $('#streamOnlineRace').attr('title', $(this).data('title-race'));
-
-        $('#streamOnlineName').attr('title', $(this).data('stream-title'));
-        $('#streamOnlineName').text($(this).data('stream-title'));
-
-        // if ($(this).data('check-twitch') == "1") {
-        //
-        //     let chatSrc = ' https://www.twitch.tv/embed/' + $(this).data('stream-title') + '/chat';
-        //     console.log(chatSrc);
-        //     $('#chatTwitch').attr('src', chatSrc);
-        // }
-    });
-</script>
+        });
+        $('.streamEvent').click(function () {
+            $('#streamOnline').attr('src', $(this).data('src'));
+            $('#streamOnlineFlag').attr('src', $(this).data('img-flag'));
+            $('#streamOnlineFlag').attr('title', $(this).data('name-flag'));
+            $('#streamOnlineRace').attr('src', $(this).data('img-race'));
+            $('#streamOnlineRace').attr('title', $(this).data('title-race'));
+            $('#streamOnlineName').attr('title', $(this).data('stream-title'));
+            $('#streamOnlineName').text($(this).data('stream-title'));
+            // if ($(this).data('check-twitch') == "1") {
+            //
+            //     let chatSrc = ' https://www.twitch.tv/embed/' + $(this).data('stream-title') + '/chat';
+            //     console.log(chatSrc);
+            //     $('#chatTwitch').attr('src', chatSrc);
+            // }
+        });
+    </script>
+@endsection

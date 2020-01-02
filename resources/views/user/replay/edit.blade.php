@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('user-replay-edit',request('id'),request('user_replay'),request('type','user')) }}
+    {{ Breadcrumbs::render('user-replay-edit',$userReplayEdit->user_id,\App\Models\Replay::$type[$userReplayEdit->user_replay]) }}
 @endsection
 
 @section('sidebar-left')

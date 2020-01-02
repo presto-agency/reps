@@ -36,20 +36,18 @@
                 </div>
             </div>
             @php
-                $last_id = $section->id;
+                $last_id = $section->position;
             @endphp
         @endforeach
-        <div id="load_more_forum_sections" class="gocu-replays__button night_modal">
-            <button type="button" name="load_more_forum_sections_index"
-                    class="button button__download-more night_text"
-                    id="load_more_forum_sections_index_button" data-id="{{ $last_id }}">
+        <div class="gocu-replays__button night_modal">
+            <button type="button" class="button button__download-more night_text"
+                    id="load_more_forum_sections" data-id="{{ $last_id }}">
                 {{__('Загрузить еще')}}
             </button>
         </div>
     @else
         <div class="gocu-replays__button night_modal">
-            <button type="button" name="load_more_forum_sections_index"
-                    class="button button__download-more night_text">
+            <button type="button" class="button button__download-more night_text">
                 {{__('Пусто')}}
             </button>
         </div>

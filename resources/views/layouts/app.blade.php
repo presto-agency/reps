@@ -26,7 +26,11 @@
     const imgs= c.map(function (item) {
         return item.filename;
     });
+    // const cod= c.map(function (item) {
+    //     return item.charactor;
+    // });
     window.imgs = imgs;
+    // CKEDITOR.config.smiley_descriptions = cod;
     CKEDITOR.config.smiley_images = imgs;
     CKEDITOR.config.smiley_path = '/storage/chat/smiles/';
 
@@ -159,7 +163,6 @@
 <script src="{{ asset('js/sceditor/formats/bbcode.js') }}"></script>
 <script src="https://kit.fontawesome.com/75f3a42e45.js"></script>
 
-@yield('ess21-custom-script')
 @section('custom-script')
     <script>
         $(document).ready(function () {

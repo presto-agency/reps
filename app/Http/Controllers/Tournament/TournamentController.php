@@ -3,252 +3,207 @@
 namespace App\Http\Controllers\Tournament;
 
 
-use App\Models\ReplayMap;
-use App\Models\TourneyList;
-use App\Models\TourneyMatch;
-use App\Services\Tournament\TourneyService;
-use File;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Response;
-use Storage;
-use Str;
+use App\Models\TourneyList;
+use Illuminate\Http\Request;
 
 class TournamentController extends Controller
 {
 
-    public $mapsIds;
-
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         return view('tournament.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create()
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     *
-     * @return Response
-     */
+
     public function store(Request $request)
     {
-        return redirect()->to('/');
+        return abort(404);
+    }
+
+
+    public function edit($id)
+    {
+        return abort(404);
+    }
+
+    public function update(Request $request, $id)
+    {
+        return abort(404);
+    }
+
+
+    public function destroy($id)
+    {
+        return abort(404);
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param  int  $id
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id)
+    public function show(int $id)
     {
         $tournament = $this->getTournament($id);
-        $dataArr    = [];
-        if (isset($tournament->maps) && ! empty($tournament->maps)) {
-            $this->mapsIds = explode(",", $tournament->maps);
-            foreach ($this->mapsIds as $key => $item) {
-                $dataArr['mapsIds'][$key] = $item;
-            }
-        }
-        $getMatchesMaps = ReplayMap::whereIn('id', $dataArr['mapsIds'])->get
-        ([
-            'name',
-            'url',
-        ]);
+        $data       = $this->createDataArray($tournament);
+
+        return view('tournament.show', compact('tournament', 'data'));
+    }
+
+    /**
+     * @param $tournament
+     *
+     * @return array
+     */
+    private function createDataArray($tournament)
+    {
+        $data = [];
         if ( ! empty($tournament->matches)) {
-            foreach ($tournament->matches as $match) {
-                $dataArr['matches'][$match->round_id][]      = $match;
-                $dataArr['round'][$match->round_id]['title'] = $match->round;
-                $mapsCount
-                                                             = count($this->mapsIds);
-                $mapIndex                                    = $match->round_id
-                    % $mapsCount;
-                $map
-                                                             = $this->getTourneyRoundMap($this->mapsIds[$mapIndex]);
-                if ( ! empty($map)) {
-                    $dataArr['round'][$match->round_id]['map']['name']
-                        = $map->name;
-                    $dataArr['round'][$match->round_id]['map']['url']
-                        = $map->url;
+            foreach ($tournament->matches as $item) {
+                $data['round'][$item->round_number]['title'] = $item->round;
+                $data['matches'][$item->round_number][]      = $item;
+                $mapsCount                                   = $tournament->maps_pool_count;
+                $mapIndex                                    = $item->round_number % $mapsCount;
+
+                if ( ! empty($tournament->mapsPool)) {
+                    $data['round'][$item->round_number]['mapName'] = $tournament->mapsPool[$mapIndex]->map->name;
+                    $data['round'][$item->round_number]['mapUrl']  = $tournament->mapsPool[$mapIndex]->map->url;
                 }
             }
         }
 
-        $prizeList = TourneyService::getPrize($id);
-
-        return view('tournament.show',
-            compact('tournament', 'dataArr', 'prizeList', 'getMatchesMaps')
-        );
-    }
-
-    public function getTourneyRoundMap($mapsId)
-    {
-        return ReplayMap::where('id', $mapsId)->first([
-            'name',
-            'url',
-        ]);
-    }
-
-
-    //    public function downloadMultipleMatch($tournament)
-    //    {
-    //
-    //    }
-
-    public function downloadMatch($tourney,$match, $rep)
-    {
-        $tourneyMatchFile = TourneyMatch::where('tourney_id', $tourney)->where('match_id',$match)->value($rep);
-
-        $repPath = $tourneyMatchFile;
-
-        if (empty($repPath)) {
-            return back();
-        }
-        if (strpos($tourneyMatchFile, '/storage') !== false) {
-            $repPath = Str::replaceFirst('/storage', 'public',
-                $tourneyMatchFile);
-        }
-        if (strpos($tourneyMatchFile, 'storage') !== false) {
-            $repPath = Str::replaceFirst('storage', 'public',
-                $tourneyMatchFile);
-        }
-
-        $checkPath = Storage::path($repPath);
-        if (File::exists($checkPath) === false) {
-            return back();
-        };
-
-        return response()->download($checkPath);
-    }
-
-    public function getTournament($id)
-    {
-        $tournament = TourneyList::with(
-
-            'admin_user',
-            'matches',
-            'win_player:id,tourney_id,user_id,check_in,description,place_result',
-
-            'players:id,user_id,tourney_id,check_in,description,place_result',
-            'players.user:id,avatar,name,country_id,race_id',
-            'players.user.countries:id,name,flag',
-            'players.user.races:id,title',
-
-            'matches.player1:id,tourney_id,user_id',
-            'matches.player1.user:id,avatar,name,country_id,race_id',
-            'matches.player1.user.countries:id,name,flag',
-            'matches.player1.user.races:id,title',
-
-            'matches.player2:id,tourney_id,user_id',
-            'matches.player2.user:id,avatar,name,country_id,race_id',
-            'matches.player2.user.countries:id,name,flag',
-            'matches.player2.user.races:id,title'
-
-        )
-            ->with([
-                'players' => function ($query) {
-                    $query->orderBy('check_in', 'desc')
-                        ->orderByRaw('LENGTH(place_result)')
-                        ->orderBy('place_result');
-                },
-            ])
-            ->with([
-                'matches' => function ($query) {
-                    $query->orderBy("round_id", 'ASC');
-                },
-            ])
-            ->findOrFail($id);
-
-        return $tournament;
+        return $data;
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
      * @param  int  $id
      *
-     * @return Response
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
      */
-    public function edit($id)
+    private function getTournament(int $id)
     {
-        return redirect()->to('/');
+        return TourneyList::with([
+            'mapsPool:id,tourney_id,map_id',
+            'mapsPool.map:id,name,url',
+
+            'players' => function ($query) {
+                $query->with([
+                    'user' => function ($query) {
+                        $query->select(['id', 'name', 'email', 'race_id', 'country_id']);
+                    },
+                    'user.races:id,title',
+                    'user.countries:id,name,flag',
+                ])
+                    ->orderByDesc('check')
+                    ->orderByRaw('LENGTH(place_result)')
+                    ->orderBy('place_result')
+                    ->select(['id', 'tourney_id', 'user_id', 'place_result']);
+            },
+            'matches' => function ($query) {
+                $query->with([
+                    'player1:id,tourney_id,user_id',
+                    'player2:id,tourney_id,user_id',
+                    'player2.user:id,name,avatar',
+                    'player2.user:id,name,avatar',
+                ])->orderBy('round_number');
+            },
+        ])->withCount([
+            'players as check_players_count' => function ($query) {
+                $query->where('check', 1);
+            },
+            'mapsPool',
+        ])->where('visible', 1)->findOrFail($id);
+    }
+
+    public function downloadMatchFile(int $match, string $rep)
+    {
+        //        $tourneyMatchFile = TourneyMatch::where('tourney_id', $tourney)->where('match_id', $match)->value($rep);
+        //
+        //        $repPath = $tourneyMatchFile;
+        //
+        //        if (empty($repPath)) {
+        //            return back();
+        //        }
+        //        if (strpos($tourneyMatchFile, '/storage') !== false) {
+        //            $repPath = Str::replaceFirst('/storage', 'public',
+        //                $tourneyMatchFile);
+        //        }
+        //        if (strpos($tourneyMatchFile, 'storage') !== false) {
+        //            $repPath = Str::replaceFirst('storage', 'public',
+        //                $tourneyMatchFile);
+        //        }
+        //
+        //        $checkPath = Storage::path($repPath);
+        //        if (File::exists($checkPath) === false) {
+        //            return back();
+        //        };
+        //
+        //        return response()->download($checkPath);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param  int  $id
-     *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function update(Request $request, $id)
-    {
-        return redirect()->to('/');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        return redirect()->to('/');
-    }
-
     public function loadTournament()
     {
-        if (request()->ajax()) {
-            $visible_title = false;
-            if (request('id') > 0) {
-                $tournamentList = self::getTourneyListAjaxId(request('id'));
-            } else {
-                $tournamentList = self::getTourneyListAjax();
-                $visible_title  = true;
+        $request = request();
+        if ($request->ajax()) {
+            if ($request->headers->has('referer')) {
+                $routName = app('router')->getRoutes()->match(app('request')->create($request->headers->get('referer')))->getName();
+                if ($routName == 'tournament.index') {
+                    $visible_title = false;
+                    if ($request->id > 0) {
+                        $tournamentList = self::getTourneyListAjaxId($request->id);
+                    } else {
+                        $tournamentList = self::getTourneyListAjax();
+                        $visible_title  = true;
+                    }
+                    $tournamentStatus = TourneyList::$status;
+
+                    return view('tournament.components.index',
+                        compact('tournamentList', 'tournamentStatus', 'visible_title'));
+                }
             }
-            $tournamentStatus = TourneyList::$status;
-            $output           = view('tournament.components.index',
-                compact('tournamentList', 'tournamentStatus', 'visible_title')
-            );
-            echo $output;
         }
     }
 
-    public static function getTourneyListAjaxId($id)
+    /**
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public static function getTourneyListAjaxId(int $id)
     {
-        return TourneyList::withCount('players')
-            ->withCount('checkin_players')
+        return TourneyList::withCount([
+            'players as check_players_count' => function ($query) {
+                $query->where('check', 1);
+            }, 'players',
+        ])->where('visible', 1)
             ->where('id', '<', $id)
             ->orderByDesc('id')
             ->limit(5)
             ->get();
     }
 
+    /**
+     * @return mixed
+     */
     public static function getTourneyListAjax()
     {
-        return TourneyList::withCount('players')
-            ->withCount('checkin_players')
+        return TourneyList::withCount([
+            'players as check_players_count' => function ($query) {
+                $query->where('check', 1);
+            }, 'players',
+        ])->where('visible', 1)
             ->orderByDesc('id')
             ->limit(5)
             ->get();

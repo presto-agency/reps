@@ -3,131 +3,102 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateProfileRequest;
-use App\Models\Country;
-use App\Models\Race;
 use App\Models\UserFriend;
-use App\Services\User\UserService;
+use App\Services\ImageService\ResizeImage;
+use App\Services\ServiceAssistants\PathHelper;
 use App\User;
-use Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function index()
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function create()
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function store(Request $request)
     {
-        return redirect()->to('/');
+        return abort(404);
     }
 
-    /**
-     * @param $id
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
+    public function destroy($id)
+    {
+        return abort(404);
+    }
+
     public function show($id)
     {
-        $user = User::getUserDataById($id);
-        $friends = UserFriend::getFriends($user);
+        $user     = User::getUserDataById($id);
+        $friends  = UserFriend::getFriends($user);
         $friendly = UserFriend::getFriendlies($user);
+
         return view('user.profile-show')->with([
             'friends'  => $friends,
             'friendly' => $friendly,
-            'user'     => $user
+            'user'     => $user,
         ]);
     }
 
     /**
-     * @param $id
+     * @param  int  $id
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        $user = User::findOrFail(Auth::id());
-        $countries = self::getCacheData('userEditCountries', self::getCountries());
-        $races = self::getCacheData('userEditRaces', self::getRaces());
+        $user = User::findOrFail(auth()->id());
 
-        return view('user.profile-edit', compact('user', 'countries', 'races'));
+        return view('user.profile-edit', compact('user'));
     }
 
 
-    /**
-     * @param  \App\Http\Requests\UpdateProfileRequest  $request
-     * @param $id
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(UpdateProfileRequest $request, $id)
+    public function update(UpdateProfileRequest $request, int $id)
     {
+        $user = User::findOrFail(auth()->id());
 
-        UserService::updateData($request, Auth::id());
-
-        return redirect()->route('edit_profile', ['id' => Auth::id()]);
-    }
-
-    /**
-     * @param $id
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function destroy($id)
-    {
-        return redirect()->to('/');
-    }
-
-    public static function getCacheData($cache_name, $data)
-    {
-        if (\Cache::has($cache_name) && !\Cache::get($cache_name)->isEmpty()) {
-            $data_cache = \Cache::get($cache_name);
-        } else {
-            $data_cache = \Cache::remember($cache_name, 300, function () use ($data) {
-                return $data;
-            });
+        $user->name         = (string) $request->get('name');
+        $user->email        = (string) $request->get('email');
+        $user->country_id   = (integer) $request->get('country');
+        $user->race_id      = (integer) $request->get('race');
+        $user->birthday     = $request->get('birthday');
+        $user->homepage     = (string) $request->get('homepage');
+        $user->isq          = (string) $request->get('isq');
+        $user->skype        = (string) $request->get('skype');
+        $user->vk_link      = (string) $request->get('vk_link');
+        $user->fb_link      = (string) $request->get('fb_link');
+        $user->view_avatars = (boolean) $request->get('view_avatars');
+        /**
+         * Save Avatar
+         */
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            $file = $request->file('avatar');
+            /**
+             * Check path and delete old file
+             */
+            $path = PathHelper::checkUploadsFileAndPath('images/users/avatars', auth()->user()->avatar);
+            /**
+             * Check file for resize
+             */
+            if ($file->getClientOriginalExtension() == "gif") {
+                $filePath = 'storage/'.$file->store('images/users/avatars', 'public');
+            } else {
+                $filePath = ResizeImage::resizeImg($file, 125, 125, true, $path);
+            }
+            $user->avatar = $filePath;
         }
-        return $data_cache;
+
+        $user->save();
+
+        return redirect()->route('edit_profile', ['id' => auth()->id()]);
     }
 
-    /**
-     * @return \App\Models\Race[]|\Illuminate\Database\Eloquent\Collection
-     */
-    private static function getRaces()
-    {
-        return Race::all([
-            'id',
-            'title'
-        ]);
-    }
-
-    /**
-     * @return \App\Models\Country[]|\Illuminate\Database\Eloquent\Collection
-     */
-    private static function getCountries()
-    {
-        return Country::all([
-            'id',
-            'name',
-            'flag'
-        ]);
-    }
 }

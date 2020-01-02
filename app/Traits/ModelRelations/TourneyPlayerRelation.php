@@ -3,25 +3,17 @@
 namespace App\Traits\ModelRelations;
 
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\User;
 
 trait TourneyPlayerRelation
 {
 
     /**
-     * @return BelongsTo
-     */
-    //    public function file()
-    //    {
-    //        return $this->belongsTo('App\Models\File', 'file_id');
-    //    }
-
-    /**
-     * @return BelongsTo
+     * @return mixed
      */
     public function user()
     {
-        return $this->belongsTo('App\User', 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
 }

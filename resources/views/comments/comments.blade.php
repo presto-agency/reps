@@ -52,10 +52,10 @@
                                 <span class="info__date">{{$comment->created_at->format('H:i d.m.Y')}}</span>
                             </div>
                         @endif
-                    </div>
-                    <div class="comments__content">
-                        <div class="content__title night_text">
-                            {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
+                        <div class="comments__content">
+                            <div class="content__title night_text">
+                                {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
+                            </div>
                         </div>
                     </div>
                     <div class="comments__items">
@@ -113,7 +113,7 @@
         @endif
     </div>
 @endisset
-@section('ess21-custom-script')
+@section('custom-script')
     <script type="text/javascript">
         function quote(id) {
             $.ajax({
@@ -124,7 +124,6 @@
                     _token: '{{csrf_token()}}',
                 },
                 success: function (data) {
-                    // console.log(data.quoteContent);
                     if (data.quote) {
                         CKEDITOR.instances['content-comment'].insertHtml(data.quote);
                     }

@@ -11,9 +11,10 @@
 
 @section('content')
     @include('replay.components.show')
-    @include('content.comments', ['comments' => $replay->comments])
-    @include('content.add-comment', [
-        'route' => route('replay.send_comment', ['id' =>$replay->id])
+    @include('comments.comments', ['comments' => $replay->comments])
+    @include('comments.add-comment', [
+        'route' => route('replay.send_comment', ['id' =>$replay->id]),
+        'id' => $replay->id,
     ])
 @endsection
 

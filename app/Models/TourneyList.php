@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Services\Tournament\TourneyService;
+
 use App\Traits\ModelRelations\TournamentRelationTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -24,12 +24,6 @@ class TourneyList extends Model
         = [
             0 => 'NONE', 1 => 'FIRSTBYREMOVING', 2 => 'FIRSTBYROUND',
         ];
-    /**
-     * Using table name
-     *
-     * @var string
-     */
-    protected $table = 'tourney_lists';
 
     /**
      * The attributes that are mass assignable.
@@ -38,41 +32,43 @@ class TourneyList extends Model
      */
     protected $fillable
         = [
-            'tourney_id',
-            'admin_id',
             'name',
             'place',
             'prize_pool',
-            'status',
-            'visible',
-            'maps',
             'rules_link',
             'vod_link',
             'logo_link',
-            'map_selecttype',
-            'importance',
-            'is_ranking',
             'password',
+            'all_file',
+            'status',
+            'map_select_type',
+            'visible',
+            'ranking',
             'checkin_time',
             'start_time',
         ];
 
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = true;
+    protected $guarded = ['importance', 'user_id'];
 
+    protected $casts
+        = [
+            'name'            => 'string',
+            'place'           => 'string',
+            'prize_pool'      => 'string',
+            'rules_link'      => 'string',
+            'vod_link'        => 'string',
+            'logo_link'       => 'string',
+            'password'        => 'string',
+            'all_file'        => 'string',
+            'status'          => 'integer',
+            'map_select_type' => 'integer',
+            'user_id'         => 'integer',
+            'importance'      => 'integer',
+            'visible'         => 'boolean',
+            'ranking'         => 'boolean',
+            'start_time'      => 'datetime',
+            'checkin_time'    => 'datetime',
+        ];
 
-    public static function getPrizePool($value)
-    {
-        return TourneyService::getPrizePool($value);
-    }
-
-    public static function ImpToStars($id)
-    {
-        return TourneyService::ImpToStars($id);
-    }
 
 }
