@@ -13885,6 +13885,14 @@ namespace PheRum\BBCode\Facades {
  
 }
 
+namespace App\Services\Tournament { 
+
+    class TourneyService {
+         
+    }
+ 
+}
+
 namespace Barryvdh\Debugbar { 
 
     class Facade {
@@ -21313,6 +21321,8 @@ namespace  {
     class Embed extends \Cohensive\Embed\Facades\Embed {}
 
     class BBCode extends \PheRum\BBCode\Facades\BBCode {}
+
+    class TourneyService extends \App\Services\Tournament\TourneyService {}
 
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
 
