@@ -10,25 +10,6 @@ use App\Models\UserGallery;
 class GalleryHelper
 {
 
-    /**
-     * UserImages
-     */
-
-
-    /**
-     * @param $row
-     * @param $user_id
-     *
-     * @return mixed
-     */
-    public static function getAllUserImagesAjax($row, $user_id)
-    {
-        return UserGallery::where('user_id', $user_id)
-            ->orderByDesc('id')
-            ->limit(8)
-            ->get($row);
-    }
-
     public static function getAllUserImagesAjaxId($row, $user_id, $id)
     {
         return UserGallery::where('user_id', $user_id)
@@ -38,24 +19,6 @@ class GalleryHelper
             ->get($row);
     }
 
-    public static function getUserImage($id, $relation)
-    {
-        return UserGallery::with($relation)->findOrFail($id);
-    }
-
-    public static function previousUserImage($userId, $id)
-    {
-        return UserGallery::where('user_id', (int)$userId)
-            ->where('id', '<', (int)$id)
-            ->max('id');
-    }
-
-    public static function nextUserImage($userId, $id)
-    {
-        return UserGallery::where('user_id', (int)$userId)
-            ->where('id', '>', (int)$id)
-            ->min('id');
-    }
 
     /**
      * @param $row
@@ -87,30 +50,6 @@ class GalleryHelper
             ->select($row)
             ->where('id', '>', $id)
             ->min('id');
-    }
-
-
-    public static function getUrl()
-    {
-        return collect(request()->segments());
-    }
-
-    public static function checkUrlGalleries()
-    {
-        return \Str::contains(self::getUrl(), 'galleries');
-    }
-
-    public function saveComments()
-    {
-        $request = request();
-        $replay = UserGallery::findOrFail($request->id);
-        $comment = new Comment([
-            'user_id' => auth()->id(),
-            'content' => $request->input('content'),
-        ]);
-        $replay->comments()->save($comment);
-
-        return back();
     }
 
 }

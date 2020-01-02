@@ -13,46 +13,64 @@ use App\User;
 trait ReplayRelationTrait
 {
 
+    /**
+     * @return mixed
+     */
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    /**
+     * @return mixed
+     */
     public function maps()
     {
         return $this->belongsTo(ReplayMap::class, 'map_id', 'id');
     }
 
+    /**
+     * @return mixed
+     */
     public function types()
     {
         return $this->belongsTo(ReplayType::class, 'type_id', 'id');
     }
 
+    /**
+     * @return mixed
+     */
     public function firstCountries()
     {
-        return $this->belongsTo(Country::class, 'first_country_id',
-            'id');
+        return $this->belongsTo(Country::class, 'first_country_id', 'id');
     }
 
+    /**
+     * @return mixed
+     */
     public function secondCountries()
     {
-        return $this->belongsTo(Country::class, 'second_country_id',
-            'id');
+        return $this->belongsTo(Country::class, 'second_country_id', 'id');
     }
 
-
+    /**
+     * @return mixed
+     */
     public function firstRaces()
     {
         return $this->belongsTo(Race::class, 'first_race', 'id');
     }
 
+    /**
+     * @return mixed
+     */
     public function secondRaces()
     {
         return $this->belongsTo(Race::class, 'second_race', 'id');
     }
 
     /**
-     * Get all of the topic comments.
+     * @return mixed
      */
     public function comments()
     {
@@ -80,21 +98,21 @@ trait ReplayRelationTrait
             ->where('rating', '-1');
     }
 
-    /**
-     * Get all of the comments for the User Replay.
-     *
-     * @return mixed
-     */
-    public function replayUserComments()
-    {
-        return $this->hasManyThrough(
-            'App\Models\Comment',
-            'App\User',
-            'id',
-            'user_id',
-            'user_id',
-            'id'
-        );
+//    /**
+//     * Get all of the comments for the User Replay.
+//     *
+//     * @return mixed
+//     */
+//    public function replayUserComments()
+//    {
+//        return $this->hasManyThrough(
+//            'App\Models\Comment',
+//            'App\User',
+//            'id',
+//            'user_id',
+//            'user_id',
+//            'id'
+//        );
+//    }
 
-    }
 }

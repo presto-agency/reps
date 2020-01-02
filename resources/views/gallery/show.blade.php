@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('gallery-show',$userImage->id) }}
+    {{ Breadcrumbs::render('gallery-show') }}
 @endsection
 
 @section('sidebar-left')
@@ -11,6 +11,11 @@
 
 @section('content')
     @include('user.gallery.components.show')
+    @include('comments.comments', ['comments' => $image->comments])
+    @include('comments.add-comment', [
+        'route' => route('galleries.send.comment', ['id' =>$image->id]),
+        'id' => $image->id,
+    ])
 @endsection
 
 @section('right-side')

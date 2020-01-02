@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('forum-index') }}
+    {{ Breadcrumbs::render('forum-sections-index') }}
 @endsection
 
 @section('sidebar-left')
@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <div id="last_forum_sections_index"></div>
+    <div id="load_forum_sections"></div>
 @endsection
 
 @section('right-side')
@@ -17,28 +17,30 @@
     @include('right-side.components.last-replay')
 @endsection
 
-@section('ess21-custom-script')
+@section('custom-script')
+    @parent
     <script type="text/javascript">
         $(document).ready(function () {
-            let _token = $('input[name="_token"]').val();
-            last_forum_sections_index('', _token);
+            loadForumSections('',);
 
-            function last_forum_sections_index(id = "", _token) {
+            function loadForumSections(id = "",) {
                 $.ajax({
                     url: "{{ route('load.more.forum.index') }}",
                     method: "POST",
-                    data: {id: id, _token: _token},
+                    data: {
+                        id: id,
+                        _token: '{{csrf_token()}}'
+                    },
                     success: function (data) {
-                        $('#load_more_forum_sections_index_button').remove();
-                        $('#last_forum_sections_index').append(data);
+                        $('#load_more_forum_sections').remove();
+                        $('#load_forum_sections').append(data);
                     }
                 })
             }
 
-            $(document).on('click', '#load_more_forum_sections_index_button', function () {
-                let id = $(this).data('id');
-                $('#load_more_forum_sections_index_button').html('<b>Загрузка...</b>');
-                last_forum_sections_index(id, _token);
+            $(document).on('click', '#load_more_forum_sections', function () {
+                $('#load_more_forum_sections').html('<b>Загрузка...</b>');
+                loadForumSections($(this).data('id'));
             });
         });
     </script>

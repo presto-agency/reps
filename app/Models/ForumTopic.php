@@ -11,23 +11,25 @@ class ForumTopic extends Model
 
     protected $fillable
         = [
-            'title', 'forum_section_id', 'user_id', 'reviews', 'rating',
+            'title', 'forum_section_id', 'reviews', 'rating',
             'preview_content', 'preview_img', 'content', 'comments_count',
             'news', 'start_on',
         ];
+    protected $guarded = ['user_id',];
 
     public function forumSection()
     {
-        return $this->belongsTo(ForumSection::class, 'forum_section_id','id');
+        return $this->belongsTo(ForumSection::class, 'forum_section_id', 'id');
     }
 
     public function author()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id','id');
     }
 
+
     /**
-     * Get all of the topic comments.
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function comments()
     {

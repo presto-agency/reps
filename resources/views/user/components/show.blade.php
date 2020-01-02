@@ -135,7 +135,7 @@
                                             </a>
                                         </div>
                                         <div class="right_block">
-                                            @if($friend->countries)
+                                            @if(!empty($friend->countries))
                                                 <img class="info__flag" alt="flag"
                                                      src="{{asset($friend->countries->flagOrDefault())}}">
                                             @endif
@@ -171,14 +171,14 @@
                                             </a>
                                         </div>
                                         <div class="right_block">
-                                            @isset($friend->countries)
+                                            @if(!empty($friend->countries))
                                                 <img class="info__flag" title="{{$friend->countries->name}}" alt="flag"
                                                      src="{{ asset($friend->countries->flagOrDefault()) }}">
-                                            @endisset
-                                            @isset($friend->races)
+                                            @endif
+                                            @if(!empty($friend->races))
                                                 <img class="info__cube" alt="race" title="{{$friend->races->title}}"
                                                      src="{{asset('images/default/game-races/'.$friend->races->title.'.png') }}">
-                                            @endisset
+                                            @endif
                                         </div>
                                     </div>
                                 @endif

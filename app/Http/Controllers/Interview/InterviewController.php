@@ -2,40 +2,52 @@
 
 namespace App\Http\Controllers\Interview;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\InterviewStoreRequests;
 use App\Models\InterviewUserAnswers;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class InterviewController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return redirect()->to('/');
-
+        return abort(404);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return redirect()->to('/');
-
+        return abort(404);
     }
 
+
+    public function show($id)
+    {
+        return abort(404);
+    }
+
+    public function edit($id)
+    {
+        return abort(404);
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        return abort(404);
+    }
+
+
+    public function destroy($id)
+    {
+        return abort(404);
+    }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param InterviewStoreRequests $request
+     * @param  InterviewStoreRequests  $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(InterviewStoreRequests $request)
@@ -43,52 +55,8 @@ class InterviewController extends Controller
         if (empty(self::checkUserAnswer($request->question_id))) {
             self::storeIUA($request);
         }
+
         return back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return redirect()->to('/');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return redirect()->to('/');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        return redirect()->to('/');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        return redirect()->to('/');
     }
 
     /**
@@ -96,26 +64,21 @@ class InterviewController extends Controller
      */
     private static function storeIUA($request)
     {
-        $storeData = new InterviewUserAnswers;
+        $storeData              = new InterviewUserAnswers;
         $storeData->question_id = $request->question_id;
-        $storeData->answer_id = $request->answer_id;
-        $storeData->user_id = self::getAuthUser()->id;
+        $storeData->answer_id   = $request->answer_id;
+        $storeData->user_id     = auth()->id();
         $storeData->save();
-
     }
 
     /**
      * @param $question_id
+     *
      * @return mixed
      */
     public static function checkUserAnswer($question_id)
     {
-        return InterviewUserAnswers::where('question_id', $question_id)->where('user_id', self::getAuthUser()->id)->value('id');
-    }
-
-    public static function getAuthUser()
-    {
-        return auth()->user();
+        return InterviewUserAnswers::where('question_id', $question_id)->where('user_id', auth()->id())->value('id');
     }
 
 }

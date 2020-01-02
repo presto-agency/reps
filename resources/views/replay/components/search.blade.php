@@ -5,7 +5,7 @@
     @if($visible_title)
         <div class="gocu-replays__title">
             <svg class="title__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 x="0px" y="0px"
                  viewBox="0 0 275.6 275.6" style="enable-background:new 0 0 275.6 275.6;" xml:space="preserve">
 		    <path d="M19.6,122l0,0.6c-0.2,4.8,1.3,9.1,4.1,12c4.2,4.3,10.9,5.3,17.4,2.4l25.1-13.7l24.6,13.4l0.5,0.2c2.5,1.1,5,1.7,7.4,1.7
 			c3.8,0,7.4-1.5,9.9-4.1c2.9-3,4.3-7.2,4.1-12l-3.3-28.2l18.6-19.1l0.6-0.7c3.5-4.7,4.6-10.1,3-15c-1.7-4.9-5.9-8.5-11.5-10
@@ -34,108 +34,104 @@
 
         </div>
     @endif
-        @if(isset($replay) && $replay->isNotEmpty())
-            @foreach($replay as $item)
-                <div class="gocu-replays__subtitle change_gray">
-                    <a class="subtitle__name night_text"
-                       href="{{ asset("replay/{$item->id}"."?type={$item::$type[$item->user_replay]}")}}">
-                        {{clean($item->title)}}
-                    </a>
-                    <p class="subtitle__date night_text">{{$item->created_at->format('H:i d.m.Y')}}</p>
-                </div>
-                <div class="gocu-replays__match">
-                    <div class="match__author">
-                        <div class="subtitle__info">
-                            @if($item->users)
-                                @if(auth()->check() && auth()->user()->userViewAvatars())
-                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
-                                @endif
-                                @guest()
-                                    <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
-                                @endguest()
-                                <span class="comment-author__nickname"
-                                      title="{{$item->users->name}}">{{$item->users->name}}</span>
+    @if(isset($replaysSearch) && $replaysSearch->isNotEmpty())
+        @foreach($replaysSearch as $item)
+            <div class="gocu-replays__subtitle change_gray">
+                <a class="subtitle__name night_text"
+                   href="{{ route('replay.show',['replay'=>$item->id]).'?type='.$item::$type[$item->user_replay]}}">
+                    {{clean($item->title)}}
+                </a>
+                <p class="subtitle__date night_text">{{$item->created_at->format('H:i d.m.Y')}}</p>
+            </div>
+            <div class="gocu-replays__match">
+                <div class="match__author">
+                    <div class="subtitle__info">
+                        @if(!empty($item->users))
+                            @if(auth()->check() && auth()->user()->userViewAvatars())
+                                <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
                             @endif
-                            <span class="comment-author__replay-item night_text">{{__('Видео реплей')}}</span>
-                        </div>
-                        <div class="subtitle__icons">
-                            <svg version="1.1" id="Capa_1"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink"
-                                 x="0px" y="0px"
-                                 viewBox="0 0 60 60" xml:space="preserve">
+                            @guest()
+                                <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">
+                            @endguest()
+                            <span class="comment-author__nickname"
+                                  title="{{$item->users->name}}">{{$item->users->name}}</span>
+                        @endif
+                        <span class="comment-author__replay-item night_text">{{__('Видео реплей')}}</span>
+                    </div>
+                    <div class="subtitle__icons">
+                        <svg version="1.1" id="Capa_1"
+                             xmlns="http://www.w3.org/2000/svg"
+                             x="0px" y="0px"
+                             viewBox="0 0 60 60" xml:space="preserve">
                             <path d="M30.5,0C14.233,0,1,13.233,1,29.5c0,5.146,1.346,10.202,3.896,14.65L0.051,58.684c-0.116,0.349-0.032,0.732,0.219,1
                                 C0.462,59.888,0.728,60,1,60c0.085,0,0.17-0.011,0.254-0.033l15.867-4.176C21.243,57.892,25.86,59,30.5,59
                                 C46.767,59,60,45.767,60,29.5S46.767,0,30.5,0z M30.5,57c-3.469,0-6.919-0.673-10.132-1.945l4.849-1.079
                                 c0.539-0.12,0.879-0.654,0.759-1.193c-0.12-0.539-0.653-0.877-1.193-0.759l-7.76,1.727c-0.006,0.001-0.01,0.006-0.016,0.007
                                 c-0.007,0.002-0.014,0-0.021,0.001L2.533,57.563l4.403-13.209c0.092-0.276,0.059-0.578-0.089-0.827C4.33,39.292,3,34.441,3,29.5
                                 C3,14.336,15.336,2,30.5,2S58,14.336,58,29.5S45.664,57,30.5,57z"/>
-                                <path
-                                        d="M17,23.015h14c0.552,0,1-0.448,1-1s-0.448-1-1-1H17c-0.552,0-1,0.448-1,1S16.448,23.015,17,23.015z"/>
-                                <path
-                                        d="M44,29.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,29.015,44,29.015z"/>
-                                <path
-                                        d="M44,37.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,37.015,44,37.015z"/>
-                        </svg>
-                            <span
-                                    class="night_text">{{$item->comments_count}}</span>
-                            <a class="items__download night_text download"
-                               data-id="{{$item->id}}"
-                               data-url="{{url("replay/$item->id/download_count")}}"
-                               href="{{route('replay.download',['id' =>$item->id])}}">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     xmlns:xlink="http://www.w3.org/1999/xlink"
-                                     version="1.1"
-                                     id="Capa_1" x="0px" y="0px"
-                                     viewBox="0 0 471.2 471.2"
-                                     style="enable-background:new 0 0 471.2 471.2;"
-                                     xml:space="preserve">
                             <path
-                                    d="M457.7,230.1c-7.5,0-13.5,6-13.5,13.5v122.8c0,33.4-27.2,60.5-60.5,60.5H87.5C54.1,427,27,399.8,27,366.5V241.7    c0-7.5-6-13.5-13.5-13.5S0,234.2,0,241.7v124.8C0,414.8,39.3,454,87.5,454h296.2c48.3,0,87.5-39.3,87.5-87.5V243.7    C471.2,236.2,465.2,230.1,457.7,230.1z"/>
-                                    <path
-                                            d="M226.1,346.8c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-62.7,62.8V30.8    c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"/>
+                                d="M17,23.015h14c0.552,0,1-0.448,1-1s-0.448-1-1-1H17c-0.552,0-1,0.448-1,1S16.448,23.015,17,23.015z"/>
+                            <path
+                                d="M44,29.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,29.015,44,29.015z"/>
+                            <path
+                                d="M44,37.015H17c-0.552,0-1,0.448-1,1s0.448,1,1,1h27c0.552,0,1-0.448,1-1S44.552,37.015,44,37.015z"/>
                         </svg>
-                                <span class="night_text" id="{{'downloadCount'.$item->id}}"
-                                      data-count="{{$item->downloaded}}">{{$item->downloaded}}</span>
-                            </a>
-                        </div>
+                        <span class="night_text">{{$item->comments_count}}</span>
+                        <a class="items__download night_text downloaded" data-id="{{$item->id}}"
+                           href="{{route('replay.download',['id' =>$item->id])}}"
+                           data-url="{{route('replay.increment.downloaded',['id'=>$item->id])}}">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 version="1.1"
+                                 id="Capa_1" x="0px" y="0px"
+                                 viewBox="0 0 471.2 471.2"
+                                 style="enable-background:new 0 0 471.2 471.2;"
+                                 xml:space="preserve">
+                            <path
+                                d="M457.7,230.1c-7.5,0-13.5,6-13.5,13.5v122.8c0,33.4-27.2,60.5-60.5,60.5H87.5C54.1,427,27,399.8,27,366.5V241.7    c0-7.5-6-13.5-13.5-13.5S0,234.2,0,241.7v124.8C0,414.8,39.3,454,87.5,454h296.2c48.3,0,87.5-39.3,87.5-87.5V243.7    C471.2,236.2,465.2,230.1,457.7,230.1z"/>
+                                <path
+                                    d="M226.1,346.8c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-62.7,62.8V30.8    c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"/>
+                        </svg>
+                            <span class="night_text" id="downloaded_{{$item->id}}">{{$item->downloaded}}</span>
+                        </a>
                     </div>
-                    <p class="match__comment night_text">{!!ParserToHTML::toHTML($item->content,'size')!!}</p>
-                    <div class="match__info">
-                        <div class="info__country">
-                            <span class="country__text night_text">{{__('Страны:')}}</span>
-                            @if($item->firstCountries)
-                                <img class="country__img country-first" src="{{asset($item->firstCountries->flagOrDefault())}}"
-                                     alt="flag" title="{{$item->firstCountries->name}}">
-                            @endif
-                            <span class="country__text night_text">{{__('vs')}}</span>
-                            @if($item->secondCountries)
-                                <img src="{{asset($item->secondCountries->flagOrDefault())}}"
-                                     alt="flag" title="{{$item->secondCountries->name}}">
-                            @endif
-                        </div>
-                        <div class="info__match-up">
-                            <span class="match-up__text night_text">{{__('Матчап:')}}</span>
-                            @if($item->firstRaces)
-                                <span class="match-up__name name__first night_text"
-                                      title="{{$item->firstRaces->title}}">{{$item->firstRaces->code}}</span>
-                            @endif
-                            <span class="match-up__text match-up__versus night_text">{{__('vs')}}</span>
-                            @if($item->secondRaces)
-                                <span class="match-up__name name__second night_text"
-                                      title="{{$item->secondRaces->title}}">{{$item->secondRaces->code}}</span>
-                            @endif
-                        </div>
-                        <div class="info__maps">
-                            <span class="maps__text night_text">{{__('Карта:')}}</span>
-                            @if($item->maps)
-                                <span class="maps__name">{{$item->maps->name}}</span>
-                            @endif
-                        </div>
-                        <div class="info__wins">
-                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                </div>
+                <p class="match__comment night_text">{!!ParserToHTML::toHTML($item->content,'size')!!}</p>
+                <div class="match__info">
+                    <div class="info__country">
+                        <span class="country__text night_text">{{__('Страны:')}}</span>
+                        @if(!empty($item->firstCountries))
+                            <img class="country__img country-first"
+                                 src="{{asset($item->firstCountries->flagOrDefault())}}"
+                                 alt="flag" title="{{$item->firstCountries->name}}">
+                        @endif
+                        <span class="country__text night_text">{{__('vs')}}</span>
+                        @if(!empty($item->secondCountries))
+                            <img src="{{asset($item->secondCountries->flagOrDefault())}}"
+                                 alt="flag" title="{{$item->secondCountries->name}}">
+                        @endif
+                    </div>
+                    <div class="info__match-up">
+                        <span class="match-up__text night_text">{{__('Матчап:')}}</span>
+                        @if(!empty($item->firstRaces))
+                            <<img class="icon_bars" alt="race" title="{{$item->firstRaces->title}}"
+                                  src="{{asset('images/default/game-races/' . $item->firstRaces->title . '.png')}}"/>
+                        @endif
+                        <span class="match-up__text match-up__versus night_text">{{__('vs')}}</span>
+                        @if(!empty($item->secondRaces))
+                            <img class="icon_bars" alt="race" title="{{$item->secondRaces->title}}"
+                                 src="{{asset('images/default/game-races/' . $item->secondRaces->title . '.png')}}"/>
+                        @endif
+                    </div>
+                    <div class="info__maps">
+                        <span class="maps__text night_text">{{__('Карта:')}}</span>
+                        @if(!empty($item->maps))
+                            <span class="maps__name">{{$item->maps->name}}</span>
+                        @endif
+                    </div>
+                    <div class="info__wins">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                             x="0px" y="0px"
+                             viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 	                <path d="M497,37h-65.7c0.2-7.3,0.4-14.6,0.4-22c0-8.3-6.7-15-15-15H95.3c-8.3,0-15,6.7-15,15c0,7.4,0.1,14.7,0.4,22H15
                     C6.7,37,0,43.7,0,52c0,67.2,17.6,130.6,49.5,178.6c31.5,47.4,73.5,74.6,118.9,77.2c10.3,11.2,21.2,20.3,32.5,27.3v66.7h-25.2
                     c-30.4,0-55.2,24.8-55.2,55.2V482h-1.1c-8.3,0-15,6.7-15,15c0,8.3,6.7,15,15,15h273.1c8.3,0,15-6.7,15-15c0-8.3-6.7-15-15-15h-1.1
@@ -145,51 +141,47 @@
                     c-19,28.6-42.1,48.3-67.1,57.7c4.3-7.1,8.5-14.7,12.5-22.7c25.1-50.2,41.2-113.5,46.6-182h52.1
                     C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
-                            <span class="wins__text night_text">{{$item->rating}}</span>
-                        </div>
+                        <span class="wins__text night_text">{{$item->rating}}</span>
                     </div>
                 </div>
-                <hr>
-                @php
-                    $last_id = $item->id;
-                @endphp
-            @endforeach
+            </div>
+            <hr>
+            @php
+                $last_id = $item->id;
+            @endphp
+        @endforeach
 
-            <div id="load_replay_only_search" class="gocu-replays__button">
-                <button type="button" name="load_replay_only_search_button"
-                        class="button button__download-more night_text"
-                        id="load_replay_only_search_button" data-id="{{ $last_id }}">
-                    {{__('Загрузить еще')}}
-                </button>
-            </div>
-        @else
-            <div id="load_replay_only_search" class="gocu-replays__button night_modal">
-                <button type="button" name="load_replay_only_search_button"
-                        class="button button__download-morenight_text">
-                    {{__('Пусто')}}
-                </button>
-            </div>
-        @endif
+        <div class="gocu-replays__button">
+            <button type="button" class="button button__download-more night_text"
+                    id="load_replays_search" data-id="{{ $last_id }}">
+                {{__('Загрузить еще')}}
+            </button>
+        </div>
+    @else
+        <div class="gocu-replays__button night_modal">
+            <button type="button" class="button button__download-morenight_text">
+                {{__('Пусто')}}
+            </button>
+        </div>
+    @endif
 </div>
 <script type="text/javascript">
-    $('.download').click(function () {
+    /**
+     * Replay File download
+     */
+    $('.downloaded').click(function () {
         let id = $(this).data('id');
-        let token = $('meta[name="csrf-token"]').attr('content');
-        let url = $(this).data('url');
         $.ajax({
             method: 'POST',
-            url: url,
-            dataType: 'json',
-            async: false,
+            url: $(this).data('url'),
             data: {
-                _token: token,
+                _token: '{{csrf_token()}}',
                 id: id,
             },
             success: function (data) {
-                let it = "#downloadCount" + id;
-                $(it).html(data.downloaded);
+                $('#downloaded_' + id).html(data.downloaded);
             },
-            error: function () {
+            error: function (data) {
             }
         });
     });

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('user-replay',request('id'),request('type')) }}
+    {{ Breadcrumbs::render('user-replay-index',request('id'),request('type')) }}
 @endsection
 
 
@@ -11,38 +11,39 @@
 @endsection
 
 @section('content')
-    <div id="last_replay"></div>
+    <div id="load_user-replays-list"></div>
 @endsection
 
 @section('right-side')
     @parent
     @include('right-side.components.last-replay')
 @endsection
-@section('ess21-custom-script')
+
+@section('custom-script')
+    @parent
     <script type="text/javascript">
         $(document).ready(function () {
-            let _token = $('input[name="_token"]').val();
-            let user_id = "{{$user_id}}";
-            let type = "{{$type}}";
-            last_replay('', _token, user_id);
-
-            function last_replay(id = "", _token, user_id) {
+            loadUserReplays('',);
+            function loadUserReplays(id = '',) {
                 $.ajax({
-                    url: "{{ route('load.more.user.replay',['id'=>$user_id]) }}",
+                    url: '{{ route('load.more.user.replay.index',['id'=>request('id')]) }}',
                     method: "POST",
-                    data: {id: id, _token: _token, user_id: user_id, type: type},
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        user_id: '{{request('id')}}',
+                        id: id,
+                        type: '{{request('type')}}',
+                    },
                     success: function (data) {
-                        $('#load_more-replay_button').remove();
-                        $('#last_replay').append(data);
+                        $('#load_more-user-replay').remove();
+                        $('#load_user-replays-list').append(data);
                     }
                 })
             }
 
-            $(document).on('click', '#load_more-replay_button', function () {
-                let id = $(this).data('id');
-                let user_id = $(this).data('user_id');
-                $('#load_more-replay_button').html('<b>Загрузка...</b>');
-                last_replay(id, _token, user_id);
+            $(document).on('click', '#load_more-user-replay', function () {
+                $('#load_more-user-replay').html('<b>Загрузка...</b>');
+                loadUserReplays($(this).data('id'),);
             });
         });
     </script>

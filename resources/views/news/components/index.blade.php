@@ -93,15 +93,15 @@
                 $last_id = $single_news->id;
             @endphp
         @endforeach
-        <div id="load_more" class="breaking-news__button night_modal">
-            <button type="button" name="load_more_button" class="button button__download-more" data-id="{{ $last_id }}"
-                    id="load_more_button">
+        <div class="breaking-news__button night_modal">
+            <button type="button" class="button button__download-more" data-id="{{ $last_id }}"
+                    id="load_news_list-main-page">
                 {{__('Загрузить еще')}}
             </button>
         </div>
     @else
         <div class="breaking-news__button night_modal">
-            <button type="button" name="load_more_button" class="button button__download-more night_text">
+            <button type="button" class="button button__download-more night_text">
                 {{__('Пусто')}}
             </button>
         </div>

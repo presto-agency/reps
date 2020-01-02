@@ -1,8 +1,10 @@
-@foreach($headlineData as $item)
-    <div class="text_support night_text">
-        {!! $item['title']!!}
-    </div>
-@endforeach
+@if(isset($headlineData) && $headlineData->isNotEmpty())
+    @foreach($headlineData as $item)
+        <div class="text_support night_text">
+            {!! $item->title!!}
+        </div>
+    @endforeach
+@endif
 <section id="block_chat-twitch" class="block_chat-twitch theatre-off">
     <div class="row main_row">
         <div class="col-12 main_container">
@@ -31,18 +33,16 @@
                                         d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path>
                                 </svg>
                             </button>
+                            <img class="icon_bars" id="streamOnlineFlag"
+                                 src=""
+                                 title=""
+                                 alt="flag"/>
+                            <img class="icon_bars" id="streamOnlineRace"
+                                 src=""
+                                 title="" alt="race"/>
+                            <p class="title_text" id="streamOnlineName"
+                               title=""></p>
 
-                            @if($stream)
-                                <img class="icon_bars" id="streamOnlineFlag"
-                                     src="@if(!empty($stream->countries)){{asset($stream->countries->flagOrDefault())}}@endisset"
-                                     title="@if(!empty($stream->countries)){{$stream->countries->name}}@endisset"
-                                     alt="flag"/>
-                                <img class="icon_bars" id="streamOnlineRace"
-                                     src="@if(!empty($stream->races)){{asset('images/default/game-races/'.$stream->races->title.'.png')}}@endisset"
-                                     title="@if(!empty($stream->races)){{$stream->races->title}}@endisset" alt="race"/>
-                                <p class="title_text" id="streamOnlineName"
-                                   title="{{$stream->title}}">{{$stream->title}}</p>
-                            @endif
                         </div>
                         <div class="right_block">
                             <button id="btn_theatre_mode" class="btn_theatre_mode">
@@ -80,7 +80,7 @@
                     {{--                                                        </iframe>--}}
                     <iframe id="streamOnline" style="width: 99%; height: 100%;" allowfullscreen="true" scrolling="no"
                             autoplay="1" frameborder="0"
-                            src="@isset($stream){{$stream->stream_url_iframe}}@endisset"></iframe>
+                            src=""></iframe>
                 </div>
             </div>
         </div>

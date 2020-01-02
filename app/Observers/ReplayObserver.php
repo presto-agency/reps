@@ -11,13 +11,17 @@ class ReplayObserver
 
     public function creating(Replay $replay)
     {
-
-        $this->setUserIdAttribute($replay);
-
+        /**
+         * User role cannot add PRO-Replay
+         */
+        if (auth()->user()->roles->name === 'user') {
+            $replay->setAttribute('user_replay', \App\Models\Replay::REPLAY_USER);
+        }
+        $replay->setAttribute('user_id', auth()->id());
     }
 
     /**
-     * @param Replay $replay
+     * @param  Replay  $replay
      */
     public function created(Replay $replay)
     {
@@ -27,12 +31,11 @@ class ReplayObserver
 
     public function updating(Replay $replay)
     {
-        $this->setUserIdAttribute($replay);
+        $replay->setAttribute('user_id', auth()->id());
     }
 
     public function updated(Replay $replay)
     {
-
         //
 
     }
@@ -55,15 +58,4 @@ class ReplayObserver
         //
     }
 
-    /**
-     * @param $data
-     *
-     * @return mixed
-     *
-     */
-    private function setUserIdAttribute($data)
-    {
-        return $data->setAttribute('user_id',auth()->id());
-
-    }
 }

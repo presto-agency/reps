@@ -10,38 +10,37 @@
 @endsection
 
 @section('content')
-    @auth()
-        @include('user.gallery.components.create')
-    @endauth
-    <div id="load_more_galleries"></div>
+    <div id="load_galleries-list"></div>
 @endsection
 
 @section('right-side')
     @parent
     @include('right-side.components.last-replay')
 @endsection
-@section('ess21-custom-script')
+@section('custom-script')
+    @parent
     <script type="text/javascript">
         $(document).ready(function () {
-                let _token = $('input[name="_token"]').val();
-                load_more_galleries('', _token);
+                loadGalleries('',);
 
-                function load_more_galleries(id = "", _token) {
+                function loadGalleries(id = '',) {
                     $.ajax({
-                        url: "{{ route('load.more.galleries') }}",
+                        url: '{{ route('load.more.images') }}',
                         method: "POST",
-                        data: {id: id, _token: _token},
+                        data: {
+                            id: id,
+                            _token: '{{csrf_token()}}'
+                        },
                         success: function (data) {
-                            $('#load_more_galleries_button').remove();
-                            $('#load_more_galleries').append(data);
+                            $('#load_more_galleries').remove();
+                            $('#load_galleries-list').append(data);
                         }
                     })
                 }
 
-                $(document).on('click', '#load_more_galleries_button', function () {
-                    let id = $(this).data('id');
-                    $('#load_more_galleries_button').html('<b>Загрузка...</b>');
-                    load_more_galleries(id, _token);
+                $(document).on('click', '#load_more_galleries', function () {
+                    $('#load_more_galleries').html('<b>Загрузка...</b>');
+                    loadGalleries($(this).data('id'));
                 });
             }
         );

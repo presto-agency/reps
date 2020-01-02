@@ -18,36 +18,38 @@
     @include('right-side.components.last-replay')
 @endsection
 
-@section('ess21-custom-script')
+@section('custom-script')
+    @parent
     <script type="text/javascript">
         /**
          * Ajax Load Request
          */
-        function loadAjaxData(relation_id, comment_id = '', _token, panel= '') {
+        function loadAjaxData(relation_id, comment_id = '', panel = '') {
             $.ajax({
                 url: "{{ route('user.comments.load.sections.comments',['id'=> request('id')]) }}",
                 method: "POST",
                 data: {
                     relation_id: relation_id,
                     comment_id: comment_id,
-                    _token: _token,
+                    _token: '{{csrf_token()}}',
                 },
                 success: function (data) {
                     console.log('hi');
                     let div_id = '#load_more_user_posts_' + relation_id;
-                    let button_id =  '#load_more_user_posts_button_' + relation_id;
+                    let button_id = '#load_more_user_posts_button_' + relation_id;
                     $(button_id).remove();
                     $(div_id).append(data);
                 }
             });
 
         }
-            $.ready(button_event);
-        function button_event(relation_id,comment_id) {
+
+        $.ready(button_event);
+
+        function button_event(relation_id, comment_id) {
             let button_id = '#load_more_user_posts_button_' + relation_id;
-            let _token = $('input[name="_token"]').val();
             $(button_id).html('<b>Загрузка...</b>');
-            loadAjaxData(relation_id, comment_id, _token,'');
+            loadAjaxData(relation_id, comment_id, '');
         }
     </script>
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('replay', request('type')) }}
+    {{ Breadcrumbs::render('replay-index', request('type')) }}
 @endsection
 
 @section('sidebar-left')
@@ -10,33 +10,35 @@
 @endsection
 
 @section('content')
-    <div id="last_replay"></div>
+    <div id="load_replays-list"></div>
 @endsection
-@section('ess21-custom-script')
+
+@section('custom-script')
+    @parent
     <script type="text/javascript">
         $(document).ready(function () {
-            let _token = $('input[name="_token"]').val();
-            let subtype = "{{$subtype}}";
-            let type = "{{$type}}";
-            last_replay('', _token, subtype);
+            loadReplays('',);
 
-            function last_replay(id = "", _token, subtype) {
+            function loadReplays(id = '',) {
                 $.ajax({
-                    url: "{{ route('load.more.replay') }}",
+                    url: '{{ route('load.more.replay.index') }}',
                     method: "POST",
-                    data: {id: id, _token: _token, subtype: subtype, type: type},
+                    data: {
+                        id: id,
+                        _token: '{{csrf_token()}}',
+                        type: '{{request('type')}}',
+                        subtype: '{{request('subtype')}}',
+                    },
                     success: function (data) {
-                        $('#load_more-replay_button').remove();
-                        $('#last_replay').append(data);
+                        $('#load_more-replay').remove();
+                        $('#load_replays-list').append(data);
                     }
                 })
             }
 
-            $(document).on('click', '#load_more-replay_button', function () {
-                let id = $(this).data('id');
-                let subtype = $(this).data('subtype');
-                $('#load_more-replay_button').html('<b>Загрузка...</b>');
-                last_replay(id, _token, subtype);
+            $(document).on('click', '#load_more-replay', function () {
+                $('#load_more-replay').html('<b>Загрузка...</b>');
+                loadReplays($(this).data('id'));
             });
         });
     </script>

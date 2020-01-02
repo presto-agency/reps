@@ -13,7 +13,7 @@ class UserGalleryUpdateRequests extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check() && auth()->id() == $this->id;
+        return auth()->check() && auth()->id() === (int)$this->id;
     }
 
     /**
@@ -25,7 +25,7 @@ class UserGalleryUpdateRequests extends FormRequest
     {
         return [
             'sign'       => 'nullable|string|between:1,255',
-            'for_adults' => 'nullable|in:1',
+            'for_adults' => 'boolean',
         ];
     }
 }
