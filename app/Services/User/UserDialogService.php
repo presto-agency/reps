@@ -25,7 +25,7 @@ class UserDialogService
 
         $dialogues = Dialogue::whereHas('users', function ($query) {
             $query->where('user_id', Auth::id());
-        })->with('messages.sender')->paginate(10);
+        })->with('messages.sender')->get();
 
         /*$dialogues = Dialogue::whereHas('users', function ($query){
             $query->where('user_id', Auth::id());
