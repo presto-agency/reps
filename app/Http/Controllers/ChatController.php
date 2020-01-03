@@ -104,7 +104,7 @@ class ChatController extends Controller
             'time'         => $msg->created_at->format('H:i'),
             'country_flag' => $country_flag,
             'is_hidden'    => $msg->is_hidden,
-            'avatar'       => isset($msg->user->avatar) ? '/'.$msg->user->avatar : 'images/default/avatar/avatar.png',
+            'avatar'       => isset($msg->user->avatar) ? $msg->user->avatar : 'images/default/avatar/avatar.png',
         ];
     }
 
