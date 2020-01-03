@@ -50,7 +50,7 @@
                 @endif
             @endforeach
         </div>
-        {{ $contacts->links() }}
+        {{--{{ $contacts->links() }}--}}
     @else
         <div class="none_text">
             {{__('Пожалуйста, добавьте друзей')}}
