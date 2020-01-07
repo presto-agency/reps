@@ -250,7 +250,7 @@ $(document).ready(function () {
 // Replace the textarea #example with SCEditor
 // var textarea = document.getElementById('video_iframe');
 // sceditor.create(textarea, {
-//     format: 'bbcode',
+//     format: 'bbcode1',
 //     toolbar: 'youtube',
 //     style: 'js/sceditor/themes/content/default.min.css'
 // });

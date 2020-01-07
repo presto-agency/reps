@@ -63,7 +63,7 @@
             </div>
             <div class="gocu-replays__match">
                 <div class="match__author">
-                    <div class="subtitle__info">
+                    <div class="subtitle__info night_text">
                         @if(!empty($item->users))
                             @if(auth()->check() && auth()->user()->userViewAvatars())
                                 <img src="{{asset($item->users->avatarOrDefault())}}" alt="avatar">

@@ -2,7 +2,7 @@
  * Version 1 compatibility plugin
  *
  * Patches commands and BBCodes set with
- * command.set and bbcode.set to wrap DOM
+ * command.set and bbcode1.set to wrap DOM
  * node arguments in jQuery objects.
  *
  * Should only be used to ease migrating.

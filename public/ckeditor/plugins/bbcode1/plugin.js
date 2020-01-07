@@ -4,12 +4,14 @@
  */
 
 ( function() {
+    console.log('bbb');
 	CKEDITOR.on( 'dialogDefinition', function( ev ) {
 		var tab,
 			name = ev.data.name,
 			definition = ev.data.definition;
 
 		if ( name == 'link' ) {
+            console.log('name',name)
 			definition.removeContents( 'target' );
 			definition.removeContents( 'upload' );
 			definition.removeContents( 'advanced' );
@@ -17,6 +19,7 @@
 			tab.remove( 'emailSubject' );
 			tab.remove( 'emailBody' );
 		} else if ( name == 'image' ) {
+		    console.log('name',name);
 			definition.removeContents( 'advanced' );
 			tab = definition.getContents( 'Link' );
 			tab.remove( 'cmbTarget' );

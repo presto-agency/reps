@@ -9872,7 +9872,7 @@
 
 		/**
 		 * cache of all the tags pointing to their bbcodes to enable
-		 * faster lookup of which bbcode a tag should have
+		 * faster lookup of which bbcode1 a tag should have
 		 * @private
 		 */
 		var tagsToBBCodes = {};
@@ -9937,13 +9937,13 @@
 		};
 
 		/**
-		 * Checks if any bbcode styles match the elements styles
+		 * Checks if any bbcode1 styles match the elements styles
 		 *
 		 * @param {!HTMLElement} element
 		 * @param {string} content
 		 * @param {boolean} [blockLevel=false]
 		 * @return {string} Content with any matching
-		 *                bbcode tags wrapped around it.
+		 *                bbcode1 tags wrapped around it.
 		 * @private
 		 */
 		function handleStyles(element, content, blockLevel) {
@@ -10051,7 +10051,7 @@
 		 * @param {HTMLElement} element The element to convert
 		 * @param {string} content  The Tags text content
 		 * @param {boolean} [blockLevel=false] If to convert block level tags
-		 * @return {string} Content with any matching bbcode tags
+		 * @return {string} Content with any matching bbcode1 tags
 		 *                  wrapped around it.
 		 * @private
 		 */
@@ -10066,12 +10066,12 @@
 				// loop all bbcodes for this tag
 				each(tagsToBBCodes[tag][blockLevel], function (
 					bbcode, bbcodeAttribs) {
-					// if the bbcode requires any attributes then check this has
+					// if the bbcode1 requires any attributes then check this has
 					// all needed
 					if (bbcodeAttribs) {
 						convertBBCode = false;
 
-						// loop all the bbcode attribs
+						// loop all the bbcode1 attribs
 						each(bbcodeAttribs, function (attrib, values) {
 							// Skip if the element doesn't have the attibue or
 							// the attribute doesn't match one of the require
@@ -10081,7 +10081,7 @@
 								return;
 							}
 
-							// break this loop as we have matched this bbcode
+							// break this loop as we have matched this bbcode1
 							convertBBCode = true;
 							return false;
 						});

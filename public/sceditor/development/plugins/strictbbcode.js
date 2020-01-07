@@ -15,7 +15,7 @@
 // 	// var extend = sceditor.utils.extend;
 
 // 	sceditor.plugins.strictbbcode = function () {
-// 		// override bbcode plugin add and update default bbcodes to have attrs
+// 		// override bbcode1 plugin add and update default bbcodes to have attrs
 // 		// and override their exec funcs
 // 	};
 // }(sceditor));
