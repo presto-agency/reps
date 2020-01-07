@@ -11,7 +11,7 @@
 
 
 
-{{--    <script type="text/javascript" src="{{ asset('ckeditor\ckeditor.js') }}"></script>--}}
+    <script type="text/javascript" src="{{ asset('ckeditor\ckeditor.js') }}"></script>
     <script type="text/javascript" src="{{ asset('sceditor\minified\sceditor.min.js') }}"></script>
     <link rel="stylesheet" href="../../../sceditor/minified/themes/default.min.css" />
 {{--    <script type="text/javascript" src="{{ asset('\sceditor\minified\themes\content\default.min.css') }}"></script>--}}
@@ -28,21 +28,21 @@
     <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-{{--<script>--}}
-{{--    const c = JSON.parse('{!! $smiles !!}');--}}
+<script>
+    const c = JSON.parse('{!! $smiles !!}');
 
-{{--    const imgs= c.map(function (item) {--}}
-{{--        return item.filename;--}}
-{{--    });--}}
-{{--    // const cod= c.map(function (item) {--}}
-{{--    //     return item.charactor;--}}
-{{--    // });--}}
-{{--    window.imgs = imgs;--}}
-{{--    // CKEDITOR.config.smiley_descriptions = cod;--}}
-{{--    CKEDITOR.config.smiley_images = imgs;--}}
-{{--    CKEDITOR.config.smiley_path = '/storage/chat/smiles/';--}}
+    const imgs= c.map(function (item) {
+        return item.filename;
+    });
+    // const cod= c.map(function (item) {
+    //     return item.charactor;
+    // });
+    window.imgs = imgs;
+    // CKEDITOR.config.smiley_descriptions = cod;
+    CKEDITOR.config.smiley_images = imgs;
+    CKEDITOR.config.smiley_path = '/storage/chat/smiles/';
 
-{{--</script>--}}
+</script>
 <a href="javascript:" id="return-to-top">
     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up"
          class="svg-inline--fa fa-chevron-up fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
