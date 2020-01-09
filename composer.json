@@ -16,7 +16,7 @@
         "barryvdh/laravel-translation-manager": "^0.5.5",
         "caouecs/laravel-lang": "~4.0",
         "chriskonnertz/bbcode": "^1.1.2",
-        "cohensive/embed": "dev-master",
+        "cohensive/embed": "5.5.*",
         "davejamesmiller/laravel-breadcrumbs": "^5.3",
         "fideloper/proxy": "^4.0",
         "genert/bbcode": "^1.1",

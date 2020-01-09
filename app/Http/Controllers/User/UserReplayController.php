@@ -217,12 +217,13 @@ class UserReplayController extends Controller
     public function iframe()
     {
         $request = request();
-        if ($request->ajax()) {
+                if ($request->ajax()) {
+        try {
             $embed = Embed::make($request->video_iframe_url)->parseUrl();
             if ($embed == false || empty($embed)) {
                 return \Response::json([
                     'success' => 'false',
-                    'message' => 'Указаный сервис не поддерживаеться',
+                    'message' => 'Указаный url не поддерживаеться',
                 ], 400);
             }
             $embed->setAttribute([
@@ -230,18 +231,23 @@ class UserReplayController extends Controller
                 'height' => '100%',
             ]);
             $iframe_string = $embed->getHtml();
-            try {
-                preg_match('/src="([^"]+)"/', $iframe_string, $match);
-                $src = $match[1];
-            } catch (\Exception $e) {
-                \Log::error($e);
-            }
+
+            preg_match('/src="([^"]+)"/', $iframe_string, $match);
+            $src = $match[1];
 
             return \Response::json([
                 'success' => 'true',
                 'message' => $src,
             ], 200);
+        } catch (\Exception $e) {
+            \Log::error($e);
+
+            return \Response::json([
+                'success' => 'false',
+                'message' => 'Указаный url не поддерживаеться',
+            ], 400);
         }
+                }
 
         return null;
     }

@@ -117,9 +117,7 @@ class TournamentController extends Controller
                 ])->orderBy('round_number');
             },
         ])->withCount([
-            'players as check_players_count' => function ($query) {
-                $query->where('check', 1);
-            },
+            'checkPlayers as check_players_count',
             'mapsPool',
         ])->where('visible', 1)->findOrFail($id);
     }
@@ -184,9 +182,7 @@ class TournamentController extends Controller
     public static function getTourneyListAjaxId(int $id)
     {
         return TourneyList::withCount([
-            'players as check_players_count' => function ($query) {
-                $query->where('check', 1);
-            }, 'players',
+            'checkPlayers as check_players_count', 'players',
         ])->where('visible', 1)
             ->where('id', '<', $id)
             ->orderByDesc('id')
@@ -200,9 +196,7 @@ class TournamentController extends Controller
     public static function getTourneyListAjax()
     {
         return TourneyList::withCount([
-            'players as check_players_count' => function ($query) {
-                $query->where('check', 1);
-            }, 'players',
+            'checkPlayers as check_players_count', 'players',
         ])->where('visible', 1)
             ->orderByDesc('id')
             ->limit(5)

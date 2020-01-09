@@ -20,9 +20,7 @@ class UserPolicy
      *
      * @return bool
      */
-    public function before(
-        User $user, $ability, Users $section, User $item = null
-    ) {
+    public function before(User $user, $ability, Users $section, User $item = null) {
 
     }
 
