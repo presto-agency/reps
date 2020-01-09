@@ -84,6 +84,7 @@ class LastRegisteredUsersComposer
     private function getNewUsers()
     {
         return User::with('countries:id,flag,name', 'races:id,code,title')
+            ->whereNotNull('email_verified_at')
             ->latest('created_at')
             ->limit(5)
             ->get(['id', 'name', 'race_id', 'country_id']);

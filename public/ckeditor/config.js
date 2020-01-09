@@ -12,7 +12,7 @@ CKEDITOR.editorConfig = function( config ) {
     // CKEDITOR.config.protectedSource.push(/<(script)[^>]*>.*<\/script>/ig);// разрешить теги <script>
     CKEDITOR.config.protectedSource.push(/<\?[\s\S]*?\?>/g);// разрешить php-код
     CKEDITOR.config.allowedContent = true; /* all tags */
-     config.extraPlugins ='smiley,bbcode,uploadimage' ;
+     config.extraPlugins ='smiley,uploadimage' ;
 
 
     config.uploadUrl = '/upload/upload.php';

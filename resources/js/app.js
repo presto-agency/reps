@@ -10,6 +10,9 @@ require('select2');
 
 require('./main');
 require('../views/home/components/chat/js/chat');
+// require('./sceditor_my');
+
+// require('../minified/sceditor.min.js');
 // require( '../../node_modules/@ckeditor/ckeditor5-build-classic/ckeditor5-build-classic@16.0.0');
 
 // require( '@ckeditor/ckeditor5-build-classic' );

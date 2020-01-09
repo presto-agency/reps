@@ -4,7 +4,6 @@
  */
 
 ( function() {
-    console.log('bbb');
 	CKEDITOR.on( 'dialogDefinition', function( ev ) {
 		var tab,
 			name = ev.data.name,
