@@ -11,8 +11,8 @@ class TourneyListsMapPool extends Model
 
     protected $casts
         = [
-            'tourney_id' => 'integer',
-            'map_id'     => 'integer',
+            'tourney_id' => 'int',
+            'map_id'     => 'int',
         ];
 
     public function map()

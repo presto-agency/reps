@@ -46,16 +46,16 @@ class TourneyMatch extends Model
 
     protected $casts
         = [
-            'player1_score' => 'integer',
-            'player2_score' => 'integer',
-            'winner_score'  => 'integer',
-            'winner_action' => 'integer',
-            'winner_value'  => 'integer',
-            'looser_action' => 'integer',
-            'looser_value'  => 'integer',
-            'match_number'  => 'integer',
-            'round_number'  => 'integer',
-            'played'        => 'boolean',
+            'player1_score' => 'int',
+            'player2_score' => 'int',
+            'winner_score'  => 'int',
+            'winner_action' => 'int',
+            'winner_value'  => 'int',
+            'looser_action' => 'int',
+            'looser_value'  => 'int',
+            'match_number'  => 'int',
+            'round_number'  => 'int',
+            'played'        => 'int',
             'round'         => 'string',
             'rep1'          => 'string',
             'rep2'          => 'string',
@@ -64,9 +64,9 @@ class TourneyMatch extends Model
             'rep5'          => 'string',
             'rep6'          => 'string',
             'rep7'          => 'string',
-            'tourney_id'    => 'integer',
-            'player1_id'    => 'integer',
-            'player2_id'    => 'integer',
+            'tourney_id'    => 'int',
+            'player1_id'    => 'int',
+            'player2_id'    => 'int',
         ];
 
 }

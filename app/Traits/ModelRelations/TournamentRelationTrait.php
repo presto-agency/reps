@@ -44,5 +44,13 @@ trait TournamentRelationTrait
         return $this->hasMany(TourneyMatch::class, 'tourney_id', 'id');
     }
 
+    /**
+     *
+     * @return mixed
+     */
+    public function checkPlayers()
+    {
+        return $this->hasMany(TourneyPlayer::class, 'tourney_id', 'id')->whereCheck(true);
+    }
 
 }

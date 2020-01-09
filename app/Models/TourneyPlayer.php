@@ -25,11 +25,11 @@ class TourneyPlayer extends Model
         ];
     protected $casts
         = [
-            'check'        => 'boolean',
+            'check'        => 'int',
             'description'  => 'string',
-            'place_result' => 'integer',
-            'tourney_id'   => 'integer',
-            'user_id'      => 'integer',
+            'place_result' => 'int',
+            'tourney_id'   => 'int',
+            'user_id'      => 'int',
         ];
 
 }
