@@ -83,7 +83,7 @@
             <div class="body__img">
                 <img src="{{asset($image->pictureOrDefault())}}" alt="image">
             </div>
-            @if(request()->route()->getName() == 'load.more.user.images')
+            @if(request()->route()->getName() == 'user-gallery.show')
                 @if(auth()->check() && auth()->id() == $image->user_id)
                     @include('user.gallery.components.edit')
                 @endif
