@@ -135,7 +135,7 @@ class UserReplayController extends Controller
         $data->user_replay       = $request->get('type');
         $data->content           = $content;
         if ($request->has('src_iframe')) {
-            $data->src_iframe = $src_iframe;
+            $data->src_iframe = htmlspecialchars_decode($src_iframe);
         }
         if ($request->hasFile('file')) {
             /**

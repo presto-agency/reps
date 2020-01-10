@@ -77,7 +77,7 @@
                             <img src="{{asset($replayShow->firstCountries->flagOrDefault())}}" alt="flag"
                                  title="{{$replayShow->firstCountries->name}}"/>
                         @endif
-                        <span class="night_text"> vs </span>
+                        <span class="night_text">{{__('vs')}}</span>
                         @if(!empty($replayShow->secondCountries))
                             <img src="{{asset($replayShow->secondCountries->flagOrDefault())}}" alt="flag"
                                  title="{{$replayShow->secondCountries->name}}"/>
