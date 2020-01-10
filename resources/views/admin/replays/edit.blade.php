@@ -5,7 +5,8 @@
            data-url="{{route('set.iframe')}}"
            value="">
 </div>
-<iframe id="video_iframe_set" class="d-none"></iframe>
+<iframe id="video_iframe_set" class="d-none" src="" width="100%" height="340" frameborder="0" scrolling="no"
+        allowfullscreen></iframe>
 <div id="video_iframe_error" class="alert alert-danger d-none"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">

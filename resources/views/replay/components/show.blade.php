@@ -193,8 +193,10 @@
     </div>
 </section>
 @if(!empty($replayShow->src_iframe))
-    <iframe class="replay_video border_shadow" src="{{$replayShow->src_iframe}}"
-            width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    <iframe
+        {{--        class="replay_video border_shadow"--}}
+        src="{{$replayShow->src_iframe}}"
+        width="100%" height="340" frameborder="0" scrolling="no" allowfullscreen></iframe>
 @endif
 
 <script type="text/javascript">
