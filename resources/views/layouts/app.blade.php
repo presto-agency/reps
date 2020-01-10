@@ -26,6 +26,8 @@
     {{--    <link rel="stylesheet" href="{{ asset('js/sceditor/themes/default.min.css') }} "/>--}}
     {{--    Styles   --}}
     <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 <script>
@@ -170,6 +172,7 @@
 <script src="{{ asset('js/sceditor/sceditor.min.js') }}"></script>
 <script src="{{ asset('js/sceditor/formats/bbcode.js') }}"></script>
 <script src="https://kit.fontawesome.com/75f3a42e45.js"></script>
+
 
 @section('custom-script')
     <script type="text/javascript">

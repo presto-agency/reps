@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentsStoreRequests;
 use App\Models\Comment;
 use App\Models\ForumTopic;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
@@ -83,7 +84,10 @@ class TopicController extends Controller
         if (empty($content)) {
             return redirect()->back();
         }
-        $model   = ForumTopic::findOrFail($request->get('id'));
+        $model               = ForumTopic::findOrFail($request->get('id'));
+        $model->commented_at = Carbon::now();
+        $model->save();
+
         $comment = new Comment([
             'user_id' => auth()->id(),
             'content' => $content,

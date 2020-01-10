@@ -239,7 +239,8 @@
                        value="{{old('video_iframe_url')}}">
                 <input name="src_iframe" type="hidden" id="src_iframe" tabindex="-1" readonly value="">
             </div>
-            <iframe id="video_iframe_set" class="d-none"></iframe>
+            <iframe id="video_iframe_set" class="d-none" src="" width="490" height="340" frameborder="0" scrolling="no"
+                    allowfullscreen></iframe>
             <div id="video_iframe_error" class="alert alert-danger d-none"></div>
             @error('src_iframe')
             <div class="alert alert-danger" role="alert">

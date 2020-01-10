@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
+use App\Rules\GoogleRecaptcha;
 use App\Services\Base\RegexService;
 use App\User;
 use Illuminate\Auth\Events\Registered;
@@ -55,33 +56,35 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
-            'name'     => [
+            'name'                 => [
                 'regex:'.RegexService::regex('name'),
                 'required',
                 'string',
                 'between:3,30',
                 'unique:users,name',
             ],
-            'email'    => [
+            'email'                => [
                 'required',
                 'email',
                 'string',
                 'max:30',
                 'unique:users,email',
             ],
-            'password' => [
+            'password'             => [
                 'required',
                 'string',
                 'between:8,30',
                 'confirmed',
             ],
-            'country'  => [
+            'country'              => [
                 'exists:countries,id',
             ],
-            'race'     => [
+            'race'                 => [
                 'exists:races,id',
             ],
+            'g-recaptcha-response' => ['required', new GoogleRecaptcha],
         ]);
     }
 
@@ -121,7 +124,7 @@ class RegisterController extends Controller
              * On this Event send mail
              */
             event(new Registered($user = $this->create($request->all())));
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             \Log::error($e);
         }
 
