@@ -57,7 +57,7 @@ class UserActivityLog extends Model
             self::EVENT_USER_COMMENT          => self::EVENT_USER_COMMENT,
             self::EVENT_USER_LIKE             => self::EVENT_USER_LIKE,
             self::EVENT_USER_REGISTER         => self::EVENT_USER_REGISTER,
-            self::EVENT_USER_REGISTER_CONFIRM => self::EVENT_USER_REGISTER_CONFIRM,
+//            self::EVENT_USER_REGISTER_CONFIRM => self::EVENT_USER_REGISTER_CONFIRM,
             self::EVENT_CREATE_POST           => self::EVENT_CREATE_POST,
             self::EVENT_CREATE_REPLAY         => self::EVENT_CREATE_REPLAY,
             self::EVENT_CREATE_IMAGE          => self::EVENT_CREATE_IMAGE,

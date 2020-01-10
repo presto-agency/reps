@@ -258,6 +258,7 @@ Breadcrumbs::register('user-gallery-index', function ($breadcrumbs, $id) {
  */
 Breadcrumbs::register('user-gallery-show', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('user-gallery-index', $id);
-    $breadcrumbs->push('Картинка');
+    $breadcrumbs->push('Просмотр картинки');
 });
+
 

@@ -59,18 +59,10 @@ class UserGalleryController extends Controller
     /**
      * @param $id
      * @param $user_gallery
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id, $user_gallery)
     {
-        User::findOrFail($id);
-
-        $previous  = GalleriesController::getPreviousUserImage($user_gallery, $id);
-        $userImage = GalleriesController::getUserImage($user_gallery, $id);
-        $next      = GalleriesController::getNextUserImage($user_gallery, $id);
-
-        return view('user.gallery.edit', compact('previous', 'userImage', 'next'));
+        return abort(404);
     }
 
     /**

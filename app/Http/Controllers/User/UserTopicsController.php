@@ -89,7 +89,7 @@ class UserTopicsController extends Controller
         $preview_content = clean($request->get('preview_content'));
         $content         = clean($request->get('content'));
 
-        if (empty($title) || empty($content) || empty($preview_content)) {
+        if (empty($title) || empty($content)) {
             return back();
         }
 
@@ -132,7 +132,7 @@ class UserTopicsController extends Controller
         $preview_content = clean($request->get('preview_content'));
         $content         = clean($request->get('content'));
 
-        if (empty($title) || empty($content) || empty($preview_content)) {
+        if (empty($title) || empty($content)) {
             return back();
         }
 

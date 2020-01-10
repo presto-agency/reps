@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ReplayStoreRequest;
 use App\Http\Requests\ReplayUpdateRequest;
 use App\Models\{Replay};
-use Cohensive\Embed\Facades\Embed;
+use Embed\Embed;
 
 class UserReplayController extends Controller
 {
@@ -135,7 +135,7 @@ class UserReplayController extends Controller
         $data->user_replay       = $request->get('type');
         $data->content           = $content;
         if ($request->has('src_iframe')) {
-            $data->src_iframe = $src_iframe;
+            $data->src_iframe = htmlspecialchars_decode($src_iframe);
         }
         if ($request->hasFile('file')) {
             /**
@@ -217,37 +217,31 @@ class UserReplayController extends Controller
     public function iframe()
     {
         $request = request();
-                if ($request->ajax()) {
-        try {
-            $embed = Embed::make($request->video_iframe_url)->parseUrl();
-            if ($embed == false || empty($embed)) {
+        if ($request->ajax()) {
+            try {
+                $info = Embed::create($request->video_iframe_url);
+                if (empty($info)) {
+                    return \Response::json([
+                        'success' => 'false',
+                        'message' => 'Указаный url не поддерживаеться',
+                    ], 400);
+                }
+
+                preg_match('/src="([^"]+)"/', $info->code, $match);
+
+                return \Response::json([
+                    'success' => 'true',
+                    'message' => htmlspecialchars_decode($match[1]),
+                ], 200);
+            } catch (\Exception $e) {
+                \Log::error($e);
+
                 return \Response::json([
                     'success' => 'false',
                     'message' => 'Указаный url не поддерживаеться',
                 ], 400);
             }
-            $embed->setAttribute([
-                'width'  => '100%',
-                'height' => '100%',
-            ]);
-            $iframe_string = $embed->getHtml();
-
-            preg_match('/src="([^"]+)"/', $iframe_string, $match);
-            $src = $match[1];
-
-            return \Response::json([
-                'success' => 'true',
-                'message' => $src,
-            ], 200);
-        } catch (\Exception $e) {
-            \Log::error($e);
-
-            return \Response::json([
-                'success' => 'false',
-                'message' => 'Указаный url не поддерживаеться',
-            ], 400);
         }
-                }
 
         return null;
     }
