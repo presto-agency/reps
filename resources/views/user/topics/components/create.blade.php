@@ -59,9 +59,9 @@
             <label for="preview_content" class="night_text">{{__('Краткое описание')}}</label>
             <textarea type="text" class="form-control create-topic__name night_input" id="preview_content"
                       name="preview_content">{{ clean(old('preview_content')) }}</textarea>
-{{--            <script>--}}
-{{--                CKEDITOR.replace('preview_content', {});--}}
-{{--            </script>--}}
+            <script>
+                CKEDITOR.replace('preview_content', {});
+            </script>
         </div>
         @error('preview_content')
         <div class="alert alert-danger" role="alert">
@@ -69,21 +69,22 @@
         </div>
         @enderror
         <div class="form-group">
-            <script>
-                console.log('sced1');
-                </script>
+
             <label for="main_content" class="night_text">{{__('*Содержание')}}</label>
             <textarea type="text" class="form-control create-topic__name night_input" id="main_content"
                       name="content">{{ clean(old('content')) }}</textarea>
-<script>
-    console.log('sced');
-    // Replace the textarea #example with SCEditor
-    var textarea = document.getElementById('main_content');
-    sceditor.create(textarea, {
-        format: 'bbcode',
-         style: '../../../sceditor/default.min.css'
-    });
-    </script>
+            <script>
+                CKEDITOR.replace('main_content', {});
+            </script>
+{{--<script>--}}
+{{--    console.log('sced');--}}
+{{--    // Replace the textarea #example with SCEditor--}}
+{{--    var textarea = document.getElementById('main_content');--}}
+{{--    sceditor.create(textarea, {--}}
+{{--        format: 'bbcode',--}}
+{{--         style: '../../../sceditor/default.min.css'--}}
+{{--    });--}}
+{{--    </script>--}}
         </div>
         @error('content')
         <div class="alert alert-danger" role="alert">
