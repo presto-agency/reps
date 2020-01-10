@@ -73,16 +73,14 @@
                                name="password_confirmation" autocomplete="new-password" required
                                placeholder="{{ __('Confirm Password') }}">
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="g-recaptcha" name="g-recaptcha-response" data-sitekey="{{ config('recaptcha.CAPTCHA_SITE_KEY') }}"></div>
-                                @error('g-recaptcha-response')
-                                <div class="alert alert-danger" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </div>
-                                @enderror
-                            </div>
+                        <div class="g-recaptcha" name="g-recaptcha-response"
+                             data-sitekey="{{ config('recaptcha.CAPTCHA_SITE_KEY') }}"></div>
+                        @error('g-recaptcha-response')
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
                         </div>
+                        @enderror
+
                     </div>
                     <div class="modal-body__enter-btn">
                         <button type="submit" class="button button__download-more">
