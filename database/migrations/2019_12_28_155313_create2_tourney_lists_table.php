@@ -20,18 +20,19 @@ class Create2TourneyListsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL')->onUpdate('cascade');
             $table->string('name', 255);
             $table->string('place', 255);
-            $table->string('prize_pool', 255);/*->nullable();*/
-            $table->string('rules_link', 255);/*->nullable();*/
-            $table->string('vod_link', 255);/*->nullable();*/
-            $table->string('logo_link', 255);/*->nullable();*/
-            $table->string('password', 12);/*->nullable();*/
-            $table->string('maps', 255);/*->nullable();*/
+            $table->string('prize_pool', 255)->nullable();
+            $table->string('rules_link', 255)->nullable();
+            $table->string('vod_link', 255)->nullable();
+            $table->string('logo_link', 255)->nullable();
+            $table->string('password', 12)->nullable();
+            $table->string('maps', 255)->nullable();
             $table->string('all_file', 255)->nullable()->comment('here is an archive with all the tournament files');
             $table->unsignedTinyInteger('status')->index()->comment('watch model for more details');
             $table->unsignedTinyInteger('map_select_type')->index()->comment('watch model for more details');
             $table->tinyInteger('importance')->default(0);
             $table->boolean('visible');
             $table->boolean('ranking');
+            $table->dateTime('time_reg');
             $table->dateTime('checkin_time');
             $table->dateTime('start_time');
             $table->timestamps();

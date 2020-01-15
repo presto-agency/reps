@@ -20,4 +20,9 @@ class TourneyListsMapPool extends Model
         return $this->belongsTo(ReplayMap::class, 'map_id', 'id');
     }
 
+    public function tourney()
+    {
+        return $this->belongsTo(TourneyList::class, 'tourney_id', 'id');
+    }
+
 }

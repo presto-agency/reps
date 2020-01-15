@@ -62,8 +62,7 @@ class ReplayMap extends Section
                 ->setWidth(50),
 
             $url = AdminColumn::image(function ($model) {
-                if ( ! empty($model->url)
-                    && PathHelper::checkFileExists($model->url)
+                if ( ! empty($model->url) && PathHelper::checkFileExists($model->url)
                 ) {
                     return $model->url;
                 } else {

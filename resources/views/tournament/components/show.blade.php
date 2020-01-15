@@ -15,6 +15,7 @@
                         C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
                 <p class="title_text">{{$tournament->name}}</p>
+                <button onclick="tournamentRegister()">Add</button>
             </div>
         </div>
 
@@ -190,9 +191,8 @@
             </div>
         </div>
         <div class="title_players change_gray">
-            <p class="title_playersText">{{__('Players')}}</p>
+            <p class="title_playersText">{{__('Players').' | '.'Registered:'.$tournament->players_count .' | '.'Check-In: '.$tournament->check_players_count }}</p>
         </div>
-
         <div class="container_players">
             @if(isset($tournament->players) && $tournament->players->isNotEmpty())
                 @foreach($tournament->players as $item)
@@ -209,9 +209,18 @@
                                         <img src="{{asset($item->user->avatarOrDefault())}}"
                                              class="author__avatar img-fluid" alt="avatar">
                                     @endguest
-                                    <span class="name_player" title="{{$item->user->name}}">
-                                        {{$item->user->name}}</span>
+                                    <span class="name_player" title="{{$item->user->name.' ('.$item->description.')'}}">
+                                        {{$item->user->name}}
+
+                                        <small> {{' ('.$item->description.')'}}</small>
+                                    </span>
                                 </a>
+                                @if($item->check)
+                                    <small>{{__('CheckIn:YES')}}</small>
+                                @else
+                                    <small>{{__('CheckIn:NO')}}</small>
+                                @endif
+
                             </div>
                             <div class="center_block">
                                 @if(!empty($item->user->countries))
@@ -274,8 +283,8 @@
                                                 <img src="{{asset($item->player1->user->avatarOrDefault())}}"
                                                      class="icon_bars" alt="avatar">
                                             @endguest
-                                            <span title="{{$item->player1->user->name}}">
-                                                {{$item->player1->user->name}}</span>
+                                            <span title="{{$item->player1->description}}">
+                                                {{$item->player1->description}}</span>
                                         </div>
                                     @else
                                         {{__('- Freeslot -')}}
@@ -300,7 +309,8 @@
                                                      src="{{asset($item->player2->user->avatarOrDefault())}}"
                                                      alt="avatar">
                                             @endguest()
-                                            <span>{{$item->player2->user->name}}</span>
+                                            <span title="{{$item->player2->description}}">
+                                                {{$item->player2->description}}</span>
                                         </div>
                                     @else
                                         {{__('- Freeslot -')}}

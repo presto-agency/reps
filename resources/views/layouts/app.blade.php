@@ -36,9 +36,11 @@
     const imgs= c.map(function (item) {
         return item.filename;
     });
-    // const cod= c.map(function (item) {
-    //     return item.charactor;
-    // });
+    const cod= c.map(function (item) {
+        return item.charactor;
+    });
+    console.log();
+    console.log(cod);
     window.imgs = imgs;
     // CKEDITOR.config.smiley_descriptions = cod;
     CKEDITOR.config.smiley_images = imgs;

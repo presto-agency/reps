@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Tournament;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TourneyRegisterPlayerRequest;
 use App\Models\TourneyList;
+use App\Models\TourneyPlayer;
 use Illuminate\Http\Request;
 
 class TournamentController extends Controller
@@ -54,7 +56,8 @@ class TournamentController extends Controller
     public function show(int $id)
     {
         $tournament = $this->getTournament($id);
-        $data       = $this->createDataArray($tournament);
+        //        dd($tournament);
+        $data = $this->createDataArray($tournament);
 
         return view('tournament.show', compact('tournament', 'data'));
     }
@@ -106,20 +109,22 @@ class TournamentController extends Controller
                     ->orderByDesc('check')
                     ->orderByRaw('LENGTH(place_result)')
                     ->orderBy('place_result')
-                    ->select(['id', 'tourney_id', 'user_id', 'place_result']);
+                    ->select(['id', 'tourney_id', 'user_id', 'place_result', 'description', 'check']);
             },
             'matches' => function ($query) {
                 $query->with([
-                    'player1:id,tourney_id,user_id',
-                    'player2:id,tourney_id,user_id',
+                    'player1',
+                    'player2',
                     'player2.user:id,name,avatar',
                     'player2.user:id,name,avatar',
                 ])->orderBy('round_number');
             },
-        ])->withCount([
-            'checkPlayers as check_players_count',
-            'mapsPool',
-        ])->where('visible', 1)->findOrFail($id);
+        ])
+            ->withCount([
+                'checkPlayers as check_players_count', 'players',
+                'mapsPool',
+            ])
+            ->where('visible', 1)->findOrFail($id);
     }
 
     public function downloadMatchFile(int $match, string $rep)
@@ -201,6 +206,38 @@ class TournamentController extends Controller
             ->orderByDesc('id')
             ->limit(5)
             ->get();
+    }
+
+    /**
+     * @param  \App\Http\Requests\TourneyRegisterPlayerRequest  $request
+     *
+     * @return |null
+     */
+    public function registerPlayer(TourneyRegisterPlayerRequest $request)
+    {
+        if ($request->ajax() && $request->headers->has('referer')) {
+            $routName = app('router')->getRoutes()->match(app('request')->create($request->headers->get('referer')))->getName();
+            if ($routName == 'tournament.show') {
+                if ( ! TourneyPlayer::query()->where('user_id', auth()->id())->exists()) {
+
+                    $player              = new TourneyPlayer;
+                    $player->tourney_id  = $request->get('tourney_id');
+                    $player->user_id     = auth()->id();
+                    $player->description = $request->get('description');
+                    $player->save();
+
+                    return \Response::json([
+                        'success' => true,
+                        'message' => 'Вы успешно присоединились к турниру.',
+                    ], 200);
+                }
+            }
+        }
+
+        return \Response::json([
+            'success' => false,
+            'message' => 'Что-то пошло не так.',
+        ], 400);
     }
 
 }

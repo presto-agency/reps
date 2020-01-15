@@ -11,21 +11,19 @@ class TourneyPlayer extends Model
 
     use Notifiable, TourneyPlayerRelation;
 
-    protected $fillable
-        = [
-            'check',
-            'description',
-            'place_result',
-        ];
-
     protected $guarded
         = [
+            'check',
+            'ban',
+            'description',
+            'place_result',
             'tourney_id',
             'user_id',
         ];
     protected $casts
         = [
             'check'        => 'int',
+            'ban'          => 'int',
             'description'  => 'string',
             'place_result' => 'int',
             'tourney_id'   => 'int',

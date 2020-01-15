@@ -284,31 +284,4 @@ class TourneyService
         return $prize[0];
     }
 
-    /**
-     * @param  string  $maps
-     *
-     * @return array
-     */
-    public static function mapValForSeeder(string $maps)
-    {
-        $data   = explode(",", $maps);
-        $mapsId = [];
-        foreach ($data as $item) {
-            $map        = trim($item);
-            $checkMapId = ReplayMap::query()->where('name', $item)->value('id');
-            if ( ! $checkMapId) {
-                $createMap = ReplayMap::query()->create([
-                    'name' => $map,
-                    'url'  => '/storage/maps/jpg256/'.$map.'.jpg',
-                ]);
-                $mapsId[]  = $createMap->id;
-            } else {
-                $mapsId[] = $checkMapId;
-                continue;
-            }
-        }
-
-        return $mapsId;
-    }
-
 }

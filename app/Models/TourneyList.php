@@ -11,6 +11,7 @@ class TourneyList extends Model
 {
 
     use Notifiable, TournamentRelationTrait;
+
     /**
      * var array
      */
@@ -19,7 +20,10 @@ class TourneyList extends Model
 
     CONST NO = 2;
 
-
+    public static $status4Select
+        = [
+            0 => 'ANNOUNCE', 3 => 'GENERATION', 5 => 'FINISHED',
+        ];
     public static $status
         = [
             0 => 'ANNOUNCE', 1 => 'REGISTRATION', 2 => 'CHECK-IN',
@@ -32,7 +36,6 @@ class TourneyList extends Model
         ];
 
 
-
     public static $yesOrNo
         = [
             self::NO => 'No', self::YES => 'Yes',
@@ -43,7 +46,7 @@ class TourneyList extends Model
      *
      * @var array
      */
-    protected $fillable
+    protected $guarded
         = [
             'name',
             'place',
@@ -59,13 +62,9 @@ class TourneyList extends Model
             'ranking',
             'checkin_time',
             'start_time',
+            'importance',
+            'user_id',
         ];
-
-    protected $hidden
-        = [
-            'password',
-        ];
-    protected $guarded = ['importance', 'user_id'];
 
     protected $casts
         = [
