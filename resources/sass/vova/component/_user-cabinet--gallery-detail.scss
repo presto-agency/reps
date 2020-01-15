@@ -34,6 +34,10 @@
             align-items: center;
             margin-bottom: 10px;
             .items__title {
+                max-width: 30%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 p {
                     color: #010b4a;
                     font-size: 16px;
