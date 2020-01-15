@@ -215,16 +215,22 @@ class TournamentController extends Controller
      */
     public function registerPlayer(TourneyRegisterPlayerRequest $request)
     {
-        if ($request->ajax() && $request->headers->has('referer')) {
+        $description = clean($request->get('description'));
+        if ($request->ajax() && $request->headers->has('referer') && ! empty($description)) {
             $routName = app('router')->getRoutes()->match(app('request')->create($request->headers->get('referer')))->getName();
             if ($routName == 'tournament.show') {
-                if ( ! TourneyPlayer::query()->where('user_id', auth()->id())->exists()) {
+                $tourney = TourneyList::with([
+                    'player' => function ($query) {
+                        $query->where('user_id', auth()->id());
+                    },
+                ])->where('status', array_search('REGISTRATION', TourneyList::$status))->find($request->get('tourneyId'));
 
+                if ( ! empty($tourney) && empty($tourney->player)) {
                     $player              = new TourneyPlayer;
-                    $player->tourney_id  = $request->get('tourney_id');
                     $player->user_id     = auth()->id();
-                    $player->description = $request->get('description');
-                    $player->save();
+                    $player->description = $description;
+
+                    $tourney->player()->save($player);
 
                     return \Response::json([
                         'success' => true,

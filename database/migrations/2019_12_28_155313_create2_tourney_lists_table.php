@@ -32,9 +32,9 @@ class Create2TourneyListsTable extends Migration
             $table->tinyInteger('importance')->default(0);
             $table->boolean('visible');
             $table->boolean('ranking');
-            $table->dateTime('time_reg');
-            $table->dateTime('checkin_time');
-            $table->dateTime('start_time');
+            $table->dateTime('reg_time')->nullable();
+            $table->dateTime('checkin_time')->nullable();
+            $table->dateTime('start_time')->nullable();
             $table->timestamps();
         });
     }

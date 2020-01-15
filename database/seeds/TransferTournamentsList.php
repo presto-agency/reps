@@ -51,9 +51,9 @@ class TransferTournamentsList extends Seeder
                             'importance'      => (int) $item->importance,
                             'visible'         => $item->visible == 'VISIBLE' ? 1 : 0,
                             'ranking'         => $item->is_ranking == 'YES' ? 1 : 0,
+                            'reg_time'        => Carbon::parse($item->time_reg)->format('Y-m-d H:i:s'),
                             'checkin_time'    => Carbon::parse($item->time_checkin)->format('Y-m-d H:i:s'),
                             'start_time'      => Carbon::parse($item->time_start)->format('Y-m-d H:i:s'),
-                            'time_reg'        => Carbon::parse($item->time_reg)->format('Y-m-d H:i:s'),
                         ];
                     }
 

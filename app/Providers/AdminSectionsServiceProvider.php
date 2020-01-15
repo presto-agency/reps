@@ -135,18 +135,18 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 ],
             ],
         ]);
-        AdminNavigation::setFromArray([
-            [
-                'title'    => 'Турниры',
-                'icon'     => 'fas fa-window-minimize',
-                'priority' => 7,
-                'pages'    => [
-                    (new Page(\App\Models\TourneyList::class))->setPriority(1),
-                    (new Page(\App\Models\TourneyListsMapPool::class))->setPriority(2),
-                    (new Page(\App\Models\TourneyPlayer::class))->setPriority(3),
-                ],
-            ],
-        ]);
+//        AdminNavigation::setFromArray([
+//            [
+//                'title'    => 'Турниры',
+//                'icon'     => 'fas fa-window-minimize',
+//                'priority' => 7,
+//                'pages'    => [
+//                    (new Page(\App\Models\TourneyList::class))->setPriority(1),
+//                    (new Page(\App\Models\TourneyListsMapPool::class))->setPriority(2),
+//                    (new Page(\App\Models\TourneyPlayer::class))->setPriority(3),
+//                ],
+//            ],
+//        ]);
         AdminNavigation::setFromArray([
             [
                 'title'    => 'Footer',

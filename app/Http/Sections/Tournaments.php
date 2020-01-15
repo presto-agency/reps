@@ -27,7 +27,7 @@ class Tournaments extends Section
     /**
      * @var bool
      */
-    protected $checkAccess = false;
+    protected $checkAccess = true;
 
     /**
      * @var string
@@ -90,6 +90,7 @@ class Tournaments extends Section
                     }
                 }),
 
+            AdminColumn::datetime('reg_time', 'Reg')->setHtmlAttribute('class', 'text-center'),
             AdminColumn::datetime('checkin_time', 'Checkin')->setHtmlAttribute('class', 'text-center'),
             AdminColumn::datetime('start_time', 'Start')->setHtmlAttribute('class', 'text-center'),
         ];
@@ -157,9 +158,14 @@ class Tournaments extends Section
         return $display;
     }
 
+    public $tourneyStatus;
 
     public function onEdit($id)
     {
+        $tourney = $this->getModel()->find($id);
+        if ($tourney) {
+            $this->tourneyStatus = TourneyList::$status[$tourney->status];
+        }
         $form = AdminForm::panel();
         $form->addHeader([
             AdminFormElement::columns()
@@ -199,9 +205,10 @@ class Tournaments extends Section
                 }, 4)
                 ->addColumn(function () {
                     return [
-                        AdminFormElement::datetime('time_reg', 'Reg time')
+                        AdminFormElement::datetime('reg_time', 'Reg time')
                             ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d H:i'))
                             ->setValidationRules([
+                                'nullable',
                                 'before:checkin_time',
                                 'date_format:"Y-m-d H:i"',
                             ])
@@ -209,8 +216,8 @@ class Tournaments extends Section
                         , AdminFormElement::datetime('checkin_time', 'Checkin time')
                             ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d H:i'))
                             ->setValidationRules([
-                                'after:time_reg',
-                                'before:start_time',
+                                'nullable',
+                                'after:reg_time',
                                 'date_format:"Y-m-d H:i"',
                             ])
                             ->setPickerFormat('Y-m-d H:i')
@@ -218,6 +225,7 @@ class Tournaments extends Section
                         AdminFormElement::datetime('start_time', 'Start time')
                             ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d H:i'))
                             ->setValidationRules([
+                                'nullable',
                                 'after:checkin_time',
                                 'date_format:"Y-m-d H:i"',
                             ])
@@ -244,9 +252,8 @@ class Tournaments extends Section
                             ]),
                         AdminFormElement::text('prize_pool', 'Prize pool')
                             ->setHtmlAttribute('placeholder', 'Prize pool')
-                            ->setHtmlAttribute('minlength', '255')
+                            ->setHtmlAttribute('maxlength', '255')
                             ->setValidationRules([
-                                'nullable',
                                 'string',
                                 'max:255',
                             ]),
@@ -256,12 +263,27 @@ class Tournaments extends Section
         $form->addBody([
             AdminFormElement::columns()
                 ->addColumn(function () {
-                    return [
+                    $data1 = [
+                        AdminFormElement::text('tourney_status', 'Tourney status')
+                            ->setReadonly(true)
+                            ->setHtmlAttribute('tabindex', '-1')
+                            ->setHtmlAttribute('value', $this->tourneyStatus),
+                    ];
+                    $data2 = [
                         AdminFormElement::select('status', 'Status')
-                            ->setOptions(TourneyList::$status4Select)
+                            ->setOptions(TourneyList::$status)
                             ->setValidationRules([
-                                'in:0,3,5',
+                                'in:3,5',
                             ]),
+                    ];
+
+                    $arr1 = $data1;
+                    if ($this->tourneyStatus === 'STARTED' || $this->tourneyStatus === 'GENERATION') {
+                        $arr1 = array_merge($data1, $data2);
+                    }
+
+                    $arr2 = [
+
                         AdminFormElement::checkbox('visible', 'Visible')
                             ->setValidationRules([
                                 'boolean',
@@ -280,6 +302,8 @@ class Tournaments extends Section
                                 'max:10000',
                             ]),
                     ];
+
+                    return array_merge($arr1, $arr2);
                 }, 3)
                 ->addColumn(function () {
                     return [
@@ -363,10 +387,10 @@ class Tournaments extends Section
                 }, 4)
                 ->addColumn(function () {
                     return [
-                        AdminFormElement::datetime('time_reg', 'Reg time')
+                        AdminFormElement::datetime('reg_time', 'Reg time')
                             ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d H:i'))
                             ->setValidationRules([
-                                'required',
+                                'nullable',
                                 'before:checkin_time',
                                 'date_format:"Y-m-d H:i"',
                             ])
@@ -374,9 +398,8 @@ class Tournaments extends Section
                         , AdminFormElement::datetime('checkin_time', 'Checkin time')
                             ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d H:i'))
                             ->setValidationRules([
-                                'required',
-                                'after:time_reg',
-                                'before:start_time',
+                                'nullable',
+                                'after:reg_time',
                                 'date_format:"Y-m-d H:i"',
                             ])
                             ->setPickerFormat('Y-m-d H:i')
@@ -384,7 +407,7 @@ class Tournaments extends Section
                         AdminFormElement::datetime('start_time', 'Start time')
                             ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d H:i'))
                             ->setValidationRules([
-                                'required',
+                                'nullable',
                                 'after:checkin_time',
                                 'date_format:"Y-m-d H:i"',
                             ])
@@ -411,9 +434,9 @@ class Tournaments extends Section
                             ]),
                         AdminFormElement::text('prize_pool', 'Prize pool')
                             ->setHtmlAttribute('placeholder', 'Prize pool')
-                            ->setHtmlAttribute('minlength', '255')
+                            ->setHtmlAttribute('maxlength', '255')
                             ->setValidationRules([
-                                'nullable',
+                                'required',
                                 'string',
                                 'max:255',
                             ]),

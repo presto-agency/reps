@@ -14,7 +14,7 @@ class TourneyRegisterPlayerRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified();
     }
 
     /**

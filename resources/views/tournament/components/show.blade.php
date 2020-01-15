@@ -15,7 +15,10 @@
                         C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
                 <p class="title_text">{{$tournament->name}}</p>
-                <button onclick="tournamentRegister()">Add</button>
+{{--                @if('REGISTRATION' === $tournament::$status[$tournament->status])--}}
+{{--                    <button onclick="tournamentRegister()">Add</button>--}}
+{{--                @endif--}}
+
             </div>
         </div>
 
