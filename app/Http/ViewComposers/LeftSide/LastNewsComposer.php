@@ -50,7 +50,10 @@ class LastNewsComposer
     private function getLastNews()
     {
         return ForumTopic::withCount('comments')
-            ->latest('commented_at')
+            ->whereNotNull('commented_at')
+            ->orderByDesc('commented_at')
+            ->where('news', true)
+//            ->where('approved', true)
             ->take(10)
             ->get(['id', 'title']);
     }

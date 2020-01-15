@@ -13,9 +13,8 @@ class ForumTopic extends Model
         = [
             'title', 'forum_section_id', 'reviews', 'rating',
             'preview_content', 'preview_img', 'content', 'comments_count',
-            'news', 'start_on',
         ];
-    protected $guarded = ['user_id',];
+    protected $guarded = ['user_id', 'commented_at', 'approved', 'news','start_on'];
 
     public function forumSection()
     {
@@ -24,7 +23,7 @@ class ForumTopic extends Model
 
     public function author()
     {
-        return $this->belongsTo(User::class, 'user_id','id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
 
