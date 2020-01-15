@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Events\UserUploadForumTopic;
 use App\Models\ForumTopic;
+use Carbon\Carbon;
 
 class ForumTopicObserver
 {
@@ -11,6 +12,7 @@ class ForumTopicObserver
     public function creating(ForumTopic $forumTopic)
     {
         $forumTopic->setAttribute('user_id', auth()->id());
+        $forumTopic->setAttribute('commented_at', Carbon::now());
     }
 
     /**

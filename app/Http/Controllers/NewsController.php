@@ -72,7 +72,8 @@ class NewsController extends Controller
             if ($request->id > 0) {
                 $news = ForumTopic::with('author:id,avatar,name')
                     ->withCount('comments')
-                    ->where('news', 1)
+//                    ->where('approved', true)
+                    ->where('news', true)
                     ->where('id', '<', $request->id)
                     ->orderByDesc('id')
                     ->limit(5)
@@ -80,7 +81,8 @@ class NewsController extends Controller
             } else {
                 $news          = ForumTopic::with('author:id,avatar,name')
                     ->withCount('comments')
-                    ->where('news', 1)
+//                    ->where('approved', true)
+                    ->where('news', true)
                     ->orderByDesc('id')
                     ->limit(5)
                     ->get();
