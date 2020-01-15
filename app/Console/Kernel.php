@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
     protected $commands
         = [
             \App\Console\Commands\Broadcasting\BroadcastCheck::class,
-            \App\Console\Commands\Tournaments\CheckStatus::class,
+//            \App\Console\Commands\Tournaments\CheckStatus::class,
         ];
 
     /**
@@ -30,8 +30,8 @@ class Kernel extends ConsoleKernel
     {
         /*** Check Stream ***/
         $schedule->command('broadcast:check')->everyFiveMinutes();
-        /*** Check Tourney ***/
-        $schedule->command('tourney:check')->everyMinute();
+//        /*** Check Tourney ***/
+//        $schedule->command('tourney:check')->everyMinute();
     }
 
     /**
