@@ -129,6 +129,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->roles->name == 'user' ? true : false;
     }
 
+    public function isNotBan()
+    {
+        return $this->ban == 0 ? true : false;
+    }
+
+    public function isVerified()
+    {
+        return ! empty($this->email_verified_at) === true ? true : false;
+    }
+
     /**
      * @param $id
      *

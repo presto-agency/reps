@@ -160,7 +160,7 @@ return [
          * See http://docs.ckeditor.com/#!/api/CKEDITOR.config
          */
         'ckeditor'   => [
-//            'defaultLanguage' => config('app.locale'),
+            //            'defaultLanguage' => config('app.locale'),
             'defaultLanguage' => 'en',
             'height'          => 200,
             'allowedContent'  => true,

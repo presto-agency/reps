@@ -137,12 +137,13 @@ class UserReplayController extends Controller
         if ($request->has('src_iframe')) {
             $data->src_iframe = htmlspecialchars_decode($src_iframe);
         }
+
         if ($request->hasFile('file')) {
             /**
              * Upload file on server
              */
-            $filePath   = $request->file('file')->store('files/replays', 'public');
-            $data->file = 'storage/'.$filePath;
+            $path       = \Storage::disk('public')->putFileAs('files/replays', $request->file('file'), \Str::random(32).$request->file('file')->getClientOriginalName(), 'public');
+            $data->file = 'storage/'.$path;
         }
     }
 

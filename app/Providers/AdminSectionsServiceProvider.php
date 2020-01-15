@@ -47,7 +47,9 @@ class AdminSectionsServiceProvider extends ServiceProvider
             \App\Models\FooterUrl::class => 'App\Http\Sections\FooterUrl',
             \App\Models\Help::class      => 'App\Http\Sections\Help',
 
-            \App\Models\TourneyList::class => 'App\Http\Sections\Tournaments',
+            \App\Models\TourneyList::class         => 'App\Http\Sections\Tournaments',
+            \App\Models\TourneyListsMapPool::class => 'App\Http\Sections\TournamentsMapPool',
+            \App\Models\TourneyPlayer::class       => 'App\Http\Sections\TournamentsPlayer',
         ];
 
 
@@ -140,6 +142,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'priority' => 7,
                 'pages'    => [
                     (new Page(\App\Models\TourneyList::class))->setPriority(1),
+                    (new Page(\App\Models\TourneyListsMapPool::class))->setPriority(2),
+                    (new Page(\App\Models\TourneyPlayer::class))->setPriority(3),
                 ],
             ],
         ]);
@@ -154,7 +158,6 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 ],
             ],
         ]);
-
     }
 
     /**

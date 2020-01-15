@@ -11,6 +11,7 @@ class TourneyList extends Model
 {
 
     use Notifiable, TournamentRelationTrait;
+
     /**
      * var array
      */
@@ -19,18 +20,21 @@ class TourneyList extends Model
 
     CONST NO = 2;
 
-
+    public static $status4Select
+        = [
+            3 => 'GENERATION', 5 => 'FINISHED',
+        ];
     public static $status
         = [
             0 => 'ANNOUNCE', 1 => 'REGISTRATION', 2 => 'CHECK-IN',
             3 => 'GENERATION', 4 => 'STARTED', 5 => 'FINISHED',
         ];
 
+
     public static $map_types
         = [
             0 => 'NONE', 1 => 'FIRSTBYREMOVING', 2 => 'FIRSTBYROUND',
         ];
-
 
 
     public static $yesOrNo
@@ -43,7 +47,7 @@ class TourneyList extends Model
      *
      * @var array
      */
-    protected $fillable
+    protected $guarded
         = [
             'name',
             'place',
@@ -57,15 +61,12 @@ class TourneyList extends Model
             'map_select_type',
             'visible',
             'ranking',
+            'reg_time',
             'checkin_time',
             'start_time',
+            'importance',
+            'user_id',
         ];
-
-    protected $hidden
-        = [
-            'password',
-        ];
-    protected $guarded = ['importance', 'user_id'];
 
     protected $casts
         = [
@@ -83,8 +84,7 @@ class TourneyList extends Model
             'importance'      => 'int',
             'visible'         => 'int',
             'ranking'         => 'int',
-            'start_time'      => 'datetime',
-            'checkin_time'    => 'datetime',
+
         ];
 
 

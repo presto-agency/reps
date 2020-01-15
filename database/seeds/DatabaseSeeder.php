@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TransferReplayMaps::class);
 
 
-
         /**
          *
          * Transfer data from reps reps.<countries> in loc.<countries>
@@ -206,7 +205,7 @@ class DatabaseSeeder extends Seeder
          * loc.(<tourney_lists>,<tourney_lists_prize_pools>,<tourney_lists_map_pools>,<replay_maps>).
          */
         $this->call(TransferTournamentsList::class);
-
+        $this->call(SeederTourneyListsMapPools::class);
         /**
          *
          * Transfer data from reps mysql3.<user> in loc.<tourney_players>,<users>
@@ -232,8 +231,6 @@ class DatabaseSeeder extends Seeder
          * loc.(<tourney_matches>).
          */
         $this->call(TransferTournamentsMatches::class);
-
-
     }
 
 }

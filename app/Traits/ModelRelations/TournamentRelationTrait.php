@@ -31,6 +31,13 @@ trait TournamentRelationTrait
     /**
      * @return mixed
      */
+    public function player()
+    {
+        return $this->hasOne(TourneyPlayer::class, 'tourney_id', 'id');
+    }
+    /**
+     * @return mixed
+     */
     public function mapsPool()
     {
         return $this->hasMany(TourneyListsMapPool::class, 'tourney_id', 'id');

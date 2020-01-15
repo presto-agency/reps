@@ -57,11 +57,12 @@ Route::group(['prefix' => 'replay'], function () {
     Route::post('{id}/set_rating', 'ReplayRatingController@setRating')->name('replay.set_rating');
 });
 /***---Tournament---***/
-Route::resource("tournament", 'Tournament\TournamentController');
+Route::resource('tournament', 'Tournament\TournamentController');
+Route::post('tournament-register', 'Tournament\TournamentController@registerPlayer')->name('tournament.register');
+
 Route::get('download-tournament-match/{match}/{rep}', 'Tournament\TournamentController@downloadMatchFile')->name('download.tournament.match');
 //Route::post("{tournament}/download-all-match", 'Tournament\TournamentController@downloadMultipleMatch')->name('download.all.match');
-Route::post('tournament/loadmore/load_tournament', 'Tournament\TournamentController@loadTournament')
-    ->name('load.more.tournament');
+Route::post('tournament/loadmore/load_tournament', 'Tournament\TournamentController@loadTournament')->name('load.more.tournament');
 
 Route::group(['middleware' => ['auth', 'ban', 'verified']], function () {
     /**comments rating: like/dislike*/

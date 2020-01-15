@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class Create2TourneyPlayersTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -22,10 +23,10 @@ class Create2TourneyPlayersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('SET NULL')->onUpdate('cascade');
             $table->boolean('check')->default(false);
+            $table->boolean('ban')->default(false);
             $table->string('description');
             $table->unsignedTinyInteger('place_result')->nullable();
             $table->timestamps();
-
         });
     }
 
@@ -38,4 +39,5 @@ class Create2TourneyPlayersTable extends Migration
     {
         //
     }
+
 }
