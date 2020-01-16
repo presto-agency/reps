@@ -157,4 +157,7 @@ Route::middleware(['ban'])->group(function () {
 /**
  * Ajax quote
  */
-Route::post('quote', 'QuoteController@getQuote')->name('quote');
+Route::group(['prefix' => 'quote', 'middleware' => ['auth', 'ban', 'verified'],], function () {
+    Route::post('/', 'QuoteController@getQuote')->name('quote');
+});
+

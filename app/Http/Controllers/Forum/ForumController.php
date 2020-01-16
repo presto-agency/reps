@@ -57,6 +57,7 @@ class ForumController extends Controller
                     ->with([
                         'topics' => function ($query) {
                             $query->orderByDesc('id')
+//                                ->where('approved',true)
                                 ->where('id', '<', request('id'))
                                 ->withCount('comments')
                                 ->limit(7);
@@ -70,6 +71,7 @@ class ForumController extends Controller
                     ->with([
                         'topics' => function ($query) {
                             $query->orderByDesc('id')
+//                                ->where('approved',true)
                                 ->withCount('comments')
                                 ->limit(7);
                         },
