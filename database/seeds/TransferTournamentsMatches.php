@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 class TransferTournamentsMatches extends Seeder
 {
 
+
     /**
      * Run the database seeds.
      *
@@ -29,23 +30,6 @@ class TransferTournamentsMatches extends Seeder
                 try {
                     foreach ($repsTournamentsMatches as $item) {
                         if (TourneyList::query()->where('id', $item->id_tourney)->exists()) {
-                            /**
-                             * Get and check [$player1Id]
-                             */
-                            $player1Id    = $item->id_player1;
-                            $checkPlayer1 = DB::table('tourney_players')->where('id', $player1Id)->exists();
-                            if ( ! $checkPlayer1) {
-                                $player1Id = null;
-                            }
-                            /**
-                             * Get and check [$player2Id]
-                             */
-                            $player2Id    = $item->id_player2;
-                            $checkPlayer2 = DB::table('tourney_players')->where('id', $player2Id)->exists();
-                            if ( ! $checkPlayer2) {
-                                $player2Id = null;
-                            }
-
                             $winner_score    = $item->score_win !== '' ? $item->score_win : null;
                             $winner_action_s = array_search(trim($item->winner_action), TourneyMatch::$action);
                             $winner_action   = $winner_action_s !== false ? $winner_action_s : null;
@@ -56,10 +40,11 @@ class TransferTournamentsMatches extends Seeder
                             $match_number    = $item->id_match !== '' ? $item->id_match : null;
                             $round_number    = $item->round_id !== '' ? $item->round_id : null;
 
+
                             $insertItems[] = [
                                 'tourney_id'    => $item->id_tourney,
-                                'player1_id'    => $player1Id,
-                                'player2_id'    => $player2Id,
+                                'player1_id'    => $this->getPlayer1Id($item),
+                                'player2_id'    => $this->getPlayer2Id($item),
                                 'player1_score' => $item->score_player1,
                                 'player2_score' => $item->score_player2,
                                 'winner_score'  => $winner_score,
@@ -87,6 +72,65 @@ class TransferTournamentsMatches extends Seeder
                 }
             });
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
+    }
+
+
+    /**
+     * @param $item
+     *
+     * @return mixed|null
+     */
+    private function getPlayer1Id($item)
+    {
+        /**
+         * Get userLogin with old userId
+         */
+        $player1Login = DB::connection('mysql3')->table('user')
+            ->where('id', $item->id_player1)->value('login');
+        /**
+         * get player1Id with userLogin
+         */
+        $getPlayer1Id = DB::table('users')->where('name', trim($player1Login))->value('id');
+        if ( ! empty($getPlayer1Id)) {
+            $player1Id = DB::table('tourney_players')
+                ->where('tourney_id', $item->id_tourney)
+                ->where('user_id', $getPlayer1Id)
+                ->value('id');
+            if ( ! empty($player1Id)) {
+                return $player1Id;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param $item
+     *
+     * @return mixed|null
+     */
+    private function getPlayer2Id($item)
+    {
+        /**
+         * Get userLogin with old userId
+         */
+        $player2Login = DB::connection('mysql3')->table('user')
+            ->where('id', $item->id_player2)->value('login');
+        /**
+         * get player1Id with userLogin
+         */
+        $getPlayer2Id = DB::table('users')->where('name', trim($player2Login))->value('id');
+        if ( ! empty($getPlayer2Id)) {
+            $player2Id = DB::table('tourney_players')
+                ->where('tourney_id', $item->id_tourney)
+                ->where('user_id', $getPlayer2Id)
+                ->value('id');
+            if ( ! empty($player2Id)) {
+                return $player2Id;
+            }
+        }
+
+        return null;
     }
 
 }

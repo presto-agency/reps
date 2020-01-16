@@ -7,6 +7,7 @@ use AdminColumnFilter;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
+use App\Models\TourneyList;
 use App\Services\ServiceAssistants\PathHelper;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
@@ -23,7 +24,7 @@ class TournamentsMapPool extends Section
     /**
      * @var bool
      */
-    protected $checkAccess = false;
+    protected $checkAccess = true;
 
     /**
      * @var string
@@ -64,6 +65,9 @@ class TournamentsMapPool extends Section
                         });
                     }
                 }),
+            AdminColumn::custom('Tourney status', function ($model) {
+                return TourneyList::$status[$model->tourney->status];
+            }),
 
         ];
 
@@ -78,7 +82,6 @@ class TournamentsMapPool extends Section
 
 
         $display->setColumnFilters([
-
             null,
             null,
             AdminColumnFilter::select()
@@ -116,7 +119,8 @@ class TournamentsMapPool extends Section
                 ->setValidationRules([
                     'exists:tourney_lists,id',
                 ])
-                ->setOptions((new \App\Models\TourneyList())->orderByDesc('id')->pluck('name', 'id')->toArray())
+                ->setOptions((new \App\Models\TourneyList())->whereNotIn('status', [3, 4, 5])->pluck('name', 'id')->toArray())
+                ->setHelpText('Все турниры со статусами:(ANNOUNCE;REGISTRATION;CHECK-IN)')
                 ->setLabel('Турнир'),
         ]);
     }
@@ -139,7 +143,8 @@ class TournamentsMapPool extends Section
                     'required',
                     'exists:tourney_lists,id',
                 ])
-                ->setOptions((new \App\Models\TourneyList())->orderByDesc('id')->pluck('name', 'id')->toArray())
+                ->setOptions((new \App\Models\TourneyList())->whereNotIn('status', [3, 4, 5])->pluck('name', 'id')->toArray())
+                ->setHelpText('Все турниры со статусами:(ANNOUNCE;REGISTRATION;CHECK-IN)')
                 ->setLabel('Турнир'),
         ]);
     }

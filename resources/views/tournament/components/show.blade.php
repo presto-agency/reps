@@ -15,10 +15,14 @@
                         C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
                 <p class="title_text">{{$tournament->name}}</p>
-{{--                @if('REGISTRATION' === $tournament::$status[$tournament->status])--}}
-{{--                    <button onclick="tournamentRegister()">Add</button>--}}
+{{--                @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())--}}
+{{--                    @if('REGISTRATION' === $tournament::$status[$tournament->status] && empty($tournament->player))--}}
+{{--                        <button onclick="tournamentRegister()">Add</button>--}}
+{{--                    @endif--}}
+{{--                    @if(!empty($tournament->player))--}}
+{{--                        <p>{{__('Вы уже присоединились к турниру')}}</p>--}}
+{{--                    @endif--}}
 {{--                @endif--}}
-
             </div>
         </div>
 
@@ -73,7 +77,7 @@
                 @endif
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 block_right">
-                @if(!empty($tournament->logo_link) && TourneyService::UR_exists($tournament->logo_link))
+                @if(!empty($tournament->logo_link))
                     <img class="img-fluid" src="{{asset($tournament->logo_link)}}" alt="tournament-logo">
                 @else
                     <img class="img-fluid" src="{{asset('/images/tournament_detail.png')}}" alt="tournament-logo">

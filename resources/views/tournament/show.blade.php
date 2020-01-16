@@ -15,7 +15,8 @@
 
 
 
-@if('REGISTRATION' === $tournament::$status[$tournament->status])
+{{--@if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())--}}
+{{--    @if('REGISTRATION' === $tournament::$status[$tournament->status] && empty($tournament->player))--}}
 {{--@section('custom-script')--}}
 {{--    @parent--}}
 {{--    <script type="text/javascript">--}}
@@ -38,6 +39,6 @@
 {{--    </script>--}}
 
 {{--@endsection--}}
-@endif
-
+{{--@endif--}}
+{{--@endif--}}
 
