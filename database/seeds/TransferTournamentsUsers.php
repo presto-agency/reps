@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Role;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class TransferTournamentsUsers extends Seeder
@@ -23,17 +25,17 @@ class TransferTournamentsUsers extends Seeder
             ->chunk(50, function ($users) {
                 try {
                     foreach ($users as $item) {
-                        $checkUser = DB::table('users')->where('name', $item->login)
-                            ->orWhere('email', $item->login)->exists();
+                        $checkUser = DB::table('users')->where('name', trim($item->login))
+                            ->orWhere('email', trim($item->login))->exists();
 
                         if ( ! $checkUser) {
                             $insert_user = [
                                 'name'     => trim($item->login),
                                 'email'    => trim($item->login),
                                 'password' => Hash::make('password'),
-                                'role_id'  => \App\Models\Role::where('name', 'user')->value('id'),
+                                'role_id'  => Role::query()->where('name', 'user')->value('id'),
                             ];
-                            \App\User::query()->insert($insert_user);
+                            User::query()->insert($insert_user);
                         }
                     }
                 } catch (\Exception $e) {

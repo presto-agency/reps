@@ -11,18 +11,35 @@ class TourneyList extends Model
 {
 
     use Notifiable, TournamentRelationTrait;
+
     /**
      * var array
      */
+
+    const YES = 1;
+
+    CONST NO = 2;
+
+    public static $status4Select
+        = [
+            3 => 'GENERATION', 5 => 'FINISHED',
+        ];
     public static $status
         = [
             0 => 'ANNOUNCE', 1 => 'REGISTRATION', 2 => 'CHECK-IN',
             3 => 'GENERATION', 4 => 'STARTED', 5 => 'FINISHED',
         ];
 
+
     public static $map_types
         = [
             0 => 'NONE', 1 => 'FIRSTBYREMOVING', 2 => 'FIRSTBYROUND',
+        ];
+
+
+    public static $yesOrNo
+        = [
+            self::NO => 'No', self::YES => 'Yes',
         ];
 
     /**
@@ -30,7 +47,7 @@ class TourneyList extends Model
      *
      * @var array
      */
-    protected $fillable
+    protected $guarded
         = [
             'name',
             'place',
@@ -44,11 +61,12 @@ class TourneyList extends Model
             'map_select_type',
             'visible',
             'ranking',
+            'reg_time',
             'checkin_time',
             'start_time',
+            'importance',
+            'user_id',
         ];
-
-    protected $guarded = ['importance', 'user_id'];
 
     protected $casts
         = [
@@ -60,14 +78,13 @@ class TourneyList extends Model
             'logo_link'       => 'string',
             'password'        => 'string',
             'all_file'        => 'string',
-            'status'          => 'integer',
-            'map_select_type' => 'integer',
-            'user_id'         => 'integer',
-            'importance'      => 'integer',
-            'visible'         => 'boolean',
-            'ranking'         => 'boolean',
-            'start_time'      => 'datetime',
-            'checkin_time'    => 'datetime',
+            'status'          => 'int',
+            'map_select_type' => 'int',
+            'user_id'         => 'int',
+            'importance'      => 'int',
+            'visible'         => 'int',
+            'ranking'         => 'int',
+
         ];
 
 

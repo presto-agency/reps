@@ -8,9 +8,17 @@
     <title>{{ config('app.name', 'Reps.Ru') }}</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+
+
     <script type="text/javascript" src="{{ asset('ckeditor\ckeditor.js') }}"></script>
-    {{--    <link rel="stylesheet" href="minified/themes/default.min.css"/>--}}
-    {{--    <script src="https://cdn.ckeditor.com/4.13.0/full-all/ckeditor.js"></script>--}}
+    <script type="text/javascript" src="{{ asset('sceditor\minified\sceditor.min.js') }}"></script>
+    <link rel="stylesheet" href="../../../sceditor/minified/themes/default.min.css" />
+{{--    <script type="text/javascript" src="{{ asset('\sceditor\minified\themes\content\default.min.css') }}"></script>--}}
+    <!-- Include the BBCode or XHTML formats -->
+    <script type="text/javascript" src="{{ asset('sceditor\minified\formats\bbcode.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('sceditor\minified\formats\xhtml.js') }}"></script>
+
     {{--    Fonts   --}}
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
     {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
@@ -18,23 +26,28 @@
     {{--    <link rel="stylesheet" href="{{ asset('js/sceditor/themes/default.min.css') }} "/>--}}
     {{--    Styles   --}}
     <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script>
+        const c = JSON.parse('{!! $smiles !!}');
+
+        const imgs= c.map(function (item) {
+            return item.filename;
+        });
+        // const cod= c.map(function (item) {
+        //     return item.charactor;
+        // });
+        window.imgs = imgs;
+        CKEDITOR.config.smiley_images = imgs;
+
+            CKEDITOR.config.smiley_descriptions ={sad:":)"};
+            CKEDITOR.config.smiley_path = '/storage/chat/smiles/';
+
+
+
+    </script>
 </head>
 <body>
-<script>
-    const c = JSON.parse('{!! $smiles !!}');
-
-    const imgs= c.map(function (item) {
-        return item.filename;
-    });
-    // const cod= c.map(function (item) {
-    //     return item.charactor;
-    // });
-    window.imgs = imgs;
-    // CKEDITOR.config.smiley_descriptions = cod;
-    CKEDITOR.config.smiley_images = imgs;
-    CKEDITOR.config.smiley_path = '/storage/chat/smiles/';
-
-</script>
 <a href="javascript:" id="return-to-top">
     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up"
          class="svg-inline--fa fa-chevron-up fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -162,6 +175,7 @@
 <script src="{{ asset('js/sceditor/sceditor.min.js') }}"></script>
 <script src="{{ asset('js/sceditor/formats/bbcode.js') }}"></script>
 <script src="https://kit.fontawesome.com/75f3a42e45.js"></script>
+
 
 @section('custom-script')
     <script type="text/javascript">

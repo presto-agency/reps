@@ -77,7 +77,7 @@
                             <img src="{{asset($replayShow->firstCountries->flagOrDefault())}}" alt="flag"
                                  title="{{$replayShow->firstCountries->name}}"/>
                         @endif
-                        <span class="night_text"> vs </span>
+                        <span class="night_text">{{__('vs')}}</span>
                         @if(!empty($replayShow->secondCountries))
                             <img src="{{asset($replayShow->secondCountries->flagOrDefault())}}" alt="flag"
                                  title="{{$replayShow->secondCountries->name}}"/>
@@ -193,7 +193,10 @@
     </div>
 </section>
 @if(!empty($replayShow->src_iframe))
-    <iframe class="replay_video border_shadow" src="{{$replayShow->src_iframe}}"></iframe>
+    <iframe
+        {{--        class="replay_video border_shadow"--}}
+        src="{{$replayShow->src_iframe}}"
+        width="100%" height="340" frameborder="0" scrolling="no" allowfullscreen></iframe>
 @endif
 
 <script type="text/javascript">

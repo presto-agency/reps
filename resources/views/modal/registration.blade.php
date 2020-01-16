@@ -69,12 +69,19 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-
                         <input type="password" class="form-control night_input" id="registration-rePassword"
                                name="password_confirmation" autocomplete="new-password" required
                                placeholder="{{ __('Confirm Password') }}">
-                    </div>
 
+                        <div class="g-recaptcha" name="g-recaptcha-response"
+                             data-sitekey="{{ config('recaptcha.CAPTCHA_SITE_KEY') }}"></div>
+                        @error('g-recaptcha-response')
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                        @enderror
+
+                    </div>
                     <div class="modal-body__enter-btn">
                         <button type="submit" class="button button__download-more">
                             {{ __('Зарегистрироваться') }}
@@ -85,3 +92,4 @@
         </div>
     </div>
 </div>
+

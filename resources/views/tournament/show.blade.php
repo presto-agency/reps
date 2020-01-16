@@ -13,3 +13,31 @@
     @include('tournament.components.show')
 @endsection
 
+
+
+@if('REGISTRATION' === $tournament::$status[$tournament->status])
+{{--@section('custom-script')--}}
+{{--    @parent--}}
+{{--    <script type="text/javascript">--}}
+
+{{--        function tournamentRegister() {--}}
+{{--            $.ajax({--}}
+{{--                url: '{{ route('tournament.register') }}',--}}
+{{--                method: "POST",--}}
+{{--                data: {--}}
+{{--                    _token: '{{csrf_token()}}',--}}
+{{--                    description: 'ayayayaya',--}}
+{{--                    tourneyId: '{{request('tournament')}}',--}}
+{{--                },--}}
+{{--                success: function (data) {--}}
+{{--                    $('#load_more-tournament').remove();--}}
+{{--                    $('#load_tournament-list').append(data);--}}
+{{--                }--}}
+{{--            })--}}
+{{--        }--}}
+{{--    </script>--}}
+
+{{--@endsection--}}
+@endif
+
+

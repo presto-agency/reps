@@ -3,24 +3,10 @@
 namespace App\Providers;
 
 
-use App\Models\{
-    Comment, Country, ForumTopic, Replay, Stream, UserGallery, InterviewQuestion, UserReputation
-};
-use App\Observers\{
-    CommentObserver,
-    CountryObserver,
-    ForumTopicObserver,
-    ReplayObserver,
-    StreamObserver,
-    UserGalleryObservers,
-    UserObserver,
-    InterviewQuestionObserver,
-    UserReputationObserver
-};
-
+use App\Models\{Comment, Country, ForumTopic, InterviewQuestion, Replay, Stream, TourneyList, UserGallery, UserReputation};
+use App\Observers\{CommentObserver, CountryObserver, ForumTopicObserver, InterviewQuestionObserver, ReplayObserver, StreamObserver, TourneyListObserver, UserGalleryObservers, UserObserver, UserReputationObserver};
 use App\User;
 use Illuminate\Support\ServiceProvider;
-
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,7 +18,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
     }
 
 
@@ -53,5 +38,10 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         Country::observe(CountryObserver::class);
         UserReputation::observe(UserReputationObserver::class);
+        /**
+         * Tournaments
+         */
+        TourneyList::observe(TourneyListObserver::class);
     }
+
 }

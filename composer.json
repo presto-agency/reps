@@ -16,8 +16,8 @@
         "barryvdh/laravel-translation-manager": "^0.5.5",
         "caouecs/laravel-lang": "~4.0",
         "chriskonnertz/bbcode": "^1.1.2",
-        "cohensive/embed": "dev-master",
         "davejamesmiller/laravel-breadcrumbs": "^5.3",
+        "embed/embed": "^3.4",
         "fideloper/proxy": "^4.0",
         "genert/bbcode": "^1.1",
         "guzzlehttp/guzzle": "^6.3",
@@ -27,8 +27,7 @@
         "laravelrus/sleepingowl": "dev-bs4",
         "mews/purifier": "^3.1",
         "pherum/laravel-bbcode": "^1.0",
-        "predis/predis": "^1.1",
-        "staudenmeir/eloquent-eager-limit": "^1.0"
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

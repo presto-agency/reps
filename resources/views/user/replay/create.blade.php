@@ -13,7 +13,6 @@
     @include('user.replay.components.create')
 
 @endsection
-
 @section('right-side')
     @parent
     @include('right-side.components.last-replay')

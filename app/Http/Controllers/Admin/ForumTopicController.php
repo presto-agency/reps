@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use AdminSection;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\ForumTopic;
 
 class ForumTopicController extends Controller
@@ -18,4 +19,10 @@ class ForumTopicController extends Controller
         return AdminSection::view($content, 'Темы форума');
     }
 
+//    public function deleteComment($id)
+//    {
+//        Comment::find($id)->delete();
+//
+//        return back();
+//    }
 }
