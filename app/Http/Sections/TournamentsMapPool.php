@@ -42,8 +42,7 @@ class TournamentsMapPool extends Section
         $columns = [
             AdminColumn::text('id', '#')->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
             AdminColumn::image(function ($model) {
-                if ( ! empty($model->map->url) && PathHelper::checkFileExists($model->map->url)
-                ) {
+                if ( ! empty($model->map) && ! empty($model->map->url) && PathHelper::checkFileExists($model->map->url)) {
                     return $model->map->url;
                 } else {
                     return 'images/default/map/nominimap.png';
@@ -66,7 +65,9 @@ class TournamentsMapPool extends Section
                     }
                 }),
             AdminColumn::custom('Tourney status', function ($model) {
-                return TourneyList::$status[$model->tourney->status];
+                if ( ! empty($model->tourney)) {
+                    return TourneyList::$status[$model->tourney->status];
+                }
             }),
 
         ];
