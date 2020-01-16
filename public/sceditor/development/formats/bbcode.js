@@ -563,7 +563,7 @@
 						return element.style ? element.style[name] : null;
 					};
 
-				// check if this is an emoticon image
+				// check if this is an emoticon image_1
 				if (attr(element, EMOTICON_DATA_ATTR)) {
 					return content;
 				}

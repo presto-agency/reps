@@ -58,8 +58,8 @@ $(document).ready(function () {
                         for (var i = 0; i < images['url'].length; i++) {
 
                             editor.summernote('insertImage', images['url'][i], function ($image) {
-//$image.css('width', $image.width() / 3);
-//$image.attr('data-filename', 'retriever')
+//$image_1.css('width', $image_1.width() / 3);
+//$image_1.attr('data-filename', 'retriever')
                             });
                         }
                     }
@@ -94,7 +94,7 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 success: function (image) {
-//console.log(image);
+//console.log(image_1);
                 }
             });
         }
