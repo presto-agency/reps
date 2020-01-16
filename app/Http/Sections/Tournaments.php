@@ -177,6 +177,7 @@ class Tournaments extends Section
                             ->setHtmlAttribute('minlength', '1')
                             ->setValidationRules([
                                 'string',
+                                'unique:tourney_lists,name',
                                 'between:1,255',
                             ]),
                         AdminFormElement::text('place', 'Place')
@@ -271,9 +272,9 @@ class Tournaments extends Section
                     ];
                     $data2 = [
                         AdminFormElement::select('status', 'Status')
-                            ->setOptions(TourneyList::$status)
+                            ->setOptions(TourneyList::$newStatus)
                             ->setValidationRules([
-                                'in:3,5',
+                                'in:4,5',
                             ]),
                     ];
 
@@ -355,6 +356,7 @@ class Tournaments extends Section
                             ->setHtmlAttribute('minlength', '1')
                             ->setValidationRules([
                                 'required',
+                                'unique:tourney_lists,name',
                                 'string',
                                 'between:1,255',
                             ]),

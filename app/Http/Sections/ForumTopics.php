@@ -154,7 +154,7 @@ class ForumTopics extends Section
                     'exists:forum_sections,id',
                 ])
                 ->setDisplay('title'),
-            $user_id = AdminFormElement::select('user_id', 'Admin')
+            $user_id = AdminFormElement::select('user_id', 'Автор')
                 ->setOptions((new User())->pluck('name', 'id')->toArray())
                 ->setValidationRules([
                     'nullable',

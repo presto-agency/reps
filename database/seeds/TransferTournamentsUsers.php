@@ -26,7 +26,7 @@ class TransferTournamentsUsers extends Seeder
                 try {
                     foreach ($users as $item) {
                         $checkUser = DB::table('users')->where('name', trim($item->login))
-                            ->orWhere('email', trim($item->login))->exists();
+                            ->where('email', trim($item->login))->exists();
 
                         if ( ! $checkUser) {
                             $insert_user = [

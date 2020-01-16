@@ -24,7 +24,7 @@ class TournamentsPlayer extends Section
     /**
      * @var bool
      */
-    protected $checkAccess = false;
+    protected $checkAccess = true;
 
     /**
      * @var string
@@ -52,6 +52,11 @@ class TournamentsPlayer extends Section
                         });
                     }
                 }),
+            AdminColumn::custom('Tourney status', function ($model) {
+                if ( ! empty($model->tourney)) {
+                    return TourneyList::$status[$model->tourney->status];
+                }
+            }),
             AdminColumn::text('user.name', 'User name')
                 ->setFilterCallback(function ($column, $query, $search) {
                     if ($search) {
@@ -74,8 +79,8 @@ class TournamentsPlayer extends Section
         $display = AdminDisplay::datatables()
             ->setName('TournamentsPlayerDataTables')
             ->setOrder([[0, 'desc']])
-            ->setDisplaySearch(false)
             ->with('user', 'tourney')
+            ->setDisplaySearch(false)
             ->paginate(25)
             ->setColumns($columns)
             ->setHtmlAttribute('class', 'table-primary table-hover th-center');
@@ -88,6 +93,7 @@ class TournamentsPlayer extends Section
                 ->setOperator(FilterInterface::CONTAINS)
                 ->setPlaceholder('All')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
+            null,
             AdminColumnFilter::text()
                 ->setOperator(FilterInterface::CONTAINS)
                 ->setPlaceholder('User name')
