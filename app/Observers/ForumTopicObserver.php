@@ -29,7 +29,7 @@ class ForumTopicObserver
 
     public function updating(ForumTopic $forumTopic)
     {
-        $forumTopic->setAttribute('user_id', auth()->id());
+//        $forumTopic->setAttribute('user_id', auth()->id());
     }
 
     /**
