@@ -41,6 +41,8 @@ class Tournaments extends Section
 
     public function onDisplay()
     {
+
+
         $columns = [
             AdminColumn::text('id', '#')
                 ->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
