@@ -53,7 +53,7 @@ class LastNewsComposer
             ->whereNotNull('commented_at')
             ->orderByDesc('commented_at')
             ->where('news', true)
-//            ->where('approved', true)
+            //            ->where('approved', true)
             ->take(10)
             ->get(['id', 'title']);
     }
