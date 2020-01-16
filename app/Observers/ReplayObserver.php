@@ -31,7 +31,7 @@ class ReplayObserver
 
     public function updating(Replay $replay)
     {
-        $replay->setAttribute('user_id', auth()->id());
+//        $replay->setAttribute('user_id', auth()->id());
     }
 
     public function updated(Replay $replay)
