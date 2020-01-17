@@ -45,8 +45,8 @@
                                 class="info__cube" alt="race" title="{{$comment->user->races->title}}">
                             @if($comment->user->races)
                                 <p class="info__text"
-                                   title="{{$comment->user->comments_count.' pts | '. $comment->user->rating.' кг'}}">
-                                    {{$comment->user->comments_count.' pts | '. $comment->user->rating.' кг'}}
+                                   title="{{$comment->user->comments_count.' minerals | '. $comment->user->rating.' supply'}}">
+                                    {{$comment->user->comments_count.' minerals | '. $comment->user->rating.' supply'}}
                                 </p>
                             @endif
                             <span class="info__date">{{$comment->created_at->format('H:i d.m.Y')}}</span>

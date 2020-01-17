@@ -43,8 +43,8 @@
                 <img src="{{asset("images/default/game-races/" . $news->author->races->title . ".png")}}"
                      class="title__cube" alt="race" title="{{$news->author->races->title}}">
                 <p class="title__text night_text"
-                   title="{{ $news->author->comments_count.'  pts | '.$news->author->rating .' кг' }}">
-                    {{ $news->author->comments_count.'  pts | '.$news->author->rating .' кг' }}
+                   title="{{ $news->author->comments_count.'  minerals | '.$news->author->rating .' supply' }}">
+                    {{ $news->author->comments_count.'  minerals | '.$news->author->rating .' supply' }}
                 </p>
             </div>
         @endif
