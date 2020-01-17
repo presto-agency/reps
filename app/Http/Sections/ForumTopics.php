@@ -101,8 +101,8 @@ class ForumTopics extends Section
                 ->setWidth('100px'),
             $news = AdminColumnEditable::checkbox('news', 'Да', 'Нет')
                 ->setWidth('100px')->setLabel('Новость'),
-            $approved = AdminColumnEditable::checkbox('approved', 'Да', 'Нет')
-                ->setWidth('110px')->setLabel('Подтвердить'),
+//            $approved = AdminColumnEditable::checkbox('approved', 'Да', 'Нет')
+//                ->setWidth('110px')->setLabel('Подтвердить'),
 
         ]);
 
@@ -154,8 +154,12 @@ class ForumTopics extends Section
                     'exists:forum_sections,id',
                 ])
                 ->setDisplay('title'),
-            $user_id = AdminFormElement::hidden('user_id')
-                ->setDefaultValue(auth()->user()->id),
+            $user_id = AdminFormElement::select('user_id', 'Автор')
+                ->setOptions((new User())->pluck('name', 'id')->toArray())
+                ->setValidationRules([
+                    'nullable',
+                    'exists:users,id',
+                ]),
             $preview_img = AdminFormElement::image('preview_img', 'Загрузить картинку превью')
                 ->setUploadPath(function (UploadedFile $file) {
                     return 'storage'.PathHelper::checkUploadsFileAndPath("/images/topics", $this->imageOldPath);
@@ -187,8 +191,8 @@ class ForumTopics extends Section
                 ->setFormat('Y-m-d'),
             $news = AdminFormElement::checkbox('news', 'Отображать в новостях')
                 ->setValidationRules(['boolean']),
-            $approved = AdminFormElement::checkbox('approved', 'Подтвердить')
-                ->setValidationRules(['boolean']),
+//            $approved = AdminFormElement::checkbox('approved', 'Подтвердить')
+//                ->setValidationRules(['boolean']),
 
         ]);
 

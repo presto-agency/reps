@@ -20,9 +20,9 @@ class TourneyList extends Model
 
     CONST NO = 2;
 
-    public static $status4Select
+    public static $newStatus
         = [
-            3 => 'GENERATION', 5 => 'FINISHED',
+            4 => 'STARTED', 5 => 'FINISHED',
         ];
     public static $status
         = [

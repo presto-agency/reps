@@ -157,4 +157,12 @@ Route::middleware(['ban'])->group(function () {
 /**
  * Ajax quote
  */
-Route::post('quote', 'QuoteController@getQuote')->name('quote');
+Route::group(['prefix' => 'quote', 'middleware' => ['auth', 'ban', 'verified'],], function () {
+    Route::post('/', 'QuoteController@getQuote')->name('quote');
+});
+/**
+ * Return countries JSON
+ */
+Route::group(['prefix' => 'countries', 'middleware' => ['auth', 'ban', 'verified'],], function () {
+    Route::get('/', 'CountryController@get')->name('get.countries');
+});

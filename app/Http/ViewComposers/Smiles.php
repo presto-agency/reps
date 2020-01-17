@@ -14,7 +14,6 @@ class Smiles
 
     public function __construct()
     {
-
         $smiles      = [];
         $extraSmiles = ChatSmile::orderBy('updated_at', 'Desc')->get();
         foreach ($extraSmiles as $smile) {
@@ -24,12 +23,12 @@ class Smiles
             ];
         }
 
-        $this->category  = json_encode($smiles);
-
+        $this->category = json_encode($smiles);
     }
 
     public function compose(View $view)
     {
         $view->with('smiles', $this->category);
     }
+
 }
