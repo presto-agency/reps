@@ -131,7 +131,12 @@ CKEDITOR.dialog.add( 'hkemojiDialog', function( editor ) {
 			for (var prop in obj) {
 				if(!obj.hasOwnProperty(prop)) continue;
 			}
+			if(group === 'game_races') config.smiley_path='/images/default/';
+            if(group === 'flags') config.smiley_path='/storage/images/countries/';
             var urlimage = config.smiley_path+group+'/'+shortcode;
+			console.log('path',config.smiley_path);
+            console.log('group',group);
+            console.log('shortcode',shortcode);
 			html.push(
 				'<td class="cke_centered" style="vertical-align: middle;" role="presentation">' +
 				'<img class="hkemoji" cke_src="'+ CKEDITOR.tools.htmlEncode(urlimage) + '" src="'+ urlimage + '" href="javascript:void(0)" onkeydown="CKEDITOR.tools.callFunction( ', onKeydown, ', event, this );"/>', '</td>'
@@ -186,25 +191,18 @@ CKEDITOR.dialog.add( 'hkemojiDialog', function( editor ) {
 					emojis('pictures')
 				]
 			}, {
-				id: 'tab-milkbottle',
-				label: editor.config.hkemoji.tabs.milkbottle,
+				id: 'game_races',
+				label: editor.config.hkemoji.tabs.game_races,
 				elements: [
-					emojis('milkbottle')
+					emojis('game_races')
 				]
 			}, {
-				id: 'tab-facebook',
-				label: editor.config.hkemoji.tabs.facebook,
+				id: 'flags',
+				label: editor.config.hkemoji.tabs.flags,
 				elements: [
-					emojis('facebook')
+					emojis('flags')
 				]
-			},
-            {
-                id: 'img',
-                label: editor.config.hkemoji.tabs.img,
-                elements: [
-                    emojis('img')
-                ]
-            }
+			}
 
 		],
 		onShow: function() {
