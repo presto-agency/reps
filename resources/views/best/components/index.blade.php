@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="title_players change_gray">
-            <p class="title_playersText change_gray">{{__('Top-100 pts')}}</p>
+            <p class="title_playersText change_gray">{{__('Top-100 mineral')}}</p>
         </div>
         <div class="container_players">
             @if(isset($points) && $points->isNotEmpty())
@@ -48,14 +48,14 @@
                             @endif
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item->comments_count.' pts'}}</p>
+                            <p class="night_text">{{$item->comments_count.' mineral'}}</p>
                         </div>
                     </div>
                 @endforeach
             @endif
         </div>
         <div class="title_players change_gray">
-            <p class="title_playersText">{{__('Top-100 кг')}}</p>
+            <p class="title_playersText">{{__('Top-100 supply')}}</p>
         </div>
         <div class="container_players">
             @if(isset($rating) && $rating->isNotEmpty())
@@ -88,7 +88,7 @@
                             @endif
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item->rating.' кг'}}</p>
+                            <p class="night_text">{{$item->rating.' supply'}}</p>
                         </div>
                     </div>
                 @endforeach
