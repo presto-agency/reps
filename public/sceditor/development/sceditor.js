@@ -1639,7 +1639,7 @@
 	// Relative schemes (//:) are considered safe
 	// 		(\\/\\/)|
 	// Image data URI's are considered safe
-	// 		data:image\\/(png|bmp|gif|p?jpe?g);
+	// 		data:image_1\\/(png|bmp|gif|p?jpe?g);
 	var VALID_SCHEME_REGEX =
 		/^(https?|s?ftp|mailto|spotify|skype|ssh|teamspeak|tel):|(\/\/)|data:image\/(png|bmp|gif|p?jpe?g);/i;
 
@@ -1708,7 +1708,7 @@
 	 * teamspeak
 	 * tel
 	 * //
-	 * data:image/(png|jpeg|jpg|pjpeg|bmp|gif);
+	 * data:image_1/(png|jpeg|jpg|pjpeg|bmp|gif);
 	 *
 	 * **IMPORTANT**: This does not escape any HTML in a url, for
 	 * that use the escape.entities() method.
@@ -5451,7 +5451,7 @@
 				e.preventDefault();
 
 				for (var i = 0; i < types.length; i++) {
-					// Normalise image pasting to paste as a data-uri
+					// Normalise image_1 pasting to paste as a data-uri
 					if (globalWin.FileReader && items &&
 						IMAGE_MIME_REGEX.test(items[i].type)) {
 						return loadImage(clipboard.items[i].getAsFile());
