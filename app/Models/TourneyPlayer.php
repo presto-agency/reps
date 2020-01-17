@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use App\Traits\ModelRelations\TourneyPlayerRelation;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 
 class TourneyPlayer extends Model
 {
 
-    use Notifiable, TourneyPlayerRelation;
 
     protected $guarded
         = [
@@ -29,5 +27,15 @@ class TourneyPlayer extends Model
             'tourney_id'   => 'int',
             'user_id'      => 'int',
         ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function tourney()
+    {
+        return $this->belongsTo(TourneyList::class, 'tourney_id', 'id');
+    }
 
 }

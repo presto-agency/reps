@@ -2,9 +2,6 @@
 
 namespace App\Services\Tournament;
 
-use App\Models\{ReplayMap, TourneyList, TourneyMatch, TourneyPlayer};
-use Carbon\Carbon;
-
 class TourneyService
 {
 
@@ -14,104 +11,115 @@ class TourneyService
      * @return mixed
      */
 
-//    public static function getUpTournaments($limit = 5)
-//    {
-//        $upcoming_tournaments = TourneyList::where('visible', 1)
-//            ->where('start_time', '>', Carbon::now()->format('Y-m-d H:i:s'))
-//            ->orderByDesc('created_at')
-//            ->limit($limit)->get();
-//
-//        return $upcoming_tournaments;
-//    }
+    //    public static function getUpTournaments($limit = 5)
+    //    {
+    //        $upcoming_tournaments = TourneyList::where('visible', 1)
+    //            ->where('start_time', '>', Carbon::now()->format('Y-m-d H:i:s'))
+    //            ->orderByDesc('created_at')
+    //            ->limit($limit)->get();
+    //
+    //        return $upcoming_tournaments;
+    //    }
+
+    //    /**
+    //     * @return mixed
+    //     */
+    //    public static function getTournaments()
+    //    {
+    //        $tournaments = TourneyList::orderBy('updated_at', 'Desc')
+    //            ->withCount('players')
+    //            ->withCount('checkin_players')
+    //            ->with('admin_user')
+    //            ->with([
+    //                'win_player' => function ($query) {
+    //                    $query->with([
+    //                        'user' => function ($q) {
+    //                            $q->with('avatar')->withTrashed();
+    //                        },
+    //                    ]);
+    //                },
+    //            ])
+    //            ->paginate(20);
+    //
+    //        return $tournaments;
+    //    }
+
+    //    /**
+    //     * @return mixed
+    //     */
+    //    public static function getTourneyPlayers($tournament_id)
+    //    {
+    //        $players = TourneyPlayer::where('tourney_id', $tournament_id)
+    //            ->orderBy('check_in', 'desc')->orderByRaw('LENGTH(place_result)')
+    //            ->orderBy('place_result')
+    //            ->with('user')
+    //            ->get();
+    //
+    //        return $players;
+    //    }
+
+    //    /**
+    //     *
+    //     * @return mixed
+    //     */
+    //    public static function getTourneyMatches($tournament_id)
+    //    {
+    //        $matches       = TourneyMatch::where('tourney_id', $tournament_id)
+    //            ->orderBy('round_id')
+    //            ->with([
+    //                'player1' => function ($query) {
+    //                    $query->with([
+    //                        'user' => function ($q) {
+    //                            $q->with('avatar')->withTrashed();
+    //                        },
+    //                    ]);
+    //                },
+    //            ])
+    //            ->with([
+    //                'player2' => function ($query) {
+    //                    $query->with([
+    //                        'user' => function ($q) {
+    //                            $q->with('avatar')->withTrashed();
+    //                        },
+    //                    ]);
+    //                },
+    //            ])
+    //            ->with([
+    //                'file1', 'file2', 'file3', 'file4', 'file5', 'file6', 'file7',
+    //            ])
+    //            ->get();
+    //        $matches_array = [];
+    //        $round_array   = [];
+    //        foreach ($matches as $match) {
+    //            $matches_array[$match->round_id][] = $match;
+    //            $round_array[$match->round_id]     = $match->round;
+    //        }
+    //
+    //        return ['matches' => $matches_array, 'rounds' => $round_array];
+    //    }
 
 //    /**
-//     * @return mixed
-//     */
-//    public static function getTournaments()
-//    {
-//        $tournaments = TourneyList::orderBy('updated_at', 'Desc')
-//            ->withCount('players')
-//            ->withCount('checkin_players')
-//            ->with('admin_user')
-//            ->with([
-//                'win_player' => function ($query) {
-//                    $query->with([
-//                        'user' => function ($q) {
-//                            $q->with('avatar')->withTrashed();
-//                        },
-//                    ]);
-//                },
-//            ])
-//            ->paginate(20);
-//
-//        return $tournaments;
-//    }
-
-//    /**
-//     * @return mixed
-//     */
-//    public static function getTourneyPlayers($tournament_id)
-//    {
-//        $players = TourneyPlayer::where('tourney_id', $tournament_id)
-//            ->orderBy('check_in', 'desc')->orderByRaw('LENGTH(place_result)')
-//            ->orderBy('place_result')
-//            ->with('user')
-//            ->get();
-//
-//        return $players;
-//    }
-
-//    /**
+//     * @param $url
 //     *
-//     * @return mixed
+//     * @return bool
 //     */
-//    public static function getTourneyMatches($tournament_id)
+//    public static function UR_exists($url)
 //    {
-//        $matches       = TourneyMatch::where('tourney_id', $tournament_id)
-//            ->orderBy('round_id')
-//            ->with([
-//                'player1' => function ($query) {
-//                    $query->with([
-//                        'user' => function ($q) {
-//                            $q->with('avatar')->withTrashed();
-//                        },
-//                    ]);
-//                },
-//            ])
-//            ->with([
-//                'player2' => function ($query) {
-//                    $query->with([
-//                        'user' => function ($q) {
-//                            $q->with('avatar')->withTrashed();
-//                        },
-//                    ]);
-//                },
-//            ])
-//            ->with([
-//                'file1', 'file2', 'file3', 'file4', 'file5', 'file6', 'file7',
-//            ])
-//            ->get();
-//        $matches_array = [];
-//        $round_array   = [];
-//        foreach ($matches as $match) {
-//            $matches_array[$match->round_id][] = $match;
-//            $round_array[$match->round_id]     = $match->round;
+//        try {
+//            $ch = curl_init();
+//            curl_setopt($ch, CURLOPT_URL, $url);
+//            curl_setopt($ch, CURLOPT_NOBODY, 1);
+//            curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+//            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+//            if (curl_exec($ch) !== false) {
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        } catch (\Exception $exception) {
+//            return false;
 //        }
-//
-//        return ['matches' => $matches_array, 'rounds' => $round_array];
 //    }
-
-    /**
-     * @param $url
-     *
-     * @return bool
-     */
-    public static function UR_exists($url)
-    {
-        $headers = get_headers($url);
-
-        return stripos($headers[0], "200 OK") ? true : false;
-    }
 
     /**
      * @param  string  $prize_pool
@@ -142,21 +150,6 @@ class TourneyService
 
         return $prizeArray;
     }
-
-
-//    public static function getMaps($id)
-//    {
-//        $tourney   = TourneyList::where('id', $id)->first();
-//        $mapsArray = [];
-//        if ( ! empty($tourney->maps)) {
-//            $maps = explode(",", $tourney->maps);
-//            foreach ($maps as $map_id) {
-//                $mapsArray[] = ReplayMap::where('id', $map_id)->first();
-//            }
-//        }
-//
-//        return $mapsArray;
-//    }
 
     /**
      * @param $t
@@ -240,15 +233,15 @@ class TourneyService
                 break;
         }
         /** --- */
-        If ($imp == 0) {
+        if ($imp == 0) {
             $r .= '<img title="'.$simp.'" src = "/images/icons/starsnone.png">';
         }
-        While ($imp >= 4) {
+        while ($imp >= 4) {
             $r   .= '<img title="'.$simp
                 .'" src = "/images/icons/stargold.png">';
             $imp -= 4;
         }
-        For ($I = 1; $I <= $imp; $I++) {
+        for ($I = 1; $I <= $imp; $I++) {
             $r .= '<img title="'.$simp
                 .'" src = "/images/icons/starsilver.png">';
         }
