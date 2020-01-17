@@ -10,12 +10,11 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
 
-
     <script type="text/javascript" src="{{ asset('ckeditor\ckeditor.js') }}"></script>
     <script type="text/javascript" src="{{ asset('sceditor\minified\sceditor.min.js') }}"></script>
-    <link rel="stylesheet" href="../../../sceditor/minified/themes/default.min.css" />
-{{--    <script type="text/javascript" src="{{ asset('\sceditor\minified\themes\content\default.min.css') }}"></script>--}}
-    <!-- Include the BBCode or XHTML formats -->
+    <link rel="stylesheet" href="../../../sceditor/minified/themes/default.min.css"/>
+    {{--    <script type="text/javascript" src="{{ asset('\sceditor\minified\themes\content\default.min.css') }}"></script>--}}
+<!-- Include the BBCode or XHTML formats -->
     <script type="text/javascript" src="{{ asset('sceditor\minified\formats\bbcode.js') }}"></script>
     <script type="text/javascript" src="{{ asset('sceditor\minified\formats\xhtml.js') }}"></script>
 
@@ -28,20 +27,48 @@
     <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script>
+        /**
+         * Path to files.
+         * smilesPath: /storage/chat/smiles/{$fileName}
+         * imagesPath: /storage/chat/pictures/{$fileName}
+         * racesPath: /images/default/game-races/{$fileName}
+         * countriesPath: /storage/images/countries/flags/{$fileName}
+         *
+         */
+        const smiles = JSON.parse('{!! $smilesJson !!}');
+        const images = JSON.parse('{!! $imagesJson !!}');
+        const races = JSON.parse('{!! $raceJson !!}');
+        const countries = JSON.parse('{!! $countriesJson !!}');
 
-        const c = JSON.parse('{!! $smiles !!}');
-
-        const imgs= c.map(function (item) {
+        const getSmiles = smiles.map(function (item) {
             return item.filename;
         });
+        const getImages = images.map(function (item) {
+            return item.filename;
+        });
+        const getRaces = races.map(function (item) {
+            return item.filename;
+        });
+        const getCountries = countries.map(function (item) {
+            return item.filename;
+        });
+
+        console.log(getSmiles);
+        console.log(getImages);
+        console.log(getRaces);
+        console.log(getCountries);
+
         // const cod= c.map(function (item) {
         //     return item.charactor;
         // });
+        // window.imgs = imgs;
+        // CKEDITOR.config.smiley_images = imgs;
+        //
+        //     CKEDITOR.config.smiley_descriptions ={sad:":)"};
+        //     CKEDITOR.config.smiley_path = '/storage/chat/smiles/';
 
-        window.imgs = imgs;
-        CKEDITOR.config.smiley_images = imgs;
-        CKEDITOR.config.smiley_descriptions ={sad:":)"};
-        CKEDITOR.config.smiley_path = '/storage/chat/smiles/';
+
+
     </script>
 </head>
 <body>

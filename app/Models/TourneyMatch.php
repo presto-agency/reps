@@ -4,16 +4,15 @@ namespace App\Models;
 
 use App\Traits\ModelRelations\TourneyMatchRelation;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 
 class TourneyMatch extends Model
 {
 
-    use Notifiable, TourneyMatchRelation;
+    use  TourneyMatchRelation;
 
     public static $action
         = [
-            0 => "TOP", 1 => "GOTO_P1", 2 => "GOTO_P2", 3 => "NONE",
+            0 => 'TOP', 1 => 'GOTO_P1', 2 => 'GOTO_P2', 3 => 'NONE',
         ];
 
     protected $fillable

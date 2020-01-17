@@ -56,7 +56,7 @@ class TournamentController extends Controller
     public function show(int $id)
     {
         $tournament = $this->getTournament($id);
-//                dd($tournament);
+        //                dd($tournament);
         $data = $this->createDataArray($tournament);
 
         return view('tournament.show', compact('tournament', 'data'));
@@ -97,7 +97,7 @@ class TournamentController extends Controller
         return TourneyList::with([
             'mapsPool:id,tourney_id,map_id',
             'mapsPool.map:id,name,url',
-            'player' => function ($query) {
+            'player'  => function ($query) {
                 $query->where('user_id', auth()->id());
             },
             'players' => function ($query) {

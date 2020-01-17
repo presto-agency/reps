@@ -25,14 +25,18 @@ class GlobalComposer
     private $countries;
     private $replayTypes;
     private $replayTypes2;
+    private $raceJson;
+    private $countriesJson;
 
     public function __construct()
     {
-        $this->race         = collect();
-        $this->maps         = collect();
-        $this->countries    = collect();
-        $this->replayTypes  = collect();
-        $this->replayTypes2 = collect();
+        $this->race          = collect();
+        $this->maps          = collect();
+        $this->countries     = collect();
+        $this->replayTypes   = collect();
+        $this->replayTypes2  = collect();
+        $this->raceJson      = '';
+        $this->countriesJson = '';
 
         $race         = $this->getCacheRaces('race');
         $maps         = $this->getCacheMaps('maps');
@@ -45,6 +49,12 @@ class GlobalComposer
         $this->countries    = $countries;
         $this->replayTypes  = $replayTypes;
         $this->replayTypes2 = $replayTypes2;
+        if (isset($this->race) && $this->race->isNotEmpty()) {
+            $this->raceJson = $this->convertToJsonRaces($this->race);
+        }
+        if (isset($this->countries) && $this->countries->isNotEmpty()) {
+            $this->countriesJson = $this->convertToJsonCountries($this->countries);
+        }
     }
 
     public function compose(View $view)
@@ -54,6 +64,8 @@ class GlobalComposer
         $view->with('countries', $this->countries);
         $view->with('replayTypes', $this->replayTypes);
         $view->with('replayTypes2', $this->replayTypes2);
+        $view->with('raceJson', $this->raceJson);
+        $view->with('countriesJson', $this->countriesJson);
     }
 
     /**
@@ -61,7 +73,7 @@ class GlobalComposer
      *
      * @return mixed
      */
-    public function getCacheRaces(string $cache_name)
+    private function getCacheRaces(string $cache_name)
     {
         if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
             $data_cache = \Cache::get($cache_name);
@@ -79,7 +91,7 @@ class GlobalComposer
      *
      * @return mixed
      */
-    public function getCacheMaps(string $cache_name)
+    private function getCacheMaps(string $cache_name)
     {
         if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
             $data_cache = \Cache::get($cache_name);
@@ -97,7 +109,7 @@ class GlobalComposer
      *
      * @return mixed
      */
-    public function getCacheCountries(string $cache_name)
+    private function getCacheCountries(string $cache_name)
     {
         if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
             $data_cache = \Cache::get($cache_name);
@@ -115,7 +127,7 @@ class GlobalComposer
      *
      * @return mixed
      */
-    public function getCacheReplayTypes(string $cache_name)
+    private function getCacheReplayTypes(string $cache_name)
     {
         if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
             $data_cache = \Cache::get($cache_name);
@@ -133,7 +145,7 @@ class GlobalComposer
      *
      * @return mixed
      */
-    public function getCacheReplayTypes2(string $cache_name)
+    private function getCacheReplayTypes2(string $cache_name)
     {
         if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
             $data_cache = \Cache::get($cache_name);
@@ -146,6 +158,39 @@ class GlobalComposer
         return $data_cache;
     }
 
+    /**
+     * @param $races
+     *
+     * @return false|string
+     */
+    private function convertToJsonRaces($races)
+    {
+        $data = [];
+        foreach ($races as $item) {
+            $data[] = [
+                'filename' => $item->title.'.png',
+            ];
+        }
+
+        return json_encode($data);
+    }
+
+    /**
+     * @param $countries
+     *
+     * @return false|string
+     */
+    private function convertToJsonCountries($countries)
+    {
+        $data = [];
+        foreach ($countries as $item) {
+            $data[] = [
+                'filename' => pathinfo($item->flag)['basename'],
+            ];
+        }
+
+        return json_encode($data);
+    }
 
 }
 
