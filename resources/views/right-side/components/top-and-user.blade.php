@@ -39,7 +39,7 @@
         </div>
         <div class="title_block_gray change_gray">
             <a href="{{route('best.index')}}">
-                <p class="title_text night_text">{{__('Top 10 кг')}}</p>
+                <p class="title_text night_text">{{__('Top 10 supply')}}</p>
             </a>
         </div>
         <div class="block_topUsers">
@@ -47,7 +47,7 @@
                 @foreach($top10Rating as $item)
                     <div class="row row_container">
                         <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
-                            <p class="night_text">{{$item->rating.' кг'}} </p>
+                            <p class="night_text">{{$item->rating.' s'}} </p>
                         </div>
                         <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
                             @if($item->countries)
@@ -70,14 +70,44 @@
             @endif
         </div>
         <div class="title_block_gray change_gray">
-            <a href="{{route('best.index')}}"><p class="title_text night_text">{{__('TOP 10 pts')}}</p></a>
+            <a href="{{route('best.index')}}"><p class="title_text night_text">{{__('TOP 10 minerals')}}</p></a>
         </div>
         <div class="block_topUsers">
             @if(isset($top10Points) && $top10Points->isNotEmpty())
                 @foreach($top10Points as $item)
                     <div class="row row_container">
                         <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
-                            <p class="night_text">{{$item->comments_count .' pts'}}</p>
+                            <p class="night_text">{{$item->comments_count .' m'}}</p>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
+                            @if($item->countries)
+                                <img class="icon_bars" src="{{asset($item->countries->flagOrDefault())}}" alt="flag"
+                                     title="{{$item->countries->name}}"/>
+                            @endif
+                            @if($item->races)
+                                <img class="icon_bars"
+                                     src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}" alt="race"
+                                     title="{{$item->races->title}}"/>
+                            @endif
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 content_login">
+                            <a href="{{route('user_profile',['id'=>$item->id])}}">
+                                <p title="{{$item->name}}">{{$item->name}}</p>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+        <div class="title_block_gray change_gray">
+            <a href="{{route('best.index')}}"><p class="title_text night_text">{{__('TOP 10 gas')}}</p></a>
+        </div>
+        <div class="block_topUsers">
+            @if(isset($top10Points) && $top10Points->isNotEmpty())
+                @foreach($top10Points as $item)
+                    <div class="row row_container">
+                        <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
+                            <p class="night_text">{{$item->comments_count .' g'}}</p>
                         </div>
                         <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
                             @if($item->countries)

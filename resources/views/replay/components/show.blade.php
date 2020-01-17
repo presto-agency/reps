@@ -25,9 +25,9 @@
                         <img class="icon_bars" src="{{asset($replayShow->users->avatarOrDefault())}}"
                              alt="avatar"/>
                     @endauth
-                    <span title="{{$replayShow->users->rating .' кг'}}">{{$replayShow->users->rating .' кг'}}</span>
+                    <span title="{{$replayShow->users->rating .' supply'}}">{{$replayShow->users->rating .' supply'}}</span>
                     <a href="{{route('user-comments.index',['id'=>$replayShow->users->id])}}"
-                       title="{{$replayShow->users->comments_count.' pts'}}">{{$replayShow->users->comments_count.' pts'}}</a>
+                       title="{{$replayShow->users->comments_count.' minerals'}}">{{$replayShow->users->comments_count.' minerals'}}</a>
                 @endif
             </div>
         </div>
