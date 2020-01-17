@@ -53,11 +53,6 @@
             return item.filename;
         });
 
-        console.log(getSmiles);
-        console.log(getImages);
-        console.log(getRaces);
-        console.log(getCountries);
-
         // const cod= c.map(function (item) {
         //     return item.charactor;
         // });
