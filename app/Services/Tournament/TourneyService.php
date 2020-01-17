@@ -5,121 +5,45 @@ namespace App\Services\Tournament;
 class TourneyService
 {
 
-    /**
-     * @param  int  $limit
-     *
-     * @return mixed
-     */
 
-    //    public static function getUpTournaments($limit = 5)
-    //    {
-    //        $upcoming_tournaments = TourneyList::where('visible', 1)
-    //            ->where('start_time', '>', Carbon::now()->format('Y-m-d H:i:s'))
-    //            ->orderByDesc('created_at')
-    //            ->limit($limit)->get();
-    //
-    //        return $upcoming_tournaments;
-    //    }
+    public static function generateMatches($tour, $team)
+    {
+        function teamInTour($tour, $team)
+        {
+            foreach ($tour as $game) {
+                if (in_array($team, $game)) {
+                    return true;
+                }
+            }
 
-    //    /**
-    //     * @return mixed
-    //     */
-    //    public static function getTournaments()
-    //    {
-    //        $tournaments = TourneyList::orderBy('updated_at', 'Desc')
-    //            ->withCount('players')
-    //            ->withCount('checkin_players')
-    //            ->with('admin_user')
-    //            ->with([
-    //                'win_player' => function ($query) {
-    //                    $query->with([
-    //                        'user' => function ($q) {
-    //                            $q->with('avatar')->withTrashed();
-    //                        },
-    //                    ]);
-    //                },
-    //            ])
-    //            ->paginate(20);
-    //
-    //        return $tournaments;
-    //    }
+            return false;
+        }
 
-    //    /**
-    //     * @return mixed
-    //     */
-    //    public static function getTourneyPlayers($tournament_id)
-    //    {
-    //        $players = TourneyPlayer::where('tourney_id', $tournament_id)
-    //            ->orderBy('check_in', 'desc')->orderByRaw('LENGTH(place_result)')
-    //            ->orderBy('place_result')
-    //            ->with('user')
-    //            ->get();
-    //
-    //        return $players;
-    //    }
+        $teams = ['p1', 'p2', 'p3', 'p4'];
+        $tours = [];
+        $games = [];
+        for ($i = 0; $i < count($teams); $i++) {
+            for ($j = $i + 1; $j < count($teams); $j++) {
+                $games[] = [$teams[$i], $teams[$j]];
+            }
+        }
+        echo "games:".count($games)." by tour:".(count($games) / (count($teams) - 1));
+        $saved = $games;
+        for ($i = 0; $i < count($teams) - 1; $i++) {
+            $name         = 'tour'.$i;
+            $tours[$name] = [];
+            $games        = $saved;
+            foreach ($games as $key => $game) {
+                if (teamInTour($tours[$name], $game[0]) || teamInTour($tours[$name], $game[1])) {
+                    $saved[] = $game;
+                    continue;
+                }
+                $tours[$name][] = $game;
+            }
+        }
+        dd($tours);
+    }
 
-    //    /**
-    //     *
-    //     * @return mixed
-    //     */
-    //    public static function getTourneyMatches($tournament_id)
-    //    {
-    //        $matches       = TourneyMatch::where('tourney_id', $tournament_id)
-    //            ->orderBy('round_id')
-    //            ->with([
-    //                'player1' => function ($query) {
-    //                    $query->with([
-    //                        'user' => function ($q) {
-    //                            $q->with('avatar')->withTrashed();
-    //                        },
-    //                    ]);
-    //                },
-    //            ])
-    //            ->with([
-    //                'player2' => function ($query) {
-    //                    $query->with([
-    //                        'user' => function ($q) {
-    //                            $q->with('avatar')->withTrashed();
-    //                        },
-    //                    ]);
-    //                },
-    //            ])
-    //            ->with([
-    //                'file1', 'file2', 'file3', 'file4', 'file5', 'file6', 'file7',
-    //            ])
-    //            ->get();
-    //        $matches_array = [];
-    //        $round_array   = [];
-    //        foreach ($matches as $match) {
-    //            $matches_array[$match->round_id][] = $match;
-    //            $round_array[$match->round_id]     = $match->round;
-    //        }
-    //
-    //        return ['matches' => $matches_array, 'rounds' => $round_array];
-    //    }
-
-//    /**
-//     * @param $url
-//     *
-//     * @return bool
-//     */
-//    public static function UR_exists($url)
-//    {
-//        try {
-//            $ch = curl_init();
-//            curl_setopt($ch, CURLOPT_URL, $url);
-//            curl_setopt($ch, CURLOPT_NOBODY, 1);
-//            curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-//            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//            if (curl_exec($ch) !== false) {
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        } catch (\Exception $exception) {
-//            return false;
-//        }
-//    }
 
     /**
      * @param  string  $prize_pool
