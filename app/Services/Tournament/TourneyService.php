@@ -5,8 +5,10 @@ namespace App\Services\Tournament;
 class TourneyService
 {
 
-
-    public static function generateMatches($tour, $team)
+    /**
+     * @param $tourney
+     */
+    public static function generateMatches($tourney)
     {
         function teamInTour($tour, $team)
         {
@@ -19,29 +21,19 @@ class TourneyService
             return false;
         }
 
-        $teams = ['p1', 'p2', 'p3', 'p4'];
-        $tours = [];
-        $games = [];
-        for ($i = 0; $i < count($teams); $i++) {
-            for ($j = $i + 1; $j < count($teams); $j++) {
-                $games[] = [$teams[$i], $teams[$j]];
-            }
+
+        $playerCount = $tourney->players->count();
+
+        $matches = [];
+        $players = $tourney->players->shuffle();
+        if (($playerCount & 1)) {
+            $players[] = ['description' => '#UNKNOW#'];
         }
-        echo "games:".count($games)." by tour:".(count($games) / (count($teams) - 1));
-        $saved = $games;
-        for ($i = 0; $i < count($teams) - 1; $i++) {
-            $name         = 'tour'.$i;
-            $tours[$name] = [];
-            $games        = $saved;
-            foreach ($games as $key => $game) {
-                if (teamInTour($tours[$name], $game[0]) || teamInTour($tours[$name], $game[1])) {
-                    $saved[] = $game;
-                    continue;
-                }
-                $tours[$name][] = $game;
-            }
+        for ($i = 0; $i < $playerCount / 2; $i++) {
+            $matches[] = [$players[$i]['description'], $players[$playerCount / 2 + $i + 1]['description']];
         }
-        dd($tours);
+
+        dd($matches);
     }
 
 

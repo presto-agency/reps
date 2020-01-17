@@ -49,11 +49,14 @@ class GlobalComposer
         $this->countries    = $countries;
         $this->replayTypes  = $replayTypes;
         $this->replayTypes2 = $replayTypes2;
-        if (isset($this->race) && $this->race->isNotEmpty()) {
-            $this->raceJson = $this->convertToJsonRaces($this->race);
-        }
-        if (isset($this->countries) && $this->countries->isNotEmpty()) {
-            $this->countriesJson = $this->convertToJsonCountries($this->countries);
+
+        if (auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified()) {
+            if (isset($this->race) && $this->race->isNotEmpty()) {
+                $this->raceJson = $this->convertToJsonRaces($this->race);
+            }
+            if (isset($this->countries) && $this->countries->isNotEmpty()) {
+                $this->countriesJson = $this->convertToJsonCountries($this->countries);
+            }
         }
     }
 
@@ -64,8 +67,10 @@ class GlobalComposer
         $view->with('countries', $this->countries);
         $view->with('replayTypes', $this->replayTypes);
         $view->with('replayTypes2', $this->replayTypes2);
-        $view->with('raceJson', $this->raceJson);
-        $view->with('countriesJson', $this->countriesJson);
+        if (auth()->check() && auth()->user()->isNotBan()) {
+            $view->with('raceJson', $this->raceJson);
+            $view->with('countriesJson', $this->countriesJson);
+        }
     }
 
     /**
