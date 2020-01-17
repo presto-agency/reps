@@ -9,6 +9,12 @@ use App\Models\TourneyPlayer;
 trait TourneyMatchRelation
 {
 
+
+    public function tourney()
+    {
+        return $this->belongsTo(TourneyList::class, 'tourney_id', 'id');
+    }
+
     /**
      * @return mixed
      */
@@ -24,4 +30,5 @@ trait TourneyMatchRelation
     {
         return $this->belongsTo(TourneyPlayer::class, 'player2_id', 'id');
     }
+
 }

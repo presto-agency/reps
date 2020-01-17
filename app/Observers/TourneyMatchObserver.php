@@ -8,10 +8,7 @@ class TourneyMatchObserver
 {
 
 
-    public function creating(TourneyMatch $tourneyMatch)
-    {
-        dd($tourneyMatch);
-    }
+
     /**
      * Handle the tourney match "created" event.
      *
@@ -22,7 +19,10 @@ class TourneyMatchObserver
     {
         //
     }
-
+//    public function updating(TourneyMatch $tourneyMatch)
+//    {
+//
+//    }
     /**
      * Handle the tourney match "updated" event.
      *

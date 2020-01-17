@@ -50,7 +50,7 @@ class GlobalComposer
         $this->replayTypes  = $replayTypes;
         $this->replayTypes2 = $replayTypes2;
 
-        if (auth()->check() && auth()->user()->isNotBan()) {
+        if (auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified()) {
             if (isset($this->race) && $this->race->isNotEmpty()) {
                 $this->raceJson = $this->convertToJsonRaces($this->race);
             }

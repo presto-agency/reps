@@ -26,45 +26,46 @@
     {{--    Styles   --}}
     <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script>
-        /**
-         * Path to files.
-         * smilesPath: /storage/chat/smiles/{$fileName}
-         * imagesPath: /storage/chat/pictures/{$fileName}
-         * racesPath: /images/default/game-races/{$fileName}
-         * countriesPath: /storage/images/countries/flags/{$fileName}
-         *
-         */
-        const smiles = JSON.parse('{!! $smilesJson !!}');
-        const images = JSON.parse('{!! $imagesJson !!}');
-        const races = JSON.parse('{!! $raceJson !!}');
-        const countries = JSON.parse('{!! $countriesJson !!}');
+    @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())
+        <script>
+            /**
+             * Path to files.
+             * smilesPath: /storage/chat/smiles/{$fileName}
+             * imagesPath: /storage/chat/pictures/{$fileName}
+             * racesPath: /images/default/game-races/{$fileName}
+             * countriesPath: /storage/images/countries/flags/{$fileName}
+             *
+             */
+            const smiles = JSON.parse('{!! $smilesJson !!}');
+            const images = JSON.parse('{!! $imagesJson !!}');
+            const races = JSON.parse('{!! $raceJson !!}');
+            const countries = JSON.parse('{!! $countriesJson !!}');
 
-        const getSmiles = smiles.map(function (item) {
-            return item.filename;
-        });
-        const getImages = images.map(function (item) {
-            return item.filename;
-        });
-        const getRaces = races.map(function (item) {
-            return item.filename;
-        });
-        const getCountries = countries.map(function (item) {
-            return item.filename;
-        });
+            const getSmiles = smiles.map(function (item) {
+                return item.filename;
+            });
+            const getImages = images.map(function (item) {
+                return item.filename;
+            });
+            const getRaces = races.map(function (item) {
+                return item.filename;
+            });
+            const getCountries = countries.map(function (item) {
+                return item.filename;
+            });
 
-        // const cod= c.map(function (item) {
-        //     return item.charactor;
-        // });
-        // window.imgs = imgs;
-        // CKEDITOR.config.smiley_images = imgs;
-        //
-        //     CKEDITOR.config.smiley_descriptions ={sad:":)"};
-        //     CKEDITOR.config.smiley_path = '/storage/chat/smiles/';
+            // const cod= c.map(function (item) {
+            //     return item.charactor;
+            // });
+            // window.imgs = imgs;
+            // CKEDITOR.config.smiley_images = imgs;
+            //
+            //     CKEDITOR.config.smiley_descriptions ={sad:":)"};
+            //     CKEDITOR.config.smiley_path = '/storage/chat/smiles/';
 
 
-
-    </script>
+        </script>
+    @endif
 </head>
 <body>
 <a href="javascript:" id="return-to-top">
