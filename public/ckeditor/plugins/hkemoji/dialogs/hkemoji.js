@@ -131,7 +131,7 @@ CKEDITOR.dialog.add( 'hkemojiDialog', function( editor ) {
 			for (var prop in obj) {
 				if(!obj.hasOwnProperty(prop)) continue;
 			}
-            var urlimage = config.smiley_path+shortcode;
+            var urlimage = config.smiley_path+group+'/'+shortcode;
 			html.push(
 				'<td class="cke_centered" style="vertical-align: middle;" role="presentation">' +
 				'<img class="hkemoji" cke_src="'+ CKEDITOR.tools.htmlEncode(urlimage) + '" src="'+ urlimage + '" href="javascript:void(0)" onkeydown="CKEDITOR.tools.callFunction( ', onKeydown, ', event, this );"/>', '</td>'
@@ -175,15 +175,15 @@ CKEDITOR.dialog.add( 'hkemojiDialog', function( editor ) {
 		contents: [
 			{
 				id: 'tab-onion',
-				label: editor.config.hkemoji.tabs.onion,
+				label: editor.config.hkemoji.tabs.smiles,
 				elements: [
-					emojis('onion')
+					emojis('smiles')
 				]
 			}, {
-				id: 'tab-red',
-				label: editor.config.hkemoji.tabs.red,
+				id: 'pictures',
+				label: editor.config.hkemoji.tabs.pictures,
 				elements: [
-					emojis('red')
+					emojis('pictures')
 				]
 			}, {
 				id: 'tab-milkbottle',
@@ -197,7 +197,15 @@ CKEDITOR.dialog.add( 'hkemojiDialog', function( editor ) {
 				elements: [
 					emojis('facebook')
 				]
-			}
+			},
+            {
+                id: 'img',
+                label: editor.config.hkemoji.tabs.img,
+                elements: [
+                    emojis('img')
+                ]
+            }
+
 		],
 		onShow: function() {
 

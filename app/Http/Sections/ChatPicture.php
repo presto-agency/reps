@@ -69,7 +69,7 @@ class ChatPicture extends Section implements Initializable
                 ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md')
                 ->setWidth('200px'),
 
-            $image = AdminColumn::image('image_1','Image')->setWidth('100px'),
+            $image = AdminColumn::image('image','Image')->setWidth('100px'),
             $comment = AdminColumn::text('comment', 'Comment')
                 ->setWidth('250px'),
 
@@ -111,20 +111,20 @@ class ChatPicture extends Section implements Initializable
      */
     public function onEdit($id)
     {
-        $getData = $this->getModel()->select('image_1')->find($id);
+        $getData = $this->getModel()->select('image')->find($id);
         if ($getData) {
             $this->imageOldPath = $getData->image;
         }
         $form = AdminForm::panel();
         $form->setItems([
             /*Init FormElement*/
-            $image = AdminFormElement::file('image_1', 'Image')
+            $image = AdminFormElement::file('image', 'Image')
                 ->setUploadPath(function (UploadedFile $file) {
                     return 'storage'.PathHelper::checkUploadsFileAndPath('/chat/pictures');
                 })
                 ->setValidationRules([
                     'required',
-                    'image_1',
+                    'image',
                     'mimes:jpeg,jpg,png,gif,svg',
                     'max:2048',
                 ]),
