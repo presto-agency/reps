@@ -13,7 +13,7 @@
             <div class="message-content">
                 <div class="content__text">
                     {!! clean($message->message) !!}
-                    {{--<img class="content__img" src="{{ asset($message->sender->avatar) }}" alt="message-image">--}}
+                    {{--<img class="content__img" src="{{ asset($message->sender->avatar) }}" alt="message-image_1">--}}
                 </div>
                 <span class="content__date">{{ $message->created_at->format('H:i d.m.Y')}}</span>
             </div>

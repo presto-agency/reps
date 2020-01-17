@@ -25,7 +25,6 @@
     {{--    <link rel="stylesheet" href="{{ asset('js/sceditor/themes/default.min.css') }} "/>--}}
     {{--    Styles   --}}
     <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
-
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script>
         /**
@@ -65,8 +64,9 @@
         // window.imgs = imgs;
         // CKEDITOR.config.smiley_images = imgs;
         //
-        // CKEDITOR.config.smiley_descriptions = {sad: ":)"};
-        // CKEDITOR.config.smiley_path = '/storage/chat/smiles/';
+        //     CKEDITOR.config.smiley_descriptions ={sad:":)"};
+        //     CKEDITOR.config.smiley_path = '/storage/chat/smiles/';
+
 
 
     </script>

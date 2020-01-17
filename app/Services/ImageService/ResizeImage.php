@@ -34,7 +34,7 @@ class ResizeImage
         }
         $openImage = Image::make($imageFile);
 
-        // open an image file -> now you are able to resize the instance -> finally we save the image as a new file
+        // open an image_1 file -> now you are able to resize the instance -> finally we save the image_1 as a new file
         $openImage->resize($width, $height, $aspectRatio)->save($savePath, 100);
 
         return $savePath;
