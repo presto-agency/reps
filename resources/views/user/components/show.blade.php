@@ -230,27 +230,27 @@
                             </div>
                         </div>
                         <div class="block_inform">
-                            <div class="left_block"><span>{{__('Top mineral:')}}</span></div>
+                            <div class="left_block"><span>{{__('Mineral:')}}</span></div>
                             <div class="right_block">
-                                <a class="blue" title="{{__('Top mineral')}}"
+                                <a class="blue" title="{{__('Mineral')}}"
                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}">
                                     <span>0</span>
                                 </a>
                             </div>
                         </div>
                         <div class="block_inform">
-                            <div class="left_block"><span>{{__('Top supply:')}}</span></div>
+                            <div class="left_block"><span>{{__('Supply:')}}</span></div>
                             <div class="right_block">
-                                <a class="blue" title="{{__('Top supply')}}"
+                                <a class="blue" title="{{__('Supply')}}"
                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}">
                                     <span>0</span>
                                 </a>
                             </div>
                         </div>
                         <div class="block_inform">
-                            <div class="left_block"><span>{{__('Top gas:')}}</span></div>
+                            <div class="left_block"><span>{{__('Gas:')}}</span></div>
                             <div class="right_block">
-                                <a class="blue" title="{{__('Top gas')}}"
+                                <a class="blue" title="{{__('Gas')}}"
                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}">
                                     <span>0</span>
                                 </a>
