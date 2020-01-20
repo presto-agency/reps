@@ -47,7 +47,7 @@ class TransferCountries extends Seeder
                             'created_at' => Carbon::now(),
                         ];
                     }
-                    DB::table("countries")->insertOrIgnore($insertItems);
+                    DB::table("countries")->insert($insertItems);
                 } catch (\Exception $e) {
                     dd($e, $item);
                 }

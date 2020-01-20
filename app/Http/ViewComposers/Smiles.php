@@ -18,8 +18,10 @@ class Smiles
 
     public function __construct()
     {
-        $this->smilesJson = $this->getCacheSmiles('smilesJson');
-        $this->imagesJson = $this->getCacheImages('imagesJson');
+        if (auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified()) {
+            $this->smilesJson = $this->getCacheSmiles('smilesJson');
+            $this->imagesJson = $this->getCacheImages('imagesJson');
+        }
     }
 
     public function compose(View $view)
