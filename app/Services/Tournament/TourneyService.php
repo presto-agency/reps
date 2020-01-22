@@ -10,27 +10,49 @@ class TourneyService
      */
     public static function generateMatches($tourney)
     {
-        function teamInTour($tour, $team)
-        {
-            foreach ($tour as $game) {
-                if (in_array($team, $game)) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
+        //        function teamInTour($tour, $team)
+        //        {
+        //            foreach ($tour as $game) {
+        //                if (in_array($team, $game)) {
+        //                    return true;
+        //                }
+        //            }
+        //
+        //            return false;
+        //        }
 
 
         $playerCount = $tourney->players->count();
 
         $matches = [];
+
         $players = $tourney->players->shuffle();
+        $k       = 0;
         if (($playerCount & 1)) {
-            $players[] = ['description' => '#UNKNOW#'];
+            $players[] = '-freeSlot-';
+            $k         = 1;
         }
+
         for ($i = 0; $i < $playerCount / 2; $i++) {
-            $matches[] = [$players[$i]['description'], $players[$playerCount / 2 + $i + 1]['description']];
+            $matches[] = [
+                'tourney_id'    => $tourney->id,
+                'player1_id'    => $players[$i]['id'],
+                'player2_id'    => $players[$playerCount / 2 + $i + $k]['id'],
+                'player1_score' => 0,
+                'player2_score' => 0,
+                'winner_score'  => null,
+                'winner_value'  => null,
+                'winner_action' => null,
+                'looser_action' => null,
+                'looser_value'  => null,
+                'match_number'  => null,
+                'round_number'  => null,
+                'played'        => false,
+                'round'         => null,
+
+
+                //                $players[$i], $players[$playerCount / 2 + $i + $k],
+            ];
         }
 
         dd($matches);
