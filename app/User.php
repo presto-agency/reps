@@ -95,8 +95,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isAdmin()
     {
-        return $this->roles->name == 'super-admin'
-            || $this->roles->name == 'admin';
+        return $this->roles->name == 'super-admin' || $this->roles->name == 'admin';
     }
 
     public function isNotUser()

@@ -17,12 +17,14 @@ class AdminPanelAccess
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->isAdmin()) {
-            return $next($request);
-        }
         if (auth()->check()) {
+            if (auth()->user()->isAdmin()) {
+                return $next($request);
+            }
+
             auth()->logout();
         }
+
 
         return abort(404);
     }
