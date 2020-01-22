@@ -41,13 +41,53 @@ class TournamentsMatches extends Section
         $columns = [
             AdminColumn::text('id', '#')->setWidth('100px')
                 ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('tourney.name', '<small>Турнир</small>')
+                ->setWidth('300px'),
+            AdminColumn::text('player1.description', '<small>Игрок 1<br>Nick/GameNick</small>', 'player1.user.name')
+                ->setWidth('125px'),
+            AdminColumn::text('player2.description', '<small>Игрок 2<br>Nick/GameNick</small>', 'player1.user.name')
+                ->setWidth('125px'),
+            AdminColumn::text('player1_score', '<small>Игрок 1<br>очки</small>')->setWidth('67px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('player2_score', '<small>Игрок 2<br>очки</small>')->setWidth('67px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('winner_score', '<small>Чемпион<br>очки</small>')->setWidth('80px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('winner_value', '<small>Чемпион<br>значение</small>')->setWidth('80px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('winner_action', '<small>Чемпион<br>действие</small>')->setWidth('80px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('looser_action', '<small>Проигра-<br>вший<br>действие</small>')->setWidth('80px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('looser_value', '<small>Проигра-<br>вший<br>значение</small>')->setWidth('80px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('match_number', '<small>№<br>матч</small>')->setWidth('50px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('round_number', '<small>№<br>раунд</small>')->setWidth('60px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::boolean('played')->setLabel('<small>Сыграно</small>'),
 
         ];
-
+        //        $columns = [
+        //            AdminColumn::link('name', 'Name', 'created_at')
+        //                ->setSearchCallback(function($column, $query, $search){
+        //                    return $query->orWhere('name', 'like', '%'.$search.'%')
+        //                        ->orWhere('created_at', 'like', '%'.$search.'%');
+        //                })
+        //                ->setOrderable(function($query, $direction) {
+        //                    $query->orderBy('created_at', $direction);
+        //                }),
+        //            AdminColumn::text('created_at', 'Created / updated', 'updated_at')
+        //                ->setWidth('160px')
+        //                ->setOrderable(function($query, $direction) {
+        //                    $query->orderBy('updated_at', $direction);
+        //                })
+        //                ->setSearchable(false),
+        //        ];
         $display = AdminDisplay::datatables()
             ->setName('TournamentsMatchesDataTables')
             ->setOrder([[0, 'desc']])
-            ->with('tourney','player1','player2','player1.user:id,name','player2.user:id,name')
+            ->with('tourney', 'player1', 'player2', 'player1.user:id,name', 'player2.user:id,name')
             ->setDisplaySearch(false)
             ->paginate(25)
             ->setColumns($columns)
@@ -78,20 +118,20 @@ class TournamentsMatches extends Section
     public function onEdit($id)
     {
         return AdminForm::panel()->addBody([
-            AdminFormElement::text('tourney_id','Турнир')->setReadonly(true),
-            AdminFormElement::text('player1_id','Первый игрок'),
+            AdminFormElement::text('tourney_id', 'Турнир')->setReadonly(true),
+            AdminFormElement::text('player1_id', 'Первый игрок'),
         ]);
     }
 
-//    /**
-//     * @return FormInterface
-//     */
-//    public function onCreate()
-//    {
-//        return AdminForm::panel()->addBody([
-//            AdminFormElement::text('tourney_id')->setReadonly(true),
-//        ]);
-//    }
+    //    /**
+    //     * @return FormInterface
+    //     */
+    //    public function onCreate()
+    //    {
+    //        return AdminForm::panel()->addBody([
+    //            AdminFormElement::text('tourney_id')->setReadonly(true),
+    //        ]);
+    //    }
 
     /**
      * @return void
