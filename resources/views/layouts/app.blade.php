@@ -305,4 +305,20 @@
 
 @yield('java-script')
 </body>
+<div class="item_spoiler " id="spoiler_1" onclick="Spoiler('spoiler_1')">Показати[+]
+    <div class="spoiler ">444444444444</div>
+</div>
+
+<div class="item_spoiler " id="spoiler_2" onclick="Spoiler('spoiler_2')">Показати[+]
+    <div class="spoiler ">444444444444</div>
+</div>
 </html>
+<script>
+    function Spoiler(id) {
+        var p=document.getElementById(id);
+        $('#'+id).toggleClass('hidden_spoiler');
+        document.getElementById(id).innerText('[-] приховати');
+        console.log('ppp',p.innerHTML)
+    }
+
+</script>
