@@ -40,8 +40,8 @@ class CheckStatus extends Command
      */
     public function handle()
     {
-//        $this->updateTourney('reg_time', 'ANNOUNCE', 'REGISTRATION');
-//        $this->updateTourney('checkin_time', 'REGISTRATION', 'CHECK-IN');
+        $this->updateTourney('reg_time', 'ANNOUNCE', 'REGISTRATION');
+        $this->updateTourney('checkin_time', 'REGISTRATION', 'CHECK-IN');
 
         //        $this->updateTourney('start_time', 'CHECK-IN', 'STARTED');
         //        if (isset($tourneyReg) && $tourneyReg->isNotEmpty()) {

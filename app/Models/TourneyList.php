@@ -18,24 +18,27 @@ class TourneyList extends Model
 
     const YES = 1;
 
-    CONST NO = 2;
+    const NO = 2;
 
     public static $newStatus
         = [
-            4 => 'STARTED', 5 => 'FINISHED',
+            5 => 'STARTED', 6 => 'FINISHED',
         ];
     public static $status
         = [
-            0 => 'ANNOUNCE', 1 => 'REGISTRATION', 2 => 'CHECK-IN',
-            3 => 'GENERATION', 4 => 'STARTED', 5 => 'FINISHED',
+            1 => 'ANNOUNCE', 2 => 'REGISTRATION', 3 => 'CHECK-IN',
+            4 => 'GENERATION', 5 => 'STARTED', 6 => 'FINISHED',
         ];
 
 
     public static $map_types
         = [
-            0 => 'NONE', 1 => 'FIRSTBYREMOVING', 2 => 'FIRSTBYROUND',
+            1 => 'NONE', 2 => 'FIRSTBYREMOVING', 3 => 'FIRSTBYROUND',
         ];
-
+    public static $matchType
+        = [
+            1 => 'SINGLE', 2 => 'DOUBLE',
+        ];
 
     public static $yesOrNo
         = [

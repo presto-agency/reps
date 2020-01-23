@@ -4,6 +4,7 @@ namespace App\Http\Sections;
 
 use AdminColumn;
 use AdminDisplay;
+use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
@@ -43,9 +44,9 @@ class TournamentsMatches extends Section
                 ->setHtmlAttribute('class', 'text-center'),
             AdminColumn::text('tourney.name', '<small>Турнир</small>')
                 ->setWidth('300px'),
-            AdminColumn::text('player1.description', '<small>Игрок 1<br>Nick/GameNick</small>', 'player1.user.name')
+            AdminColumn::text('player1.description', '<small>Игрок 1<br>GameNick/Name</small>', 'player1.user.name')
                 ->setWidth('125px'),
-            AdminColumn::text('player2.description', '<small>Игрок 2<br>Nick/GameNick</small>', 'player1.user.name')
+            AdminColumn::text('player2.description', '<small>Игрок 2<br>GameNick/Name</small>', 'player1.user.name')
                 ->setWidth('125px'),
             AdminColumn::text('player1_score', '<small>Игрок 1<br>очки</small>')->setWidth('67px')
                 ->setHtmlAttribute('class', 'text-center'),
@@ -53,17 +54,9 @@ class TournamentsMatches extends Section
                 ->setHtmlAttribute('class', 'text-center'),
             AdminColumn::text('winner_score', '<small>Чемпион<br>очки</small>')->setWidth('80px')
                 ->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::text('winner_value', '<small>Чемпион<br>значение</small>')->setWidth('80px')
-                ->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::text('winner_action', '<small>Чемпион<br>действие</small>')->setWidth('80px')
-                ->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::text('looser_action', '<small>Проигра-<br>вший<br>действие</small>')->setWidth('80px')
-                ->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::text('looser_value', '<small>Проигра-<br>вший<br>значение</small>')->setWidth('80px')
-                ->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::text('match_number', '<small>№<br>матч</small>')->setWidth('50px')
-                ->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::text('round_number', '<small>№<br>раунд</small>')->setWidth('60px')
+//            AdminColumn::text('match_number', '<small>№<br>матча</small>')->setWidth('50px')
+//                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('round_number', '<small>№<br>раунда</small>')->setWidth('60px')
                 ->setHtmlAttribute('class', 'text-center'),
             AdminColumn::boolean('played')->setLabel('<small>Сыграно</small>'),
 
@@ -84,6 +77,7 @@ class TournamentsMatches extends Section
         //                })
         //                ->setSearchable(false),
         //        ];
+
         $display = AdminDisplay::datatables()
             ->setName('TournamentsMatchesDataTables')
             ->setOrder([[0, 'desc']])
@@ -92,7 +86,9 @@ class TournamentsMatches extends Section
             ->paginate(25)
             ->setColumns($columns)
             ->setHtmlAttribute('class', 'table-primary table-hover th-center');
-
+        $display->setFilters(
+            AdminDisplayFilter::field('tourney_id')->setTitle('Tourney ID [:value]')
+        );
 
         //        $display->setColumnFilters([
         //          AdminColumnFilter::select()

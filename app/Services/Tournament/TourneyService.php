@@ -7,57 +7,76 @@ use App\Models\TourneyMatch;
 class TourneyService
 {
 
-    /**
-     * @param $tourney
-     */
-    public static function generateWinnersMatches($tourney)
+
+    public static function generateMatches($tourney, $round_number = null)
     {
         $playerCount = $tourney->players->where('check', true)->count();
-        if ($playerCount !== 0) {
-            $matches = [];
 
-            $players = $tourney->players->where('check', true)->shuffle();
-
-            $k = 0;
-            if (($playerCount & 1)) {
-                $players[] = ['id' => null];
-                $k         = 1;
-            }
-            $ofRound = $playerCount + $k;
-
-            /*** Generate ***/
-            $round_number = 1;
-            $round        = "Winners Round $round_number (of $ofRound)";
-            for ($i = 0; $i < $playerCount / 2; $i++) {
-                $matches[] = [
-                    'tourney_id'    => $tourney['id'],
-                    'player1_id'    => $players[$i]['id'],
-                    'player2_id'    => $players[$playerCount / 2 + $i + $k]['id'],
-                    'player1_score' => 0,
-                    'player2_score' => 0,
-                    'winner_score'  => 0,
-                    'winner_value'  => 0,
-                    'winner_action' => null,
-                    'looser_action' => null,
-                    'looser_value'  => 0,
-                    'match_number'  => $i,
-                    'round_number'  => $round_number,
-                    'played'        => false,
-                    'round'         => $round,
-                ];
-            }
-            self::insertMatches($matches);
+        if ($playerCount == 0) {
+            return \Response::json([
+                'success' => false,
+                'message' => 'Нету игроков',
+            ], 400);
         }
+        $matches = [];
+
+        $players = $tourney->players->where('check', true)->shuffle();
+
+        $k = 0;
+        if (($playerCount & 1)) {
+            $players[] = ['id' => null];
+            $k         = 1;
+        }
+        $ofRound = $playerCount + $k;
+        /*** Generate***/
+        //        $rounds = log($ofRound, 2);
+
+        for ($i = 0; $i < $playerCount / 2; $i++) {
+            $matches[] = [
+                'tourney_id'   => $tourney['id'],
+                'player1_id'   => $players[$i]['id'],
+                'player2_id'   => $players[$playerCount / 2 + $i + $k]['id'],
+                'round_number' => $round_number,
+                'played'       => false,
+                'round'        => "Round $round_number (of $ofRound)",
+            ];
+        }
+
+        dd($matches);
+        //            $round_number = 1;
+        //            $d            = $playerCount;
+        //            //            do {
+        //            $d = ceil($d / 2.0);
+        //            for ($i = 0; $i < $d; $i++) {
+        //                $matches[] = [
+        //                    'tourney_id'   => $tourney['id'],
+        //                    'player1_id'   => $players[$i]['id'],
+        //                    'player2_id'   => $players[$playerCount / 2 + $i + $k]['id'],
+        //                    'round_number' => $round_number,
+        //                    'played'       => false,
+        //                    'round'        => "Winners Round $round_number (of $ofRound)",
+        //                ];
+        //                //                }
+        //                //            } while ($d > 1);
+        //            }
+
+        //            self::insertMatches($matches);
+
+        return \Response::json([
+            'success' => true,
+            'message' => 'Успешно созданы матчи',
+        ], 200);
     }
 
     private static function insertMatches($data)
     {
         TourneyMatch::query()->insertOrIgnore($data);
     }
-    //    private static function dividedByCount(int $number, int $base)
-    //    {
-    //        return floor(log($number, $base)); // <== SOLUTION
-    //    }
+
+    private static function dividedByCount(int $number, int $base)
+    {
+        return floor(log($number, $base)); // <== SOLUTION
+    }
 
     /**
      * @param  string  $prize_pool

@@ -10,13 +10,24 @@ class TourneyMatch extends Model
 
     use  TourneyMatchRelation;
 
+    const TYPE_SINGLE = '1';
+
+    const TYPE_DOUBLE = '2';
+
     public static $action
         = [
-            0 => 'TOP', 1 => 'GOTO_P1', 2 => 'GOTO_P2', 3 => 'NONE',
+            1 => 'NONE', 2 => 'GOTO_P1', 3 => 'GOTO_P2', 4 => 'TOP',
         ];
 
-    protected $fillable
+    //    protected $fillable
+    //        = [
+    //
+    //        ];
+    protected $guarded
         = [
+            'tourney_id',
+            'player1_id',
+            'player2_id',
             'player1_score',
             'player2_score',
             'winner_score',
@@ -35,12 +46,6 @@ class TourneyMatch extends Model
             'rep5',
             'rep6',
             'rep7',
-        ];
-    protected $guarded
-        = [
-            'tourney_id',
-            'player1_id',
-            'player2_id',
         ];
 
     protected $casts

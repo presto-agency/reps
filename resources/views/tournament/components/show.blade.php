@@ -15,14 +15,14 @@
                         C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
                 <p class="title_text">{{$tournament->name}}</p>
-                {{--                @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())--}}
-                {{--                    @if('REGISTRATION' === $tournament::$status[$tournament->status] && empty($tournament->player))--}}
-                {{--                        <button onclick="tournamentRegister()">Add</button>--}}
-                {{--                    @endif--}}
-                {{--                    @if(!empty($tournament->player))--}}
-                {{--                        <p>{{__('Вы уже присоединились к турниру')}}</p>--}}
-                {{--                    @endif--}}
-                {{--                @endif--}}
+                @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())
+                    @if('REGISTRATION' === $tournament::$status[$tournament->status] && empty($tournament->player))
+                        <button onclick="tournamentRegister()">Add</button>
+                    @endif
+                    @if(!empty($tournament->player))
+                        <p>{{__('Вы уже присоединились к турниру')}}</p>
+                    @endif
+                @endif
             </div>
         </div>
 
@@ -64,8 +64,9 @@
                 </div>
                 <div class="container_block">
                     <div class="replay-desc-right"><p>{{(__('Selection map:'))}}</p></div>
-                    <div class="replay-desc-left"><p
-                            class="blue">{{$tournament::$map_types[$tournament->map_select_type]}}</p></div>
+                    <div class="replay-desc-left">
+                        <p class="blue">{{$tournament::$map_types[$tournament->map_select_type]}}</p>
+                    </div>
                 </div>
                 @if(!empty($tournament->prize_pool) && !empty($tournament->ranking) && !empty($tournament->check_players_count))
                     <div class="container_block">
@@ -198,7 +199,13 @@
             </div>
         </div>
         <div class="title_players change_gray">
-            <p class="title_playersText">{{__('Players').' | '.'Registered:'.$tournament->players_count .' | '.'Check-In: '.$tournament->check_players_count }}</p>
+            <p class="title_playersText">
+                {{__('Players')
+                                .' | '.'Registered:'.$tournament->players_count
+                                .' | '.'Check-In: '.$tournament->check_players_count
+                                .' | '.'Ban: '.$tournament->ban_players_count
+                }}
+            </p>
         </div>
         <div class="container_players">
             @if(isset($tournament->players) && $tournament->players->isNotEmpty())
@@ -223,11 +230,14 @@
                                     </span>
                                 </a>
                                 @if($item->check)
-                                    <small>{{__('CheckIn:YES')}}</small>
+                                    <span class="name_player">
+                                        <small>{{__('CheckIn:YES')}}</small>
+                                    </span>
                                 @else
-                                    <small>{{__('CheckIn:NO')}}</small>
+                                    <span class="name_player">
+                                         <small>{{__('CheckIn:NO')}}</small>
+                                    </span>
                                 @endif
-
                             </div>
                             <div class="center_block">
                                 @if(!empty($item->user->countries))
