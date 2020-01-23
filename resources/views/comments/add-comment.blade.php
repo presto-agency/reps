@@ -23,7 +23,7 @@
             @method('POST')
             @csrf
             <input type="hidden" name="id" tabindex="-1" value="{{$id}}">
-            <div class="form-group">
+            <div class="form-group" id="div_content-comment">
                 <label for="content-comment" class="night_text">  {{__('Коментарий')}}</label>
                 <textarea class="form-control night_input" id="content-comment" name="content">
                     {{clean(old('content'))}}</textarea>
