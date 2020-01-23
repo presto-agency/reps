@@ -4,11 +4,11 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-	// config.uiColor = '#AADC6E';
-    config.extraPlugins = 'timestamp';
-    config.extraPlugins = 'hkemoji';
+    // Define changes to default configuration here. For example:
+    // config.language = 'fr';
+    // config.uiColor = '#AADC6E';
+    config.extraPlugins = 'hkemoji , addtimestamp';
+    config.allowedContent = true;
     config.removeButtons = 'Save,Preview,Print,Templates,Find,Replace,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,Link,Unlink,Anchor,Flash,Table,HorizontalRule,PageBreak,Iframe,BGColor,ShowBlocks,BidiRtl,BidiLtr,Styles,Format,Font,FontSize,Language,Image,Smiley';
     // CKEDITOR.plugins.add( 'imageuploader', {
     //     init: function( editor ) {
@@ -17,24 +17,57 @@ CKEDITOR.editorConfig = function( config ) {
     // });
 
 };
+
 // const cq = JSON.parse('{!! $smiles !!}');
-CKEDITOR.plugins.add( 'timestamp', {
-    icons: 'timestamp',
-    init: function( editor ) {
-        editor.addCommand("mySimpleCommand", {
 
-            exec: function(edt) {
-                t= '555';
-
-                     editor.insertHtml(t);
+CKEDITOR.plugins.add('addtimestamp',{
+    init: function(editor){
+        var cmd = editor.addCommand('addtimestamp', {
+            exec:function(editor){
+                editor.insertHtml('[bbSpoiler]' +
+                    '[bbSpoilerTitle]' +
+                    '[spoiler_block]'+
+                    '[strong]'+'[+] 44444'+'[/strong]'+
+                    '[strong]'+'[-] 55555'+'[/strong]'+
+                    '[/spoiler_block]'+
+                    '[spoiler]'+ editor.getSelection().getSelectedText()+'[/spoiler]'+
+                    '[bbSpoilerTitle]' +
+                    // '[spoiler]'+editor.getSelection().getSelectedText()+'[/spoiler][/item_spoiler]' +
+                    '[/bbSpoiler]' );
+                // editor.insertHtml(' [spoiler class="spoiler"]444[spoiler]'); // собственно сама работа плагина
             }
+        });
+        cmd.modes = { wysiwyg : 1, source: 1 };// плагин будет работать и в режиме wysiwyg и в режиме исходного текста
+        editor.ui.addButton('addtimestamp',{
+            label: 'Добавить текущую дату и время',
+            command: 'addtimestamp',
+            toolbar: 'about'
+        });
+    },
+    icons:'addtimestamp', // иконка
 
-        });
-        editor.ui.addButton('SuperButton', {
-            label: "Click me",
-            command: 'mySimpleCommand',
-            toolbar: 'insert',
-            icon: 'https://avatars1.githubusercontent.com/u/5500999?v=2&s=16'
-        });
-    }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
