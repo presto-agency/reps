@@ -32,18 +32,13 @@ class ParserToHTML
         });
         $bbCode->addTag('spoiler-shell', function ($tag, &$html, $openingTag) {
             if ($tag->opening) {
-                return '<div class="bbSpoiler">'.'<a href="#" onclick="return xbbSpoiler(this)">'.'<strong>показать</strong>'.'<strong style="display:none">скрыть</strong>'.'</a>';
+                return '<div class="bbSpoiler">'.'<a href="#" onclick="return xbbSpoiler(this)">'.'<strong>показать</strong>'.'<strong style="display:none">скрыть</strong>'.'</a>'
+                    .'<div class="spoiler" style="display:none">';
             } else {
-                return '</div>';
+                return '</div>'.'</div>';
             }
         });
-        $bbCode->addTag('spoiler-body', function ($tag, &$html, $openingTag) {
-            if ($tag->opening) {
-                return '<div class="spoiler" style="display:none">';
-            } else {
-                return '</div>';
-            }
-        });
+
         $second_conversion = $bbCode->render($first_conversion);
 
 
