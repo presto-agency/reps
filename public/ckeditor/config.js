@@ -40,7 +40,7 @@ CKEDITOR.plugins.add('addtimestamp', {
     icons: 'addtimestamp', // иконка
 
 });
-
+/////////////////
 
 //fff
 
