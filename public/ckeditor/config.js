@@ -9,7 +9,7 @@ CKEDITOR.editorConfig = function( config ) {
     // config.uiColor = '#AADC6E';
     config.extraPlugins = 'hkemoji , addtimestamp';
     config.allowedContent = true;
-    config.removeButtons = 'Save,Preview,Print,Templates,Find,Replace,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,Link,Unlink,Anchor,Flash,Table,HorizontalRule,PageBreak,Iframe,BGColor,ShowBlocks,BidiRtl,BidiLtr,Styles,Format,Font,FontSize,Language,Image,Smiley';
+    config.removeButtons = 'Save,Preview,Print,Templates,Find,Replace,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,Unlink,Anchor,Flash,Table,HorizontalRule,PageBreak,Iframe,BGColor,ShowBlocks,BidiRtl,BidiLtr,Styles,Format,Font,FontSize,Language,Image,Smiley';
     // CKEDITOR.plugins.add( 'imageuploader', {
     //     init: function( editor ) {
     //         editor.config.filebrowserBrowseUrl = 'http://reps.loc/storage/chat/pictures/3bcd2d0ebe4d5e07506f5c25d0b13e05.jpg';
