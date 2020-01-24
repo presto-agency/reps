@@ -24,7 +24,7 @@ class TournamentsPlayer extends Section
     /**
      * @var bool
      */
-    protected $checkAccess = true;
+    protected $checkAccess = false;
 
     /**
      * @var string
