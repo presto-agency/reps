@@ -58,7 +58,6 @@ class User extends Section
      */
     public function onDisplay()
     {
-
         $display = AdminDisplay::datatables()
             ->setName('usertables')
             ->setOrder([[0, 'desc']])
@@ -154,8 +153,6 @@ class User extends Section
                         if ($search == 'no') {
                             $query->whereNull('email_verified_at');
                         }
-
-
                     }
                 )->setWidth(10),
 
@@ -267,12 +264,12 @@ class User extends Section
                     ->setHtmlAttribute('maxlength', '30')
                     ->setHtmlAttribute('type', 'email')
                     ->setValidationRules([
-                            'required',
-                            'string',
-                            'email',
-                            'max:255',
-                            'unique:users,email,'.$this->id,
-                        ]),
+                        'required',
+                        'string',
+                        'email',
+                        'max:255',
+                        'unique:users,email,'.$this->id,
+                    ]),
 
                 $name = AdminFormElement::text('name', 'Имя')
                     ->setHtmlAttribute('placeholder', 'Имя')

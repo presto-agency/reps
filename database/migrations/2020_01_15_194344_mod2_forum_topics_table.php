@@ -15,7 +15,7 @@ class Mod2ForumTopicsTable extends Migration
     public function up()
     {
         Schema::table('forum_topics', function (Blueprint $table) {
-            $table->dateTime('commented_at')->default(NULL)->nullable()->change();
+            $table->dateTime('commented_at')->default(null)->nullable()->change();
         });
     }
 
@@ -26,7 +26,6 @@ class Mod2ForumTopicsTable extends Migration
      */
     public function down()
     {
-
     }
 
 }

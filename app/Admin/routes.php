@@ -33,3 +33,6 @@ Route::get('users/{id}/send-email-create', '\App\Http\Controllers\Admin\EmailCon
 Route::post('users/send-email-send', '\App\Http\Controllers\Admin\EmailController@emailSend')->name('admin.user.email-send.send');
 
 //Route::get('translations/{groupKey?}', '\Barryvdh\TranslationManager\Controller@getIndex');
+
+Route::get('tourney_lists/{id}/match_generator', '\App\Http\Controllers\Admin\Tournament\MatchGeneratorController@show')->name('admin.tourney.show');
+Route::post('tourney_lists/match_generator', '\App\Http\Controllers\Admin\Tournament\MatchGeneratorController@matchGenerator')->name('admin.tourney.match.generator');

@@ -16,7 +16,7 @@ class Create2TourneyListsTable extends Migration
     {
         Schema::create('tourney_lists', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->index()->nullable();
+            $table->unsignedBigInteger('user_id')->nullable()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL')->onUpdate('cascade');
             $table->string('name', 255);
             $table->string('place', 255);

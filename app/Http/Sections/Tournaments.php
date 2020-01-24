@@ -12,8 +12,10 @@ use App\Models\TourneyList;
 use App\Services\ServiceAssistants\PathHelper;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
+use SleepingOwl\Admin\Display\ControlLink;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -27,7 +29,7 @@ class Tournaments extends Section
     /**
      * @var bool
      */
-    protected $checkAccess = true;
+    protected $checkAccess = false;
 
     /**
      * @var string
@@ -154,6 +156,10 @@ class Tournaments extends Section
         ]);
 
         $display->getColumnFilters()->setPlacement('table.header');
+//
+//        $control    = $display->getColumns()->getControlColumn();
+//        $buttonShow = $this->matches();
+//        $control->addButton($buttonShow);
 
         return $display;
     }
@@ -189,15 +195,6 @@ class Tournaments extends Section
                             ->setValidationRules([
                                 'string',
                                 'between:1,255',
-                            ]),
-                        AdminFormElement::number('importance', 'Importance')
-                            ->setHtmlAttribute('placeholder', 'Importance')
-                            ->setMax(127)
-                            ->setStep(1)
-                            ->setMin(-128)
-                            ->setValidationRules([
-                                'numeric',
-                                'between:-128,127',
                             ]),
                         AdminFormElement::select('map_select_type', 'Map select type')
                             ->setOptions(TourneyList::$map_types)
@@ -341,6 +338,7 @@ class Tournaments extends Section
                 }, 9),
         ]);
 
+
         return $form;
     }
 
@@ -370,16 +368,6 @@ class Tournaments extends Section
                                 'required',
                                 'string',
                                 'between:1,255',
-                            ]),
-                        AdminFormElement::number('importance', 'Importance')
-                            ->setHtmlAttribute('placeholder', 'Importance')
-                            ->setMax(127)
-                            ->setStep(1)
-                            ->setMin(-128)
-                            ->setValidationRules([
-                                'required',
-                                'numeric',
-                                'between:-128,127',
                             ]),
                         AdminFormElement::select('map_select_type', 'Map select type')
                             ->setOptions(TourneyList::$map_types)
@@ -512,6 +500,21 @@ class Tournaments extends Section
     public function onDelete($id)
     {
         // remove if unused
+    }
+
+    /**
+     * @return ControlLink
+     */
+    public function matches()
+    {
+        $link = new ControlLink(function (Model $model) {
+            return route('admin.tourney.show', ['id' => $model->getKey()]);
+        }, 'Создать матчи', 50);
+        $link->hideText();
+        $link->setIcon('fas fa-archway');
+        $link->setHtmlAttribute('class', 'btn-info');
+
+        return $link;
     }
 
 }

@@ -327,4 +327,8 @@ $('#return-to-top').click(function () {      // When arrow is clicked
 });
 ///////////////////////////////////////////////////quote
 
-
+//
+// $('#spoiler_1').click(function (event) {
+//  console.log(event);
+//     $('.spoiler').toggleClass('hiden');
+// });
