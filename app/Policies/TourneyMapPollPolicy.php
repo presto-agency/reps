@@ -20,7 +20,6 @@ class TourneyMapPollPolicy
      */
     public function __construct()
     {
-        //        $mapPoll = new MapPoll;
     }
 
     public function before(User $user, $ability, TournamentsMapPool $section, MapPoll $item = null)

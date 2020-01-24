@@ -18,8 +18,7 @@ class ParserToHTML
      */
     public static function toHTML($text, $ignoreTag = null)
     {
-
-        $bbCode           = new ChrisKonnertzBBCode();
+        $bbCode = new ChrisKonnertzBBCode();
 
         $first_conversion = PheRumBBCode::parse($text);
 
@@ -27,12 +26,24 @@ class ParserToHTML
             if ($tag->opening) {
                 return '<div class="comments__wrapp wrapp_comments">';
             }
-//            else {
-//                return '</div>';
-//            }
+            //            else {
+            //                return '</div>';
+            //            }
         });
-
-
+        $bbCode->addTag('spoiler-shell', function ($tag, &$html, $openingTag) {
+            if ($tag->opening) {
+                return '<div class="bbSpoiler">'.'<a href="#" onclick="return xbbSpoiler(this)">'.'<strong>показать</strong>'.'<strong style="display:none">скрыть</strong>'.'</a>';
+            } else {
+                return '</div>';
+            }
+        });
+        $bbCode->addTag('spoiler-body', function ($tag, &$html, $openingTag) {
+            if ($tag->opening) {
+                return '<div class="spoiler" style="display:none">';
+            } else {
+                return '</div>';
+            }
+        });
         $second_conversion = $bbCode->render($first_conversion);
 
 

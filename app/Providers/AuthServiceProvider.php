@@ -17,9 +17,9 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies
         = [
             UserSection::class        => UserSectionPolicy::class,
-            Tournaments::class        => TourneyListPolicy::class,
-            TournamentsMapPool::class => TourneyMapPollPolicy::class,
-            TournamentsPlayer::class  => TourneyPlayersPolicy::class,
+//            Tournaments::class        => TourneyListPolicy::class,
+//            TournamentsMapPool::class => TourneyMapPollPolicy::class,
+//            TournamentsPlayer::class  => TourneyPlayersPolicy::class,
         ];
 
     /**
