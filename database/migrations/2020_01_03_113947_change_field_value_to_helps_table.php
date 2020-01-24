@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class ChangeFieldValueToHelpsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -29,4 +30,5 @@ class ChangeFieldValueToHelpsTable extends Migration
             //
         });
     }
+
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2a94c1e8379318011ed7a77f8b269ffb",
+    "content-hash": "9aad5eeb350543028d57daa665faca12",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1712,6 +1712,59 @@
                 "url"
             ],
             "time": "2019-07-01T23:21:34+00:00"
+        },
+        {
+            "name": "heroyt/tournament-generator",
+            "version": "v0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Heroyt/tournament-generator.git",
+                "reference": "731496754a5591596fc221d35e4949de37a435dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Heroyt/tournament-generator/zipball/731496754a5591596fc221d35e4949de37a435dc",
+                "reference": "731496754a5591596fc221d35e4949de37a435dc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.3"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/TournamentGenerator/functions.php"
+                ],
+                "psr-4": {
+                    "TournamentGenerator\\": "src/TournamentGenerator/",
+                    "TournamentGenerator\\Preset\\": "src/TournamentGenerator/Preset/",
+                    "TournamentGenerator\\Utilis\\": "src/TournamentGenerator/Utilis/",
+                    "TournamentGenerator\\Utilis\\Sorter\\": "src/TournamentGenerator/Utilis/Sorter/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tomáš Vojík",
+                    "email": "vojik@wboy.cz"
+                }
+            ],
+            "description": "A set of classes used to create multiple kinds of tournament brackets in PHP.",
+            "keywords": [
+                "Teams",
+                "bracket",
+                "generator",
+                "scheduler",
+                "tournament",
+                "tournaments"
+            ],
+            "time": "2019-08-30T09:04:14+00:00"
         },
         {
             "name": "intervention/image",

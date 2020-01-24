@@ -16,7 +16,6 @@ class ReplayController extends Controller
 
     public function show($id)
     {
-
         $columns   = [
             'id',
             'map_id',
@@ -75,7 +74,6 @@ class ReplayController extends Controller
         self::downloadCount($replay);
 
         return response()->download($checkPath);
-
     }
 
     public static function downloadCount($replay)

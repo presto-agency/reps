@@ -2,62 +2,81 @@
 
 namespace App\Services\Tournament;
 
+use App\Models\TourneyMatch;
+
 class TourneyService
 {
 
-    /**
-     * @param $tourney
-     */
-    public static function generateMatches($tourney)
+
+    public static function generateMatches($tourney, $round_number = null)
     {
-        //        function teamInTour($tour, $team)
-        //        {
-        //            foreach ($tour as $game) {
-        //                if (in_array($team, $game)) {
-        //                    return true;
-        //                }
-        //            }
-        //
-        //            return false;
-        //        }
+        $playerCount = $tourney->players->where('check', true)->count();
 
-
-        $playerCount = $tourney->players->count();
-
+        if ($playerCount == 0) {
+            return \Response::json([
+                'success' => false,
+                'message' => 'Нету игроков',
+            ], 400);
+        }
         $matches = [];
 
-        $players = $tourney->players->shuffle();
-        $k       = 0;
+        $players = $tourney->players->where('check', true)->shuffle();
+
+        $k = 0;
         if (($playerCount & 1)) {
-            $players[] = '-freeSlot-';
+            $players[] = ['id' => null];
             $k         = 1;
         }
+        $ofRound = $playerCount + $k;
+        /*** Generate***/
+        //        $rounds = log($ofRound, 2);
 
         for ($i = 0; $i < $playerCount / 2; $i++) {
             $matches[] = [
-                'tourney_id'    => $tourney->id,
-                'player1_id'    => $players[$i]['id'],
-                'player2_id'    => $players[$playerCount / 2 + $i + $k]['id'],
-                'player1_score' => 0,
-                'player2_score' => 0,
-                'winner_score'  => null,
-                'winner_value'  => null,
-                'winner_action' => null,
-                'looser_action' => null,
-                'looser_value'  => null,
-                'match_number'  => null,
-                'round_number'  => null,
-                'played'        => false,
-                'round'         => null,
-
-
-                //                $players[$i], $players[$playerCount / 2 + $i + $k],
+                'tourney_id'   => $tourney['id'],
+                'player1_id'   => $players[$i]['id'],
+                'player2_id'   => $players[$playerCount / 2 + $i + $k]['id'],
+                'round_number' => $round_number,
+                'played'       => false,
+                'round'        => "Round $round_number (of $ofRound)",
             ];
         }
 
         dd($matches);
+        //            $round_number = 1;
+        //            $d            = $playerCount;
+        //            //            do {
+        //            $d = ceil($d / 2.0);
+        //            for ($i = 0; $i < $d; $i++) {
+        //                $matches[] = [
+        //                    'tourney_id'   => $tourney['id'],
+        //                    'player1_id'   => $players[$i]['id'],
+        //                    'player2_id'   => $players[$playerCount / 2 + $i + $k]['id'],
+        //                    'round_number' => $round_number,
+        //                    'played'       => false,
+        //                    'round'        => "Winners Round $round_number (of $ofRound)",
+        //                ];
+        //                //                }
+        //                //            } while ($d > 1);
+        //            }
+
+        //            self::insertMatches($matches);
+
+        return \Response::json([
+            'success' => true,
+            'message' => 'Успешно созданы матчи',
+        ], 200);
     }
 
+    private static function insertMatches($data)
+    {
+        TourneyMatch::query()->insertOrIgnore($data);
+    }
+
+    private static function dividedByCount(int $number, int $base)
+    {
+        return floor(log($number, $base)); // <== SOLUTION
+    }
 
     /**
      * @param  string  $prize_pool

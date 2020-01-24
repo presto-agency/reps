@@ -25,37 +25,27 @@ class TransferTournamentsMatches extends Seeder
         /**
          * Get and Insert data
          */
-        DB::connection('mysql3')->table('lis_tourney_match')->orderBy('id')
-            ->chunk(100, function ($repsTournamentsMatches) {
+        DB::connection('mysql3')->table('lis_tourney_match')
+            ->chunkById(100, function ($repsTournamentsMatches) {
                 try {
                     foreach ($repsTournamentsMatches as $item) {
                         if (TourneyList::query()->where('id', $item->id_tourney)->exists()) {
-                            $winner_score    = $item->score_win !== '' ? $item->score_win : null;
-                            $winner_action_s = array_search(trim($item->winner_action), TourneyMatch::$action);
-                            $winner_action   = $winner_action_s !== false ? $winner_action_s : null;
-                            $winner_value    = $item->winner_value !== '' ? $item->score_win : null;
-                            $looser_action_s = array_search(trim($item->looser_action), TourneyMatch::$action);
-                            $looser_action   = $looser_action_s !== false ? $looser_action_s : null;
-                            $looser_value    = $item->looser_value !== '' ? $item->score_win : null;
-                            $match_number    = $item->id_match !== '' ? $item->id_match : null;
-                            $round_number    = $item->round_id !== '' ? $item->round_id : null;
-
-
                             $insertItems[] = [
+                                'id'            => $item->id,
                                 'tourney_id'    => $item->id_tourney,
                                 'player1_id'    => $this->getPlayer1Id($item),
                                 'player2_id'    => $this->getPlayer2Id($item),
-                                'player1_score' => $item->score_player1,
-                                'player2_score' => $item->score_player2,
-                                'winner_score'  => $winner_score,
-                                'winner_action' => $winner_action,
-                                'winner_value'  => $winner_value,
-                                'looser_action' => $looser_action,
-                                'looser_value'  => $looser_value,
-                                'match_number'  => $match_number,
-                                'round_number'  => $round_number,
+                                'player1_score' => (int) $item->score_player1,
+                                'player2_score' => (int) $item->score_player2,
+                                'winner_score'  => (int) $item->score_win,
+                                'winner_action' => array_search($item->winner_action, TourneyMatch::$action),
+                                'winner_value'  => (int) $item->winner_value,
+                                'looser_action' => array_search($item->looser_action, TourneyMatch::$action),
+                                'looser_value'  => (int) $item->looser_value,
+                                'match_number'  => (int) $item->id_match,
+                                'round_number'  => (int) $item->round_id,
                                 'played'        => ($item->played == 'YES') ? 1 : 0,
-                                'round'         => $item->round,
+                                'round'         => (string) $item->round,
                                 'rep1'          => ! empty($item->rep1) === true ? '/storage/tourney/'.$item->rep1 : null,
                                 'rep2'          => ! empty($item->rep2) === true ? '/storage/tourney/'.$item->rep2 : null,
                                 'rep3'          => ! empty($item->rep3) === true ? '/storage/tourney/'.$item->rep3 : null,
@@ -66,7 +56,7 @@ class TransferTournamentsMatches extends Seeder
                             ];
                         }
                     }
-                    TourneyMatch::query()->insert($insertItems);
+                    DB::table('tourney_matches')->insert($insertItems);
                 } catch (\Exception $e) {
                     dd($e, $item);
                 }

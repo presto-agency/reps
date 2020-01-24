@@ -35,6 +35,7 @@ trait TournamentRelationTrait
     {
         return $this->hasOne(TourneyPlayer::class, 'tourney_id', 'id');
     }
+
     /**
      * @return mixed
      */
@@ -57,7 +58,12 @@ trait TournamentRelationTrait
      */
     public function checkPlayers()
     {
-        return $this->hasMany(TourneyPlayer::class, 'tourney_id', 'id')->whereCheck(true);
+        return $this->hasMany(TourneyPlayer::class, 'tourney_id', 'id')->whereBan(false)->whereCheck(true);
+    }
+
+    public function banPlayers()
+    {
+        return $this->hasMany(TourneyPlayer::class, 'tourney_id', 'id')->whereBan(true);
     }
 
 }

@@ -124,7 +124,7 @@ class TournamentController extends Controller
         ])
             ->withCount([
                 'checkPlayers as check_players_count', 'players',
-                'mapsPool',
+                'mapsPool','banPlayers'
             ])
             ->where('visible', 1)->findOrFail($id);
     }
