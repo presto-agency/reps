@@ -158,11 +158,13 @@ class Tournaments extends Section
         return $display;
     }
 
+    public $id;
     public $tourneyStatus;
 
     public function onEdit($id)
     {
-        $tourney = $this->getModel()->find($id);
+        $this->id = $id;
+        $tourney  = $this->getModel()->find($id);
         if ($tourney) {
             $this->tourneyStatus = TourneyList::$status[$tourney->status];
         }
@@ -177,7 +179,7 @@ class Tournaments extends Section
                             ->setHtmlAttribute('minlength', '1')
                             ->setValidationRules([
                                 'string',
-                                'unique:tourney_lists,name',
+                                'unique:tourney_lists,name,'.$this->id,
                                 'between:1,255',
                             ]),
                         AdminFormElement::text('place', 'Place')
@@ -356,7 +358,7 @@ class Tournaments extends Section
                             ->setHtmlAttribute('minlength', '1')
                             ->setValidationRules([
                                 'required',
-                                'unique:tourney_lists,name',
+                                'unique:tourney_lists,name,'.$this->id,
                                 'string',
                                 'between:1,255',
                             ]),

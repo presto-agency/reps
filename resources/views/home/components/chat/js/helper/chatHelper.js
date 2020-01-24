@@ -23,7 +23,7 @@ export const strParse= (str) => {
     str= str.replace(/\[url\]([\s\S]*)\[\/url\]/g, '<a href="$1" target="_blank">Ссылка</a>');
     str= str.replace(/%([^%]*)%/g, '<img src="$1"  alt="picture"/>');
     str= str.replace(/;([^;]*);/g, '<img src="storage/chat/smiles/$1"style="display: inline;" alt="smile"/>');
-    str = str.replace(/\[img\]([\s\S]*)\[\/img\]/g, '<img src="$1" style="max-width: 100%;" alt="Incorrect image link"/>');
+    str = str.replace(/\[img\]([\s\S]*)\[\/img\]/g, '<img src="$1" style="max-width: 100%;" alt="Incorrect image_1 link"/>');
     for(let i=1; i<=6; i++) {
         if(str.search(`c${i}`)>-1) {
             if(i===1) {

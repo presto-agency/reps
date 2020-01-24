@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\TourneyList;
+use TourneyService;
 
 class TourneyListObserver
 {
@@ -26,6 +27,9 @@ class TourneyListObserver
 
     public function updating(TourneyList $tourneyList)
     {
+//        TourneyService::generateMatches($tourneyList);
+//
+//        die();
     }
 
     /**

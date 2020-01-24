@@ -28,7 +28,7 @@ for (i = 0; i < acc.length; i++) {
 }
 
 if (document.getElementById("uploadBtn")) {
-    /*script upload image on gallery download page*/
+    /*script upload image_1 on gallery download page*/
     document.getElementById("uploadBtn").onchange = function () {
         document.getElementById("uploadFile").value = this.value.replace("C:\\fakepath\\", "");
     };

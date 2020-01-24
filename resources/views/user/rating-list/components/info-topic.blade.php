@@ -57,8 +57,8 @@
                                     src="{{asset("images/default/game-races/" . $item->sender->races->title . ".png")}}"
                                     class="info__cube" alt="race">
                             @endif
-                            <p class="info__text night_text">{{ $item->sender->points ?? 0 }} pts
-                                | {{ $item->sender->rating ?? 0 }} кг</p>
+                            <p class="info__text night_text">{{ $item->sender->points ?? 0 }} minerals
+                                | {{ $item->sender->rating ?? 0 }} supply</p>
                         @endif
                         <span class="info__date night_text">{{ $item->created_at->format('H:i d.m.Y') }}</span>
                     </div>

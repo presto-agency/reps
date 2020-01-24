@@ -35,7 +35,7 @@
                     <img src="{{asset("images/default/game-races/" . $topic->author->races->title . ".png")}}"
                          class="title__cube" title="{{ $topic->author->races->title }}" alt="race">
                     <p class="title__text text_pts"
-                       title="{{$topic->author->comments_count. ' pts | ' . $topic->author->rating . ' кг'}}">{{ $topic->author->comments_count. ' pts | ' . $topic->author->rating . ' кг' }}</p>
+                       title="{{$topic->author->comments_count. ' minerals | ' . $topic->author->rating . 'supply'}}">{{ $topic->author->comments_count. ' minerals | ' . $topic->author->rating . ' supply' }}</p>
                 @endif
             </div>
 

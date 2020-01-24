@@ -6,120 +6,36 @@ class TourneyService
 {
 
     /**
-     * @param  int  $limit
-     *
-     * @return mixed
+     * @param $tourney
      */
+    public static function generateMatches($tourney)
+    {
+        function teamInTour($tour, $team)
+        {
+            foreach ($tour as $game) {
+                if (in_array($team, $game)) {
+                    return true;
+                }
+            }
 
-    //    public static function getUpTournaments($limit = 5)
-    //    {
-    //        $upcoming_tournaments = TourneyList::where('visible', 1)
-    //            ->where('start_time', '>', Carbon::now()->format('Y-m-d H:i:s'))
-    //            ->orderByDesc('created_at')
-    //            ->limit($limit)->get();
-    //
-    //        return $upcoming_tournaments;
-    //    }
+            return false;
+        }
 
-    //    /**
-    //     * @return mixed
-    //     */
-    //    public static function getTournaments()
-    //    {
-    //        $tournaments = TourneyList::orderBy('updated_at', 'Desc')
-    //            ->withCount('players')
-    //            ->withCount('checkin_players')
-    //            ->with('admin_user')
-    //            ->with([
-    //                'win_player' => function ($query) {
-    //                    $query->with([
-    //                        'user' => function ($q) {
-    //                            $q->with('avatar')->withTrashed();
-    //                        },
-    //                    ]);
-    //                },
-    //            ])
-    //            ->paginate(20);
-    //
-    //        return $tournaments;
-    //    }
 
-    //    /**
-    //     * @return mixed
-    //     */
-    //    public static function getTourneyPlayers($tournament_id)
-    //    {
-    //        $players = TourneyPlayer::where('tourney_id', $tournament_id)
-    //            ->orderBy('check_in', 'desc')->orderByRaw('LENGTH(place_result)')
-    //            ->orderBy('place_result')
-    //            ->with('user')
-    //            ->get();
-    //
-    //        return $players;
-    //    }
+        $playerCount = $tourney->players->count();
 
-    //    /**
-    //     *
-    //     * @return mixed
-    //     */
-    //    public static function getTourneyMatches($tournament_id)
-    //    {
-    //        $matches       = TourneyMatch::where('tourney_id', $tournament_id)
-    //            ->orderBy('round_id')
-    //            ->with([
-    //                'player1' => function ($query) {
-    //                    $query->with([
-    //                        'user' => function ($q) {
-    //                            $q->with('avatar')->withTrashed();
-    //                        },
-    //                    ]);
-    //                },
-    //            ])
-    //            ->with([
-    //                'player2' => function ($query) {
-    //                    $query->with([
-    //                        'user' => function ($q) {
-    //                            $q->with('avatar')->withTrashed();
-    //                        },
-    //                    ]);
-    //                },
-    //            ])
-    //            ->with([
-    //                'file1', 'file2', 'file3', 'file4', 'file5', 'file6', 'file7',
-    //            ])
-    //            ->get();
-    //        $matches_array = [];
-    //        $round_array   = [];
-    //        foreach ($matches as $match) {
-    //            $matches_array[$match->round_id][] = $match;
-    //            $round_array[$match->round_id]     = $match->round;
-    //        }
-    //
-    //        return ['matches' => $matches_array, 'rounds' => $round_array];
-    //    }
+        $matches = [];
+        $players = $tourney->players->shuffle();
+        if (($playerCount & 1)) {
+            $players[] = ['description' => '#UNKNOW#'];
+        }
+        for ($i = 0; $i < $playerCount / 2; $i++) {
+            $matches[] = [$players[$i]['description'], $players[$playerCount / 2 + $i + 1]['description']];
+        }
 
-//    /**
-//     * @param $url
-//     *
-//     * @return bool
-//     */
-//    public static function UR_exists($url)
-//    {
-//        try {
-//            $ch = curl_init();
-//            curl_setopt($ch, CURLOPT_URL, $url);
-//            curl_setopt($ch, CURLOPT_NOBODY, 1);
-//            curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-//            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//            if (curl_exec($ch) !== false) {
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        } catch (\Exception $exception) {
-//            return false;
-//        }
-//    }
+        dd($matches);
+    }
+
 
     /**
      * @param  string  $prize_pool

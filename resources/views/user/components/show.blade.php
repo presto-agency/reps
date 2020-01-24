@@ -52,7 +52,7 @@
                     <div class="information_block">
                         <div class="left_block"><span>{{__('Статус:')}}</span></div>
                         <div class="right_block night_text">
-                            <span>{{$user->getUserStatus($user->comments_count).' '.$user->comments_count.' pts'}}</span>
+                            <span>{{$user->getUserStatus($user->comments_count).' '.$user->comments_count.' minerals'}}</span>
                         </div>
                     </div>
                     <div class="information_block">
@@ -89,7 +89,7 @@
                         <div class="left_block"><span>{{__('Репутация:')}}</span></div>
                         <div class="right_block night_text">
                             <a title="{{__('Репутация')}}" href="{{route('user-rating-list.index',['id'=>$user->id])}}">
-                                <span class="blue">{{$user->rating .' кг'}}</span>
+                                <span class="blue">{{$user->rating .' supply'}}</span>
                             </a>
                         </div>
                     </div>
@@ -226,6 +226,33 @@
                                 <a class="blue" title="{{__('Пользовательские реплеи')}}"
                                    href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}">
                                     <span>{{$user->user_replay_count}}</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="block_inform">
+                            <div class="left_block"><span>{{__('Top mineral:')}}</span></div>
+                            <div class="right_block">
+                                <a class="blue" title="{{__('Top mineral')}}"
+                                   href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}">
+                                    <span>0</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="block_inform">
+                            <div class="left_block"><span>{{__('Top supply:')}}</span></div>
+                            <div class="right_block">
+                                <a class="blue" title="{{__('Top supply')}}"
+                                   href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}">
+                                    <span>0</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="block_inform">
+                            <div class="left_block"><span>{{__('Top gas:')}}</span></div>
+                            <div class="right_block">
+                                <a class="blue" title="{{__('Top gas')}}"
+                                   href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}">
+                                    <span>0</span>
                                 </a>
                             </div>
                         </div>

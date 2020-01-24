@@ -15,14 +15,14 @@
                         C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
                 <p class="title_text">{{$tournament->name}}</p>
-{{--                @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())--}}
-{{--                    @if('REGISTRATION' === $tournament::$status[$tournament->status] && empty($tournament->player))--}}
-{{--                        <button onclick="tournamentRegister()">Add</button>--}}
-{{--                    @endif--}}
-{{--                    @if(!empty($tournament->player))--}}
-{{--                        <p>{{__('Вы уже присоединились к турниру')}}</p>--}}
-{{--                    @endif--}}
-{{--                @endif--}}
+                {{--                @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())--}}
+                {{--                    @if('REGISTRATION' === $tournament::$status[$tournament->status] && empty($tournament->player))--}}
+                {{--                        <button onclick="tournamentRegister()">Add</button>--}}
+                {{--                    @endif--}}
+                {{--                    @if(!empty($tournament->player))--}}
+                {{--                        <p>{{__('Вы уже присоединились к турниру')}}</p>--}}
+                {{--                    @endif--}}
+                {{--                @endif--}}
             </div>
         </div>
 

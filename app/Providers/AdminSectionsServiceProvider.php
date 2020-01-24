@@ -50,6 +50,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
             \App\Models\TourneyList::class         => 'App\Http\Sections\Tournaments',
             \App\Models\TourneyListsMapPool::class => 'App\Http\Sections\TournamentsMapPool',
             \App\Models\TourneyPlayer::class       => 'App\Http\Sections\TournamentsPlayer',
+            \App\Models\TourneyMatch::class        => 'App\Http\Sections\TournamentsMatches',
         ];
 
 
@@ -144,6 +145,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
                     (new Page(\App\Models\TourneyList::class))->setPriority(1),
                     (new Page(\App\Models\TourneyListsMapPool::class))->setPriority(2),
                     (new Page(\App\Models\TourneyPlayer::class))->setPriority(3),
+//                    (new Page(\App\Models\TourneyMatch::class))->setPriority(4),
                 ],
             ],
         ]);

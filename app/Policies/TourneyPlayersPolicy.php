@@ -45,6 +45,8 @@ class TourneyPlayersPolicy
             if ($status === 'ANNOUNCE' || $status === 'REGISTRATION' || $status === 'CHECK-IN' || $status === 'STARTED') {
                 return true;
             }
+        } else {
+            return true;
         }
 
 
@@ -59,6 +61,8 @@ class TourneyPlayersPolicy
             if ($status === 'ANNOUNCE' || $status === 'REGISTRATION' || $status === 'CHECK-IN' || $status === 'STARTED') {
                 return true;
             }
+        } else {
+            return true;
         }
 
 

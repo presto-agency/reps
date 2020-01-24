@@ -116,7 +116,8 @@ var CKBUILDER_CONFIG = {
 		'undo' : 1,
 		'uploadimage' : 1,
 		'wsc' : 1,
-		'wysiwygarea' : 1
+		'wysiwygarea' : 1,
+        'Csmiley' : 1
 	},
 	languages : {
 		'en' : 1

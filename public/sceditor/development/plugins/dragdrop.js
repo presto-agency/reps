@@ -13,7 +13,7 @@
 	'use strict';
 
 	/**
-	 * Place holder GIF shown while image is loading.
+	 * Place holder GIF shown while image_1 is loading.
 	 * @type {string}
 	 * @private
 	 */
