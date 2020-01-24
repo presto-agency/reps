@@ -27,8 +27,8 @@ CKEDITOR.plugins.add('addtimestamp',{
                 editor.insertHtml('[bbSpoiler]' +
                     '[bbSpoilerTitle]' +
                     '[spoiler_block]'+
-                    '[strong]'+'[+] 44444'+'[/strong]'+
-                    '[strong]'+'[-] 55555'+'[/strong]'+
+                    '[b]'+'Показать'+'[/b]'+
+                    '[b]'+'Скрыть'+'[/b]'+
                     '[/spoiler_block]'+
                     '[spoiler]'+ editor.getSelection().getSelectedText()+'[/spoiler]'+
                     '[bbSpoilerTitle]' +

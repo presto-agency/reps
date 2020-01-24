@@ -239,6 +239,23 @@
             $('#userInBanModal').modal('show');
             @endif
         });
+
+        function xbbSpoiler(obj) {
+            var obj_content = obj.parentNode.parentNode.getElementsByTagName('div')[1];
+            var obj_text_show = obj.getElementsByTagName('strong')[1];
+            var obj_text_hide = obj.getElementsByTagName('strong')[0];
+
+            if (obj_content.style.display != '') {
+                obj_content.style.display = '';
+                obj_text_show.style.display = '';
+                obj_text_hide.style.display = 'none';
+            } else {
+                obj_content.style.display = 'none';
+                obj_text_show.style.display = 'none';
+                obj_text_hide.style.display = '';
+            }
+            return false;
+        }
     </script>
 @show
 <script type="text/javascript">
@@ -305,32 +322,13 @@
 
 @yield('java-script')
 </body>
-<div class="bbSpoiler">
-    <div class="bbSpoilerTitle">
-        <spoiler_block href="#" onclick="return xbbSpoiler(this)">
-            <strong>[+]скрытый текст</strong>
-            <strong style="display:none">[-]скрытый текст</strong>
-        </spoiler_block>
-    </div>
-    <div class="spoiler" style="display:none">tt5</div>
-</div>
+{{--<div class="bbSpoiler">--}}
+{{--    <div class="bbSpoilerTitle">--}}
+{{--        <a href="#" onclick="return xbbSpoiler(this)">--}}
+{{--            <strong>показать</strong>--}}
+{{--            <strong style="display:none">скрыть</strong>--}}
+{{--        </a>--}}
+{{--    </div>--}}
+{{--    <div class="spoiler" style="display:none">tt5</div>--}}
+{{--</div>--}}
 </html>
-<script>
-    function xbbSpoiler(obj)
-    {
-        var obj_content = obj.parentNode.parentNode.getElementsByTagName('div')[1];
-        var obj_text_show = obj.getElementsByTagName('strong')[1];
-        var obj_text_hide = obj.getElementsByTagName('strong')[0];
-
-        if (obj_content.style.display != '') {
-            obj_content.style.display = '';
-            obj_text_show.style.display = '';
-            obj_text_hide.style.display = 'none';
-        } else {
-            obj_content.style.display = 'none';
-            obj_text_show.style.display = 'none';
-            obj_text_hide.style.display = '';
-        }
-        return false;
-    }
-</script>
