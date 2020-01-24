@@ -29,7 +29,7 @@ class Tournaments extends Section
     /**
      * @var bool
      */
-    protected $checkAccess = true;
+    protected $checkAccess = false;
 
     /**
      * @var string
@@ -156,10 +156,10 @@ class Tournaments extends Section
         ]);
 
         $display->getColumnFilters()->setPlacement('table.header');
-
-        $control    = $display->getColumns()->getControlColumn();
-        $buttonShow = $this->matches();
-        $control->addButton($buttonShow);
+//
+//        $control    = $display->getColumns()->getControlColumn();
+//        $buttonShow = $this->matches();
+//        $control->addButton($buttonShow);
 
         return $display;
     }
