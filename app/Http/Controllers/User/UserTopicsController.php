@@ -19,7 +19,7 @@ class UserTopicsController extends Controller
      */
     public function index(int $id)
     {
-        $forumSections = ForumSection::orderByDesc('id')->withCount([
+        $forumSections = ForumSection::query()->orderByDesc('id')->withCount([
             'topics' => function ($q) use ($id) {
                 $q->where('user_id', $id);
             },
@@ -38,7 +38,7 @@ class UserTopicsController extends Controller
         if (request()->ajax()) {
             $visible_title = false;
             if (request('topic_id') > 0) {
-                $forumSectionsTopics = ForumTopic::where('forum_section_id', request('forum_section_id'))
+                $forumSectionsTopics = ForumTopic::query()->where('forum_section_id', request('forum_section_id'))
                     ->with('forumSection')
                     ->where('user_id', $id)
                     ->where('id', '<', request('topic_id'))
@@ -46,7 +46,7 @@ class UserTopicsController extends Controller
                     ->limit(10)
                     ->get();
             } else {
-                $forumSectionsTopics = ForumTopic::where('forum_section_id', request('forum_section_id'))
+                $forumSectionsTopics = ForumTopic::query()->where('forum_section_id', request('forum_section_id'))
                     ->with('forumSection')
                     ->where('user_id', $id)
                     ->orderByDesc('id')
@@ -70,7 +70,7 @@ class UserTopicsController extends Controller
      */
     public function create($id)
     {
-        $forumSection = ForumSection::where('is_active', 1)
+        $forumSection = ForumSection::query()->where('is_active', 1)
             ->where('user_can_add_topics', 1)
             ->get(['id', 'title', 'description',]);
 
@@ -93,7 +93,7 @@ class UserTopicsController extends Controller
             return back();
         }
 
-        $check = ForumSection::find($request->get('forum_section'))->value('user_can_add_topics');
+        $check = ForumSection::query()->find($request->get('forum_section'))->value('user_can_add_topics');
         if (auth()->user()->roles->name == 'user' && $check == 0) {
             return redirect()->to('/');
         }
@@ -114,7 +114,7 @@ class UserTopicsController extends Controller
     {
         $forumSection = ForumSection::all(['id', 'title', 'description']);
 
-        $topic = ForumTopic::findOrFail($user_topic);
+        $topic = ForumTopic::query()->findOrFail($user_topic);
 
         return view('user.topics.edit', compact('forumSection', 'topic'));
     }
@@ -136,11 +136,10 @@ class UserTopicsController extends Controller
             return back();
         }
 
-        $check = ForumSection::find($request->get('forum_section'))->value('user_can_add_topics');
-        if (auth()->user()->roles->name == 'user' && $check == 0) {
+        if (auth()->user()->roles->name == 'user') {
             return redirect()->to('/');
         }
-        $topic = new ForumTopic;
+        $topic = ForumTopic::query()->findOrFail($user_topic);
         $this->modelColumn($topic, $request, $title, $preview_content, $content);
         $topic->save();
 

@@ -25,7 +25,6 @@ class UserGalleryObservers
 
     public function updating(UserGallery $userGallery)
     {
-//        $userGallery->setAttribute('user_id', auth()->id());
     }
 
     public function updated(UserGallery $userGallery)

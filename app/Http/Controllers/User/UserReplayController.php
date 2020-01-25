@@ -73,7 +73,7 @@ class UserReplayController extends Controller
             return redirect()->back();
         }
         /**
-         * If no file and iframe empty after clean and no
+         * If no file and iframe empty after clean
          */
         if (empty($src_iframe) && ! $request->hasFile('file')) {
             return redirect()->back();
