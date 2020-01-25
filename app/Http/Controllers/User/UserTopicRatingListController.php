@@ -17,7 +17,7 @@ class UserTopicRatingListController extends Controller
     public function index($id)
     {
         $userReputations = null;
-        $user = User::find((int)$id);
+        $user = User::query()->find((int)$id);
         return view('user.rating-list.index-topic', compact('userReputations', 'user'));
     }
 
