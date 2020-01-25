@@ -23,6 +23,7 @@ class ForumSection extends Model
         return $this->hasMany('App\Models\ForumTopic', 'forum_section_id', 'id');
     }
 
+
     public function topicsCount()
     {
         return $this->hasMany('App\Models\ForumTopic', 'forum_section_id', 'id')->count();
