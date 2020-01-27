@@ -4,7 +4,6 @@
  */
 
 CKEDITOR.editorConfig = function (config) {
-    config.extraPlugins = 'hkemoji , addtimestamp';
     config.removeButtons = 'Save,Preview,Print,Templates,Find,Replace,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Subscript,Superscript,CopyFormatting,RemoveFormat,NumberedList,BulletedList,Indent,Outdent,Blockquote,CreateDiv,Unlink,Anchor,Flash,Table,HorizontalRule,PageBreak,Iframe,BGColor,ShowBlocks,BidiRtl,BidiLtr,Styles,Format,Font,FontSize,Language,Image,Smiley';
 
 };
@@ -29,9 +28,6 @@ CKEDITOR.plugins.add('addtimestamp', {
     icons: 'addtimestamp', // иконка
 
 });
-/////////////////
-
-//fff
 
 
 
