@@ -29,7 +29,7 @@ class TournamentsPlayer extends Section
     /**
      * @var string
      */
-    protected $title;
+    protected $title = 'Список игроков';
 
     /**
      * @var string
@@ -37,7 +37,8 @@ class TournamentsPlayer extends Section
     protected $alias;
 
     /**
-     * @return DisplayInterface
+     * @return mixed
+     * @throws \SleepingOwl\Admin\Exceptions\FilterOperatorException
      */
     public function onDisplay()
     {

@@ -19,11 +19,7 @@ class TourneyMatch extends Model
             1 => 'NONE', 2 => 'GOTO_P1', 3 => 'GOTO_P2', 4 => 'TOP',
         ];
 
-    //    protected $fillable
-    //        = [
-    //
-    //        ];
-    protected $guarded
+    protected $fillable
         = [
             'tourney_id',
             'player1_id',
@@ -37,6 +33,7 @@ class TourneyMatch extends Model
             'looser_value',
             'match_number',
             'round_number',
+            'match_type',
             'played',
             'round',
             'rep1',
@@ -71,6 +68,7 @@ class TourneyMatch extends Model
             'tourney_id'    => 'int',
             'player1_id'    => 'int',
             'player2_id'    => 'int',
+            'match_type'    => 'int',
         ];
 
 }

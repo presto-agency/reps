@@ -7,7 +7,6 @@ use AdminDisplay;
 use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 
@@ -27,7 +26,7 @@ class TournamentsMatches extends Section
     /**
      * @var string
      */
-    protected $title;
+    protected $title = 'Список матчей';
 
     /**
      * @var string
@@ -35,7 +34,7 @@ class TournamentsMatches extends Section
     protected $alias;
 
     /**
-     * @return DisplayInterface
+     * @return mixed
      */
     public function onDisplay()
     {
@@ -54,8 +53,8 @@ class TournamentsMatches extends Section
                 ->setHtmlAttribute('class', 'text-center'),
             AdminColumn::text('winner_score', '<small>Чемпион<br>очки</small>')->setWidth('80px')
                 ->setHtmlAttribute('class', 'text-center'),
-//            AdminColumn::text('match_number', '<small>№<br>матча</small>')->setWidth('50px')
-//                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('match_number', '<small>№<br>матча</small>')->setWidth('50px')
+                ->setHtmlAttribute('class', 'text-center'),
             AdminColumn::text('round_number', '<small>№<br>раунда</small>')->setWidth('60px')
                 ->setHtmlAttribute('class', 'text-center'),
             AdminColumn::boolean('played')->setLabel('<small>Сыграно</small>'),
