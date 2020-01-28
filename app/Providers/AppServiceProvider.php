@@ -54,6 +54,14 @@ class AppServiceProvider extends ServiceProvider
          */
         TourneyList::observe(TourneyListObserver::class);
         TourneyMatch::observe(TourneyMatchObserver::class);
+
+        /**
+         * Re-Open assets
+         */
+        $assetsFile = resource_path().'/assets/admin/assets.php';
+        if (file_exists($assetsFile)) {
+            include $assetsFile;
+        }
     }
 
 }

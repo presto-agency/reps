@@ -164,7 +164,8 @@ return [
             'defaultLanguage' => 'en',
             'height'          => 200,
             'allowedContent'  => true,
-            'extraPlugins'    => 'uploadimage,image2,justify,youtube,uploadfile',
+            //            'extraPlugins'    => 'uploadimage,image2,justify,youtube,uploadfile',
+            'extraPlugins'    => 'uploadimage,',
             /*
              * WARNING!!!! CKEDITOR on D & D and UploadImageDialog
              * BY DEFAULT IMAGES WILL STORE TO imagesUploadDirectory = /images/uploads
