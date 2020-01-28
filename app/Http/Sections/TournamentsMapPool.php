@@ -29,14 +29,17 @@ class TournamentsMapPool extends Section
     /**
      * @var string
      */
-    protected $title;
+    protected $title = 'Список  карт';
 
     /**
      * @var string
      */
     protected $alias;
 
-
+    /**
+     * @return mixed
+     * @throws \SleepingOwl\Admin\Exceptions\FilterOperatorException
+     */
     public function onDisplay()
     {
         $columns = [

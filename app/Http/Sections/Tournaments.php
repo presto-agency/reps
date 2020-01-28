@@ -34,13 +34,17 @@ class Tournaments extends Section
     /**
      * @var string
      */
-    protected $title;
+    protected $title = 'Список турниров';
 
     /**
      * @var string
      */
     protected $alias;
 
+    /**
+     * @return mixed
+     * @throws \SleepingOwl\Admin\Exceptions\FilterOperatorException
+     */
     public function onDisplay()
     {
         $columns = [
@@ -156,10 +160,10 @@ class Tournaments extends Section
         ]);
 
         $display->getColumnFilters()->setPlacement('table.header');
-//
-//        $control    = $display->getColumns()->getControlColumn();
-//        $buttonShow = $this->matches();
-//        $control->addButton($buttonShow);
+
+        $control    = $display->getColumns()->getControlColumn();
+        $buttonShow = $this->matches();
+        $control->addButton($buttonShow);
 
         return $display;
     }

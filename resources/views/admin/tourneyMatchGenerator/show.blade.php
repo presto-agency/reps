@@ -22,21 +22,22 @@
             </a>
         </strong>
     </div>
+    @if($rounds >1)
+        @for($i=2;$i <= $rounds;$i++)
+
+            {!! Form::open(['method' => 'POST', 'route' => ['admin.tourney.match.generator']]) !!}
+            <input type="hidden" name="id" tabindex="-1" value="{{request('id')}}">
+            <input type="hidden" name="type" tabindex="-1" value="{{$type}}">
+            <input type="hidden" name="round" tabindex="-1" value="{{$i}}">
+            {!! Form::button("Создать матчи для раунда $i",["type" => "submit","class"=>"btn btn-primary"])!!}
+            {!! Form::close() !!}
+            <br>
+        @endfor
+    @endif
 @endif
 
 
-@if($rounds >1)
-    @for($i=2;$i <= $rounds;$i++)
 
-        {!! Form::open(['method' => 'POST', 'route' => ['admin.tourney.match.generator']]) !!}
-        <input type="hidden" name="id" tabindex="-1" value="{{request('id')}}">
-        <input type="hidden" name="type" tabindex="-1" value="{{$type}}">
-        <input type="hidden" name="round" tabindex="-1" value="{{$i}}">
-        {!! Form::button("Создать матчи для раунда $i",["type" => "submit","class"=>"btn btn-primary"])!!}
-        {!! Form::close() !!}
-        <br>
-    @endfor
-@endif
 
 
 

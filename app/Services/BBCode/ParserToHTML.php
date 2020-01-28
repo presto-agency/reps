@@ -43,7 +43,6 @@ class ParserToHTML
 
 
         $third_transformation = html_entity_decode($second_conversion);
-
         return $third_transformation;
     }
 
