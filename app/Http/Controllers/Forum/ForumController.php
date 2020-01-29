@@ -56,9 +56,7 @@ class ForumController extends Controller
                 $section = ForumSection::withCount('topics')
                     ->with([
                         'topics' => function ($query) {
-                            $query->orderByDesc('id')
-//                                ->where('approved',true)
-                                ->where('id', '<', request('id'))
+                            $query->orderByDesc('id')->where('id', '<', request('id'))
                                 ->withCount('comments')
                                 ->limit(7);
                         },
@@ -71,7 +69,6 @@ class ForumController extends Controller
                     ->with([
                         'topics' => function ($query) {
                             $query->orderByDesc('id')
-//                                ->where('approved',true)
                                 ->withCount('comments')
                                 ->limit(7);
                         },
@@ -89,9 +86,7 @@ class ForumController extends Controller
     public function loadForumIndex()
     {
         if (request()->ajax()) {
-
             if (request('id') > 0) {
-
                 $sections = ForumSection::orderBy('position')
                     ->withCount('forumSectionComments')
                     ->withCount('topics')

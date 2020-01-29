@@ -24,7 +24,7 @@ Route::get('/', 'HomeController@index')->name('home.index');
 /***---News---***/
 Route::resource('news', 'NewsController');
 Route::post('news/{id}/send_comment', 'NewsController@comment_send')->name('news.comment_send');
-Route::post('load-more-news-main-page', 'NewsController@load_news')->name('load.news.main-page');
+Route::post('load_news', 'NewsController@loadNews')->name('load.news');
 /***---Forum---***/
 Route::resource('forum', 'Forum\ForumController');
 Route::group(['prefix' => 'forum'], function () {
@@ -51,24 +51,20 @@ Route::group(['prefix' => 'replay'], function () {
     Route::get('{id}/download', 'Replay\ReplayController@download')->name('replay.download');
     Route::post('{id}/increment-downloaded', 'Replay\ReplayController@downloadCount')->name('replay.increment.downloaded');
     Route::post('{id}/replay-send-comment', 'Replay\ReplayController@saveComments')->name('replay.send-comment');
-
     /**set reputation like/dislike*/
     Route::get('{id}/get_rating', 'ReplayRatingController@getRating')->name('replay.get_rating');
     Route::post('{id}/set_rating', 'ReplayRatingController@setRating')->name('replay.set_rating');
 });
 /***---Tournament---***/
 Route::resource('tournament', 'Tournament\TournamentController');
-Route::post('tournament-register', 'Tournament\TournamentController@registerPlayer')->name('tournament.register');
+Route::post('tournament_register', 'Tournament\TournamentController@registerPlayer')->name('tournament.register');
 
 Route::get('download-tournament-match/{match}/{rep}', 'Tournament\TournamentController@downloadMatchFile')->name('download.tournament.match');
-//Route::post("{tournament}/download-all-match", 'Tournament\TournamentController@downloadMultipleMatch')->name('download.all.match');
 Route::post('tournament/loadmore/load_tournament', 'Tournament\TournamentController@loadTournament')->name('load.more.tournament');
 
 Route::group(['middleware' => ['auth', 'ban', 'verified']], function () {
     /**comments rating: like/dislike*/
-    Route::post('comment/{id}/set_rating', 'CommentsRatingController@setRating')
-        ->name('comment.set_rating');
-    //    Route::get('comment/{id}/get_rating', 'CommentsRatingController@getRating')->name('comment.ger_rating');
+    Route::post('comment/{id}/set_rating', 'CommentsRatingController@setRating')->name('comment.set_rating');
 });
 
 Route::group(['prefix' => 'user', 'middleware' => ['auth', 'ban', 'verified'],], function () {
@@ -117,19 +113,12 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'ban', 'verified'],],
 });
 
 Route::group(['prefix' => 'chat'], function () {
-    /*Route::get('/', function (){
-        return view('stream-section.test-chat');
-    });*/
-
     Route::get('/', 'ChatController@separate_window')->name('chat.separate_window');
     Route::group(['middleware' => ['auth', 'ban', 'verified']], function () {
         Route::post('/insert_message', 'ChatController@insert_message')->name('chat.add_message');
         Route::delete('/delete/{id}', 'ChatController@destroy')->name('chat.delete_message');
     });
-
     Route::get('/get_messages', 'ChatController@get_messages')->name('chat.get_messages');
-    //    Route::post('/get_message', 'ChatController@get_message')->name('chat.get_message');
-
     Route::get('/get_externalsmiles', 'ChatController@get_externalsmiles')->name('chat.get_smiles');
     Route::get('/get_externalimages', 'ChatController@get_externalimages')->name('chat.get_images');
     Route::get('/helps', 'ChatController@get_helps')->name('chat.get_helps');
@@ -148,6 +137,8 @@ Route::get('search', 'Search\SearchController@index')->name('search');
 Route::group(['prefix' => 'search'], function () {
     Route::post('load-more-news', 'Search\SearchController@loadNews')->name('load.more.search.news');
     Route::post('load-more-replays', 'Search\SearchController@loadReplay')->name('load.more.search.replays');
+    Route::post('load-more-topics', 'Search\SearchController@loadTopics')->name('load.more.search.topics');
+    Route::post('load-more-comments', 'Search\SearchController@loadComments')->name('load.more.search.comments');
 });
 
 Route::middleware(['ban'])->group(function () {
@@ -155,7 +146,7 @@ Route::middleware(['ban'])->group(function () {
 });
 
 /**
- * Ajax quote
+ * Quote
  */
 Route::group(['prefix' => 'quote', 'middleware' => ['auth', 'ban', 'verified'],], function () {
     Route::post('/', 'QuoteController@getQuote')->name('quote');

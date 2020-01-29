@@ -24,7 +24,7 @@ class TournamentsMapPool extends Section
     /**
      * @var bool
      */
-    protected $checkAccess = false;
+    protected $checkAccess = true;
 
     /**
      * @var string
@@ -71,6 +71,8 @@ class TournamentsMapPool extends Section
                 if ( ! empty($model->tourney)) {
                     return TourneyList::$status[$model->tourney->status];
                 }
+
+                return null;
             }),
 
         ];

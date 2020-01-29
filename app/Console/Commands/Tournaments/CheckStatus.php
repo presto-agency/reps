@@ -42,33 +42,16 @@ class CheckStatus extends Command
     {
         $this->updateTourney('reg_time', 'ANNOUNCE', 'REGISTRATION');
         $this->updateTourney('checkin_time', 'REGISTRATION', 'CHECK-IN');
-
-        //        $this->updateTourney('start_time', 'CHECK-IN', 'STARTED');
-        //        if (isset($tourneyReg) && $tourneyReg->isNotEmpty()) {
-        //            $tourneyReg;
-        //
-        //        }
+        $this->updateTourney('start_time', 'CHECK-IN', 'STARTED');
     }
 
 
-    //    /**
-    //     * Change status from
-    //     *
-    //     * @param  string  $time_column_name
-    //     * @param  string  $find_Status
-    //     * @param  string  $new_status
-    //     *
-    //     * @return int
-    //     */
-
-
-    private function updateTourney(string $time_column_name, string $find_Status, string $new_status)
+    private function updateTourney(string $time_column_name, string $old_status, string $new_status)
     {
         return TourneyList::query()
-            ->where('status', array_search($find_Status, TourneyList::$status))
+            ->where('status', array_search($old_status, TourneyList::$status))
             ->whereNotNull($time_column_name)
             ->where($time_column_name, '<=', Carbon::now())
-            //            ->get();
             ->update(['status' => array_search($new_status, TourneyList::$status)]);
     }
 

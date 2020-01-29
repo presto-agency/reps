@@ -14,6 +14,12 @@ class TourneyMatch extends Model
 
     const TYPE_DOUBLE = '2';
 
+    public static $matchType
+        = [
+            self::TYPE_SINGLE => 'Single-elimination tournament',
+            self::TYPE_DOUBLE => '',
+        ];
+
     public static $action
         = [
             1 => 'NONE', 2 => 'GOTO_P1', 3 => 'GOTO_P2', 4 => 'TOP',
@@ -43,6 +49,7 @@ class TourneyMatch extends Model
             'rep5',
             'rep6',
             'rep7',
+            'reps',
         ];
 
     protected $casts

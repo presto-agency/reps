@@ -8,21 +8,14 @@
     <title>{{ config('app.name', 'Reps.Ru') }}</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-
     <script type="text/javascript" src="{{ asset('ckeditor\ckeditor.js') }}"></script>
     <script type="text/javascript" src="{{ asset('sceditor\minified\sceditor.min.js') }}"></script>
     <link rel="stylesheet" href="../../../sceditor/minified/themes/default.min.css"/>
-    {{--    <script type="text/javascript" src="{{ asset('\sceditor\minified\themes\content\default.min.css') }}"></script>--}}
-<!-- Include the BBCode or XHTML formats -->
+    {{--  Include the BBCode or XHTML formats  --}}
     <script type="text/javascript" src="{{ asset('sceditor\minified\formats\bbcode.js') }}"></script>
     <script type="text/javascript" src="{{ asset('sceditor\minified\formats\xhtml.js') }}"></script>
-
     {{--    Fonts   --}}
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
-    {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
-    {{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
-    {{--    <link rel="stylesheet" href="{{ asset('js/sceditor/themes/default.min.css') }} "/>--}}
     {{--    Styles   --}}
     <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -53,17 +46,6 @@
             const getCountries = countries.map(function (item) {
                 return item.filename;
             });
-
-            // const cod= c.map(function (item) {
-            //     return item.charactor;
-            // });
-            // window.imgs = imgs;
-            // CKEDITOR.config.smiley_images = imgs;
-            //
-            //     CKEDITOR.config.smiley_descriptions ={sad:":)"};
-            //     CKEDITOR.config.smiley_path = '/storage/chat/smiles/';
-
-
         </script>
     @endif
 </head>
@@ -136,58 +118,6 @@
         </div>
     </div>
 </div>
-{{-- ********************************* --}}
-{{--<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Оставте комментарий</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                @if(Auth::user() )
-                    <form id="rating-vote-form" action="" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="rating">Голос:
-                                <div class="positive">
-                                    <img src="{{asset('images/icons/thumbs-up.png')}}" alt="">
-                                </div>
-                                <div class="negative">
-                                    <img src="{{asset('images/icons/thumbs-down.png')}}" alt="">
-                                </div>
-                            </label>
-                            <input type="hidden" name="rating" id="rating" value="">
-                        </div>
-                        <div class="form-group">
-                            <label for="comment">Комментарий</label>
-                            <input type="text" class="form-control" name="comment" id="comment" value="">
-                        </div>
-                        <button class="btn btn-info" type="submit">Проголосовать</button>
-                    </form>
-                @else
-                    <div class="unregistered-info-wrapper">
-                        <div class="notice">
-                            Данная опция доступна только авторизированным пользователям
-                        </div>
-                        <div class="btn-wrapper">
-                            <a href="#" class="btn btn-info">Авторизироваться</a>
-                            <a href="#" class="btn btn-info">Зарегистрироваться</a>
-                        </div>
-                    </div>
-                @endif
-                <div class="unregistered-info-wrapper info-block">
-                    <div class="notice"></div>
-                    <img class="positive-vote-img d-none" src="{{asset('images/icons/thumbs-up.png')}}" alt="">
-                    <img class="negative-vote-img d-none" src="{{asset('images/icons/thumbs-down.png')}}" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>--}}
 {{--========== END ALL MODAL WINDOWS ============--}}
 
 
@@ -198,8 +128,9 @@
 
 
 @section('custom-script')
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
         $(document).ready(function () {
+            @if(Request::route()->getName() ==  'home.index' || Request::route()->getName() == 'news.index')
             /**
              * load News
              */
@@ -207,27 +138,27 @@
 
             function loadNewsMainPage(id = '') {
                 $.ajax({
-                    url: "{{ route('load.news.main-page') }}",
+                    url: "{{ route('load.news') }}",
                     method: "POST",
                     data: {
                         id: id,
                         _token: '{{csrf_token()}}'
                     },
                     success: function (data) {
-                        $('#load_news_list-main-page').remove();
+                        $('#load_news_list_button').remove();
                         $('#load_news_list').append(data);
                     }
                 })
             }
 
-            $(document).on('click', '#load_news_list-main-page', function () {
-                $('#load_news_list-main-page').html('<b>Загрузка...</b>');
+            $(document).on('click', '#load_news_list_button', function () {
+                $('#load_news_list_button').html('<b>Загрузка...</b>');
                 loadNewsMainPage($(this).data('id'));
             });
+            @endif
             /**
-             * Modal
+             * Modal If validation Error Redirect and open modal
              */
-            //if validation error redirect and open modal
             @if (count($errors) > 0)
             @if(!empty(Session::get('showModal')) && Session::get('showModal') == 'registration')
             $('#registrationModal').modal('show');
@@ -322,13 +253,4 @@
 
 @yield('java-script')
 </body>
-{{--<div class="bbSpoiler">--}}
-{{--    <div class="bbSpoilerTitle">--}}
-{{--        <a href="#" onclick="return xbbSpoiler(this)">--}}
-{{--            <strong>показать</strong>--}}
-{{--            <strong style="display:none">скрыть</strong>--}}
-{{--        </a>--}}
-{{--    </div>--}}
-{{--    <div class="spoiler" style="display:none">tt5</div>--}}
-{{--</div>--}}
 </html>

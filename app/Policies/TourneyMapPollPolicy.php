@@ -41,15 +41,14 @@ class TourneyMapPollPolicy
     {
         if ( ! empty($item->tourney)) {
             $status = TourneyList::$status[$item->tourney->status];
-            if ($status === 'ANNOUNCE' || $status === 'REGISTRATION' || $status === 'CHECK-IN' || $status === 'STARTED') {
+            if ($status === 'ANNOUNCE' || $status === 'REGISTRATION' || $status === 'CHECK-IN') {
                 return true;
             }
-        } else {
-            return true;
+
+            return false;
         }
 
-
-        return false;
+        return true;
     }
 
 
@@ -57,15 +56,14 @@ class TourneyMapPollPolicy
     {
         if ( ! empty($item->tourney)) {
             $status = TourneyList::$status[$item->tourney->status];
-            if ($status === 'ANNOUNCE' || $status === 'REGISTRATION' || $status === 'CHECK-IN' || $status === 'STARTED') {
+            if ($status === 'ANNOUNCE' || $status === 'REGISTRATION' || $status === 'CHECK-IN') {
                 return true;
             }
-        } else {
-            return true;
+
+            return false;
         }
 
-
-        return false;
+        return true;
     }
 
 }

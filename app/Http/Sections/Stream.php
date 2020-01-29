@@ -64,6 +64,7 @@ class Stream extends Section implements Initializable
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center ')
+            ->with(['users'])
             ->setOrder([[0, 'desc']])
             ->paginate(25);
         $display->setFilters(AdminDisplayFilter::related('approved')

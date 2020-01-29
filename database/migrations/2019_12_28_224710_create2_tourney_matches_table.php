@@ -37,13 +37,14 @@ class Create2TourneyMatchesTable extends Migration
             $table->unsignedTinyInteger('match_type')->nullable();
             $table->boolean('played');
             $table->string('round', 50);
-            $table->string('rep1')->nullable();
-            $table->string('rep2')->nullable();
-            $table->string('rep3')->nullable();
-            $table->string('rep4')->nullable();
-            $table->string('rep5')->nullable();
-            $table->string('rep6')->nullable();
-            $table->string('rep7')->nullable();
+            $table->json('reps')->nullable();
+            $table->string('rep1', 100)->nullable();
+            $table->string('rep2', 100)->nullable();
+            $table->string('rep3', 100)->nullable();
+            $table->string('rep4', 100)->nullable();
+            $table->string('rep5', 100)->nullable();
+            $table->string('rep6', 100)->nullable();
+            $table->string('rep7', 100)->nullable();
             $table->timestamps();
         });
     }

@@ -174,7 +174,6 @@ return [
              */
 
         ],
-
         /*
          * See https://www.tinymce.com/docs/
          */

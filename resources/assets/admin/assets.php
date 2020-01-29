@@ -8,7 +8,6 @@
 
 $this->app['sleeping_owl.wysiwyg']->register('ckeditor')
     ->js(null, '/ckeditor_standard/ckeditor.js', null, true);
-
 $this->app['sleeping_owl.wysiwyg']->register('ckeditor5')
     ->js(null, '//cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js', null, true)
     ->js('translate', '//cdn.ckeditor.com/ckeditor5/12.3.1/classic/translations/'.config('app.locale').'.js', null, true);
