@@ -21,7 +21,7 @@ class TournamentsMatches extends Section
     /**
      * @var bool
      */
-    protected $checkAccess = false;
+    protected $checkAccess = true;
 
     /**
      * @var string
@@ -64,7 +64,7 @@ class TournamentsMatches extends Section
         $display = AdminDisplay::datatables()
             ->setName('TournamentsMatchesDataTables')
             ->setOrder([[0, 'desc']])
-            ->with('tourney:id,name', 'player1:id,user_id,description', 'player2:id,user_id,description', 'player1.user:id,name', 'player2.user:id,name')
+            ->with('tourney', 'player1:id,user_id,description', 'player2:id,user_id,description', 'player1.user:id,name', 'player2.user:id,name')
             ->setDisplaySearch(false)
             ->paginate(25)
             ->setColumns($columns)
@@ -100,11 +100,12 @@ class TournamentsMatches extends Section
             if ( ! empty($this->getModel->match_type)) {
                 $this->matchType = $this->getModel::$matchType[$this->getModel->match_type];
             }
+
             if ($this->getModel->player1) {
-                $this->winner = [
-                    'player1' => $this->getModel->player1->description,
-                    'player2' => $this->getModel->player2->description,
-                ];
+                $this->winner['player1'] = $this->getModel->player1->description;
+            }
+            if ($this->getModel->player2) {
+                $this->winner['player2'] = $this->getModel->player2->description;
             }
         }
 

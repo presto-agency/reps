@@ -9,7 +9,6 @@ use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
 use App\Models\TourneyList;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Section;
 
@@ -24,7 +23,7 @@ class TournamentsPlayer extends Section
     /**
      * @var bool
      */
-    protected $checkAccess = false;
+    protected $checkAccess = true;
 
     /**
      * @var string

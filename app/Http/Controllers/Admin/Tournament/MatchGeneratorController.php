@@ -19,6 +19,7 @@ class MatchGeneratorController extends Controller
         $type        = TourneyMatch::TYPE_SINGLE;
         $playerCount = $tourney->check_players_count;
         $void        = 0;
+
         if (($playerCount & 1)) {
             $void = 1;
         }
@@ -28,7 +29,7 @@ class MatchGeneratorController extends Controller
          */
         $rounds = 0;
         if ( ! empty($ofRound)) {
-            $rounds = ['canCreate' => log($ofRound, 2)];
+            $rounds = ['canCreate' => ceil(log($ofRound, 2.0))];
         }
 
         for ($i = 1; $i <= $rounds['canCreate']; $i++) {

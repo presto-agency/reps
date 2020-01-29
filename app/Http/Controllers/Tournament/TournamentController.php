@@ -98,7 +98,7 @@ class TournamentController extends Controller
             'mapsPool:id,tourney_id,map_id',
             'mapsPool.map:id,name,url',
             'player'  => function ($query) {
-                $query->where('user_id', auth()->id());
+                $query->select(['id', 'tourney_id','user_id'])->where('user_id', auth()->id());
             },
             'players' => function ($query) {
                 $query->with([

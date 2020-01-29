@@ -233,7 +233,6 @@ return [
         'Image'          => Intervention\Image\Facades\Image::class,
         'checkFile'      => App\Services\ServiceAssistants\PathHelper::class,
         'ParserToHTML'   => App\Services\BBCode\ParserToHTML::class,
-        'Embed'          => Cohensive\Embed\Facades\Embed::class,
         'BBCode'         => PheRum\BBCode\Facades\BBCode::class,
         'TourneyService' => App\Services\Tournament\TourneyService::class,
     ],
