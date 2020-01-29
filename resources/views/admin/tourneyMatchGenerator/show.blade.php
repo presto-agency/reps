@@ -1,4 +1,4 @@
-@if($tourney::$status[$tourney->status] === 'STARTED')
+@if($tourney::$status[$tourney->status] === 'STARTED' && !empty($rounds))
     @if($existAll)
         <div class="alert alert-secondary" role="alert">
             <h4>{{__('Для данного турнира уже созданы все раунды с типом')}}
@@ -81,7 +81,7 @@
     </div>
 @else
     <div class="alert alert-secondary" role="alert">
-        <h4>{{__('Статус данного турнира  не позволяет создавать матчи')}}
+        <h4>{{__('Статус данного турнира или количество игроков не позволяет создавать матчи')}}
             <strong>{{__('Single-elimination tournament')}}</strong>
         </h4>
     </div>
