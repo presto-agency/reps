@@ -15,7 +15,7 @@ class MatchGeneratorController extends Controller
 
     public function show(int $id)
     {
-        $tourney     = TourneyList::with('matches')->withCount('checkPlayers')->find($id);
+        $tourney     = TourneyList::query()->withCount('matches', 'checkPlayers')->find($id);
         $type        = TourneyMatch::TYPE_SINGLE;
         $playerCount = $tourney->check_players_count;
         $void        = 0;
@@ -23,13 +23,31 @@ class MatchGeneratorController extends Controller
             $void = 1;
         }
         $ofRound = $playerCount + $void;
-        $rounds  = 0;
+        /**
+         * Check Rounds
+         */
+        $rounds = 0;
         if ( ! empty($ofRound)) {
-            $rounds = log($ofRound, 2);
+            $rounds = ['canCreate' => log($ofRound, 2)];
         }
 
+        for ($i = 1; $i <= $rounds['canCreate']; $i++) {
+            $rounds['rounds'][] = [
+                'number'        => $i,
+                'previousExist' => TourneyMatch::query()->where('tourney_id', $id)->where('round_number', '<', $i)->exists(),
+                'exist'         => TourneyMatch::query()->where('tourney_id', $id)->where('round_number', $i)->exists(),
+            ];
+        }
 
-        $content = view('admin.tourneyMatchGenerator.show', compact('rounds', 'type', 'tourney'));
+        $existAll = true;
+        foreach ($rounds['rounds'] as $item) {
+            if ($item['exist'] === false) {
+                $existAll = false;
+                break;
+            }
+        }
+
+        $content = view('admin.tourneyMatchGenerator.show', compact('rounds', 'type', 'tourney', 'existAll'));
 
         return AdminSection::view($content, 'Match Generator');
     }
@@ -39,39 +57,8 @@ class MatchGeneratorController extends Controller
         if ($request->get('type') === TourneyMatch::TYPE_SINGLE) {
             return $this->single($request->get('id'), $request->get('round'));
         }
-        //        $playerCount = $tourney->players->where('check', true)->count();
-        //
-        //        if ($playerCount == 0) {
-        //            return \Response::json([
-        //                'success' => false,
-        //                'message' => 'Нету игроков',
-        //            ], 400);
-        //        }
-        //        $matches = [];
-        //
-        //        $players = $tourney->players->where('check', true)->shuffle();
-        //
-        //        $k = 0;
-        //        if (($playerCount & 1)) {
-        //            $players[] = ['id' => null];
-        //            $k         = 1;
-        //        }
-        //        $ofRound = $playerCount + $k;
-        //        /*** Generate***/
-        //        //        $rounds = log($ofRound, 2);
-        //
-        //        for ($i = 0; $i < $playerCount / 2; $i++) {
-        //            $matches[] = [
-        //                'tourney_id'   => $tourney['id'],
-        //                'player1_id'   => $players[$i]['id'],
-        //                'player2_id'   => $players[$playerCount / 2 + $i + $k]['id'],
-        //                'round_number' => $round_number,
-        //                'played'       => false,
-        //                'round'        => "Round $round_number (of $ofRound)",
-        //            ];
-        //        }
-        //
-        //        dd($matches);
+
+        return null;
     }
 
 
@@ -81,15 +68,15 @@ class MatchGeneratorController extends Controller
      * @param  int  $id
      * @param  null  $round
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return null
      */
     private function single(int $id, $round = null)
     {
         if ($round == 1) {
             return $this->single_round_1($id, $round);
+        } else {
+            return $this->single_round_other($id, $round);
         }
-
-        return $this->single_round_other($id, $round);
     }
 
     private function single_round_1(int $id, $round)
@@ -100,7 +87,7 @@ class MatchGeneratorController extends Controller
         $playerCount = $tourney->check_players_count;
 
         if ($playerCount == 0) {
-            return back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
+            return $this->redirectToError();
         }
         $matches = [];
         $players = $tourney->checkPlayers->shuffle();
@@ -128,20 +115,34 @@ class MatchGeneratorController extends Controller
             ];
         }
 
-        $this->store($matches);
+        try {
+            $this->store($matches);
 
-        return back()->with(['single-match-success' => "Матчи  для раунда $round успешно созданы"]);
+            return $this->redirectToSuccess($round);
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+
+            return back()->withErrors(['single-match' => $e->errorInfo[2]]);
+        }
     }
 
     private function single_round_other(int $id, $round)
     {
+        /**
+         * Get all winner Player1
+         */
         $player1 = TourneyMatch::query()
+            ->whereNotNull('player1_id')
             ->where('tourney_id', $id)
             ->where('round_number', $round - 1)
             ->where('played', true)
             ->where('player1_score', '>', \DB::raw('player2_score'))
             ->get(['id', 'tourney_id', 'player1_id', 'player1_score', 'player2_score', 'round_number', 'played']);
+        /**
+         * Get all winner Player2
+         */
         $player2 = TourneyMatch::query()
+            ->whereNotNull('player2_id')
             ->where('tourney_id', $id)
             ->where('round_number', $round - 1)
             ->where('played', true)
@@ -151,17 +152,24 @@ class MatchGeneratorController extends Controller
         $players = $player1->merge($player2);
 
         if ($players->isEmpty()) {
-            return redirect()->back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
+            return $this->redirectToError();
         }
+        $matchNumber = TourneyMatch::query()
+            ->where('tourney_id', $id)
+            ->where('round_number', $round - 1)->max('match_number');
         $playerCount = $players->count();
         $players     = $players->shuffle();
 
         foreach ($players as $item) {
             if (isset($item['player1_id'])) {
-                $playerArr[] = ['id' => $item->player1_id];
+                $playerArr[] = [
+                    'id' => $item->player1_id,
+                ];
             }
             if (isset($item['player2_id'])) {
-                $playerArr[] = ['id' => $item->player2_id];
+                $playerArr[] = [
+                    'id' => $item->player2_id,
+                ];
             }
         }
 
@@ -173,20 +181,30 @@ class MatchGeneratorController extends Controller
         }
 
         $ofRound = $playerCount + $void;
-//        dd($playerArr);
-//        dd($playerCount);
-//
-//        foreach ($players as $item) {
-//            if ($item->player1_score > $item->player2_score) {
-//                $player1[] = ['id' => $item->player1_id,];
-//            }
-//            if ($item->player2_score > $item->player1_score) {
-//                $player2[] = ['id' => $item->player2_id,];
-//            }
-//        }
-//        $players = array_merge($player1, $player2);
-//
-//        dd($players);
+
+        for ($i = 0; $i < $playerCount / 2; $i++) {
+            $matchNumber++;
+            $matches[] = [
+                'tourney_id'   => $id,
+                'player1_id'   => $playerArr[$i]['id'],
+                'player2_id'   => $playerArr[$playerCount / 2 + $i + $void]['id'],
+                'match_number' => $matchNumber,
+                'round_number' => $round,
+                'played'       => false,
+                'round'        => "Round $round (of $ofRound)",
+                'match_type'   => array_search('SINGLE', TourneyList::$matchType),
+                'created_at'   => Carbon::now(),
+            ];
+        }
+        try {
+            $this->store($matches);
+
+            return $this->redirectToSuccess($round);
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+
+            return back()->withErrors(['single-match' => $e->errorInfo[2]]);
+        }
     }
 
 
@@ -194,5 +212,24 @@ class MatchGeneratorController extends Controller
     {
         \DB::table('tourney_matches')->insert($data);
     }
+
+    /**
+     * @param $round
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    private function redirectToSuccess($round)
+    {
+        return back()->with(['single-match-success' => "Матчи для раунда $round успешно созданы"]);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    private function redirectToError()
+    {
+        return back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
+    }
+
 
 }
