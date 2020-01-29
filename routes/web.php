@@ -148,6 +148,8 @@ Route::get('search', 'Search\SearchController@index')->name('search');
 Route::group(['prefix' => 'search'], function () {
     Route::post('load-more-news', 'Search\SearchController@loadNews')->name('load.more.search.news');
     Route::post('load-more-replays', 'Search\SearchController@loadReplay')->name('load.more.search.replays');
+    Route::post('load-more-topics', 'Search\SearchController@loadTopics')->name('load.more.search.topics');
+    Route::post('load-more-comments', 'Search\SearchController@loadComments')->name('load.more.search.comments');
 });
 
 Route::middleware(['ban'])->group(function () {

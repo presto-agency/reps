@@ -1,10 +1,10 @@
 @if($existAll)
-    <h4>Для данного турнира уже созданы все раунды с типом
-        <strong>Single-elimination tournament</strong>
+    <h4>{{__('Для данного турнира уже созданы все раунды с типом')}}
+        <strong>{{__('Single-elimination tournament')}}</strong>
     </h4>
 @else
-    <h4>Для данного турнира можна создать следущие кол-во раундов {{$rounds['canCreate']}} с типом
-        <strong>Single-elimination tournament</strong>
+    <h4>{{'Для данного турнира можна создать следущие кол-во раундов '.$rounds['canCreate'].' с типом'}}
+        <strong>{{__('Single-elimination tournament')}}</strong>
     </h4>
 
 @endif

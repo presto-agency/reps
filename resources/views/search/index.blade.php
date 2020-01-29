@@ -19,6 +19,8 @@
 @section('content')
     <div id="load_more_news_search"></div>
     <div id="load_more_replays_search"></div>
+    <div id="load_more_topics_search"></div>
+    <div id="load_more_comments_search"></div>
 @endsection
 
 @section('right-side')
@@ -29,47 +31,39 @@
 @section('custom-script')
     @parent
     <script type="text/javascript">
-        /**
-         * Ajax for news-search
-         */
+
         $(document).ready(function () {
-
-                @if (request()->has('search') && request()->filled('search'))
-                let search = "{{request('search')}}";
-                @endif
-
-                loadMoreNewsSearch('', search);
-
-                function loadMoreNewsSearch(id = '', search) {
-                    $.ajax({
-                        url: '{{ route('load.more.search.news') }}',
-                        method: "POST",
-                        data: {
-                            id: id,
-                            _token: '{{csrf_token()}}',
-                            search: search
-                        },
-                        success: function (data) {
-                            $('#load_more_news_search_button').remove();
-                            $('#load_more_news_search').append(data);
-                        }
-                    })
-                }
-
-                $(document).on('click', '#load_more_news_search_button', function () {
-                    $('#load_more_news_search_button').html('<b>Загрузка...</b>');
-                    loadMoreNewsSearch($(this).data('id'), search);
-                });
-            }
-        );
-        /**
-         * Ajax for replays-search
-         */
-        $(document).ready(function () {
-
                 @if (request()->has('search') && request()->filled('search'))
             let search = "{{request('search')}}";
-            @endif
+            /**
+             * Ajax for news-search
+             */
+
+            loadMoreNewsSearch('', search);
+
+            function loadMoreNewsSearch(id = '', search) {
+                $.ajax({
+                    url: '{{ route('load.more.search.news') }}',
+                    method: "POST",
+                    data: {
+                        id: id,
+                        _token: '{{csrf_token()}}',
+                        search: search
+                    },
+                    success: function (data) {
+                        $('#load_more_news_search_button').remove();
+                        $('#load_more_news_search').append(data);
+                    }
+                })
+            }
+
+            $(document).on('click', '#load_more_news_search_button', function () {
+                $('#load_more_news_search_button').html('<b>Загрузка...</b>');
+                loadMoreNewsSearch($(this).data('id'), search);
+            });
+            /**
+             * Ajax for replays-search
+             */
             loadMoreReplaysSearch('', search);
 
             function loadMoreReplaysSearch(id = '', search) {
@@ -79,7 +73,7 @@
                     data: {
                         id: id,
                         _token: '{{csrf_token()}}',
-                        search
+                        search: search
                     },
                     success: function (data) {
                         $('#load_more_replays_search_button').remove();
@@ -92,6 +86,61 @@
                 $('#load_more_replays_search_button').html('<b>Загрузка...</b>');
                 loadMoreReplaysSearch($(this).data('id'), search);
             });
+
+            /**
+             * Ajax for topics-search
+             */
+            loadMoreTopicsSearch('', search);
+
+            function loadMoreTopicsSearch(id = '', search) {
+                $.ajax({
+                    url: "{{ route('load.more.search.topics') }}",
+                    method: "POST",
+                    data: {
+                        id: id,
+                        _token: '{{csrf_token()}}',
+                        search: search
+                    },
+                    success: function (data) {
+                        $('#load_more_topics_search_button').remove();
+                        $('#load_more_topics_search').append(data);
+                    }
+                })
+            }
+
+            $(document).on('click', '#load_more_topics_search_button', function () {
+                $('#load_more_topics_search_button').html('<b>Загрузка...</b>');
+                loadMoreTopicsSearch($(this).data('id'), search);
+            });
+
+{{--            @if(strlen(request('search')) >= 5)--}}
+            /**
+             * Ajax for comments-search
+             */
+            loadMoreCommentsSearch('', search);
+
+            function loadMoreCommentsSearch(id = '', search) {
+                $.ajax({
+                    url: "{{ route('load.more.search.comments') }}",
+                    method: "POST",
+                    data: {
+                        id: id,
+                        _token: '{{csrf_token()}}',
+                        search: search
+                    },
+                    success: function (data) {
+                        $('#load_more_comments_search_button').remove();
+                        $('#load_more_comments_search').append(data);
+                    }
+                })
+            }
+
+            $(document).on('click', '#load_more_comments_search_button', function () {
+                $('#load_more_comments_search_button').html('<b>Загрузка...</b>');
+                loadMoreCommentsSearch($(this).data('id'), search);
+            });
+            @endif
+{{--            @endif--}}
         });
     </script>
 @endsection

@@ -377,7 +377,7 @@ class Tournaments extends Section
                             ->setOptions(TourneyList::$map_types)
                             ->setValidationRules([
                                 'required',
-                                'in:0,1,2',
+                                'in:1,2,3',
                             ]),
                     ];
                 }, 4)
