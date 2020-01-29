@@ -27,24 +27,24 @@ class MatchGeneratorController extends Controller
         /**
          * Check Rounds
          */
-        $rounds = 0;
+        $rounds = [];
+        $existAll = true;
         if ( ! empty($ofRound)) {
             $rounds = ['canCreate' => ceil(log($ofRound, 2.0))];
-        }
 
-        for ($i = 1; $i <= $rounds['canCreate']; $i++) {
-            $rounds['rounds'][] = [
-                'number'        => $i,
-                'previousExist' => TourneyMatch::query()->where('tourney_id', $id)->where('round_number', '<', $i)->exists(),
-                'exist'         => TourneyMatch::query()->where('tourney_id', $id)->where('round_number', $i)->exists(),
-            ];
-        }
+            for ($i = 1; $i <= $rounds['canCreate']; $i++) {
+                $rounds['rounds'][] = [
+                    'number'        => $i,
+                    'previousExist' => TourneyMatch::query()->where('tourney_id', $id)->where('round_number', '<', $i)->exists(),
+                    'exist'         => TourneyMatch::query()->where('tourney_id', $id)->where('round_number', $i)->exists(),
+                ];
+            }
 
-        $existAll = true;
-        foreach ($rounds['rounds'] as $item) {
-            if ($item['exist'] === false) {
-                $existAll = false;
-                break;
+            foreach ($rounds['rounds'] as $item) {
+                if ($item['exist'] === false) {
+                    $existAll = false;
+                    break;
+                }
             }
         }
 
