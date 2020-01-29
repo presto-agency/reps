@@ -32,7 +32,7 @@ class SearchController extends Controller
             return view('search.components.news-search', compact('news', 'visible_title'));
         }
 
-        return \Response::json([], 200);
+        return \Response::json([], 404);
     }
 
     /**
@@ -52,7 +52,7 @@ class SearchController extends Controller
             return view('search.components.replays-search', compact('replay', 'visible_title'));
         }
 
-        return \Response::json([], 200);
+        return \Response::json([], 404);
     }
 
     /**
@@ -72,7 +72,7 @@ class SearchController extends Controller
             return view('search.components.topics-search', compact('topics', 'visible_title'));
         }
 
-        return \Response::json([], 200);
+        return \Response::json([], 404);
     }
 
     /**
@@ -85,15 +85,14 @@ class SearchController extends Controller
             if (request('id') > 0) {
                 $comments = $this->commentsWithId();
             } else {
-                $comments = $this->comments();
-
+                $comments      = $this->comments();
                 $visible_title = true;
             }
 
             return view('search.components.comments-search', compact('comments', 'visible_title'));
         }
 
-        return \Response::json([], 200);
+        return \Response::json([], 404);
     }
 
     /**
@@ -101,9 +100,11 @@ class SearchController extends Controller
      */
     private function news()
     {
-        return ForumTopic::with('author:id,avatar,name')->withCount('comments')
+        return ForumTopic::with('author:id,name,avatar')
             ->where('title', 'like', '%'.request('search').'%')
+            ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
             ->where('news', true)
+            ->withCount('comments')
             ->orderByDesc('id')
             ->limit(5)
             ->get();
@@ -114,10 +115,12 @@ class SearchController extends Controller
      */
     private function newsWithId()
     {
-        return ForumTopic::with('author:id,avatar,name')->withCount('comments')
+        return ForumTopic::with('author:id,name,avatar')
             ->where('title', 'like', '%'.request('search').'%')
+            ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
             ->where('id', '<', request('id'))
             ->where('news', true)
+            ->withCount('comments')
             ->orderByDesc('id')
             ->limit(5)
             ->get();
@@ -135,6 +138,10 @@ class SearchController extends Controller
             'secondCountries:id,flag,name',
             'firstRaces:id,title,code',
             'secondRaces:id,title,code',
+        ])->select([
+            'id', 'title', 'user_id', 'map_id', 'file', 'downloaded', 'content',
+            'first_country_id', 'second_country_id', 'first_race', 'second_race',
+            'user_replay', 'rating', 'created_at',
         ])->where('title', 'like', '%'.request('search').'%')
             ->withCount('comments')
             ->orderByDesc('id')
@@ -154,6 +161,9 @@ class SearchController extends Controller
             'secondCountries:id,flag,name',
             'firstRaces:id,title,code',
             'secondRaces:id,title,code',
+        ])->select([
+            'id', 'title', 'user_id', 'map_id', 'file', 'downloaded', 'content', 'first_country_id',
+            'second_country_id', 'first_race', 'second_race', 'user_replay', 'rating', 'created_at',
         ])->where('title', 'like', '%'.request('search').'%')
             ->withCount('comments')
             ->where('id', '<', request('id'))
@@ -167,9 +177,11 @@ class SearchController extends Controller
      */
     private function topics()
     {
-        return ForumTopic::with('author:id,avatar,name')->withCount('comments')
+        return ForumTopic::with('author:id,avatar,name')
             ->where('title', 'like', '%'.request('search').'%')
+            ->select(['id', 'title', 'reviews', 'user_id', 'news', 'created_at',])
             ->where('news', false)
+            ->withCount('comments')
             ->orderByDesc('id')
             ->limit(5)
             ->get();
@@ -180,41 +192,53 @@ class SearchController extends Controller
      */
     private function topicsWithId()
     {
-        return ForumTopic::with('author:id,avatar,name')->withCount('comments')
+        return ForumTopic::with('author:id,avatar,name')
             ->where('title', 'like', '%'.request('search').'%')
+            ->select(['id', 'title', 'reviews', 'user_id', 'news', 'created_at',])
             ->where('id', '<', request('id'))
             ->where('news', false)
+            ->withCount('comments')
             ->orderByDesc('id')
             ->limit(5)
             ->get();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
+     */
     private function comments()
     {
         return Comment::with([
             'user' => function ($query) {
-                $query->withCount('comments');
+                $query->select([
+                    'id', 'avatar', 'name', 'country_id', 'race_id', 'rating',
+                ])->withCount('comments');
             },
             'user.countries:id,name,flag',
             'user.races:id,title',
-        ])
+        ])->select(['id', 'user_id', 'commentable_id', 'commentable_type', 'content', 'negative_count', 'positive_count', 'created_at'])
             ->where('content', 'like', '%'.request('search').'%')
             ->whereNotNull('user_id')
             ->orderByDesc('id')
             ->limit(5)
-            ->get(['id', 'user_id', 'commentable_id', 'commentable_type', 'content', 'negative_count', 'positive_count']);
+            ->get();
     }
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
+     */
     private function commentsWithId()
     {
         return Comment::with([
             'user' => function ($query) {
-                $query->withCount('comments');
+                $query->select([
+                    'id', 'avatar', 'name', 'country_id', 'race_id', 'rating',
+                ])->withCount('comments');
             },
             'user.countries:id,name,flag',
             'user.races:id,title',
-        ])
+        ])->select(['id', 'user_id', 'commentable_id', 'commentable_type', 'content', 'negative_count', 'positive_count', 'created_at'])
             ->where('content', 'like', '%'.request('search').'%')
             ->where('id', '<', request('id'))
             ->whereNotNull('user_id')

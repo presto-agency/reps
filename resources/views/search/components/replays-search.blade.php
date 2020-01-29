@@ -39,7 +39,7 @@
                    href="{{ route('replay.show',['replay'=>$item->id]).'?type='.$item::$type[$item->user_replay]}}">
                     {{clean($item->title)}}
                 </a>
-                <p class="subtitle__date night_text">{{$item->created_at->format('H:i d.m.Y')}}</p>
+                <p class="subtitle__date night_text">{{\Carbon\Carbon::parse($item->created_at)->format('H:i d.m.Y')}}</p>
             </div>
             <div class="gocu-replays__match">
                 <div class="match__author">
@@ -170,7 +170,7 @@
         </div>
     @endif
 </div>
-<script type="text/javascript">
+<script type="text/javascript" defer>
     /**
      * Replay File download
      */

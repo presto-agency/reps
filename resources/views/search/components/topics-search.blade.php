@@ -34,20 +34,20 @@
             </div>
         @endif
         @if(isset($topics) && $topics->isNotEmpty())
-            @foreach($topics as $topic)
+            @foreach($topics as $item)
                 <div class="content_article night_modal">
                     <div class="block_nameArticle">
-                        <a href="{{ route('topic.show', $topic->id) }}">
-                            <p class="name" title="{{clean($topic->title)}}">{{clean($topic->title)}}</p>
+                        <a href="{{ route('topic.show', $item->id) }}">
+                            <p class="name" title="{{clean($item->title)}}">{{clean($item->title)}}</p>
                         </a>
                         <div class="right">
-                            <p class="date">{{ $topic->created_at->format('H:i d.m.Y')}}</p>
+                            <p class="date">{{ $item->created_at->format('H:i d.m.Y')}}</p>
                         </div>
                     </div>
                     <div class="detailed-news__info night_modal">
                         <div class="info__items">
                             <div class="info_right">
-                                <a class="items__watch" href="{{ route('topic.show', $topic->id) }}">
+                                <a class="items__watch" href="{{ route('topic.show', $item->id) }}">
                                     <svg id="Capa_1" enable-background="new 0 0 515.556 515.556"
                                          viewBox="0 0 515.556 515.556" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -55,9 +55,9 @@
                                         <path
                                             d="m303.347 212.209c25.167 25.167 25.167 65.971 0 91.138s-65.971 25.167-91.138 0-25.167-65.971 0-91.138 65.971-25.167 91.138 0"></path>
                                     </svg>
-                                    <span>{{$topic->reviews}}</span>
+                                    <span>{{$item->reviews}}</span>
                                 </a>
-                                <a class="items__comment" href="{{ route('topic.show', $topic->id) }}">
+                                <a class="items__comment" href="{{ route('topic.show', $item->id) }}">
                                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                          x="0px" y="0px"
                                          viewBox="0 0 511.6 511.6"
@@ -82,21 +82,21 @@
                                     c-0.3-0.3-0.7-0.8-1.3-1.4c-0.6-0.7-1-1.1-1.1-1.3c-1-1.1-3.1-3.5-6.6-7.1c-3.4-3.6-5.9-6.4-7.4-8.4c-1.5-2-3.7-4.8-6.4-8.3
                                     c-2.8-3.5-5.1-7.2-7.1-11c-2-3.8-3.9-8-5.9-12.6C459.3,374.9,477.8,358.1,491.3,338.2z"></path>
                             </svg>
-                                    <span>{{ $topic->comments_count }}</span>
+                                    <span>{{ $item->comments_count }}</span>
                                 </a>
                             </div>
-                            @if(!empty($topic->author))
+                            @if(!empty($item->author))
                                 <a class="block_account"
-                                   href="{{route('user_profile',['id'=>$topic->author->id])}}">
+                                   href="{{route('user_profile',['id'=>$item->author->id])}}">
                                     @if(auth()->check() && auth()->user()->userViewAvatars())
                                         <img class="search_img" alt="avatar"
-                                             src="{{asset($topic->author->avatarOrDefault())}}">
+                                             src="{{asset($item->author->avatarOrDefault())}}">
                                     @endif
                                     @guest()
                                         <img class="search_img" alt="avatar"
-                                             src="{{asset($topic->author->avatarOrDefault())}}">
+                                             src="{{asset($item->author->avatarOrDefault())}}">
                                     @endguest()
-                                    <span>{{ $topic->author->name }}</span>
+                                    <span>{{ $item->author->name }}</span>
                                 </a>
                             @endif
 
@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 @php
-                    $last_id = $topic->id;
+                    $last_id = $item->id;
                 @endphp
             @endforeach
             <div class="gocu-replays__button night_modal">
