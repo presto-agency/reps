@@ -53,7 +53,8 @@
                                 {{$comment->user->comments_count.' minerals | '. $comment->user->rating.' supply'}}
                             </p>
                         @endif
-                        <span class="info__date">{{$comment->created_at->format('H:i d.m.Y')}}</span>
+                        <span
+                            class="info__date">{{\Carbon\Carbon::parse($comment->created_at)->format('H:i d.m.Y')}}</span>
                     </div>
                 @endif
                 <div class="comments__content">

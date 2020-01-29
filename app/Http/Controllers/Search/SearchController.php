@@ -85,7 +85,8 @@ class SearchController extends Controller
             if (request('id') > 0) {
                 $comments = $this->commentsWithId();
             } else {
-                $comments      = $this->comments();
+                $comments = $this->comments();
+
                 $visible_title = true;
             }
 
@@ -191,30 +192,28 @@ class SearchController extends Controller
     private function comments()
     {
         return Comment::with([
-            'user',
-            'user.countries:id,name,flag',
-            'user.races:id,title',
             'user' => function ($query) {
                 $query->withCount('comments');
             },
+            'user.countries:id,name,flag',
+            'user.races:id,title',
         ])
             ->where('content', 'like', '%'.request('search').'%')
             ->whereNotNull('user_id')
             ->orderByDesc('id')
             ->limit(5)
-            ->get();
+            ->get(['id', 'user_id', 'commentable_id', 'commentable_type', 'content', 'negative_count', 'positive_count']);
     }
 
 
     private function commentsWithId()
     {
         return Comment::with([
-            'user',
-            'user.countries:id,name,flag',
-            'user.races:id,title',
             'user' => function ($query) {
                 $query->withCount('comments');
             },
+            'user.countries:id,name,flag',
+            'user.races:id,title',
         ])
             ->where('content', 'like', '%'.request('search').'%')
             ->where('id', '<', request('id'))

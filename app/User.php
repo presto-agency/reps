@@ -73,7 +73,6 @@ class User extends Authenticatable implements MustVerifyEmail
             'remember_token',
         ];
 
-
     public function userViewAvatars()
     {
         if ($this->view_avatars == true) {
