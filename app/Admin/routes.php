@@ -1,14 +1,14 @@
 <?php
 
-Route::get('', ['as' => 'admin.dashboard', function () {
-    $content = view('admin.dashboard');
-    return AdminSection::view($content);
-}]);
-
-Route::get('information', ['as' => 'information', function () {
-    $content = 'Define your information here.';
-    return AdminSection::view($content, 'Information');
-}]);
+Route::get('', [
+    'as'   => 'admin.dashboard',
+    'uses' => '\App\Http\Controllers\Admin\DashboardController@index',
+]);
+//
+//Route::get('information', ['as' => 'information', function () {
+//    $content = 'Define your information here.';
+//    return AdminSection::view($content, 'Information');
+//}]);
 
 Route::delete('interview_variant_answers/{id}/delete', '\App\Http\Controllers\Admin\InterviewVariantAnswerController@delete')->name('admin.answers.delete');
 
