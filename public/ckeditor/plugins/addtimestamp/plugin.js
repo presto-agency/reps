@@ -8,7 +8,7 @@ CKEDITOR.plugins.add('addtimestamp',{
         cmd.modes = { wysiwyg : 1, source: 1 };// плагин будет работать и в режиме wysiwyg и в режиме исходного текста
         editor.ui.addButton('addtimestamp',{
             label: 'Добавить текущую дату и время',
-            icon:this.path+'/addtimestamp.png', // иконка
+            icon:this.path+'/spoiler.png', // иконка
             command: 'addtimestamp'
         });
     }
