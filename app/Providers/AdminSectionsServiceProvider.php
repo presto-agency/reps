@@ -145,7 +145,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
                     (new Page(\App\Models\TourneyList::class))->setPriority(1),
                     (new Page(\App\Models\TourneyListsMapPool::class))->setPriority(2),
                     (new Page(\App\Models\TourneyPlayer::class))->setPriority(3),
-//                    (new Page(\App\Models\TourneyMatch::class))->setPriority(4),
+                    (new Page(\App\Models\TourneyMatch::class))->setPriority(4),
                 ],
             ],
         ]);

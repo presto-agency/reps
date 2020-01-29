@@ -15,19 +15,50 @@
                         C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
                 <p class="title_text">{{$tournament->name}}</p>
-                @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())
-                    @if('REGISTRATION' === $tournament::$status[$tournament->status] && empty($tournament->player))
-                        <button onclick="tournamentRegister()">Add</button>
-                    @endif
-                    @if(!empty($tournament->player))
-                        <p>{{__('Вы уже присоединились к турниру')}}</p>
-                    @endif
-                @endif
             </div>
         </div>
 
         <div class="row block_replay_content">
             <div class="col-xl-6 col-lg-6 col-md-6 block_left">
+                @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified() && $tournament::$status[$tournament->status] == 'REGISTRATION')
+                    @if(empty($tournament->player))
+                        <div class="check_registration">
+                            <button class="button button__download-more night_text" type="button" data-toggle="modal"
+                                    data-target="#registrationTouranment">{{__('Присоединится')}}</button>
+                            <div class="modal fade" id="registrationTouranment" tabindex="-1" role="dialog"
+                                 aria-labelledby="authorizationModalTitle"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content night_modal">
+                                        <div class="modal-body">
+                                            <h2 class="modal-body__title night_text nick_text">{{__('Введите свой ник в игре.')}}</h2>
+                                            <div class="nick_form">
+                                                <input class="form-control night_input" id="description" type="text"
+                                                       max="50"
+                                                       placeholder="{{ __('nickname') }}">
+                                                <div id="description_error" class="alert alert-danger d-none"
+                                                     role="alert"></div>
+                                                <div id="description_success" class="alert alert-success d-none"
+                                                     role="alert"></div>
+                                                <button id="tournamentRegister" type="submit"
+                                                        class="button button__download-more"
+                                                        onClick="tournamentRegister()">
+                                                    {{__('ОТПРАВИТЬ')}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="container_block">
+                            <div class="replay-desc-left">
+                                <p class="blue">{{(__('Вы уже присоединились к турниру'))}}</p>
+                            </div>
+                        </div>
+                    @endif
+                @endif
                 @if(!empty($tournament->user))
                     <div class="container_block">
                         <div class="replay-desc-right"><p>{{(__('Administrator:'))}}</p></div>

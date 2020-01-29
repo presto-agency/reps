@@ -26,7 +26,6 @@ class TourneyListObserver
 
     public function updating(TourneyList $tourneyList)
     {
-        //        TourneyService::generateMatches($tourneyList);
     }
 
     /**

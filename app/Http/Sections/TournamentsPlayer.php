@@ -9,7 +9,6 @@ use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
 use App\Models\TourneyList;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Section;
 
@@ -24,12 +23,12 @@ class TournamentsPlayer extends Section
     /**
      * @var bool
      */
-    protected $checkAccess = false;
+    protected $checkAccess = true;
 
     /**
      * @var string
      */
-    protected $title;
+    protected $title = 'Список игроков';
 
     /**
      * @var string
@@ -37,7 +36,8 @@ class TournamentsPlayer extends Section
     protected $alias;
 
     /**
-     * @return DisplayInterface
+     * @return mixed
+     * @throws \SleepingOwl\Admin\Exceptions\FilterOperatorException
      */
     public function onDisplay()
     {

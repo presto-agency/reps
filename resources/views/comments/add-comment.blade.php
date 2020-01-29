@@ -33,9 +33,18 @@
                 </div>
                 @enderror
                 <script type="text/javascript">
-                    CKEDITOR.replace('content-comment', {
-                        // Define the toolbar groups as it is a more accessible solution.
+                    var areas = Array('content-comment', 'editor2', 'editor3');
+                    $.each(areas, function (i, area) {
+                        CKEDITOR.replace(area, {
+                             customConfig: '../ckeditor/CommentsConfig.js'
+
+                        });
                     });
+                    // CKEDITOR.replace('content-comment', {
+                    //
+                    // });
+
+
                 </script>
                 <div class="messenger__button add-comment__btn">
                     <button class="button button__download-more">

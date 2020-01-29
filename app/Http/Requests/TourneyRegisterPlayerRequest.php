@@ -25,7 +25,7 @@ class TourneyRegisterPlayerRequest extends FormRequest
     public function rules()
     {
         return [
-            'description' => 'required|string|max:255',
+            'description' => 'required|max:50',
             'tourneyId'   => 'exists:tourney_lists,id',
         ];
     }

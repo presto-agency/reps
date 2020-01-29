@@ -34,13 +34,17 @@ class Tournaments extends Section
     /**
      * @var string
      */
-    protected $title;
+    protected $title = 'Список турниров';
 
     /**
      * @var string
      */
     protected $alias;
 
+    /**
+     * @return mixed
+     * @throws \SleepingOwl\Admin\Exceptions\FilterOperatorException
+     */
     public function onDisplay()
     {
         $columns = [
@@ -57,12 +61,12 @@ class Tournaments extends Section
                 })
                 ->setWidth('150px')->setHtmlAttribute('class', 'text-left'),
             AdminColumn::text('name', 'Name')
-                ->setWidth('150px')->setHtmlAttribute('class', 'text-left'),
-            AdminColumn::text('place', 'Place')
-                ->setWidth('150px')->setHtmlAttribute('class', 'text-left'),
+                ->setHtmlAttribute('class', 'text-left'),
+            AdminColumn::text('place', 'Place')->setWidth('150px')
+                ->setHtmlAttribute('class', 'text-left'),
             AdminColumn::custom('Status', function ($model) {
                 return TourneyList::$status[$model->status];
-            })->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
+            })->setWidth('110px')->setHtmlAttribute('class', 'text-center'),
             AdminColumn::custom('Map select type', function ($model) {
                 return TourneyList::$map_types[$model->map_select_type];
             })->setWidth('150px')->setHtmlAttribute('class', 'text-center'),
@@ -92,9 +96,12 @@ class Tournaments extends Section
                     }
                 }),
 
-            AdminColumn::datetime('reg_time', 'Reg')->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::datetime('checkin_time', 'Checkin')->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::datetime('start_time', 'Start')->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::datetime('reg_time', 'Reg')->setWidth('90px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::datetime('checkin_time', 'Checkin')->setWidth('90px')
+                ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::datetime('start_time', 'Start')->setWidth('90px')
+                ->setHtmlAttribute('class', 'text-center'),
         ];
 
         $display = AdminDisplay::datatables()
@@ -156,10 +163,10 @@ class Tournaments extends Section
         ]);
 
         $display->getColumnFilters()->setPlacement('table.header');
-//
-//        $control    = $display->getColumns()->getControlColumn();
-//        $buttonShow = $this->matches();
-//        $control->addButton($buttonShow);
+
+        $control    = $display->getColumns()->getControlColumn();
+        $buttonShow = $this->matches();
+        $control->addButton($buttonShow);
 
         return $display;
     }
@@ -273,12 +280,12 @@ class Tournaments extends Section
                         AdminFormElement::select('status', 'Status')
                             ->setOptions(TourneyList::$newStatus)
                             ->setValidationRules([
-                                'in:4,5',
+                                'in:5,6',
                             ]),
                     ];
 
                     $arr1 = $data1;
-                    if ($this->tourneyStatus === 'STARTED' || $this->tourneyStatus === 'GENERATION') {
+                    if ($this->tourneyStatus === 'STARTED' || $this->tourneyStatus === 'FINISHED') {
                         $arr1 = array_merge($data1, $data2);
                     }
 
@@ -298,8 +305,7 @@ class Tournaments extends Section
                             })
                             ->setValidationRules([
                                 'nullable',
-                                'mimes:7z,s7z,zip,zipx,rar,rar4',
-                                'max:10000',
+                                'max:20000',
                             ]),
                     ];
 
@@ -373,7 +379,7 @@ class Tournaments extends Section
                             ->setOptions(TourneyList::$map_types)
                             ->setValidationRules([
                                 'required',
-                                'in:0,1,2',
+                                'in:1,2,3',
                             ]),
                     ];
                 }, 4)

@@ -48,7 +48,6 @@ class Replay extends Model
             'negative_count',
             'rating',
             'positive_count',
-            'approved',
             'first_location',
             'first_name',
             'first_apm',

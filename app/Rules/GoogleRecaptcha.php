@@ -39,7 +39,7 @@ class GoogleRecaptcha implements Rule
                 ],
             ]
         );
-        $body     = json_decode((string) $response->getBody());
+        $body     = json_decode($response->getBody());
 
         return $body->success;
     }

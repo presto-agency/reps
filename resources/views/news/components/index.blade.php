@@ -95,7 +95,7 @@
         @endforeach
         <div class="breaking-news__button night_modal">
             <button type="button" class="button button__download-more" data-id="{{ $last_id }}"
-                    id="load_news_list-main-page">
+                    id="load_news_list_button">
                 {{__('Загрузить еще')}}
             </button>
         </div>

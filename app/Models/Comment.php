@@ -23,6 +23,7 @@ class Comment extends Model
             'rating', 'negative_count', 'positive_count',
         ];
 
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

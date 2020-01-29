@@ -70,7 +70,7 @@ class TournamentController extends Controller
     private function createDataArray($tournament)
     {
         $data = [];
-        if ( ! empty($tournament->matches)) {
+        if ( ! empty($tournament->matches) && $tournament->maps_pool_count > 0) {
             foreach ($tournament->matches as $item) {
                 $data['round'][$item->round_number]['title'] = $item->round;
                 $data['matches'][$item->round_number][]      = $item;
@@ -98,7 +98,7 @@ class TournamentController extends Controller
             'mapsPool:id,tourney_id,map_id',
             'mapsPool.map:id,name,url',
             'player'  => function ($query) {
-                $query->where('user_id', auth()->id());
+                $query->select(['id', 'tourney_id','user_id'])->where('user_id', auth()->id());
             },
             'players' => function ($query) {
                 $query->with([
@@ -124,7 +124,7 @@ class TournamentController extends Controller
         ])
             ->withCount([
                 'checkPlayers as check_players_count', 'players',
-                'mapsPool','banPlayers'
+                'mapsPool', 'banPlayers',
             ])
             ->where('visible', 1)->findOrFail($id);
     }

@@ -64,33 +64,52 @@ class NewsController extends Controller
         return view('news.show', compact('news'));
     }
 
-    public function load_news()
+    public function loadNews(Request $request)
     {
-        $request = request();
         if ($request->ajax()) {
             $visible_title = false;
             if ($request->id > 0) {
-                $news = ForumTopic::with('author:id,avatar,name')
-                    ->withCount('comments')
-//                    ->where('approved', true)
-                    ->where('news', true)
-                    ->where('id', '<', $request->id)
-                    ->orderByDesc('id')
-                    ->limit(5)
-                    ->get();
+                $news = $this->newsWithId($request);
             } else {
-                $news          = ForumTopic::with('author:id,avatar,name')
-                    ->withCount('comments')
-//                    ->where('approved', true)
-                    ->where('news', true)
-                    ->orderByDesc('id')
-                    ->limit(5)
-                    ->get();
+                $news          = $this->news();
                 $visible_title = true;
             }
 
             return view('news.components.index', compact('news', 'visible_title'));
         }
+
+        return \Response::json([], 404);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    private function news()
+    {
+        return ForumTopic::with('author:id,name,avatar')
+            ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
+            ->where('news', true)
+            ->withCount('comments')
+            ->orderByDesc('id')
+            ->limit(5)
+            ->get();
+    }
+
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     *
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    private function newsWithId(Request $request)
+    {
+        return ForumTopic::with('author:id,name,avatar')
+            ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
+            ->where('id', '<', $request->id)
+            ->where('news', true)
+            ->withCount('comments')
+            ->orderByDesc('id')
+            ->limit(5)
+            ->get();
     }
 
 }

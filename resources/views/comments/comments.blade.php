@@ -22,7 +22,6 @@
         @if(isset($comments) && $comments->isNotEmpty())
             @foreach($comments as $comment)
                 <div class="citation border_shadow comments__wrapp wrapp_comments">
-                    {{--                    <div class="comments__wrapp wrapp_comments">--}}
                     @if(isset($comment->user) && !empty($comment->user))
                         <div class="comments__info change_gray">
                             @if(auth()->check() && auth()->user()->userViewAvatars())
@@ -49,10 +48,11 @@
                                     {{$comment->user->comments_count.' minerals | '. $comment->user->rating.' supply'}}
                                 </p>
                             @endif
-                            <span class="info__date">{{$comment->created_at->format('H:i d.m.Y')}}</span>
+                            <span class="info__date">
+                                {{\Carbon\Carbon::parse($comment->created_at)->format('H:i d.m.Y')}}
+                            </span>
                         </div>
                     @endif
-                    {{--                    </div>--}}
                     <div class="comments__content">
                         <div class="content__title night_text">
                             {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}

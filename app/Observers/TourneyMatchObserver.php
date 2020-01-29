@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\TourneyMatch;
-use TourneyService;
 
 class TourneyMatchObserver
 {
@@ -19,6 +18,12 @@ class TourneyMatchObserver
     public function created(TourneyMatch $tourneyMatch)
     {
         //
+    }
+
+
+    public function updating(TourneyMatch $tourneyMatch)
+    {
+        $this->checkWinner($tourneyMatch, 2);
     }
 
     /**
@@ -67,6 +72,28 @@ class TourneyMatchObserver
     public function forceDeleted(TourneyMatch $tourneyMatch)
     {
         //
+    }
+
+    /**
+     * @param  \App\Models\TourneyMatch  $tourneyMatch
+     * @param  int  $score
+     */
+    private function checkWinner(TourneyMatch $tourneyMatch, int $score)
+    {
+        $winner = $tourneyMatch->getAttribute('winner');
+
+        if ( ! empty($winner)) {
+            if ($winner == 'player1') {
+                $tourneyMatch->setAttribute('player1_score', $score);
+                $tourneyMatch->setAttribute('player2_score', 0);
+            }
+            if ($winner == 'player2') {
+                $tourneyMatch->setAttribute('player1_score', 0);
+                $tourneyMatch->setAttribute('player2_score', $score);
+            }
+            $tourneyMatch->setAttribute('winner_score', $score);
+        }
+        unset($tourneyMatch['winner']);
     }
 
 }

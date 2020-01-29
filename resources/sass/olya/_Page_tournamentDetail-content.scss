@@ -48,6 +48,28 @@
         }
     }
     & .block_replay_content{
+        .check_registration{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+            .nick_form{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                input{
+                    width: 90%;
+                    margin-bottom: 15px;
+                }
+            }
+            .nick_text{
+                text-align: center;
+            }
+            .title_text{
+                font-size: 16px;
+                color: black;
+                margin: 0;
+            }
+        }
         padding: 30px 20px;
         display: flex;
         justify-content: space-between;
