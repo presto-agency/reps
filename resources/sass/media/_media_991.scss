@@ -1588,6 +1588,11 @@
         }
         & .block_replay_content{
             padding: 3.027vw 2.018vw;
+            .check_registration{
+                button{
+                    width: 50%;
+                }
+            }
             & .block_left{
                 & .description_left{
                     font-size: 1.211vw;
