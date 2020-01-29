@@ -15,19 +15,23 @@
                         C479.3,122.6,463.9,174.4,437.6,213.9z"/>
                 </svg>
                 <p class="title_text">{{$tournament->name}}</p>
-                @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())
-                    @if('REGISTRATION' === $tournament::$status[$tournament->status] && empty($tournament->player))
-                        <button onclick="tournamentRegister()">Add</button>
-                    @endif
-                    @if(!empty($tournament->player))
-                        <p>{{__('Вы уже присоединились к турниру')}}</p>
-                    @endif
-                @endif
+{{--                @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())--}}
+{{--                    @if('REGISTRATION' === $tournament::$status[$tournament->status] && empty($tournament->player))--}}
+
+{{--                    @endif--}}
+{{--                    @if(!empty($tournament->player))--}}
+
+{{--                    @endif--}}
+{{--                @endif--}}
             </div>
         </div>
 
         <div class="row block_replay_content">
             <div class="col-xl-6 col-lg-6 col-md-6 block_left">
+                <div class="check_registration">
+                <button class="button button__download-more night_text" onclick="tournamentRegister()">Регистрация</button>
+{{--                    <p class="title_text">{{__('Вы уже присоединились к турниру')}}</p>--}}
+                </div>
                 @if(!empty($tournament->user))
                     <div class="container_block">
                         <div class="replay-desc-right"><p>{{(__('Administrator:'))}}</p></div>
