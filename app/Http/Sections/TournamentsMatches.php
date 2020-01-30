@@ -7,6 +7,9 @@ use AdminDisplay;
 use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
+use App\Models\TourneyList;
+use checkFile;
+use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -57,6 +60,9 @@ class TournamentsMatches extends Section
                 ->setHtmlAttribute('class', 'text-center'),
             AdminColumn::text('round_number', '<small>№<br>раунда</small>')->setWidth('60px')
                 ->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::custom('<small>Тип<br>матча</small>', function ($model) {
+                return TourneyList::$matchType[$model->match_type];
+            })->setWidth('60px')->setHtmlAttribute('class', 'text-center'),
             AdminColumn::boolean('played')->setLabel('<small>Сыграно</small>'),
 
         ];
@@ -73,19 +79,6 @@ class TournamentsMatches extends Section
             AdminDisplayFilter::field('tourney_id')->setTitle('Tourney ID [:value]'),
             AdminDisplayFilter::field('round_number')->setTitle('Round NUMBER [:value]')
         );
-
-        //        $display->setColumnFilters([
-        //          AdminColumnFilter::select()
-        //            ->setModelForOptions(\App\Models\TourneyMatch::class, 'name')
-        //            ->setLoadOptionsQueryPreparer(function($element, $query) {
-        //              return $query;
-        //            })
-        //            ->setDisplay('name')
-        //            ->setColumnName('name')
-        //            ->setPlaceholder('All names'),
-        //        ]);
-        //
-        //        $display->getColumnFilters()->setPlacement('panel.heading');
 
         return $display;
     }
@@ -162,16 +155,17 @@ class TournamentsMatches extends Section
                         'boolean',
                     ]),
                 ];
-            }, 6)
-                ->addColumn(function () {
-                    return [
-                        AdminFormElement::files('reps', 'Файлы')->setValidationRules([
-                            'file',
-                            'nullable',
-                            'max:5120',
-                        ]),
-                    ];
-                }, 6),
+            }, 6)->addColumn(function () {
+                return [
+                    AdminFormElement::files('reps', 'Файлы')->setValidationRules([
+                        'file',
+                        'nullable',
+                        'max:5120',
+                    ])->setUploadPath(function (UploadedFile $file) {
+                        return 'storage'.checkFile::checkUploadsFileAndPath('/files/tourney');
+                    }),
+                ];
+            }, 6),
 
 
         ]);

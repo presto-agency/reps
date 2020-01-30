@@ -36,7 +36,7 @@
                     let areas = Array('content-comment');
                     $.each(areas, function (i, area) {
                         CKEDITOR.replace(area, {
-                            customConfig: '/ckeditor/commentsConfig.js'
+                            customConfig: '{{asset('/ckeditor/commentsConfig.js')}}'
 
                         });
                     });
