@@ -40,16 +40,9 @@
                     //
                     //     });
                     // });
-                    let areas = Array('content-comment', 'editor2', 'editor3');
-                    $.each(areas, function (i, area) {
-                        CKEDITOR.replace(area, {
-                             customConfig: '../ckeditor/commentsConfig.js'
+                    CKEDITOR.replace('content-comment', {
 
-                        });
                     });
-                    // CKEDITOR.replace('content-comment', {
-                    //
-                    // });
 
 
                 </script>
