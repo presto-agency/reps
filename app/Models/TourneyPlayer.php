@@ -15,24 +15,32 @@ class TourneyPlayer extends Model
             'ban',
             'description',
             'place_result',
+            'victory_points',
             'tourney_id',
             'user_id',
         ];
     protected $casts
         = [
-            'check'        => 'int',
-            'ban'          => 'int',
-            'description'  => 'string',
-            'place_result' => 'int',
-            'tourney_id'   => 'int',
-            'user_id'      => 'int',
+            'check'          => 'int',
+            'ban'            => 'int',
+            'description'    => 'string',
+            'place_result'   => 'int',
+            'victory_points' => 'int',
+            'tourney_id'     => 'int',
+            'user_id'        => 'int',
         ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function tourney()
     {
         return $this->belongsTo(TourneyList::class, 'tourney_id', 'id');

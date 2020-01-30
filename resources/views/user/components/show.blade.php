@@ -79,21 +79,23 @@
                     <div class="information_block">
                         <div class="left_block"><span>{{__('Раса:')}}</span></div>
                         <div class="right_block night_text">
-                            @if($user->races)
+                            @if(!empty($user->races))
                                 <span>{{ $user->races->title }}</span>
+                                {{--                                <img class="info__cube" alt="race" title="{{ $user->races->title }}"--}}
+                                {{--                                     src="{{asset('/images/default/game-races/'.$user->races->title.'.png')}}">--}}
                             @else
                                 <span>{{__('Не указано')}}</span>
                             @endif
                         </div>
                     </div>
-                    <div class="information_block">
-                        <div class="left_block"><span>{{__('Репутация:')}}</span></div>
-                        <div class="right_block night_text">
-                            <a title="{{__('Репутация')}}" href="{{route('user-rating-list.index',['id'=>$user->id])}}">
-                                <span class="blue">{{$user->rating .' supply'}}</span>
-                            </a>
-                        </div>
-                    </div>
+                    {{--                    <div class="information_block">--}}
+                    {{--                        <div class="left_block"><span>{{__('Репутация:')}}</span></div>--}}
+                    {{--                        <div class="right_block night_text">--}}
+                    {{--                            <a title="{{__('Репутация')}}" href="{{route('user-rating-list.index',['id'=>$user->id])}}">--}}
+                    {{--                                <span class="blue">{{$user->rating .' supply'}}</span>--}}
+                    {{--                            </a>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                     <div class="information_block">
                         <div class="left_block"><span>{{__('Галерея:')}}</span></div>
                         <div class="right_block night_text">
@@ -203,15 +205,15 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="block_inform">
-                            <div class="left_block"><span>{{__('Посты:')}}</span></div>
-                            <div class="right_block">
-                                <a class="blue" title="{{__('Посты')}}"
-                                   href="{{route('user-comments.index',['id' => $user->id])}}">
-                                    <span>{{$user->comments_count}}</span>
-                                </a>
-                            </div>
-                        </div>
+                        {{--                        <div class="block_inform">--}}
+                        {{--                            <div class="left_block"><span>{{__('Посты:')}}</span></div>--}}
+                        {{--                            <div class="right_block">--}}
+                        {{--                                <a class="blue" title="{{__('Посты')}}"--}}
+                        {{--                                   href="{{route('user-comments.index',['id' => $user->id])}}">--}}
+                        {{--                                    <span>{{$user->comments_count}}</span>--}}
+                        {{--                                </a>--}}
+                        {{--                            </div>--}}
+                        {{--                        </div>--}}
                         <div class="block_inform">
                             <div class="left_block"><span>{{__('Профессиональные реплеи:')}}</span></div>
                             <div class="right_block">
@@ -230,29 +232,32 @@
                                 </a>
                             </div>
                         </div>
+                        {{--    Посты ->  Mineral                  --}}
                         <div class="block_inform">
                             <div class="left_block"><span>{{__('Mineral:')}}</span></div>
                             <div class="right_block">
                                 <a class="blue" title="{{__('Mineral')}}"
-                                   href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}">
-                                    <span>0</span>
+                                   href="{{route('user-comments.index',['id' => $user->id])}}">
+                                    <span>{{$user->comments_count}}</span>
                                 </a>
                             </div>
                         </div>
+                        {{--    КГ ->  Supply                  --}}
                         <div class="block_inform">
                             <div class="left_block"><span>{{__('Supply:')}}</span></div>
                             <div class="right_block">
                                 <a class="blue" title="{{__('Supply')}}"
-                                   href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}">
-                                    <span>0</span>
+                                   href="{{route('user-rating-list.index',['id'=>$user->id])}}">
+                                    <span>{{$user->rating}}</span>
                                 </a>
                             </div>
                         </div>
+                        {{--    Gas                  --}}
                         <div class="block_inform">
                             <div class="left_block"><span>{{__('Gas:')}}</span></div>
                             <div class="right_block">
                                 <a class="blue" title="{{__('Gas')}}"
-                                   href="{{route('user-replay.index',['id' => $user->id, 'type' => 'user'])}}">
+                                   href="#">
                                     <span>0</span>
                                 </a>
                             </div>

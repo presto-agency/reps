@@ -371,6 +371,21 @@
                                             >{{"rep$i"}}</a>
                                         @endif
                                     @endfor
+                                    @if(!empty($item->reps))
+                                        @foreach(json_decode($item->reps) as $item)
+                                            @if(!empty($item->url) && checkFile::checkFileExists($item->url))
+                                                <a href="{{asset($item->url)}}"
+                                                   @if(!empty($item->title))
+                                                   title="{{$item->title}}"
+                                                    @endif
+                                                >
+                                                    @if(!empty($item->desc))
+                                                        {{$item->desc}}
+                                                    @endif
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>

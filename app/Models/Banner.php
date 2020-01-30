@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Banner extends Model
 {
 
@@ -11,5 +12,6 @@ class Banner extends Model
         = [
             'title', 'image', 'url_redirect', 'is_active',
         ];
+
 
 }

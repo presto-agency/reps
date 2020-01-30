@@ -36,7 +36,7 @@
                     let areas = Array('content-comment');
                     $.each(areas, function (i, area) {
                         CKEDITOR.replace(area, {
-                            customConfig: '/ckeditor/commentsConfig.js'
+                            customConfig: '{{asset('/ckeditor/commentsConfig.js')}}'
 
                         });
                     });
@@ -52,4 +52,3 @@
         <p class="none_text night_text">{{__('Авторизуйтесь чтобы отправить комментарий')}}</p>
     @endif
 </div>
-{{--hgg--}}
