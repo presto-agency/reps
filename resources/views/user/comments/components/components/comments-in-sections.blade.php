@@ -25,7 +25,6 @@
                 <p class="body__text night_text">{!! ParserToHTML::toHTML(clean($item->content)) !!}</p>
             </div>
         </div>
-        @dump($item->id)
         @php
             $last_commentId = $item->id;
             $relation_id = $commentModel::$relation[$item->commentable_type];
