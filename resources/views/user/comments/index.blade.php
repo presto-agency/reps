@@ -24,7 +24,9 @@
         /**
          * Ajax Load Request
          */
+
         function loadAjaxData(relation_id, comment_id = '', panel = '') {
+
             $.ajax({
                 url: "{{ route('user.comments.load.sections.comments',['id'=> request('id')]) }}",
                 method: "POST",
