@@ -117,7 +117,7 @@
 @endisset
 @section('custom-script')
     @parent
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
         function quote(id) {
             $.ajax({
                 url: "{{ route('quote') }}",

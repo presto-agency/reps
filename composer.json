@@ -71,6 +71,7 @@
             "php artisan sleepingowl:update",
             "php artisan debugbar:clear",
             "php artisan view:cache",
+            "php artisan config:cache",
             "php artisan route:cache",
             "php artisan event:cache"
         ],
@@ -81,6 +82,7 @@
             "php artisan sleepingowl:update",
             "php artisan debugbar:clear",
             "php artisan view:cache",
+            "php artisan config:cache",
             "php artisan route:cache",
             "php artisan event:cache"
         ],

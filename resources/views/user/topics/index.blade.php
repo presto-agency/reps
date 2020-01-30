@@ -20,7 +20,7 @@
 
 @section('custom-script')
     @parent
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
         function loadAjaxDataTopics(forum_section_id, topic_id = '', panel = '') {
             $.ajax({
                 url: "{{ route('user.topics.load.sections.topics',['id'=> request('id')]) }}",
