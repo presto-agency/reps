@@ -164,12 +164,7 @@ class RatingService
      *
      * @return array
      */
-    public static function set(
-        Request $request,
-        $id,
-        $relation,
-        $model
-    )
+    public static function set(Request $request, $id, $relation, $model)
     {
         $object = ($model)::find($id);
 
