@@ -20,7 +20,7 @@
     <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src='https://www.google.com/recaptcha/api.js'></script>
     @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())
-        <script>
+        <script type="text/javascript">
             /**
              * Path to files.
              * smilesPath: /storage/chat/smiles/{$fileName}
@@ -128,7 +128,7 @@
 
 
 @section('custom-script')
-    <script type="text/javascript" defer>
+    <script type="text/javascript">
         $(document).ready(function () {
             @if(Request::route()->getName() ==  'home.index' || Request::route()->getName() == 'news.index')
             /**

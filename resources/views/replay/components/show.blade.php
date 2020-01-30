@@ -199,7 +199,7 @@
         width="100%" height="340" frameborder="0" scrolling="no" allowfullscreen></iframe>
 @endif
 
-<script type="text/javascript">
+<script type="text/javascript" defer>
     /**
      * Replay File download
      */
