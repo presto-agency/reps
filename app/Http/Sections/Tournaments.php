@@ -258,8 +258,9 @@ class Tournaments extends Section
                                 'between:1,12',
                             ]),
                         AdminFormElement::text('prize_pool', 'Prize pool')
-                            ->setHtmlAttribute('placeholder', 'Prize pool')
+                            ->setHtmlAttribute('placeholder', 'ВАНИМАНИЕ! Здесь важна разметка!!!')
                             ->setHtmlAttribute('maxlength', '255')
+                            ->setHelpText('В зависимости от "," можна получить разные резултаты пара примеров заполнения:$,30,20,10,|$,15,5, (Webmoney)|,место в сборной,место в сборной,')
                             ->setValidationRules([
                                 'string',
                                 'max:255',
@@ -430,9 +431,12 @@ class Tournaments extends Section
                                 'string',
                                 'between:1,12',
                             ]),
+
+
                         AdminFormElement::text('prize_pool', 'Prize pool')
-                            ->setHtmlAttribute('placeholder', 'Prize pool')
+                            ->setHtmlAttribute('placeholder', 'ВАНИМАНИЕ! Здесь важна разметка!!!')
                             ->setHtmlAttribute('maxlength', '255')
+                            ->setHelpText('В зависимости от "," можна получить разные резултаты пара примеров заполнения:$,30,20,10,|$,15,5, (Webmoney)|,место в сборной,место в сборной,')
                             ->setValidationRules([
                                 'required',
                                 'string',

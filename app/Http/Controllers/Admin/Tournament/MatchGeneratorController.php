@@ -27,7 +27,7 @@ class MatchGeneratorController extends Controller
         /**
          * Check Rounds
          */
-        $rounds = [];
+        $rounds   = [];
         $existAll = true;
         if ( ! empty($ofRound)) {
             $rounds = ['canCreate' => ceil(log($ofRound, 2.0))];
@@ -100,7 +100,8 @@ class MatchGeneratorController extends Controller
             $void      = 1;
         }
 
-        $ofRound = $playerCount + $void;
+        $ofRound  = $playerCount + $void;
+        $setRound = "Round $round (of $ofRound)";
 
         for ($i = 0; $i < $playerCount / 2; $i++) {
             $matches[] = [
@@ -110,7 +111,7 @@ class MatchGeneratorController extends Controller
                 'match_number' => $i + 1,
                 'round_number' => $round,
                 'played'       => false,
-                'round'        => "Round $round (of $ofRound)",
+                'round'        => $setRound,
                 'match_type'   => array_search('SINGLE', TourneyList::$matchType),
                 'created_at'   => Carbon::now(),
             ];
@@ -155,9 +156,12 @@ class MatchGeneratorController extends Controller
         if ($players->isEmpty()) {
             return $this->redirectToError();
         }
-        $matchNumber = TourneyMatch::query()
+        $matchNumber          = TourneyMatch::query()
             ->where('tourney_id', $id)
             ->where('round_number', $round - 1)->max('match_number');
+        $checkPlayersCountMax = TourneyList::query()->select(['id'])->withCount('checkPlayers')
+            ->where('id', $id)->value('check_players_count');
+
         $playerCount = $players->count();
         $players     = $players->shuffle();
 
@@ -181,8 +185,12 @@ class MatchGeneratorController extends Controller
             $void        = 1;
         }
 
-        $ofRound = $playerCount + $void;
+        $ofRound  = $playerCount + $void;
+        $setRound = "Round $round (of $ofRound)";
 
+        if (ceil(log($checkPlayersCountMax, 2.0)) == (double) $round) {
+            $setRound = "Super Final Round";
+        }
         for ($i = 0; $i < $playerCount / 2; $i++) {
             $matchNumber++;
             $matches[] = [
@@ -192,7 +200,7 @@ class MatchGeneratorController extends Controller
                 'match_number' => $matchNumber,
                 'round_number' => $round,
                 'played'       => false,
-                'round'        => "Round $round (of $ofRound)",
+                'round'        => $setRound,
                 'match_type'   => array_search('SINGLE', TourneyList::$matchType),
                 'created_at'   => Carbon::now(),
             ];

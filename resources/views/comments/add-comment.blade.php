@@ -40,9 +40,7 @@
                     //
                     //     });
                     // });
-                    CKEDITOR.replace('content-comment', {
-
-                    });
+                    CKEDITOR.replace('content-comment', {});
                 </script>
                 <div class="messenger__button add-comment__btn">
                     <button class="button button__download-more">

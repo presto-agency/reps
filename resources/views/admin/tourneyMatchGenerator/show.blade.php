@@ -81,7 +81,7 @@
     </div>
 @else
     <div class="alert alert-secondary" role="alert">
-        <h4>{{__('Статус данного турнира или количество игроков не позволяет создавать матчи')}}
+        <h4>{{__('Статус турнира не ')}}<strong>{{__('STARTED')}}</strong>{{__(' или количество игроков не позволяет создавать матчи')}}
             <strong>{{__('Single-elimination tournament')}}</strong>
         </h4>
     </div>
