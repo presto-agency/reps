@@ -32,19 +32,14 @@
                     <strong>{{ $message }}</strong>
                 </div>
                 @enderror
-                <script type="text/javascript">
-                    // var areas = Array('content-comment', 'editor2', 'editor3');
-                    // $.each(areas, function (i, area) {
-                    //     CKEDITOR.replace(area, {
-                    //          customConfig: '../ckeditor/CommentsConfig.js'
-                    //
-                    //     });
-                    // });
-                    CKEDITOR.replace('content-comment', {
+                <script type="text/javascript" defer>
+                    let areas = Array('content-comment');
+                    $.each(areas, function (i, area) {
+                        CKEDITOR.replace(area, {
+                            customConfig: '/ckeditor/commentsConfig.js'
 
+                        });
                     });
-
-
                 </script>
                 <div class="messenger__button add-comment__btn">
                     <button class="button button__download-more">

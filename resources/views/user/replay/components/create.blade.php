@@ -221,7 +221,7 @@
                 <label for="preview_content" class="night_text">{{__('Краткое описание')}}</label>
                 <textarea name="content" class="form-control night_input"
                           id="preview_content">{{clean(old("content"))}}</textarea>
-                <script>
+                <script type="text/javascript" defer>
                     CKEDITOR.replace('preview_content', {});
                 </script>
             </div>
@@ -275,7 +275,7 @@
 </div>
 @section('custom-script')
     @parent
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
         /*** ajax-video-iframe ***/
         $(document).ready(function () {
             if ($('#video_iframe_url').val()) {

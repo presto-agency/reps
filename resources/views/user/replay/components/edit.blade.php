@@ -278,7 +278,7 @@
 </div>
 @section('custom-script')
     @parent
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
         $(document).ready(function () {
             if ($('#video_iframe_url').val()) {
 
