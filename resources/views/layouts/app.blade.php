@@ -128,7 +128,7 @@
 
 
 @section('custom-script')
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
         $(document).ready(function () {
             @if(Request::route()->getName() ==  'home.index' || Request::route()->getName() == 'news.index')
             /**

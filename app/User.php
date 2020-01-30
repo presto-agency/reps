@@ -151,7 +151,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isOnline()
     {
-        if (is_null($this->activity_at)) {
+        if (empty($this->activity_at)) {
             return false;
         }
         $time = Carbon::now()->diffInMinutes(Carbon::parse($this->activity_at));

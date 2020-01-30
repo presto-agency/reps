@@ -39,11 +39,12 @@
                 <div class="col-xl-8 col-8 container_information">
                     <div class="userText_block">
                         <span class="title night_text">{{ $user->name }}</span>
-                    @if($user->isOnline())
+                        @if($user->isOnline())
                             <span class="date">
                                 {{__('online')}}
                             </span>
-                    @else
+                        @endif
+                        @if($user->isOnline())
                             <div class="date">
                                 {{\Carbon\Carbon::parse($user->activity_at)->diffForHumans()}}
                             </div>

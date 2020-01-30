@@ -176,7 +176,7 @@
         </div>
     @endif
 </div>
-<script type="text/javascript">
+<script type="text/javascript" defer>
     /**
      * Replay File download
      */
