@@ -156,16 +156,16 @@ class TournamentsMatches extends Section
                     ]),
                 ];
             }, 6)->addColumn(function () {
-                return [
-                    AdminFormElement::files('reps', 'Файлы')->setValidationRules([
-                        'file',
-                        'nullable',
-                        'max:5120',
-                    ])->setUploadPath(function (UploadedFile $file) {
-                        return 'storage'.checkFile::checkUploadsFileAndPath('/files/tourney');
-                    }),
-                ];
-            }, 6),
+                    return [
+                        AdminFormElement::files('reps', 'Файлы')->setValidationRules([
+                            'file',
+                            'nullable',
+                            'max:5120',
+                        ])->setUploadPath(function (UploadedFile $file) {
+                            return 'storage'.checkFile::checkUploadsFileAndPath('/files/tourney');
+                        }),
+                    ];
+                }, 6),
 
 
         ]);

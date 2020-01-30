@@ -84,10 +84,22 @@ class TourneyMatchObserver
 
         if ( ! empty($winner)) {
             if ($winner == 'player1') {
+//                $player1_score = $tourneyMatch->getAttribute('player1_score');
+//                $player2_score = $tourneyMatch->getAttribute('player2_score');
+//                if ($player1_score === 0 && $player2_score === 2) {
+//                    $tourneyMatch->player2()->decrement('victory_points');
+//                }
+//                $tourneyMatch->player1()->increment('victory_points');
                 $tourneyMatch->setAttribute('player1_score', $score);
                 $tourneyMatch->setAttribute('player2_score', 0);
             }
             if ($winner == 'player2') {
+//                $player1_score = $tourneyMatch->getAttribute('player1_score');
+//                $player2_score = $tourneyMatch->getAttribute('player2_score');
+//                if ($player1_score === 2 && $player2_score === 0) {
+//                    $tourneyMatch->player1()->decrement('victory_points');
+//                }
+//                $tourneyMatch->player2()->increment('victory_points');
                 $tourneyMatch->setAttribute('player1_score', 0);
                 $tourneyMatch->setAttribute('player2_score', $score);
             }

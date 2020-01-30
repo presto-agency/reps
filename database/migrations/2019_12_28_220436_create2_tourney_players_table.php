@@ -26,6 +26,7 @@ class Create2TourneyPlayersTable extends Migration
             $table->boolean('ban')->default(false);
             $table->string('description');
             $table->unsignedTinyInteger('place_result')->nullable();
+            $table->bigInteger('victory_points')->default(0);
             $table->timestamps();
         });
     }
