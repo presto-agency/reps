@@ -6,48 +6,15 @@
     {{--    CSRF Token  --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Reps.Ru') }}</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{--Script--}}
+    <script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('ckeditor\ckeditor.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('sceditor\minified\sceditor.min.js') }}"></script>
-    <link rel="stylesheet" href="../../../sceditor/minified/themes/default.min.css"/>
-    {{--  Include the BBCode or XHTML formats  --}}
-    <script type="text/javascript" src="{{ asset('sceditor\minified\formats\bbcode.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('sceditor\minified\formats\xhtml.js') }}"></script>
     {{--    Fonts   --}}
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
     {{--    Styles   --}}
     <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())
-        <script type="text/javascript">
-            /**
-             * Path to files.
-             * smilesPath: /storage/chat/smiles/{$fileName}
-             * imagesPath: /storage/chat/pictures/{$fileName}
-             * racesPath: /images/default/game-races/{$fileName}
-             * countriesPath: /storage/images/countries/flags/{$fileName}
-             *
-             */
-            const smiles = JSON.parse('{!! $smilesJson !!}');
-            const images = JSON.parse('{!! $imagesJson !!}');
-            const races = JSON.parse('{!! $raceJson !!}');
-            const countries = JSON.parse('{!! $countriesJson !!}');
-
-            const getSmiles = smiles.map(function (item) {
-                return item.filename;
-            });
-            const getImages = images.map(function (item) {
-                return item.filename;
-            });
-            const getRaces = races.map(function (item) {
-                return item.filename;
-            });
-            const getCountries = countries.map(function (item) {
-                return item.filename;
-            });
-        </script>
-    @endif
+    <link rel="stylesheet" href="{{ asset('sceditor/minified/themes/default.min.css') }}"/>
 </head>
 <body>
 <a href="javascript:" id="return-to-top">
@@ -119,16 +86,50 @@
     </div>
 </div>
 {{--========== END ALL MODAL WINDOWS ============--}}
-
-
+{{--MAIN--}}
+<script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
 {{--SCEditor--}}
-<script src="{{ asset('js/sceditor/sceditor.min.js') }}"></script>
-<script src="{{ asset('js/sceditor/formats/bbcode.js') }}"></script>
-<script src="https://kit.fontawesome.com/75f3a42e45.js"></script>
+<script type="text/javascript" src="{{ asset('sceditor\minified\sceditor.min.js') }}" defer></script>
+{{-- SCEditor Include the BBCode or XHTML formats  --}}
+<script type="text/javascript" src="{{ asset('sceditor\minified\formats\bbcode.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset('sceditor\minified\formats\xhtml.js') }}" defer></script>
+@if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())
+    <script type="text/javascript" defer>
+        /**
+         * SCEditor
+         * Path to files.
+         * smilesPath: /storage/chat/smiles/{$fileName}
+         * imagesPath: /storage/chat/pictures/{$fileName}
+         * racesPath: /images/default/game-races/{$fileName}
+         * countriesPath: /storage/images/countries/flags/{$fileName}
+         *
+         */
+        const smiles = JSON.parse('{!! $smilesJson !!}');
+        const images = JSON.parse('{!! $imagesJson !!}');
+        const races = JSON.parse('{!! $raceJson !!}');
+        const countries = JSON.parse('{!! $countriesJson !!}');
+
+        const getSmiles = smiles.map(function (item) {
+            return item.filename;
+        });
+        const getImages = images.map(function (item) {
+            return item.filename;
+        });
+        const getRaces = races.map(function (item) {
+            return item.filename;
+        });
+        const getCountries = countries.map(function (item) {
+            return item.filename;
+        });
+    </script>
+@endif
+<script type="text/javascript" src="{{ asset('js/sceditor/sceditor.min.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset('js/sceditor/formats/bbcode.js') }}" defer></script>
+<script type="text/javascript" src="https://kit.fontawesome.com/75f3a42e45.js" defer></script>
 
 
 @section('custom-script')
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
         $(document).ready(function () {
             @if(Request::route()->getName() ==  'home.index' || Request::route()->getName() == 'news.index')
             /**
@@ -171,6 +172,9 @@
             @endif
         });
 
+        /**
+         * Spoiler
+         */
         function xbbSpoiler(obj) {
             var obj_content = obj.parentNode.parentNode.getElementsByTagName('div')[1];
             var obj_text_show = obj.getElementsByTagName('strong')[1];
@@ -187,70 +191,72 @@
             }
             return false;
         }
-    </script>
-@show
-<script type="text/javascript">
-    $(function () {
-        $('#button__auth-modal').click(function () {
-            //active content with  id="myModal" as modal window
-            $('#vote-modal').modal('hide');
-            $('#authorizationModal').modal('show');
-        });
-        $('#button__register-modal').click(function () {
-            //active content with  id="myModal" as modal window
-            $('#vote-modal').modal('hide');
-            $('#registrationModal').modal('show');
-        });
-        /**Vote - positive / negative vote - Separate Replay Page*/
-        $('body').on('click', 'a.vote-replay-up, a.vote-replay-down', function (e) {
-            var rating = $(this).attr('data-rating');
-            var modal = $('#vote-modal');
-            var url = $(this).attr('data-route');
-            modal.find('form input#rating').val(rating);
-            modal.find('form').attr('action', url);
-            modal.find('.unregistered-info-wrapper').addClass('d-none');
-            if (rating === '1') {
-                modal.find('.positive').removeClass('d-none');
-                modal.find('.negative').addClass('d-none');
-            }
-            if (rating === '-1') {
-                modal.find('.positive').addClass('d-none');
-                modal.find('.negative').removeClass('d-none');
-            }
-        });
-        $('body').on('submit', '#rating-vote-form', function (e) {
-            e.preventDefault();
-            var url = $(this).attr('action');
-            var selectData = $('#rating-vote-form').serialize();
-            var imgClass = 'positive-vote-img';
-            $.ajax({
-                type: 'POST',
-                url: url,
-                data: selectData,
-                success: function (response) {
-                    if (response.message) {
-                        if (response.user_rating === "-1") {
-                            imgClass = 'negative-vote-img';
-                        }
-                        if (response.user_rating === undefined) {
-                            imgClass = '';
-                        }
-                        $('#vote-modal').find('.unregistered-info-wrapper').removeClass('d-none');
-                        $('#vote-modal').find('.unregistered-info-wrapper .notice').html(response.message);
-                        $('#vote-modal').find('.modal-body' + ' .' + imgClass).removeClass('d-none');
-                    } else {
-                        location.reload();
-                    }
-                },
-                error: function (error) {
-                    $('#vote-modal').find('.unregistered-info-wrapper').removeClass('d-none');
-                    $('#vote-modal').find('.unregistered-info-wrapper .notice').html('ошибка' + error);
+
+        /**
+         * Raiting vote -1 or +1
+         *
+         * */
+        $(function () {
+            $('#button__auth-modal').click(function () {
+                //active content with  id="myModal" as modal window
+                $('#vote-modal').modal('hide');
+                $('#authorizationModal').modal('show');
+            });
+            $('#button__register-modal').click(function () {
+                //active content with  id="myModal" as modal window
+                $('#vote-modal').modal('hide');
+                $('#registrationModal').modal('show');
+            });
+            /**Vote - positive / negative vote - Separate Replay Page*/
+            $('body').on('click', 'a.vote-replay-up, a.vote-replay-down', function (e) {
+                var rating = $(this).attr('data-rating');
+                var modal = $('#vote-modal');
+                var url = $(this).attr('data-route');
+                modal.find('form input#rating').val(rating);
+                modal.find('form').attr('action', url);
+                modal.find('.unregistered-info-wrapper').addClass('d-none');
+                if (rating === '1') {
+                    modal.find('.positive').removeClass('d-none');
+                    modal.find('.negative').addClass('d-none');
+                }
+                if (rating === '-1') {
+                    modal.find('.positive').addClass('d-none');
+                    modal.find('.negative').removeClass('d-none');
                 }
             });
+            $('body').on('submit', '#rating-vote-form', function (e) {
+                e.preventDefault();
+                let url = $(this).attr('action');
+                let selectData = $('#rating-vote-form').serialize();
+                let imgClass = 'positive-vote-img';
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: selectData,
+                    success: function (response) {
+                        if (response.message) {
+                            if (response.user_rating === "-1") {
+                                imgClass = 'negative-vote-img';
+                            }
+                            if (response.user_rating === undefined) {
+                                imgClass = '';
+                            }
+                            $('#vote-modal').find('.unregistered-info-wrapper').removeClass('d-none');
+                            $('#vote-modal').find('.unregistered-info-wrapper .notice').html(response.message);
+                            $('#vote-modal').find('.modal-body' + ' .' + imgClass).removeClass('d-none');
+                        } else {
+                            location.reload();
+                        }
+                    },
+                    error: function (error) {
+                        $('#vote-modal').find('.unregistered-info-wrapper').removeClass('d-none');
+                        $('#vote-modal').find('.unregistered-info-wrapper .notice').html('ошибка' + error);
+                    }
+                });
+            });
         });
-    });
-</script>
-
+    </script>
+@show
 @yield('java-script')
 </body>
 </html>

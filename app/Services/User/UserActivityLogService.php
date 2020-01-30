@@ -58,6 +58,12 @@ class UserActivityLogService
         return json_encode(['description' => $description,]);
     }
 
+    /**
+     * Defines a router for comment
+     * @param $comment
+     *
+     * @return string|null
+     */
     public static function getCommentRoute($comment)
     {
         switch ($comment->commentable_type) {

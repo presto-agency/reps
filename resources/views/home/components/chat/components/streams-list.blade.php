@@ -44,7 +44,7 @@
 </section>
 @section('custom-script')
     @parent
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
         $(document).ready(function () {
             let element = document.getElementById("1");
             $('#streamOnline').attr('src', element.getAttribute('data-src'));

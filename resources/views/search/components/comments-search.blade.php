@@ -1,6 +1,9 @@
+@inject('rout','App\Services\User\UserActivityLogService')
+
 @php
     $last_id = '';
 @endphp
+
 <div class="comments">
     @if($visible_title)
         <div class="comments__title" id="comments_id">
@@ -26,6 +29,7 @@
     @if(isset($comments) && $comments->isNotEmpty())
         @foreach($comments as $item)
             <div class="citation border_shadow comments__wrapp wrapp_comments">
+
                 @if(!empty($item->user))
                     <div class="comments__info change_gray">
                         @if(auth()->check() && auth()->user()->userViewAvatars())
@@ -58,6 +62,7 @@
                     </div>
                 @endif
                 <div class="comments__content">
+                    <a class="body__numb" href="{{asset($rout::getCommentRoute($item))}}">{{$item->id}}</a>
                     <div class="content__title night_text">
                         {!! ParserToHTML::toHTML(clean($item->content),'size') !!}
                     </div>

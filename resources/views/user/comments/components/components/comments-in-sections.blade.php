@@ -1,6 +1,10 @@
 @inject('rout','App\Services\User\UserActivityLogService')
 @inject('commentModel','App\Models\Comment')
-@if(!empty($comments))
+@php
+    $last_commentId = '';
+    $relation_id = '';
+@endphp
+@if(isset($comments) && $comments->isNotEmpty())
     @foreach($comments as $item)
         <div class="panel__wrap">
             <div class="panel__header">
@@ -21,21 +25,20 @@
                 <p class="body__text night_text">{!! ParserToHTML::toHTML(clean($item->content)) !!}</p>
             </div>
         </div>
-
         @php
             $last_commentId = $item->id;
             $relation_id = $commentModel::$relation[$item->commentable_type];
         @endphp
+
     @endforeach
-        <button type="button" name="load_more_user_posts_button"
-                class="button button__download-more night_text buttonEventLoadPosts btn_center"
-                onclick="button_event(this.value,{{ $last_commentId }})"
-                id="load_more_user_posts_button_{{ $relation_id }}"
-                value="{{ $relation_id }}">
-            {{__('Загрузить еще')}}
-        </button>
+    <button type="button" name="load_more_user_posts_button"
+            class="button button__download-more night_text buttonEventLoadPosts btn_center"
+            onClick="button_event('{{$relation_id}}','{{ $last_commentId }}')"
+            id="load_more_user_posts_button_{{ $relation_id }}">
+        {{__('Загрузить еще')}}
+    </button>
 @else
-        <button type="button" name="load_more_user_posts_button" class="button button__download-more night_text btn_center">
-            {{__('Пусто')}}
-        </button>
+    <button type="button" class="button button__download-more night_text btn_center">
+        {{__('Пусто')}}
+    </button>
 @endif

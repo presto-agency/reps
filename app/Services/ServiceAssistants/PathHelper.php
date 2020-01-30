@@ -36,6 +36,12 @@ class PathHelper
         return $storagePath;
     }
 
+    /**
+     * @param $path
+     *
+     * @return bool
+     * @static
+     */
     public static function checkFileExists($path)
     {
         self::$checkPath = $path;
