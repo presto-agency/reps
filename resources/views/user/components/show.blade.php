@@ -40,14 +40,16 @@
                     <div class="userText_block">
                         <span class="title night_text">{{ $user->name }}</span>
                         @if($user->isOnline())
-                            <span class="date">
+                            <span class="date" role="alert">
                                 {{__('online')}}
                             </span>
-                        @endif
-                        @if($user->isOnline())
                             <div class="date">
-                                {{\Carbon\Carbon::parse($user->activity_at)->diffForHumans()}}
+                                {{'Последняя активность '.\Carbon\Carbon::parse($user->activity_at)->diffForHumans()}}
                             </div>
+                        @else
+                            <span class="date" role="alert">
+                                {{__('offline')}}
+                            </span>
                         @endif
                     </div>
                     <div class="information_block">
@@ -226,7 +228,7 @@
                         {{--    Посты ->  Mineral                  --}}
                         <div class="block_inform">
                             <div class="left_block">
-{{--                                <span>{{__('Mineral:')}}</span>--}}
+                                {{--                                <span>{{__('Mineral:')}}</span>--}}
                                 <img class="minerals_icons" src="{{asset('images/minerals_icons/min.png') }}">
                             </div>
                             <div class="right_block">
@@ -239,7 +241,7 @@
                         {{--    КГ ->  Supply                  --}}
                         <div class="block_inform">
                             <div class="left_block">
-{{--                                <span>{{__('Supply:')}}</span>--}}
+                                {{--                                <span>{{__('Supply:')}}</span>--}}
                                 <img class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
                             </div>
                             <div class="right_block">
@@ -252,7 +254,7 @@
                         {{--    Gas                  --}}
                         <div class="block_inform">
                             <div class="left_block">
-{{--                                <span>{{__('Gas:')}}</span>--}}
+                                {{--                                <span>{{__('Gas:')}}</span>--}}
                                 <img class="minerals_icons" src="{{asset('images/minerals_icons/gaz.png') }}">
                             </div>
                             <div class="right_block">

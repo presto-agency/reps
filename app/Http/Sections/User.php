@@ -79,9 +79,7 @@ class User extends Section
         $display->setColumns(
             [
 
-                $id = AdminColumn::text('id', 'Id')
-                    ->setWidth(70),
-
+                $id = AdminColumn::text('id', 'ID')->setWidth('100px'),
                 $avatar = AdminColumn::image(
                     function ($model) {
                         return $model->avatarOrDefault();
