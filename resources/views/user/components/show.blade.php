@@ -225,7 +225,10 @@
                         </div>
                         {{--    Посты ->  Mineral                  --}}
                         <div class="block_inform">
-                            <div class="left_block"><span>{{__('Mineral:')}}</span></div>
+                            <div class="left_block">
+{{--                                <span>{{__('Mineral:')}}</span>--}}
+                                <img class="minerals_icons" src="{{asset('images/minerals_icons/min.png') }}">
+                            </div>
                             <div class="right_block">
                                 <a class="blue" title="{{__('Mineral')}}"
                                    href="{{route('user-comments.index',['id' => $user->id])}}">
@@ -235,7 +238,10 @@
                         </div>
                         {{--    КГ ->  Supply                  --}}
                         <div class="block_inform">
-                            <div class="left_block"><span>{{__('Supply:')}}</span></div>
+                            <div class="left_block">
+{{--                                <span>{{__('Supply:')}}</span>--}}
+                                <img class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
+                            </div>
                             <div class="right_block">
                                 <a class="blue" title="{{__('Supply')}}"
                                    href="{{route('user-rating-list.index',['id'=>$user->id])}}">
@@ -245,7 +251,10 @@
                         </div>
                         {{--    Gas                  --}}
                         <div class="block_inform">
-                            <div class="left_block"><span>{{__('Gas:')}}</span></div>
+                            <div class="left_block">
+{{--                                <span>{{__('Gas:')}}</span>--}}
+                                <img class="minerals_icons" src="{{asset('images/minerals_icons/gaz.png') }}">
+                            </div>
                             <div class="right_block">
                                 <a class="blue" title="{{__('Gas')}}"
                                    href="#">
