@@ -45,3 +45,17 @@
         border-radius: 4px;
     }
 }
+.block_minerals_icons{
+    display: flex;
+    align-items: center;
+    .title__text{
+        margin-left: 12px;
+        margin-right: 6px;
+    }
+    .text_special{
+        margin-right: 0;
+    }
+}
+.minerals_icons{
+    width: 15px;
+}
