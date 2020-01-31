@@ -70,9 +70,8 @@
         "post-install-cmd": [
             "php artisan sleepingowl:update",
             "php artisan debugbar:clear",
+            "php artisan optimize",
             "php artisan view:cache",
-            "php artisan config:cache",
-            "php artisan route:cache",
             "php artisan event:cache"
         ],
         "pre-update-cmd": [
@@ -81,9 +80,8 @@
         "post-update-cmd": [
             "php artisan sleepingowl:update",
             "php artisan debugbar:clear",
+            "php artisan optimize",
             "php artisan view:cache",
-            "php artisan config:cache",
-            "php artisan route:cache",
             "php artisan event:cache"
         ],
         "post-autoload-dump": [
