@@ -52,6 +52,7 @@ trait TournamentRelationTrait
         return $this->hasMany(TourneyMatch::class, 'tourney_id', 'id');
     }
 
+
     /**
      *
      * @return mixed
