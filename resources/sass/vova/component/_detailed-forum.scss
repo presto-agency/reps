@@ -77,8 +77,20 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+
             .text_pts{
-                max-width: 40px;
+                max-width: 90%;
+            }
+            .block_minerals_icons{
+                display: flex;
+                align-items: center;
+                .title__text{
+                    margin-left: 12px;
+                    margin-right: 6px;
+                }
+                .text_special{
+                    margin-right: 0;
+                }
             }
 
         }
