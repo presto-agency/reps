@@ -28,7 +28,7 @@ class TourneyMatchPolicy
 
     public function create(User $user, TournamentsMatches $section, Match $item)
     {
-        return true;
+        return false;
     }
 
     public function edit(User $user, TournamentsMatches $section, Match $item)
@@ -48,16 +48,15 @@ class TourneyMatchPolicy
 
     public function delete(User $user, TournamentsMatches $section, Match $item)
     {
-        if ( ! empty($item->tourney)) {
-            $status = TourneyList::$status[$item->tourney->status];
-            if ($status === 'STARTED') {
-                return true;
-            }
-
-            return false;
-        }
-
-        return true;
+        //        if ( ! empty($item->tourney)) {
+        //            $status = TourneyList::$status[$item->tourney->status];
+        //            if ($status === 'STARTED') {
+        //                return true;
+        //            }
+        //
+        //            return false;
+        //        }
+        return false;
     }
 
 }
