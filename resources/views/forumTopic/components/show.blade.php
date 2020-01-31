@@ -32,17 +32,18 @@
                         <img src="{{ asset($topic->author->countries->flagOrDefault()) }}" class="title__flag"
                              title="{{ $topic->author->countries->name }}" alt="flag">
                     @endif
-                        <img src="{{asset("images/default/game-races/" . $topic->author->races->title . ".png")}}"
-                               class="title__cube" title="{{ $topic->author->races->title }}" alt="race">
+                    <img src="{{asset('images/default/game-races/' . $topic->author->races->title . '.png')}}"
+                         class="title__cube" title="{{ $topic->author->races->title }}" alt="race">
                     <div class="block_minerals_icons text_pts">
-
-{{--                    <p class="title__text text_pts"--}}
-{{--                       title="{{$topic->author->comments_count. ' minerals | ' . $topic->author->rating . 'supply'}}">{{ $topic->author->comments_count. ' minerals | ' . $topic->author->rating . ' supply' }}</p>--}}
-                        <p class="title__text">{{$topic->author->comments_count}}</p>
-                        <img class="minerals_icons" src="{{asset('images/minerals_icons/min.png') }}">
-                        <p class="title__text text_special ">|</p>
-                        <p class="title__text ">{{$topic->author->rating}}</p>
-                        <img class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
+                        <p class="title__text" title="{{$topic->author->comments_count}}">
+                            {{$topic->author->comments_count}}</p>
+                        <img class="minerals_icons" title="minerals" alt="min"
+                             src="{{asset('images/minerals_icons/min.png') }}">
+                        <p class="title__text text_special">|</p>
+                        <p class="title__text" title="{{$topic->author->rating}}">
+                            {{$topic->author->rating}}</p>
+                        <img class="minerals_icons" title="supply" alt="sup"
+                             src="{{asset('images/minerals_icons/supp.png') }}">
                     </div>
                 @endif
             </div>
@@ -118,16 +119,16 @@
                 <div class="card-body__items">
                     <div class="card-body__items-wrap">
                         <div class="items__quote night_text">
-{{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
-{{--                                 x="0px" y="0px"--}}
-{{--                                 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">--}}
-{{--	                    <path d="M256,0C114.6,0,0,114.6,0,256s114.6,256,256,256s256-114.6,256-256S397.4,0,256,0z M256,472c-119.3,0-216-96.7-216-216--}}
-{{--		                    S136.7,40,256,40s216,96.7,216,216S375.3,472,256,472z"/>--}}
-{{--                                <path d="M239.1,185.5L209.2,160c-37,27.2-65.2,75.6-65.2,127.4c0,41.6,23.3,64.6,50,64.6c24.2,0,43.5-20.4,43.5-45.9--}}
-{{--			                c0-24.6-16.9-43.3-39.5-43.3c-4,0-9.7,1.7-10.5,1.7C190.8,237.3,213.3,203.3,239.1,185.5z"/>--}}
-{{--                                <path d="M326.9,262.8c-3.2,0-8.9,1.7-10.5,1.7c3.2-27.2,25.8-61.1,51.6-79L338.2,160c-37,27.2-65.2,75.6-65.2,127.4--}}
-{{--			                c0,41.6,23.3,64.6,50,64.6c24.1,0,43.5-20.4,43.5-45.9C366.4,281.5,349.5,262.8,326.9,262.8z"/>--}}
-{{--                    </svg>--}}
+                            {{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
+                            {{--                                 x="0px" y="0px"--}}
+                            {{--                                 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">--}}
+                            {{--	                    <path d="M256,0C114.6,0,0,114.6,0,256s114.6,256,256,256s256-114.6,256-256S397.4,0,256,0z M256,472c-119.3,0-216-96.7-216-216--}}
+                            {{--		                    S136.7,40,256,40s216,96.7,216,216S375.3,472,256,472z"/>--}}
+                            {{--                                <path d="M239.1,185.5L209.2,160c-37,27.2-65.2,75.6-65.2,127.4c0,41.6,23.3,64.6,50,64.6c24.2,0,43.5-20.4,43.5-45.9--}}
+                            {{--			                c0-24.6-16.9-43.3-39.5-43.3c-4,0-9.7,1.7-10.5,1.7C190.8,237.3,213.3,203.3,239.1,185.5z"/>--}}
+                            {{--                                <path d="M326.9,262.8c-3.2,0-8.9,1.7-10.5,1.7c3.2-27.2,25.8-61.1,51.6-79L338.2,160c-37,27.2-65.2,75.6-65.2,127.4--}}
+                            {{--			                c0,41.6,23.3,64.6,50,64.6c24.1,0,43.5-20.4,43.5-45.9C366.4,281.5,349.5,262.8,326.9,262.8z"/>--}}
+                            {{--                    </svg>--}}
                         </div>
                     </div>
                     <div class="card-body__items-wrap">
