@@ -148,6 +148,9 @@ class User extends Authenticatable implements MustVerifyEmail
             ->findOrFail($id);
     }
 
+    /**
+     * @return bool
+     */
     public function isOnline()
     {
         return \Cache::has('user-us-online-'.$this->id);
