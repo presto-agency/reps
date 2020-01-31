@@ -56,7 +56,7 @@ class TournamentController extends Controller
     public function show(int $id)
     {
         $tournament = $this->getTournament($id);
-        //                dd($tournament);
+
         $data = $this->createDataArray($tournament);
 
         return view('tournament.show', compact('tournament', 'data'));
@@ -113,6 +113,7 @@ class TournamentController extends Controller
                     ->orderBy('place_result')
                     ->select(['id', 'tourney_id', 'user_id', 'place_result', 'description', 'check']);
             },
+
             'matches' => function ($query) {
                 $query->with([
                     'player1',
@@ -121,11 +122,7 @@ class TournamentController extends Controller
                     'player2.user:id,name,avatar',
                 ])->orderBy('round_number');
             },
-        ])
-            ->withCount([
-                'checkPlayers as check_players_count', 'players',
-                'mapsPool', 'banPlayers',
-            ])
+        ])->withCount(['checkPlayers as check_players_count', 'players', 'mapsPool', 'banPlayers',])
             ->where('visible', 1)->findOrFail($id);
     }
 

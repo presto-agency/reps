@@ -205,15 +205,6 @@
                                 </a>
                             </div>
                         </div>
-                        {{--                        <div class="block_inform">--}}
-                        {{--                            <div class="left_block"><span>{{__('Посты:')}}</span></div>--}}
-                        {{--                            <div class="right_block">--}}
-                        {{--                                <a class="blue" title="{{__('Посты')}}"--}}
-                        {{--                                   href="{{route('user-comments.index',['id' => $user->id])}}">--}}
-                        {{--                                    <span>{{$user->comments_count}}</span>--}}
-                        {{--                                </a>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
                         <div class="block_inform">
                             <div class="left_block"><span>{{__('Профессиональные реплеи:')}}</span></div>
                             <div class="right_block">

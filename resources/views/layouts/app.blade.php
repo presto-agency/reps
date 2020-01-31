@@ -10,11 +10,14 @@
     <script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('ckeditor\ckeditor.js') }}"></script>
+{{--    <script id="journalist-broadcast-1370961130" async src="https://journali.st/broadcasts/1370961130.js"></script>--}}
+{{--    <script id="journalist-broadcast-1370961130" async src="https://journali.st/broadcasts/1370961130-widget-4.js"></script>--}}
     {{--    Fonts   --}}
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
     {{--    Styles   --}}
     <link id="stl_day" href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('sceditor/minified/themes/default.min.css') }}"/>
+
 </head>
 <body>
 <a href="javascript:" id="return-to-top">
