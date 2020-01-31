@@ -33,6 +33,13 @@
                 </div>
                 @enderror
                 <script type="text/javascript" defer>
+                    // let areas = Array('content-comment');
+                    // $.each(areas, function (i, area) {
+                    //     CKEDITOR.replace(area, {
+                    //         customConfig: '/ckeditor/commentsConfig.js'
+                    //
+                    //     });
+                    // });
                     CKEDITOR.replace('content-comment', {});
                 </script>
                 <div class="messenger__button add-comment__btn">
@@ -46,3 +53,4 @@
         <p class="none_text night_text">{{__('Авторизуйтесь чтобы отправить комментарий')}}</p>
     @endif
 </div>
+{{--hgg--}}
