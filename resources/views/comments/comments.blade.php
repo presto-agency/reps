@@ -53,7 +53,7 @@
                                         <p class="title__text info__text">{{$comment->user->comments_count}}</p>
                                         <img class="minerals_icons" src="{{asset('images/minerals_icons/min.png') }}">
                                         <p class="title__text text_special info__text">|</p>
-                                        <p class="title__text info__text">{{$comment->user->comments_count}}</p>
+                                        <p class="title__text info__text">{{$comment->user->rating}}</p>
                                         <img class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
                                     </div>
                             @endif
