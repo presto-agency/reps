@@ -72,7 +72,9 @@ class TournamentsPlayer extends Section
             AdminColumnEditable::checkbox('ban')
                 ->setLabel('Ban')
                 ->setWidth('75px'),
-            AdminColumn::text('place_result', 'Place result')
+            AdminColumn::text('place_result', 'Place<br>result<br>(old)')
+                ->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('victory_points', 'Victory<br>points<br>(new)')
                 ->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
         ];
 

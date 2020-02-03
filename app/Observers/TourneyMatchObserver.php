@@ -80,31 +80,49 @@ class TourneyMatchObserver
      */
     private function checkWinner(TourneyMatch $tourneyMatch, int $score)
     {
-        $winner = $tourneyMatch->getAttribute('winner');
+        $winner          = $tourneyMatch->getAttribute('winner');
+        $player1scoreOld = $tourneyMatch->getAttribute('player1_score');
+        $player2scoreOld = $tourneyMatch->getAttribute('player2_score');
 
         if ( ! empty($winner)) {
             if ($winner == 'player1') {
-//                $player1_score = $tourneyMatch->getAttribute('player1_score');
-//                $player2_score = $tourneyMatch->getAttribute('player2_score');
-//                if ($player1_score === 0 && $player2_score === 2) {
-//                    $tourneyMatch->player2()->decrement('victory_points');
-//                }
-//                $tourneyMatch->player1()->increment('victory_points');
-                $tourneyMatch->setAttribute('player1_score', $score);
-                $tourneyMatch->setAttribute('player2_score', 0);
+                if (empty($tourneyMatch->getAttribute('player1_score'))) {
+                    $tourneyMatch->setAttribute('player1_score', $score);
+                    $tourneyMatch->setAttribute('player2_score', 0);
+                }
+            } else {
+                if (empty($tourneyMatch->getAttribute('player2_score'))) {
+                    $tourneyMatch->setAttribute('player1_score', 0);
+                    $tourneyMatch->setAttribute('player2_score', $score);
+                }
             }
-            if ($winner == 'player2') {
-//                $player1_score = $tourneyMatch->getAttribute('player1_score');
-//                $player2_score = $tourneyMatch->getAttribute('player2_score');
-//                if ($player1_score === 2 && $player2_score === 0) {
-//                    $tourneyMatch->player1()->decrement('victory_points');
-//                }
-//                $tourneyMatch->player2()->increment('victory_points');
-                $tourneyMatch->setAttribute('player1_score', 0);
-                $tourneyMatch->setAttribute('player2_score', $score);
-            }
-            $tourneyMatch->setAttribute('winner_score', $score);
         }
+        $player1scoreNew = $tourneyMatch->getAttribute('player1_score');
+        $player2scoreNew = $tourneyMatch->getAttribute('player2_score');
+        /**
+         * Simple enumeration of options
+         */
+        if ($player1scoreOld === 0 && $player2scoreOld === 0 && $player1scoreNew === 0 && $player2scoreNew === 2) {
+            $tourneyMatch->player2()->increment('victory_points');
+        } elseif ($player1scoreOld === 0 && $player2scoreOld === 2 && $player1scoreNew === 0 && $player2scoreNew === 2) {
+            null;
+        } elseif ($player1scoreOld === 0 && $player2scoreOld === 0 && $player1scoreNew === 2 && $player2scoreNew === 0) {
+            $tourneyMatch->player1()->increment('victory_points');
+        } elseif ($player1scoreOld === 2 && $player2scoreOld === 0 && $player1scoreNew === 2 && $player2scoreNew === 0) {
+            null;
+        } elseif ($player1scoreOld === 2 && $player2scoreOld === 0 && $player1scoreNew === 0 && $player2scoreNew === 2) {
+            $tourneyMatch->player2()->increment('victory_points');
+            if (($tourneyMatch->player1()->value('victory_points') - 1) >= 0) {
+                $tourneyMatch->player1()->decrement('victory_points');
+            }
+        } elseif ($player1scoreOld === 0 && $player2scoreOld === 2 && $player1scoreNew === 2 && $player2scoreNew === 0) {
+            $tourneyMatch->player1()->increment('victory_points');
+            if (($tourneyMatch->player2()->value('victory_points') - 1) >= 0) {
+                $tourneyMatch->player2()->decrement('victory_points');
+            }
+        }
+        $tourneyMatch->setAttribute('winner_score', $score);
+
         unset($tourneyMatch['winner']);
     }
 

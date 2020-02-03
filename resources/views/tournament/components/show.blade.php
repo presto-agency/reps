@@ -239,6 +239,9 @@
             </p>
         </div>
         <div class="container_players">
+            {{--            @if($tournament->matches->first()->match_type == \App\Models\TourneyMatch::TYPE_SINGLE )--}}
+            {{--            @elseif($tournament->matches->first()->match_type == \App\Models\TourneyMatch::TYPE_DOUBLE)--}}
+            {{--            @else--}}
             @if(isset($tournament->players) && $tournament->players->isNotEmpty())
                 @foreach($tournament->players as $item)
                     @if(!empty($item->user))
@@ -254,7 +257,8 @@
                                         <img src="{{asset($item->user->avatarOrDefault())}}"
                                              class="author__avatar img-fluid" alt="avatar">
                                     @endguest
-                                    <span class="name_player" title="{{$item->user->name.' ('.$item->description.')'}}">
+                                    <span class="name_player"
+                                          title="{{$item->user->name.' ('.$item->description.')'}}">
                                         {{$item->user->name}}
 
                                         <small> {{' ('.$item->description.')'}}</small>
@@ -296,6 +300,7 @@
                     @endif
                 @endforeach
             @endif
+            {{--            @endif--}}
         </div>
         @if(!empty($data['round']))
             @foreach($data['round'] as $key => $item)
