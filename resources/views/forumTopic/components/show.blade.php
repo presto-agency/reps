@@ -35,7 +35,6 @@
                         <img src="{{asset("images/default/game-races/" . $topic->author->races->title . ".png")}}"
                                class="title__cube" title="{{ $topic->author->races->title }}" alt="race">
                     <div class="block_minerals_icons text_pts">
-
 {{--                    <p class="title__text text_pts"--}}
 {{--                       title="{{$topic->author->comments_count. ' minerals | ' . $topic->author->rating . 'supply'}}">{{ $topic->author->comments_count. ' minerals | ' . $topic->author->rating . ' supply' }}</p>--}}
                         <p class="title__text">{{$topic->author->comments_count}}</p>
@@ -43,6 +42,9 @@
                         <p class="title__text text_special ">|</p>
                         <p class="title__text ">{{$topic->author->rating}}</p>
                         <img class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
+                        <p class="title__text text_special ">|</p>
+                        <p class="title__text ">{{$topic->author->rating}}</p>
+                        <img class="minerals_icons" src="{{asset('images/minerals_icons/gaz.png') }}">
                     </div>
                 @endif
             </div>

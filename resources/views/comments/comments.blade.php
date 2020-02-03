@@ -55,6 +55,9 @@
                                         <p class="title__text text_special info__text">|</p>
                                         <p class="title__text info__text">{{$comment->user->rating}}</p>
                                         <img class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
+                                        <p class="title__text text_special info__text">|</p>
+                                        <p class="title__text info__text">{{$comment->user->rating}}</p>
+                                        <img class="minerals_icons" src="{{asset('images/minerals_icons/gaz.png') }}">
                                     </div>
                             @endif
                             <span class="info__date">
