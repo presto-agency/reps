@@ -1,4 +1,17 @@
 @media (max-width: 1366px) {
+    .header{
+        .header_container{
+            .header_row{
+                .main_menu{
+                    .menu_navigation{
+                        a{
+                            font-size: 0.8vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
     //Глобальныйе стили(папка global-styles)
     .title_block{
         padding: 1.464vw;
