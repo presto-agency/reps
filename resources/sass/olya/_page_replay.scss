@@ -60,11 +60,23 @@
                 color: white;
                  margin-left: 5px;
             }
-            img{
+            .icon_bars{
                 margin-left: 5px;
                 width:25px;
                 height: 25px;
                 border-radius: 50%;
+            }
+            .block_minerals_icons{
+                .title__text{
+                    margin-left: 12px;
+                    margin-right: 6px;
+                    margin-bottom: 0;
+                    color: white;
+                    font-size: 14px;
+                }
+                .text_special{
+                    margin-right: 0;
+                }
             }
         }
     }
