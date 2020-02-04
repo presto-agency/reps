@@ -2330,6 +2330,7 @@
     }
 
     .page_replay{
+
         .title_block{
             .right_block{
                 a{
@@ -2339,8 +2340,13 @@
                 span{
                     font-size: 0.878vw;
                 }
-                img{
+                .icon_bars{
                     margin-left: 0.366vw;
+                }
+                .block_minerals_icons{
+                    .title__text{
+                        font-size: 1.025vw;
+                    }
                 }
             }
         }
@@ -2370,12 +2376,11 @@
                 }
                 .right_block{
                     padding: 0.366vw 0.732vw;
-                    img{
+                    .icon_bars{
                         width: 1.098vw;
                         height: 1.098vw;
                         border-radius: 3.660vw;
                     }
-
                 }
 
             }
