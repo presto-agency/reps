@@ -41,15 +41,7 @@ class User extends Section
 
     protected $alias = false;
 
-    public function getIcon()
-    {
-        return 'fas fa-user';
-    }
-
-    public function getTitle()
-    {
-        return 'Список';
-    }
+    protected $title = 'Список';
 
 
     /**
@@ -76,98 +68,64 @@ class User extends Section
                 ->setModel(\App\User::class)
         );
 
-        $display->setColumns(
-            [
+        $display->setColumns([
+                $id = AdminColumn::text('id', 'ID')->setWidth('85px'),
 
-                $id = AdminColumn::text('id', 'Id')
-                    ->setWidth(70),
+                $avatar = AdminColumn::image(function ($model) {
+                    return $model->avatarOrDefault();
+                })->setLabel('Аватар'),
 
-                $avatar = AdminColumn::image(
-                    function ($model) {
-                        return $model->avatarOrDefault();
-                    }
-                )->setLabel('Аватар')->setWidth(10),
-
-                $role_id = AdminColumn::text('roles.title', 'Роль'),
+                $role_id = AdminColumn::text('roles.title', 'Роль')
+                    ->setWidth('150px'),
 
                 $name = AdminColumn::text('name', 'Имя'),
 
-                $email = AdminColumn::text('email', 'Почта'),
+                $email = AdminColumn::email('email', 'Почта'),
 
-                $country_id = AdminColumn::relatedLink(
-                    'countries.name', 'Страна'
-                )
-                    ->setWidth(120),
+                $country_id = AdminColumn::relatedLink('countries.name', 'Страна')
+                    ->setWidth('100px'),
 
-                $rating = AdminColumn::custom(
-                    'Рейтинг', function ($model) {
-                    $thumbsUp
-                            = '<span style="font-size: 1em; color: green;"><i class="fas fa-plus"></i></span>';
-                    $equals = '<i class="fas fa-equals"></i>';
-                    $thumbsDown
-                            = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
+                $rating = AdminColumn::custom('Рейтинг', function ($model) {
+                    $thumbsUp   = '<span style="font-size: 1em; color: green;"><i class="fas fa-plus"></i></span>';
+                    $equals     = '<i class="fas fa-equals"></i>';
+                    $thumbsDown = '<span style="font-size: 1em; color: red;"><i class="fas fa-minus"></i></span>';
 
-                    return $thumbsUp."$model->count_positive".'<br/>'.$equals
-                        ."$model->rating".'<br/>'
-                        .$thumbsDown."$model->count_negative";
-                }
-                )->setWidth(10),
+                    return $thumbsUp."$model->count_positive".
+                        '<br/>'.$equals."$model->rating".
+                        '<br/>'.$thumbsDown."$model->count_negative";
+                }),
 
-                $count_topic = AdminColumn::custom(
-                    '<small>Темы</small>',
-                    function ($model) {
-                        return $model->topicsCount();
+                $count_topic = AdminColumn::custom('Топики', function ($model) {
+                    return $model->topicsCount();
+                }),
+                $count_replay = AdminColumn::custom('Реплеи', function ($model) {
+                    return $model->replaysCount();
+                }),
+                $count_picture = AdminColumn::custom('Галерея', function ($model) {
+                    return $model->imagesCount();
+                }),
+                $count_comment = AdminColumn::custom('Коментарии', function ($model) {
+                    return $model->commentsCount();
+                }),
+                $email_verified_at = AdminColumn::custom('Почта', function ($model) {
+                    return ! empty($model->email_verified_at) ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
+                })->setFilterCallback(function ($column, $query, $search) {
+                    if ($search == 'yes') {
+                        $query->whereNotNull('email_verified_at');
                     }
-                ),
-                $count_replay = AdminColumn::custom(
-                    '<small>Replay</small>',
-                    function ($model) {
-                        return $model->replaysCount();
+                    if ($search == 'no') {
+                        $query->whereNull('email_verified_at');
                     }
-                ),
-                $count_picture = AdminColumn::custom(
-                    '<small>Гале<br/>рея</small>',
-                    function ($model) {
-                        return $model->imagesCount();
-                    }
-                ),
-                $count_comment
-                    = AdminColumn::custom(
-                    '<small>Коме<br/>нтарии</small>',
-                    function ($model) {
-                        return $model->commentsCount();
-                    }
-                ),
-                $email_verified_at = AdminColumn::custom(
-                    '<small>Почта</small>',
-                    function ($model) {
-                        return ! empty($model->email_verified_at)
-                            ? '<i class="fa fa-check"></i>'
-                            : '<i class="fa fa-minus"></i>';
-                    }
-                )->setFilterCallback(
-                    function ($column, $query, $search) {
-                        if ($search == 'yes') {
-                            $query->whereNotNull('email_verified_at');
-                        }
-                        if ($search == 'no') {
-                            $query->whereNull('email_verified_at');
-                        }
-                    }
-                )->setWidth(10),
-
+                }),
                 $ban = AdminColumnEditable::checkbox('ban')
-                    ->setLabel('<small>Бан</small>')
+                    ->setLabel('Бан')
                     ->append(AdminColumn::filter('ban'))
-                    ->setWidth(10),
+                    ->setWidth('45px'),
 
-                $activity_at = AdminColumn::datetime(
-                    'activity_at',
-                    '<small>Акти<br/>вность</small>'
-                )
+                $activity_at = AdminColumn::datetime('activity_at', 'Last<br>activity')
                     ->setHtmlAttribute('class', 'small')
                     ->setFormat('d-m-Y H:i:s')
-                    ->setWidth(50),
+                    ->setWidth('75px'),
             ]
         );
 
@@ -179,9 +137,7 @@ class User extends Section
                     ->setHtmlAttributes(['style' => 'width: 100%']),
                 $avatar = null,
                 $role_id = AdminColumnFilter::select()
-                    ->setOptions(
-                        (new Role())->pluck('title', 'title')->toArray()
-                    )
+                    ->setOptions((new Role())->pluck('title', 'title')->toArray())
                     ->setOperator(FilterInterface::EQUAL)
                     ->setPlaceholder('Все роли')
                     ->setHtmlAttributes(['style' => 'width: 100%']),
@@ -194,9 +150,7 @@ class User extends Section
                     ->setPlaceholder('Почта')
                     ->setHtmlAttributes(['style' => 'width: 100%']),
                 $country = AdminColumnFilter::select()
-                    ->setOptions(
-                        (new Country())->pluck('name', 'name')->toArray()
-                    )
+                    ->setOptions((new Country())->pluck('name', 'name')->toArray())
                     ->setOperator(FilterInterface::EQUAL)
                     ->setPlaceholder('Все страны')
                     ->setHtmlAttributes(['style' => 'width: 100%']),

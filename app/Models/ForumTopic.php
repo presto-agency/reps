@@ -14,7 +14,7 @@ class ForumTopic extends Model
             'title', 'forum_section_id', 'reviews', 'rating',
             'preview_content', 'preview_img', 'content', 'comments_count',
         ];
-    protected $guarded = ['user_id', 'commented_at', 'approved', 'news','start_on'];
+    protected $guarded = ['user_id', 'commented_at', 'approved', 'news','start_on','fixing'];
 
     public function forumSection()
     {

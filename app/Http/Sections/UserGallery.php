@@ -36,21 +36,7 @@ class UserGallery extends Section
      */
     protected $alias = false;
 
-    /**
-     * @return string
-     */
-    public function getIcon()
-    {
-        return parent::getIcon();
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle()
-    {
-        return 'Галерея';
-    }
+    protected $title = 'Галереи';
 
 
     /**
@@ -66,48 +52,32 @@ class UserGallery extends Section
             ->setOrder([[0, 'desc']])
             ->paginate(10);
 
-        $display->setFilters(
-            AdminDisplayFilter::related('for_adults')
-                ->setModel(\App\Models\UserGallery::class)
-        );
+        $display->setFilters(AdminDisplayFilter::related('for_adults')->setModel(\App\Models\UserGallery::class));
 
-        $display->setColumns(
-            [
-                AdminColumn::text('id', 'Id')->setWidth(50),
-                AdminColumn::image(
-                    function ($model) {
-                        return $model->pictureOrDefault();
-                    }
-                )->setLabel('Изображение')->setWidth(10),
-                AdminColumn::relatedLink('users.name', 'Пользователь'),
-                AdminColumn::text(function ($model){
-                    return clean($model->sign);
-                })->setLabel('Подпись'),
-                AdminColumnEditable::checkbox('for_adults')
-                    ->setLabel('18+')
-                    ->setWidth(50)
-                    ->append(AdminColumn::filter('for_adults')),
+        $display->setColumns([
+            AdminColumn::text('id', 'ID')->setWidth('100px'),
+            AdminColumn::image(function ($model) {
+                return $model->pictureOrDefault();
+            })->setLabel('Изображение'),
+            AdminColumn::relatedLink('users.name', 'Пользователь')->setWidth('200px'),
+            AdminColumn::text(function ($model) {
+                return clean($model->sign);
+            })->setLabel('Подпись')->setHtmlAttribute('class', 'text-left'),
+            AdminColumnEditable::checkbox('for_adults')
+                ->setLabel('18+')
+                ->append(AdminColumn::filter('for_adults')),
+            AdminColumn::custom('Рейтинг', function ($model) {
+                $thumbsUp   = '<span style="font-size: 1em; color: green;"><i class="far fa-thumbs-up"></i></span>';
+                $equals     = '<i class="fas fa-equals"></i>';
+                $thumbsDown = '<span style="font-size: 1em; color: red;"><i class="far fa-thumbs-down"></i></span>';
 
-                AdminColumn::custom(
-                    'Рейтинг',
-                    function ($model) {
-                        $thumbsUp
-                                = '<span style="font-size: 1em; color: green;"><i class="far fa-thumbs-up"></i></span>';
-                        $equals = '<i class="fas fa-equals"></i>';
-                        $thumbsDown
-                                = '<span style="font-size: 1em; color: red;"><i class="far fa-thumbs-down"></i></span>';
-
-                        return $thumbsUp.$model->positive_count.'<br/>'.$equals
-                            .($model->positive_count - $model->negative_count)
-                            .'<br/>'.$thumbsDown.$model->negative_count;
-                    }
-                )->setWidth(10),
-
-                $comments_count = AdminColumn::count('comments', 'Коментарии')
-                    ->setWidth(100),
-
-            ]
-        );
+                return $thumbsUp.$model->positive_count.
+                    '<br/>'.$equals.($model->positive_count - $model->negative_count).
+                    '<br/>'.$thumbsDown.$model->negative_count;
+            }),
+            $comments_count = AdminColumn::count('comments', 'Количество<br>коментариев')
+                ->setWidth('115px'),
+        ]);
 
         $control    = $display->getColumns()->getControlColumn();
         $buttonShow = $this->show();
@@ -123,28 +93,25 @@ class UserGallery extends Section
      */
     public function onEdit($id)
     {
-
         $display = AdminForm::panel();
 
-        $display->setItems(
-            [
-                $picture = AdminColumn::image('picture', 'Изображение')
-                    ->setImageWidth('450'),
-
-                $sign = AdminFormElement::text('sign', 'Подпись')
-                    ->setHtmlAttribute(
-                        'placeholder',
-                        'Подпись'
-                    )
-                    ->setHtmlAttribute('maxlength', '255')
-                    ->setHtmlAttribute('minlength', '1')
-                    ->setValidationRules(
-                        [
-                            'nullable', 'string', 'between:1,255',
-                        ]
-                    ),
-            ]
-        );
+        $display->setItems([
+            $picture = AdminColumn::image('picture', 'Изображение')
+                ->setImageWidth('450px'),
+            $sign = AdminFormElement::text('sign', 'Подпись')
+                ->setHtmlAttribute('placeholder', 'Подпись')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setHtmlAttribute('minlength', '1')
+                ->setValidationRules([
+                    'nullable',
+                    'string',
+                    'between:1,255',
+                ]),
+            $for_adults = AdminFormElement::checkbox('for_adults', '18+')
+                ->setValidationRules([
+                    'boolean',
+                ]),
+        ]);
 
         return $display;
     }
@@ -155,41 +122,28 @@ class UserGallery extends Section
     public function onCreate()
     {
         $display = AdminForm::panel();
-        $display->setItems(
-            [
-                $picture = AdminFormElement::image('picture', 'Картинка')
-                    ->setUploadPath(
-                        function (UploadedFile $file) {
-                            return 'storage'
-                                .PathHelper::checkUploadsFileAndPath(
-                                    "/images/users/galleries"
-                                );
-                        }
-                    )
-                    ->setValidationRules(
-                        [
-                            'required',
-                            'max:2048',
-                        ]
-                    ),
-                $sign = AdminFormElement::text('sign', 'Подпись')
-                    ->setHtmlAttribute(
-                        'placeholder',
-                        'Подпись'
-                    )
-                    ->setHtmlAttribute('maxlength', '255')
-                    ->setHtmlAttribute('minlength', '1')
-                    ->setValidationRules(
-                        [
-                            'nullable',
-                            'string',
-                            'between:1,255',
-                        ]
-                    ),
-                $for_adults = AdminFormElement::checkbox('for_adults', '18+')
-                    ->setDefaultValue(false),
-            ]
-        );
+        $display->setItems([
+            $picture = AdminFormElement::image('picture', 'Изображение')
+                ->setUploadPath(function (UploadedFile $file) {
+                    return 'storage'.PathHelper::checkUploadsFileAndPath('/images/users/galleries');
+                })->setValidationRules([
+                    'required',
+                    'max:2048',
+                ]),
+            $sign = AdminFormElement::text('sign', 'Подпись')
+                ->setHtmlAttribute('placeholder', 'Подпись')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setHtmlAttribute('minlength', '1')
+                ->setValidationRules([
+                    'nullable',
+                    'string',
+                    'between:1,255',
+                ]),
+            $for_adults = AdminFormElement::checkbox('for_adults', '18+')
+                ->setValidationRules([
+                    'boolean',
+                ]),
+        ]);
 
         return $display;
     }
@@ -215,18 +169,9 @@ class UserGallery extends Section
      */
     public function show()
     {
-
-        $link = new ControlLink(
-            function (
-                Model $model
-            ) {
-                $url = asset('admin/user_galleries/show/'.$model->getKey());
-
-                return $url;
-            }, function (Model $model) {
-            return 'Просмотреть';
-        }, 50
-        );
+        $link = new ControlLink(function (Model $model) {
+            return asset('admin/user_galleries/show/'.$model->getKey());
+        }, 'Просмотреть');
         $link->hideText();
         $link->setIcon('fa fa-eye');
         $link->setHtmlAttribute('class', 'btn-info');

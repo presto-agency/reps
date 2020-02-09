@@ -14,8 +14,11 @@
         align-items: center;
         background: $light-gray;
         //min-height: 60px;
-        justify-content: space-between;
+        //justify-content: space-between;
         padding:15px 20px;
+        .minerals_icons{
+            margin-left: 5px;
+        }
         & .title_playersText{
             font-size: 16px;
             color: $gray;
@@ -83,14 +86,14 @@
                 & svg{
                     width: 20px;
                 }
-                p{
+                span{
                     font-size: 14px;
-                    width: 70px;
-                    display: block;
-                    //height: 28px;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
+                    //width: 70px;
+                    //display: block;
+                    ////height: 28px;
+                    //white-space: nowrap;
+                    //overflow: hidden;
+                    //text-overflow: ellipsis;
                     margin: 0;
                 }
             }

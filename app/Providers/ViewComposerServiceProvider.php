@@ -5,6 +5,7 @@ namespace App\Providers;
 
 use App\Http\ViewComposers\{admin\DashboardCountComposer,
     admin\InterviewVariantAnswerComposer,
+    FixingTopicsComposer,
     Footer\FooterComposer,
     ForumNavigationComposer,
     GlobalView\GlobalComposer,
@@ -16,7 +17,7 @@ use App\Http\ViewComposers\{admin\DashboardCountComposer,
     RightSide\LastReplayComposer,
     RightSide\Top10KgPtsComposer,
     Smiles,
-    Stream\OnlineStreamListComposer,
+    Stream\OnlineStreamListComposer
 };
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
@@ -54,6 +55,9 @@ class ViewComposerServiceProvider extends ServiceProvider
         $this->compose('layouts.components.footer.index', FooterComposer::class);
 
         $this->compose('layouts.app', Smiles::class);
+
+        $this->compose('news.components.index', FixingTopicsComposer::class);
+
     }
 
 

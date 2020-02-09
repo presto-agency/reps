@@ -24,15 +24,13 @@
                                 data-twitch-name="{{$chanel}}"
                         >
 
-                            @if($item->countries)
+                            @if(!empty($item->countries))
                                 <img class="margin-left-5" src="{{asset($item->countries->flagOrDefault())}}" alt="flag"
                                      title="{{$item->countries->name}}">
                             @endif
-                            @if($item->races)
-                                <img class
-                                     ="margin-left-5"
-                                     src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}" alt="race"
-                                     title="{{$item->races->title}}">
+                            @if(!empty($item->races))
+                                <img class="margin-left-5" alt="race" title="{{$item->races->title}}"
+                                     src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}">
                             @endif
                             <span class="color-blue night_text" title="{{$item->title}}">{{$item->title}}</span>
                         </button>

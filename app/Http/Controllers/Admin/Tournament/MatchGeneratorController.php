@@ -55,11 +55,12 @@ class MatchGeneratorController extends Controller
 
     public function matchGenerator(Request $request)
     {
-        if ($request->get('type') === TourneyMatch::TYPE_SINGLE) {
+
+        if ($request->get('type') == TourneyMatch::TYPE_SINGLE) {
             return $this->single($request->get('id'), $request->get('round'));
         }
 
-        return null;
+        return back();
     }
 
 
@@ -130,6 +131,7 @@ class MatchGeneratorController extends Controller
 
     private function single_round_other(int $id, $round)
     {
+
         /**
          * Get all winner Player1
          */

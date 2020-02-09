@@ -42,8 +42,8 @@ class ForumSections extends Section
 
         $columns = [
 
-            AdminColumn::text('id', '#')
-                ->setWidth('50px')
+            AdminColumn::text('id', 'ID')
+                ->setWidth('100px')
                 ->setHtmlAttribute('class', 'text-center'),
             AdminColumn::text('name', 'Название')
                 ->setWidth('100px')
