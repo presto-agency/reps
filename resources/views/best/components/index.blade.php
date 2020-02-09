@@ -15,7 +15,8 @@
             </div>
         </div>
         <div class="title_players change_gray">
-            <p class="title_playersText change_gray">{{__('Top-100 mineral')}}</p>
+            <p class="title_playersText change_gray">{{__('Top-100')}} </p>
+            <img  alt="minerals" class="minerals_icons" src="{{asset('images/minerals_icons/min.png') }}">
         </div>
         <div class="container_players">
             @if(isset($points) && $points->isNotEmpty())
@@ -48,14 +49,59 @@
                             @endif
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item->comments_count.' mineral'}}</p>
+                            <span class="night_text">{{$item->comments_count}}</span>
+                            <img alt="minerals" class="minerals_icons" src="{{asset('images/minerals_icons/min.png') }}">
                         </div>
                     </div>
                 @endforeach
             @endif
         </div>
         <div class="title_players change_gray">
-            <p class="title_playersText">{{__('Top-100 supply')}}</p>
+            <p class="title_playersText">{{__('Top-100')}}</p>
+            <img alt="supply" class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
+        </div>
+        <div class="container_players">
+            @if(isset($points) && $points->isNotEmpty())
+                @foreach($points as $item)
+                    <div class="players_content">
+                        <div class="left_block">
+                            <span class="number night_text">{{'#'. $loop->iteration }} {{-- Starts with 1 --}}</span>
+                            <a href="{{route('user_profile',['id'=>$item->id])}}">
+                                @auth
+                                    @if(auth()->user()->userViewAvatars())
+                                        <img src="{{asset($item->avatarOrDefault())}}"
+                                             class="author__avatar img-fluid" alt="avatar">
+                                    @endif
+                                @else
+                                    <img src="{{asset($item->avatarOrDefault())}}" alt="avatar"
+                                         class="author__avatar img-fluid">
+                                @endif
+                                <span class="name_player" title="{{$item->name}}">{{$item->name}}</span>
+                            </a>
+                        </div>
+                        <div class="center_block">
+                            @if(!empty($item->countries))
+                                <img src="{{asset($item->countries->flagOrDefault())}}"
+                                     title="{{$item->countries->name}}"
+                                     class="info__flag" alt="flag">
+                            @endif
+                            @if(!empty($item->races))
+                                <img src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}"
+                                     title="{{$item->races->title}}" class="info__cube" alt="race">
+                            @endif
+                        </div>
+                        <div class="right_block">
+                            <span class="night_text">{{$item->comments_count}}</span>
+                            <img alt="supply" class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+        {{--        new gaz--}}
+        <div class="title_players change_gray">
+            <p class="title_playersText">{{__('Top-100')}}</p>
+            <img alt="gas" class="minerals_icons" src="{{asset('images/minerals_icons/gaz.png') }}">
         </div>
         <div class="container_players">
             @if(isset($rating) && $rating->isNotEmpty())
@@ -88,12 +134,14 @@
                             @endif
                         </div>
                         <div class="right_block">
-                            <p class="night_text">{{$item->rating.' supply'}}</p>
+                            <span class="night_text">{{$item->rating.' supply'}}</span>
+                            <img alt="gas" class="minerals_icons" src="{{asset('images/minerals_icons/gaz.png') }}">
                         </div>
                     </div>
                 @endforeach
             @endif
         </div>
+        {{--        end new gaz--}}
         <div class="title_players change_gray">
             <p class="title_playersText">{{__('Top-100 news')}}</p>
         </div>

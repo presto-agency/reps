@@ -179,7 +179,10 @@
          * Spoiler
          */
         function xbbSpoiler(obj) {
-            var obj_content = obj.parentNode.parentNode.getElementsByTagName('div')[1];
+            console.log("OBJ",obj);
+            // var obj_content = obj.parentNode.parentNode.getElementsByTagName('div')[1];
+            var obj_content =obj.parentNode.getElementsByClassName('spoiler')[0];
+                console.log("obj_content",obj_content);
             var obj_text_show = obj.getElementsByTagName('strong')[1];
             var obj_text_hide = obj.getElementsByTagName('strong')[0];
 

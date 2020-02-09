@@ -15,7 +15,7 @@ CKEDITOR.plugins.add('addtimestamp', {
     init: function (editor) {
         var cmd = editor.addCommand('addtimestamp', {
             exec: function (editor) {
-                editor.insertHtml('[spoiler-shell]' + editor.getSelection().getSelectedText() + '[/spoiler-shell]');
+                editor.insertHtml('[spoiler-shell]' + editor.getSelectedHtml().getHtml()+ '[/spoiler-shell]');
                 // editor.insertHtml(' [spoiler class="spoiler"]444[spoiler]'); // собственно сама работа плагина
             }
         });
