@@ -46,12 +46,12 @@ class Headline extends Section
     {
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
-            ->setHtmlAttribute('class', 'table-info table-sm')
+            ->setHtmlAttribute('class', 'table-info')
             ->setOrder([[0, 'desc']])
             ->paginate(10);
 
         $display->setColumns([
-            AdminColumn::text('id', 'ID')->setWidth('50px'),
+            AdminColumn::text('id', 'ID')->setWidth('100px'),
             AdminColumn::custom('Новостная строка', function ($model) {
                 return $model->title;
             })->setHtmlAttribute('class', 'text-left'),
@@ -71,10 +71,9 @@ class Headline extends Section
         $display = AdminForm::panel();
 
         $display->setItems([
-            AdminFormElement::wysiwyg('title', 'Новостная строка',
-                'simplemde')
+            AdminFormElement::wysiwyg('title', 'Новостная строка', 'simplemde')
                 ->setHtmlAttributes(['placeholder' => 'Новостная строка'])
-                ->setValidationRules(['required', 'string', 'between:1,1000']),
+                ->setValidationRules(['required', 'string', 'between:1,5000']),
         ]);
 
         return $display;

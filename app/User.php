@@ -4,7 +4,6 @@ namespace App;
 
 use App\Traits\AvatarTrait;
 use App\Traits\ModelRelations\UserRelation;
-use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -149,14 +148,12 @@ class User extends Authenticatable implements MustVerifyEmail
             ->findOrFail($id);
     }
 
+    /**
+     * @return bool
+     */
     public function isOnline()
     {
-        if (empty($this->activity_at)) {
-            return false;
-        }
-        $time = Carbon::now()->diffInMinutes(Carbon::parse($this->activity_at));
-
-        return $time <= 15;
+        return \Cache::has('user-us-online-'.$this->id);
     }
 
     /**

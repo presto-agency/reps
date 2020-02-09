@@ -40,14 +40,16 @@
                     <div class="userText_block">
                         <span class="title night_text">{{ $user->name }}</span>
                         @if($user->isOnline())
-                            <span class="date">
+                            <span class="date" role="alert">
                                 {{__('online')}}
                             </span>
-                        @endif
-                        @if($user->isOnline())
                             <div class="date">
-                                {{\Carbon\Carbon::parse($user->activity_at)->diffForHumans()}}
+                                {{'Последняя активность '.\Carbon\Carbon::parse($user->activity_at)->diffForHumans()}}
                             </div>
+                        @else
+                            <span class="date" role="alert">
+                                {{__('offline')}}
+                            </span>
                         @endif
                     </div>
                     <div class="information_block">
@@ -81,21 +83,12 @@
                         <div class="right_block night_text">
                             @if(!empty($user->races))
                                 <span>{{ $user->races->title }}</span>
-                                {{--                                <img class="info__cube" alt="race" title="{{ $user->races->title }}"--}}
-                                {{--                                     src="{{asset('/images/default/game-races/'.$user->races->title.'.png')}}">--}}
                             @else
                                 <span>{{__('Не указано')}}</span>
                             @endif
                         </div>
                     </div>
-                    {{--                    <div class="information_block">--}}
-                    {{--                        <div class="left_block"><span>{{__('Репутация:')}}</span></div>--}}
-                    {{--                        <div class="right_block night_text">--}}
-                    {{--                            <a title="{{__('Репутация')}}" href="{{route('user-rating-list.index',['id'=>$user->id])}}">--}}
-                    {{--                                <span class="blue">{{$user->rating .' supply'}}</span>--}}
-                    {{--                            </a>--}}
-                    {{--                        </div>--}}
-                    {{--                    </div>--}}
+
                     <div class="information_block">
                         <div class="left_block"><span>{{__('Галерея:')}}</span></div>
                         <div class="right_block night_text">
@@ -226,8 +219,8 @@
                         {{--    Посты ->  Mineral                  --}}
                         <div class="block_inform">
                             <div class="left_block">
-{{--                                <span>{{__('Mineral:')}}</span>--}}
-                                <img class="minerals_icons" src="{{asset('images/minerals_icons/min.png') }}">
+                                <img class="minerals_icons" title="{{__('Mineral')}}" alt="min"
+                                     src="{{asset('images/minerals_icons/min.png') }}">
                             </div>
                             <div class="right_block">
                                 <a class="blue" title="{{__('Mineral')}}"
@@ -239,8 +232,8 @@
                         {{--    КГ ->  Supply                  --}}
                         <div class="block_inform">
                             <div class="left_block">
-{{--                                <span>{{__('Supply:')}}</span>--}}
-                                <img class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
+                                <img class="minerals_icons" title="{{__('Supply')}}" alt="sup"
+                                     src="{{asset('images/minerals_icons/supp.png') }}">
                             </div>
                             <div class="right_block">
                                 <a class="blue" title="{{__('Supply')}}"
@@ -252,8 +245,8 @@
                         {{--    Gas                  --}}
                         <div class="block_inform">
                             <div class="left_block">
-{{--                                <span>{{__('Gas:')}}</span>--}}
-                                <img class="minerals_icons" src="{{asset('images/minerals_icons/gaz.png') }}">
+                                <img class="minerals_icons" title="{{__('Gas')}}" alt="gas"
+                                     src="{{asset('images/minerals_icons/gaz.png') }}">
                             </div>
                             <div class="right_block">
                                 <a class="blue" title="{{__('Gas')}}"

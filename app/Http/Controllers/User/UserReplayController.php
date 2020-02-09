@@ -221,14 +221,14 @@ class UserReplayController extends Controller
         if ($request->ajax()) {
             try {
                 $info = Embed::create($request->video_iframe_url);
-                if (empty($info)) {
+                if (empty($info->getCode())) {
                     return \Response::json([
                         'success' => 'false',
                         'message' => 'Указаный url не поддерживаеться',
                     ], 400);
                 }
 
-                preg_match('/src="([^"]+)"/', $info->code, $match);
+                preg_match('/src="([^"]+)"/', $info->getCode(), $match);
 
                 return \Response::json([
                     'success' => 'true',

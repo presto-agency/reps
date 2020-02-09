@@ -62,7 +62,7 @@ class FooterUrl extends Section
 
         $display->setColumns([
 
-            $id = AdminColumn::text('id', 'ID'),
+            $id = AdminColumn::text('id', 'ID')->setWidth('100px'),
 
             $title = AdminColumn::text('title', 'Title')
                 ->setWidth(200),

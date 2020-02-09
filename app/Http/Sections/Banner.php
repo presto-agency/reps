@@ -69,7 +69,7 @@ class Banner extends Section implements Initializable
 
         $display->setColumns([
             $id = AdminColumn::text('id', 'ID')
-                ->setWidth('50px'),
+                ->setWidth('100px'),
 
             $image = AdminColumn::image('image', 'Image'),
 
