@@ -10,9 +10,9 @@ class TourneyMatch extends Model
 
     use  TourneyMatchRelation;
 
-    const TYPE_SINGLE = '1';
+    const TYPE_SINGLE = 1;
 
-    const TYPE_DOUBLE = '2';
+    const TYPE_DOUBLE = 2;
 
     public static $matchType
         = [

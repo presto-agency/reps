@@ -43,14 +43,8 @@
                                 src="{{asset('images/default/game-races/'.$comment->user->races->title.'.png')}}"
                                 class="info__cube" alt="race" title="{{$comment->user->races->title}}">
                             @if($comment->user->races)
-                                {{--                                <p class="info__text"--}}
-                                {{--                                   title="{{$comment->user->comments_count.' minerals | '. $comment->user->rating.' supply'}}">--}}
-                                {{--                                    {{$comment->user->comments_count.' minerals | '. $comment->user->rating.' supply'}}--}}
-                                {{--                                </p>--}}
                                 <div class="block_minerals_icons text_pts">
-                                    {{--                    <p class="title__text text_pts"--}}
-                                    {{--                       title="{{$topic->author->comments_count. ' minerals | ' . $topic->author->rating . 'supply'}}">{{ $topic->author->comments_count. ' minerals | ' . $topic->author->rating . ' supply' }}</p>--}}
-                                    <p class="title__text info__text"
+                                   <p class="title__text info__text"
                                        title="{{$comment->user->comments_count}}">{{$comment->user->comments_count}}</p>
                                     <img class="minerals_icons" title="minerals" alt="min"
                                          src="{{asset('images/minerals_icons/min.png') }}">
@@ -60,8 +54,9 @@
                                     <img class="minerals_icons" title="supply" alt="sup"
                                          src="{{asset('images/minerals_icons/supp.png') }}">
                                     <p class="title__text text_special info__text">|</p>
-                                    <p class="title__text info__text">{{$comment->user->rating}}</p>
-                                    <img class="minerals_icons" title="gas" alt="gas" src="{{asset('images/minerals_icons/gaz.png') }}">
+                                    <p class="title__text info__text" title="0">0</p>
+                                    <img class="minerals_icons" title="gas" alt="gas"
+                                         src="{{asset('images/minerals_icons/gaz.png') }}">
                                 </div>
                             @endif
                             <span class="info__date">
