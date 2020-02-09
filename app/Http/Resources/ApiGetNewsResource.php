@@ -19,11 +19,11 @@ class ApiGetNewsResource extends JsonResource
         return [
             'id'             => $this->id,
             'news'           => $this->news,
-            'user'           => [
-                'id'     => $this->id,
-                'name'   => $this->name,
-                'avatar' => $this->avatar,
-            ],
+//            'user'           => [
+//                'id'     => $this->author->id,
+//                'name'   => $this->author->name,
+//                'avatar' => $this->author->avatar,
+//            ],
             'title'          => $this->title,
             'rating'         => $this->rating,
             'reviews'        => $this->reviews,
