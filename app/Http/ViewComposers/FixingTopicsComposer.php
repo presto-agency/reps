@@ -25,6 +25,7 @@ class FixingTopicsComposer
     {
         return ForumTopic::with('author:id,name,avatar')
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
+            ->where('preview', false)
             ->where('fixing', true)
             ->withCount('comments')
             ->latest()

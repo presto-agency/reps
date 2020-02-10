@@ -39,7 +39,6 @@ class ForumSections extends Section
      */
     public function onDisplay()
     {
-
         $columns = [
 
             AdminColumn::text('id', 'ID')
@@ -70,6 +69,10 @@ class ForumSections extends Section
             \AdminColumnEditable::checkbox('user_can_add_topics', 'Да', 'Нет')
                 ->setWidth('120px')
                 ->setLabel('Пользователь может добавляь')
+                ->setHtmlAttribute('class', 'text-center'),
+            \AdminColumnEditable::checkbox('bot', 'Да', 'Нет')
+                ->setWidth('50px')
+                ->setLabel('Бот')
                 ->setHtmlAttribute('class', 'text-center'),
             AdminColumn::text('description', 'Описание')
                 ->setHtmlAttribute('class', 'text-left'),
@@ -127,11 +130,21 @@ class ForumSections extends Section
                     'required',
                     'max:255',
                 ]),
-            $isActive = AdminFormElement::checkbox('is_active', 'Активный'),
-            $isGeneral = AdminFormElement::checkbox('is_general', 'Основной'),
-            $userCanAddTopics
-                = AdminFormElement::checkbox('user_can_add_topics',
-                'Пользователь может добавлять'),
+            $bot_script = AdminFormElement::textarea('bot_script', 'Скрип бота')
+                ->setHtmlAttribute('placeholder', 'Скрип бота')
+                ->setValidationRules([
+                    'string',
+                    'nullable',
+                    'max:5000',
+                ]),
+            AdminFormElement::checkbox('is_active', 'Активный')
+                ->setValidationRules(['boolean',]),
+            AdminFormElement::checkbox('is_general', 'Основной')
+                ->setValidationRules(['boolean',]),
+            AdminFormElement::checkbox('bot', 'Бот')
+                ->setValidationRules(['boolean',]),
+            AdminFormElement::checkbox('user_can_add_topics', 'Пользователь может добавлять')
+                ->setValidationRules(['boolean',]),
 
         ]);
 

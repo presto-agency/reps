@@ -49,12 +49,13 @@ class LastNewsComposer
      */
     private function getLastNews()
     {
-        return ForumTopic::withCount('comments')
+        return ForumTopic::query()->select(['id', 'title'])
+            ->where('preview', false)
             ->whereNotNull('commented_at')
             ->orderByDesc('commented_at')
-            //            ->where('approved', true)
+            ->withCount('comments')
             ->take(10)
-            ->get(['id', 'title']);
+            ->get();
     }
 
 }
