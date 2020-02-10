@@ -463,7 +463,6 @@ class Tournaments extends Section
                             })
                             ->setValidationRules([
                                 'nullable',
-                                'mimes:7z,s7z,zip,zipx,rar,rar4',
                                 'max:10000',
                             ]),
                     ];
