@@ -172,6 +172,7 @@ return [
         \Barryvdh\TranslationManager\ManagerServiceProvider::class,
         \Intervention\Image\ImageServiceProvider::class,
         \PheRum\BBCode\BBCodeServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         /*
          * Application Service Providers...
          */

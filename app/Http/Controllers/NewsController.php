@@ -44,20 +44,21 @@ class NewsController extends Controller
     public function show($id)
     {
         $news = ForumTopic::with([
-            'author',
+            'author'        => function ($query) {
+                $query->select(['id', 'avatar', 'name', 'country_id', 'race_id', 'rating', 'count_negative', 'count_positive',])
+                    ->withCount('comments');
+            },
             'author.countries:id,name,flag',
             'author.races:id,title',
-            'author'        => function ($query) {
-                $query->withCount('comments');
-            },
+
             'comments',
-            'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive',
             'comments.user.countries:id,name,flag',
             'comments.user.races:id,title',
             'comments.user' => function ($query) {
-                $query->withCount('comments');
+                $query->select(['id', 'avatar', 'name', 'country_id', 'race_id', 'rating', 'count_negative', 'count_positive',])
+                    ->withCount('comments');
             },
-        ])->withCount('comments')->findOrFail($id);
+        ])->where('preview', false)->withCount('comments')->findOrFail($id);
 
         event('topicHasViewed', $news);
 
@@ -80,7 +81,6 @@ class NewsController extends Controller
 
         return \Response::json([], 404);
     }
-
     /**
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
@@ -88,6 +88,7 @@ class NewsController extends Controller
     {
         return ForumTopic::with('author:id,name,avatar')
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
+            ->where('preview', false)
             ->where('news', true)
             ->withCount('comments')
             ->orderByDesc('id')
@@ -105,6 +106,7 @@ class NewsController extends Controller
         return ForumTopic::with('author:id,name,avatar')
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
             ->where('id', '<', $request->id)
+            ->where('preview', false)
             ->where('news', true)
             ->withCount('comments')
             ->orderByDesc('id')

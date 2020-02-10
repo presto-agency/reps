@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ForumSection extends Model
 {
 
-    protected $fillable
+    protected $guarded
         = [
             'position',
             'name',
@@ -16,6 +16,8 @@ class ForumSection extends Model
             'is_active',
             'is_general',
             'user_can_add_topics',
+            'bot',
+            'bot_script',
         ];
 
     public function topics()

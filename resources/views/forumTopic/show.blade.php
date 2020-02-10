@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('breadcrumbs')
     {{ Breadcrumbs::render('forum-topic-show', $topic->forum_section_id) }}
 @endsection

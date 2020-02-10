@@ -84,7 +84,7 @@ class TopicController extends Controller
         if (empty($content)) {
             return redirect()->back();
         }
-        $model               = ForumTopic::findOrFail($request->get('id'));
+        $model               = ForumTopic::query()->findOrFail($request->get('id'));
         $model->commented_at = Carbon::now();
         $model->save();
 

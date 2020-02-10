@@ -13,7 +13,7 @@ class ForumTopicController extends Controller
     public function show($id)
     {
 
-        $topic   = ForumTopic::find($id);
+        $topic   = ForumTopic::query()->findOrFail($id);
         $content = view('admin.forum.topic.show', ['topic' => $topic]);
 
         return AdminSection::view($content, 'Темы форума');

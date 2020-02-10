@@ -103,6 +103,8 @@ class ForumTopics extends Section
                 ->setWidth('100px')->setLabel('Новость'),
             $fixing = AdminColumnEditable::checkbox('fixing', 'Да', 'Нет')
                 ->setWidth('150px')->setLabel('Зафиксировать<br>на главной'),
+            $preview = AdminColumnEditable::checkbox('preview', 'Да', 'Нет')
+                ->setWidth('100px')->setLabel('Черновик'),
 
         ]);
 
@@ -192,6 +194,8 @@ class ForumTopics extends Section
             $news = AdminFormElement::checkbox('news', 'Отображать в новостях')
                 ->setValidationRules(['boolean']),
             $fixing = AdminFormElement::checkbox('fixing', 'Зафиксировать на главной')
+                ->setValidationRules(['boolean']),
+            $preview = AdminFormElement::checkbox('preview', 'Черновик')
                 ->setValidationRules(['boolean']),
 
         ]);

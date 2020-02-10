@@ -10,8 +10,6 @@
     <script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('ckeditor\ckeditor.js') }}"></script>
-    {{--    <script id="journalist-broadcast-1370961130" async src="https://journali.st/broadcasts/1370961130.js"></script>--}}
-    {{--    <script id="journalist-broadcast-1370961130" async src="https://journali.st/broadcasts/1370961130-widget-4.js"></script>--}}
     {{--    Fonts   --}}
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
     {{--    Styles   --}}
@@ -179,10 +177,10 @@
          * Spoiler
          */
         function xbbSpoiler(obj) {
-            console.log("OBJ",obj);
+            console.log("OBJ", obj);
             // var obj_content = obj.parentNode.parentNode.getElementsByTagName('div')[1];
-            var obj_content =obj.parentNode.getElementsByClassName('spoiler')[0];
-                console.log("obj_content",obj_content);
+            var obj_content = obj.parentNode.getElementsByClassName('spoiler')[0];
+            console.log("obj_content", obj_content);
             var obj_text_show = obj.getElementsByTagName('strong')[1];
             var obj_text_hide = obj.getElementsByTagName('strong')[0];
 
