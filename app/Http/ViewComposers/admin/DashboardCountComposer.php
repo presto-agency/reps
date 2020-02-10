@@ -53,7 +53,7 @@ class DashboardCountComposer
             $data_cache = Cache::get($cache_name);
         } else {
             $data_cache = Cache::remember($cache_name, self::$ttl, function () {
-                return ForumTopic::count();
+                return ForumTopic::query()->count();
             });
         }
         return $data_cache;

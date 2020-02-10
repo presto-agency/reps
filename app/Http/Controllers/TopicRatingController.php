@@ -33,6 +33,6 @@ class TopicRatingController extends RatingController
             $route = 'topic.show';
             return view('user.rating-list.index-topic', compact('object', 'list', 'route'));
         }
-        abort(404);
+         abort(404);
     }
 }
