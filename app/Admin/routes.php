@@ -35,4 +35,6 @@ Route::post('tourney_lists/match_generator', '\App\Http\Controllers\Admin\Tourna
 /**
  * Logs
  */
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+Route::group(['middleware' => ['superAdminOnly']], function () {
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+});
