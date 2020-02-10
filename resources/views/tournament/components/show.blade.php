@@ -240,7 +240,7 @@
         </div>
         <div class="container_players">
 
-            @if($data['matchType'] == \App\Models\TourneyMatch::TYPE_SINGLE)
+            @if(!empty($data['matchType']) && $data['matchType'] == \App\Models\TourneyMatch::TYPE_SINGLE)
                 @if(isset($tournament->players1) && $tournament->players1->isNotEmpty())
                     @foreach($tournament->players1 as $item)
                         @if(!empty($item->user))
@@ -299,7 +299,7 @@
                         @endif
                     @endforeach
                 @endif
-            @elseif($data['matchType'] == \App\Models\TourneyMatch::TYPE_SINGLE)
+            @elseif(!empty($data['matchType']) && $data['matchType'] == \App\Models\TourneyMatch::TYPE_SINGLE)
             @else
                 @if(isset($tournament->players) && $tournament->players->isNotEmpty())
                     @foreach($tournament->players as $item)
