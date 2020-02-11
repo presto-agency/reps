@@ -18,6 +18,7 @@ class TourneyPlayer extends Model
             'victory_points',
             'tourney_id',
             'user_id',
+            'defeat',
         ];
     protected $casts
         = [

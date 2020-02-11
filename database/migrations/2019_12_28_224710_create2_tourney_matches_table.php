@@ -34,7 +34,7 @@ class Create2TourneyMatchesTable extends Migration
             $table->unsignedTinyInteger('looser_value')->default(0);
             $table->unsignedTinyInteger('match_number');
             $table->unsignedTinyInteger('round_number');
-            $table->unsignedTinyInteger('match_type')->nullable();
+            $table->unsignedTinyInteger('branch')->nullable();
             $table->boolean('played');
             $table->string('round', 50);
             $table->json('reps')->nullable();
