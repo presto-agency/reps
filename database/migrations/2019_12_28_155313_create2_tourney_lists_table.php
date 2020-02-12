@@ -29,6 +29,7 @@ class Create2TourneyListsTable extends Migration
             $table->string('all_file', 255)->nullable()->comment('here is an archive with all the tournament files');
             $table->unsignedTinyInteger('status')->index()->comment('watch model for more details');
             $table->unsignedTinyInteger('map_select_type')->index()->comment('watch model for more details');
+            $table->unsignedTinyInteger('type')->nullable();
             $table->tinyInteger('importance')->default(0);
             $table->boolean('visible');
             $table->boolean('ranking');

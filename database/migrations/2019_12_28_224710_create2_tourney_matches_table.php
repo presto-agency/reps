@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\TourneyMatch;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -29,12 +30,12 @@ class Create2TourneyMatchesTable extends Migration
             $table->unsignedTinyInteger('player2_score')->default(0);
             $table->unsignedTinyInteger('winner_score')->default(0);
             $table->unsignedTinyInteger('winner_value')->default(0);
-            $table->unsignedTinyInteger('winner_action')->default(0);
-            $table->unsignedTinyInteger('looser_action')->default(0);
+            $table->unsignedTinyInteger('winner_action')->default(1);
+            $table->unsignedTinyInteger('looser_action')->default(1);
             $table->unsignedTinyInteger('looser_value')->default(0);
             $table->unsignedTinyInteger('match_number');
             $table->unsignedTinyInteger('round_number');
-            $table->unsignedTinyInteger('match_type')->nullable();
+            $table->unsignedTinyInteger('branch')->default(1);
             $table->boolean('played');
             $table->string('round', 50);
             $table->json('reps')->nullable();

@@ -15,6 +15,20 @@ class TourneyList extends Model
     /**
      * var array
      */
+    const TYPE_SINGLE = 1;
+
+    const TYPE_DOUBLE = 2;
+
+    public static $tourneyTypeSelect
+        = [
+            self::TYPE_SINGLE => 'SINGLE',
+            self::TYPE_DOUBLE => 'DOUBLE',
+        ];
+    public static $tourneyType
+        = [
+            self::TYPE_SINGLE => 'Single-elimination tournament',
+            self::TYPE_DOUBLE => 'Double-elimination tournament',
+        ];
 
     const YES = 1;
 
@@ -30,7 +44,10 @@ class TourneyList extends Model
             4 => 'GENERATION', 5 => 'STARTED', 6 => 'FINISHED',
         ];
 
-
+    public static $status2
+        = [
+            5 => 'STARTED', 6 => 'FINISHED',
+        ];
     public static $map_types
         = [
             1 => 'NONE', 2 => 'FIRSTBYREMOVING', 3 => 'FIRSTBYROUND',
@@ -62,6 +79,7 @@ class TourneyList extends Model
             'all_file',
             'status',
             'map_select_type',
+            'type',
             'visible',
             'ranking',
             'reg_time',

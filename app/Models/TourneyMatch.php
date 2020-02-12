@@ -10,22 +10,17 @@ class TourneyMatch extends Model
 
     use  TourneyMatchRelation;
 
-    const TYPE_SINGLE = 1;
-
-    const TYPE_DOUBLE = 2;
-
-    public static $matchType
-        = [
-            self::TYPE_SINGLE => 'Single-elimination tournament',
-            self::TYPE_DOUBLE => '',
-        ];
-
     public static $action
         = [
             1 => 'NONE', 2 => 'GOTO_P1', 3 => 'GOTO_P2', 4 => 'TOP',
         ];
 
-    protected $fillable
+    public static $branches
+        = [
+            1 => 'winners', 2 => 'losers',
+        ];
+
+    protected $guarded
         = [
             'tourney_id',
             'player1_id',
@@ -39,7 +34,7 @@ class TourneyMatch extends Model
             'looser_value',
             'match_number',
             'round_number',
-            'match_type',
+            'branch',
             'played',
             'round',
             'rep1',

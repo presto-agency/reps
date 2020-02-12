@@ -76,6 +76,8 @@ class TournamentsPlayer extends Section
                 ->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
             AdminColumn::text('victory_points', 'Victory<br>points<br>(new)')
                 ->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('defeat', 'Defeat<br>points<br>(new)')
+                ->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
         ];
 
         $display = AdminDisplay::datatables()

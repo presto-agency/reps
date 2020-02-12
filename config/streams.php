@@ -7,7 +7,7 @@ return [
     "twitch" => [
         "host" => env("TWITCH_HOST", "www.twitch.tv"),
         "base_uri" => env("TWITCH_BASE_URI", "https://api.twitch.tv/kraken/"),
-        "client_id" => env("TWITCH_CLIENT_ID", "jzkbprff40iqj646a697cyrvl0zt2m6"),
+        "client_id" => env("TWITCH_CLIENT_ID"),
     ],
 
     "goodgame" => [
