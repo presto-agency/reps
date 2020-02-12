@@ -18,7 +18,7 @@
     @endif
 </div>
 
-@if($tourney->matches_count < 1)
+@if($data['allMatches'] < 1)
     <div class="alert alert-info" role="alert">
         <strong>{{__('У данного турнира нету матчей можна создавать.')}}</strong>
     </div>
@@ -26,38 +26,39 @@
 
 @foreach($data['rounds'] as $key => $item)
 
-    @if($item['number'] == 1)
-        @if(!$item['exist'])
+    @if($item['roundNumber'] == 1)
+        @if(!$item['roundExist'])
             {!! Form::open(['method' => 'POST', 'route' => ['admin.tourney.match.generator']]) !!}
-            <input type="hidden" name="id" tabindex="-1" value="{{request('id')}}">
-            <input type="hidden" name="type" tabindex="-1" value="{{\App\Models\TourneyList::TYPE_SINGLE}}">
-            <input type="hidden" name="round" tabindex="-1" value="{{$item['number']}}">
-            {!! Form::button('Создать матчи для раунда '.$item['number'],['type' => 'submit','class'=>'btn btn-primary'])!!}
+            <input type="hidden" name="id" tabindex="-1" value="{{$tourney->id}}">
+            <input type="hidden" name="type" tabindex="-1" value="{{$tourney->type}}">
+            <input type="hidden" name="round" tabindex="-1" value="{{$item['roundNumber']}}">
+            {!! Form::button('Создать матчи для раунда '.$item['roundNumber'],['type' => 'submit','class'=>'btn btn-primary'])!!}
             {!! Form::close() !!}
             <br>
         @else
             <div class="alert alert-info" role="alert">
-                <strong> {{__('Матчи для раунда '.$item['number'].' уже созданы')}}
-                    <a href="{{asset('admin\tourney_matches'.'?tourney_id='.$tourney->id.'&round_number='.$item['number'])}}"
+                <strong> {{__('Матчи для раунда '.$item['roundNumber'].' уже созданы')}}
+                    <a href="{{asset('admin\tourney_matches'.'?tourney_id='.$tourney->id.'&round_number='.$item['roundNumber'])}}"
                        class="alert-link">{{__('Смотреть список')}}
                     </a>
                 </strong>
             </div>
         @endif
-    @else
-        @if(!$item['exist'] && $item['previousExist'])
+    @endif
+    @if($item['roundNumber'] > 1)
+        @if(!$item['roundExist'] && $item['roundPreviousExist'])
             {!! Form::open(['method' => 'POST', 'route' => ['admin.tourney.match.generator']]) !!}
-            <input type="hidden" name="id" tabindex="-1" value="{{request('id')}}">
-            <input type="hidden" name="type" tabindex="-1" value="{{\App\Models\TourneyList::TYPE_SINGLE}}">
-            <input type="hidden" name="round" tabindex="-1" value="{{$item['number']}}">
-            {!! Form::button('Создать матчи для раунда '.$item['number'],['type' => 'submit','class'=>'btn btn-primary'])!!}
+            <input type="hidden" name="id" tabindex="-1" value="{{$tourney->id}}">
+            <input type="hidden" name="type" tabindex="-1" value="{{$tourney->type}}">
+            <input type="hidden" name="round" tabindex="-1" value="{{$item['roundNumber']}}">
+            {!! Form::button('Создать матчи для раунда '.$item['roundNumber'],['type' => 'submit','class'=>'btn btn-primary'])!!}
             {!! Form::close() !!}
             <br>
         @endif
-        @if($item['exist'] && $item['previousExist'])
+        @if($item['roundExist'] && $item['roundPreviousExist'])
             <div class="alert alert-info" role="alert">
-                <strong> {{__('Матчи для раунда '.$item['number'].' уже созданы')}}
-                    <a href="{{asset('admin\tourney_matches'.'?tourney_id='.$tourney->id.'&round_number='.$item['number'])}}"
+                <strong> {{__('Матчи для раунда '.$item['roundNumber'].' уже созданы')}}
+                    <a href="{{asset('admin\tourney_matches'.'?tourney_id='.$tourney->id.'&round_number='.$item['roundNumber'])}}"
                        class="alert-link">{{__('Смотреть список')}}
                     </a>
                 </strong>

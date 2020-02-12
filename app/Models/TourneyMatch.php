@@ -73,4 +73,117 @@ class TourneyMatch extends Model
             'match_type'    => 'int',
         ];
 
+
+    /**
+     * @param  int  $allPlayers
+     *
+     * @return false|float
+     */
+    public static function roundsCanCreate(int $allPlayers)
+    {
+        return ceil(log($allPlayers, 2.0));
+    }
+
+    /**
+     * @param  int  $tourneyId
+     *
+     * @return int
+     */
+    public static function roundsNowCreate(int $tourneyId)
+    {
+        return self::query()->where('tourney_id', $tourneyId)->distinct('round_number')->count();
+    }
+
+    /**
+     * @param  int  $tourneyId
+     * @param  int  $roundNumber
+     *
+     * @return bool
+     */
+    public static function roundExist(int $tourneyId, int $roundNumber)
+    {
+        return self::query()->where('tourney_id', $tourneyId)->where('round_number', $roundNumber)->exists();
+    }
+
+    /**
+     * @param  int  $tourneyId
+     * @param  int  $roundNumber
+     *
+     * @return bool
+     */
+    public static function roundPreviousExist(int $tourneyId, int $roundNumber)
+    {
+        if ($roundNumber > 1) {
+            return self::query()->where('tourney_id', $tourneyId)->where('round_number', '<', $roundNumber)->exists();
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @param  int  $tourneyId
+     * @param  int  $round
+     * @param  int  $branch
+     *
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
+     */
+    public static function winnersPlayer1(int $tourneyId, int $round, int $branch)
+    {
+        return TourneyMatch::query()
+            ->whereNotNull('player1_id')
+            ->where('tourney_id', $tourneyId)
+            ->where('round_number', $round - 1)
+            ->where('played', true)
+            ->where('branch', $branch)
+            ->where('player1_score', '>', \DB::raw('player2_score'))
+            ->get();
+    }
+
+    /**
+     * @param  int  $tourneyId
+     * @param  int  $round
+     * @param  int  $branch
+     *
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
+     */
+    public static function winnersPlayer2(int $tourneyId, int $round, int $branch)
+    {
+        return TourneyMatch::query()
+            ->whereNotNull('player2_id')
+            ->where('tourney_id', $tourneyId)
+            ->where('round_number', $round - 1)
+            ->where('played', true)
+            ->where('branch', $branch)
+            ->where('player2_score', '>', \DB::raw('player2_score'))
+            ->get();
+    }
+
+    /**
+     * @param  int  $tourneyId
+     * @param  int  $round
+     *
+     * @return mixed
+     */
+    public static function getMaxMatchNumber(int $tourneyId, int $round)
+    {
+        return self::query()->where('tourney_id', $tourneyId)
+            ->where('round_number', $round - 1)->max('match_number');
+    }
+
+    /**
+     * @param  int  $tourneyId
+     *
+     * @return int|mixed
+     */
+    public static function getMaxRoundNumber(int $tourneyId)
+    {
+        $roundNumber = self::query()->where('tourney_id', $tourneyId)->max('round_number');
+
+        if ($roundNumber > 1) {
+            return $roundNumber;
+        } else {
+            return 1;
+        }
+    }
+
 }
