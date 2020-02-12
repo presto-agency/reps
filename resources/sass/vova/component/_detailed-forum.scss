@@ -10,7 +10,9 @@
         border-radius: 5px 5px 0 0;
         background-color: #0567cc;
         padding: 20px;
-
+        .small_wrap{
+            width:25%;
+        }
         .title__wrap {
             display: flex;
             align-items: center;
@@ -87,6 +89,7 @@
                 .title__text{
                     margin-left: 12px;
                     margin-right: 6px;
+                    overflow: visible;
                 }
                 .text_special{
                     margin-right: 0;
