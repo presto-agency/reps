@@ -54,7 +54,7 @@ class Country extends Section
         $display->setHtmlAttribute('class', 'table-info table-sm text-center ');
 
         $display->setColumns([
-            $id = AdminColumn::text('id', 'ID'),
+            $id = AdminColumn::text('id', 'ID')->setWidth('100px'),
             $name = AdminColumn::text('name', 'Название'),
             $code = AdminColumn::text('code', 'Код')
                 ->setHtmlAttribute('class', 'hidden-sm ')

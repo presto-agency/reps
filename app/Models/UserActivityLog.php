@@ -63,7 +63,7 @@ class UserActivityLog extends Model
             self::EVENT_CREATE_IMAGE          => self::EVENT_CREATE_IMAGE,
         ];
 
-    protected $fillable
+    protected $guarded
         = [
             'type',
             'user_id',

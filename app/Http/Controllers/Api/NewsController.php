@@ -86,10 +86,9 @@ class NewsController extends Controller
      */
     private function getNews()
     {
-        return ForumTopic::with('author')
-            ->where('approved', true)
+        return ForumTopic::query()->latest()
+            ->where('preview', false)
             ->where('news', true)
-            ->orderByDesc('created_at')
             ->withCount('comments')
             ->limit(10)
             ->get();

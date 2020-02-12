@@ -43,21 +43,18 @@
                 <img src="{{asset("images/default/game-races/" . $news->author->races->title . ".png")}}"
                      class="title__cube" alt="race" title="{{$news->author->races->title}}">
                     <div class="block_minerals_icons text_pts">
-                        {{--                    <p class="title__text text_pts"--}}
-                        {{--                       title="{{$topic->author->comments_count. ' minerals | ' . $topic->author->rating . 'supply'}}">{{ $topic->author->comments_count. ' minerals | ' . $topic->author->rating . ' supply' }}</p>--}}
-                        <p class="title__text info__text">{{$news->author->comments_count}}</p>
-                        <img class="minerals_icons" src="{{asset('images/minerals_icons/min.png') }}">
+                        <p class="title__text info__text" title="{{$news->author->comments_count}}">{{$news->author->comments_count}}</p>
+                        <img class="minerals_icons" title="minerals" alt="min"
+                             src="{{asset('images/minerals_icons/min.png') }}">
                         <p class="title__text text_special info__text">|</p>
-                        <p class="title__text info__text">{{$news->author->rating}}</p>
-                        <img class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
+                        <p class="title__text info__text" title="{{$news->author->rating}}">{{$news->author->rating}}</p>
+                        <img class="minerals_icons" title="supply" alt="sup"
+                             src="{{asset('images/minerals_icons/supp.png') }}">
                         <p class="title__text text_special info__text">|</p>
-                        <p class="title__text info__text">{{$news->author->rating}}</p>
-                        <img class="minerals_icons" src="{{asset('images/minerals_icons/gaz.png') }}">
+                        <p class="title__text info__text" title="0">0</p>
+                        <img class="minerals_icons" title="gas" alt="gas"
+                             src="{{asset('images/minerals_icons/gaz.png') }}">
                     </div>
-{{--                <p class="title__text night_text"--}}
-{{--                   title="{{ $news->author->comments_count.'  minerals | '.$news->author->rating .' supply' }}">--}}
-{{--                    {{ $news->author->comments_count.'  minerals | '.$news->author->rating .' supply' }}--}}
-{{--                </p>--}}
             </div>
         @endif
     </div>

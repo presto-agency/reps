@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
         /*** Check Stream ***/
         $schedule->command('broadcast:check')->everyFiveMinutes();
         /*** Check Tourney ***/
-        $schedule->command('tourney:check')->everyFiveMinutes();
+        $schedule->command('tourney:check')->everyMinute();
     }
 
     /**

@@ -206,7 +206,7 @@ class Tournaments extends Section
                         AdminFormElement::select('map_select_type', 'Map select type')
                             ->setOptions(TourneyList::$map_types)
                             ->setValidationRules([
-                                'in:0,1,2',
+                                'in:1,2,3',
                             ]),
                     ];
                 }, 4)
@@ -417,7 +417,7 @@ class Tournaments extends Section
                 ->addColumn(function () {
                     return [
                         AdminFormElement::select('user_id', 'Admin')
-                            ->setOptions((new User())->pluck('name', 'id')->toArray())
+                            ->setOptions((new User())->where('role_id','=', 1)->pluck('name', 'id')->toArray())
                             ->setValidationRules([
                                 'nullable',
                                 'exists:users,id',
@@ -463,7 +463,6 @@ class Tournaments extends Section
                             })
                             ->setValidationRules([
                                 'nullable',
-                                'mimes:7z,s7z,zip,zipx,rar,rar4',
                                 'max:10000',
                             ]),
                     ];

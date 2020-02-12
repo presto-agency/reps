@@ -53,7 +53,7 @@ class ForumController extends Controller
         if (request()->ajax()) {
             $visible_title = false;
             if (request('id') > 0) {
-                $section = ForumSection::withCount('topics')
+                $section = ForumSection::query()->withCount('topics')
                     ->with([
                         'topics' => function ($query) {
                             $query->orderByDesc('id')->where('id', '<', request('id'))
@@ -61,11 +61,11 @@ class ForumController extends Controller
                                 ->limit(7);
                         },
                         'topics.author:id,name,avatar',
-                    ])
+                    ])->where('is_active', true)
                     ->where('id', request('forum'))
-                    ->firstOrFail();
+                    ->first();
             } else {
-                $section       = ForumSection::withCount('topics')
+                $section       = ForumSection::query()->withCount('topics')
                     ->with([
                         'topics' => function ($query) {
                             $query->orderByDesc('id')
@@ -73,13 +73,18 @@ class ForumController extends Controller
                                 ->limit(7);
                         },
                         'topics.author:id,name,avatar',
-                    ])
+                    ])->where('is_active', true)
                     ->where('id', request('forum'))
-                    ->firstOrFail();
+                    ->first();
                 $visible_title = true;
             }
-
-            echo view('forum.components.section-show', compact('section', 'visible_title'));
+            if ( ! empty($section)) {
+                if ($section->bot === 0) {
+                    echo view('forum.components.section-show', compact('section', 'visible_title'));
+                } else {
+                    echo $section->bot_script;
+                }
+            }
         }
     }
 
@@ -87,7 +92,7 @@ class ForumController extends Controller
     {
         if (request()->ajax()) {
             if (request('id') > 0) {
-                $sections = ForumSection::orderBy('position')
+                $sections = ForumSection::query()->orderBy('position')
                     ->withCount('forumSectionComments')
                     ->withCount('topics')
                     ->where('position', '>', request('id'))
@@ -95,7 +100,7 @@ class ForumController extends Controller
                     ->limit(7)
                     ->get();
             } else {
-                $sections = ForumSection::orderBy('position')
+                $sections = ForumSection::query()->orderBy('position')
                     ->withCount('forumSectionComments')
                     ->withCount('topics')
                     ->where('is_active', true)

@@ -101,8 +101,10 @@ class ForumTopics extends Section
                 ->setWidth('100px'),
             $news = AdminColumnEditable::checkbox('news', 'Да', 'Нет')
                 ->setWidth('100px')->setLabel('Новость'),
-//            $approved = AdminColumnEditable::checkbox('approved', 'Да', 'Нет')
-//                ->setWidth('110px')->setLabel('Подтвердить'),
+            $fixing = AdminColumnEditable::checkbox('fixing', 'Да', 'Нет')
+                ->setWidth('150px')->setLabel('Зафиксировать<br>на главной'),
+            $preview = AdminColumnEditable::checkbox('preview', 'Да', 'Нет')
+                ->setWidth('100px')->setLabel('Черновик'),
 
         ]);
 
@@ -191,8 +193,10 @@ class ForumTopics extends Section
                 ->setFormat('Y-m-d'),
             $news = AdminFormElement::checkbox('news', 'Отображать в новостях')
                 ->setValidationRules(['boolean']),
-//            $approved = AdminFormElement::checkbox('approved', 'Подтвердить')
-//                ->setValidationRules(['boolean']),
+            $fixing = AdminFormElement::checkbox('fixing', 'Зафиксировать на главной')
+                ->setValidationRules(['boolean']),
+            $preview = AdminFormElement::checkbox('preview', 'Черновик')
+                ->setValidationRules(['boolean']),
 
         ]);
 
@@ -230,15 +234,10 @@ class ForumTopics extends Section
      */
     public function show($display)
     {
-        $link = new ControlLink(function (
-            Model $model
-        ) {
-            $id  = $model->getKey();
-            $url = url("admin/forum_topics/$id/show");
-
-            return $url; // Генерация ссылки
+        $link = new ControlLink(function (Model $model) {
+            return url('admin/forum_topics/'.$model->getKey().'/show');
         }, function (Model $model) {
-            return $model->title; // Генерация текста на кнопке
+            return $model->title;
         }, 50);
         $link->hideText();
         $link->setIcon('fa fa-eye');

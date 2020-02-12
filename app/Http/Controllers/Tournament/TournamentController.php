@@ -57,6 +57,7 @@ class TournamentController extends Controller
     {
         $tournament = $this->getTournament($id);
 
+
         $data = $this->createDataArray($tournament);
 
         return view('tournament.show', compact('tournament', 'data'));
@@ -70,8 +71,9 @@ class TournamentController extends Controller
     private function createDataArray($tournament)
     {
         $data = [];
-        if ( ! empty($tournament->matches) && $tournament->maps_pool_count > 0) {
+        if (isset($tournament->matches) && $tournament->matches->isNotEmpty() &&  $tournament->maps_pool_count > 0) {
             foreach ($tournament->matches as $item) {
+                $data['matchType'] = $item->match_type;
                 $data['round'][$item->round_number]['title'] = $item->round;
                 $data['matches'][$item->round_number][]      = $item;
                 $mapsCount                                   = $tournament->maps_pool_count;
@@ -107,13 +109,22 @@ class TournamentController extends Controller
                     },
                     'user.races:id,title',
                     'user.countries:id,name,flag',
-                ])
-                    ->orderByDesc('check')
+                ])->orderByDesc('check')
                     ->orderByRaw('LENGTH(place_result)')
                     ->orderBy('place_result')
                     ->select(['id', 'tourney_id', 'user_id', 'place_result', 'description', 'check']);
             },
-
+            'players1' => function ($query) {
+                $query->with([
+                    'user' => function ($query) {
+                        $query->select(['id', 'name', 'email', 'race_id', 'country_id']);
+                    },
+                    'user.races:id,title',
+                    'user.countries:id,name,flag',
+                ])->orderByDesc('check')
+                    ->orderByDesc('victory_points')
+                    ->select(['id', 'tourney_id', 'user_id', 'victory_points', 'description', 'check']);
+            },
             'matches' => function ($query) {
                 $query->with([
                     'player1',
@@ -123,7 +134,7 @@ class TournamentController extends Controller
                 ])->orderBy('round_number');
             },
         ])->withCount(['checkPlayers as check_players_count', 'players', 'mapsPool', 'banPlayers',])
-            ->where('visible', 1)->findOrFail($id);
+            ->where('visible', true)->findOrFail($id);
     }
 
     public function downloadMatchFile(int $match, string $rep)
@@ -176,6 +187,7 @@ class TournamentController extends Controller
                 }
             }
         }
+        return null;
     }
 
     /**
@@ -241,7 +253,7 @@ class TournamentController extends Controller
 
         return \Response::json([
             'success' => false,
-            'message' => 'Что-то пошло не так.',
+            'message' => 'Ошибка при добавлении к турниру.',
         ], 400);
     }
 
