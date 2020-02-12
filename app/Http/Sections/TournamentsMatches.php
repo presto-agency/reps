@@ -7,6 +7,7 @@ use AdminDisplay;
 use AdminDisplayFilter;
 use AdminForm;
 use AdminFormElement;
+use App\Models\TourneyMatch;
 use checkFile;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Section;
@@ -43,23 +44,28 @@ class TournamentsMatches extends Section
         $columns = [
             AdminColumn::text('id', '#')->setWidth('100px')
                 ->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::text('tourney.name', '<small>Турнир</small>')
-                ->setWidth('300px'),
-            AdminColumn::text('player1.description', '<small>Игрок 1<br>GameNick/Name</small>', 'player1.user.name')
-                ->setWidth('125px'),
-            AdminColumn::text('player2.description', '<small>Игрок 2<br>GameNick/Name</small>', 'player2.user.name')
-                ->setWidth('125px'),
-            AdminColumn::text('player1_score', '<small>Игрок 1<br>очки</small>')->setWidth('67px')
+            AdminColumn::text('tourney.name', 'Турнир'),
+            AdminColumn::text('player1.description', 'Игрок 1<br><br>GameNick/Name', 'player1.user.name')
+                ->setWidth('150px'),
+            AdminColumn::text('player2.description', 'Игрок 2<br><br>GameNick/Name', 'player2.user.name')
+                ->setWidth('150px'),
+            AdminColumn::custom('Игрок 1<br>победитель', function ($model) {
+                return $model->player1_score == 2 ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
+            })->setWidth('10px')->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::custom('Игрок 2<br>победитель', function ($model) {
+                return $model->player2_score == 2 ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
+            })->setWidth('10px')->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::custom('Ветка', function ($model) {
+                if ( ! empty($model->branch)) {
+                    return TourneyMatch::$branches[$model->branch];
+                }
+                return null;
+            })->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
+            AdminColumn::text('match_number', '№ матча')->setWidth('65px')
                 ->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::text('player2_score', '<small>Игрок 2<br>очки</small>')->setWidth('67px')
+            AdminColumn::text('round_number', '№ раунда')->setWidth('70px')
                 ->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::text('winner_score', '<small>Чемпион<br>очки</small>')->setWidth('80px')
-                ->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::text('match_number', '<small>№<br>матча</small>')->setWidth('50px')
-                ->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::text('round_number', '<small>№<br>раунда</small>')->setWidth('60px')
-                ->setHtmlAttribute('class', 'text-center'),
-            AdminColumn::boolean('played')->setLabel('<small>Сыграно</small>'),
+            AdminColumn::boolean('played')->setLabel('Сыграно'),
 
         ];
 

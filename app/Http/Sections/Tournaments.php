@@ -71,15 +71,19 @@ class Tournaments extends Section
                 return TourneyList::$map_types[$model->map_select_type];
             })->setWidth('150px')->setHtmlAttribute('class', 'text-center'),
             AdminColumn::custom('Tourney type', function ($model) {
-                return TourneyList::$tourneyType[$model->type];
+                if ( ! empty($model->type)) {
+                    return TourneyList::$tourneyType[$model->type];
+                } else {
+                    return null;
+                }
             })->setWidth('100px')->setHtmlAttribute('class', 'text-center')
                 ->setFilterCallback(function ($column, $query, $search) {
                     if ($search) {
                         if ($search == TourneyList::TYPE_SINGLE) {
-                            $query->where('type', 1);
+                            $query->where('type', TourneyList::TYPE_SINGLE);
                         }
                         if ($search == TourneyList::TYPE_DOUBLE) {
-                            $query->where('type', 2);
+                            $query->where('type', TourneyList::TYPE_DOUBLE);
                         }
                     }
                 }),
@@ -227,7 +231,7 @@ class Tournaments extends Section
                                 'in:1,2,3',
                             ]),
                         AdminFormElement::select('type', 'Tourney type')
-                            ->setReadonly(function ($model){
+                            ->setReadonly(function ($model) {
                                 return isset($model::$status2[$model->status]);
                             })
                             ->setOptions(TourneyList::$tourneyType)
@@ -247,7 +251,7 @@ class Tournaments extends Section
                                 'date_format:"Y-m-d H:i"',
                             ])
                             ->setPickerFormat('Y-m-d H:i')
-                            ->setReadonly(function ($model){
+                            ->setReadonly(function ($model) {
                                 return isset($model::$status2[$model->status]);
                             })
                         , AdminFormElement::datetime('checkin_time', 'Checkin time')
@@ -258,7 +262,7 @@ class Tournaments extends Section
                                 'date_format:"Y-m-d H:i"',
                             ])
                             ->setPickerFormat('Y-m-d H:i')
-                            ->setReadonly(function ($model){
+                            ->setReadonly(function ($model) {
                                 return isset($model::$status2[$model->status]);
                             })
                         ,
@@ -418,9 +422,10 @@ class Tournaments extends Section
                         AdminFormElement::select('type', 'Tourney type')
                             ->setOptions(TourneyList::$tourneyType)
                             ->setValidationRules([
-                                'nullable',
+                                'required',
                                 'in:1,2',
                             ]),
+
                     ];
                 }, 4)
                 ->addColumn(function () {
@@ -547,7 +552,6 @@ class Tournaments extends Section
      */
     public function onDelete($id)
     {
-
     }
 
     /**

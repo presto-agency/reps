@@ -25,9 +25,10 @@ class MatchGeneratorRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'    => 'required|exists:tourney_lists,id',
-            'type'  => 'required|in:1,2',
-            'round' => 'required|numeric|min:1',
+            'id'         => 'required|exists:tourney_lists,id',
+            'type'       => 'required|in:1,2',
+            'round'      => 'required|numeric|min:1',
+            'allPlayers' => 'nullable|numeric|min:0',
         ];
     }
 
