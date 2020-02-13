@@ -70,7 +70,23 @@ class Tournaments extends Section
             AdminColumn::custom('Map select type', function ($model) {
                 return TourneyList::$map_types[$model->map_select_type];
             })->setWidth('150px')->setHtmlAttribute('class', 'text-center'),
-
+            AdminColumn::custom('Tourney type', function ($model) {
+                if ( ! empty($model->type)) {
+                    return TourneyList::$tourneyType[$model->type];
+                } else {
+                    return null;
+                }
+            })->setWidth('100px')->setHtmlAttribute('class', 'text-center')
+                ->setFilterCallback(function ($column, $query, $search) {
+                    if ($search) {
+                        if ($search == TourneyList::TYPE_SINGLE) {
+                            $query->where('type', TourneyList::TYPE_SINGLE);
+                        }
+                        if ($search == TourneyList::TYPE_DOUBLE) {
+                            $query->where('type', TourneyList::TYPE_DOUBLE);
+                        }
+                    }
+                }),
             AdminColumnEditable::checkbox('visible')->setLabel('Visible')
                 ->setHtmlAttribute('class', 'text-center')->setWidth('75px')
                 ->setFilterCallback(function ($column, $query, $search) {
@@ -147,6 +163,12 @@ class Tournaments extends Section
                 ->setHtmlAttributes(['style' => 'width: 100%']),
             AdminColumnFilter::select()
                 ->setColumnName('visible')
+                ->setOptions(TourneyList::$tourneyTypeSelect)
+                ->setOperator(FilterInterface::EQUAL)
+                ->setPlaceholder('All')
+                ->setHtmlAttributes(['style' => 'width: 100%']),
+            AdminColumnFilter::select()
+                ->setColumnName('visible')
                 ->setOptions(TourneyList::$yesOrNo)
                 ->setOperator(FilterInterface::EQUAL)
                 ->setPlaceholder('All')
@@ -208,6 +230,15 @@ class Tournaments extends Section
                             ->setValidationRules([
                                 'in:1,2,3',
                             ]),
+                        AdminFormElement::select('type', 'Tourney type')
+                            ->setReadonly(function ($model) {
+                                return isset($model::$status2[$model->status]);
+                            })
+                            ->setOptions(TourneyList::$tourneyType)
+                            ->setValidationRules([
+                                'nullable',
+                                'in:1,2',
+                            ]),
                     ];
                 }, 4)
                 ->addColumn(function () {
@@ -220,6 +251,9 @@ class Tournaments extends Section
                                 'date_format:"Y-m-d H:i"',
                             ])
                             ->setPickerFormat('Y-m-d H:i')
+                            ->setReadonly(function ($model) {
+                                return isset($model::$status2[$model->status]);
+                            })
                         , AdminFormElement::datetime('checkin_time', 'Checkin time')
                             ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d H:i'))
                             ->setValidationRules([
@@ -228,6 +262,9 @@ class Tournaments extends Section
                                 'date_format:"Y-m-d H:i"',
                             ])
                             ->setPickerFormat('Y-m-d H:i')
+                            ->setReadonly(function ($model) {
+                                return isset($model::$status2[$model->status]);
+                            })
                         ,
                         AdminFormElement::datetime('start_time', 'Start time')
                             ->setHtmlAttribute('placeholder', Carbon::now()->format('Y-m-d H:i'))
@@ -382,6 +419,13 @@ class Tournaments extends Section
                                 'required',
                                 'in:1,2,3',
                             ]),
+                        AdminFormElement::select('type', 'Tourney type')
+                            ->setOptions(TourneyList::$tourneyType)
+                            ->setValidationRules([
+                                'required',
+                                'in:1,2',
+                            ]),
+
                     ];
                 }, 4)
                 ->addColumn(function () {
@@ -417,7 +461,7 @@ class Tournaments extends Section
                 ->addColumn(function () {
                     return [
                         AdminFormElement::select('user_id', 'Admin')
-                            ->setOptions((new User())->where('role_id','=', 1)->pluck('name', 'id')->toArray())
+                            ->setOptions((new User())->where('role_id', '=', 1)->pluck('name', 'id')->toArray())
                             ->setValidationRules([
                                 'nullable',
                                 'exists:users,id',
@@ -504,11 +548,10 @@ class Tournaments extends Section
     }
 
     /**
-     * @return void
+     * @param $id
      */
     public function onDelete($id)
     {
-        // remove if unused
     }
 
     /**

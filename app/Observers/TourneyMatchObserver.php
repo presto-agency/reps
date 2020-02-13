@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Models\TourneyList;
 use App\Models\TourneyMatch;
 
 class TourneyMatchObserver
@@ -23,7 +24,10 @@ class TourneyMatchObserver
 
     public function updating(TourneyMatch $tourneyMatch)
     {
-        $this->checkWinner($tourneyMatch, 2);
+        if ((boolean) $tourneyMatch->getAttributeValue('played')) {
+            $this->checkWinner($tourneyMatch, 2);
+        }
+        unset($tourneyMatch['winner']);
     }
 
     /**
@@ -99,31 +103,73 @@ class TourneyMatchObserver
         }
         $player1scoreNew = $tourneyMatch->getAttribute('player1_score');
         $player2scoreNew = $tourneyMatch->getAttribute('player2_score');
+
         /**
-         * Simple enumeration of options
+         * Simple enumeration of options have 6 variation for accrual victory & defeat points
          */
-        if ($player1scoreOld === 0 && $player2scoreOld === 0 && $player1scoreNew === 0 && $player2scoreNew === 2) {
-            $tourneyMatch->player2()->increment('victory_points');
-        } elseif ($player1scoreOld === 0 && $player2scoreOld === 2 && $player1scoreNew === 0 && $player2scoreNew === 2) {
-            null;
-        } elseif ($player1scoreOld === 0 && $player2scoreOld === 0 && $player1scoreNew === 2 && $player2scoreNew === 0) {
-            $tourneyMatch->player1()->increment('victory_points');
-        } elseif ($player1scoreOld === 2 && $player2scoreOld === 0 && $player1scoreNew === 2 && $player2scoreNew === 0) {
-            null;
-        } elseif ($player1scoreOld === 2 && $player2scoreOld === 0 && $player1scoreNew === 0 && $player2scoreNew === 2) {
-            $tourneyMatch->player2()->increment('victory_points');
-            if (($tourneyMatch->player1()->value('victory_points') - 1) >= 0) {
-                $tourneyMatch->player1()->decrement('victory_points');
-            }
-        } elseif ($player1scoreOld === 0 && $player2scoreOld === 2 && $player1scoreNew === 2 && $player2scoreNew === 0) {
-            $tourneyMatch->player1()->increment('victory_points');
-            if (($tourneyMatch->player2()->value('victory_points') - 1) >= 0) {
-                $tourneyMatch->player2()->decrement('victory_points');
+
+        $this->simpleEnumeration($tourneyMatch, $player1scoreOld, $player2scoreOld, $player1scoreNew, $player2scoreNew);
+
+
+        $tourneyMatch->setAttribute('winner_score', $score);
+    }
+
+    /**
+     *  Simple enumeration of options have 6 variation for accrual victory & defeat points
+     *
+     * @param  \App\Models\TourneyMatch  $tourneyMatch
+     * @param  int  $player1scoreOld
+     * @param  int  $player2scoreOld
+     * @param  int  $player1scoreNew
+     * @param  int  $player2scoreNew
+     */
+    private function simpleEnumeration(TourneyMatch $tourneyMatch, int $player1scoreOld, int $player2scoreOld, int $player1scoreNew, int $player2scoreNew)
+    {
+        if ( ! empty($tourneyMatch->getAttributeValue('player1_id')) && ! empty($tourneyMatch->getAttributeValue('player2_id'))) {
+            if ($player1scoreOld === 0 && $player2scoreOld === 0 && $player1scoreNew === 0 && $player2scoreNew === 2) {
+                if ($tourneyMatch->tourney->type == TourneyList::TYPE_DOUBLE) {
+                    $tourneyMatch->player1()->increment('defeat');
+                }
+                $tourneyMatch->player2()->increment('victory_points');
+            } elseif ($player1scoreOld === 0 && $player2scoreOld === 2 && $player1scoreNew === 0 && $player2scoreNew === 2) {
+                null;
+            } elseif ($player1scoreOld === 0 && $player2scoreOld === 0 && $player1scoreNew === 2 && $player2scoreNew === 0) {
+                if ($tourneyMatch->tourney->type == TourneyList::TYPE_DOUBLE) {
+                    $tourneyMatch->player2()->increment('defeat');
+                }
+                $tourneyMatch->player1()->increment('victory_points');
+            } elseif ($player1scoreOld === 2 && $player2scoreOld === 0 && $player1scoreNew === 2 && $player2scoreNew === 0) {
+                null;
+            } elseif ($player1scoreOld === 2 && $player2scoreOld === 0 && $player1scoreNew === 0 && $player2scoreNew === 2) {
+                /**
+                 * 5
+                 */
+                if ($tourneyMatch->tourney->type == TourneyList::TYPE_DOUBLE) {
+                    $tourneyMatch->player1()->increment('defeat');
+                    if (($tourneyMatch->player2()->value('defeat') - 1) >= 0) {
+                        $tourneyMatch->player2()->decrement('defeat');
+                    }
+                }
+                $tourneyMatch->player2()->increment('victory_points');
+                if (($tourneyMatch->player1()->value('victory_points') - 1) >= 0) {
+                    $tourneyMatch->player1()->decrement('victory_points');
+                }
+            } elseif ($player1scoreOld === 0 && $player2scoreOld === 2 && $player1scoreNew === 2 && $player2scoreNew === 0) {
+                /**
+                 * 6
+                 */
+                if ($tourneyMatch->tourney->type == TourneyList::TYPE_DOUBLE) {
+                    $tourneyMatch->player2()->increment('defeat');
+                    if (($tourneyMatch->player1()->value('defeat') - 1) >= 0) {
+                        $tourneyMatch->player1()->decrement('defeat');
+                    }
+                }
+                $tourneyMatch->player1()->increment('victory_points');
+                if (($tourneyMatch->player2()->value('victory_points') - 1) >= 0) {
+                    $tourneyMatch->player2()->decrement('victory_points');
+                }
             }
         }
-        $tourneyMatch->setAttribute('winner_score', $score);
-
-        unset($tourneyMatch['winner']);
     }
 
 }

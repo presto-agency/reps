@@ -649,10 +649,12 @@
     .detailed-forum {
         .detailed-forum__title {
             padding: 1.464vw;
-
+            .small_wrap{
+                width:20%;
+            }
             .title__wrap {
                 .title__icon {
-                    width: 1.464vw;
+                    width:3.464vw;
                     height: 1.464vw;
                 }
                 .title__text {
@@ -664,6 +666,7 @@
                     height: 2.050vw;
                 }
                 .title__nickname {
+                    max-width: 80px;
                     font-size: 1.025vw;
                     margin-left: 0.952vw;
                 }

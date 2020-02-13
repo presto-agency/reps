@@ -18,6 +18,7 @@ class TourneyPlayer extends Model
             'victory_points',
             'tourney_id',
             'user_id',
+            'defeat',
         ];
     protected $casts
         = [
@@ -26,6 +27,7 @@ class TourneyPlayer extends Model
             'description'    => 'string',
             'place_result'   => 'int',
             'victory_points' => 'int',
+            'defeat'         => 'int',
             'tourney_id'     => 'int',
             'user_id'        => 'int',
         ];

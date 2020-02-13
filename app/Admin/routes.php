@@ -31,6 +31,8 @@ Route::get('translations/{groupKey?}', '\Barryvdh\TranslationManager\Controller@
 
 Route::get('tourney_lists/{id}/match_generator', '\App\Http\Controllers\Admin\Tournament\MatchGeneratorController@show')->name('admin.tourney.show');
 Route::post('tourney_lists/match_generator', '\App\Http\Controllers\Admin\Tournament\MatchGeneratorController@matchGenerator')->name('admin.tourney.match.generator');
+Route::post('tourney_lists/match_generator_winners', '\App\Http\Controllers\Admin\Tournament\MatchGeneratorController@matchGeneratorWinners')->name('admin.tourney.match.generator.winners');
+Route::post('tourney_lists/match_generator_losers', '\App\Http\Controllers\Admin\Tournament\MatchGeneratorController@matchGeneratorLosers')->name('admin.tourney.match.generator.losers');
 
 /**
  * Logs

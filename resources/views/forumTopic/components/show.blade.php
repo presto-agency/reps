@@ -1,7 +1,7 @@
 @isset($topic)
     <div class="detailed-forum border_shadow">
         <div class="detailed-forum__title">
-            <div class="title__wrap">
+            <div class="title__wrap small_wrap">
                 <svg class="title__icon" xmlns="http://www.w3.org/2000/svg"
                      x="0px" y="0px"
                      viewBox="0 0 512 512" xml:space="preserve">

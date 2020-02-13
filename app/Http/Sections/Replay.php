@@ -255,8 +255,7 @@ class Replay extends Section
                 ->setPlaceholder('Все')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
             $type = AdminColumnFilter::select()
-                ->setOptions((new ReplayType())->pluck('name', 'name')
-                    ->toArray())
+                ->setOptions((new ReplayType())->pluck('name', 'name')->toArray())
                 ->setOperator(FilterInterface::EQUAL)
                 ->setPlaceholder('Все')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
@@ -684,7 +683,7 @@ class Replay extends Section
                                 'max:5120',
                             ])
                             ->setUploadPath(function (UploadedFile $file) {
-//                                return 'storage'.PathHelper::checkUploadsFileAndPath('/files/replays');
+                                //                                return 'storage'.PathHelper::checkUploadsFileAndPath('/files/replays');
                                 return 'storage/files/replays';
                             }),
                     ];

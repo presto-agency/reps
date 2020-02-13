@@ -15,6 +15,20 @@ class TourneyList extends Model
     /**
      * var array
      */
+    const TYPE_SINGLE = 1;
+
+    const TYPE_DOUBLE = 2;
+
+    public static $tourneyTypeSelect
+        = [
+            self::TYPE_SINGLE => 'SINGLE',
+            self::TYPE_DOUBLE => 'DOUBLE',
+        ];
+    public static $tourneyType
+        = [
+            self::TYPE_SINGLE => 'Single-elimination tournament',
+            self::TYPE_DOUBLE => 'Double-elimination tournament',
+        ];
 
     const YES = 1;
 
@@ -30,7 +44,10 @@ class TourneyList extends Model
             4 => 'GENERATION', 5 => 'STARTED', 6 => 'FINISHED',
         ];
 
-
+    public static $status2
+        = [
+            5 => 'STARTED', 6 => 'FINISHED',
+        ];
     public static $map_types
         = [
             1 => 'NONE', 2 => 'FIRSTBYREMOVING', 3 => 'FIRSTBYROUND',
@@ -62,6 +79,7 @@ class TourneyList extends Model
             'all_file',
             'status',
             'map_select_type',
+            'type',
             'visible',
             'ranking',
             'reg_time',
@@ -89,6 +107,145 @@ class TourneyList extends Model
             'ranking'         => 'int',
 
         ];
+
+    /**
+     * @param $tourney
+     *
+     * @return array
+     */
+    public static function getGeneratorData($tourney): array
+    {
+        $rounds     = [];
+        $allPlayers = self::allPlayers($tourney->check_players_count);
+
+
+        if ($allPlayers > 0) {
+            if ($tourney->type == self::TYPE_SINGLE) {
+                $rounds = self::singleRoundsData($allPlayers, $tourney);
+            }
+            if ($tourney->type == self::TYPE_DOUBLE) {
+                $rounds = self::doubleRoundsData($allPlayers, $tourney);
+            }
+        }
+
+        return $rounds;
+    }
+
+    /**
+     * @param  int  $allPlayers
+     * @param $tourney
+     *
+     * @return array
+     */
+    public static function singleRoundsData(int $allPlayers, $tourney): array
+    {
+        $data['allMatches']       = $tourney->matches_count;
+        $data['allPlayers']       = $allPlayers;
+        $data['roundsCanCreate']  = TourneyMatch::roundsCanCreate($allPlayers);
+        $data['roundsNowCreate']  = TourneyMatch::roundsNowCreate($tourney->id);
+        $data['roundsLeftCreate'] = $data['roundsCanCreate'] - $data['roundsNowCreate'];
+        $data['rounds']           = self::singleRounds($data['roundsCanCreate'], $tourney->id);
+
+        return $data;
+    }
+
+    /**
+     * @param  int  $roundsCanCreate
+     * @param  int  $tourneyId
+     *
+     * @return array
+     */
+    public static function singleRounds(int $roundsCanCreate, int $tourneyId): array
+    {
+        $data = [];
+        for ($i = 1; $i <= $roundsCanCreate; $i++) {
+            $data[] = [
+                'roundNumber'        => $i,
+                'roundExist'         => TourneyMatch::roundExist($tourneyId, $i),
+                'roundPreviousExist' => TourneyMatch::roundPreviousExist($tourneyId, $i),
+            ];
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param  int  $allPlayers
+     * @param $tourney
+     *
+     * @return array
+     */
+    public static function doubleRoundsData(int $allPlayers, $tourney): array
+    {
+        $roundNumber = TourneyMatch::getMaxRoundNumber($tourney->id);
+
+
+        $data['allMatches']      = $tourney->matches_count;
+        $data['allPlayers']      = $allPlayers;
+        $data['defeat0Players']  = $tourney->check_defeat0_players_count;
+        $data['defeat1Players']  = $tourney->check_defeat1_players_count;
+        $data['defeat2Players']  = $tourney->check_defeat2_players_count;
+        $data['leftPlayers']     = $data['defeat0Players'] + $data['defeat1Players'];
+        $data['roundsNowCreate'] = $roundNumber;
+        $data['rounds']          = self::doubleRounds($data['roundsNowCreate'], $tourney->id);
+
+
+        return $data;
+    }
+
+    /**
+     * @param  int  $roundsNowCreate
+     * @param  int  $tourneyId
+     *
+     * @return array
+     */
+    public static function doubleRounds(int $roundsNowCreate, int $tourneyId): array
+    {
+        $data = [];
+        for ($i = 1; $i <= $roundsNowCreate; $i++) {
+            $data[] = [
+                'roundNumber'     => $i,
+                'roundNumberNext' => $i + 1,
+                'roundExist'      => TourneyMatch::roundExist($tourneyId, $i),
+                'roundExistNext'  => TourneyMatch::roundExist($tourneyId, $i + 1),
+            ];
+        }
+
+        return $data;
+    }
+
+
+    /**
+     * @param $playersCount
+     *
+     * @return int
+     */
+    public static function allPlayers($playersCount): int
+    {
+        return $playersCount + self::void($playersCount);
+    }
+
+    /**
+     * @param $playersCount
+     *
+     * @return int
+     */
+    public static function void($playersCount): int
+    {
+        return $playersCount & 1 ? 1 : 0;
+    }
+
+    /**
+     * @param  int  $id
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
+     */
+    public static function getStartedTourneyWithPlayers(int $id)
+    {
+        return self::with('checkPlayers')->withCount('checkPlayers')
+            ->where('status', array_search('STARTED', self::$status))
+            ->findOrFail($id);
+    }
 
 
 }
