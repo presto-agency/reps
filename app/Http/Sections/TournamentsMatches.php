@@ -59,6 +59,7 @@ class TournamentsMatches extends Section
                 if ( ! empty($model->branch)) {
                     return TourneyMatch::$branches[$model->branch];
                 }
+
                 return null;
             })->setWidth('100px')->setHtmlAttribute('class', 'text-center'),
             AdminColumn::text('match_number', '№ матча')->setWidth('65px')

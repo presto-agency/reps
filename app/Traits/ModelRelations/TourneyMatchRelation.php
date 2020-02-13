@@ -31,4 +31,21 @@ trait TourneyMatchRelation
         return $this->belongsTo(TourneyPlayer::class, 'player2_id', 'id');
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function checkPlayers1()
+    {
+        return $this->belongsTo(TourneyPlayer::class, 'player1_id', 'id')->whereBan(false)->whereCheck(true);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function checkPlayers2()
+    {
+        return $this->belongsTo(TourneyPlayer::class, 'player2_id', 'id')->whereBan(false)->whereCheck(true);
+    }
+
 }

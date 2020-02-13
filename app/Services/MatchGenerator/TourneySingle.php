@@ -14,12 +14,12 @@ class TourneySingle
     /**
      * @param  int  $tourneyId
      * @param  int  $round
-     * @param  int  $playerCount
      * @param $players
+     * @param  int  $playerCount
      *
      * @return array
      */
-    public static function roundOneMatches(int $tourneyId, int $round, int $playerCount, $players): array
+    public static function roundOneMatches(int $tourneyId, int $round, $players, int $playerCount): array
     {
         $matches = [];
 
@@ -35,7 +35,7 @@ class TourneySingle
                 'match_number' => $i + 1,
                 'round_number' => $round,
                 'played'       => false,
-                'round'        => 'Round '.$round.' (of '.TourneyList::allPlayers($playerCount).' )',
+                'round'        => 'Round '.$round.' (of '.TourneyList::allPlayers($playerCount).')',
                 'created_at'   => Carbon::now(),
             ];
         }
@@ -74,7 +74,7 @@ class TourneySingle
             $playerArr[] = ['id' => null];
         }
 
-        $setRound = 'Round '.$round.' (of '.TourneyList::allPlayers($playerCount).' )';
+        $setRound = 'Round '.$round.' (of '.TourneyList::allPlayers($playerCount).')';
 
         if (ceil(log($playerCountAll, 2.0)) == (double) $round) {
             $setRound = 'Super Final Round';
