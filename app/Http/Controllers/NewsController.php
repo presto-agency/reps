@@ -138,6 +138,7 @@ class NewsController extends Controller
             ->where('news', true)
             ->withCount('comments')
             ->orderByDesc('id')
+            ->limit(100)
             ->get();
     }
 
