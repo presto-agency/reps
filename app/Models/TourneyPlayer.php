@@ -27,6 +27,7 @@ class TourneyPlayer extends Model
             'description'    => 'string',
             'place_result'   => 'int',
             'victory_points' => 'int',
+            'defeat'         => 'int',
             'tourney_id'     => 'int',
             'user_id'        => 'int',
         ];

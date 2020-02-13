@@ -7,8 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MatchGeneratorRequest;
 use App\Models\TourneyList;
 use App\Models\TourneyMatch;
+use App\Services\MatchGenerator\TourneyDouble;
 use App\Services\MatchGenerator\TourneySingle;
-use Carbon\Carbon;
+use stdClass;
 
 
 class MatchGeneratorController extends Controller
@@ -21,28 +22,36 @@ class MatchGeneratorController extends Controller
      */
     public function show(int $id)
     {
-        $tourney = TourneyList::query()->withCount('matches', 'checkPlayers')->findOrFail($id);
+        $tourney = TourneyList::query()->withCount('matches', 'checkPlayers', 'checkDefeat0Players', 'checkDefeat1Players', 'checkDefeat2Players')->findOrFail($id);
         $data    = TourneyList::getGeneratorData($tourney);
-
         $content = view('admin.tourneyMatchGenerator.show', compact('tourney', 'data'));
 
         return AdminSection::view($content, 'Генератор матчей');
     }
 
 
+    /**
+     * @param  \App\Http\Requests\MatchGeneratorRequest  $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function matchGenerator(MatchGeneratorRequest $request)
     {
+        $round       = $request->get('round');
+        $type        = $request->get('type');
         $getTourney  = TourneyList::getStartedTourneyWithPlayers($request->get('id'));
         $playerCount = $getTourney->check_players_count;
         if ($playerCount < 1) {
             return back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
         }
-        $round = $request->get('round');
-        $type  = $request->get('type');
+        $players = $getTourney->checkPlayers->shuffle();
 
+        /**
+         * Single
+         */
         if ($type == TourneyList::TYPE_SINGLE) {
-            if ($round == 1) {
-                $matches = TourneySingle::roundOneMatches($getTourney->id, $round, $playerCount, $getTourney->checkPlayers->shuffle());
+            if ($round > 0 && $round < 2) {
+                $matches = TourneySingle::roundOneMatches($getTourney->id, $round, $players, $playerCount);
 
                 return TourneySingle::save($matches, $round);
             }
@@ -59,338 +68,91 @@ class MatchGeneratorController extends Controller
                 return TourneySingle::save($matches, $round);
             }
         }
-        //        if ($request->get('type') == TourneyList::TYPE_DOUBLE) {
-        //            return $this->double($tourney, $request->get('round'), $request->get('allPlayers'));
-        //
-        //        }
-    }
+        /**
+         * Double
+         */
+        if ($type == TourneyList::TYPE_DOUBLE) {
+            if ($round > 0 && $round < 2) {
+                $matches = TourneySingle::roundOneMatches($getTourney->id, $round, $players, $playerCount);
+
+                return TourneySingle::save($matches, $round);
+            } elseif ($round > 1) {
+                /**
+                 * Data players winners & lossers
+                 */
+                $playersWAW = TourneyMatch::getWinnersAmongWinners($getTourney->id, $round)->shuffle();
+                $playersLAW = TourneyMatch::getLosersAmongWinners($getTourney->id, $round)->shuffle();
+                $playersWAL = TourneyMatch::getWinnersAmongLosers($getTourney->id, $round)->shuffle();
+                /**
+                 * Data players finals
+                 */
+                $playersFR  = TourneyMatch::getFinalsRound($getTourney->id, $round);
+                $waf        = new stdClass();
+                $laf        = new stdClass();
+                $playersWAF = collect();
+                $playersLAF = collect();
+                if ($playersFR->checkPlayers1->defeat < 2) {
+                    $waf->player1_id = $playersFR->player1_id;
+                    $playersWAF[]    = $waf;
+                }
+                if ($playersFR->checkPlayers2->defeat < 2) {
+                    $laf->player2_id = $playersFR->player2_id;
+                    $playersLAF[]    = $laf;
+                }
 
 
-    //    private function double($tourney, $round, int $allPlayers = null)
-    //    {
-    //        if ($round == 1) {
-    //            return $this->round_1($tourney, $round);
-    //        } elseif ($round == 2) {
-    //            return $this->round_2($tourney->id, $round);
-    //        } else {
-    //            return $this->round_other($tourney->id, $round);
-    //        }
-    //    }
+                $playersWAFLAF = $playersWAF->merge($playersLAF);
 
-    //    private function round_2(int $id, $round)
-    //    {
-    //        $playersWAW = $this->allWinnersAmongWinners($id, $round);
-    //        $playersLAW = $this->allLosersAmongWinners($id, $round);
-    //
-    //        if ($playersWAW->isEmpty() && $playersLAW->isEmpty()) {
-    //            return back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
-    //        }
-    //        if ($playersWAW->isNotEmpty()) {
-    //            $matchNumber = $this->matchNumber($id);
-    //
-    //            $matchesWAW = $this->matchesDouble($id, $round, $matchNumber, $playersWAW, 1, 'for winners');
-    //
-    //            try {
-    //                \DB::table('tourney_matches')->insert($matchesWAW);
-    //            } catch (\Exception $e) {
-    //                \Log::error($e->getMessage());
-    //
-    //                return back()->withErrors(['single-match' => "Ошибка при создании матчей для раунда $round"]);
-    //            }
-    //        }
-    //        if ($playersLAW->isNotEmpty()) {
-    //            $matchNumber = $this->matchNumber($id);
-    //            $matchesLAW  = $this->matchesDouble($id, $round, $matchNumber, $playersLAW, 2, 'for losers');
-    //            try {
-    //                \DB::table('tourney_matches')->insert($matchesLAW);
-    //            } catch (\Exception $e) {
-    //                \Log::error($e->getMessage());
-    //
-    //                return back()->withErrors(['single-match' => "Ошибка при создании матчей для раунда $round"]);
-    //            }
-    //        }
-    //
-    //        return back()->with(['single-match-success' => "Матчи для раунда $round успешно созданы"]);
-    //    }
+                if ($playersWAW->isEmpty() && $playersLAW->isEmpty() && $playersWAL->isEmpty() && $playersWAFLAF->isEmpty()) {
+                    return back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
+                }
+                $playersLAWWAL      = $playersLAW->merge($playersWAL);
+                $playersWAWCount    = $playersWAW->count();
+                $playersLAWCount    = $playersLAW->count();
+                $playersWALCount    = $playersWAL->count();
+                $playersWAFLAFCount = $playersWAFLAF->count();
+                $playersLAWWALCount = $playersLAWCount + $playersWALCount;
+                $matchNumber        = TourneyMatch::getMaxMatchNumber($getTourney->id, $round);
 
-    //    private function round_other(int $id, $round)
-    //    {
-    //        $playersWAW    = $this->allWinnersAmongWinners($id, $round);
-    //        $playersLAW    = $this->allLosersAmongWinners($id, $round);
-    //        $playersWAL    = $this->allWinnersAmongLosers($id, $round);
-    //        $playersLAWWAL = $playersLAW->merge($playersWAL);
-    //
-    //        if ($playersWAW->isEmpty() && $playersLAWWAL->isEmpty()) {
-    //            return back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
-    //        }
-    //        if ($playersWAW->count() > 1) {
-    //            $matchNumber = $this->matchNumber($id);
-    //
-    //            $matchesWAW = $this->matchesDouble($id, $round, $matchNumber, $playersWAW, 1, 'for winners');
-    //
-    //            try {
-    //                \DB::table('tourney_matches')->insert($matchesWAW);
-    //            } catch (\Exception $e) {
-    //                \Log::error($e->getMessage());
-    //
-    //                return back()->withErrors(['single-match' => "Ошибка при создании матчей победителей для раунда $round"]);
-    //            }
-    //        }
-    //
-    //        if ($playersLAWWAL->count() > 1) {
-    //            $matchNumber  = $this->matchNumber($id);
-    //            $matchesLAWWA = $this->matchesDouble($id, $round, $matchNumber, $playersLAWWAL, 2, 'for losers');
-    //            try {
-    //                \DB::table('tourney_matches')->insert($matchesLAWWA);
-    //            } catch (\Exception $e) {
-    //                \Log::error($e->getMessage());
-    //
-    //                return back()->withErrors(['single-match' => "Ошибка при создании матчей проигравших для раунда $round"]);
-    //            }
-    //        }
-    //        if ($playersWAW->count() == 1 && $playersLAWWAL->count() == 1) {
-    //            $matchNumber      = $this->matchNumber($id);
-    //            $playersWAWLAWWAL = $playersWAW->merge($playersLAWWAL);
-    //
-    //            $matchesWAWLAWWAL = $this->matchesDouble($id, $round, $matchNumber, $playersWAWLAWWAL, 2, 'Super Final Round');
-    //            try {
-    //                \DB::table('tourney_matches')->insert($matchesWAWLAWWAL);
-    //            } catch (\Exception $e) {
-    //                \Log::error($e->getMessage());
-    //
-    //                return back()->withErrors(['single-match' => "Ошибка при создании финального раунда $round"]);
-    //            }
-    //        }
-    //
-    //        return back()->with(['single-match-success' => "Матчи для раунда $round успешно созданы"]);
-    //    }
+                if ($playersWAWCount + $playersLAWCount + $playersWALCount + $playersWAFLAFCount < 2) {
+                    return back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
+                }
+                /**
+                 * For super final round
+                 */
+                if ($playersWAWCount == 1 && $playersLAWWALCount == 1) {
+                    $matches = TourneyDouble::roundTwoMatches($getTourney->id, $round, $matchNumber,
+                        $playersWAW->merge($playersLAWWAL),
+                        $playersWAWCount + $playersLAWWALCount,
+                        array_search('finals', TourneyMatch::$branches),
+                        'Super Final Round');
+
+                    return TourneySingle::save($matches, $round);
+                } elseif ($playersWAFLAFCount == 2) {
+                    $matches = TourneyDouble::roundTwoMatches($getTourney->id, $round, $matchNumber,
+                        $playersWAFLAF,
+                        $playersWAFLAFCount,
+                        array_search('finals', TourneyMatch::$branches),
+                        'Super Final Round 2');
+
+                    return TourneySingle::save($matches, $round);
+                }
+                /**
+                 * For other round
+                 */
+                $matches1 = TourneyDouble::roundTwoMatches($getTourney->id, $round, $matchNumber, $playersWAW, $playersWAWCount, array_search('winners', TourneyMatch::$branches), 'for winners');
+                if ( ! empty($matches1)) {
+                    $matchNumber = end($matches1)['match_number'];
+                }
+                $matches2 = TourneyDouble::roundTwoMatches($getTourney->id, $round, $matchNumber, $playersLAWWAL, $playersLAWWALCount, array_search('losers', TourneyMatch::$branches), 'for losers');
+                $matches  = array_merge($matches1, $matches2);
 
 
-    //    private function matchesDouble($id, $round, $matchNumber, $players, $branch = 1, $for = '')
-    //    {
-    //        $matches     = [];
-    //        $players     = $players->shuffle();
-    //        $playerCount = $players->count();
-    //        $playerArr = [];
-    //        foreach ($players as $item) {
-    //            if (isset($item['player1_id'])) {
-    //                $playerArr[] = [
-    //                    'id' => $item->player1_id,
-    //                ];
-    //            }
-    //            if (isset($item['player2_id'])) {
-    //                $playerArr[] = [
-    //                    'id' => $item->player2_id,
-    //                ];
-    //            }
-    //        }
-    //
-    //        if (($playerCount & 1)) {
-    //            $playerArr[] = ['id' => null];
-    //        }
-    //
-    //
-    //        $void        = ($playerCount & 1) == true ? 1 : 0;
-    //
-    //        if ($for != 'Super Final Round') {
-    //           $ofRound = $playerCount + $void;
-    //
-    //            $setRound = "Round $for $round (of $ofRound)";
-    //        } else {
-    //            $setRound = $for;
-    //        }
-    //
-    //
-    //        for ($i = 0; $i < $playerCount / 2; $i++) {
-    //            $matchNumber++;
-    //            $matches[] = [
-    //                'tourney_id'   => $id,
-    //                'player1_id'   => $playerArr[$i]['id'],
-    //                'player2_id'   => $playerArr[$playerCount / 2 + $i + $void]['id'],
-    //                'match_number' => $matchNumber,
-    //                'round_number' => (int) $round,
-    //                'branch'       => $branch,
-    //                'played'       => false,
-    //                'round'        => $setRound,
-    //                'created_at'   => Carbon::now(),
-    //            ];
-    //        }
-    //
-    //        return $matches;
-    //    }
-
-    /**
-     * @param $id
-     * @param $round
-     * @param $players
-     * @param  null  $key
-     * @param  string  $for
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    private function matches($id, $round, $players)
-    {
-        $matchNumber = TourneyMatch::query()
-            ->where('tourney_id', $id)
-            ->where('round_number', $round - 1)->max('match_number');
-
-        $players = $players->shuffle();
-
-        foreach ($players as $item) {
-            if (isset($item['player1_id'])) {
-                $playerArr[] = [
-                    'id' => $item->player1_id,
-                ];
-            }
-            if (isset($item['player2_id'])) {
-                $playerArr[] = [
-                    'id' => $item->player2_id,
-                ];
+                return TourneySingle::save($matches, $round);
             }
         }
-        $checkPlayersCountMax = TourneyList::query()->select(['id'])->withCount('checkPlayers')
-            ->where('id', $id)->value('check_players_count');
-        $void                 = 0;
-        $playerCount          = $players->count();
-        if (($playerCount & 1)) {
-            $playerArr[] = ['id' => null];
-            $void        = 1;
-        }
 
-        $ofRound  = $playerCount + $void;
-        $setRound = "Round $round (of $ofRound)";
-
-        if (ceil(log($checkPlayersCountMax, 2.0)) == (double) $round) {
-            $setRound = "Super Final Round";
-        }
-
-
-        $matches = [];
-        for ($i = 0; $i < $playerCount / 2; $i++) {
-            $matchNumber++;
-            $matches[] = [
-                'tourney_id'   => $id,
-                'player1_id'   => $playerArr[$i]['id'],
-                'player2_id'   => $playerArr[$playerCount / 2 + $i + $void]['id'],
-                'match_number' => $matchNumber,
-                'round_number' => $round,
-                'played'       => false,
-                'round'        => $setRound,
-                'created_at'   => Carbon::now(),
-            ];
-        }
-
-        return $this->save($matches, $round);
-    }
-
-    /**
-     * @param $id
-     * @param $round
-     *
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
-     */
-    private function allWinnersAmongWinners($id, $round)
-    {
-        $player1 = TourneyMatch::with('player1:id,defeat')
-            ->whereNotNull('player1_id')
-            ->whereHas('player1', function ($q) {
-                $q->where('defeat', 0);
-            })->where('tourney_id', $id)
-            ->where('round_number', $round - 1)
-            ->where('branch', array_search('winners', TourneyMatch::$branches))
-            ->where('played', true)
-            ->where('player1_score', '>', \DB::raw('player2_score'))
-            ->get(['id', 'tourney_id', 'player1_id', 'player1_score', 'player2_score', 'round_number', 'played', 'branch']);
-        $player2 = TourneyMatch::with('player2:id,defeat')
-            ->whereNotNull('player2_id')
-            ->whereHas('player2', function ($q) {
-                $q->where('defeat', 0);
-            })->where('tourney_id', $id)
-            ->where('round_number', $round - 1)
-            ->where('branch', array_search('winners', TourneyMatch::$branches))
-            ->where('played', true)
-            ->where('player2_score', '>', \DB::raw('player1_score'))
-            ->get(['id', 'tourney_id', 'player2_id', 'player1_score', 'player2_score', 'round_number', 'played', 'branch']);
-
-        return $player1->merge($player2);
-    }
-
-    /**
-     * @param $id
-     * @param $round
-     *
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
-     */
-    private function allLosersAmongWinners($id, $round)
-    {
-        $player1 = TourneyMatch::with('player1:id,defeat')
-            ->whereNotNull('player1_id')
-            ->whereHas('player1', function ($q) {
-                $q->where('defeat', 1);
-            })->where('tourney_id', $id)
-            ->where('round_number', $round - 1)
-            ->where('branch', array_search('winners', TourneyMatch::$branches))
-            ->where('played', true)
-            ->where('player1_score', '<', \DB::raw('player2_score'))
-            ->get(['id', 'tourney_id', 'player1_id', 'player1_score', 'player2_score', 'round_number', 'played', 'branch']);
-        $player2 = TourneyMatch::with('player2:id,defeat')
-            ->whereNotNull('player2_id')
-            ->whereHas('player2', function ($q) {
-                $q->where('defeat', 1);
-            })->where('tourney_id', $id)
-            ->where('round_number', $round - 1)
-            ->where('branch', array_search('winners', TourneyMatch::$branches))
-            ->where('played', true)
-            ->where('player2_score', '<', \DB::raw('player1_score'))
-            ->get(['id', 'tourney_id', 'player2_id', 'player1_score', 'player2_score', 'round_number', 'played', 'branch']);
-
-        return $player1->merge($player2);
-    }
-
-    /**
-     * @param $id
-     * @param $round
-     *
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
-     */
-    private function allWinnersAmongLosers($id, $round)
-    {
-        $player1 = TourneyMatch::with('player1:id,defeat')
-            ->whereNotNull('player1_id')
-            ->whereHas('player1', function ($q) {
-                $q->where('defeat', 1);
-            })->where('tourney_id', $id)
-            ->where('round_number', $round - 1)
-            ->where('branch', array_search('losers', TourneyMatch::$branches))
-            ->where('played', true)
-            ->where('player1_score', '>', \DB::raw('player2_score'))
-            ->get(['id', 'tourney_id', 'player1_id', 'player1_score', 'player2_score', 'round_number', 'played', 'branch']);
-        $player2 = TourneyMatch::with('player2:id,defeat')
-            ->whereNotNull('player2_id')
-            ->whereHas('player2', function ($q) {
-                $q->where('defeat', 1);
-            })->where('tourney_id', $id)
-            ->where('round_number', $round - 1)
-            ->where('branch', array_search('losers', TourneyMatch::$branches))
-            ->where('played', true)
-            ->where('player2_score', '>', \DB::raw('player1_score'))
-            ->get(['id', 'tourney_id', 'player2_id', 'player1_score', 'player2_score', 'round_number', 'played', 'branch']);
-
-        return $player1->merge($player2);
-    }
-
-    /**
-     * @param $id
-     *
-     * @return mixed
-     */
-    private function matchNumber($id)
-    {
-        $round_number = TourneyMatch::query()->where('tourney_id', $id)->max('round_number');
-
-        return TourneyMatch::query()
-            ->where('tourney_id', $id)
-            ->where('round_number', $round_number)->max('match_number');
+        return back();
     }
 
 }

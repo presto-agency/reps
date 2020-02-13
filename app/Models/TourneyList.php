@@ -179,15 +179,37 @@ class TourneyList extends Model
     {
         $roundNumber = TourneyMatch::getMaxRoundNumber($tourney->id);
 
+
         $data['allMatches']      = $tourney->matches_count;
         $data['allPlayers']      = $allPlayers;
-        $data['roundsNowCreate'] = TourneyMatch::roundsNowCreate($tourney->id);
-        $data['rounds'][]        = [
-            'roundNumber'     => $roundNumber,
-            'roundNumberNext' => $roundNumber + 1,
-            'roundExist'      => TourneyMatch::roundExist($tourney->id, $roundNumber),
-            'roundExistNext'  => TourneyMatch::roundExist($tourney->id, $roundNumber + 1),
-        ];
+        $data['defeat0Players']  = $tourney->check_defeat0_players_count;
+        $data['defeat1Players']  = $tourney->check_defeat1_players_count;
+        $data['defeat2Players']  = $tourney->check_defeat2_players_count;
+        $data['leftPlayers']     = $data['defeat0Players'] + $data['defeat1Players'];
+        $data['roundsNowCreate'] = $roundNumber;
+        $data['rounds']          = self::doubleRounds($data['roundsNowCreate'], $tourney->id);
+
+
+        return $data;
+    }
+
+    /**
+     * @param  int  $roundsNowCreate
+     * @param  int  $tourneyId
+     *
+     * @return array
+     */
+    public static function doubleRounds(int $roundsNowCreate, int $tourneyId): array
+    {
+        $data = [];
+        for ($i = 1; $i <= $roundsNowCreate; $i++) {
+            $data[] = [
+                'roundNumber'     => $i,
+                'roundNumberNext' => $i + 1,
+                'roundExist'      => TourneyMatch::roundExist($tourneyId, $i),
+                'roundExistNext'  => TourneyMatch::roundExist($tourneyId, $i + 1),
+            ];
+        }
 
         return $data;
     }
@@ -198,7 +220,7 @@ class TourneyList extends Model
      *
      * @return int
      */
-    public static function allPlayers($playersCount)
+    public static function allPlayers($playersCount): int
     {
         return $playersCount + self::void($playersCount);
     }
@@ -208,7 +230,7 @@ class TourneyList extends Model
      *
      * @return int
      */
-    public static function void($playersCount)
+    public static function void($playersCount): int
     {
         return $playersCount & 1 ? 1 : 0;
     }
@@ -224,5 +246,6 @@ class TourneyList extends Model
             ->where('status', array_search('STARTED', self::$status))
             ->findOrFail($id);
     }
+
 
 }
