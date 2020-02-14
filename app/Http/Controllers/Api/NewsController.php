@@ -87,7 +87,7 @@ class NewsController extends Controller
     private function getNews()
     {
         return ForumTopic::query()->latest()
-            ->where('preview', false)
+            ->where('hide', false)
             ->where('news', true)
             ->withCount('comments')
             ->limit(10)

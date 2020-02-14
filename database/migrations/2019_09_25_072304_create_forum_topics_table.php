@@ -49,10 +49,6 @@ class CreateForumTopicsTable extends Migration
      */
     public function down()
     {
-        /*Schema::table('forum_topics', function (Blueprint $table) {
-            $table->dropForeign(['forum_section_id', 'user_id']);
-        });*/
-
         Schema::dropIfExists('forum_topics');
     }
 

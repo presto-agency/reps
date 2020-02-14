@@ -31,7 +31,7 @@ trait TournamentRelationTrait
     /**
      * @return mixed
      */
-    public function players1()
+    public function playersNew()
     {
         return $this->hasMany(TourneyPlayer::class, 'tourney_id', 'id');
     }

@@ -68,12 +68,12 @@ class TournamentController extends Controller
      *
      * @return array
      */
-    private function createDataArray($tournament)
+    private function createDataArray($tournament): array
     {
         $data = [];
-        if (isset($tournament->matches) && $tournament->matches->isNotEmpty() &&  $tournament->maps_pool_count > 0) {
+
+        if (isset($tournament->matches) && $tournament->matches->isNotEmpty() && $tournament->maps_pool_count > 0) {
             foreach ($tournament->matches as $item) {
-                $data['matchType'] = $item->match_type;
                 $data['round'][$item->round_number]['title'] = $item->round;
                 $data['matches'][$item->round_number][]      = $item;
                 $mapsCount                                   = $tournament->maps_pool_count;
@@ -99,10 +99,10 @@ class TournamentController extends Controller
         return TourneyList::with([
             'mapsPool:id,tourney_id,map_id',
             'mapsPool.map:id,name,url',
-            'player'  => function ($query) {
-                $query->select(['id', 'tourney_id','user_id'])->where('user_id', auth()->id());
+            'player'     => function ($query) {
+                $query->select(['id', 'tourney_id', 'user_id'])->where('user_id', auth()->id());
             },
-            'players' => function ($query) {
+            'players'    => function ($query) {
                 $query->with([
                     'user' => function ($query) {
                         $query->select(['id', 'name', 'email', 'race_id', 'country_id']);
@@ -114,7 +114,7 @@ class TournamentController extends Controller
                     ->orderBy('place_result')
                     ->select(['id', 'tourney_id', 'user_id', 'place_result', 'description', 'check']);
             },
-            'players1' => function ($query) {
+            'playersNew' => function ($query) {
                 $query->with([
                     'user' => function ($query) {
                         $query->select(['id', 'name', 'email', 'race_id', 'country_id']);
@@ -125,7 +125,7 @@ class TournamentController extends Controller
                     ->orderByDesc('victory_points')
                     ->select(['id', 'tourney_id', 'user_id', 'victory_points', 'description', 'check']);
             },
-            'matches' => function ($query) {
+            'matches'    => function ($query) {
                 $query->with([
                     'player1',
                     'player2',
@@ -133,34 +133,8 @@ class TournamentController extends Controller
                     'player2.user:id,name,avatar',
                 ])->orderBy('round_number');
             },
-        ])->withCount(['checkPlayers as check_players_count', 'players', 'mapsPool', 'banPlayers',])
+        ])->withCount(['players', 'banPlayers', 'mapsPool',])
             ->where('visible', true)->findOrFail($id);
-    }
-
-    public function downloadMatchFile(int $match, string $rep)
-    {
-        //        $tourneyMatchFile = TourneyMatch::where('tourney_id', $tourney)->where('match_id', $match)->value($rep);
-        //
-        //        $repPath = $tourneyMatchFile;
-        //
-        //        if (empty($repPath)) {
-        //            return back();
-        //        }
-        //        if (strpos($tourneyMatchFile, '/storage') !== false) {
-        //            $repPath = Str::replaceFirst('/storage', 'public',
-        //                $tourneyMatchFile);
-        //        }
-        //        if (strpos($tourneyMatchFile, 'storage') !== false) {
-        //            $repPath = Str::replaceFirst('storage', 'public',
-        //                $tourneyMatchFile);
-        //        }
-        //
-        //        $checkPath = Storage::path($repPath);
-        //        if (File::exists($checkPath) === false) {
-        //            return back();
-        //        };
-        //
-        //        return response()->download($checkPath);
     }
 
     /**
@@ -187,6 +161,7 @@ class TournamentController extends Controller
                 }
             }
         }
+
         return null;
     }
 

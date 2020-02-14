@@ -27,7 +27,7 @@ class ForumSections extends Section
     /**
      * @var string
      */
-    protected $title;
+    protected $title = 'Секции';
 
     /**
      * @var string

@@ -12,7 +12,7 @@ class TopicCommentController extends Controller
 
     public function store(Request $request, $id)
     {
-        $topic   = ForumTopic::query()->findOrFail($id);
+        $topic   = ForumTopic::query()->where('hide', false)->findOrFail($id);
         $comment = new Comment([
             'user_id' => auth()->user()->id,
             'content' => $request->input('content'),

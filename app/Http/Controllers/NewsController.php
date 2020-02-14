@@ -58,7 +58,8 @@ class NewsController extends Controller
                 $query->select(['id', 'avatar', 'name', 'country_id', 'race_id', 'rating', 'count_negative', 'count_positive',])
                     ->withCount('comments');
             },
-        ])->where('preview', false)->where('news', true)->withCount('comments')->findOrFail($id);
+        ])->where('hide', false)
+            ->where('news', true)->withCount('comments')->findOrFail($id);
 
         event('topicHasViewed', $news);
 
@@ -76,9 +77,9 @@ class NewsController extends Controller
                 $news       = $this->news();
                 $fixingNews = $this->fixingNews();
                 if ($fixingNews->isNotEmpty() && $news->isNotEmpty()) {
-                    foreach ($fixingNews as $items) {
-                        $id   = $items->id;
-                        $news = $news->filter(function ($item) use ($id) {
+                    foreach ($news as $items) {
+                        $id         = $items->id;
+                        $fixingNews = $fixingNews->filter(function ($item) use ($id) {
                             return $item->id != $id;
                         });
                     }
@@ -99,7 +100,7 @@ class NewsController extends Controller
     {
         return ForumTopic::with('author:id,name,avatar')
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
-            ->where('preview', false)
+            ->where('hide', false)
             ->where('news', true)
             ->withCount('comments')
             ->orderByDesc('id')
@@ -117,7 +118,7 @@ class NewsController extends Controller
         return ForumTopic::with('author:id,name,avatar')
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
             ->where('id', '<', $request->id)
-            ->where('preview', false)
+            ->where('hide', false)
             ->where('news', true)
             ->withCount('comments')
             ->orderByDesc('id')
@@ -133,7 +134,7 @@ class NewsController extends Controller
     {
         return ForumTopic::with('author:id,name,avatar')
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
-            ->where('preview', false)
+            ->where('hide', false)
             ->where('fixing', true)
             ->where('news', true)
             ->withCount('comments')
