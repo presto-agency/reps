@@ -240,10 +240,10 @@
         </div>
         <div class="container_players">
 
-            @if(!empty($data['matchType']))
-                @if($data['matchType'] == \App\Models\TourneyMatch::TYPE_SINGLE)
-                    @if(isset($tournament->players1) && $tournament->players1->isNotEmpty())
-                        @foreach($tournament->players1 as $item)
+            @if(!empty($tournament->type))
+                @if($tournament->type == $tournament::TYPE_SINGLE || $tournament->type == $tournament::TYPE_DOUBLE)
+                    @if(isset($tournament->playersNew) && $tournament->playersNew->isNotEmpty())
+                        @foreach($tournament->playersNew as $item)
                             @if(!empty($item->user))
                                 <div class="players_content">
                                     <div class="left_block">
@@ -300,7 +300,6 @@
                             @endif
                         @endforeach
                     @endif
-                @else
                 @endif
             @else
                 @if(isset($tournament->players) && $tournament->players->isNotEmpty())
@@ -434,7 +433,7 @@
                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-4 right_block">
                                     @for($i = 1; $i <= 7; $i++)
                                         @if(!empty($item->{"rep$i"}) && checkFile::checkFileExists($item->{"rep$i"}))
-                                            <a href="{{ route('download.tournament.match',['match'=>$item->id,'rep'=> "rep$i"]) }}"
+                                            <a href="{{asset($item->{"rep$i"})}}"
                                             >{{"rep$i"}}</a>
                                         @endif
                                     @endfor

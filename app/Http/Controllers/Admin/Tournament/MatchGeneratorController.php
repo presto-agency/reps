@@ -41,6 +41,7 @@ class MatchGeneratorController extends Controller
         $type        = $request->get('type');
         $getTourney  = TourneyList::getStartedTourneyWithPlayers($request->get('id'));
         $playerCount = $getTourney->check_players_count;
+
         if ($playerCount < 1) {
             return back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
         }
@@ -83,21 +84,25 @@ class MatchGeneratorController extends Controller
                 $playersWAW = TourneyMatch::getWinnersAmongWinners($getTourney->id, $round)->shuffle();
                 $playersLAW = TourneyMatch::getLosersAmongWinners($getTourney->id, $round)->shuffle();
                 $playersWAL = TourneyMatch::getWinnersAmongLosers($getTourney->id, $round)->shuffle();
+
                 /**
-                 * Data players finals
+                 * Check data players  for finals
                  */
-                $playersFR  = TourneyMatch::getFinalsRound($getTourney->id, $round);
+                $playersFR = TourneyMatch::getFinalsRound($getTourney->id, $round);
+
                 $waf        = new stdClass();
                 $laf        = new stdClass();
                 $playersWAF = collect();
                 $playersLAF = collect();
-                if ($playersFR->checkPlayers1->defeat < 2) {
-                    $waf->player1_id = $playersFR->player1_id;
-                    $playersWAF[]    = $waf;
-                }
-                if ($playersFR->checkPlayers2->defeat < 2) {
-                    $laf->player2_id = $playersFR->player2_id;
-                    $playersLAF[]    = $laf;
+                if ( ! empty($playersFR)) {
+                    if ($playersFR->checkPlayers1->defeat < 2) {
+                        $waf->player1_id = $playersFR->player1_id;
+                        $playersWAF[]    = $waf;
+                    }
+                    if ($playersFR->checkPlayers2->defeat < 2) {
+                        $laf->player2_id = $playersFR->player2_id;
+                        $playersLAF[]    = $laf;
+                    }
                 }
 
 
@@ -117,13 +122,44 @@ class MatchGeneratorController extends Controller
                 if ($playersWAWCount + $playersLAWCount + $playersWALCount + $playersWAFLAFCount < 2) {
                     return back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
                 }
+
                 /**
                  * For super final round
                  */
                 if ($playersWAWCount == 1 && $playersLAWWALCount == 1) {
+                    $players      = $playersWAW->merge($playersLAWWAL);
+                    $playersCount = $players->count();
+
+                    if ($playersCount === 1) {
+                        $p1       = new stdClass();
+                        $p2       = new stdClass();
+                        $players1 = collect();
+                        $players2 = collect();
+
+                        if ( ! empty($playersWAW->first()) && ! empty($playersLAWWAL->first())) {
+                            if (isset($playersWAW->first()->checkPlayers1) && $playersWAW->first()->checkPlayers1->defeat < 2) {
+                                $p1->player1_id = $playersWAW->first()->player1_id;
+                                $players1[]     = $p1;
+                            }
+                            if (isset($playersWAW->first()->checkPlayers2) && $playersWAW->first()->checkPlayers2->defeat < 2) {
+                                $p1->player1_id = $playersWAW->first()->player2_id;
+                                $players1[]     = $p1;
+                            }
+                            if (isset($playersLAWWAL->first()->checkPlayers1) && $playersLAWWAL->first()->checkPlayers1->defeat < 2) {
+                                $p2->player2_id = $playersLAWWAL->first()->player1_id;
+                                $players2[]     = $p2;
+                            }
+                            if (isset($playersLAWWAL->first()->checkPlayers2) && $playersLAWWAL->first()->checkPlayers2->defeat < 2) {
+                                $p2->player2_id = $playersLAWWAL->first()->player2_id;
+                                $players2[]     = $p2;
+                            }
+                            $players = $players1->merge($players2);
+                        }
+                    }
+
                     $matches = TourneyDouble::roundTwoMatches($getTourney->id, $round, $matchNumber,
-                        $playersWAW->merge($playersLAWWAL),
-                        $playersWAWCount + $playersLAWWALCount,
+                        $players,
+                        $playersCount,
                         array_search('finals', TourneyMatch::$branches),
                         'Super Final Round');
 
@@ -133,7 +169,7 @@ class MatchGeneratorController extends Controller
                         $playersWAFLAF,
                         $playersWAFLAFCount,
                         array_search('finals', TourneyMatch::$branches),
-                        'Super Final Round 2');
+                        'Super Final Round');
 
                     return TourneySingle::save($matches, $round);
                 }

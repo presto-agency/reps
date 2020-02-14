@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
+use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Display\ControlLink;
 use SleepingOwl\Admin\Section;
@@ -41,7 +42,7 @@ class ForumTopics extends Section
     /**
      * @var string
      */
-    protected $title;
+    protected $title = 'Посты';
 
     /**
      * @var string
@@ -83,16 +84,24 @@ class ForumTopics extends Section
                 ->setWidth('100px'),
             $title = AdminColumn::text(function ($model) {
                 return clean($model->title);
-            })->setHtmlAttribute('class', 'text-left')
-                ->setLabel('Название'),
+            }, 'Название')->setFilterCallback(function ($column, $query, $search) {
+                if ($search) {
+                    return $query->where('title', 'LIKE', "%{$search}%");
+                }
+            })->setHtmlAttribute('class', 'text-left'),
             $section = AdminColumn::text('forumSection.title', 'Раздел')
                 ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md')
-                ->setWidth('100px')
-                ->append(AdminColumn::filter('forum_section_id')),
+                ->setWidth('100px'),
             $author = AdminColumn::text('author.name', 'Автор')
                 ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md')
-                ->setWidth('100px')
-                ->append(AdminColumn::filter('user_id')),
+                ->setFilterCallback(function ($column, $query, $search) {
+                    if ($search) {
+                        $query->whereHas('author',
+                            function ($q) use ($search) {
+                                return $q->where('name', 'LIKE', "%{$search}%");
+                            });
+                    }
+                })->setWidth('100px'),
             $rating = AdminColumn::text('rating', 'Рейтинг')
                 ->setWidth('100px'),
             $comments_count = AdminColumn::count('comments', 'Комментарии')
@@ -103,8 +112,8 @@ class ForumTopics extends Section
                 ->setWidth('100px')->setLabel('Новость'),
             $fixing = AdminColumnEditable::checkbox('fixing', 'Да', 'Нет')
                 ->setWidth('150px')->setLabel('Зафиксировать<br>на главной'),
-            $preview = AdminColumnEditable::checkbox('preview', 'Да', 'Нет')
-                ->setWidth('100px')->setLabel('Черновик'),
+            $hide = AdminColumnEditable::checkbox('hide', 'Да', 'Нет')
+                ->setWidth('100px')->setLabel('Скрыть'),
 
         ]);
 
@@ -113,14 +122,28 @@ class ForumTopics extends Section
         $control->addButton($buttonShow);
 
         $display->setColumnFilters([
-            null,
-            AdminColumnFilter::text()->setOperator('contains')
-                ->setHtmlAttributes(['style' => 'width: 100%'])
-                ->setPlaceholder('Название'),
+            AdminColumnFilter::text()
+                ->setOperator(FilterInterface::EQUAL)
+                ->setPlaceholder('ID')
+                ->setHtmlAttributes(['style' => 'width: 100%']),
+            AdminColumnFilter::text()
+                ->setOperator(FilterInterface::CONTAINS)
+                ->setPlaceholder('Название')
+                ->setHtmlAttributes(['style' => 'width: 100%']),
             AdminColumnFilter::select(ForumSection::class, 'title')
                 ->setHtmlAttributes(['style' => 'width: 100%'])
-                ->setPlaceholder('Section')
+                ->setPlaceholder('Раздел')
                 ->setColumnName('forum_section_id'),
+            AdminColumnFilter::text()
+                ->setOperator(FilterInterface::CONTAINS)
+                ->setPlaceholder('Автор')
+                ->setHtmlAttributes(['style' => 'width: 100%']),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
         ]);
         $display->getColumnFilters()->setPlacement('table.header');
 
@@ -195,7 +218,7 @@ class ForumTopics extends Section
                 ->setValidationRules(['boolean']),
             $fixing = AdminFormElement::checkbox('fixing', 'Зафиксировать на главной')
                 ->setValidationRules(['boolean']),
-            $preview = AdminFormElement::checkbox('preview', 'Черновик')
+            $hide = AdminFormElement::checkbox('hide', 'Скрыть')
                 ->setValidationRules(['boolean']),
 
         ]);

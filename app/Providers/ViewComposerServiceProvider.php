@@ -5,7 +5,6 @@ namespace App\Providers;
 
 use App\Http\ViewComposers\{admin\DashboardCountComposer,
     admin\InterviewVariantAnswerComposer,
-    FixingTopicsComposer,
     Footer\FooterComposer,
     ForumNavigationComposer,
     GlobalView\GlobalComposer,
@@ -55,8 +54,6 @@ class ViewComposerServiceProvider extends ServiceProvider
         $this->compose('layouts.components.footer.index', FooterComposer::class);
 
         $this->compose('layouts.app', Smiles::class);
-
-        $this->compose('news.components.index', FixingTopicsComposer::class);
 
     }
 
