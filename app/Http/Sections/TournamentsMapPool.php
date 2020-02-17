@@ -125,7 +125,7 @@ class TournamentsMapPool extends Section
                 ->setValidationRules([
                     'exists:tourney_lists,id',
                 ])
-                ->setOptions((new \App\Models\TourneyList())->whereNotIn('status', [5, 6])->pluck('name', 'id')->toArray())
+                ->setOptions((new \App\Models\TourneyList())->whereNotIn('status', [4, 5, 6])->pluck('name', 'id')->toArray())
                 ->setHelpText('Все турниры со статусами:(ANNOUNCE;REGISTRATION;CHECK-IN)')
                 ->setLabel('Турнир'),
         ]);

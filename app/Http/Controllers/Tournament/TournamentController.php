@@ -72,19 +72,19 @@ class TournamentController extends Controller
     {
         $data = [];
 
-        if (isset($tournament->matches) && $tournament->matches->isNotEmpty() && $tournament->maps_pool_count > 0) {
+        if (isset($tournament->matches) && $tournament->matches->isNotEmpty()) {
             foreach ($tournament->matches as $item) {
                 $data['round'][$item->round_number]['title'] = $item->round;
                 $data['matches'][$item->round_number][]      = $item;
-                $mapsCount                                   = $tournament->maps_pool_count;
-                $mapIndex                                    = $item->round_number % $mapsCount;
-
-                if ( ! empty($tournament->mapsPool)) {
+                if (isset($tournament->mapsPool) && $tournament->mapsPool->isNotEmpty()) {
+                    $mapsCount                                     = $tournament->maps_pool_count;
+                    $mapIndex                                      = $item->round_number % $mapsCount;
                     $data['round'][$item->round_number]['mapName'] = $tournament->mapsPool[$mapIndex]->map->name;
                     $data['round'][$item->round_number]['mapUrl']  = $tournament->mapsPool[$mapIndex]->map->url;
                 }
             }
         }
+
 
         return $data;
     }

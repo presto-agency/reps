@@ -363,6 +363,7 @@
             @endif
 
         </div>
+
         @if(!empty($data['round']))
             @foreach($data['round'] as $key => $item)
                 <div class="title_players change_gray">
@@ -401,15 +402,17 @@
                                                 {{$item->player1->description}}</span>
                                         </div>
                                     @else
-                                        {{__('- Freeslot -')}}
+                                        {{__('- FreeSlot -')}}
                                     @endif
                                     @if($item->player1_score > $item->player2_score)
-                                        <span
-                                            class="blue_span">{{$item->player1_score.' > ' .$item->player2_score}}</span>
-                                    @else
-                                        <span
-                                            class="blue_span">{{$item->player1_score.' < ' .$item->player2_score}}</span>
-
+                                        <span class="blue_span">
+                                            {{$item->player1_score.' > ' .$item->player2_score}}
+                                        </span>
+                                    @endif
+                                    @if($item->player1_score < $item->player2_score)
+                                        <span class="blue_span">
+                                            {{$item->player1_score.' < ' .$item->player2_score}}
+                                        </span>
                                     @endif
                                     @if(!empty($item->player2->user))
                                         <div class="one_player">
@@ -427,7 +430,7 @@
                                                 {{$item->player2->description}}</span>
                                         </div>
                                     @else
-                                        {{__('- Freeslot -')}}
+                                        {{__('- FreeSlot -')}}
                                     @endif
                                 </div>
                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-4 right_block">
@@ -461,3 +464,8 @@
         @endif
     </div>
 </section>
+<iframe src="https://player.twitch.tv/?autoplay=false&video=v551818690" frameborder="0" allowfullscreen="true"
+        scrolling="no" height="378" width="620"></iframe><a
+    href="https://www.twitch.tv/videos/551818690?tt_content=text_link&tt_medium=vod_embed"
+    style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">Смотрите
+    new ladder от Nyoken на www.twitch.tv</a>
