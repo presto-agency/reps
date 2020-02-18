@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Genert\BBCode\BBCode;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ApiGetNewsResource extends JsonResource
@@ -14,24 +15,32 @@ class ApiGetNewsResource extends JsonResource
      *
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
-            'id'             => $this->id,
-            'news'           => $this->news,
-//            'user'           => [
-//                'id'     => $this->author->id,
-//                'name'   => $this->author->name,
-//                'avatar' => $this->author->avatar,
-//            ],
-            'title'          => $this->title,
-            'rating'         => $this->rating,
-            'reviews'        => $this->reviews,
-            'content'        => $this->content,
-            'previewImg'     => $this->preview_img,
-            'commentsCount'  => $this->comments_count,
-            'previewContent' => $this->preview_content,
+            'id'             => (int) $this->id,
+            'title'          => (string) clean($this->title),
+            'rating'         => (int) $this->rating,
+            'reviews'        => (int) $this->reviews,
+            'content'        => $this->convertToBBCode((string) $this->content),
+            'previewImg'     => (string) $this->preview_img,
+            'previewContent' => $this->convertToBBCode((string) $this->preview_content),
+            'commentsCount'  => (int) $this->comments_count,
         ];
+    }
+
+    /**
+     * @param  string  $text
+     *
+     * @return string
+     */
+    private function convertToBBCode(string $text): string
+    {
+        $bbCode = new BBCode();
+        $text1  = str_ireplace('<p>', '', $text);
+        $text2  = str_ireplace('</p>', '', $text1);
+
+        return $bbCode->convertFromHtml($text2);
     }
 
 }

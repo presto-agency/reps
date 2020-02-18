@@ -65,7 +65,7 @@ class TopicController extends Controller
                 $query->withCount('comments');
             },
 
-        ])->withCount('comments', 'positive', 'negative')->findOrFail($id);
+        ])->withCount('comments', 'positive', 'negative')->where('hide', false)->findOrFail($id);
 
         event('topicHasViewed', $topic);
 
@@ -84,7 +84,7 @@ class TopicController extends Controller
         if (empty($content)) {
             return redirect()->back();
         }
-        $model               = ForumTopic::query()->findOrFail($request->get('id'));
+        $model               = ForumTopic::query()->where('hide', false)->findOrFail($request->get('id'));
         $model->commented_at = Carbon::now();
         $model->save();
 

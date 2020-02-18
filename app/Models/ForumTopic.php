@@ -12,9 +12,9 @@ class ForumTopic extends Model
     protected $fillable
         = [
             'title', 'forum_section_id', 'reviews', 'rating',
-            'preview_content', 'preview_img', 'content', 'comments_count',
+            'preview_content', 'preview_img', 'content',
         ];
-    protected $guarded = ['user_id', 'commented_at', 'approved', 'news', 'start_on', 'fixing', 'preview'];
+    protected $guarded = ['user_id', 'commented_at', 'hide', 'news', 'start_on', 'fixing'];
 
     public function forumSection()
     {

@@ -49,7 +49,7 @@ class TourneyPlayersPolicy
             return false;
         }
 
-        return true;
+        return false;
     }
 
 

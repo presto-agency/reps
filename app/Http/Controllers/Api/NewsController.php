@@ -11,68 +11,37 @@ use Illuminate\Http\Request;
 class NewsController extends Controller
 {
 
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
+
     public function index()
     {
         return \Response::json([], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        return \Response::json([], 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        return \Response::json([], 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        return \Response::json([], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+        return \Response::json([], 200);
     }
 
-    /**
-     * @param  \App\Http\Requests\Api\GetLastNewsRequest  $request
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+
     public function last(GetLastNewsRequest $request)
     {
         $response = ApiGetNewsResource::collection($this->getNews());
@@ -87,7 +56,8 @@ class NewsController extends Controller
     private function getNews()
     {
         return ForumTopic::query()->latest()
-            ->where('preview', false)
+            ->select(['id', 'title', 'rating', 'reviews', 'content', 'preview_img', 'preview_content'])
+            ->where('hide', false)
             ->where('news', true)
             ->withCount('comments')
             ->limit(10)

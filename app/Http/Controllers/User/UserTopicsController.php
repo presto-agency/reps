@@ -39,6 +39,7 @@ class UserTopicsController extends Controller
             $visible_title = false;
             if (request('topic_id') > 0) {
                 $forumSectionsTopics = ForumTopic::query()->where('forum_section_id', request('forum_section_id'))
+                    ->where('hide', false)
                     ->with('forumSection')
                     ->where('user_id', $id)
                     ->where('id', '<', request('topic_id'))
@@ -47,6 +48,7 @@ class UserTopicsController extends Controller
                     ->get();
             } else {
                 $forumSectionsTopics = ForumTopic::query()->where('forum_section_id', request('forum_section_id'))
+                    ->where('hide', false)
                     ->with('forumSection')
                     ->where('user_id', $id)
                     ->orderByDesc('id')
@@ -114,7 +116,7 @@ class UserTopicsController extends Controller
     {
         $forumSection = ForumSection::all(['id', 'title', 'description']);
 
-        $topic = ForumTopic::query()->findOrFail($user_topic);
+        $topic = ForumTopic::query()->where('hide', false)->findOrFail($user_topic);
 
         return view('user.topics.edit', compact('forumSection', 'topic'));
     }
@@ -139,7 +141,7 @@ class UserTopicsController extends Controller
         if (auth()->user()->roles->name == 'user') {
             return redirect()->to('/');
         }
-        $topic = ForumTopic::query()->findOrFail($user_topic);
+        $topic = ForumTopic::query()->where('hide', false)->findOrFail($user_topic);
         $this->modelColumn($topic, $request, $title, $preview_content, $content);
         $topic->save();
 

@@ -58,7 +58,8 @@ class NewsController extends Controller
                 $query->select(['id', 'avatar', 'name', 'country_id', 'race_id', 'rating', 'count_negative', 'count_positive',])
                     ->withCount('comments');
             },
-        ])->where('preview', false)->withCount('comments')->findOrFail($id);
+        ])->where('hide', false)
+            ->where('news', true)->withCount('comments')->findOrFail($id);
 
         event('topicHasViewed', $news);
 
@@ -69,18 +70,29 @@ class NewsController extends Controller
     {
         if ($request->ajax()) {
             $visible_title = false;
+            $fixingNews    = collect();
             if ($request->id > 0) {
                 $news = $this->newsWithId($request);
             } else {
-                $news          = $this->news();
+                $news       = $this->news();
+                $fixingNews = $this->fixingNews();
+                if ($fixingNews->isNotEmpty() && $news->isNotEmpty()) {
+                    foreach ($news as $items) {
+                        $id         = $items->id;
+                        $fixingNews = $fixingNews->filter(function ($item) use ($id) {
+                            return $item->id != $id;
+                        });
+                    }
+                }
                 $visible_title = true;
             }
 
-            return view('news.components.index', compact('news', 'visible_title'));
+            return view('news.components.index', compact('news', 'fixingNews', 'visible_title'));
         }
 
         return \Response::json([], 404);
     }
+
     /**
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
@@ -88,7 +100,7 @@ class NewsController extends Controller
     {
         return ForumTopic::with('author:id,name,avatar')
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
-            ->where('preview', false)
+            ->where('hide', false)
             ->where('news', true)
             ->withCount('comments')
             ->orderByDesc('id')
@@ -106,11 +118,28 @@ class NewsController extends Controller
         return ForumTopic::with('author:id,name,avatar')
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
             ->where('id', '<', $request->id)
-            ->where('preview', false)
+            ->where('hide', false)
             ->where('news', true)
             ->withCount('comments')
             ->orderByDesc('id')
             ->limit(5)
+            ->get();
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    private function fixingNews()
+    {
+        return ForumTopic::with('author:id,name,avatar')
+            ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
+            ->where('hide', false)
+            ->where('fixing', true)
+            ->where('news', true)
+            ->withCount('comments')
+            ->orderByDesc('id')
+            ->limit(100)
             ->get();
     }
 

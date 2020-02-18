@@ -61,6 +61,7 @@ class Tournaments extends Section
                 })
                 ->setWidth('150px')->setHtmlAttribute('class', 'text-left'),
             AdminColumn::text('name', 'Name')
+                ->setWidth('200px')
                 ->setHtmlAttribute('class', 'text-left'),
             AdminColumn::text('place', 'Place')->setWidth('150px')
                 ->setHtmlAttribute('class', 'text-left'),
@@ -69,14 +70,14 @@ class Tournaments extends Section
             })->setWidth('110px')->setHtmlAttribute('class', 'text-center'),
             AdminColumn::custom('Map select type', function ($model) {
                 return TourneyList::$map_types[$model->map_select_type];
-            })->setWidth('150px')->setHtmlAttribute('class', 'text-center'),
+            })->setWidth('80px')->setHtmlAttribute('class', 'text-center'),
             AdminColumn::custom('Tourney type', function ($model) {
                 if ( ! empty($model->type)) {
                     return TourneyList::$tourneyType[$model->type];
                 } else {
                     return null;
                 }
-            })->setWidth('100px')->setHtmlAttribute('class', 'text-center')
+            })->setWidth('80px')->setHtmlAttribute('class', 'text-center')
                 ->setFilterCallback(function ($column, $query, $search) {
                     if ($search) {
                         if ($search == TourneyList::TYPE_SINGLE) {
@@ -88,7 +89,7 @@ class Tournaments extends Section
                     }
                 }),
             AdminColumnEditable::checkbox('visible')->setLabel('Visible')
-                ->setHtmlAttribute('class', 'text-center')->setWidth('75px')
+                ->setHtmlAttribute('class', 'text-center')
                 ->setFilterCallback(function ($column, $query, $search) {
                     if ($search) {
                         if ($search == TourneyList::YES) {
@@ -100,7 +101,7 @@ class Tournaments extends Section
                     }
                 }),
             AdminColumnEditable::checkbox('ranking')->setLabel('Ranking')
-                ->setHtmlAttribute('class', 'text-center')->setWidth('75px')
+                ->setHtmlAttribute('class', 'text-center')
                 ->setFilterCallback(function ($column, $query, $search) {
                     if ($search) {
                         if ($search == TourneyList::YES) {
