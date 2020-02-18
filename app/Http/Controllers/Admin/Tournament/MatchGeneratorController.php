@@ -25,6 +25,38 @@ class MatchGeneratorController extends Controller
         $tourney = TourneyList::query()->withCount('matches', 'checkPlayers', 'checkDefeat0Players', 'checkDefeat1Players', 'checkDefeat2Players')->findOrFail($id);
         $data    = TourneyList::getGeneratorData($tourney);
         $content = view('admin.tourneyMatchGenerator.show', compact('tourney', 'data'));
+        /**
+         * Data players winners & lossers
+         */
+        $playersWAW = TourneyMatch::getWinnersAmongWinners($tourney->id, end($data['rounds'])['roundNumber'])->shuffle();
+        $playersLAW = TourneyMatch::getLosersAmongWinners($tourney->id, end($data['rounds'])['roundNumber'])->shuffle();
+        $playersWAL = TourneyMatch::getWinnersAmongLosers($tourney->id, end($data['rounds'])['roundNumber'])->shuffle();
+
+        /**
+         * Check data players  for finals
+         */
+        $playersFR = TourneyMatch::getFinalsRound($tourney->id, end($data['rounds'])['roundNumber']);
+
+        $waf        = new stdClass();
+        $laf        = new stdClass();
+        $playersWAF = collect();
+        $playersLAF = collect();
+        if ( ! empty($playersFR)) {
+            if ($playersFR->checkPlayers1->defeat < 2) {
+                $waf->player1_id = $playersFR->player1_id;
+                $playersWAF[]    = $waf;
+            }
+            if ($playersFR->checkPlayers2->defeat < 2) {
+                $laf->player2_id = $playersFR->player2_id;
+                $playersLAF[]    = $laf;
+            }
+        }
+
+        /**
+         * Check players 1
+         */
+        $playersWAFLAF = $playersWAF->merge($playersLAF);
+        dd($playersWAFLAF, $playersWAW, $playersLAW, $playersWAL);
 
         return AdminSection::view($content, 'Генератор матчей');
     }
@@ -37,13 +69,13 @@ class MatchGeneratorController extends Controller
      */
     public function matchGenerator(MatchGeneratorRequest $request)
     {
-        $round       = $request->get('round');
-        $type        = $request->get('type');
+        $round       = (int) $request->get('round');
+        $type        = (int) $request->get('type');
         $getTourney  = TourneyList::getStartedTourneyWithPlayers($request->get('id'));
         $playerCount = $getTourney->check_players_count;
 
         if ($playerCount < 1) {
-            return back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
+            return $this->redirectNoPlayers();
         }
         $players = $getTourney->checkPlayers->shuffle();
 
@@ -60,7 +92,7 @@ class MatchGeneratorController extends Controller
             if ($round > 1) {
                 $players = TourneySingle::getPlayers($getTourney->id, $round)->shuffle();
                 if ($players->isEmpty()) {
-                    return back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
+                    return $this->redirectNoPlayers();
                 }
                 $matchNumber = TourneyMatch::getMaxMatchNumber($getTourney->id, $round);
 
@@ -105,23 +137,27 @@ class MatchGeneratorController extends Controller
                     }
                 }
 
-
+                /**
+                 * Check players 1
+                 */
                 $playersWAFLAF = $playersWAF->merge($playersLAF);
-
                 if ($playersWAW->isEmpty() && $playersLAW->isEmpty() && $playersWAL->isEmpty() && $playersWAFLAF->isEmpty()) {
-                    return back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
+                    return $this->redirectNoPlayers();
                 }
-                $playersLAWWAL      = $playersLAW->merge($playersWAL);
+                /**
+                 * Check players 2
+                 */
                 $playersWAWCount    = $playersWAW->count();
                 $playersLAWCount    = $playersLAW->count();
                 $playersWALCount    = $playersWAL->count();
                 $playersWAFLAFCount = $playersWAFLAF->count();
-                $playersLAWWALCount = $playersLAWCount + $playersWALCount;
-                $matchNumber        = TourneyMatch::getMaxMatchNumber($getTourney->id, $round);
 
                 if ($playersWAWCount + $playersLAWCount + $playersWALCount + $playersWAFLAFCount < 2) {
-                    return back()->withErrors(['single-match' => 'Невозможно создать матчи нету игроков.']);
+                    return $this->redirectNoPlayers();
                 }
+                $playersLAWWAL      = $playersLAW->merge($playersWAL);
+                $playersLAWWALCount = $playersLAWCount + $playersWALCount;
+                $matchNumber        = TourneyMatch::getMaxMatchNumber($getTourney->id, $round);
 
                 /**
                  * For super final round
@@ -156,31 +192,22 @@ class MatchGeneratorController extends Controller
                             $players = $players1->merge($players2);
                         }
                     }
-
-                    $matches = TourneyDouble::roundTwoMatches($getTourney->id, $round, $matchNumber,
-                        $players,
-                        $playersCount,
-                        array_search('finals', TourneyMatch::$branches),
-                        'Super Final Round');
+                    $matches = TourneyDouble::roundTwoMatches($getTourney->id, $round, $matchNumber, $players, $playersCount, array_search('finals', TourneyMatch::$branches), 'Super Final Round');
 
                     return TourneySingle::save($matches, $round);
                 } elseif ($playersWAFLAFCount == 2) {
-                    $matches = TourneyDouble::roundTwoMatches($getTourney->id, $round, $matchNumber,
-                        $playersWAFLAF,
-                        $playersWAFLAFCount,
-                        array_search('finals', TourneyMatch::$branches),
-                        'Super Final Round');
+                    $matches = TourneyDouble::roundTwoMatches($getTourney->id, $round, $matchNumber, $playersWAFLAF, $playersWAFLAFCount, array_search('finals', TourneyMatch::$branches), 'Super Final Round');
 
                     return TourneySingle::save($matches, $round);
                 }
                 /**
                  * For other round
                  */
-                $matches1 = TourneyDouble::roundTwoMatches($getTourney->id, $round, $matchNumber, $playersWAW, $playersWAWCount, array_search('winners', TourneyMatch::$branches), 'for winners');
+                $matches1 = TourneyDouble::roundTwoMatches($getTourney->id, $round, $matchNumber, $playersWAW, $playersWAWCount, array_search('winners', TourneyMatch::$branches), 'Winners');
                 if ( ! empty($matches1)) {
                     $matchNumber = end($matches1)['match_number'];
                 }
-                $matches2 = TourneyDouble::roundTwoMatches($getTourney->id, $round, $matchNumber, $playersLAWWAL, $playersLAWWALCount, array_search('losers', TourneyMatch::$branches), 'for losers');
+                $matches2 = TourneyDouble::roundTwoMatches($getTourney->id, $round, $matchNumber, $playersLAWWAL, $playersLAWWALCount, array_search('losers', TourneyMatch::$branches), 'Losers');
                 $matches  = array_merge($matches1, $matches2);
 
 
@@ -189,6 +216,14 @@ class MatchGeneratorController extends Controller
         }
 
         return back();
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function redirectNoPlayers()
+    {
+        return back()->withErrors(['single-match' => 'Невозможно создать матчи нехватает игроков.']);
     }
 
 }

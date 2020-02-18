@@ -58,6 +58,7 @@ class ForumController extends Controller
                         'topics' => function ($query) {
                             $query->orderByDesc('id')->where('id', '<', request('id'))
                                 ->withCount('comments')
+                                ->where('hide', false)
                                 ->limit(7);
                         },
                         'topics.author:id,name,avatar',
@@ -69,6 +70,7 @@ class ForumController extends Controller
                     ->with([
                         'topics' => function ($query) {
                             $query->orderByDesc('id')
+                                ->where('hide', false)
                                 ->withCount('comments')
                                 ->limit(7);
                         },

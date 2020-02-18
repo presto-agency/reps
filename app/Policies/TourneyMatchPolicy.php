@@ -42,21 +42,22 @@ class TourneyMatchPolicy
             return false;
         }
 
-        return true;
+        return false;
     }
 
 
     public function delete(User $user, TournamentsMatches $section, Match $item)
     {
-        //        if ( ! empty($item->tourney)) {
-        //            $status = TourneyList::$status[$item->tourney->status];
-        //            if ($status === 'STARTED') {
-        //                return true;
-        //            }
-        //
-        //            return false;
-        //        }
-        return false;
+        if ( ! empty($item->tourney)) {
+            $status = TourneyList::$status[$item->tourney->status];
+            if ($status === 'STARTED') {
+                return true;
+            }
+
+            return false;
+        }
+
+        return true;
     }
 
 }

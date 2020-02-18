@@ -50,10 +50,10 @@ class TournamentsMatches extends Section
             AdminColumn::text('player2.description', 'Игрок 2<br><br>GameNick/Name', 'player2.user.name')
                 ->setWidth('150px'),
             AdminColumn::custom('Игрок 1<br>победитель', function ($model) {
-                return $model->player1_score == 2 ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
+                return $model->player1_score > $model->player2_score ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
             })->setWidth('10px')->setHtmlAttribute('class', 'text-center'),
             AdminColumn::custom('Игрок 2<br>победитель', function ($model) {
-                return $model->player2_score == 2 ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
+                return $model->player1_score < $model->player2_score ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
             })->setWidth('10px')->setHtmlAttribute('class', 'text-center'),
             AdminColumn::custom('Ветка', function ($model) {
                 if ( ! empty($model->branch)) {
