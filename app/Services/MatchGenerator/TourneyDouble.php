@@ -43,9 +43,9 @@ class TourneyDouble
             $playerArr[] = ['id' => null];
         }
         if ($for != 'Super Final Round' && $for != 'Super Final Round 2') {
-            $setRound = 'Round '.$for.' '.$round.' (of '.TourneyList::allPlayers($playerCount).')';
+            $setRound = 'Round '.$round.' '.$for.' (of '.TourneyList::allPlayers($playerCount).')';
         } else {
-            $setRound = $for.' '.$round.' (of '.TourneyList::allPlayers($playerCount).')';
+            $setRound = $for.' Round '.$round.' (of '.TourneyList::allPlayers($playerCount).')';
         }
 
         for ($i = 0; $i < $playerCount / 2; $i++) {
