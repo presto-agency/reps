@@ -88,7 +88,8 @@ class ForumTopics extends Section
                 if ($search) {
                     return $query->where('title', 'LIKE', "%{$search}%");
                 }
-            })->setHtmlAttribute('class', 'text-left'),
+            })->setWidth('300px')
+                ->setHtmlAttribute('class', 'text-left'),
             $section = AdminColumn::text('forumSection.title', 'Раздел')
                 ->setHtmlAttribute('class', 'hidden-sm hidden-xs hidden-md')
                 ->setWidth('100px'),
@@ -112,8 +113,7 @@ class ForumTopics extends Section
                 ->setWidth('100px')->setLabel('Новость'),
             $fixing = AdminColumnEditable::checkbox('fixing', 'Да', 'Нет')
                 ->setWidth('150px')->setLabel('Зафиксировать<br>на главной'),
-            $hide = AdminColumnEditable::checkbox('hide', 'Да', 'Нет')
-                ->setWidth('100px')->setLabel('Скрыть'),
+            $hide = AdminColumnEditable::checkbox('hide', 'Да', 'Нет')->setLabel('Скрыть'),
 
         ]);
 

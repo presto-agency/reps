@@ -143,6 +143,7 @@ class UserTopicsController extends Controller
         }
         $topic = ForumTopic::query()->where('hide', false)->findOrFail($user_topic);
         $this->modelColumn($topic, $request, $title, $preview_content, $content);
+
         $topic->save();
 
         return redirect()->to(route('topic.show', ['topic' => $topic->id]));
