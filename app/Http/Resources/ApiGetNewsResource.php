@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+
 use Genert\BBCode\BBCode;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,9 +23,9 @@ class ApiGetNewsResource extends JsonResource
             'title'          => (string) clean($this->title),
             'rating'         => (int) $this->rating,
             'reviews'        => (int) $this->reviews,
-            'content'        => $this->convertToBBCode((string) $this->content),
+            'content'        => clean($this->convertToBBCode($this->content)),
             'previewImg'     => (string) $this->preview_img,
-            'previewContent' => $this->convertToBBCode((string) $this->preview_content),
+            'previewContent' => clean($this->convertToBBCode($this->preview_content)),
             'commentsCount'  => (int) $this->comments_count,
         ];
     }
@@ -34,13 +35,14 @@ class ApiGetNewsResource extends JsonResource
      *
      * @return string
      */
-    private function convertToBBCode(string $text): string
+    private function convertToBBCode($text): string
     {
         $bbCode = new BBCode();
-        $text1  = str_ireplace('<p>', '', $text);
-        $text2  = str_ireplace('</p>', '', $text1);
 
-        return $bbCode->convertFromHtml($text2);
+        $bbCode->addHtmlParser('p', '/<p>(.*?)<\/p>/s', '$1', '$1');
+        $bbCode->addHtmlParser('img2', '/<img (.*?) src="(.*?)" (.*?)>/s', '[img]$2[/img]', '$2');
+
+        return $bbCode->convertFromHtml(html_entity_decode($text));
     }
 
 }

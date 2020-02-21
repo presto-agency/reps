@@ -13,21 +13,21 @@ class UserPolicy
     use HandlesAuthorization;
 
     /**
-     * @param  User    $user
+     * @param  User  $user
      * @param  string  $ability
-     * @param  Users   $section
-     * @param  User    $item
+     * @param  Users  $section
+     * @param  User  $item
      *
      * @return bool
      */
-    public function before(User $user, $ability, Users $section, User $item = null) {
-
+    public function before(User $user, $ability, Users $section, User $item = null)
+    {
     }
 
     /**
-     * @param  User   $user
+     * @param  User  $user
      * @param  Users  $section
-     * @param  User   $item
+     * @param  User  $item
      *
      * @return bool
      */
@@ -37,9 +37,9 @@ class UserPolicy
     }
 
     /**
-     * @param  User   $user
+     * @param  User  $user
      * @param  Users  $section
-     * @param  User   $item
+     * @param  User  $item
      *
      * @return bool
      */
@@ -60,9 +60,9 @@ class UserPolicy
     }
 
     /**
-     * @param  User   $user
+     * @param  User  $user
      * @param  Users  $section
-     * @param  User   $item
+     * @param  User  $item
      *
      * @return bool
      */

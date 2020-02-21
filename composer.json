@@ -25,7 +25,6 @@
         "laravel/framework": "6.5.2",
         "laravel/tinker": "^1.0",
         "laravelrus/sleepingowl": "dev-bs4",
-        "league/html-to-markdown": "^4.9",
         "mews/purifier": "^3.1",
         "pherum/laravel-bbcode": "^1.0",
         "predis/predis": "^1.1",

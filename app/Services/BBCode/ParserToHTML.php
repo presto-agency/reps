@@ -19,7 +19,6 @@ class ParserToHTML
     public static function toHTML($text, $ignoreTag = null)
     {
         $bbCode = new ChrisKonnertzBBCode();
-
         $first_conversion = PheRumBBCode::parse($text);
 
         $bbCode->addTag('quote-shell', function ($tag, &$html, $openingTag) {
