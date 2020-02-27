@@ -150,4 +150,8 @@ trait UserRelation
         return $this->hasMany(GasTransaction::class,'user_id', 'id');
     }
 
+    public function gas_transactions(){
+        return $this->morphMany(GasTransaction::class, 'initializable');
+    }
+
 }

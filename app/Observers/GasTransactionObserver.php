@@ -7,6 +7,19 @@ use App\User;
 
 class GasTransactionObserver
 {
+    protected static $modelInit = [
+        'id' => '',
+        'name' => ''
+    ];
+
+    public function creating(GasTransaction $gasTransaction)
+    {
+        if(isset($gasTransaction->admin_id) && auth()->check()){
+            self::$modelInit['id'] = auth()->user()->id;
+            self::$modelInit['name'] = 'admin';
+            unset($gasTransaction['admin_id']);
+        }
+    }
     /**
      * Handle the gas transaction "created" event.
      *
@@ -23,6 +36,26 @@ class GasTransactionObserver
                 $debit = $user->gas->sum('incoming');
                 $credit = $user->gas->sum('outgoing');
                 $balance = $debit - $credit;
+
+                // обернути в транзакцію
+
+                switch (self::$modelInit['name']){
+                    //для адмінів які створюють транзакції з адмінки
+                    case 'admin':
+                        $admin = auth()->user();
+                        $admin->gas_transactions()->save($gasTransaction);
+                        self::$modelInit = [];
+                        break;
+
+                    //для звичайних юзерів
+                    case 'user':
+                        //автоматично створювати опис до транзакції
+                        break;
+
+                    //для транзакцій, які були створені за допомогою ставок
+                    case 'bet':
+                        break;
+                }
 
                 $user->gas_balance = $balance;
                 $user->save();

@@ -12,6 +12,7 @@ use AdminFormElement;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
+use SleepingOwl\Admin\Display\ControlLink;
 
 use SleepingOwl\Admin\Form\Buttons\Save;
 use SleepingOwl\Admin\Form\Buttons\SaveAndClose;
@@ -147,6 +148,8 @@ class GasTransaction extends Section
                 ->append(
                     AdminColumn::filter('user_id')
                 ),
+            AdminColumn::text('initializable.name', 'Initializator')
+                ->setSearchable(false),
             AdminColumn::text('incoming', 'Приход'),
             AdminColumn::text('outgoing', 'Расход'),
             AdminColumn::text('description', 'Описание'),
@@ -194,6 +197,7 @@ class GasTransaction extends Section
         $display->setColumnFilters([
             null,
             AdminColumnFilter::select(User::class, 'name')/*->setModel(new User())->setDisplay('name')*/->setPlaceholder('Имя не выбрано')->setColumnName('user_id')->multiple(),
+            null,
             null,
             null,
             AdminColumnFilter::text()->setPlaceholder('Description')->setColumnName('description')->setOperator('contains'),
@@ -282,6 +286,9 @@ class GasTransaction extends Section
                 ->addColumn([
                     AdminFormElement::textarea('description', 'Description')->required()
                 ])
+                ->addColumn([
+                    AdminFormElement::hidden('admin_id')->setDefaultValue(auth()->user()->id)
+                ])
         );
         $formCredit = AdminForm::form()->addElement(
             AdminFormElement::columns()
@@ -293,6 +300,9 @@ class GasTransaction extends Section
                 ])
                 ->addColumn([
                     AdminFormElement::textarea('description', 'Description')->required()
+                ])
+                ->addColumn([
+                    AdminFormElement::hidden('admin_id')->setDefaultValue(auth()->user()->id)
                 ])
         );
 

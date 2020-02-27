@@ -12,4 +12,12 @@ class GasTransaction extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the owning initializable model.
+     */
+    public function initializable()
+    {
+        return $this->morphTo();
+    }
 }
