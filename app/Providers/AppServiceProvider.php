@@ -3,10 +3,24 @@
 namespace App\Providers;
 
 
-use App\Models\{Comment, Country, ForumTopic, InterviewQuestion, Replay, Stream, TourneyList, TourneyMatch, UserGallery, UserReputation};
-use App\Observers\{CommentObserver,
+use App\Models\{
+    Comment,
+    Country,
+    ForumTopic,
+    GasTransaction,
+    InterviewQuestion,
+    Replay,
+    Stream,
+    TourneyList,
+    TourneyMatch,
+    UserGallery,
+    UserReputation
+};
+use App\Observers\{
+    CommentObserver,
     CountryObserver,
     ForumTopicObserver,
+    GasTransactionObserver,
     InterviewQuestionObserver,
     ReplayObserver,
     StreamObserver,
@@ -49,6 +63,7 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         Country::observe(CountryObserver::class);
         UserReputation::observe(UserReputationObserver::class);
+        GasTransaction::observe(GasTransactionObserver::class);
         /**
          * Tournaments
          */

@@ -117,6 +117,9 @@ class User extends Section
                         $query->whereNull('email_verified_at');
                     }
                 }),
+
+                $gas_balance = AdminColumn::text('gas_balance', 'Gas'),
+
                 $ban = AdminColumnEditable::checkbox('ban')
                     ->setLabel('Бан')
                     ->append(AdminColumn::filter('ban'))
