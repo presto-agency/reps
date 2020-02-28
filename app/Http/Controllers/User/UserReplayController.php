@@ -232,8 +232,6 @@ class UserReplayController extends Controller
                     'message' => $src->getSrcIframe(),
                 ], 200);
             } catch (\Exception $e) {
-                \Log::error($e->getMessage());
-
                 return \Response::json([
                     'success' => false,
                     'message' => 'Указаный url не поддерживаеться',
