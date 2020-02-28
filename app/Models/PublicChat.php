@@ -24,6 +24,7 @@ class PublicChat extends Model
             'is_hidden',
             'to',
             'imo',
+            'is_anon'
         ];
 
     public $timestamps = true;

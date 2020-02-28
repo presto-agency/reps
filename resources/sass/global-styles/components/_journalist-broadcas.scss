@@ -1,6 +1,6 @@
-.journalist-broadcast-post{
+.journalist-broadcast{
     border: 0!important;
-    box-shadow: 0 7px 35px rgba(0,0,12,.56)!important;
+    box-shadow: 0 6px 10px rgba(0, 2, 76, 0.13)!important;
 }
 a.journalist-broadcast-post-info-time{
     color: #007bff!important;
@@ -9,7 +9,11 @@ a.journalist-broadcast-post-info-time{
     font-weight: 700!important;
 }
 .journalist-broadcast-post-message-text{
-    font-size: 16px;
-    line-height: 24px;
-    color: white;
+    font-size: 16px!important;
+    line-height: 24px!important;
+}
+.nightMode{
+    .journalist-broadcast-post-message-text{
+         color: white!important;
+     }
 }
