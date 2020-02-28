@@ -68,6 +68,7 @@ class TournamentController extends Controller
                         'user.countries:id,name,flag',
                     ])->orderByDesc('check')
                         ->orderByDesc('victory_points')
+                        ->orderBy('defeat')
                         ->select(['id', 'tourney_id', 'user_id', 'victory_points', 'description', 'check']);
                 },
             ]);

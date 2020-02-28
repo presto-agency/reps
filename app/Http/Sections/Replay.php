@@ -291,6 +291,7 @@ class Replay extends Section
      */
     public function onEdit($id)
     {
+
         $getData = $this->getModel()->select(['file', 'src_iframe'])->find($id);
         if ($getData) {
             $this->fileOldPath = $getData->file;

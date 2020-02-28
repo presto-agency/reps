@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Traits\ModelRelations\TournamentRelationTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use stdClass;
 
 class TourneyList extends Model
 {
@@ -180,15 +181,43 @@ class TourneyList extends Model
         $roundNumber = TourneyMatch::getMaxRoundNumber($tourney->id);
 
 
-        $data['allMatches']      = $tourney->matches_count;
-        $data['allPlayers']      = $allPlayers;
-        $data['defeat0Players']  = $tourney->check_defeat0_players_count;
-        $data['defeat1Players']  = $tourney->check_defeat1_players_count;
-        $data['defeat2Players']  = $tourney->check_defeat2_players_count;
-        $data['leftPlayers']     = $data['defeat0Players'] + $data['defeat1Players'];
+        $data['allMatches'] = $tourney->matches_count;
+
+
         $data['roundsNowCreate'] = $roundNumber;
         $data['rounds']          = self::doubleRounds($data['roundsNowCreate'], $tourney->id);
+        $data['allPlayers']      = $allPlayers;
+        /**
+         * Check data players
+         */
+        $playersWAW = TourneyMatch::getWinnersAmongWinners($tourney->id, end($data['rounds'])['roundNumberNext']);
+        $playersLAW = TourneyMatch::getLosersAmongWinners($tourney->id, end($data['rounds'])['roundNumberNext']);
+        $playersWAL = TourneyMatch::getWinnersAmongLosers($tourney->id, end($data['rounds'])['roundNumberNext']);
+        $playersFR  = TourneyMatch::getFinalsRound($tourney->id, end($data['rounds'])['roundNumberNext']);
 
+        $waf        = new stdClass();
+        $laf        = new stdClass();
+        $playersWAF = collect();
+        $playersLAF = collect();
+        if ( ! empty($playersFR)) {
+            if ($playersFR->checkPlayers1->defeat < 2) {
+                $waf->player1_id = $playersFR->player1_id;
+                $playersWAF[]    = $waf;
+            }
+            if ($playersFR->checkPlayers2->defeat < 2) {
+                $laf->player2_id = $playersFR->player2_id;
+                $playersLAF[]    = $laf;
+            }
+        }
+        $playersWAFLAF = $playersWAF->merge($playersLAF);
+        /**
+         * Check players
+         */
+        $playersWAWCount     = $playersWAW->count();
+        $playersLAWCount     = $playersLAW->count();
+        $playersWALCount     = $playersWAL->count();
+        $playersWAFLAFCount  = $playersWAFLAF->count();
+        $data['leftPlayers'] = $playersWAWCount + $playersLAWCount + $playersWALCount + $playersWAFLAFCount;
 
         return $data;
     }
@@ -246,8 +275,6 @@ class TourneyList extends Model
             ->where('status', array_search('STARTED', self::$status))
             ->findOrFail($id);
     }
-
-
 
 
 }

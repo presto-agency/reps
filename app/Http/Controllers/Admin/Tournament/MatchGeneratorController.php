@@ -11,7 +11,12 @@ use App\Services\MatchGenerator\TourneyDouble;
 use App\Services\MatchGenerator\TourneySingle;
 use stdClass;
 
-
+/**
+ * Class MatchGeneratorController
+ * !!! Need HARD REFACTORING !!!
+ *
+ * @package App\Http\Controllers\admin\Tournament
+ */
 class MatchGeneratorController extends Controller
 {
 
@@ -22,41 +27,10 @@ class MatchGeneratorController extends Controller
      */
     public function show(int $id)
     {
-        $tourney = TourneyList::query()->withCount('matches', 'checkPlayers', 'checkDefeat0Players', 'checkDefeat1Players', 'checkDefeat2Players')->findOrFail($id);
+        $tourney = TourneyList::query()->withCount('matches', 'checkPlayers')->findOrFail($id);
         $data    = TourneyList::getGeneratorData($tourney);
         $content = view('admin.tourneyMatchGenerator.show', compact('tourney', 'data'));
-        /**
-         * Data players winners & lossers
-         */
-        $playersWAW = TourneyMatch::getWinnersAmongWinners($tourney->id, end($data['rounds'])['roundNumber'])->shuffle();
-        $playersLAW = TourneyMatch::getLosersAmongWinners($tourney->id, end($data['rounds'])['roundNumber'])->shuffle();
-        $playersWAL = TourneyMatch::getWinnersAmongLosers($tourney->id, end($data['rounds'])['roundNumber'])->shuffle();
 
-        /**
-         * Check data players  for finals
-         */
-        $playersFR = TourneyMatch::getFinalsRound($tourney->id, end($data['rounds'])['roundNumber']);
-
-        $waf        = new stdClass();
-        $laf        = new stdClass();
-        $playersWAF = collect();
-        $playersLAF = collect();
-        if ( ! empty($playersFR)) {
-            if ($playersFR->checkPlayers1->defeat < 2) {
-                $waf->player1_id = $playersFR->player1_id;
-                $playersWAF[]    = $waf;
-            }
-            if ($playersFR->checkPlayers2->defeat < 2) {
-                $laf->player2_id = $playersFR->player2_id;
-                $playersLAF[]    = $laf;
-            }
-        }
-
-        /**
-         * Check players 1
-         */
-        $playersWAFLAF = $playersWAF->merge($playersLAF);
-        dd($playersWAFLAF, $playersWAW, $playersLAW, $playersWAL);
 
         return AdminSection::view($content, 'Генератор матчей');
     }
