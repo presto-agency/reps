@@ -117,6 +117,9 @@ class User extends Section
                         $query->whereNull('email_verified_at');
                     }
                 }),
+
+                $gas_balance = AdminColumn::text('gas_balance', 'Gas'),
+
                 $ban = AdminColumnEditable::checkbox('ban')
                     ->setLabel('Бан')
                     ->append(AdminColumn::filter('ban'))
@@ -171,6 +174,16 @@ class User extends Section
         $control    = $display->getColumns()->getControlColumn();
         $buttonShow = $this->show();
         $control->addButton($buttonShow);
+
+        $linkGas = new ControlLink(function ($model) {
+            $url = asset('admin/gas_transactions');
+
+            return $url.'?user_id='.$model->getKey();
+        }, 'Газ', 50);
+        $linkGas->hideText();
+        $linkGas->setIcon('fa fa-eye');
+        $linkGas->setHtmlAttribute('class', 'btn-info');
+        $control->addButton($linkGas);
 
         return $display;
     }

@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ReplayStoreRequest;
 use App\Http\Requests\ReplayUpdateRequest;
 use App\Models\{Replay};
-use Embed\Embed;
+use App\Services\SrcFromUrl\Generator;
+use Illuminate\Http\Request;
 
 class UserReplayController extends Controller
 {
@@ -215,37 +216,45 @@ class UserReplayController extends Controller
             ->get();
     }
 
-    public function iframe()
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function iframe(Request $request)
     {
-        $request = request();
         if ($request->ajax()) {
             try {
-                $info = Embed::create($request->video_iframe_url);
-                if (empty($info->getCode())) {
-                    return \Response::json([
-                        'success' => 'false',
-                        'message' => 'Указаный url не поддерживаеться',
-                    ], 400);
+                $src = new Generator($request->get('video_iframe_url'));
+
+                if ($src->getSrcIframe() === false) {
+                    return $this->redirectToWrongUrl();
                 }
 
-                preg_match('/src="([^"]+)"/', $info->getCode(), $match);
-
                 return \Response::json([
-                    'success' => 'true',
-                    'message' => htmlspecialchars_decode($match[1]),
+                    'success' => true,
+                    'message' => $src->getSrcIframe(),
                 ], 200);
             } catch (\Exception $e) {
-                \Log::error($e);
-
-                return \Response::json([
-                    'success' => 'false',
-                    'message' => 'Указаный url не поддерживаеться',
-                ], 400);
+                return $this->redirectToWrongUrl();
             }
         }
 
-        return null;
+        return \Response::json([
+            'success' => false,
+            'message' => 'Указаный url не поддерживаеться',
+        ], 404);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    private function redirectToWrongUrl()
+    {
+        return \Response::json([
+            'success' => false,
+            'message' => 'Указаный url не поддерживаеться',
+        ], 400);
+    }
 
 }

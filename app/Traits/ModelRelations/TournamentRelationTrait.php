@@ -75,26 +75,5 @@ trait TournamentRelationTrait
         return $this->hasMany(TourneyPlayer::class, 'tourney_id', 'id')->whereBan(true);
     }
 
-    public function checkDefeat0Players()
-    {
-        return $this->hasMany(TourneyPlayer::class, 'tourney_id', 'id')->where('check', true)
-            ->where('ban', false)
-            ->where('defeat', 0);
-    }
-
-    public function checkDefeat1Players()
-    {
-        return $this->hasMany(TourneyPlayer::class, 'tourney_id', 'id')->where('check', true)
-            ->where('ban', false)
-            ->where('defeat', 1);
-    }
-
-    public function checkDefeat2Players()
-    {
-        return $this->hasMany(TourneyPlayer::class, 'tourney_id', 'id')->where('check', true)
-            ->where('ban', false)
-            ->where('defeat', '>=', 2);
-    }
-
 
 }

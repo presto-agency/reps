@@ -5,6 +5,7 @@ namespace App\Traits\ModelRelations;
 
 use App\Models\Country;
 use App\Models\ForumTopic;
+use App\Models\GasTransaction;
 use App\Models\Race;
 use App\Models\Replay;
 use App\Models\Role;
@@ -143,6 +144,14 @@ trait UserRelation
     public function commentsCount()
     {
         return $this->hasMany('App\Models\Comment', 'user_id', 'id')->count();
+    }
+
+    public function gas(){
+        return $this->hasMany(GasTransaction::class,'user_id', 'id');
+    }
+
+    public function gas_transactions(){
+        return $this->morphMany(GasTransaction::class, 'initializable');
     }
 
 }
