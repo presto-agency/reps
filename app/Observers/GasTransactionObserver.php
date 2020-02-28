@@ -38,7 +38,6 @@ class GasTransactionObserver
                 $balance = $debit - $credit;
 
                 // обернути в транзакцію
-
                 switch (self::$modelInit['name']){
                     //для адмінів які створюють транзакції з адмінки
                     case 'admin':
