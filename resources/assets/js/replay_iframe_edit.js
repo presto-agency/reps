@@ -1,4 +1,6 @@
+console.log('123123');
 $(document).ready(function () {
+
     if ($('#video_iframe_url').val()) {
         if (localStorage.success === 'true') {
             updateDataIfSuccess()
@@ -10,7 +12,9 @@ $(document).ready(function () {
             refreshAllData();
         }
     } else {
+
         if ($('#src_iframe').data('src')) {
+
             $('#video_iframe_set').removeClass('d-none').attr('src', $('#src_iframe').data('src'));
         } else {
             refreshAllData();

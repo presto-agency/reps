@@ -227,23 +227,34 @@ class UserReplayController extends Controller
             try {
                 $src = new Generator($request->get('video_iframe_url'));
 
+                if ($src->getSrcIframe() === false) {
+                    return $this->redirectToWrongUrl();
+                }
+
                 return \Response::json([
                     'success' => true,
                     'message' => $src->getSrcIframe(),
                 ], 200);
             } catch (\Exception $e) {
-                return \Response::json([
-                    'success' => false,
-                    'message' => 'Указаный url не поддерживаеться',
-                ], 400);
+                return $this->redirectToWrongUrl();
             }
         }
 
         return \Response::json([
             'success' => false,
-            'message' => 'Неверный запрос.',
+            'message' => 'Указаный url не поддерживаеться',
         ], 404);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    private function redirectToWrongUrl()
+    {
+        return \Response::json([
+            'success' => false,
+            'message' => 'Указаный url не поддерживаеться',
+        ], 400);
+    }
 
 }
