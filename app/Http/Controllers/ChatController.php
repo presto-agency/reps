@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\BanUserChat;
 use App\Events\ChangeNameUser;
 use App\Events\NewChatMessageAdded;
+use App\Events\UnBanUserChat;
 use App\Models\ChatPicture;
 use App\Models\ChatSmile;
 use App\Models\GasTransaction;
@@ -72,7 +74,7 @@ class ChatController extends Controller
     {
         $message_data = $request->all();
 
-        if (Auth::id() == $request->user_id) {
+        if ((Auth::id() == $request->user_id) && (auth()->user()->ban_chat == 0)) {
 
 
 //        $pattern = "/^\/cn\b/i";
@@ -168,7 +170,7 @@ class ChatController extends Controller
                     if ($user){
 
                         $initUser = auth()->user();
-                        $number = PublicChat::count();
+                        $number = 100; //количество сообщений
                         $amount = 20 * $number;
                         $balance = $initUser->gas_balance;
                         // перевіряємо чи достатньо газів на балансі
@@ -242,11 +244,165 @@ class ChatController extends Controller
                 break;
 
             case '/b':
-                dd('b');
+                $pattern = "/(?P<comand>^\/b\b) (?P<userid>\d+) (?P<number>\d+)/i";
+                if(preg_match($pattern, $request->message,$matches)){
+
+                    $user_id = $matches['userid'];
+                    $number = $matches['number'];
+                    $amount = 5 * $number;
+
+                    $user = User::find($user_id);
+                    $initUser = auth()->user();
+                    if ($user){
+
+                        if ($user->id == $initUser->id){
+                            return response()->json([
+                                'status' => false,
+                                'message' => 'Ban to yourself'
+                            ], 403);
+                        }
+
+                        $balance = $initUser->gas_balance;
+                        // перевіряємо чи достатньо газів на балансі
+                        if ($balance >= $amount){
+
+                            $data = [
+                                'user_id' => $initUser->id,
+                                'outgoing' => $amount,
+                                'description' => "Бан пользователя #$user->id($user->name)"
+                            ];
+
+                            // створюємо транзакцію для списання газів
+                            $transaction = new GasTransaction($data);
+                            $initUser->gas_transactions()->save($transaction);
+
+                            // записуємо кількість повідомлень для бана в БД до вже існуючої кількості
+                            $user->ban_chat += abs($number) + 1;
+                            $user->save();
+                            // визвати подію, яка верне забаненого юзера( id, name, number)
+                            $dataEvent = [
+                                'user_id' => $user->id,
+                                'name' => $user->name,
+                                'number' => $user->ban_chat
+                            ];
+                            event(new BanUserChat($dataEvent));
+
+                            // записати меседж в базу про зміну імені
+                            $message_data['message'] = "Пользователь #$initUser->id($initUser->name) забанил на $number сообщений пользователя #$user->id($user->name)";
+                            $message = $this->saveMessage($message_data);
+                            if ($message){
+                                // відправити респонс про успішне виконання команди
+                                // echo 'message збережено';
+                                return response()->json([
+                                    'status' => true,
+                                    'message' => 'Success',
+                                    'is_command' => true,
+                                    'data'   => [
+                                        'model' => $message,
+                                    ],
+                                ], 200);
+                            }else{
+                                // echo 'message помилка збереження';
+                                return response()->json([
+                                    'status' => false,
+                                    'message' => 'No save message'
+                                ], 500);
+                            }
+                        }else{
+                            return response()->json([
+                                'status' => false,
+                                'message' => 'No gas balance'
+                            ], 404);
+                        }
+                    }
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Not found user'
+                    ], 404);
+                }else{
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Error command argument'
+                    ], 404);
+                }
                 break;
 
             case '/ab':
-                dd('ab');
+                $pattern = "/(?P<comand>^\/ab\b) (?P<userid>\d+)/i";
+                if(preg_match($pattern, $request->message,$matches)){
+
+                    $user_id = $matches['userid'];
+
+                    $user = User::find($user_id);
+                    $initUser = auth()->user();
+                    if ($user){
+
+                        $number = $user->ban_chat;
+                        $amount = 5 * $number;
+
+                        $balance = $initUser->gas_balance;
+                        // перевіряємо чи достатньо газів на балансі
+                        if ($balance >= $amount){
+
+                            $data = [
+                                'user_id' => $initUser->id,
+                                'outgoing' => $amount,
+                                'description' => "Розбан пользователя #$user->id($user->name)"
+                            ];
+
+                            // створюємо транзакцію для списання газів
+                            $transaction = new GasTransaction($data);
+                            $initUser->gas_transactions()->save($transaction);
+
+                            // обнуляємо кількість повідомлень для бана в БД
+                            $user->ban_chat = 0;
+                            $user->save();
+
+                            // визвати подію, яка верне розбаненого юзера( id, name, number)
+                            $dataEvent = [
+                                'user_id' => $user->id,
+                                'name' => $user->name,
+                            ];
+                            event(new UnBanUserChat($dataEvent));
+
+                            // записати меседж в базу про зміну імені
+                            $message_data['message'] = "Пользователь #$initUser->id($initUser->name) розбанил пользователя #$user->id($user->name)";
+                            $message = $this->saveMessage($message_data);
+                            if ($message){
+                                // відправити респонс про успішне виконання команди
+                                // echo 'message збережено';
+                                return response()->json([
+                                    'status' => true,
+                                    'message' => 'Success',
+                                    'is_command' => true,
+                                    'data'   => [
+                                        'model' => $message,
+                                    ],
+                                ], 200);
+                            }else{
+                                // echo 'message помилка збереження';
+                                return response()->json([
+                                    'status' => false,
+                                    'message' => 'No save message'
+                                ], 500);
+                            }
+                        }else{
+                            return response()->json([
+                                'status' => false,
+                                'message' => 'No gas balance'
+                            ], 404);
+                        }
+                    }
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Not found user'
+                    ], 404);
+                }else{
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Error command argument'
+                    ], 404);
+                }
                 break;
 
             case '/tr':
