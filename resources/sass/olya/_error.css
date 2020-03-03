@@ -1,0 +1,77 @@
+.error-notice{
+    margin:5px; /* Make sure to keep some distance from all sides */
+}
+.error_message {
+    padding-left: 4px;
+}
+.oaerror{
+    position: absolute;
+    width:80%;
+    left: 0;
+    background-color: #ffffff;
+    padding: 5px 1px;
+    border:1px solid #eee;
+    border-left-width:5px;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    animation-name: errorshow;
+    animation-duration: 0.3s;
+}
+
+@keyframes errorshow {
+    from {top: -50px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+.danger{
+    border-left-color: #d9534f; /* Left side border color */
+}
+
+.danger strong{
+    color:#d9534f;
+}
+
+.warning{
+    border-left-color: #f0ad4e;
+    background-color: rgba(240, 173, 78, 0.1);
+}
+
+.warning strong{
+    color:#f0ad4e;
+}
+
+.info {
+    border-left-color: #5bc0de;
+    background-color: rgba(91, 192, 222, 0.1);
+}
+
+.info strong {
+    color: #5bc0de;
+}
+
+.success {
+    border-left-color: #2b542c;
+    background-color: rgba(43, 84, 44, 0.1);
+}
+
+.success strong {
+    color: #2b542c;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
