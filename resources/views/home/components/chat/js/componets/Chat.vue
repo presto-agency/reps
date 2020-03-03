@@ -17,6 +17,7 @@
                 </div>
             </div>
         </div>
+
             <chat-message :textareaId="textareaId1" :messagearray="messagearray" :not_user="not_user" :auth="auth" @on_delete="deleteMessage($event)"/>
     </div>
 </template>
