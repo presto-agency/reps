@@ -65,12 +65,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "pre-install-cmd": [
-            "php artisan optimize:clear",
-            "php artisan debugbar:clear"
-        ],
         "post-install-cmd": [
-            "php artisan sleepingowl:update",
             "php artisan optimize",
             "php artisan view:cache",
             "php artisan event:cache"
