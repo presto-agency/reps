@@ -62,6 +62,7 @@ class ChatController extends Controller
             "/^\/sb\b/i",
             "/^\/deal\b/i",
             "/^\/win\b/i",
+            "/^\/bet\b/i",
         ];
         foreach ($patterns as $pattern){
             if(preg_match($pattern, $message,$matches))
@@ -567,6 +568,95 @@ class ChatController extends Controller
                     $player2 = $matches['player2'];
                     $k1 = $matches['k1'];
                     $k2 = $matches['k2'];
+                    $amount = $matches['amount'];
+
+                    $author = auth()->user();
+
+
+
+                    //провіряємо чи є активні ставки
+                    if (!$author->hasActiveBet())
+                    {
+                        // провіряємо баланс
+                        if ($author->gas_balance >= $amount){
+                            //створюємо ставку
+                            $bet = Bet::create([
+                                'author_id' => $author->id,
+                                'player1' => $player1,
+                                'player2' => $player2,
+                                'coefficient1' => $k1,
+                                'coefficient2' => $k2,
+                                'amount' => $amount
+                            ]);
+
+                            // додаємо автора ставки в сделку
+                            $deal = Deal::create([
+                                'user_id' => $author->id,
+                                'bet_id' => $bet->id,
+                                'amount' => $amount
+                            ]);
+
+                            // створюємо транзакцію для списання газів
+                            $data = [
+                                'user_id' => $author->id,
+                                'outgoing' => $amount,
+                                'description' => "Создание ставки $bet->name"
+                            ];
+                            $transaction = new GasTransaction($data);
+                            $bet->gas_transactions()->save($transaction);
+
+                            // записати меседж в базу про створення ставки
+                            $message_data['message'] = "Пользователь #$author->id($author->name) создал ставку $bet->name";
+                            $message = $this->saveMessage($message_data);
+                            if ($message){
+                                // відправити респонс про успішне виконання команди
+                                // echo 'message збережено';
+                                return response()->json([
+                                    'status' => true,
+                                    'message' => 'Success',
+                                    'is_command' => true,
+                                    'data'   => [
+                                        'model' => $message,
+                                    ],
+                                ], 200);
+                            }else{
+                                // echo 'message помилка збереження';
+                                return response()->json([
+                                    'status' => false,
+                                    'message' => 'No save message'
+                                ], 500);
+                            }
+
+                        }else{
+                            return response()->json([
+                                'status' => false,
+                                'message' => 'No gas balance'
+                            ], 404);
+                        }
+                    }else{
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'Have active bet'
+                        ], 404);
+                    }
+
+                }else{
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Error command argument'
+                    ], 404);
+                }
+                break;
+
+            case '/bet':
+                $pattern = "/(?P<comand>^\/sb\b) (?P<player1>\w+) (?P<player2>\w+) (?P<amount>\d+)$/i";
+
+                if(preg_match($pattern, $request->message,$matches)){
+
+                    $player1 = $matches['player1'];
+                    $player2 = $matches['player2'];
+                    $k1 = 1;
+                    $k2 = 1;
                     $amount = $matches['amount'];
 
                     $author = auth()->user();
