@@ -649,7 +649,7 @@ class ChatController extends Controller
                 break;
 
             case '/bet':
-                $pattern = "/(?P<comand>^\/sb\b) (?P<player1>\w+) (?P<player2>\w+) (?P<amount>\d+)$/i";
+                $pattern = "/(?P<comand>^\/bet\b) (?P<player1>\w+) (?P<player2>\w+) (?P<amount>\d+)$/i";
 
                 if(preg_match($pattern, $request->message,$matches)){
 
