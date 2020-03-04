@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\AvatarTrait;
 use App\Traits\ModelRelations\UserRelation;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -212,6 +213,19 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return false;
+    }
+
+    public function getActiveBet(){
+        return $this->whereHas('bets', function (Builder $query){
+                    $query->where('status', true);
+                })
+            ->get();
+    }
+
+    public function hasActiveBet(){
+        $bets = $this->getActiveBet();
+
+        return $bets->isNotEmpty();
     }
 
 }

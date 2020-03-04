@@ -3,6 +3,7 @@
 namespace App\Traits\ModelRelations;
 
 
+use App\Models\Bet;
 use App\Models\Country;
 use App\Models\ForumTopic;
 use App\Models\GasTransaction;
@@ -152,6 +153,10 @@ trait UserRelation
 
     public function gas_transactions(){
         return $this->morphMany(GasTransaction::class, 'initializable');
+    }
+
+    public function bets(){
+        return $this->hasMany(Bet::class, 'author_id');
     }
 
 }

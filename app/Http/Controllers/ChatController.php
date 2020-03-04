@@ -6,8 +6,10 @@ use App\Events\BanUserChat;
 use App\Events\ChangeNameUser;
 use App\Events\NewChatMessageAdded;
 use App\Events\UnBanUserChat;
+use App\Models\Bet;
 use App\Models\ChatPicture;
 use App\Models\ChatSmile;
+use App\Models\Deal;
 use App\Models\GasTransaction;
 use App\Models\Help;
 use App\Models\PublicChat;
@@ -57,6 +59,9 @@ class ChatController extends Controller
             "/^\/ab\b/i",
             "/^\/tr\b/i",
             "/^\/anon\b/i",
+            "/^\/sb\b/i",
+            "/^\/deal\b/i",
+            "/^\/win\b/i",
         ];
         foreach ($patterns as $pattern){
             if(preg_match($pattern, $message,$matches))
@@ -553,6 +558,282 @@ class ChatController extends Controller
                 }
                 break;
 
+            case '/sb':
+                $pattern = "/(?P<comand>^\/sb\b) (?P<player1>\w+) (?P<k1>\d+) (?P<k2>\d+) (?P<player2>\w+) (?P<amount>\d+)$/i";
+
+                if(preg_match($pattern, $request->message,$matches)){
+
+                    $player1 = $matches['player1'];
+                    $player2 = $matches['player2'];
+                    $k1 = $matches['k1'];
+                    $k2 = $matches['k2'];
+                    $amount = $matches['amount'];
+
+                    $author = auth()->user();
+
+
+
+                    //провіряємо чи є активні ставки
+                    if (!$author->hasActiveBet())
+                    {
+                        // провіряємо баланс
+                        if ($author->gas_balance >= $amount){
+                            //створюємо ставку
+                            $bet = Bet::create([
+                                'author_id' => $author->id,
+                                'player1' => $player1,
+                                'player2' => $player2,
+                                'coefficient1' => $k1,
+                                'coefficient2' => $k2,
+                                'amount' => $amount
+                            ]);
+
+                            // додаємо автора ставки в сделку
+                            $deal = Deal::create([
+                                'user_id' => $author->id,
+                                'bet_id' => $bet->id,
+                                'amount' => $amount
+                            ]);
+
+                            // створюємо транзакцію для списання газів
+                            $data = [
+                                'user_id' => $author->id,
+                                'outgoing' => $amount,
+                                'description' => "Создание ставки $bet->name"
+                            ];
+                            $transaction = new GasTransaction($data);
+                            $bet->gas_transactions()->save($transaction);
+
+                            // записати меседж в базу про створення ставки
+                            $message_data['message'] = "Пользователь #$author->id($author->name) создал ставку $bet->name";
+                            $message = $this->saveMessage($message_data);
+                            if ($message){
+                                // відправити респонс про успішне виконання команди
+                                // echo 'message збережено';
+                                return response()->json([
+                                    'status' => true,
+                                    'message' => 'Success',
+                                    'is_command' => true,
+                                    'data'   => [
+                                        'model' => $message,
+                                    ],
+                                ], 200);
+                            }else{
+                                // echo 'message помилка збереження';
+                                return response()->json([
+                                    'status' => false,
+                                    'message' => 'No save message'
+                                ], 500);
+                            }
+
+                        }else{
+                            return response()->json([
+                                'status' => false,
+                                'message' => 'No gas balance'
+                            ], 404);
+                        }
+                    }else{
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'Have active bet'
+                        ], 404);
+                    }
+
+                }else{
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Error command argument'
+                    ], 404);
+                }
+                break;
+
+            case '/deal':
+                $pattern = "/(?P<comand>^\/deal\b) (?P<betid>\d+) (?P<amount>\d+)$/i";
+
+                if(preg_match($pattern, $request->message,$matches)){
+
+                    $bet_id = $matches['betid'];
+                    $amount = $matches['amount'];
+
+                    $user = auth()->user();
+
+                    $bet = Bet::find($bet_id);
+
+                    //провіряємо чи є ставка
+                    if ($bet)
+                    {
+                        // перевіряємо на автора ставки
+                        if ($bet->author_id == $user->id){
+                            return response()->json([
+                                'status' => false,
+                                'message' => 'Your author bet'
+                            ], 403);
+                        }
+                        // перевіряємо чи юзер вже приймав ставку
+                        $deals = $bet->deals()->get();
+                        if ($deals->contains('user_id', $user->id)){
+                            return response()->json([
+                                'status' => false,
+                                'message' => 'User has already accepted the bid'
+                            ], 403);
+                        }
+
+                        // cума сделки не повинна перевищувати ставку
+                        if ($amount > $bet->amount){
+                            $amount = $bet->amount;
+                        }
+
+                        // провіряємо баланс
+                        if ($user->gas_balance >= $amount){
+
+                            //створюємо сделку
+                            $deal = Deal::create([
+                                'user_id' => $user->id,
+                                'bet_id' => $bet->id,
+                                'amount' => $amount
+                            ]);
+
+
+                            // створюємо транзакцію для списання газів
+                            $data = [
+                                'user_id' => $user->id,
+                                'outgoing' => $amount,
+                                'description' => "Принятие ставки $bet->name в размере $amount gas"
+                            ];
+                            $transaction = new GasTransaction($data);
+                            $bet->gas_transactions()->save($transaction);
+
+                            // записати меседж в базу про створення ставки
+                            $message_data['message'] = "Пользователь #$user->id($user->name) принял ставку $bet->name в размере $amount gas";
+                            $message = $this->saveMessage($message_data);
+                            if ($message){
+                                // відправити респонс про успішне виконання команди
+                                // echo 'message збережено';
+                                return response()->json([
+                                    'status' => true,
+                                    'message' => 'Success',
+                                    'is_command' => true,
+                                    'data'   => [
+                                        'model' => $message,
+                                    ],
+                                ], 200);
+                            }else{
+                                // echo 'message помилка збереження';
+                                return response()->json([
+                                    'status' => false,
+                                    'message' => 'No save message'
+                                ], 500);
+                            }
+
+                        }else{
+                            return response()->json([
+                                'status' => false,
+                                'message' => 'No gas balance'
+                            ], 404);
+                        }
+                    }else{
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'Not found bet'
+                        ], 404);
+                    }
+
+                }else{
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Error command argument'
+                    ], 404);
+                }
+                break;
+
+            case '/win':
+                $pattern = "/(?P<comand>^\/win\b) (?P<userid>\d+)$/i";
+
+                if(preg_match($pattern, $request->message,$matches)){
+
+                    $user_id = $matches['userid'];
+
+                    $author = auth()->user();
+
+                    $user = User::find($user_id);
+                    if ($user){
+
+                        // перемога автора
+
+
+                        $activeBet = $author->bets()->active()->latest()->first();
+                        if (!$activeBet){
+                            return response()->json([
+                                'status' => false,
+                                'message' => 'Not found active bet'
+                            ], 404);
+                        }
+
+                        // провіряємо чи приймав юзер ставку
+                        $deals = $activeBet->deals()->get();
+                        if (!$deals->contains('user_id', $user->id)){
+                            return response()->json([
+                                'status' => false,
+                                'message' => 'User did not accept bid'
+                            ], 404);
+                        }
+
+                        $winnerDeal = $deals->first(function ($value, $key) use($user){
+                            return $value->user_id == $user->id;
+                        });
+
+                        // записываем победителя и закрываем ставку
+                        $activeBet->winner_id = $user->id;
+                        $activeBet->status = false;
+                        $activeBet->save();
+
+                        // нараховуємо виграш
+                        // $amount = сума * к2/к1
+                        $amount = $winnerDeal->amount * $activeBet->coefficient2 / $activeBet->coefficient1;
+                        $data = [
+                            'user_id' => $author->id,
+                            'incoming' => $amount,
+                            'description' => "Выиграш по ставке $activeBet->name"
+                        ];
+                        $transaction = new GasTransaction($data);
+                        $activeBet->gas_transactions()->save($transaction);
+
+                        // записати меседж в базу про створення ставки
+                        $message_data['message'] = "Пользователь #$user->id($user->name) выиграл ставку $activeBet->name";
+                        $message = $this->saveMessage($message_data);
+                        if ($message){
+                            // відправити респонс про успішне виконання команди
+                            // echo 'message збережено';
+                            return response()->json([
+                                'status' => true,
+                                'message' => 'Success',
+                                'is_command' => true,
+                                'data'   => [
+                                    'model' => $message,
+                                ],
+                            ], 200);
+                        }else{
+                            // echo 'message помилка збереження';
+                            return response()->json([
+                                'status' => false,
+                                'message' => 'No save message'
+                            ], 500);
+                        }
+
+
+                    }
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Not found user'
+                    ], 404);
+
+                }else{
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Error command argument'
+                    ], 404);
+                }
+                break;
             default:
                 // якщо не має команди просто зберігаємо повідомлення
                 $message = clean($request->message);
