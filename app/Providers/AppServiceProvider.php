@@ -9,6 +9,7 @@ use App\Models\{
     ForumTopic,
     GasTransaction,
     InterviewQuestion,
+    PublicChat,
     Replay,
     Stream,
     TourneyList,
@@ -22,6 +23,7 @@ use App\Observers\{
     ForumTopicObserver,
     GasTransactionObserver,
     InterviewQuestionObserver,
+    PublicChatObserver,
     ReplayObserver,
     StreamObserver,
     TourneyListObserver,
@@ -64,6 +66,7 @@ class AppServiceProvider extends ServiceProvider
         Country::observe(CountryObserver::class);
         UserReputation::observe(UserReputationObserver::class);
         GasTransaction::observe(GasTransactionObserver::class);
+        PublicChat::observe(PublicChatObserver::class);
         /**
          * Tournaments
          */

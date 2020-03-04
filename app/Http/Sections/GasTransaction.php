@@ -196,7 +196,8 @@ class GasTransaction extends Section
 
         $display->setColumnFilters([
             null,
-            AdminColumnFilter::select(User::class, 'name')/*->setModel(new User())->setDisplay('name')*/->setPlaceholder('Имя не выбрано')->setColumnName('user_id')->multiple(),
+            null,
+//            AdminColumnFilter::select(User::class, 'name')/*->setModel(new User())->setDisplay('name')*/->setPlaceholder('Имя не выбрано')->setColumnName('user_id')->multiple(),
             null,
             null,
             null,
