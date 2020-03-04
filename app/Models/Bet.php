@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Bet extends Model
@@ -31,6 +32,13 @@ class Bet extends Model
 
     public function deals(){
         return $this->hasMany(Deal::class, 'bet_id');
+    }
+
+    public function author(){
+        return $this->belongsTo(User::class, 'author_id');
+    }
+    public function winner(){
+        return $this->belongsTo(User::class, 'winner_id');
     }
 
     public function scopeActive($query){
