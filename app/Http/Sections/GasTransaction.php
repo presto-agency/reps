@@ -196,7 +196,7 @@ class GasTransaction extends Section
 
         $display->setColumnFilters([
             null,
-            null,
+            AdminColumnFilter::text()->setPlaceholder('Name')->setOperator('contains'),
 //            AdminColumnFilter::select(User::class, 'name')/*->setModel(new User())->setDisplay('name')*/->setPlaceholder('Имя не выбрано')->setColumnName('user_id')->multiple(),
             null,
             null,
@@ -261,7 +261,7 @@ class GasTransaction extends Section
         return $form;*/
 
 
-        $form = AdminForm::form()->addElement(
+        /*$form = AdminForm::form()->addElement(
             AdminFormElement::columns()
                 ->addColumn([
                     AdminFormElement::select('user_id', 'User', User::class)->setDisplay('name')
@@ -269,17 +269,53 @@ class GasTransaction extends Section
                 ->addColumn([
                     AdminFormElement::text('description', 'Description')->required()
                 ], 3)
-        );
+        );*/
 
         /*$formDebet = AdminForm::form()->addElement(
             new FormElements([
                 AdminFormElement::number('incoming', 'Amount')->required('so sad but this field is empty')
             ])
         );*/
-        $formDebet = AdminForm::form()->addElement(
+
+
+        $form = AdminForm::panel();
+
+        $form->addHeader([
             AdminFormElement::columns()
                 ->addColumn([
-                    AdminFormElement::select('user_id', 'User', User::class)->setDisplay('name')
+                    AdminFormElement::selectajax('user_id', 'User')
+                        ->setModelForOptions(User::class)
+                        ->setSearch('name')
+                        ->setDisplay('name')
+                        ->required()
+                ])
+        ]);
+
+        $tabs = AdminDisplay::tabbed([
+            'Начислить' => new FormElements([
+                AdminFormElement::number('incoming', 'Amount')
+                    ->setDefaultValue(0),
+            ]),
+            'Списать' => new FormElements([
+                AdminFormElement::number('outgoing', 'Amount')
+                    ->setDefaultValue(0),
+            ]),
+        ]);
+
+        $form->addElement($tabs);
+
+        $form->addBody(AdminFormElement::textarea('description', 'Description')->required());
+        $form->addBody(AdminFormElement::hidden('admin_id')->setDefaultValue(auth()->user()->id));
+
+        return $form;
+
+        /*$formDebet = AdminForm::form()->addElement(
+            AdminFormElement::columns()
+                ->addColumn([
+                    AdminFormElement::selectajax('user_id', 'User')
+                        ->setModelForOptions(User::class, 'name')
+                        ->setSearch('name')
+                        ->setDisplay('name')
                 ])
                 ->addColumn([
                     AdminFormElement::number('incoming', 'Amount')->required('so sad but this field is empty')
@@ -293,9 +329,7 @@ class GasTransaction extends Section
         );
         $formCredit = AdminForm::form()->addElement(
             AdminFormElement::columns()
-                ->addColumn([
-                    AdminFormElement::select('user_id', 'User', User::class)->setDisplay('name')
-                ])
+
                 ->addColumn([
                     AdminFormElement::number('outgoing', 'Amount')->required('so sad but this field is empty')
                 ])
@@ -314,7 +348,7 @@ class GasTransaction extends Section
         $tabs->appendTab($formCredit,   'Списать');
 
 
-        return $tabs;
+        return $tabs;*/
 
     }
 
