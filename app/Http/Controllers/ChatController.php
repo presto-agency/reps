@@ -791,7 +791,7 @@ class ChatController extends Controller
                         // $amount = сума * к2/к1
                         $amount = $winnerDeal->amount * $activeBet->coefficient2 / $activeBet->coefficient1;
                         $data = [
-                            'user_id' => $author->id,
+                            'user_id' => $winnerDeal->user_id,
                             'incoming' => $amount,
                             'description' => "Выиграш по ставке $activeBet->name"
                         ];
