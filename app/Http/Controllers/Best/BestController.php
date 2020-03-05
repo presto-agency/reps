@@ -20,8 +20,9 @@ class BestController extends Controller
         $rating = $this->getCacheRating('top100UserRating');
         $news   = $this->getCacheNews('top100UserNews');
         $replay = $this->getCacheReplay('top100UserReplay');
+        $gas    = $this->getCacheGas('top100UserGas');
 
-        return view('best.index', compact('points', 'rating', 'news', 'replay'));
+        return view('best.index', compact('points', 'rating', 'news', 'replay', 'gas'));
     }
 
     /**
@@ -68,6 +69,18 @@ class BestController extends Controller
         return User::with('countries:id,flag,name', 'races:id,title')
             ->withCount('replays')
             ->orderByDesc('replays_count')
+            ->limit(100)
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getTop100UserGas()
+    {
+        return User::with('countries:id,flag,name', 'races:id,title')
+            ->where('gas_balance', '>', 0)
+            ->orderByDesc('gas_balance')
             ->limit(100)
             ->get();
     }
@@ -138,6 +151,24 @@ class BestController extends Controller
         } else {
             $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
                 return $this->getTop100UserReplay();
+            });
+        }
+
+        return $data_cache;
+    }
+
+    /**
+     * @param  string  $cache_name
+     *
+     * @return mixed
+     */
+    public function getCacheGas(string $cache_name)
+    {
+        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+            $data_cache = \Cache::get($cache_name);
+        } else {
+            $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
+                return $this->getTop100UserGas();
             });
         }
 

@@ -103,11 +103,11 @@
             <a href="{{route('best.index')}}"><p class="title_text night_text">{{__('TOP 10 gas')}}</p></a>
         </div>
         <div class="block_topUsers">
-            @if(isset($top10Points) && $top10Points->isNotEmpty())
-                @foreach($top10Points as $item)
+            @if(isset($top10Gas) && $top10Gas->isNotEmpty())
+                @foreach($top10Gas as $item)
                     <div class="row row_container">
                         <div class="col-xl-5 col-lg-4 col-md-4 col-4 content_code">
-                            <p class="night_text">{{$item->comments_count .' g'}}</p>
+                            <p class="night_text">{{$item->gas_balance .' g'}}</p>
                         </div>
                         <div class="col-xl-2 col-lg-3 col-md-3 col-3 content_img">
                             @if($item->countries)
