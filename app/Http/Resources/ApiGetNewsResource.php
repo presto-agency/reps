@@ -18,16 +18,13 @@ class ApiGetNewsResource extends JsonResource
      */
     public function toArray($request): array
     {
-        //                dd($this->convertToBBCode($this->content));
         return [
             'id'             => (int) $this->id,
             'title'          => (string) clean($this->title),
-            'rating'         => (int) $this->rating,
-            'reviews'        => (int) $this->reviews,
             'content'        => $this->convertToBBCode((string) $this->content),
-            'previewImg'     => (string) $this->preview_img,
+            'previewImg'     => ! empty($this->preview_img) ? asset($this->preview_img) : '',
             'previewContent' => $this->convertToBBCode((string) $this->preview_content),
-            'commentsCount'  => (int) $this->comments_count,
+            'createdAt'      => $this->created_at,
         ];
     }
 
@@ -40,27 +37,26 @@ class ApiGetNewsResource extends JsonResource
     {
         try {
             $bbCode = new BBCode();
+            $text   = trim($text);
+            $text   = str_replace('<p>', '', $text);
+            $text   = str_replace('</p>', '', $text);
+            $text   = str_replace('&nbsp;', '', $text);
 
-//            $bbCode->addHtmlParser('p', '/<p>(.*?)<\/p>/s', '$1', '$1');
-//
-//            $bbCode->addHtmlParser('img', '/<img (.*?) src="(.*?)" (.*?)>/s', '[img]$1[/img]', '$1');
-////
-////            $bbCode->addHtmlParser('iframeSrc', '/<iframe (.*?) src="(.*?)" (.*?)><\/iframe>/s', '[iframeSrc $1 $3]$2[/iframe]', '$1,$2,$3');
-//            $bbCode1 = preg_replace('/<img (.*?) src="(.*?)" (.*?)>/s', "[img]$1[/img]", $bbCode);
-//            if (!empty($bbCode1)){
-//                $bbCode = $bbCode1;
-//            }
-//            $bbCode2 = preg_replace('/<iframe (.*?) src="(.*?)" (.*?)><\/iframe>/s', "[iframeSrc $1 $3]$2[/iframe]", $bbCode);
-//            if (!empty($bbCode1)){
-//                $bbCode = $bbCode2;
-//            }
-//            dd($bbCode);
+            $imgReplace = preg_replace('/<img (.*?) src="(.*?)" (.*?) \/>/m', "[img]$2[/img]", $text);
+            if ( ! empty($imgReplace)) {
+                $text = $imgReplace;
+            }
+
+            $iframeReplace = preg_replace('/<iframe (.*?) src="(.*?)" (.*?)><\/iframe>/m', "[iframe]$2[/iframe]", $text);
+
+            if ( ! empty($iframeReplace)) {
+                $text = $iframeReplace;
+            }
+
             $bbCode = $bbCode->convertFromHtml($text);
-dd($bbCode);
 
 
-
-
+            return $bbCode;
         } catch (\Exception $e) {
             \Log::error($e->getMessage());
         }

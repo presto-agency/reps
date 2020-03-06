@@ -34,7 +34,7 @@
                                             <h2 class="modal-body__title night_text nick_text">{{__('Введите свой ник в игре.')}}</h2>
                                             <div class="nick_form">
                                                 <input class="form-control night_input" id="description" type="text"
-                                                       max="50"
+                                                       maxlength="255"
                                                        placeholder="{{ __('nickname') }}">
                                                 <div id="description_error" class="alert alert-danger d-none"
                                                      role="alert"></div>
@@ -42,7 +42,8 @@
                                                      role="alert"></div>
                                                 <button id="tournamentRegister" type="submit"
                                                         class="button button__download-more"
-                                                        onClick="tournamentRegister()">
+                                                        data-rout="{{ route('tournament.register') }}"
+                                                        data-id="{{$tournament->id}}">
                                                     {{__('ОТПРАВИТЬ')}}
                                                 </button>
                                             </div>
