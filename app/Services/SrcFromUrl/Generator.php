@@ -100,8 +100,8 @@ class Generator
     {
         $part1 = config('src_iframe.embed')['youtu.be'];
         $query = $this->query;
-        if ( ! empty($this->query)) {
-            $query = str_replace('t', '?start', $this->query);
+        if ( ! empty($this->query) && $this->query[0] == "t") {
+            $query = substr_replace($this->query, '?start', 0, 1);
         }
         $part2 = $this->path.$query;
 

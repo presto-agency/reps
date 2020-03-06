@@ -56,10 +56,8 @@ class NewsController extends Controller
     private function getNews()
     {
         return ForumTopic::query()->latest()
-            ->select(['id', 'title', 'rating', 'reviews', 'content', 'preview_img', 'preview_content'])
             ->where('hide', false)
             ->where('news', true)
-            ->withCount('comments')
             ->limit(10)
             ->get();
     }
