@@ -12,7 +12,11 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .js('resources/assets/js/replay_iframe_create.js', 'public/js')
-    .js('resources/assets/js/replay_iframe_edit.js', 'public/js')
+    .js('resources/assets/js/register_tournament.js', 'public/js/assets')
+    .js('resources/assets/js/load_galleries.js', 'public/js/assets')
+    .js('resources/assets/js/load_forum_sections.js', 'public/js/assets')
+    .js('resources/assets/js/load_forum_sections_show.js', 'public/js/assets')
+    .js('resources/assets/js/load_tournament.js', 'public/js/assets')
+    .js('resources/assets/js/replay_iframe.js', 'public/js/assets')
     .sass('resources/sass/app.scss', 'public/css')
     .version();

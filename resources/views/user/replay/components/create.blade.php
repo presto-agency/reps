@@ -237,7 +237,7 @@
                        placeholder="{{__('Вставте URL для Video Iframe')}}"
                        data-url="{{route('set.iframe')}}"
                        value="{{old('video_iframe_url')}}">
-                <input name="src_iframe" type="hidden" id="src_iframe" tabindex="-1" readonly value="">
+                <input name="src_iframe" type="hidden" id="src_iframe" tabindex="-1" readonly data-src="" value="">
             </div>
             <iframe id="video_iframe_set" class="d-none" src="" width="100%" height="340" frameborder="0" scrolling="no"
                     allowfullscreen></iframe>
@@ -275,102 +275,5 @@
 </div>
 @section('custom-script')
     @parent
-    <script type="text/javascript" src="{{mix('js/replay_iframe_create.js')}}" defer></script>
-
-    {{--    <script type="text/javascript" defer>--}}
-    {{--        /*** ajax-video-iframe ***/--}}
-    {{--        $(document).ready(function () {--}}
-    {{--            if ($('#video_iframe_url').val()) {--}}
-    {{--                if (localStorage.success === 'true') {--}}
-    {{--                    updateDataIfSuccess()--}}
-    {{--                }--}}
-    {{--                if (localStorage.success === 'false') {--}}
-    {{--                    updateDataIfError()--}}
-    {{--                }--}}
-    {{--                if (localStorage.success !== 'false' && localStorage.success !== 'true') {--}}
-    {{--                    refreshAllData();--}}
-    {{--                }--}}
-    {{--            } else {--}}
-    {{--                refreshAllData();--}}
-    {{--            }--}}
-    {{--        });--}}
-    {{--        //setup before functions--}}
-    {{--        let typingTimer;                //timer identifier--}}
-    {{--        let doneTypingInterval = 1500;  //time in ms (1.5 seconds)--}}
-    {{--        //on keyup, start the countdown--}}
-    {{--        $('#video_iframe_url').keyup(function () {--}}
-    {{--            clearTimeout(typingTimer);--}}
-    {{--            if ($('#video_iframe_url').val()) {--}}
-    {{--                typingTimer = setTimeout(doneTyping, doneTypingInterval);--}}
-    {{--            } else {--}}
-    {{--                refreshAllData();--}}
-    {{--            }--}}
-    {{--        });--}}
-
-    {{--        //user is "finished typing," do something--}}
-    {{--        function doneTyping() {--}}
-    {{--            const token = $('meta[name="csrf-token"]').attr('content');--}}
-    {{--            let video_iframe_url = $('#video_iframe_url').val();--}}
-    {{--            let url = $('#video_iframe_url').data('url');--}}
-    {{--            sendAjax(token, video_iframe_url, url)--}}
-    {{--        }--}}
-
-    {{--        function sendAjax(token, video_iframe_url, url) {--}}
-    {{--            $.ajax({--}}
-    {{--                url: url,--}}
-    {{--                method: 'POST',--}}
-    {{--                data: {--}}
-    {{--                    _token: token,--}}
-    {{--                    video_iframe_url: video_iframe_url,--}}
-    {{--                },--}}
-    {{--                success: function (data) {--}}
-    {{--                    updateLocalStorage(data.success, data.message);--}}
-    {{--                    updateDataIfSuccess()--}}
-    {{--                },--}}
-    {{--                error: function (data) {--}}
-    {{--                    updateLocalStorage(data.responseJSON.success, data.responseJSON.message);--}}
-    {{--                    updateDataIfError();--}}
-    {{--                }--}}
-    {{--            });--}}
-    {{--        }--}}
-
-    {{--        function updateDataIfSuccess() {--}}
-    {{--            $('#src_iframe').val(localStorage.message);--}}
-    {{--            $('#video_iframe_set').removeClass('d-none').attr('src', localStorage.message);--}}
-    {{--            $("#video_iframe_error").addClass('d-none').html('');--}}
-    {{--        }--}}
-
-    {{--        function updateDataIfError() {--}}
-    {{--            $('#src_iframe').val('');--}}
-    {{--            $('#video_iframe_set').addClass('d-none').attr('src', '');--}}
-    {{--            $("#video_iframe_error").removeClass('d-none').html(localStorage.message);--}}
-    {{--        }--}}
-
-    {{--        function updateLocalStorage(success, message) {--}}
-    {{--            delete localStorage.success;--}}
-    {{--            delete localStorage.message;--}}
-    {{--            localStorage.success = success;--}}
-    {{--            localStorage.message = message;--}}
-    {{--        }--}}
-
-    {{--        function refreshAllData() {--}}
-    {{--            delete localStorage.success;--}}
-    {{--            delete localStorage.message;--}}
-    {{--            $('#src_iframe').val('');--}}
-    {{--            $('#video_iframe_set').addClass('d-none').attr('src', '');--}}
-    {{--            $("#video_iframe_error").addClass('d-none').html('');--}}
-    {{--        }--}}
-
-    {{--        /*** ajax-video-iframe ***/--}}
-    {{--        /*** file ***/--}}
-    {{--        $('#replay-create').submit(function () {--}}
-
-    {{--            if ($('#uploadBtn').val() === '') {--}}
-    {{--                $('input[name="file"]').prop('disabled', true);--}}
-    {{--            }--}}
-    {{--            if ($('#src_iframe').val() === '') {--}}
-    {{--                $('input[name="src_iframe"]').prop('disabled', true);--}}
-    {{--            }--}}
-    {{--        });--}}
-    {{--    </script>--}}
+    <script type="text/javascript" src="{{mix('js/assets/replay_iframe.js')}}" defer></script>
 @endsection

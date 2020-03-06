@@ -33,9 +33,9 @@ class Generator
     /**
      * Generator constructor.
      *
-     * @param $url
+     * @param  string  $url
      */
-    public function __construct($url)
+    public function __construct(string $url)
     {
         $this->parser($url);
 
@@ -47,7 +47,8 @@ class Generator
      */
     private function parser($url)
     {
-        $url          = parse_url(htmlspecialchars_decode($url));
+        $url = parse_url(htmlspecialchars_decode($url));
+
         $this->scheme = isset($url['scheme']) ? $url['scheme'] : null;
         $this->host   = isset($url['host']) ? $url['host'] : null;
         $this->path   = isset($url['path']) ? $url['path'] : null;
@@ -63,14 +64,14 @@ class Generator
     }
 
     /**
-     * @return bool|false|string|null
+     * @return string|null
      */
     public function getSrcIframe()
     {
         if ($this->isValidHost) {
             return $this->parseQuery();
         } else {
-            return false;
+            return null;
         }
     }
 
@@ -80,7 +81,7 @@ class Generator
     private function parseQuery()
     {
         switch ($this->host) {
-            case 'www.youtube.com':
+            case 'youtu.be':
                 return $this->getYoutube();
                 break;
             case 'www.twitch.tv':
@@ -97,14 +98,18 @@ class Generator
      */
     private function getYoutube()
     {
-        $part1 = config('src_iframe.embed')['www.youtube.com'];
-        $part2 = substr($this->query, strpos($this->query, "v=") + 2);
+        $part1 = config('src_iframe.embed')['youtu.be'];
+        $query = $this->query;
+        if ( ! empty($this->query)) {
+            $query = str_replace('t', '?start', $this->query);
+        }
+        $part2 = $this->path.$query;
 
         return "{$part1}{$part2}";
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
     private function getTwitch()
     {
@@ -118,9 +123,13 @@ class Generator
         } elseif (in_array('clip', $parse)) {
             $part1 = config('src_iframe.embed')['www.twitch.tv']['clip'];
             $key   = array_search('clip', $parse) + 1;
-            $part2 = isset($parse[$key]) ? $parse[$key] : null;
-           
-            return "{$part1}{$part2}";
+            if (isset($parse[$key])) {
+                $part2 = $parse[$key];
+
+                return "{$part1}{$part2}";
+            } else {
+                return null;
+            }
         } else {
             return null;
         }

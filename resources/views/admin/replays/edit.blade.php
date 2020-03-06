@@ -8,4 +8,4 @@
 <iframe id="video_iframe_set" class="d-none" src="" width="100%" height="340" frameborder="0" scrolling="no"
         allowfullscreen></iframe>
 <div id="video_iframe_error" class="alert alert-danger d-none"></div>
-<script type="text/javascript" src="{{mix('js/replay_iframe_edit.js')}}" defer></script>
+<script type="text/javascript" src="{{mix('js/assets/replay_iframe.js')}}" defer></script>

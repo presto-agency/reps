@@ -13,17 +13,17 @@ class UserReplayController extends Controller
 {
 
 
-    public function index(int $id, string $type = '')
+    public function index($id, $type = '')
     {
         return view('user.replay.index');
     }
 
-    public function show(int $id, int $user_replay, string $type = '')
+    public function show($id, $user_replay, $type = '')
     {
         return abort(404);
     }
 
-    public function destroy(int $id, int $user_replay)
+    public function destroy($id, $user_replay)
     {
         return abort(404);
     }
@@ -42,7 +42,7 @@ class UserReplayController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      */
-    public function edit(int $id, int $user_replay)
+    public function edit($id, $user_replay)
     {
         /**
          * Abort if auth user role = 'user'
@@ -227,7 +227,7 @@ class UserReplayController extends Controller
             try {
                 $src = new Generator($request->get('video_iframe_url'));
 
-                if ($src->getSrcIframe() === false) {
+                if (empty($src->getSrcIframe())) {
                     return $this->redirectToWrongUrl();
                 }
 
