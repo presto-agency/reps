@@ -51,14 +51,14 @@ class TopicController extends Controller
     {
         $topic = ForumTopic::with([
 
-            'author:id,avatar,name,country_id,race_id,count_negative,count_positive',
+            'author:id,avatar,name,country_id,race_id,count_negative,count_positive,gas_balance',
             'author.countries:id,name,flag',
             'author.races:id,title',
             'author'        => function ($query) {
                 $query->withCount('comments');
             },
             'comments',
-            'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive',
+            'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive,gas_balance',
             'comments.user.countries:id,name,flag',
             'comments.user.races:id,title',
             'comments.user' => function ($query) {

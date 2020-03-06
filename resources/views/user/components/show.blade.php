@@ -251,7 +251,7 @@
                             <div class="right_block">
                                 <a class="blue" title="{{__('Gas')}}"
                                    href="#">
-                                    <span>0</span>
+                                    <span>{{ $user->gas_balance }}</span>
                                 </a>
                             </div>
                         </div>

@@ -100,12 +100,12 @@
         </div>
         {{--        new gaz--}}
         <div class="title_players change_gray">
-            <p class="title_playersText">{{__('Top-100')}}</p>
+            <p class="title_playersText">{{__('Top-100 gas')}}</p>
             <img alt="gas" class="minerals_icons" src="{{asset('images/minerals_icons/gaz.png') }}">
         </div>
         <div class="container_players">
-            @if(isset($rating) && $rating->isNotEmpty())
-                @foreach($rating as $item)
+            @if(isset($gas) && $gas->isNotEmpty())
+                @foreach($gas as $item)
                     <div class="players_content">
                         <div class="left_block">
                             <span class="number night_text">{{'#'. $loop->iteration }} {{-- Starts with 1 --}}</span>
@@ -134,7 +134,7 @@
                             @endif
                         </div>
                         <div class="right_block">
-                            <span class="night_text">{{$item->rating.' supply'}}</span>
+                            <span class="night_text">{{$item->gas_balance}}</span>
                             <img alt="gas" class="minerals_icons" src="{{asset('images/minerals_icons/gaz.png') }}">
                         </div>
                     </div>

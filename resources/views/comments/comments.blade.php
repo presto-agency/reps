@@ -44,17 +44,23 @@
                                 class="info__cube" alt="race" title="{{$comment->user->races->title}}">
                             @if($comment->user->races)
                                 <div class="block_minerals_icons text_pts">
-                                   <p class="title__text info__text"
+                                    <p class="title__text info__text"
                                        title="{{$comment->user->comments_count}}">{{$comment->user->comments_count}}</p>
                                     <img class="minerals_icons" title="minerals" alt="min"
                                          src="{{asset('images/minerals_icons/min.png') }}">
+
                                     <p class="title__text text_special info__text">|</p>
+
                                     <p class="title__text info__text"
                                        title="{{$comment->user->rating}}">{{$comment->user->rating}}</p>
                                     <img class="minerals_icons" title="supply" alt="sup"
                                          src="{{asset('images/minerals_icons/supp.png') }}">
+
                                     <p class="title__text text_special info__text">|</p>
-                                    <p class="title__text info__text" title="0">0</p>
+
+                                    <p class="title__text info__text" title="gas">
+                                        {{ $comment->user->gas_balance}}
+                                    </p>
                                     <img class="minerals_icons" title="gas" alt="gas"
                                          src="{{asset('images/minerals_icons/gaz.png') }}">
                                 </div>

@@ -52,6 +52,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
             \App\Models\TourneyPlayer::class       => 'App\Http\Sections\TournamentsPlayer',
             \App\Models\TourneyMatch::class        => 'App\Http\Sections\TournamentsMatches',
             \App\Models\GasTransaction::class      => 'App\Http\Sections\GasTransaction',
+            \App\Models\Bet::class                 => 'App\Http\Sections\Bet',
         ];
 
 
@@ -93,7 +94,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
                     (new Page(\App\User::class))->setPriority(1),
                     (new Page(\App\Models\UserGallery::class))->setPriority(2),
                     (new Page(\App\Models\GasTransaction::class))->setPriority(3),
-                    (new Page(\App\Models\UserActivityLog::class))->setPriority(4),
+                    (new Page(\App\Models\Bet::class))->setPriority(4),
+                    (new Page(\App\Models\UserActivityLog::class))->setPriority(5),
                 ],
             ],
         ]);

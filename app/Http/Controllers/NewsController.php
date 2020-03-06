@@ -45,7 +45,7 @@ class NewsController extends Controller
     {
         $news = ForumTopic::with([
             'author'        => function ($query) {
-                $query->select(['id', 'avatar', 'name', 'country_id', 'race_id', 'rating', 'count_negative', 'count_positive',])
+                $query->select(['id', 'avatar', 'name', 'country_id', 'race_id', 'rating', 'count_negative', 'count_positive', 'gas_balance',])
                     ->withCount('comments');
             },
             'author.countries:id,name,flag',
@@ -55,7 +55,7 @@ class NewsController extends Controller
             'comments.user.countries:id,name,flag',
             'comments.user.races:id,title',
             'comments.user' => function ($query) {
-                $query->select(['id', 'avatar', 'name', 'country_id', 'race_id', 'rating', 'count_negative', 'count_positive',])
+                $query->select(['id', 'avatar', 'name', 'country_id', 'race_id', 'rating', 'count_negative', 'count_positive', 'gas_balance',])
                     ->withCount('comments');
             },
         ])->where('hide', false)
