@@ -26,20 +26,15 @@
                              alt="avatar"/>
                     @endauth
                     <div class="block_minerals_icons text_pts">
-                        {{--                    <p class="title__text text_pts"--}}
-                        {{--                       title="{{$topic->author->comments_count. ' minerals | ' . $topic->author->rating . 'supply'}}">{{ $topic->author->comments_count. ' minerals | ' . $topic->author->rating . ' supply' }}</p>--}}
                         <p class="title__text">{{$replayShow->users->rating}}</p>
                         <img class="minerals_icons" src="{{asset('images/minerals_icons/min.png') }}">
                         <p class="title__text text_special ">|</p>
                         <p class="title__text ">{{$replayShow->users->rating}}</p>
                         <img class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
                         <p class="title__text text_special ">|</p>
-                        <p class="title__text ">{{$replayShow->users->comments_count}}</p>
+                        <p class="title__text ">{{$replayShow->users->gas_balance}}</p>
                         <img class="minerals_icons" src="{{asset('images/minerals_icons/gaz.png') }}">
                     </div>
-{{--                    <span title="{{$replayShow->users->rating .' supply'}}">{{$replayShow->users->rating .' supply'}}</span>--}}
-{{--                    <a href="{{route('user-comments.index',['id'=>$replayShow->users->id])}}"--}}
-{{--                       title="{{$replayShow->users->comments_count.' minerals'}}">{{$replayShow->users->comments_count.' minerals'}}</a>--}}
                 @endif
             </div>
         </div>

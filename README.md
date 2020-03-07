@@ -1,21 +1,27 @@
 1.Deploy:
 
 ```$xslt
+npm install
 composer install
+php artisan sleepingowl:install
+
 sudo apt-get install php-imagick
 ```
 2.Update data in .env file
 
 Run:
 ```
-php artisan migrate
-php artisan storage:link
 php artisan key:generate
-php artisan config:clear
-php artisan config:cache
+php artisan storage:link
+php artisan optimize:clear
+php artisan optimize
+php artisan view:cache
+php artisan event:cache
+php artisan migrate
 
 npm run dev
-composer dump-autoload
+(for pdor version)
+npm run prod
 ```
 
 3.Transfer data from old database:

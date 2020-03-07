@@ -100,7 +100,7 @@ class SearchController extends Controller
      */
     private function news()
     {
-        return ForumTopic::with('author:id,name,avatar')
+        return ForumTopic::with('author')
             ->where('title', 'like', '%'.request('search').'%')
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
             ->where('news', true)
@@ -116,7 +116,7 @@ class SearchController extends Controller
      */
     private function newsWithId()
     {
-        return ForumTopic::with('author:id,name,avatar')
+        return ForumTopic::with('author')
             ->where('title', 'like', '%'.request('search').'%')
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
             ->where('id', '<', request('id'))
@@ -179,7 +179,7 @@ class SearchController extends Controller
      */
     private function topics()
     {
-        return ForumTopic::with('author:id,avatar,name')
+        return ForumTopic::with('author')
             ->where('title', 'like', '%'.request('search').'%')
             ->select(['id', 'title', 'reviews', 'user_id', 'news', 'created_at',])
             ->where('news', false)
@@ -195,7 +195,7 @@ class SearchController extends Controller
      */
     private function topicsWithId()
     {
-        return ForumTopic::with('author:id,avatar,name')
+        return ForumTopic::with('author')
             ->where('title', 'like', '%'.request('search').'%')
             ->select(['id', 'title', 'reviews', 'user_id', 'news', 'created_at',])
             ->where('id', '<', request('id'))
@@ -214,9 +214,7 @@ class SearchController extends Controller
     {
         return Comment::with([
             'user' => function ($query) {
-                $query->select([
-                    'id', 'avatar', 'name', 'country_id', 'race_id', 'rating',
-                ])->withCount('comments');
+                $query->withCount('comments');
             },
             'user.countries:id,name,flag',
             'user.races:id,title',
@@ -236,9 +234,7 @@ class SearchController extends Controller
     {
         return Comment::with([
             'user' => function ($query) {
-                $query->select([
-                    'id', 'avatar', 'name', 'country_id', 'race_id', 'rating',
-                ])->withCount('comments');
+                $query->withCount('comments');
             },
             'user.countries:id,name,flag',
             'user.races:id,title',
