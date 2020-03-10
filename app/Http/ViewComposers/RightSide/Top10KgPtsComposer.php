@@ -99,7 +99,7 @@ class Top10KgPtsComposer
     private function getTopUserRating()
     {
         return User::with('countries:id,flag,name', 'races:id,title')
-            ->where('rating', '>=', 0)
+            ->where('rating', '>', 0)
             ->orderByDesc('rating')
             ->limit(10)
             ->get(['id', 'name', 'rating', 'race_id', 'country_id']);
