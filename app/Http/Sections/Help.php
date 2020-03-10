@@ -154,7 +154,7 @@ class Help extends Section implements Initializable
             AdminFormElement::text('display_name', 'Название настройки')->required(),
             AdminFormElement::wysiwyg('value', 'Значение')
                 ->setHtmlAttributes(['placeholder' => 'Текст'])
-                ->setValidationRules(['required', 'string', 'between:1,1000']),
+                ->setValidationRules(['required', 'string', 'between:1,10000']),
             AdminFormElement::text('description', 'Описание подсказки')->required(),
             AdminFormElement::text('id', 'ID')->setReadonly(1),
             AdminFormElement::text('created_at')->setLabel('Создано')->setReadonly(1),
