@@ -2,11 +2,11 @@
 
 return [
     'hosts' => [
-        'www.youtube.com',
+        'youtu.be',
         'www.twitch.tv',
     ],
     'embed' => [
-        'www.youtube.com' => 'https://www.youtube.com/embed/',
+        'youtu.be' => 'https://www.youtube.com/embed',
         'www.twitch.tv'   => [
             'video' => 'https://player.twitch.tv/?autoplay=false&video=v',
             'clip'  => 'https://clips.twitch.tv/embed?clip=',

@@ -1,4 +1,3 @@
-console.log('123123');
 $(document).ready(function () {
 
     if ($('#video_iframe_url').val()) {

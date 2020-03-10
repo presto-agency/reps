@@ -9,7 +9,8 @@
 @endsection
 
 @section('content')
-    <div id="load_forum_sections_show"></div>
+    <div id="load_forum_sections_show" data-rout="{{ route('load.more.forum.show',['forum'=>request('forum')]) }}">
+    </div>
 @endsection
 
 @section('right-side')
@@ -19,30 +20,5 @@
 
 @section('custom-script')
     @parent
-    <script type="text/javascript" defer>
-        $(document).ready(function () {
-
-            loadForumSectionsShow('');
-
-            function loadForumSectionsShow(id = '') {
-                $.ajax({
-                    url: "{{ route('load.more.forum.show',['forum'=>request('forum')]) }}",
-                    method: "POST",
-                    data: {
-                        id: id,
-                        _token: '{{csrf_token()}}'
-                    },
-                    success: function (data) {
-                        $('#load_forum_sections').remove();
-                        $('#load_forum_sections_show').append(data);
-                    }
-                })
-            }
-
-            $(document).on('click', '#load_forum_sections', function () {
-                $('#load_forum_sections').html('<b>Загрузка...</b>');
-                loadForumSectionsShow($(this).data('id'));
-            });
-        });
-    </script>
+    <script type="text/javascript" src="{{mix('js/assets/load_forum_sections_show.js')}}" defer></script>
 @endsection

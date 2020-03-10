@@ -1,7 +1,9 @@
 <template>
     <div>
-
-        <div class="messanger">
+        <div class="messanger" id="messanger_chat">
+            <div class="oaerror danger" v-show="isErrorShow">
+                <strong>Ошибка</strong><span class="error_message">{{errorMessage}}</span>
+            </div>
             <div class="row_contentChat" v-for="(item,index) in messagearray" :key="index">
                 <div class=" block_user_akk">
                     <div class="user" >
@@ -76,6 +78,9 @@ export default {
         Question,Smiles,Images,Color
     },
     data: ()=>({
+        errorMessage: '',
+		isErrorShow: false,
+		messangerDom: null,
         ignored_users: [{}],
         chat_action: {
             'smile': false,
@@ -92,7 +97,10 @@ export default {
         user_nick: '',
         questionShow: false,
     }),
-    methods: {
+    mounted() {
+    	this.messangerDom = document.getElementById('messanger_chat')
+	},
+	methods: {
         deleteMessage(id) {
             this.$emit('on_delete',id);
             axios.delete(`chat/delete/${id}\'`);
@@ -154,15 +162,24 @@ export default {
                 user_id: this.auth.id,
                 file_path: "",
                 message: mes,
-                imo: ""});
+                imo: ""}).catch((error)=>{
+							this.ErrorHandler(error.response.data.message)
+						});
             this.turnOffStatus();
             this.textMessage = '';
             this.user_id = '';
             this.user_nick = '';
         },
+        ErrorHandler(message) {
+            this.errorMessage = message;
+            this.isErrorShow = true;
+            this.messangerDom.scrollTo(0,0)
+            setTimeout(()=>{
+            	this.isErrorShow = false;
+            }, 4000)
+        },
         UserClick(id,usernick) {
             this.textMessage += "@" + id + ",";
-
         }
     }
 }
