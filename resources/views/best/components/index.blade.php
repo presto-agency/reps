@@ -61,8 +61,8 @@
             <img alt="supply" class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
         </div>
         <div class="container_players">
-            @if(isset($points) && $points->isNotEmpty())
-                @foreach($points as $item)
+            @if(isset($rating) && $rating->isNotEmpty())
+                @foreach($rating as $item)
                     <div class="players_content">
                         <div class="left_block">
                             <span class="number night_text">{{'#'. $loop->iteration }} {{-- Starts with 1 --}}</span>
@@ -91,7 +91,7 @@
                             @endif
                         </div>
                         <div class="right_block">
-                            <span class="night_text">{{$item->comments_count}}</span>
+                            <span class="night_text">{{$item->rating}}</span>
                             <img alt="supply" class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
                         </div>
                     </div>
