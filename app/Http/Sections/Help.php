@@ -107,9 +107,9 @@ class Help extends Section implements Initializable
         ->setHtmlAttribute('class', 'table-primary')
             ->setColumns(
                 AdminColumn::text('id', '#')->setWidth('30px'),
-                AdminColumn::link('display_name', 'Настройка')->setWidth('200px'),
-                AdminColumn::text('value', 'Значение'),
-                AdminColumn::text('description', 'Описание')
+                AdminColumn::link('display_name', 'Настройка')->setWidth('200px')
+//                AdminColumn::text('value', 'Значение')
+//                AdminColumn::text('description', 'Описание')
             )->paginate(20);
     }
 
@@ -155,9 +155,9 @@ class Help extends Section implements Initializable
             AdminFormElement::wysiwyg('value', 'Значение')
                 ->setHtmlAttributes(['placeholder' => 'Текст'])
                 ->setValidationRules(['required', 'string', 'between:1,10000']),
-            AdminFormElement::text('description', 'Описание подсказки')->required(),
-            AdminFormElement::text('id', 'ID')->setReadonly(1),
-            AdminFormElement::text('created_at')->setLabel('Создано')->setReadonly(1),
+//            AdminFormElement::text('description', 'Описание подсказки'),
+//            AdminFormElement::text('id', 'ID')->setReadonly(1),
+//            AdminFormElement::text('created_at')->setLabel('Создано')->setReadonly(1),
 
         ]);
 
