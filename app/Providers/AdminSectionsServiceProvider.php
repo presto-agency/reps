@@ -137,6 +137,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
                     (new Page(\App\Models\ChatSmile::class))->setPriority(2),
                     (new Page(\App\Models\ChatPicture::class))->setPriority(3),
                     (new Page(\App\Models\Tag::class))->setPriority(4),
+                    (new Page(\App\Models\Help::class))->setPriority(5),
                 ],
             ],
         ]);
