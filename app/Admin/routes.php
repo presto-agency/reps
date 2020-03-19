@@ -38,5 +38,6 @@ Route::post('tourney_lists/match_generator_losers', '\App\Http\Controllers\Admin
  * Logs
  */
 Route::group(['middleware' => ['superAdminOnly']], function () {
-    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('logs.info');
+    Route::get('phpinfo', '\App\Http\Controllers\Admin\PhpInfoController@show')->name('php.info');
 });

@@ -66,7 +66,6 @@
     "prefer-stable": true,
     "scripts": {
         "post-install-cmd": [
-            "php artisan optimize:clear",
             "php artisan debugbar:clear",
             "php artisan optimize",
             "php artisan view:cache",
@@ -74,7 +73,6 @@
         ],
         "post-update-cmd": [
             "php artisan sleepingowl:update",
-            "php artisan optimize:clear",
             "php artisan debugbar:clear",
             "php artisan optimize",
             "php artisan view:cache",
