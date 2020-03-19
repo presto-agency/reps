@@ -4,12 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
+/**
+ * Class PhpInfoController
+ *
+ * @package App\Http\Controllers\Admin
+ */
 class PhpInfoController extends Controller
 {
 
-    public function show()
+    /**
+     * @return string
+     */
+    public function show(): string
     {
-        return phpinfo();
+        phpinfo();
+
+        return '';
     }
 
 }
