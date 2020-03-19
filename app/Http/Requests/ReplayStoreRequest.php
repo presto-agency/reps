@@ -36,8 +36,8 @@ class ReplayStoreRequest extends FormRequest
             'second_country'    => 'required|string|exists:countries,id',
             'second_location'   => 'nullable|between:1,20|numeric',
             'short_description' => 'nullable|string|between:10,1000',
-            'src_iframe'        => 'required_without:file|url|max:255',
-            'file'              => 'required_without:src_iframe|file|max:5120',
+            'src_iframe'        => 'nullable|required_without:file|url|max:255',
+            'file'              => 'nullable|required_without:src_iframe|file|max:5120',
 
         ];
     }
