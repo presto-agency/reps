@@ -27,11 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
             self::GALLERY => 'Галерея',
             self::TOPICS  => 'Форум',
         ];
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
     protected $fillable
         = [
             'avatar',
@@ -62,11 +58,7 @@ class User extends Authenticatable implements MustVerifyEmail
         = [
             'role_id', 'ban', 'count_negative', 'count_positive', 'rating', 'activity_at',
         ];
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+
     protected $hidden
         = [
             'password',
@@ -82,11 +74,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return false;
     }
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts
         = [
             'email_verified_at' => 'datetime',
