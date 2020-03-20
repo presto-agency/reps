@@ -291,7 +291,6 @@ class Replay extends Section
      */
     public function onEdit($id)
     {
-
         $getData = $this->getModel()->select(['file', 'src_iframe'])->find($id);
         if ($getData) {
             $this->fileOldPath = $getData->file;
@@ -463,8 +462,9 @@ class Replay extends Section
                 ->setHtmlAttribute('tabindex', '-1')
                 ->setHtmlAttribute('data-src', "$this->srcIframe")
                 ->setValidationRules([
-                    'url',
                     'nullable',
+                    'url',
+                    'required_without:file',
                     'max:255',
                 ]),
             AdminFormElement::view('admin.replays.edit', $data = [], function ($model) {
@@ -475,8 +475,9 @@ class Replay extends Section
                     return [
                         $file = AdminFormElement::file('file', 'Файл')
                             ->setValidationRules([
-                                'file',
                                 'nullable',
+                                'required_without:src_iframe',
+                                'file',
                                 'max:5120',
                             ])
                             ->setUploadPath(function (UploadedFile $file) {
@@ -668,9 +669,9 @@ class Replay extends Section
                 ->setHtmlAttribute('tabindex', '-1')
                 ->setHtmlAttribute('data-src', '')
                 ->setValidationRules([
+                    'nullable',
                     'required_without:file',
                     'url',
-                    'nullable',
                     'max:255',
                 ]),
             AdminFormElement::columns()
@@ -678,13 +679,12 @@ class Replay extends Section
                     return [
                         $file = AdminFormElement::file('file', 'Файл')
                             ->setValidationRules([
+                                'nullable',
                                 'required_without:src_iframe',
                                 'file',
-                                'nullable',
                                 'max:5120',
                             ])
                             ->setUploadPath(function (UploadedFile $file) {
-                                //                                return 'storage'.PathHelper::checkUploadsFileAndPath('/files/replays');
                                 return 'storage/files/replays';
                             }),
                     ];
