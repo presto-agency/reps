@@ -56,7 +56,11 @@
                             <span class="comment-author__nickname"
                                   title="{{$item->users->name}}">{{$item->users->name}}</span>
                         @endif
-                        <span class="comment-author__replay-item night_text">{{__('Видео реплей')}}</span>
+                        @if(!empty($item->file) && checkFile::checkFileExists($item->file))
+                            <span class="comment-author__replay-item night_text">{{__('REP')}}</span>
+                        @else
+                            <span class="comment-author__replay-item night_text">{{__('VOD')}}</span>
+                        @endif
                     </div>
                     <div class="subtitle__icons">
                         <svg version="1.1" id="Capa_1"
@@ -113,8 +117,8 @@
                     <div class="info__match-up">
                         <span class="match-up__text night_text">{{__('Матчап:')}}</span>
                         @if(!empty($item->firstRaces))
-                            <<img class="icon_bars" alt="race" title="{{$item->firstRaces->title}}"
-                                  src="{{asset('images/default/game-races/' . $item->firstRaces->title . '.png')}}"/>
+                            <img class="icon_bars" alt="race" title="{{$item->firstRaces->title}}"
+                                 src="{{asset('images/default/game-races/' . $item->firstRaces->title . '.png')}}"/>
                         @endif
                         <span class="match-up__text match-up__versus night_text">{{__('vs')}}</span>
                         @if(!empty($item->secondRaces))

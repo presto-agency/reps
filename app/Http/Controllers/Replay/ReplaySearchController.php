@@ -16,6 +16,7 @@ class ReplaySearchController extends Controller
     public function loadReplay()
     {
         $request = request();
+
         if ($request->ajax()) {
             $visible_title = false;
             if ($request->id > 0) {
@@ -38,15 +39,7 @@ class ReplaySearchController extends Controller
         }
     }
 
-    public function searchReplayQuery()
-    {
-        $query = $this->replayQuery();
-        $this->searchReplayColumn($query);
-
-        return $query;
-    }
-
-    public function replayQuery()
+    private function replayQuery()
     {
         return Replay::with([
             'users:id,name,avatar',
@@ -58,34 +51,49 @@ class ReplaySearchController extends Controller
         ])->withCount('comments');
     }
 
-    public function searchReplayColumn($query)
+    private function searchReplayQuery()
     {
-        if (request()->has('text') && request()->filled('text')) {
+        $query = $this->replayQuery();
+        $this->searchReplayColumn($query);
+
+        return $query;
+    }
+
+    private function searchReplayColumn($query)
+    {
+        if (request()->filled('text')) {
             $query->where(function ($que) {
-                $que->orWhere('title', 'like', '%'.request('text').'%')
-                    ->orWhere('content', 'like', '%'.request('text').'%');
+                $que->orWhere('title', 'LIKE', '%'.request('text').'%')
+                    ->orWhere('content', 'LIKE', '%'.request('text').'%');
             });
         }
-        if (request()->has('first_country_id') && request()->filled('first_country_id')) {
-            $query->where('first_country_id', 'like', '%'.request('first_country_id').'%');
+        if (request()->filled('first_country_id')) {
+            $query->where('first_country_id', '=', request('first_country_id'));
         }
-        if (request()->has('second_country_id') && request()->filled('second_country_id')) {
-            $query->where('second_country_id', 'like', '%'.request('second_country_id').'%');
+        if (request()->filled('second_country_id')) {
+            $query->where('second_country_id', '=', request('second_country_id'));
         }
-        if (request()->has('first_race') && request()->filled('first_race')) {
-            $query->where('first_race', 'like', '%'.request('first_race').'%');
+        if (request()->filled('first_race')) {
+            $query->where('first_race', '=', request('first_race'));
         }
-        if (request()->has('second_race') && request()->filled('second_race')) {
-            $query->where('second_race', 'like', '%'.request('second_race').'%');
+        if (request()->filled('second_race')) {
+            $query->where('second_race', '=', request('second_race'));
         }
-        if (request()->has('map_id') && request()->filled('map_id')) {
-            $query->where('map_id', 'like', '%'.request('map_id').'%');
+        if (request()->filled('map_id')) {
+            $query->where('map_id', '=', request('map_id'));
         }
-        if (request()->has('type_id') && request()->filled('type_id')) {
-            $query->where('type_id', 'like', '%'.request('type_id').'%');
+        if (request()->filled('type_id')) {
+            $query->where('type_id', '=', request('type_id'));
         }
-        if (request()->has('user_replay') && request()->filled('user_replay')) {
-            $query->where('user_replay', 'like', '%'.request('user_replay').'%');
+        if (request()->filled('user_replay')) {
+            $query->where('user_replay', '=', request('user_replay'));
+        }
+        if (request()->filled('vod_rep')) {
+            if (request('vod_rep') == '2') {
+                $query->whereNotNull('file')->where('file', '!=', '')->where('file', '!=', ' ');
+            } elseif (request('vod_rep') == '1') {
+                $query->whereNotNull('src_iframe')->where('src_iframe', '!=', '')->where('src_iframe', '!=', ' ');
+            }
         }
     }
 
