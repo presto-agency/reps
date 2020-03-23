@@ -478,7 +478,7 @@ class Replay extends Section
                                 'nullable',
                                 'required_without:src_iframe',
                                 'file',
-                                'max:5120',
+                                'max:120000',
                             ])
                             ->setUploadPath(function (UploadedFile $file) {
                                 return 'storage'.PathHelper::checkUploadsFileAndPath("/files/replays", $this->fileOldPath);
@@ -682,7 +682,7 @@ class Replay extends Section
                                 'nullable',
                                 'required_without:src_iframe',
                                 'file',
-                                'max:5120',
+                                'max:120000',
                             ])
                             ->setUploadPath(function (UploadedFile $file) {
                                 return 'storage/files/replays';
