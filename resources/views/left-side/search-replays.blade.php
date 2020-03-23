@@ -1,3 +1,4 @@
+@inject(Replay,'App\Models\Replay')
 <div class="search border_ border_shadow">
     <div class="search__title">
         <svg class="title__icon" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -96,8 +97,17 @@
                     </select>
                 </label>
             @endif
+            <label class="body__sorting" for="vod_rep"> {{__('VOD|REP:')}}
+                <select class="night_input" id="vod_rep" name="vod_rep">
+                    <option value="">{{__('Все')}}</option>
+                    @foreach($Replay::$replayCheckFile as $key => $item)
+                        <option {{ old('vod_rep',request('vod_rep')) == (string)$key ?  'selected': ''}}
+                                value="{{$key}}">{{$item}}</option>
+                    @endforeach
+                </select>
+            </label>
             <div class="body__button-search">
-                <button class="button button__download-more">
+                <button class="button button__download-more" type="submit">
                     {{__('Поиск')}}
                 </button>
             </div>

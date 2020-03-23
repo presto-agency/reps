@@ -33,6 +33,7 @@
                         map_id: '{{request('map_id')}}',
                         type_id: '{{request('type_id')}}',
                         user_replay: '{{request('user_replay')}}',
+                        vod_rep: '{{request('vod_rep')}}',
                     },
                     success: function (data) {
                         $('#load_replays_search').remove();
