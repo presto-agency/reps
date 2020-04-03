@@ -60,15 +60,13 @@
                                 @endif
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['admin.usergallery.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
                                 <div class="block_btn">
-                                    <button class="btn btn-default text-red" title="Удалить запись"><i
-                                            class="fa fa-trash"></i></button>
+                                    <button class="btn btn-default text-red" title="Удалить запись">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
                                     {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
                                 </div>
-
                                 {{ Form::close() }}
-
                             </div>
-
                         </div>
                         <div class="col-6 container_icon">
                             <span class="date">{{$comment->created_at->format('H:i d.m.Y')}}</span>

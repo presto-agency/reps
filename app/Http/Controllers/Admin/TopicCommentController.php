@@ -12,9 +12,9 @@ class TopicCommentController extends Controller
 
     public function store(Request $request, $id)
     {
-        $topic   = ForumTopic::query()->where('hide', false)->findOrFail($id);
+        $topic   = ForumTopic::query()->findOrFail($id);
         $comment = new Comment([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'content' => $request->input('content'),
         ]);
         $topic->comments()->save($comment);
@@ -25,4 +25,10 @@ class TopicCommentController extends Controller
         return back();
     }
 
+    public function deleteComment($id)
+    {
+        Comment::query()->where('id', $id)->delete();
+
+        return back();
+    }
 }

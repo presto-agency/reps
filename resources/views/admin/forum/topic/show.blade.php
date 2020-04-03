@@ -46,9 +46,7 @@
                     <div class="user-block">
                         <img class="img-circle img-bordered-sm" src="{{asset($topic->author->avatarOrDefault())}}"
                              alt="avatar">
-                        {{--                            <img class="img-circle img-bordered-sm" src="{{route('news').'/dist/img/avatar.png'}}" alt="User img">--}}
                         <span class="username">
-{{--                            <a href="#{{route('admin.user.profile', ['id' => $topic->author->id])}}">{{$topic->author->name}}</a>--}}
                         </span>
                         <span class="description">{{$topic->created_at->format('H:i d.m.Y')}}</span>
                     </div>
@@ -84,24 +82,34 @@
                         <div class="table-content">
                             @if(!empty($topic->comments))
                                 @foreach($topic->comments as $comment)
-                                    <div class="item row">
-                                        @if($comment->user)
-                                            <img class="img-circle img-bordered-sm"
-                                                 src="{{asset($comment->user->avatarOrDefault())}}" alt="avatar">
-                                        @endif
-                                        <p class="message">
+                                    <div class="row coments_row">
+                                        <div class="col-6 container_user">
                                             @if($comment->user)
-                                                <a href="{{route('user_profile',['id'=>$comment->user->id])}}"
-                                                   class="name">
-                                                    <small class="text-muted pull-right">
-                                                        <i class="fas fa-clock">{{$comment->created_at->format('H:i d.m.Y')}}</i>
-                                                    </small>
-                                                    {{$comment->user->name}}
-                                                </a>
+                                                <img class="avatar img-circle img-bordered-sm" alt="User avatar"
+                                                     src="{{asset($comment->user->avatarOrDefault())}}"/>
                                             @endif
-                                            {{--<a type="button" class="btn btn-default text-red"  title="Удалить запись" href="#{{route('admin.comments.remove', ['id' => $comment->id])}}"><i class="fa fa-trash"></i></a>--}}
-                                            {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
-                                        </p>
+                                            <div class="block_text">
+                                                @if($comment->user)
+                                                    <a class="username" href="{{route('user_profile',['id'=>$comment->user->id])}}">
+                                                        {{$comment->user->name}}
+                                                        <small class="text-muted pull-right">
+                                                            <i class="fas fa-clock">{{$comment->created_at->format('H:i d.m.Y')}}</i>
+                                                        </small>
+                                                    </a>
+                                                @endif
+                                                {{ Form::open(['method' => 'DELETE', 'route' => ['admin.forum.topic.comment_delete', 'id' => $comment->id], 'name' => 'delete']) }}
+                                                <div class="block_btn">
+                                                    <button class="btn btn-default text-red" title="Удалить запись">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                    {!! ParserToHTML::toHTML(clean($comment->content),'size') !!}
+                                                </div>
+                                                {{ Form::close() }}
+                                            </div>
+                                        </div>
+                                        <div class="col-6 container_icon">
+                                            <span class="date">{{$comment->created_at->format('H:i d.m.Y')}}</span>
+                                        </div>
                                     </div>
                                 @endforeach
                             @endif
