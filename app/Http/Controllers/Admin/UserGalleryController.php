@@ -14,27 +14,9 @@ class UserGalleryController extends Controller
     public function show($id)
     {
 
-        $columns     = [
-            'id',
-            'user_id',
-            'picture',
-            'sign',
-            'positive_count',
-            'negative_count',
-            'comments_count',
-            'created_at',
-        ];
-        $relations   = [
-            'users',
-            'comments',
-        ];
-        $userGallery = UserGallery::select($columns)->with($relations)
-            ->findOrFail($id);
+        $userGallery = UserGallery::with(['users', 'comments','comments.user'])->findOrFail($id);
 
-        $content = view('admin.usergallery.show',
-            compact('userGallery')
-        );
-
+        $content = view('admin.usergallery.show', compact('userGallery'));
 
         return AdminSection::view($content, 'Галерея');
     }
@@ -42,7 +24,7 @@ class UserGalleryController extends Controller
     public function comment(Request $request, $id)
     {
 
-        $topic   = UserGallery::find($id);
+        $topic   = UserGallery::query()->findOrFail($id);
         $comment = new Comment([
             'user_id' => auth()->id(),
             'content' => $request->input('content'),
@@ -54,7 +36,7 @@ class UserGalleryController extends Controller
 
     public function deleteComment($id)
     {
-        Comment::find($id)->delete();
+        Comment::query()->where('id',$id)->delete();
 
         return back();
     }

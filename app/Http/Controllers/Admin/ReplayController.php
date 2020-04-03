@@ -16,39 +16,31 @@ class ReplayController extends Controller
 
     public function show($id)
     {
-        $columns   = [
-            'id',
-            'map_id',
-            'title',
-            'first_country_id',
-            'second_country_id',
-            'first_race',
-            'second_race',
-            'first_name',
-            'second_name',
-            'first_location',
-            'second_location',
-            'start_date',
-            'user_rating',
-            'approved',
-            'file',
-            'content',
-        ];
-        $relations = [
-            'maps',
-            'firstCountries',
-            'secondCountries',
-            'firstRaces',
-            'secondRaces',
+
+        $replay    = Replay::with([
+            'users',
+            'users.countries:id,name,flag',
+            'users.races:id,title',
+            'users'         => function ($query) {
+                $query->withCount('comments');
+            },
+            'maps:id,name,url',
+            'types:id,name,title',
+            'firstCountries:id,name,flag,name',
+            'secondCountries:id,name,flag,name',
+            'firstRaces:id,title,code',
+            'secondRaces:id,title,code',
+
             'comments',
-        ];
-        $replay    = Replay::select($columns)->with($relations)
-            ->findOrFail($id);
+            'comments.user:id,avatar,name,country_id,race_id,rating,count_negative,count_positive',
+            'comments.user.countries:id,name,flag',
+            'comments.user.races:id,title',
+            'comments.user' => function ($query) {
+                $query->withCount('comments');
+            },
+        ])->withCount('comments')->findOrFail($id);
 
-
-        $content = view('admin.replays.show',
-            compact('replay')
-        );
+        $content = view('admin.replays.show', compact('replay'));
 
         return AdminSection::view($content, 'Replay');
     }
@@ -85,7 +77,7 @@ class ReplayController extends Controller
 
     public function comment(Request $request, $id)
     {
-        $topic   = Replay::find($id);
+        $topic   = Replay::query()->findOrFail($id);
         $comment = new Comment([
             'user_id' => auth()->id(),
             'content' => $request->input('content'),
@@ -97,7 +89,7 @@ class ReplayController extends Controller
 
     public function deleteComment($id)
     {
-        Comment::find($id)->delete();
+        Comment::query()->where('id',$id)->delete();
 
         return back();
     }
