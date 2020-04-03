@@ -23,6 +23,7 @@ Route::get('streams/show/{id}', '\App\Http\Controllers\Admin\StreamController@sh
 
 Route::get('forum_topics/{id}/show', '\App\Http\Controllers\Admin\ForumTopicController@show');
 Route::post('forum_topics/show/{id}/send_comment', '\App\Http\Controllers\Admin\TopicCommentController@store')->name('admin.forum.topic.comment_send');
+Route::delete('forum_topics/show/{id}/delete_comment', '\App\Http\Controllers\Admin\UserGalleryController@deleteComment')->name('admin.forum.topic.comment_delete');
 
 Route::get('users/{id}/send-email-create', '\App\Http\Controllers\Admin\EmailController@emailCreate')->name('admin.user.email-send.create');
 Route::post('users/send-email-send', '\App\Http\Controllers\Admin\EmailController@emailSend')->name('admin.user.email-send.send');
