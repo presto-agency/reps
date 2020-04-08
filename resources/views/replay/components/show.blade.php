@@ -26,14 +26,17 @@
                              alt="avatar"/>
                     @endauth
                     <div class="block_minerals_icons text_pts">
-                        <p class="title__text">{{$replayShow->users->rating}}</p>
-                        <img class="minerals_icons" src="{{asset('images/minerals_icons/min.png') }}">
-                        <p class="title__text text_special ">|</p>
-                        <p class="title__text ">{{$replayShow->users->rating}}</p>
-                        <img class="minerals_icons" src="{{asset('images/minerals_icons/supp.png') }}">
-                        <p class="title__text text_special ">|</p>
-                        <p class="title__text ">{{$replayShow->users->gas_balance}}</p>
-                        <img class="minerals_icons" src="{{asset('images/minerals_icons/gaz.png') }}">
+                        <p class="title__text info__text" title="{{$replayShow->users->comments_count}}">{{$replayShow->users->comments_count}}</p>
+                        <img class="minerals_icons" title="minerals" alt="min"
+                             src="{{asset('images/minerals_icons/min.png') }}">
+                        <p class="title__text text_special info__text">|</p>
+                        <p class="title__text info__text" title="{{$replayShow->users->rating}}">{{$replayShow->users->rating}}</p>
+                        <img class="minerals_icons" title="supply" alt="sup"
+                             src="{{asset('images/minerals_icons/supp.png') }}">
+                        <p class="title__text text_special info__text">|</p>
+                        <p class="title__text info__text" title="{{ $replayShow->users->gas_balance }}">{{ $replayShow->users->gas_balance }}</p>
+                        <img class="minerals_icons" title="gas" alt="gas"
+                             src="{{asset('images/minerals_icons/gaz.png') }}">
                     </div>
                 @endif
             </div>
