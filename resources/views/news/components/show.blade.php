@@ -51,7 +51,7 @@
                         <img class="minerals_icons" title="supply" alt="sup"
                              src="{{asset('images/minerals_icons/supp.png') }}">
                         <p class="title__text text_special info__text">|</p>
-                        <p class="title__text info__text" title="0">{{ $news->author->gas_balance }}</p>
+                        <p class="title__text info__text" title="{{ $news->author->gas_balance }}">{{ $news->author->gas_balance }}</p>
                         <img class="minerals_icons" title="gas" alt="gas"
                              src="{{asset('images/minerals_icons/gaz.png') }}">
                     </div>
