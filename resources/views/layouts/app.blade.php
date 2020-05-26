@@ -17,8 +17,8 @@
     {{--META OG:TAGS--}}
     <meta property="og:locale" content="ru_RU"/>
     <meta property="og:type" content="article"/>
+    <meta property="og:url" content="{{Request::url()}}"/>
     <meta property="og:site_name" content="{{config('app.name', 'Reps.ru')}}"/>
-
     <meta property="og:title" content="@section('meta-og-title'){{$title}}@show"/>
     <meta property="og:keywords" content="@section('meta-og-keywords'){{$keywords}}@show">
     <meta property="og:description" content="@section('meta-og-description'){{$description}}@show"/>
@@ -37,24 +37,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Site Icons -->
     <link rel="shortcut icon" href="{{asset('favicon.png')}}" type="image/png" sizes="32x32"/>
-    {{--    <base href="{{route('home.index')}}">--}}
-    {{--    <title>@section('meta-title'){{$metaTags->title ?? config('app.name','Reps.ru')}}@show</title>--}}
-    {{--    <meta name="title" content="@section('meta-description'){{$metaTags->description ?? ''}}@show"/>--}}
-    {{--    <meta name="keywords" content="@section('meta-description'){{$metaTags->description ?? ''}}@show"/>--}}
-    {{--    <meta name="description" content="@section('meta-description'){{$metaTags->description ?? ''}}@show"/>--}}
-
-    {{--    <meta name="application-name" content="{{config('app.name', 'Reps.ru')}}">--}}
-    {{--    --}}{{--OG TAGS--}}
-
-    {{--    <meta property="og:site_name" content="{{config('app.name', 'Reps.ru')}}"/>--}}
-    {{--    <meta property="og:url" content="@section('meta-og-url'){{Request::url()}}@show"/>--}}
-    {{--    <meta property="og:image" content="@section('meta-og-image'){{asset('favicon_300x200.png')}}@show"/>--}}
-
-    {{--    <meta property="og:title" content="@section('meta-og-title'){{ $metaTags->title ?? config('app.name','Reps.ru')}}@show"/>--}}
-    {{--    <meta property="og:description" content="@section('meta-og-description'){{$metaTags->description ?? ''}}@show"/>--}}
-    {{--    <meta property="og:keywords" content="@section('meta-og-keywords'){{$metaTags->keywords ?? ''}}@show"/>--}}
-
-
     {{--    CSRF Token  --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
