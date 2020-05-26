@@ -19,6 +19,9 @@
 //
 // AdminSection::addMenuPage(\App\User::class)
 
+use App\Models\MetaTag;
+use SleepingOwl\Admin\Navigation\Page;
+
 return [
 
     [
@@ -26,4 +29,8 @@ return [
         'icon'  => 'fa fa-language',
         'url'   => url('admin/translations'),
     ],
+    (new Page(MetaTag::class))
+        ->setTitle('MetaTag')
+        ->setPriority(9)
+        ->setIcon('fas fa-hashtag'),
 ];

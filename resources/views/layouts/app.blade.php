@@ -2,10 +2,36 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    {{--META TAGS--}}
+    <base href="{{route('home.index')}}">
+    <title>@section('meta-title'){{$metaTags->title ?? config('app.name','Reps.ru')}}@show</title>
+    <meta name="description" content="@section('meta-description'){{$metaTags->description ?? ''}}@show"/>
+    <link rel="shortcut icon" href="{{asset('favicon.png')}}" type="image/png" sizes="32x32"/>
+    <meta name="application-name" content="{{config('app.name', 'Reps.ru')}}">
+    <link rel="preload" href="{{ mix('css/app.css') }}" as="style"/>
+    {{--OG TAGS--}}
+    <meta property="og:locale" content="ru_RU"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:site_name" content="{{config('app.name', 'Reps.ru')}}"/>
+
+    <meta property="og:title" content="@section('meta-og-title'){{ $metaTags->title ?? config('app.name','Reps.ru')}}@show"/>
+    <meta property="og:description" content="@section('meta-og-description'){{$metaTags->description ?? ''}}@show"/>
+    <meta property="og:url" content="@section('meta-og-url'){{Request::url()}}@show"/>
+    <meta property="og:image" content="@section('meta-og-image'){{asset('favicon_300x200.png')}}@show"/>
+
+
+    {{--    "og:locale" — указывает локализацию (язык сайта), можно использовать значение "ru_RU" по умолчанию.--}}
+    {{--    "og:type" — указывает тип страницы (статья, новость, видео, категория и т. д.), можно использовать по умолчанию "article".--}}
+    {{--    "og:title" — указывает заголовок статьи.--}}
+    {{--    "og:description" — указывает краткое описание, которое выводится при формировании превью ссылки.--}}
+    {{--    "og:url" — ссылка на страницу сайта.--}}
+    {{--    "og:image" — ссылка на картинку, которая будет отображаться в посте.--}}
+    {{--    "og:site_name" — название сайта.--}}
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{--    CSRF Token  --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Reps.Ru') }}</title>
+
     {{--Script--}}
     <script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

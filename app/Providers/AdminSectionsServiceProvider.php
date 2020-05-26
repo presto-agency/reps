@@ -53,6 +53,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
             \App\Models\TourneyMatch::class        => 'App\Http\Sections\TournamentsMatches',
             \App\Models\GasTransaction::class      => 'App\Http\Sections\GasTransaction',
             \App\Models\Bet::class                 => 'App\Http\Sections\Bet',
+
+            \App\Models\MetaTag::class                 => 'App\Http\Sections\MetaTags',
         ];
 
 
