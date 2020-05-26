@@ -18,7 +18,7 @@
     @section('meta-description'){{$seo_description}}@endsection
     @section('meta-og-description'){{$seo_description}}@endsection
 @endif
-@if(!is_null($seo_og_icon))
+@if(!is_null($seo_og_icon) && File::exists($seo_og_icon))
     @section('meta-og-image'){{asset($seo_og_icon)}}@endsection
     @section('meta-og-image_url'){{asset($seo_og_icon)}}@endsection
 @endif

@@ -242,6 +242,9 @@ class ForumTopics extends Section
                     'max:255',
                 ]),
             AdminFormElement::image('seo_og_image', 'OG:Icon')
+                ->setUploadPath(function (UploadedFile $file) {
+                    return 'storage'.PathHelper::checkUploadsFileAndPath('/images/topics/icons');
+                })
                 ->setHtmlAttribute('placeholder', 'OG:Icon')
                 ->setValidationRules([
                     'nullable',
