@@ -5,6 +5,7 @@
         $title = $metaTags->seo_title ?? config('app.name', 'Reps.ru');
         $keywords = $metaTags->seo_keywords ?? config('app.name', 'Reps.ru');
         $description = $metaTags->seo_description ?? config('app.name', 'Reps.ru');
+        $icon = asset('images/logo.png');
     @endphp
     <meta charset="utf-8">
     <title>@section('meta-title'){{$title}}@show</title>
@@ -22,8 +23,8 @@
     <meta property="og:keywords" content="@section('meta-og-keywords'){{$keywords}}@show">
     <meta property="og:description" content="@section('meta-og-description'){{$description}}@show"/>
 
-    <meta property="og:image" content="@section('meta-og-image'){{asset('favicon_300x200.png')}}@show"/>
-    <meta property="og:image:secure_url" content="@section('meta-og-image_url'){{asset('favicon_300x200.png')}}@show"/>
+    <meta property="og:image" content="@section('meta-og-image'){{$icon}}@show"/>
+{{--    <meta property="og:image:secure_url" content="@section('meta-og-image_url'){{$icon}}@show"/>--}}
     <meta property="og:image:alt" content="@section('meta-title'){{$title}}@show"/>
     <meta property="og:image:type" content="image/png"/>
 {{--    <meta property="og:image:width" content="300"/>--}}
