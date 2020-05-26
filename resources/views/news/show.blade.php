@@ -19,7 +19,6 @@
         $height = $data[1];
         $img_type = 'image/'.\File::extension($seo_og_icon);
     @endphp
-    @dump($ext)
 @section('meta-og-image'){{asset($seo_og_icon)}}@endsection
 @section('meta-og-image-alt'){{$seo_title}}@endsection
 @section('meta-og-image-type'){{$img_type}}@endsection

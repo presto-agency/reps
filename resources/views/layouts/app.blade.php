@@ -11,7 +11,6 @@
         $height = $data[1];
         $img_type = 'image/'.\File::extension($icon);
     @endphp
-    @dump($width,$height)
     <meta charset="utf-8">
     <title>@section('meta-title'){{$title}}@show</title>
     <base href="{{config('app.url')}}">
@@ -25,7 +24,6 @@
     <meta property="og:description" content="@section('meta-og-description'){{$description}}@show"/>
 
     <meta property="og:image" content="@section('meta-og-image'){{$icon}}@show"/>
-    {{--    <meta property="og:image:secure_url" content="@section('meta-og-image_url'){{$icon}}@show"/>--}}
     <meta property="og:image:alt" content="@section('meta-og-image-alt'){{$title}}@show"/>
     <meta property="og:image:type" content="@section('meta-og-image-type'){{$img_type}}@show"/>
     <meta property="og:image:width" content="@section('meta-og-image-width'){{$width}}@show"/>
