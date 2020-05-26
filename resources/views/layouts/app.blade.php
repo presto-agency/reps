@@ -6,14 +6,15 @@
         $keywords = $metaTags->seo_keywords ?? config('app.name', 'Reps.ru');
         $description = $metaTags->seo_description ?? config('app.name', 'Reps.ru');
         $icon = asset('images/logo.png');
+        $data = getimagesize($icon);
+        $width = $data[0];
+        $height = $data[1];
+        $img_type = 'image/'.\File::extension($icon);
     @endphp
+    @dump($width,$height)
     <meta charset="utf-8">
     <title>@section('meta-title'){{$title}}@show</title>
     <base href="{{config('app.url')}}">
-    {{--META TAGS--}}
-    <meta name="title" content="@section('meta-title'){{$title}}@show">
-    <meta name="keywords" content="@section('meta-keywords'){{$keywords}}@show">
-    <meta name="description" content="@section('meta-description'){{$description}}@show">
     {{--META OG:TAGS--}}
     <meta property="og:locale" content="ru_RU"/>
     <meta property="og:type" content="article"/>
@@ -24,11 +25,16 @@
     <meta property="og:description" content="@section('meta-og-description'){{$description}}@show"/>
 
     <meta property="og:image" content="@section('meta-og-image'){{$icon}}@show"/>
-{{--    <meta property="og:image:secure_url" content="@section('meta-og-image_url'){{$icon}}@show"/>--}}
-    <meta property="og:image:alt" content="@section('meta-title'){{$title}}@show"/>
-    <meta property="og:image:type" content="image/png"/>
-{{--    <meta property="og:image:width" content="300"/>--}}
-{{--    <meta property="og:image:height" content="200"/>--}}
+    {{--    <meta property="og:image:secure_url" content="@section('meta-og-image_url'){{$icon}}@show"/>--}}
+    <meta property="og:image:alt" content="@section('meta-og-image-alt'){{$title}}@show"/>
+    <meta property="og:image:type" content="@section('meta-og-image-type'){{$img_type}}@show"/>
+    <meta property="og:image:width" content="@section('meta-og-image-width'){{$width}}@show"/>
+    <meta property="og:image:height" content="@section('meta-og-image-height'){{$height}}@show"/>
+    {{--META TAGS--}}
+    <meta name="title" content="@section('meta-title'){{$title}}@show">
+    <meta name="keywords" content="@section('meta-keywords'){{$keywords}}@show">
+    <meta name="description" content="@section('meta-description'){{$description}}@show">
+
     {{--csrf_token--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Site Icons -->
