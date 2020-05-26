@@ -9,8 +9,9 @@ class MetaTag extends Model
 
     protected $guarded
         = [
-            'title',
-            'description',
+            'seo_title',
+            'seo_keywords',
+            'seo_description',
         ];
 
 }
