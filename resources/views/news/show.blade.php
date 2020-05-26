@@ -1,4 +1,32 @@
 @extends('layouts.app')
+@if(!empty($news->seo_title))
+@section('meta-title')
+    {!! $news->seo_title !!}
+@endsection
+@endif
+@if(!empty($news->seo_description))
+@section('meta-description')
+    {!! $news->seo_description !!}
+@endsection
+@endif
+@if(!empty($news->seo_og_title))
+@section('meta-og-title')
+    {!! $news->seo_og_title !!}
+@endsection
+@endif
+@if(!empty($news->seo_og_description))
+@section('meta-og-description')
+    {!! $news->seo_og_description !!}
+@endsection
+@endif
+@if(!empty($news->seo_og_image))
+@section('meta-og-image')
+    {!! $news->seo_og_image !!}
+@endsection
+@endif
+
+
+
 
 @section('breadcrumbs')
     {{ Breadcrumbs::render('topic-news-show') }}

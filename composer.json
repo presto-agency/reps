@@ -65,18 +65,26 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "optimize": [
+            "@php artisan debugbar:clear",
+            "@php artisan optimize",
+            "@php artisan view:cache",
+            "@php artisan event:cache",
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover"
+        ],
         "post-install-cmd": [
-            "php artisan debugbar:clear",
-            "php artisan optimize",
-            "php artisan view:cache",
-            "php artisan event:cache"
+            "@php artisan debugbar:clear",
+            "@php artisan optimize",
+            "@php artisan view:cache",
+            "@php artisan event:cache"
         ],
         "post-update-cmd": [
-            "php artisan sleepingowl:update",
-            "php artisan debugbar:clear",
-            "php artisan optimize",
-            "php artisan view:cache",
-            "php artisan event:cache"
+            "@php artisan sleepingowl:update",
+            "@php artisan debugbar:clear",
+            "@php artisan optimize",
+            "@php artisan view:cache",
+            "@php artisan event:cache"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

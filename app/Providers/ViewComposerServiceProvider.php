@@ -9,6 +9,7 @@ use App\Http\ViewComposers\{admin\DashboardCountComposer,
     ForumNavigationComposer,
     GlobalView\GlobalComposer,
     HeadlineComposer,
+    HomeMetaTag,
     LeftOrRightSide\InterviewComposer,
     LeftSide\LastNewsComposer,
     LeftSide\LastReplaysComposer,
@@ -16,8 +17,7 @@ use App\Http\ViewComposers\{admin\DashboardCountComposer,
     RightSide\LastReplayComposer,
     RightSide\Top10KgPtsComposer,
     Smiles,
-    Stream\OnlineStreamListComposer
-};
+    Stream\OnlineStreamListComposer};
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 
@@ -54,6 +54,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         $this->compose('layouts.components.footer.index', FooterComposer::class);
 
         $this->compose('layouts.app', Smiles::class);
+        $this->compose('layouts.app', HomeMetaTag::class);
 
     }
 
