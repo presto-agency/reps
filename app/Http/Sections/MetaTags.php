@@ -24,7 +24,7 @@ class MetaTags extends Section
     /**
      * @var string
      */
-    protected $title='MetaTag для главной';
+    protected $title = 'MetaTag для главной';
 
     /**
      * @var string
@@ -54,16 +54,24 @@ class MetaTags extends Section
     public function onEdit($id)
     {
         return AdminForm::panel()->addBody([
-            AdminFormElement::text('title', 'Title')
-                ->setHtmlAttribute('placeholder', 'Title')
+            AdminFormElement::text('seo_title', 'Seo Title')
+                ->setHtmlAttribute('placeholder', 'Seo Title')
                 ->setHtmlAttribute('maxlength', '255')
                 ->setHtmlAttribute('required', 'required')
                 ->setValidationRules([
                     'required',
                     'max:255',
                 ]),
-            AdminFormElement::text('description', 'Description')
-                ->setHtmlAttribute('placeholder', 'Description')
+            AdminFormElement::text('seo_keywords', 'Seo Keywords')
+                ->setHtmlAttribute('placeholder', 'Seo Keywords')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setHtmlAttribute('required', 'required')
+                ->setValidationRules([
+                    'required',
+                    'max:255',
+                ]),
+            AdminFormElement::text('seo_description', 'Seo Description')
+                ->setHtmlAttribute('placeholder', 'Seo Description')
                 ->setHtmlAttribute('maxlength', '255')
                 ->setHtmlAttribute('required', 'required')
                 ->setValidationRules([

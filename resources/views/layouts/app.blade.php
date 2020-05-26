@@ -1,34 +1,55 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    @php
+        $title = $metaTags->seo_title ?? config('app.name', 'Reps.ru');
+        $keywords = $metaTags->seo_keywords ?? config('app.name', 'Reps.ru');
+        $description = $metaTags->seo_description ?? config('app.name', 'Reps.ru');
+    @endphp
     <meta charset="utf-8">
+    <title>@section('meta-title'){{$title}}@show</title>
+    <base href="{{config('app.url')}}">
     {{--META TAGS--}}
-    <base href="{{route('home.index')}}">
-    <title>@section('meta-title'){{$metaTags->title ?? config('app.name','Reps.ru')}}@show</title>
-    <meta name="description" content="@section('meta-description'){{$metaTags->description ?? ''}}@show"/>
-    <link rel="shortcut icon" href="{{asset('favicon.png')}}" type="image/png" sizes="32x32"/>
-    <meta name="application-name" content="{{config('app.name', 'Reps.ru')}}">
-    <link rel="preload" href="{{ mix('css/app.css') }}" as="style"/>
-    {{--OG TAGS--}}
+    <meta name="title" content="@section('meta-title'){{$title}}@show">
+    <meta name="keywords" content="@section('meta-keywords'){{$keywords}}@show">
+    <meta name="description" content="@section('meta-description'){{$description}}@show">
+    {{--META OG:TAGS--}}
     <meta property="og:locale" content="ru_RU"/>
     <meta property="og:type" content="article"/>
     <meta property="og:site_name" content="{{config('app.name', 'Reps.ru')}}"/>
 
-    <meta property="og:title" content="@section('meta-og-title'){{ $metaTags->title ?? config('app.name','Reps.ru')}}@show"/>
-    <meta property="og:description" content="@section('meta-og-description'){{$metaTags->description ?? ''}}@show"/>
-    <meta property="og:url" content="@section('meta-og-url'){{Request::url()}}@show"/>
+    <meta property="og:title" content="@section('meta-og-title'){{$title}}@show"/>
+    <meta property="og:keywords" content="@section('meta-og-keywords'){{$keywords}}@show">
+    <meta property="og:description" content="@section('meta-og-description'){{$description}}@show"/>
+
     <meta property="og:image" content="@section('meta-og-image'){{asset('favicon_300x200.png')}}@show"/>
+    <meta property="og:image:secure_url" content="@section('meta-og-image_url'){{asset('favicon_300x200.png')}}@show"/>
+    <meta property="og:image:alt" content="@section('meta-title'){{$title}}@show"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:width" content="300"/>
+    <meta property="og:image:height" content="200"/>
+    {{--csrf_token--}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{{asset('favicon.png')}}" type="image/png" sizes="32x32"/>
+    {{--    <base href="{{route('home.index')}}">--}}
+    {{--    <title>@section('meta-title'){{$metaTags->title ?? config('app.name','Reps.ru')}}@show</title>--}}
+    {{--    <meta name="title" content="@section('meta-description'){{$metaTags->description ?? ''}}@show"/>--}}
+    {{--    <meta name="keywords" content="@section('meta-description'){{$metaTags->description ?? ''}}@show"/>--}}
+    {{--    <meta name="description" content="@section('meta-description'){{$metaTags->description ?? ''}}@show"/>--}}
+
+    {{--    <meta name="application-name" content="{{config('app.name', 'Reps.ru')}}">--}}
+    {{--    --}}{{--OG TAGS--}}
+
+    {{--    <meta property="og:site_name" content="{{config('app.name', 'Reps.ru')}}"/>--}}
+    {{--    <meta property="og:url" content="@section('meta-og-url'){{Request::url()}}@show"/>--}}
+    {{--    <meta property="og:image" content="@section('meta-og-image'){{asset('favicon_300x200.png')}}@show"/>--}}
+
+    {{--    <meta property="og:title" content="@section('meta-og-title'){{ $metaTags->title ?? config('app.name','Reps.ru')}}@show"/>--}}
+    {{--    <meta property="og:description" content="@section('meta-og-description'){{$metaTags->description ?? ''}}@show"/>--}}
+    {{--    <meta property="og:keywords" content="@section('meta-og-keywords'){{$metaTags->keywords ?? ''}}@show"/>--}}
 
 
-    {{--    "og:locale" — указывает локализацию (язык сайта), можно использовать значение "ru_RU" по умолчанию.--}}
-    {{--    "og:type" — указывает тип страницы (статья, новость, видео, категория и т. д.), можно использовать по умолчанию "article".--}}
-    {{--    "og:title" — указывает заголовок статьи.--}}
-    {{--    "og:description" — указывает краткое описание, которое выводится при формировании превью ссылки.--}}
-    {{--    "og:url" — ссылка на страницу сайта.--}}
-    {{--    "og:image" — ссылка на картинку, которая будет отображаться в посте.--}}
-    {{--    "og:site_name" — название сайта.--}}
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     {{--    CSRF Token  --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

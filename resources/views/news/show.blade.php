@@ -1,28 +1,42 @@
 @extends('layouts.app')
-@if(!empty($news->seo_title))
-@section('meta-title')
-    {!! $news->seo_title !!}
-@endsection
+@php
+    $seo_title = !empty($news->seo_title) ? $news->seo_title: null;
+    $seo_keywords = !empty($news->seo_keywords) ?$news->seo_keywords : null;
+    $seo_description = !empty($news->seo_description) ? $news->seo_description: null;
+    $seo_og_icon = !empty($news->seo_og_image) ?$news->seo_og_image : null;
+@endphp
+
+@if(!is_null($seo_title))
+    @section('meta-title')
+        {{$seo_title}}
+    @endsection
+    @section('meta-og-title')
+        {{$seo_title}}
+    @endsection
 @endif
-@if(!empty($news->seo_description))
-@section('meta-description')
-    {!! $news->seo_description !!}
-@endsection
+@if(!is_null($seo_keywords))
+    @section('meta-keywords')
+        {{$seo_keywords}}
+    @endsection
+    @section('meta-og-keywords')
+        {{$seo_keywords}}
+    @endsection
 @endif
-@if(!empty($news->seo_og_title))
-@section('meta-og-title')
-    {!! $news->seo_og_title !!}
-@endsection
+@if(!is_null($seo_description))
+    @section('meta-description')
+        {{$seo_description}}
+    @endsection
+    @section('meta-og-description')
+        {{$seo_description}}
+    @endsection
 @endif
-@if(!empty($news->seo_og_description))
-@section('meta-og-description')
-    {!! $news->seo_og_description !!}
-@endsection
-@endif
-@if(!empty($news->seo_og_image))
-@section('meta-og-image')
-    {!! $news->seo_og_image !!}
-@endsection
+@if(!is_null($seo_og_icon))
+    @section('meta-og-image')
+        {{$seo_og_icon}}
+    @endsection
+    @section('meta-og-image_url')
+        {{$seo_og_icon}}
+    @endsection
 @endif
 
 
