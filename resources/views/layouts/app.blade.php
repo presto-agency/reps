@@ -26,8 +26,8 @@
     <meta property="og:image:secure_url" content="@section('meta-og-image_url'){{asset('favicon_300x200.png')}}@show"/>
     <meta property="og:image:alt" content="@section('meta-title'){{$title}}@show"/>
     <meta property="og:image:type" content="image/png"/>
-    <meta property="og:image:width" content="300"/>
-    <meta property="og:image:height" content="200"/>
+{{--    <meta property="og:image:width" content="300"/>--}}
+{{--    <meta property="og:image:height" content="200"/>--}}
     {{--csrf_token--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Site Icons -->
