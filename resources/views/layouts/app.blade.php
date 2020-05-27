@@ -6,9 +6,6 @@
         $keywords = $metaTags->seo_keywords ?? config('app.name', 'Reps.ru');
         $description = $metaTags->seo_description ?? config('app.name', 'Reps.ru');
         $icon = asset('images/logo.png');
-        $data = getimagesize($icon);
-        $width = $data[0];
-        $height = $data[1];
         $img_type = 'image/'.\File::extension($icon);
     @endphp
     <meta charset="utf-8">
@@ -26,8 +23,10 @@
     <meta property="og:image" content="@section('meta-og-image'){{$icon}}@show"/>
     <meta property="og:image:alt" content="@section('meta-og-image-alt'){{$title}}@show"/>
     <meta property="og:image:type" content="@section('meta-og-image-type'){{$img_type}}@show"/>
-    <meta property="og:image:width" content="@section('meta-og-image-width'){{$width}}@show"/>
-    <meta property="og:image:height" content="@section('meta-og-image-height'){{$height}}@show"/>
+{{--    <meta property="og:image:width" content="@section('meta-og-image-width'){{$width}}@show"/>--}}
+{{--    <meta property="og:image:height" content="@section('meta-og-image-height'){{$height}}@show"/>   --}}
+    <meta property="og:image:width" content="400"/>
+    <meta property="og:image:height" content="300"/>
     {{--META TAGS--}}
     <meta name="title" content="@section('meta-title'){{$title}}@show">
     <meta name="keywords" content="@section('meta-keywords'){{$keywords}}@show">
