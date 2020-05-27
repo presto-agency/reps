@@ -14,16 +14,11 @@
 @section('meta-og-description'){{$seo_description}}@endsection
 @if(!is_null($seo_og_icon) && File::exists($seo_og_icon))
     @php
-        $data = getimagesize($seo_og_icon);
-        $width = $data[0];
-        $height = $data[1];
         $img_type = 'image/'.\File::extension($seo_og_icon);
     @endphp
 @section('meta-og-image'){{asset($seo_og_icon)}}@endsection
 @section('meta-og-image-alt'){{$seo_title}}@endsection
 @section('meta-og-image-type'){{$img_type}}@endsection
-@section('meta-og-image-width'){{$width}}@endsection
-@section('meta-og-image-height'){{$height}}@endsection
 @endif
 
 @section('breadcrumbs')
