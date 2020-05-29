@@ -2,8 +2,8 @@
 @php
     $seo_title = !empty($news->seo_title) ? $news->seo_title: config('app.name','Reps.ru');
     $seo_keywords = !empty($news->seo_keywords) ?$news->seo_keywords : config('app.name','Reps.ru');
-    $seo_description = !empty($news->seo_description) ? $news->seo_description: 'images/logo.png';
-    $seo_og_icon = !empty($news->seo_og_image) ?$news->seo_og_image : null;
+    $seo_description = !empty($news->seo_description) ?$news->seo_description : null;
+    $seo_og_icon = !empty($news->seo_og_image) ?$news->seo_og_image : 'images/logo.png';
 @endphp
 
 @section('meta-title'){{$seo_title}}@endsection
