@@ -48,7 +48,7 @@ class UserGallery extends Section
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center')
-            ->with(['users'])
+            ->with(['users','comments'])
             ->setOrder([[0, 'desc']])
             ->paginate(10);
 

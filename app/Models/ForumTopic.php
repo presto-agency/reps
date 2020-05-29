@@ -13,6 +13,10 @@ class ForumTopic extends Model
         = [
             'title', 'forum_section_id', 'reviews', 'rating',
             'preview_content', 'preview_img', 'content',
+            'seo_title',
+            'seo_keywords',
+            'seo_description',
+            'seo_og_image',
         ];
     protected $guarded = ['user_id', 'commented_at', 'hide', 'news', 'start_on', 'fixing'];
 

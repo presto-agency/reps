@@ -220,6 +220,37 @@ class ForumTopics extends Section
                 ->setValidationRules(['boolean']),
             $hide = AdminFormElement::checkbox('hide', 'Скрыть')
                 ->setValidationRules(['boolean']),
+            AdminFormElement::text('seo_title', 'Seo Title')
+                ->setHtmlAttribute('placeholder', 'Seo Title')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setValidationRules([
+                    'nullable',
+                    'max:255',
+                ]),
+            AdminFormElement::text('seo_keywords', 'Seo Keywords')
+                ->setHtmlAttribute('placeholder', 'Seo Keywords')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setValidationRules([
+                    'nullable',
+                    'max:255',
+                ]),
+            AdminFormElement::text('seo_description', 'Seo Description')
+                ->setHtmlAttribute('placeholder', 'Seo Description')
+                ->setHtmlAttribute('maxlength', '255')
+                ->setValidationRules([
+                    'nullable',
+                    'max:255',
+                ]),
+            AdminFormElement::image('seo_og_image', 'OG:Icon')
+                ->setUploadPath(function (UploadedFile $file) {
+                    return 'storage'.PathHelper::checkUploadsFileAndPath('/images/topics/icons');
+                })
+                ->setHtmlAttribute('placeholder', 'OG:Icon')
+                ->setValidationRules([
+                    'nullable',
+                    'mimes:png',
+                    'max:4000',
+                ]),
 
         ]);
 

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('stream')
     <section class="container chat_overflow">
         <div class="row">
