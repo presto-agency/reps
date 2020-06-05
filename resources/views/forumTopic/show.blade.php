@@ -15,6 +15,7 @@
 @section('meta-og-keywords'){{$seo_keywords}}@endsection
 @section('meta-description'){{$seo_description}}@endsection
 @section('meta-og-description'){{$seo_description}}@endsection
+
 @if(!empty($seo_og_icon))
     @php
         $img_type = 'image/'.\File::extension($seo_og_icon);
