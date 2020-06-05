@@ -2,7 +2,7 @@
 
 @php
     $tile = Str::limit($topic->title,65,'');
-    $img = !empty($topic->preview_img) && checkFile::checkFileExists($topic->preview_img) ? $topic->preview_img :'images/logo.png';
+    $img = (!empty($topic->preview_img) && checkFile::checkFileExists($topic->preview_img)) ? $topic->preview_img :'images/logo.png';
     $seo_title = !empty($topic->seo_title) ? $topic->seo_title: $tile;
     $seo_keywords = !empty($topic->seo_keywords) ?$topic->seo_keywords : $tile;
     $seo_description = !empty($topic->seo_description) ? $topic->seo_description: $tile;
