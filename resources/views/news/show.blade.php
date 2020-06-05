@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @php
     $tile = Str::limit($news->title,65,'');
     $img = (!empty($news->preview_img) && checkFile::checkFileExists($news->preview_img)) ? $news->preview_img :'images/logo.png';
@@ -6,7 +7,6 @@
     $seo_keywords = !empty($news->seo_keywords) ?$news->seo_keywords : $tile;
     $seo_description = !empty($news->seo_description) ?$news->seo_description : $tile;
     $seo_og_icon = !empty($news->seo_og_image) ?$news->seo_og_image : $img;
-
 @endphp
 
 @section('meta-title'){{$seo_title}}@endsection
@@ -15,6 +15,7 @@
 @section('meta-og-keywords'){{$seo_keywords}}@endsection
 @section('meta-description'){{$seo_description}}@endsection
 @section('meta-og-description'){{$seo_description}}@endsection
+
 @if(!empty($seo_og_icon))
     @php
         $img_type = 'image/'.\File::extension($seo_og_icon);
