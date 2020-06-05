@@ -1,9 +1,12 @@
 @extends('layouts.app')
+
 @php
-    $seo_title = !empty($news->seo_title) ? $news->seo_title: config('app.name','Reps.ru');
-    $seo_keywords = !empty($news->seo_keywords) ?$news->seo_keywords : config('app.name','Reps.ru');
-    $seo_description = !empty($news->seo_description) ?$news->seo_description : null;
-    $seo_og_icon = !empty($news->seo_og_image) ?$news->seo_og_image : 'images/logo.png';
+    $tile = Str::limit($news->title,65,'');
+    $img = (!empty($news->preview_img) && checkFile::checkFileExists($news->preview_img)) ? $news->preview_img :'images/logo.png';
+    $seo_title = !empty($news->seo_title) ? $news->seo_title : $tile;
+    $seo_keywords = !empty($news->seo_keywords) ?$news->seo_keywords : $tile;
+    $seo_description = !empty($news->seo_description) ?$news->seo_description : $tile;
+    $seo_og_icon = !empty($news->seo_og_image) ?$news->seo_og_image : $img;
 @endphp
 
 @section('meta-title'){{$seo_title}}@endsection
@@ -12,7 +15,8 @@
 @section('meta-og-keywords'){{$seo_keywords}}@endsection
 @section('meta-description'){{$seo_description}}@endsection
 @section('meta-og-description'){{$seo_description}}@endsection
-@if(!is_null($seo_og_icon) && File::exists($seo_og_icon))
+
+@if(!empty($seo_og_icon))
     @php
         $img_type = 'image/'.\File::extension($seo_og_icon);
     @endphp
