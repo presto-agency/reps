@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'site_verification' => env('GOOGLE_SITE_VERIFICATION'),
+    ],
+    'yandex' => [
+        'site_verification' => env('YANDEX_SITE_VERIFICATION'),
+    ],
 ];
