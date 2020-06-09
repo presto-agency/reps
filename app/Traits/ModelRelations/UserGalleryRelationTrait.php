@@ -21,11 +21,11 @@ trait UserGalleryRelationTrait
     {
         return $this->morphMany('App\Models\Comment', 'commentable');
     }
+
     public function commentsCount()
     {
         return $this->morphMany('App\Models\Comment', 'commentable')->count();
     }
-
 
 
     /**
@@ -47,4 +47,5 @@ trait UserGalleryRelationTrait
             ->where('relation', UserReputation::RELATION_USER_GALLERY)
             ->where('rating', '-1');
     }
+
 }

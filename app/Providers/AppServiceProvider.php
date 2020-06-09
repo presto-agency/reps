@@ -3,8 +3,7 @@
 namespace App\Providers;
 
 
-use App\Models\{
-    Comment,
+use App\Models\{Comment,
     Country,
     ForumTopic,
     GasTransaction,
@@ -15,10 +14,8 @@ use App\Models\{
     TourneyList,
     TourneyMatch,
     UserGallery,
-    UserReputation
-};
-use App\Observers\{
-    CommentObserver,
+    UserReputation};
+use App\Observers\{CommentObserver,
     CountryObserver,
     ForumTopicObserver,
     GasTransactionObserver,
@@ -30,8 +27,7 @@ use App\Observers\{
     TourneyMatchObserver,
     UserGalleryObservers,
     UserObserver,
-    UserReputationObserver
-};
+    UserReputationObserver};
 use App\User;
 use Illuminate\Support\ServiceProvider;
 

@@ -11,13 +11,13 @@ class UserReputationObserver
     /**
      * Handle the user reputation "created" event.
      *
-     * @param UserReputation $userReputation
+     * @param  UserReputation  $userReputation
      *
      * @return void
      */
     public function created(UserReputation $userReputation)
     {
-        RatingService::refreshUserRating($userReputation->recipient_id,$userReputation);
+        RatingService::refreshUserRating($userReputation->recipient_id, $userReputation);
         RatingService::refreshObjectRating($userReputation->object_id,
             $userReputation->relation);
     }
@@ -25,13 +25,13 @@ class UserReputationObserver
     /**
      * Handle the user reputation "updated" event.
      *
-     * @param UserReputation $userReputation
+     * @param  UserReputation  $userReputation
      *
      * @return void
      */
     public function updated(UserReputation $userReputation)
     {
-        RatingService::refreshUserRating($userReputation->recipient_id,$userReputation);
+        RatingService::refreshUserRating($userReputation->recipient_id, $userReputation);
         RatingService::refreshObjectRating($userReputation->object_id,
             $userReputation->relation);
     }
@@ -39,13 +39,13 @@ class UserReputationObserver
     /**
      * Handle the user reputation "deleted" event.
      *
-     * @param UserReputation $userReputation
+     * @param  UserReputation  $userReputation
      *
      * @return void
      */
     public function deleted(UserReputation $userReputation)
     {
-        RatingService::refreshUserRating($userReputation->recipient_id,$userReputation);
+        RatingService::refreshUserRating($userReputation->recipient_id, $userReputation);
         RatingService::refreshObjectRating($userReputation->object_id,
             $userReputation->relation);
     }
@@ -53,13 +53,13 @@ class UserReputationObserver
     /**
      * Handle the user reputation "restored" event.
      *
-     * @param UserReputation $userReputation
+     * @param  UserReputation  $userReputation
      *
      * @return void
      */
     public function restored(UserReputation $userReputation)
     {
-        RatingService::refreshUserRating($userReputation->recipient_id,$userReputation);
+        RatingService::refreshUserRating($userReputation->recipient_id, $userReputation);
         RatingService::refreshObjectRating($userReputation->object_id,
             $userReputation->relation);
     }
@@ -67,7 +67,7 @@ class UserReputationObserver
     /**
      * Handle the user reputation "force deleted" event.
      *
-     * @param UserReputation $userReputation
+     * @param  UserReputation  $userReputation
      *
      * @return void
      */

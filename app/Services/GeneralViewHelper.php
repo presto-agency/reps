@@ -25,7 +25,6 @@ class GeneralViewHelper
         if ( ! self::$instance) {
             self::$instance = $this;
         }
-
     }
 
 

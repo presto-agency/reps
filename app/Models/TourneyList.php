@@ -20,6 +20,10 @@ class TourneyList extends Model
 
     const TYPE_DOUBLE = 2;
 
+    const YES = 1;
+
+    const NO = 2;
+
     public static $tourneyTypeSelect
         = [
             self::TYPE_SINGLE => 'SINGLE',
@@ -30,11 +34,6 @@ class TourneyList extends Model
             self::TYPE_SINGLE => 'Single-elimination tournament',
             self::TYPE_DOUBLE => 'Double-elimination tournament',
         ];
-
-    const YES = 1;
-
-    const NO = 2;
-
     public static $newStatus
         = [
             5 => 'STARTED', 6 => 'FINISHED',
@@ -130,6 +129,26 @@ class TourneyList extends Model
         }
 
         return $rounds;
+    }
+
+    /**
+     * @param $playersCount
+     *
+     * @return int
+     */
+    public static function allPlayers($playersCount): int
+    {
+        return $playersCount + self::void($playersCount);
+    }
+
+    /**
+     * @param $playersCount
+     *
+     * @return int
+     */
+    public static function void($playersCount): int
+    {
+        return $playersCount & 1 ? 1 : 0;
     }
 
     /**
@@ -241,27 +260,6 @@ class TourneyList extends Model
         }
 
         return $data;
-    }
-
-
-    /**
-     * @param $playersCount
-     *
-     * @return int
-     */
-    public static function allPlayers($playersCount): int
-    {
-        return $playersCount + self::void($playersCount);
-    }
-
-    /**
-     * @param $playersCount
-     *
-     * @return int
-     */
-    public static function void($playersCount): int
-    {
-        return $playersCount & 1 ? 1 : 0;
     }
 
     /**

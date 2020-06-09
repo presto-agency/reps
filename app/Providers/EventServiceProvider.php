@@ -10,24 +10,28 @@ use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
+
     /**
      * The event listener mappings for the application.
      *
      * @var array
      */
-    protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
-    ];
+    protected $listen
+        = [
+            Registered::class => [
+                SendEmailVerificationNotification::class,
+            ],
+        ];
     /**
      * Classes of subscribers for registration.
      *
      * @var array
      */
-    protected $subscribe = [
-        'App\Listeners\UserEventSubscriber',
-    ];
+    protected $subscribe
+        = [
+            'App\Listeners\UserEventSubscriber',
+        ];
+
     /**
      * Register any events for your application.
      *
@@ -41,4 +45,5 @@ class EventServiceProvider extends ServiceProvider
             $topic->increment('reviews');
         });
     }
+
 }

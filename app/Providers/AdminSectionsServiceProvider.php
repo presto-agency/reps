@@ -3,6 +3,35 @@
 namespace App\Providers;
 
 use AdminNavigation;
+use App\Models\Banner;
+use App\Models\Bet;
+use App\Models\ChatPicture;
+use App\Models\ChatSmile;
+use App\Models\Country;
+use App\Models\Footer;
+use App\Models\FooterUrl;
+use App\Models\ForumSection;
+use App\Models\ForumTopic;
+use App\Models\GasTransaction;
+use App\Models\Headline;
+use App\Models\Help;
+use App\Models\InterviewQuestion;
+use App\Models\MetaTag;
+use App\Models\PublicChat;
+use App\Models\Replay;
+use App\Models\ReplayMap;
+use App\Models\Stream;
+use App\Models\Tag;
+use App\Models\TourneyList;
+use App\Models\TourneyListsMapPool;
+use App\Models\TourneyMatch;
+use App\Models\TourneyPlayer;
+use App\Models\UserActivityLog;
+use App\Models\UserGallery;
+use App\User;
+use App\Widgets\DashboardMap;
+use App\Widgets\NavigationUserBlock;
+use SleepingOwl\Admin\Admin;
 use SleepingOwl\Admin\Contracts\Widgets\WidgetsRegistryInterface;
 use SleepingOwl\Admin\Navigation\Page;
 use SleepingOwl\Admin\Providers\AdminSectionsServiceProvider as ServiceProvider;
@@ -12,8 +41,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
 
     protected $widgets
         = [
-            \App\Widgets\DashboardMap::class,
-            \App\Widgets\NavigationUserBlock::class,
+            DashboardMap::class,
+            NavigationUserBlock::class,
         ];
 
     /**
@@ -22,46 +51,46 @@ class AdminSectionsServiceProvider extends ServiceProvider
     protected $sections
         = [
 
-            \App\Models\Country::class           => 'App\Http\Sections\Country',
-            \App\Models\InterviewQuestion::class => 'App\Http\Sections\InterviewQuestion',
-            \App\Models\Headline::class          => 'App\Http\Sections\Headline',
+            Country::class           => 'App\Http\Sections\Country',
+            InterviewQuestion::class => 'App\Http\Sections\InterviewQuestion',
+            Headline::class          => 'App\Http\Sections\Headline',
 
-            \App\User::class                   => 'App\Http\Sections\User',
-            \App\Models\UserGallery::class     => 'App\Http\Sections\UserGallery',
-            \App\Models\UserActivityLog::class => 'App\Http\Sections\UserActivityLog',
+            User::class                   => 'App\Http\Sections\User',
+            UserGallery::class     => 'App\Http\Sections\UserGallery',
+            UserActivityLog::class => 'App\Http\Sections\UserActivityLog',
 
-            \App\Models\Stream::class => 'App\Http\Sections\Stream',
+            Stream::class => 'App\Http\Sections\Stream',
 
-            \App\Models\Replay::class       => 'App\Http\Sections\Replay',
-            \App\Models\ReplayMap::class    => 'App\Http\Sections\ReplayMap',
+            Replay::class       => 'App\Http\Sections\Replay',
+            ReplayMap::class    => 'App\Http\Sections\ReplayMap',
             //        \App\Models\ReplayType::class => 'App\Http\Sections\ReplayType',
-            \App\Models\ForumTopic::class   => 'App\Http\Sections\ForumTopics',
-            \App\Models\ForumSection::class => 'App\Http\Sections\ForumSections',
-            \App\Models\ChatSmile::class    => 'App\Http\Sections\ChatSmile',
-            \App\Models\ChatPicture::class  => 'App\Http\Sections\ChatPicture',
-            \App\Models\PublicChat::class   => 'App\Http\Sections\PublicChat',
-            \App\Models\Banner::class       => 'App\Http\Sections\Banner',
+            ForumTopic::class   => 'App\Http\Sections\ForumTopics',
+            ForumSection::class => 'App\Http\Sections\ForumSections',
+            ChatSmile::class    => 'App\Http\Sections\ChatSmile',
+            ChatPicture::class  => 'App\Http\Sections\ChatPicture',
+            PublicChat::class   => 'App\Http\Sections\PublicChat',
+            Banner::class       => 'App\Http\Sections\Banner',
 
-            \App\Models\Footer::class    => 'App\Http\Sections\Footer',
-            \App\Models\Tag::class       => 'App\Http\Sections\Tag',
-            \App\Models\FooterUrl::class => 'App\Http\Sections\FooterUrl',
-            \App\Models\Help::class      => 'App\Http\Sections\Help',
+            Footer::class    => 'App\Http\Sections\Footer',
+            Tag::class       => 'App\Http\Sections\Tag',
+            FooterUrl::class => 'App\Http\Sections\FooterUrl',
+            Help::class      => 'App\Http\Sections\Help',
 
-            \App\Models\TourneyList::class         => 'App\Http\Sections\Tournaments',
-            \App\Models\TourneyListsMapPool::class => 'App\Http\Sections\TournamentsMapPool',
-            \App\Models\TourneyPlayer::class       => 'App\Http\Sections\TournamentsPlayer',
-            \App\Models\TourneyMatch::class        => 'App\Http\Sections\TournamentsMatches',
-            \App\Models\GasTransaction::class      => 'App\Http\Sections\GasTransaction',
-            \App\Models\Bet::class                 => 'App\Http\Sections\Bet',
+            TourneyList::class         => 'App\Http\Sections\Tournaments',
+            TourneyListsMapPool::class => 'App\Http\Sections\TournamentsMapPool',
+            TourneyPlayer::class       => 'App\Http\Sections\TournamentsPlayer',
+            TourneyMatch::class        => 'App\Http\Sections\TournamentsMatches',
+            GasTransaction::class      => 'App\Http\Sections\GasTransaction',
+            Bet::class                 => 'App\Http\Sections\Bet',
 
-            \App\Models\MetaTag::class                 => 'App\Http\Sections\MetaTags',
+            MetaTag::class => 'App\Http\Sections\MetaTags',
         ];
 
 
     /**
      * @param  \SleepingOwl\Admin\Admin  $admin
      */
-    public function boot(\SleepingOwl\Admin\Admin $admin)
+    public function boot(Admin $admin)
     {
         $this->loadViewsFrom(base_path("resources/views/admin"), 'admin');
 
@@ -80,9 +109,9 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'icon'     => 'fas fa-crow',
                 'priority' => 1,
                 'pages'    => [
-                    (new Page(\App\Models\Country::class))->setPriority(1),
-                    (new Page(\App\Models\InterviewQuestion::class))->setPriority(2),
-                    (new Page(\App\Models\Headline::class))->setPriority(3),
+                    (new Page(Country::class))->setPriority(1),
+                    (new Page(InterviewQuestion::class))->setPriority(2),
+                    (new Page(Headline::class))->setPriority(3),
                 ],
             ],
         ]);
@@ -93,11 +122,11 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'icon'     => 'fas fa-users',
                 'priority' => 2,
                 'pages'    => [
-                    (new Page(\App\User::class))->setPriority(1),
-                    (new Page(\App\Models\UserGallery::class))->setPriority(2),
-                    (new Page(\App\Models\GasTransaction::class))->setPriority(3),
-                    (new Page(\App\Models\Bet::class))->setPriority(4),
-                    (new Page(\App\Models\UserActivityLog::class))->setPriority(5),
+                    (new Page(User::class))->setPriority(1),
+                    (new Page(UserGallery::class))->setPriority(2),
+                    (new Page(GasTransaction::class))->setPriority(3),
+                    (new Page(Bet::class))->setPriority(4),
+                    (new Page(UserActivityLog::class))->setPriority(5),
                 ],
             ],
         ]);
@@ -110,8 +139,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'icon'     => 'fas fa-user',
                 'priority' => 4,
                 'pages'    => [
-                    (new Page(\App\Models\ForumSection::class))->setPriority(1),
-                    (new Page(\App\Models\ForumTopic::class))->setPriority(2),
+                    (new Page(ForumSection::class))->setPriority(1),
+                    (new Page(ForumTopic::class))->setPriority(2),
                 ],
             ],
         ]);
@@ -122,8 +151,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'icon'     => 'fas fa-play-circle',
                 'priority' => 5,
                 'pages'    => [
-                    (new Page(\App\Models\Replay::class))->setPriority(1),
-                    (new Page(\App\Models\ReplayMap::class))->setPriority(2),
+                    (new Page(Replay::class))->setPriority(1),
+                    (new Page(ReplayMap::class))->setPriority(2),
                     //                    (new Page(\App\Models\ReplayType::class))->setPriority(3),
                 ],
             ],
@@ -135,11 +164,11 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'icon'     => 'fas fa-comments',
                 'priority' => 6,
                 'pages'    => [
-                    (new Page(\App\Models\PublicChat::class))->setPriority(1),
-                    (new Page(\App\Models\ChatSmile::class))->setPriority(2),
-                    (new Page(\App\Models\ChatPicture::class))->setPriority(3),
-                    (new Page(\App\Models\Tag::class))->setPriority(4),
-                    (new Page(\App\Models\Help::class))->setPriority(5),
+                    (new Page(PublicChat::class))->setPriority(1),
+                    (new Page(ChatSmile::class))->setPriority(2),
+                    (new Page(ChatPicture::class))->setPriority(3),
+                    (new Page(Tag::class))->setPriority(4),
+                    (new Page(Help::class))->setPriority(5),
                 ],
             ],
         ]);
@@ -149,10 +178,10 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'icon'     => 'fas fa-window-minimize',
                 'priority' => 7,
                 'pages'    => [
-                    (new Page(\App\Models\TourneyList::class))->setPriority(1),
-                    (new Page(\App\Models\TourneyListsMapPool::class))->setPriority(2),
-                    (new Page(\App\Models\TourneyPlayer::class))->setPriority(3),
-                    (new Page(\App\Models\TourneyMatch::class))->setPriority(4),
+                    (new Page(TourneyList::class))->setPriority(1),
+                    (new Page(TourneyListsMapPool::class))->setPriority(2),
+                    (new Page(TourneyPlayer::class))->setPriority(3),
+                    (new Page(TourneyMatch::class))->setPriority(4),
                 ],
             ],
         ]);
@@ -162,8 +191,8 @@ class AdminSectionsServiceProvider extends ServiceProvider
                 'icon'     => 'fas fa-window-minimize',
                 'priority' => 8,
                 'pages'    => [
-                    (new Page(\App\Models\Footer::class))->setPriority(1),
-                    (new Page(\App\Models\FooterUrl::class))->setPriority(2),
+                    (new Page(Footer::class))->setPriority(1),
+                    (new Page(FooterUrl::class))->setPriority(2),
                 ],
             ],
         ]);

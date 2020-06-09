@@ -8,6 +8,8 @@ use App\Http\Requests\UserTopicsUpdateRequest;
 use App\Models\ForumSection;
 use App\Models\ForumTopic;
 use App\Services\ServiceAssistants\PathHelper;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class UserTopicsController extends Controller
 {
@@ -156,7 +158,7 @@ class UserTopicsController extends Controller
      * @param $preview_content
      * @param $content
      */
-    public function modelColumn($topic, $request, $title, $preview_content, $content)
+    public function modelColumn($topic, Request $request, $title, $preview_content, $content)
     {
         $topic->forum_section_id = $request->get('forum_section');
         $topic->title            = $title;
@@ -169,8 +171,10 @@ class UserTopicsController extends Controller
             /**
              * Check file path and delete old
              */
-            PathHelper::checkUploadsFileAndPath('/topics/images', $topic->preview_img);
-            $topic->preview_img = 'storage/'.$request->file('preview_img')->store('topics/images', 'public');
+            $now   = Carbon::now();
+            $pathC = $now->format('F').$now->year;
+            PathHelper::checkUploadsFileAndPath("/topics/images/{$pathC}", $topic->preview_img);
+            $topic->preview_img = 'storage/'.$request->file('preview_img')->store("topics/images/{$pathC}", 'public');
         }
     }
 

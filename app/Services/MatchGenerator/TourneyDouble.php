@@ -21,8 +21,15 @@ class TourneyDouble
      *
      * @return array
      */
-    public static function roundTwoMatches(int $tourneyId, int $round, int $matchNumber, $players, int $playerCount, int $branch, string $for = ''): array
-    {
+    public static function roundTwoMatches(
+        int $tourneyId,
+        int $round,
+        int $matchNumber,
+        $players,
+        int $playerCount,
+        int $branch,
+        string $for = ''
+    ): array {
         $matches   = [];
         $playerArr = [];
 

@@ -1,5 +1,10 @@
 <?php
 
+use Barryvdh\TranslationManager\ManagerServiceProvider;
+use Intervention\Image\ImageServiceProvider;
+use PheRum\BBCode\BBCodeServiceProvider;
+use SleepingOwl\Admin\Providers\SleepingOwlServiceProvider;
+
 return [
 
     /*
@@ -168,10 +173,10 @@ return [
          */
 
         \Genert\BBCode\BBCodeServiceProvider::class,
-        \SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
-        \Barryvdh\TranslationManager\ManagerServiceProvider::class,
-        \Intervention\Image\ImageServiceProvider::class,
-        \PheRum\BBCode\BBCodeServiceProvider::class,
+        SleepingOwlServiceProvider::class,
+        ManagerServiceProvider::class,
+        ImageServiceProvider::class,
+        BBCodeServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         /*
          * Application Service Providers...

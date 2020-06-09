@@ -4,7 +4,9 @@ namespace App\Console\Commands\Broadcasting;
 
 use App\Models\Stream;
 use App\Services\Broadcasting\{AfreecaTV, GoodGame, Twitch};
+use Exception;
 use Illuminate\Console\Command;
+use Log;
 
 class BroadcastCheck extends Command
 {
@@ -49,8 +51,8 @@ class BroadcastCheck extends Command
                     } else {
                         Stream::where('id', $item->id)->update(['active' => false]);
                     }
-                } catch (\Exception $e) {
-                    \Log::error($e->getMessage());
+                } catch (Exception $e) {
+                    Log::error($e->getMessage());
                 }
             }
         }
@@ -85,6 +87,16 @@ class BroadcastCheck extends Command
         }
 
         return false;
+    }
+
+    /**
+     * @param $url
+     *
+     * @return mixed
+     */
+    public function parse_stream_url($url)
+    {
+        return parse_url(htmlspecialchars_decode($url));
     }
 
     /**
@@ -133,16 +145,6 @@ class BroadcastCheck extends Command
         $afreecaTv = new AfreecaTV();
 
         return $afreecaTv->getStatus($chanelName, $id);
-    }
-
-    /**
-     * @param $url
-     *
-     * @return mixed
-     */
-    public function parse_stream_url($url)
-    {
-        return parse_url(htmlspecialchars_decode($url));
     }
 
 }

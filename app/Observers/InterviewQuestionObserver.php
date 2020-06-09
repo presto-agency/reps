@@ -11,6 +11,43 @@ class InterviewQuestionObserver
     public static $answersEdit;
 
     /**
+     * Store InterviewVariantAnswer
+     *
+     * @param $answers
+     * @param $id
+     */
+    public static function storeIVA($answers, $id)
+    {
+        //        if (!empty($answers)) {
+        //            foreach ($answers as $answer) {
+        //                if (!empty($answer) && strlen($answer) <= 255) {
+        //
+        //                    $addAnswer = new InterviewVariantAnswerController;
+        //                    $addAnswer->store($id, $answer);
+        //                }
+        //            }
+        //        }
+    }
+
+    /**
+     * Update InterviewVariantAnswer
+     *
+     * @param $answersEdit
+     * @param $questionId
+     */
+    public static function updateIVA($answersEdit, $questionId)
+    {
+        //        if (!empty($answersEdit)) {
+        //            foreach ($answersEdit as $id => $answerEdit) {
+        //                if (!empty($answerEdit) && strlen($answerEdit) <= 255) {
+        //                    $addAnswers = new InterviewVariantAnswerController;
+        //                    $addAnswers->update($id, $answerEdit, $questionId);
+        //                }
+        //            }
+        //        }
+    }
+
+    /**
      * @param  InterviewQuestion  $poll
      */
 
@@ -69,43 +106,6 @@ class InterviewQuestionObserver
     public function forceDeleted(InterviewQuestion $poll)
     {
         //
-    }
-
-    /**
-     * Store InterviewVariantAnswer
-     *
-     * @param $answers
-     * @param $id
-     */
-    public static function storeIVA($answers, $id)
-    {
-        //        if (!empty($answers)) {
-        //            foreach ($answers as $answer) {
-        //                if (!empty($answer) && strlen($answer) <= 255) {
-        //
-        //                    $addAnswer = new InterviewVariantAnswerController;
-        //                    $addAnswer->store($id, $answer);
-        //                }
-        //            }
-        //        }
-    }
-
-    /**
-     * Update InterviewVariantAnswer
-     *
-     * @param $answersEdit
-     * @param $questionId
-     */
-    public static function updateIVA($answersEdit, $questionId)
-    {
-        //        if (!empty($answersEdit)) {
-        //            foreach ($answersEdit as $id => $answerEdit) {
-        //                if (!empty($answerEdit) && strlen($answerEdit) <= 255) {
-        //                    $addAnswers = new InterviewVariantAnswerController;
-        //                    $addAnswers->update($id, $answerEdit, $questionId);
-        //                }
-        //            }
-        //        }
     }
 
 }

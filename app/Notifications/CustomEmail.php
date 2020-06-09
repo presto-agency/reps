@@ -54,7 +54,6 @@ class CustomEmail extends Notification
             ->greeting('Hello!')
             ->subject($this->subject)
             ->markdown('emails.base', ['content' => $this->message]);
-
     }
 
     /**

@@ -55,7 +55,6 @@ class ViewComposerServiceProvider extends ServiceProvider
 
         $this->compose('layouts.app', Smiles::class);
         $this->compose('layouts.app', HomeMetaTag::class);
-
     }
 
 

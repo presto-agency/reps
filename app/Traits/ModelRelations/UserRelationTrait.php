@@ -147,15 +147,18 @@ trait UserRelation
         return $this->hasMany('App\Models\Comment', 'user_id', 'id')->count();
     }
 
-    public function gas(){
-        return $this->hasMany(GasTransaction::class,'user_id', 'id');
+    public function gas()
+    {
+        return $this->hasMany(GasTransaction::class, 'user_id', 'id');
     }
 
-    public function gas_transactions(){
+    public function gas_transactions()
+    {
         return $this->morphMany(GasTransaction::class, 'initializable');
     }
 
-    public function bets(){
+    public function bets()
+    {
         return $this->hasMany(Bet::class, 'author_id');
     }
 

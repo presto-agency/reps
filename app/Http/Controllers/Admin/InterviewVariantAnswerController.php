@@ -28,7 +28,7 @@ class InterviewVariantAnswerController extends Controller
      */
     public function update($id, $answer, $question_id)
     {
-        $update = InterviewVariantAnswer::where('id', $id)->first();
+        $update = InterviewVariantAnswer::query()->where('id', $id)->first();
         if ( ! $update) {
             $this->store($question_id, $answer);
         }

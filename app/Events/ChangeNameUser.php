@@ -4,14 +4,13 @@ namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
 class ChangeNameUser implements ShouldBroadcast
 {
+
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $data;
 
@@ -35,4 +34,5 @@ class ChangeNameUser implements ShouldBroadcast
     {
         return new Channel('chat');
     }
+
 }

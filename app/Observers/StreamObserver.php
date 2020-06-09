@@ -7,86 +7,23 @@ use App\Models\Stream;
 class StreamObserver
 {
 
+    public static function goodGameUrl()
+    {
+    }
+
+    public static function twitchUrl()
+    {
+    }
+
+    public static function afreecaTvUrl()
+    {
+    }
+
     public function creating(Stream $stream)
     {
-
         self::liveStreamCheck($stream->getAttribute('stream_url'), $stream);
 
         $this->setUserIdAttribute($stream);
-    }
-
-    /**
-     * Handle the stream "created" event.
-     *
-     * @param Stream $stream
-     *
-     * @return void
-     */
-    public function created(Stream $stream)
-    {
-
-    }
-
-    public function updating(Stream $stream)
-    {
-
-        self::liveStreamCheck($stream->getAttribute('stream_url'), $stream);
-
-        $this->setUserIdAttribute($stream);
-    }
-
-    /**
-     * Handle the stream "updated" event.
-     *
-     * @param Stream $stream
-     *
-     * @return void
-     */
-    public function updated(Stream $stream)
-    {
-        //
-    }
-
-    /**
-     * Handle the stream "deleted" event.
-     *
-     * @param Stream $stream
-     *
-     * @return void
-     */
-    public function deleted(Stream $stream)
-    {
-        //
-    }
-
-    /**
-     * Handle the stream "restored" event.
-     *
-     * @param Stream $stream
-     *
-     * @return void
-     */
-    public function restored(Stream $stream)
-    {
-        //
-    }
-
-    /**
-     * Handle the stream "force deleted" event.
-     *
-     * @param Stream $stream
-     *
-     * @return void
-     */
-    public function forceDeleted(Stream $stream)
-    {
-        //
-    }
-
-    private function setUserIdAttribute($data)
-    {
-        return $data['user_id'] = auth()->id();
-
     }
 
     /**
@@ -125,23 +62,80 @@ class StreamObserver
         return false;
     }
 
-    public static function goodGameUrl()
-    {
-
-    }
-
-    public static function twitchUrl()
-    {
-
-    }
-
-    public static function afreecaTvUrl()
-    {
-    }
-
     private static function parse_stream_url($url)
     {
         return parse_url(htmlspecialchars_decode($url));
+    }
+
+    private function setUserIdAttribute($data)
+    {
+        return $data['user_id'] = auth()->id();
+    }
+
+    /**
+     * Handle the stream "created" event.
+     *
+     * @param  Stream  $stream
+     *
+     * @return void
+     */
+    public function created(Stream $stream)
+    {
+    }
+
+    public function updating(Stream $stream)
+    {
+        self::liveStreamCheck($stream->getAttribute('stream_url'), $stream);
+
+        $this->setUserIdAttribute($stream);
+    }
+
+    /**
+     * Handle the stream "updated" event.
+     *
+     * @param  Stream  $stream
+     *
+     * @return void
+     */
+    public function updated(Stream $stream)
+    {
+        //
+    }
+
+    /**
+     * Handle the stream "deleted" event.
+     *
+     * @param  Stream  $stream
+     *
+     * @return void
+     */
+    public function deleted(Stream $stream)
+    {
+        //
+    }
+
+    /**
+     * Handle the stream "restored" event.
+     *
+     * @param  Stream  $stream
+     *
+     * @return void
+     */
+    public function restored(Stream $stream)
+    {
+        //
+    }
+
+    /**
+     * Handle the stream "force deleted" event.
+     *
+     * @param  Stream  $stream
+     *
+     * @return void
+     */
+    public function forceDeleted(Stream $stream)
+    {
+        //
     }
 
 }

@@ -31,4 +31,5 @@ class RegexService
                 break;
         }
     }
+
 }

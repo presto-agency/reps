@@ -98,21 +98,21 @@ trait ReplayRelationTrait
             ->where('rating', '-1');
     }
 
-//    /**
-//     * Get all of the comments for the User Replay.
-//     *
-//     * @return mixed
-//     */
-//    public function replayUserComments()
-//    {
-//        return $this->hasManyThrough(
-//            'App\Models\Comment',
-//            'App\User',
-//            'id',
-//            'user_id',
-//            'user_id',
-//            'id'
-//        );
-//    }
+    //    /**
+    //     * Get all of the comments for the User Replay.
+    //     *
+    //     * @return mixed
+    //     */
+    //    public function replayUserComments()
+    //    {
+    //        return $this->hasManyThrough(
+    //            'App\Models\Comment',
+    //            'App\User',
+    //            'id',
+    //            'user_id',
+    //            'user_id',
+    //            'id'
+    //        );
+    //    }
 
 }

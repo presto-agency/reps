@@ -12,7 +12,7 @@ return [
     */
     'route'          => [
         'prefix'     => 'admin/translations',
-        'middleware' => 'adminPanelAccess'
+        'middleware' => 'adminPanelAccess',
     ],
 
     /**

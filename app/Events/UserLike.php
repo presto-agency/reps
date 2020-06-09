@@ -19,7 +19,6 @@ class UserLike
     public function __construct(UserReputation $userReputation)
     {
         $this->userReputation = $userReputation;
-
     }
 
 }

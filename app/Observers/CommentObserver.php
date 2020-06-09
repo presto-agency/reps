@@ -11,20 +11,19 @@ class CommentObserver
     /**
      * Handle the comment "created" event.
      *
-     * @param Comment $comment
+     * @param  Comment  $comment
      *
      * @return void
      */
     public function created(Comment $comment)
     {
-
         event(new UserComment($comment));
     }
 
     /**
      * Handle the comment "updated" event.
      *
-     * @param Comment $comment
+     * @param  Comment  $comment
      *
      * @return void
      */
@@ -36,7 +35,7 @@ class CommentObserver
     /**
      * Handle the comment "deleted" event.
      *
-     * @param Comment $comment
+     * @param  Comment  $comment
      *
      * @return void
      */
@@ -48,7 +47,7 @@ class CommentObserver
     /**
      * Handle the comment "restored" event.
      *
-     * @param Comment $comment
+     * @param  Comment  $comment
      *
      * @return void
      */
@@ -60,7 +59,7 @@ class CommentObserver
     /**
      * Handle the comment "force deleted" event.
      *
-     * @param Comment $comment
+     * @param  Comment  $comment
      *
      * @return void
      */

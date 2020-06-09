@@ -66,7 +66,6 @@ class AfreecaTV
         $data['id']     = $id;
 
         return $data;
-
     }
 
 }

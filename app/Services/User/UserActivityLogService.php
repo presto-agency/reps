@@ -60,6 +60,7 @@ class UserActivityLogService
 
     /**
      * Defines a router for comment
+     *
      * @param $comment
      *
      * @return string|null
@@ -100,6 +101,23 @@ class UserActivityLogService
         }
     }
 
+    public static function getTopicShowRoute($topicId)
+    {
+        return route('topic.show', $topicId);
+    }
+
+    public static function getReplayShowRoute($replayId, $userReplay)
+    {
+        $type = Replay::$type[$userReplay];
+
+        return "replay/{$replayId}"."?type=$type";
+    }
+
+    public static function getUserGalleryShowRoute($userId, $id)
+    {
+        return route('user-gallery.show', ['id' => $userId, 'user_gallery' => $id]);
+    }
+
     public static function getCommentTitle($comment)
     {
         switch ($comment->commentable_type) {
@@ -138,7 +156,8 @@ class UserActivityLogService
 
         $part = $userReputation->relation == UserReputation::RELATION_COMMENT ? 'Лайк комментария от' : 'Лайк от';
 
-        $description = $part.' <a target="_blank" href="'.asset($routSender).'">'.$senderName.'</a> для <a target="_blank" href="'.asset($route).'">'.$title.'</a>';
+        $description = $part.' <a target="_blank" href="'.asset($routSender).'">'.$senderName
+            .'</a> для <a target="_blank" href="'.asset($route).'">'.$title.'</a>';
 
 
         return json_encode(['description' => $description,]);
@@ -162,7 +181,8 @@ class UserActivityLogService
             case UserReputation::RELATION_USER_GALLERY:
             {
                 if ($userReputation->gallery) {
-                    return self::getUserGalleryShowRoute($userReputation->gallery->user_id, $userReputation->gallery->id);
+                    return self::getUserGalleryShowRoute($userReputation->gallery->user_id,
+                        $userReputation->gallery->id);
                 }
             }
             case UserReputation::RELATION_COMMENT:
@@ -210,23 +230,6 @@ class UserActivityLogService
                 return null;
             }
         }
-    }
-
-    public static function getTopicShowRoute($topicId)
-    {
-        return route('topic.show', $topicId);
-    }
-
-    public static function getReplayShowRoute($replayId, $userReplay)
-    {
-        $type = Replay::$type[$userReplay];
-
-        return "replay/{$replayId}"."?type=$type";
-    }
-
-    public static function getUserGalleryShowRoute($userId, $id)
-    {
-        return route('user-gallery.show', ['id' => $userId, 'user_gallery' => $id]);
     }
 
 }
