@@ -1,36 +1,30 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    @php
-        $title = $metaTags->seo_title ?? config('app.name', 'Reps.ru');
-        $keywords = $metaTags->seo_keywords ?? config('app.name', 'Reps.ru');
-        $description = $metaTags->seo_description ?? config('app.name', 'Reps.ru');
-        $icon = asset('images/logo.png');
-        $img_type = 'image/'.\File::extension($icon);
-    @endphp
     <meta charset="utf-8">
-    <title>@section('meta-title'){{$title}}@show</title>
+    <title>{{config('app.name', 'Reps.ru').' | '}}@section('meta-title'){{$metaTags->getMetaTitle()}}@show</title>
     <base href="{{config('app.url')}}">
     {{--META OG:TAGS--}}
+
     <meta property="og:locale" content="ru_RU"/>
     <meta property="og:type" content="article"/>
     <meta property="og:url" content="{{Request::url()}}"/>
     <meta property="og:site_name" content="{{config('app.name', 'Reps.ru')}}"/>
-    <meta property="og:title" content="@section('meta-og-title'){{$title}}@show"/>
-    <meta property="og:keywords" content="@section('meta-og-keywords'){{$keywords}}@show">
-    <meta property="og:description" content="@section('meta-og-description'){{$description}}@show"/>
+    <meta property="og:title" content="@section('meta-og-title'){{$metaTags->getMetaTitle()}}@show"/>
+    <meta property="og:keywords" content="@section('meta-og-keywords'){{$metaTags->getMetaKeywords()}}@show">
+    <meta property="og:description" content="@section('meta-og-description'){{$metaTags->getMetaDescription()}}@show"/>
 
-    <meta property="og:image" content="@section('meta-og-image'){{$icon}}@show"/>
-    <meta property="og:image:alt" content="@section('meta-og-image-alt'){{$title}}@show"/>
-    <meta property="og:image:type" content="@section('meta-og-image-type'){{$img_type}}@show"/>
-{{--    <meta property="og:image:width" content="@section('meta-og-image-width'){{$width}}@show"/>--}}
-{{--    <meta property="og:image:height" content="@section('meta-og-image-height'){{$height}}@show"/>   --}}
+    <meta property="og:image" content="@section('meta-og-image'){{$metaTags->getMetaIcon()}}@show"/>
+    <meta property="og:image:alt" content="@section('meta-og-image-alt'){{$metaTags->getMetaTitle()}}@show"/>
+    <meta property="og:image:type" content="@section('meta-og-image-type'){{$metaTags->getMetaIconType()}}@show"/>
     <meta property="og:image:width" content="400"/>
     <meta property="og:image:height" content="300"/>
+{{--    <meta name="google-site-verification" content="{{config('services.google.site_verification')}}"/>--}}
+{{--    <meta name="yandex-verification" content="{{config('services.yandex.site_verification')}}"/>--}}
     {{--META TAGS--}}
-    <meta name="title" content="@section('meta-title'){{$title}}@show">
-    <meta name="keywords" content="@section('meta-keywords'){{$keywords}}@show">
-    <meta name="description" content="@section('meta-description'){{$description}}@show">
+    <meta name="title" content="@section('meta-title'){{$metaTags->getMetaTitle()}}@show">
+    <meta name="keywords" content="@section('meta-keywords'){{$metaTags->getMetaKeywords()}}@show">
+    <meta name="description" content="@section('meta-description'){{$metaTags->getMetaDescription()}}@show">
 
     {{--csrf_token--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">

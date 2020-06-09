@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PublicChat extends Model
 {
 
+    public $timestamps = true;
     /**
      * Using table name
      *
      * @var string
      */
     protected $table = 'public_messages';
-
     protected $fillable
         = [
             'user_id',
@@ -24,10 +24,8 @@ class PublicChat extends Model
             'is_hidden',
             'to',
             'imo',
-            'is_anon'
+            'is_anon',
         ];
-
-    public $timestamps = true;
 
     public function user()
     {

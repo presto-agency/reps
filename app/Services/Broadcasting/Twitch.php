@@ -54,7 +54,6 @@ class Twitch
         $data['id']         = $id;
 
         return $data;
-
     }
 
 }

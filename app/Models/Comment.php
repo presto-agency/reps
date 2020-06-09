@@ -8,15 +8,19 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Comment extends Model
 {
+
     const RELATION_REPLAY = 'App\Models\Replay';
+
     const RELATION_USER_GALLERY = 'App\Models\UserGallery';
+
     const RELATION_FORUM_TOPIC = 'App\Models\ForumTopic';
 
-    public static $relation = [
-        self::RELATION_REPLAY => User::REPLAY,
-        self::RELATION_USER_GALLERY => User::GALLERY,
-        self::RELATION_FORUM_TOPIC => User::TOPICS,
-    ];
+    public static $relation
+        = [
+            self::RELATION_REPLAY       => User::REPLAY,
+            self::RELATION_USER_GALLERY => User::GALLERY,
+            self::RELATION_FORUM_TOPIC  => User::TOPICS,
+        ];
     protected $fillable
         = [
             'user_id', 'commentable_id', 'commentable_type', 'title', 'content',

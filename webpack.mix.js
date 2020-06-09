@@ -19,4 +19,4 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/assets/js/load_tournament.js', 'public/js/assets')
     .js('resources/assets/js/replay_iframe.js', 'public/js/assets')
     .sass('resources/sass/app.scss', 'public/css')
-    .version();
+    .sourceMaps().version();

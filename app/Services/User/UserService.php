@@ -12,7 +12,10 @@ use App\Models\UserFriend;
 use App\Services\ImageService\ResizeImage;
 use App\Services\ServiceAssistants\PathHelper;
 use App\User;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
+use Log;
 
 class UserService
 {
@@ -27,7 +30,7 @@ class UserService
      */
     public static function updateData($request, $user_id)
     {
-        $user = User::findOrFail($user_id);
+        $user = User::query()->findOrFail($user_id);
         if ($user->id != auth()->id()) {
             return redirect()->to('/');
         }
@@ -65,8 +68,8 @@ class UserService
 
     public static function isFriendExists($user_id, $friend_user_id)
     {
-        if (UserFriend::where('user_id', $user_id)
-                      ->where('friend_user_id', $friend_user_id)->exists()
+        if (UserFriend::query()->where('user_id', $user_id)
+            ->where('friend_user_id', $friend_user_id)->exists()
         ) {
             return true;
         }
@@ -74,27 +77,40 @@ class UserService
         return false;
     }
 
-
-    public static function saveFile($request)
+    /**
+     *  Save Avatar
+     *
+     * @param  \Illuminate\Http\Request  $request
+     *
+     * @return string|null
+     */
+    public static function saveAvatar(Request $request)
     {
-        // Check have input file
-        if ($request->hasFile('avatar')) {
-            // Check if upload file Successful Uploads
-            if ($request->file('avatar')->isValid()) {
-                //Check path Check old file4delete
-                $path  = PathHelper::checkUploadsFileAndPath('images/users/avatars', auth()->user()->avatar);
-                $image = $request->file('avatar');
-                if ($image->getClientOriginalExtension() == "gif") {
-                    $filePath = 'storage/'.$image->store('images/users/avatars', 'public');
+        $filePath = null;
+
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            try {
+                $file = $request->file('avatar');
+                /**
+                 * Check path and delete old file
+                 */
+                $now   = Carbon::now();
+                $pathC = $now->format('F').$now->year;
+                $path  = PathHelper::checkUploadsFileAndPath("images/users/avatars/{$pathC}", auth()->user()->avatar);
+                /**
+                 * Check file for resize
+                 */
+                if ($file->getClientOriginalExtension() == "gif") {
+                    $filePath = 'storage/'.$file->store("images/users/avatars/{$pathC}", 'public');
                 } else {
-                    //resize
-                    $filePath = ResizeImage::resizeImg($image, 125, 125, true, $path);
+                    $filePath = ResizeImage::resizeImg($file, 125, 125, true, "$path/");
                 }
-                return $filePath;
+            } catch (Exception $e) {
+                Log::error($e->getMessage());
             }
-            return null;
         }
-        return null;
+
+        return $filePath;
     }
 
 }

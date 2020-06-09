@@ -12,6 +12,14 @@ class UserReputation extends Model
 
     use Notifiable, UserReputationRelation;
 
+    const RELATION_FORUM_TOPIC = 1;
+
+    const RELATION_REPLAY = 2;
+
+    const RELATION_USER_GALLERY = 3;
+
+    const RELATION_COMMENT = 4;
+
     /**
      * The event map for the model.
      *
@@ -25,15 +33,6 @@ class UserReputation extends Model
             'restored' => UserReputationObserver::class,
             'updated'  => UserReputationObserver::class,
         ];
-
-    const RELATION_FORUM_TOPIC = 1;
-
-    const RELATION_REPLAY = 2;
-
-    const RELATION_USER_GALLERY = 3;
-
-    const RELATION_COMMENT = 4;
-
     /**
      * Using table name
      *

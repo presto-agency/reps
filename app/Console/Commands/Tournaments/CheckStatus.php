@@ -4,7 +4,9 @@ namespace App\Console\Commands\Tournaments;
 
 use App\Models\TourneyList;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Console\Command;
+use Log;
 
 class CheckStatus extends Command
 {
@@ -44,8 +46,8 @@ class CheckStatus extends Command
             $this->updateTourney('reg_time', 'ANNOUNCE', 'REGISTRATION');
             $this->updateTourney('checkin_time', 'REGISTRATION', 'CHECK-IN');
             $this->updateTourney('start_time', 'CHECK-IN', 'STARTED');
-        } catch (\Exception $e) {
-            \Log::error($e->getMessage());
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
         }
 
         return null;

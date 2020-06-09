@@ -65,13 +65,17 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "ide-helper": [
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
+        ],
         "optimize": [
             "@php artisan debugbar:clear",
             "@php artisan optimize",
             "@php artisan view:cache",
             "@php artisan event:cache",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover"
+            "@php artisan package:discover --ansi"
         ],
         "post-install-cmd": [
             "@php artisan debugbar:clear",

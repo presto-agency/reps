@@ -22,10 +22,11 @@ class Replay extends Model
 
     const REPLAY_USER = 1;
 
-    public static $replayCheckFile = [
-      1 => 'VOD',
-      2 => 'REP',
-    ];
+    public static $replayCheckFile
+        = [
+            1 => 'VOD',
+            2 => 'REP',
+        ];
     public static $userReplaysType
         = [
             Replay::REPLAY_PRO  => 'Профессиональный',

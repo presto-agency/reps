@@ -9,30 +9,27 @@ class CountryObserver
 
     public function creating(Country $country)
     {
-
     }
 
     /**
      * Handle the country "created" event.
      *
-     * @param Country $country
+     * @param  Country  $country
      *
      * @return void
      */
     public function created(Country $country)
     {
-
     }
 
     public function updating(Country $country)
     {
-
     }
 
     /**
      * Handle the country "updated" event.
      *
-     * @param Country $country
+     * @param  Country  $country
      *
      * @return void
      */
@@ -44,7 +41,7 @@ class CountryObserver
     /**
      * Handle the country "deleted" event.
      *
-     * @param Country $country
+     * @param  Country  $country
      *
      * @return void
      */
@@ -56,7 +53,7 @@ class CountryObserver
     /**
      * Handle the country "restored" event.
      *
-     * @param Country $country
+     * @param  Country  $country
      *
      * @return void
      */
@@ -68,7 +65,7 @@ class CountryObserver
     /**
      * Handle the country "force deleted" event.
      *
-     * @param Country $country
+     * @param  Country  $country
      *
      * @return void
      */

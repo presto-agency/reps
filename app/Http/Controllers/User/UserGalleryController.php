@@ -19,7 +19,7 @@ class UserGalleryController extends Controller
      */
     public function index(int $id)
     {
-        User::findOrFail($id);
+        User::query()->findOrFail($id);
 
         return view('user.gallery.index');
     }
@@ -46,7 +46,7 @@ class UserGalleryController extends Controller
      */
     public function show(int $id, int $user_gallery)
     {
-        User::findOrFail($id);
+        User::query()->findOrFail($id);
 
         $previous = GalleriesController::getPreviousUserImage($user_gallery, $id);
         $image    = GalleriesController::getUserImage($user_gallery, $id);
@@ -86,7 +86,9 @@ class UserGalleryController extends Controller
         /**
          * Upload file on server
          */
-        $filePath           = $request->file('picture')->store('images/users/galleries', 'public');
+        $now   = \Carbon\Carbon::now();
+        $pathC = $now->format('F').$now->year;
+        $filePath           = $request->file('picture')->store("images/users/galleries/{$pathC}", 'public');
         $userImage->picture = 'storage/'.$filePath;
         $userImage->save();
 
@@ -102,9 +104,9 @@ class UserGalleryController extends Controller
      */
     public function update(UserGalleryUpdateRequests $request, int $id, int $user_gallery)
     {
-        User::findOrFail($id);
+        User::query()->findOrFail($id);
 
-        $userImage             = UserGallery::find($user_gallery);
+        $userImage             = UserGallery::query()->find($user_gallery);
         $userImage->sign       = clean($request->get('sign'));
         $userImage->for_adults = (boolean) $request->get('for_adults');
         $userImage->save();

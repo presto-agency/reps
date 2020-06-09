@@ -57,7 +57,6 @@ class GoodGame
         $data['id']     = $id;
 
         return $data;
-
     }
 
 }

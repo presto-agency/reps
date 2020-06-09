@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
+use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
 class ReplayType extends Model
 {

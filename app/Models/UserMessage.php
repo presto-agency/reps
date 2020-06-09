@@ -35,7 +35,6 @@ class UserMessage extends Model
      */
     public static function createMessage(Request $request, $dialogue_id)
     {
-
         return UserMessage::create([
             'user_id'     => Auth::id(),
             'dialogue_id' => $dialogue_id,

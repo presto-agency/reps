@@ -12,12 +12,10 @@ class UserObserver
 
     public function creating(User $user)
     {
-
     }
 
     public function created(User $user)
     {
-
     }
 
     public function updating(User $user)
@@ -29,17 +27,16 @@ class UserObserver
                 unset($user['role_id']);
             }
         }
-        if (auth()->check() &&auth()->user()->roles->name == 'user') {
+        if (auth()->check() && auth()->user()->roles->name == 'user') {
             unset($user['role_id']);
         }
-        if (auth()->check() &&auth()->user()->roles->name == 'moderator') {
+        if (auth()->check() && auth()->user()->roles->name == 'moderator') {
             unset($user['role_id']);
         }
     }
 
     public function updated(User $user)
     {
-
     }
 
 

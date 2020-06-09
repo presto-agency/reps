@@ -22,7 +22,6 @@ class UserDialogService
      */
     public static function getUserDialogues()
     {
-
         $dialogues = Dialogue::whereHas('users', function ($query) {
             $query->where('user_id', Auth::id());
         })->with('messages.sender')->get();

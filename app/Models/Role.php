@@ -15,9 +15,7 @@ class Role extends Model
 
     public static function getRoleId($name)
     {
-
         return Role::where('name', $name)->value('id');
-
     }
 
 }

@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Broadcasting\BroadcastCheck;
+use App\Console\Commands\Tournaments\CheckStatus;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,8 +17,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands
         = [
-            \App\Console\Commands\Broadcasting\BroadcastCheck::class,
-            \App\Console\Commands\Tournaments\CheckStatus::class,
+            BroadcastCheck::class,
+            CheckStatus::class,
 
         ];
 
