@@ -30,7 +30,6 @@ class MessageService
         $data     = self::formMessageData($id, $contacts);
 
         return $data;
-
     }
 
     /**
@@ -43,13 +42,11 @@ class MessageService
     {
         if (count($contacts)) {
             if ( ! $id) {
-
                 foreach ($contacts->first()->senders as $sender) {
                     if ($sender->id != Auth::id()) {
                         $id = $sender->id;
                     }
                 }
-
             }
 
             $dialogue  = UserDialogService::getDialogUser($id);
@@ -68,7 +65,6 @@ class MessageService
                 'page'        => Request::has('page') ? Request::input('page') + 1 : 2,
             ];
         } else {
-
             return [
                 'dialogue_id' => false,
                 'messages'    => '',
@@ -80,10 +76,12 @@ class MessageService
 
     /**
      * @param $dialog_id
+     *
      * @return mixed
      */
     public static function getContactUser($dialog_id)
     {
-        return Dialogue::find($dialog_id)->users()->where('id','<>', Auth::id())->first();
+        return Dialogue::find($dialog_id)->users()->where('id', '<>', Auth::id())->first();
     }
+
 }

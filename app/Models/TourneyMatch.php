@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\ModelRelations\TourneyMatchRelation;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class TourneyMatch extends Model
@@ -135,7 +136,7 @@ class TourneyMatch extends Model
             ->where('round_number', $round - 1)
             ->where('played', true)
             ->where('branch', $branch)
-            ->where('player1_score', '>', \DB::raw('player2_score'))
+            ->where('player1_score', '>', DB::raw('player2_score'))
             ->get();
     }
 
@@ -154,7 +155,7 @@ class TourneyMatch extends Model
             ->where('round_number', $round - 1)
             ->where('played', true)
             ->where('branch', $branch)
-            ->where('player2_score', '>', \DB::raw('player2_score'))
+            ->where('player2_score', '>', DB::raw('player2_score'))
             ->get();
     }
 
@@ -204,7 +205,9 @@ class TourneyMatch extends Model
             ->where('played', true)
             ->where('player1_score', 2)
             ->where('player2_score', 0)
-            ->get(['id', 'tourney_id', 'round_number', 'branch', 'played', 'player1_score', 'player2_score', 'player1_id']);
+            ->get([
+                'id', 'tourney_id', 'round_number', 'branch', 'played', 'player1_score', 'player2_score', 'player1_id',
+            ]);
 
         $player2 = self::with('checkPlayers2:id,tourney_id,description,defeat')
             ->whereNotNull('player2_id')
@@ -216,7 +219,9 @@ class TourneyMatch extends Model
             ->where('played', true)
             ->where('player1_score', 0)
             ->where('player2_score', 2)
-            ->get(['id', 'tourney_id', 'round_number', 'branch', 'played', 'player1_score', 'player2_score', 'player2_id']);
+            ->get([
+                'id', 'tourney_id', 'round_number', 'branch', 'played', 'player1_score', 'player2_score', 'player2_id',
+            ]);
 
         return $player1->merge($player2);
     }
@@ -239,7 +244,9 @@ class TourneyMatch extends Model
             ->where('played', true)
             ->where('player1_score', 0)
             ->where('player2_score', 2)
-            ->get(['id', 'tourney_id', 'round_number', 'branch', 'played', 'player1_score', 'player2_score', 'player1_id']);
+            ->get([
+                'id', 'tourney_id', 'round_number', 'branch', 'played', 'player1_score', 'player2_score', 'player1_id',
+            ]);
         $player2 = self::with('checkPlayers2:id,tourney_id,description,defeat')
             ->whereNotNull('player2_id')
             ->whereHas('checkPlayers2', function ($q) {
@@ -250,7 +257,9 @@ class TourneyMatch extends Model
             ->where('played', true)
             ->where('player1_score', 2)
             ->where('player2_score', 0)
-            ->get(['id', 'tourney_id', 'round_number', 'branch', 'played', 'player1_score', 'player2_score', 'player2_id']);
+            ->get([
+                'id', 'tourney_id', 'round_number', 'branch', 'played', 'player1_score', 'player2_score', 'player2_id',
+            ]);
 
         return $player1->merge($player2);
     }
@@ -273,7 +282,9 @@ class TourneyMatch extends Model
             ->where('played', true)
             ->where('player1_score', 2)
             ->where('player2_score', 0)
-            ->get(['id', 'tourney_id', 'round_number', 'branch', 'played', 'player1_score', 'player2_score', 'player1_id']);
+            ->get([
+                'id', 'tourney_id', 'round_number', 'branch', 'played', 'player1_score', 'player2_score', 'player1_id',
+            ]);
 
         $player2 = self::with('checkPlayers2:id,tourney_id,description,defeat')
             ->whereNotNull('player2_id')
@@ -285,7 +296,9 @@ class TourneyMatch extends Model
             ->where('played', true)
             ->where('player1_score', 0)
             ->where('player2_score', 2)
-            ->get(['id', 'tourney_id', 'round_number', 'branch', 'played', 'player1_score', 'player2_score', 'player2_id']);
+            ->get([
+                'id', 'tourney_id', 'round_number', 'branch', 'played', 'player1_score', 'player2_score', 'player2_id',
+            ]);
 
         return $player1->merge($player2);
     }
@@ -402,7 +415,8 @@ class TourneyMatch extends Model
      */
     public static function getFinalsRound(int $tourneyId, int $round)
     {
-        return self::with('checkPlayers1:id,tourney_id,description,defeat', 'checkPlayers2:id,tourney_id,description,defeat')
+        return self::with('checkPlayers1:id,tourney_id,description,defeat',
+            'checkPlayers2:id,tourney_id,description,defeat')
             ->whereNotNull('player1_id')
             ->whereNotNull('player2_id')
             ->where('tourney_id', $tourneyId)
@@ -429,7 +443,7 @@ class TourneyMatch extends Model
             ->where('round_number', $round - 1)
             ->where('branch', array_search('finals', TourneyMatch::$branches))
             ->where('played', true)
-            ->where('player1_score', '<', \DB::raw('player2_score'))
+            ->where('player1_score', '<', DB::raw('player2_score'))
             ->value('player1_score');
 
         $player2 = self::with('checkPlayers2:id,tourney_id,description,defeat')
@@ -441,7 +455,7 @@ class TourneyMatch extends Model
             ->where('round_number', $round - 1)
             ->where('branch', array_search('finals', TourneyMatch::$branches))
             ->where('played', true)
-            ->where('player2_score', '<', \DB::raw('player1_score'))
+            ->where('player2_score', '<', DB::raw('player1_score'))
             ->value('player2_id');
 
         return ! empty($player1) ? $player1 : $player2;

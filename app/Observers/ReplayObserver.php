@@ -15,7 +15,7 @@ class ReplayObserver
          * User role cannot add PRO-Replay
          */
         if (auth()->user()->roles->name === 'user') {
-            $replay->setAttribute('user_replay', \App\Models\Replay::REPLAY_USER);
+            $replay->setAttribute('user_replay', Replay::REPLAY_USER);
         }
         $replay->setAttribute('user_id', auth()->id());
     }
@@ -31,7 +31,7 @@ class ReplayObserver
 
     public function updating(Replay $replay)
     {
-//        $replay->setAttribute('user_id', auth()->id());
+        //        $replay->setAttribute('user_id', auth()->id());
     }
 
     public function updated(Replay $replay)

@@ -7,6 +7,9 @@ namespace App\Services\MatchGenerator;
 use App\Models\TourneyList;
 use App\Models\TourneyMatch;
 use Carbon\Carbon;
+use DB;
+use Exception;
+use Log;
 
 class TourneySingle
 {
@@ -52,8 +55,13 @@ class TourneySingle
      *
      * @return array
      */
-    public static function roundNextMatches(int $tourneyId, int $matchNumber, int $round, $players, int $playerCountAll): array
-    {
+    public static function roundNextMatches(
+        int $tourneyId,
+        int $matchNumber,
+        int $round,
+        $players,
+        int $playerCountAll
+    ): array {
         $playerArr = [];
         $matches   = [];
         foreach ($players as $item) {
@@ -122,11 +130,11 @@ class TourneySingle
     public static function save($data, int $round)
     {
         try {
-            \DB::table('tourney_matches')->insert($data);
+            DB::table('tourney_matches')->insert($data);
 
             return back()->with(['single-match-success' => "Матчи для раунда $round успешно созданы"]);
-        } catch (\Exception $e) {
-            \Log::error($e->getMessage());
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
 
             return back()->withErrors(['single-match' => "Ошибка при создании матчей для раунда $round"]);
         }

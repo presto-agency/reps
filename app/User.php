@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\AvatarTrait;
 use App\Traits\ModelRelations\UserRelation;
+use Cache;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -64,6 +65,22 @@ class User extends Authenticatable implements MustVerifyEmail
             'password',
             'remember_token',
         ];
+    protected $casts
+        = [
+            'email_verified_at' => 'datetime',
+        ];
+
+    /**
+     * @param $id
+     *
+     * @return mixed
+     */
+    public static function getUserDataById($id)
+    {
+        return User::with('roles', 'countries', 'races')
+            ->withCount('topics', 'comments', 'user_replay', 'gosu_replay', 'images')
+            ->findOrFail($id);
+    }
 
     public function userViewAvatars()
     {
@@ -73,11 +90,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return false;
     }
-
-    protected $casts
-        = [
-            'email_verified_at' => 'datetime',
-        ];
 
     public function isAdmin()
     {
@@ -125,23 +137,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * @param $id
-     *
-     * @return mixed
-     */
-    public static function getUserDataById($id)
-    {
-        return User::with('roles', 'countries', 'races')
-            ->withCount('topics', 'comments', 'user_replay', 'gosu_replay', 'images')
-            ->findOrFail($id);
-    }
-
-    /**
      * @return bool
      */
     public function isOnline()
     {
-        return \Cache::has('user-us-online-'.$this->id);
+        return Cache::has('user-us-online-'.$this->id);
     }
 
     /**
@@ -202,17 +202,19 @@ class User extends Authenticatable implements MustVerifyEmail
         return false;
     }
 
-    public function getActiveBet(){
-        return $this->whereHas('bets', function (Builder $query){
-                    $query->where('status', true);
-                })
-            ->get();
-    }
-
-    public function hasActiveBet(){
+    public function hasActiveBet()
+    {
         $bets = $this->getActiveBet();
 
         return $bets->isNotEmpty();
+    }
+
+    public function getActiveBet()
+    {
+        return $this->whereHas('bets', function (Builder $query) {
+            $query->where('status', true);
+        })
+            ->get();
     }
 
 }

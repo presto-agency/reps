@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateProfileRequest;
 use App\Models\UserFriend;
-use App\Services\ImageService\ResizeImage;
-use App\Services\ServiceAssistants\PathHelper;
+use App\Services\User\UserService;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -55,7 +54,7 @@ class UserController extends Controller
      */
     public function edit(int $id)
     {
-        $user = User::findOrFail(auth()->id());
+        $user = User::query()->findOrFail(auth()->id());
 
         return view('user.profile-edit', compact('user'));
     }
@@ -63,7 +62,7 @@ class UserController extends Controller
 
     public function update(UpdateProfileRequest $request, int $id)
     {
-        $user = User::findOrFail(auth()->id());
+        $user = User::query()->findOrFail(auth()->id());
 
         $user->name         = (string) $request->get('name');
         $user->email        = (string) $request->get('email');
@@ -76,24 +75,10 @@ class UserController extends Controller
         $user->vk_link      = (string) $request->get('vk_link');
         $user->fb_link      = (string) $request->get('fb_link');
         $user->view_avatars = (boolean) $request->get('view_avatars');
-        /**
-         * Save Avatar
-         */
-        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
-            $file = $request->file('avatar');
-            /**
-             * Check path and delete old file
-             */
-            $path = PathHelper::checkUploadsFileAndPath('images/users/avatars', auth()->user()->avatar);
-            /**
-             * Check file for resize
-             */
-            if ($file->getClientOriginalExtension() == "gif") {
-                $filePath = 'storage/'.$file->store('images/users/avatars', 'public');
-            } else {
-                $filePath = ResizeImage::resizeImg($file, 125, 125, true, $path);
-            }
-            $user->avatar = $filePath;
+
+        $avatar = UserService::saveAvatar($request);
+        if ( ! is_null($avatar)) {
+            $user->avatar = $avatar;
         }
 
         $user->save();

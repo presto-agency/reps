@@ -58,7 +58,8 @@ class ForumTopics extends Section
     }
 
     /**
-     * @return DisplayInterface
+     * @return \SleepingOwl\Admin\Display\DisplayDatatablesAsync
+     * @throws \SleepingOwl\Admin\Exceptions\FilterOperatorException
      */
     public function onDisplay()
     {
@@ -187,9 +188,12 @@ class ForumTopics extends Section
                 ]),
             $preview_img = AdminFormElement::image('preview_img', 'Загрузить картинку превью')
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage'.PathHelper::checkUploadsFileAndPath("/images/topics", $this->imageOldPath);
+                    $now      = \Carbon\Carbon::now();
+                    $pathC    = $now->format('F').$now->year;
+                    return 'storage'.PathHelper::checkUploadsFileAndPath("/images/topics/{$pathC}", $this->imageOldPath);
                 })
                 ->setValidationRules([
+                    'image',
                     'nullable',
                     'max:2048',
                 ]),
@@ -242,8 +246,11 @@ class ForumTopics extends Section
                     'max:255',
                 ]),
             AdminFormElement::image('seo_og_image', 'OG:Icon')
+                ->setReadonly(true)
                 ->setUploadPath(function (UploadedFile $file) {
-                    return 'storage'.PathHelper::checkUploadsFileAndPath('/images/topics/icons');
+                    $now      = \Carbon\Carbon::now();
+                    $pathC    = $now->format('F').$now->year;
+                    return 'storage'.PathHelper::checkUploadsFileAndPath("/images/topics/icons/{$pathC}/");
                 })
                 ->setHtmlAttribute('placeholder', 'OG:Icon')
                 ->setValidationRules([

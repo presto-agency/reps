@@ -31,10 +31,10 @@ class TourneyListPolicy
 
     public function edit(User $user, Tournaments $section, Tourney $item)
     {
-//        $status = Tourney::$status[$item->status];
-//        if ($status === 'ANNOUNCE' || $status === 'REGISTRATION' || $status === 'CHECK-IN' || $status === 'STARTED') {
-//            return true;
-//        }
+        //        $status = Tourney::$status[$item->status];
+        //        if ($status === 'ANNOUNCE' || $status === 'REGISTRATION' || $status === 'CHECK-IN' || $status === 'STARTED') {
+        //            return true;
+        //        }
 
         return true;
     }

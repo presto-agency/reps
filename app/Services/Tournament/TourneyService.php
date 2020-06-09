@@ -2,6 +2,8 @@
 
 namespace App\Services\Tournament;
 
+use Exception;
+
 class TourneyService
 {
 
@@ -20,22 +22,16 @@ class TourneyService
     }
 
     /**
-     * @param  string  $prize_pool
+     * @param $prize_pool
      *
-     * @return array
+     * @return mixed
      */
-    public static function getPrize(string $prize_pool)
+    public static function prize_prefix($prize_pool)
     {
-        $prize      = explode(',', $prize_pool);
-        $length     = count($prize);
-        $prizeArray = [];
-        for ($i = 1; $i < count($prize) - 1; $i++) {
-            $prizeArray[] = $prize[0].$prize[$i].$prize[$length - 1];
-        }
+        $prize = explode(",", $prize_pool);
 
-        return $prizeArray;
+        return $prize[0];
     }
-
 
     /**
      * @param $prize_pool
@@ -54,23 +50,27 @@ class TourneyService
             }
 
             return $sum;
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return null;
         }
     }
 
     /**
-     * @param $prize_pool
+     * @param  string  $prize_pool
      *
-     * @return mixed
+     * @return array
      */
-    public static function prize_prefix($prize_pool)
+    public static function getPrize(string $prize_pool)
     {
-        $prize = explode(",", $prize_pool);
+        $prize      = explode(',', $prize_pool);
+        $length     = count($prize);
+        $prizeArray = [];
+        for ($i = 1; $i < count($prize) - 1; $i++) {
+            $prizeArray[] = $prize[0].$prize[$i].$prize[$length - 1];
+        }
 
-        return $prize[0];
+        return $prizeArray;
     }
-
 
     /**
      * @param $prize_pool

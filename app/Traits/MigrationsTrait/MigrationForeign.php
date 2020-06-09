@@ -38,14 +38,20 @@ trait MigrationForeign
      * @param $onUpdate
      * @param $onDelete
      */
-    public function _createForeignIfExist($tableName, $foreignName, $foreignColumns, $referencesColumns, $on, $onUpdate, $onDelete)
-    {
+    public function _createForeignIfExist(
+        $tableName,
+        $foreignName,
+        $foreignColumns,
+        $referencesColumns,
+        $on,
+        $onUpdate,
+        $onDelete
+    ) {
         Schema::table($tableName, function (Blueprint $table)
         use ($tableName, $foreignName, $foreignColumns, $referencesColumns, $on, $onUpdate, $onDelete) {
             $sm            = Schema::getConnection()->getDoctrineSchemaManager();
             $doctrineTable = $sm->listTableDetails($tableName);
             if ( ! $doctrineTable->hasForeignKey($foreignName)) {
-
                 $table->foreign($foreignColumns)
                     ->references($referencesColumns)
                     ->on($on)

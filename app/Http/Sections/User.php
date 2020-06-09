@@ -108,7 +108,8 @@ class User extends Section
                     return $model->commentsCount();
                 }),
                 $email_verified_at = AdminColumn::custom('Почта', function ($model) {
-                    return ! empty($model->email_verified_at) ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
+                    return ! empty($model->email_verified_at) ? '<i class="fa fa-check"></i>'
+                        : '<i class="fa fa-minus"></i>';
                 })->setFilterCallback(function ($column, $query, $search) {
                     if ($search == 'yes') {
                         $query->whereNotNull('email_verified_at');
@@ -207,14 +208,13 @@ class User extends Section
         $display->setItems(
             [
                 $avatar = AdminFormElement::image('avatar', 'Аватар')
-                    ->setUploadPath(
-                        function (UploadedFile $file) {
-                            return 'storage'
-                                .checkFile::checkUploadsFileAndPath(
-                                    "/images/users/avatars",
-                                    $this->imageOldPath
-                                );
-                        }
+                    ->setUploadPath(function (UploadedFile $file) {
+                        $now   = \Carbon\Carbon::now();
+                        $pathC = $now->format('F').$now->year;
+
+                        return 'storage'.checkFile::checkUploadsFileAndPath("/images/users/avatars/{$pathC}",
+                                $this->imageOldPath);
+                    }
                     )
                     ->setValueSkipped(empty(request('avatar')))
                     ->setValidationRules(

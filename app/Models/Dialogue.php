@@ -20,23 +20,6 @@ class Dialogue extends Model
     protected $fillable = ['name'];
 
     /**
-     * @return BelongsToMany
-     */
-    public function users()
-    {
-        return $this->belongsToMany('App\User', 'dialogue_user', 'dialogue_id',
-            'user_id');
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function messages()
-    {
-        return $this->hasMany('App\Models\UserMessage', 'dialogue_id');
-    }
-
-    /**
      * Get User Dialog content
      *
      * @param $dialog_id
@@ -52,6 +35,23 @@ class Dialogue extends Model
             ->update(['is_read' => 1]);
 
         return $dialogues;
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'dialogue_user', 'dialogue_id',
+            'user_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function messages()
+    {
+        return $this->hasMany('App\Models\UserMessage', 'dialogue_id');
     }
 
 }

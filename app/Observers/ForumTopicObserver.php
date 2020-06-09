@@ -13,6 +13,10 @@ class ForumTopicObserver
     {
         $forumTopic->setAttribute('user_id', auth()->id());
         $forumTopic->setAttribute('commented_at', Carbon::now());
+        $path = $forumTopic::getOgIconPath($forumTopic->getAttribute('preview_img'));
+        if ( ! is_null($path)) {
+            $forumTopic->setAttribute('seo_og_image', $path);
+        }
     }
 
     /**
@@ -29,6 +33,10 @@ class ForumTopicObserver
 
     public function updating(ForumTopic $forumTopic)
     {
+        $path = $forumTopic::getOgIconPath($forumTopic->getAttribute('preview_img'));
+        if ( ! is_null($path)) {
+            $forumTopic->setAttribute('seo_og_image', $path);
+        }
     }
 
     /**
@@ -40,7 +48,6 @@ class ForumTopicObserver
      */
     public function updated(ForumTopic $forumTopic)
     {
-
     }
 
     /**

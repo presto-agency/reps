@@ -7,6 +7,8 @@ namespace App\Listeners;
 use App\Models\UserActivityLog;
 use App\Services\User\UserActivityLogService;
 use Carbon\Carbon;
+use DB;
+use Request;
 
 class UserEventSubscriber
 {
@@ -19,6 +21,41 @@ class UserEventSubscriber
         if ( ! empty($event->user)) {
             $this->saveLog($event->user->id, UserActivityLog::EVENT_USER_VERIFIED, null);
         }
+    }
+
+    /**
+     * @param $user_id
+     * @param $type
+     * @param $parameters
+     */
+    private function saveLog($user_id, $type, $parameters)
+    {
+        $data = [
+            'type'       => $type,
+            'user_id'    => $user_id,
+            'time'       => Carbon::now(),
+            'ip'         => ! empty(Request::getClientIp()) ? Request::getClientIp() : '',
+            'parameters' => $parameters,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ];
+        DB::table('user_activity_logs')->insert($data);
+        $this->updateUserLastActivity($user_id);
+    }
+
+    /**
+     * @param $user_id
+     *
+     * @return mixed
+     */
+    private function updateUserLastActivity($user_id)
+    {
+        DB::table('users')->where('id', $user_id)->update([
+            'activity_at' => Carbon::now(),
+            'updated_at'  => Carbon::now(),
+        ]);
+
+        return null;
     }
 
     /**
@@ -57,7 +94,8 @@ class UserEventSubscriber
     public function onUserUploadImage($event)
     {
         if ( ! empty($event->userGallery)) {
-            $this->saveLog($event->userGallery->user_id, UserActivityLog::EVENT_CREATE_IMAGE, UserActivityLogService::parametersForCreateImage($event->userGallery));
+            $this->saveLog($event->userGallery->user_id, UserActivityLog::EVENT_CREATE_IMAGE,
+                UserActivityLogService::parametersForCreateImage($event->userGallery));
         }
     }
 
@@ -67,7 +105,8 @@ class UserEventSubscriber
     public function onUserUploadReplay($event)
     {
         if ( ! empty($event->userReplay)) {
-            $this->saveLog($event->userReplay->user_id, UserActivityLog::EVENT_CREATE_REPLAY, UserActivityLogService::parametersForCreateReplay($event->userReplay));
+            $this->saveLog($event->userReplay->user_id, UserActivityLog::EVENT_CREATE_REPLAY,
+                UserActivityLogService::parametersForCreateReplay($event->userReplay));
         }
     }
 
@@ -77,7 +116,8 @@ class UserEventSubscriber
     public function onUserUploadForumTopic($event)
     {
         if ( ! empty($event->userForumTopic)) {
-            $this->saveLog($event->userForumTopic->user_id, UserActivityLog::EVENT_CREATE_POST, UserActivityLogService::parametersForCreateTopic($event->userForumTopic));
+            $this->saveLog($event->userForumTopic->user_id, UserActivityLog::EVENT_CREATE_POST,
+                UserActivityLogService::parametersForCreateTopic($event->userForumTopic));
         }
     }
 
@@ -87,7 +127,8 @@ class UserEventSubscriber
     public function onUserComment($event)
     {
         if ( ! empty($event->userComment)) {
-            $this->saveLog($event->userComment->user_id, UserActivityLog::EVENT_USER_COMMENT, UserActivityLogService::parametersForComment($event->userComment));
+            $this->saveLog($event->userComment->user_id, UserActivityLog::EVENT_USER_COMMENT,
+                UserActivityLogService::parametersForComment($event->userComment));
         }
     }
 
@@ -97,7 +138,8 @@ class UserEventSubscriber
     public function onUserLike($event)
     {
         if ( ! empty($event->userReputation)) {
-            $this->saveLog($event->userReputation->sender_id, UserActivityLog::EVENT_USER_COMMENT, UserActivityLogService::parametersForLike($event->userReputation));
+            $this->saveLog($event->userReputation->sender_id, UserActivityLog::EVENT_USER_COMMENT,
+                UserActivityLogService::parametersForLike($event->userReputation));
         }
     }
 
@@ -150,41 +192,6 @@ class UserEventSubscriber
             'App\Events\UserLike',
             'App\Listeners\UserEventSubscriber@onUserLike'
         );
-    }
-
-    /**
-     * @param $user_id
-     * @param $type
-     * @param $parameters
-     */
-    private function saveLog($user_id, $type, $parameters)
-    {
-        $data = [
-            'type'       => $type,
-            'user_id'    => $user_id,
-            'time'       => Carbon::now(),
-            'ip'         => ! empty(\Request::getClientIp()) ? \Request::getClientIp() : '',
-            'parameters' => $parameters,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ];
-        \DB::table('user_activity_logs')->insert($data);
-        $this->updateUserLastActivity($user_id);
-    }
-
-    /**
-     * @param $user_id
-     *
-     * @return mixed
-     */
-    private function updateUserLastActivity($user_id)
-    {
-        \DB::table('users')->where('id', $user_id)->update([
-            'activity_at' => Carbon::now(),
-            'updated_at'  => Carbon::now(),
-        ]);
-
-        return null;
     }
 
 }
