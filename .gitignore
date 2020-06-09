@@ -16,8 +16,8 @@
 /.idea
 /v8-compile-cache-0
 /npm
-/_ide_helper.php
-/_ide_helper_models.php
+_ide_helper.php
+_ide_helper_models.php
 .env
 .env.backup
 .phpunit.result.cache
