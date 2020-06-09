@@ -19,8 +19,8 @@
     <meta property="og:image:type" content="@section('meta-og-image-type'){{$metaTags->getMetaIconType()}}@show"/>
     <meta property="og:image:width" content="400"/>
     <meta property="og:image:height" content="300"/>
-    <meta name="google-site-verification" content="{{config('services.google.site_verification')}}"/>
-    <meta name="yandex-verification" content="{{config('services.yandex.site_verification')}}"/>
+{{--    <meta name="google-site-verification" content="{{config('services.google.site_verification')}}"/>--}}
+{{--    <meta name="yandex-verification" content="{{config('services.yandex.site_verification')}}"/>--}}
     {{--META TAGS--}}
     <meta name="title" content="@section('meta-title'){{$metaTags->getMetaTitle()}}@show">
     <meta name="keywords" content="@section('meta-keywords'){{$metaTags->getMetaKeywords()}}@show">
