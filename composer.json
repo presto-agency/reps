@@ -73,22 +73,14 @@
             "@php artisan debugbar:clear",
             "@php artisan optimize",
             "@php artisan view:cache",
-            "@php artisan event:cache",
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan event:cache"
         ],
         "post-install-cmd": [
-            "@php artisan debugbar:clear",
-            "@php artisan optimize",
-            "@php artisan view:cache",
-            "@php artisan event:cache"
+            "@composer optimize"
         ],
         "post-update-cmd": [
             "@php artisan sleepingowl:update",
-            "@php artisan debugbar:clear",
-            "@php artisan optimize",
-            "@php artisan view:cache",
-            "@php artisan event:cache"
+            "@composer optimize"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
