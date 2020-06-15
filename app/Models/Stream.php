@@ -34,7 +34,7 @@ class Stream extends Model
         if (!empty($src)){
             $host = parse_url(htmlspecialchars_decode($src))['host'];
             if ($host === config('streams.twitch.host_i')){
-               return $src.'&parent='.config('app.domain');
+               return $src.'&parent='.request()->getHttpHost();
             }
         }
         return $src;
