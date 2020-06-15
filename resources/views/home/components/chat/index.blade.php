@@ -71,13 +71,6 @@
                     </div>
                 </div>
                 <div class="video_twitch">
-                    {{--                                                        <iframe frameborder="0"--}}
-                    {{--                                                                scrolling="no"--}}
-                    {{--                                                                id="chatTwitch"--}}
-                    {{--                                                                src=""--}}
-                    {{--                                                                height="500"--}}
-                    {{--                                                                width="350">--}}
-                    {{--                                                        </iframe>--}}
                     <iframe id="streamOnline" style="width: 99%; height: 100%;" allowfullscreen="true" scrolling="no"
                             autoplay="1" frameborder="0"
                             src=""></iframe>

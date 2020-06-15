@@ -25,4 +25,18 @@ class Stream extends Model
 
         ];
 
+    /**
+     * @return string
+     */
+    public function getSrcIframe():string
+    {
+        $src = $this->stream_url_iframe;
+        if (!empty($src)){
+            $host = parse_url(htmlspecialchars_decode($src))['host'];
+            if ($host === config('streams.twitch.host_i')){
+               return $src.'&parent='.config('app.domain');
+            }
+        }
+        return $src;
+    }
 }

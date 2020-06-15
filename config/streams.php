@@ -6,9 +6,10 @@
 return [
 
     "twitch" => [
-        "host"      => env("TWITCH_HOST", "www.twitch.tv"),
-        "base_uri"  => env("TWITCH_BASE_URI", "https://api.twitch.tv/kraken/"),
-        "client_id" => env("TWITCH_CLIENT_ID"),
+        "host_i"          => "player.twitch.tv",
+        "host"          => env("TWITCH_HOST", "www.twitch.tv"),
+        "client_id"     => env("TWITCH_CLIENT_ID"),
+        "client_secret" => env("TWITCH_CLIENT_SECRET"),
     ],
 
     "goodgame"  => [
@@ -19,5 +20,5 @@ return [
         "host"     => env("AFREECATV_HOST", "play.afreecatv.com"),
         "base_uri" => env("AFREECATV_BASE_URI", "https://live.afreecatv.com/afreeca/"),
     ],
-    'status'    => 'live',
+    'status'    => "live",
 ];
