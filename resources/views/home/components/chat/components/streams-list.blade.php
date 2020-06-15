@@ -5,30 +5,17 @@
                 @foreach($streamList as $item)
                     <div class="widget-stream-lists">
                         <button class="streamEvent" id="{{$loop->iteration }}"
-                                data-src="{{$item->stream_url_iframe}}"
-                                data-img-flag="@if($item->countries){{asset($item->countries->flagOrDefault())}} @endif"
-                                data-name-flag="@if($item->countries){{$item->countries->name}} @endif"
-                                data-img-race="@if($item->races){{asset('images/default/game-races/'.$item->races->title.'.png')}}@endif"
-                                data-title-race="@if($item->races){{$item->races->title}}@endif"
-                                data-stream-title="{{$item->title}}"
-                                @php
-                                    $checkTwitch =  parse_url(htmlspecialchars_decode($item->stream_url_iframe))['host'] == 'player.twitch.tv' ?
-                                    "1" : "0";
-                                if ($checkTwitch == "1"){
-                                $chanel =   substr($item->stream_url_iframe, strpos($item->stream_url_iframe, "channel=") + 8);
-                                }else{
-                                $chanel = 0;
-                                }
-                                @endphp
-                                data-check-twitch="{{$checkTwitch}}"
-                                data-twitch-name="{{$chanel}}"
-                        >
-
-                            @if(!empty($item->countries))
+                                data-src="{{$item->getSrcIframe()}}"
+                                data-img-flag="@if(!is_null($item->countries)){{asset($item->countries->flagOrDefault())}} @endif"
+                                data-name-flag="@if(!is_null($item->countries)){{$item->countries->name}} @endif"
+                                data-img-race="@if(!is_null($item->races)){{asset('images/default/game-races/'.$item->races->title.'.png')}}@endif"
+                                data-title-race="@if(!is_null($item->races)){{$item->races->title}}@endif"
+                                data-stream-title="{{$item->title}}">
+                            @if(!is_null($item->countries))
                                 <img class="margin-left-5" src="{{asset($item->countries->flagOrDefault())}}" alt="flag"
                                      title="{{$item->countries->name}}">
                             @endif
-                            @if(!empty($item->races))
+                            @if(!is_null($item->races))
                                 <img class="margin-left-5" alt="race" title="{{$item->races->title}}"
                                      src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}">
                             @endif
@@ -42,32 +29,5 @@
 </section>
 @section('custom-script')
     @parent
-    <script type="text/javascript" defer>
-        $(document).ready(function () {
-            let element = document.getElementById("1");
-            $('#streamOnline').attr('src', element.getAttribute('data-src'));
-            $('#streamOnlineFlag').attr('src', element.getAttribute('data-img-flag'));
-            $('#streamOnlineFlag').attr('title', element.getAttribute('data-name-flag'));
-            $('#streamOnlineRace').attr('src', element.getAttribute('data-img-race'));
-            $('#streamOnlineRace').attr('title', element.getAttribute('data-title-race'));
-            $('#streamOnlineName').attr('title', element.getAttribute('data-stream-title'));
-            $('#streamOnlineName').text(element.getAttribute('data-stream-title'));
-
-        });
-        $('.streamEvent').click(function () {
-            $('#streamOnline').attr('src', $(this).data('src'));
-            $('#streamOnlineFlag').attr('src', $(this).data('img-flag'));
-            $('#streamOnlineFlag').attr('title', $(this).data('name-flag'));
-            $('#streamOnlineRace').attr('src', $(this).data('img-race'));
-            $('#streamOnlineRace').attr('title', $(this).data('title-race'));
-            $('#streamOnlineName').attr('title', $(this).data('stream-title'));
-            $('#streamOnlineName').text($(this).data('stream-title'));
-            // if ($(this).data('check-twitch') == "1") {
-            //
-            //     let chatSrc = ' https://www.twitch.tv/embed/' + $(this).data('stream-title') + '/chat';
-            //     console.log(chatSrc);
-            //     $('#chatTwitch').attr('src', chatSrc);
-            // }
-        });
-    </script>
+    <script type="text/javascript" src="{{ mix('js/assets/stream_select.js') }}" defer></script>
 @endsection

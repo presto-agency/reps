@@ -4,9 +4,9 @@ namespace App\Console\Commands\Broadcasting;
 
 use App\Models\Stream;
 use App\Services\Broadcasting\{AfreecaTV, GoodGame, Twitch};
+use DB;
 use Exception;
 use Illuminate\Console\Command;
-use Log;
 
 class BroadcastCheck extends Command
 {
@@ -40,22 +40,49 @@ class BroadcastCheck extends Command
      */
     public function handle()
     {
-        $getStreams = Stream::where('approved', 1)->get();
-        if ( ! empty($getStreams)) {
-            foreach ($getStreams as $item) {
-                try {
-                    if ( ! empty($item->stream_url)) {
-                        $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
-                        $getResult['status'] == config('streams.status') ? $active = true : $active = false;
-                        Stream::where('id', $item->id)->update(['active' => $active]);
-                    } else {
-                        Stream::where('id', $item->id)->update(['active' => false]);
+        $getStreams = Stream::query()
+            ->select(['stream_url', 'id', 'approved'])
+            ->where('approved', 1)
+            ->get();
+        /**
+         * Get and Insert data
+         */
+        DB::table("streams")->select(['stream_url', 'id', 'approved'])
+            ->where('approved', 1)
+            ->chunkById(100, function ($getStreams) {
+                $data = collect($getStreams);
+                if ($data->isNotEmpty()) {
+                    foreach ($data as $item) {
+                        try {
+                            if ( ! empty($item->stream_url)) {
+                                $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
+                                DB::table("streams")->where('id', $item->id)
+                                    ->update(['active' => self::getActive($getResult['status'])]);
+                            } else {
+                                DB::table("streams")->where('id', $item->id)->update(['active' => false]);
+                            }
+                        } catch (Exception $e) {
+                            //                            DB::table("streams")->where('id', $item->id)->update(['active' => false]);
+                                                        dd($e->getMessage(), $item);
+                        }
                     }
-                } catch (Exception $e) {
-                    Log::error($e->getMessage());
                 }
-            }
+            });
+    }
+
+    /**
+     * @param $data
+     *
+     * @return bool
+     */
+    private static function getActive($data): bool
+    {
+        $active = false;
+        if ($data === config('streams.status')) {
+            $active = true;
         }
+
+        return $active;
     }
 
     /**

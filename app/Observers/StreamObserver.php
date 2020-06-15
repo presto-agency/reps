@@ -41,21 +41,21 @@ class StreamObserver
             $parsePath     = explode('/', $parseUrl['path']);
             $getChanelName = end($parsePath);
             $setNewTwitchUrl
-                           = "https://player.twitch.tv/?volume=0.5&!muted&channel=$getChanelName";
+                           = "https://player.twitch.tv/?volume=0.5&!muted&channel={$getChanelName}";
             $stream->setAttribute('stream_url_iframe', $setNewTwitchUrl);
         }
         if ($getHost == config('streams.goodgame.host')) {
             $parsePath     = explode('/', $parseUrl['path']);
             $getChanelName = $parsePath[2];
             $setNewTwitchUrl
-                           = "https://goodgame.ru/channel/$getChanelName/#autoplay";
+                           = "https://goodgame.ru/channel/{$getChanelName}/#autoplay";
             $stream->setAttribute('stream_url_iframe', $setNewTwitchUrl);
         }
         if ($getHost == config('streams.afreecatv.host')) {
             $parsePath     = explode('/', $parseUrl['path']);
             $getChanelName = $parsePath[1];
             $setNewTwitchUrl
-                           = "https://play.afreecatv.com/$getChanelName/embed";
+                           = "https://play.afreecatv.com/{$getChanelName}/embed";
             $stream->setAttribute('stream_url_iframe', $setNewTwitchUrl);
         }
 

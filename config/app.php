@@ -18,7 +18,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Reps.ru'),
+    'name'   => env('APP_NAME', 'Reps.ru'),
+    'domain' => env('APP_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------

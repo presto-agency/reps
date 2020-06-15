@@ -18,5 +18,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/assets/js/load_forum_sections_show.js', 'public/js/assets')
     .js('resources/assets/js/load_tournament.js', 'public/js/assets')
     .js('resources/assets/js/replay_iframe.js', 'public/js/assets')
+    .js('resources/assets/js/stream_select.js', 'public/js/assets')
     .sass('resources/sass/app.scss', 'public/css')
-    .sourceMaps().version();
+    .sourceMaps()
+    .version();
