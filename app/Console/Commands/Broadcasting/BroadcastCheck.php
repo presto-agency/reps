@@ -62,8 +62,6 @@ class BroadcastCheck extends Command
                                 DB::table("streams")->where('id', $item->id)->update(['active' => false]);
                             }
                         } catch (Exception $e) {
-                            //                            DB::table("streams")->where('id', $item->id)->update(['active' => false]);
-                                                        dd($e->getMessage(), $item);
                         }
                     }
                 }
