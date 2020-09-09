@@ -191,7 +191,9 @@ class Stream extends Section implements Initializable
                     'url',
                 ]),
         ]);
-        $display->setItems([View::make('admin.stream.iframeInput')->render(),]);
+        $display->setItems([
+            View::make('admin.stream.iframeInput')->render(),
+        ]);
 
         return $display;
     }
