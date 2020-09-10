@@ -76,14 +76,14 @@ class NewsController extends Controller
             } else {
                 $news       = $this->news();
                 $fixingNews = $this->fixingNews();
-                if ($fixingNews->isNotEmpty() && $news->isNotEmpty()) {
+                /*if ($fixingNews->isNotEmpty() && $news->isNotEmpty()) {
                     foreach ($news as $items) {
                         $id         = $items->id;
                         $fixingNews = $fixingNews->filter(function ($item) use ($id) {
                             return $item->id != $id;
                         });
                     }
-                }
+                }*/
                 $visible_title = true;
             }
 
@@ -102,6 +102,7 @@ class NewsController extends Controller
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
             ->where('hide', false)
             ->where('news', true)
+            ->where('fixing', false)
             ->withCount('comments')
             ->orderByDesc('id')
             ->limit(5)
@@ -120,6 +121,7 @@ class NewsController extends Controller
             ->where('id', '<', $request->id)
             ->where('hide', false)
             ->where('news', true)
+            ->where('fixing', false)
             ->withCount('comments')
             ->orderByDesc('id')
             ->limit(5)
