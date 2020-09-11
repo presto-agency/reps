@@ -45,13 +45,12 @@ class ForumTopic extends Model
     }
 
     /**
-     * @param  string  $path
-     *
+     * @param $path
      * @return string
      */
-    public static function getOgIconPath(string $path): string
+    public static function getOgIconPath($path): string
     {
-        $filePath = null;
+        $filePath = '';
         if ( ! empty($path) && \File::exists($path)) {
             try {
                 $file     = new File($path);
