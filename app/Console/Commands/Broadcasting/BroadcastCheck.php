@@ -7,6 +7,7 @@ use App\Services\Broadcasting\{AfreecaTV, GoodGame, Twitch};
 use DB;
 use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class BroadcastCheck extends Command
 {
@@ -41,7 +42,7 @@ class BroadcastCheck extends Command
     public function handle()
     {
         $getStreams = Stream::query()
-            ->select(['stream_url', 'id', 'approved'])
+            /*->select(['stream_url', 'id', 'approved'])*/
             ->where('approved', 1)
             ->get();
         /**
@@ -51,11 +52,13 @@ class BroadcastCheck extends Command
             ->where('approved', 1)
             ->chunkById(100, function ($getStreams) {
                 $data = collect($getStreams);
+                Log::info('streams: ' . $data);
                 if ($data->isNotEmpty()) {
                     foreach ($data as $item) {
                         try {
                             if ( ! empty($item->stream_url)) {
                                 $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
+                                Log::info('getResult: ' . $getResult);
                                 DB::table("streams")->where('id', $item->id)
                                     ->update(['active' => self::getActive($getResult['status'])]);
                             } else {
@@ -95,6 +98,8 @@ class BroadcastCheck extends Command
         $parts = $this->parse_stream_url($stream_url);
         $host  = $parts['host'];
 
+        Log::info('parts: ' . $parts);
+
         if ($host == config('streams.goodgame.host')) {
             $chanelName = explode('/', $parts['path'])[2];
 
@@ -103,7 +108,10 @@ class BroadcastCheck extends Command
         if ($host == config('streams.twitch.host')) {
             $chanelName = explode('/', $parts['path'])[1];
 
-            return $this->twitch($chanelName, $id);
+            $twitch = $this->twitch($chanelName, $id);
+            Log::info('twitch: ' . $twitch);
+//            return $this->twitch($chanelName, $id);
+            return $twitch;
         }
         if ($host == config('streams.afreecatv.host')) {
             $chanelName = explode("/", $parts['path'])[1];
