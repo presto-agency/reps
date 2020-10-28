@@ -65,6 +65,7 @@ class BroadcastCheck extends Command
                                 DB::table("streams")->where('id', $item->id)->update(['active' => false]);
                             }
                         } catch (Exception $e) {
+                            Log::error($e->getMessage());
                         }
                     }
                 }
@@ -98,8 +99,6 @@ class BroadcastCheck extends Command
         $parts = $this->parse_stream_url($stream_url);
         $host  = $parts['host'];
 
-        Log::info('parts: ' . $parts);
-
         if ($host == config('streams.goodgame.host')) {
             $chanelName = explode('/', $parts['path'])[2];
 
@@ -108,10 +107,7 @@ class BroadcastCheck extends Command
         if ($host == config('streams.twitch.host')) {
             $chanelName = explode('/', $parts['path'])[1];
 
-            $twitch = $this->twitch($chanelName, $id);
-            Log::info('twitch: ' . $twitch);
-//            return $this->twitch($chanelName, $id);
-            return $twitch;
+            return $this->twitch($chanelName, $id);
         }
         if ($host == config('streams.afreecatv.host')) {
             $chanelName = explode("/", $parts['path'])[1];
