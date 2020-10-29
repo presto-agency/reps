@@ -7,6 +7,7 @@ use App\Services\Broadcasting\{AfreecaTV, GoodGame, Twitch};
 use DB;
 use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class BroadcastCheck extends Command
 {
@@ -41,7 +42,7 @@ class BroadcastCheck extends Command
     public function handle()
     {
         $getStreams = Stream::query()
-            ->select(['stream_url', 'id', 'approved'])
+            /*->select(['stream_url', 'id', 'approved'])*/
             ->where('approved', 1)
             ->get();
         /**
@@ -51,17 +52,20 @@ class BroadcastCheck extends Command
             ->where('approved', 1)
             ->chunkById(100, function ($getStreams) {
                 $data = collect($getStreams);
+                Log::info('streams: ' . $data);
                 if ($data->isNotEmpty()) {
                     foreach ($data as $item) {
                         try {
                             if ( ! empty($item->stream_url)) {
                                 $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
+                                Log::info('getResult: ' . $getResult);
                                 DB::table("streams")->where('id', $item->id)
                                     ->update(['active' => self::getActive($getResult['status'])]);
                             } else {
                                 DB::table("streams")->where('id', $item->id)->update(['active' => false]);
                             }
                         } catch (Exception $e) {
+                            Log::error($e->getMessage());
                         }
                     }
                 }
