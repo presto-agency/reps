@@ -52,13 +52,15 @@ class BroadcastCheck extends Command
             ->where('approved', 1)
             ->chunkById(100, function ($getStreams) {
                 $data = collect($getStreams);
-                Log::info('streams: ' . $data);
+                Log::info('streams: ');
+                Log::info($data);
                 if ($data->isNotEmpty()) {
                     foreach ($data as $item) {
                         try {
                             if ( ! empty($item->stream_url)) {
                                 $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
-                                Log::info('getResult: ' . $getResult);
+                                Log::info('getResult: ');
+                                Log::info($getResult);
                                 DB::table("streams")->where('id', $item->id)
                                     ->update(['active' => self::getActive($getResult['status'])]);
                             } else {
