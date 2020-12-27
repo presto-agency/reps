@@ -69,6 +69,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "remove-bootstrap-cache": [
+            "@php -r \"array_map('unlink', array_filter((array) glob('bootstrap/cache/*')));\""
+        ],
         "post-update-cmd": [
             "composer optimize",
             "composer dump-autoload -o"
