@@ -73,13 +73,14 @@
             "@php -r \"array_map('unlink', array_filter((array) glob('bootstrap/cache/*')));\""
         ],
         "post-update-cmd": [
-            "@composer optimize",
-            "@composer dump-autoload -o"
+            "composer optimize",
+            "composer dump-autoload -o"
         ],
         "post-install-cmd": [
-            "@composer remove-bootstrap-cache",
-            "@composer optimize",
-            "@composer dump-autoload -o"
+            "composer remove-bootstrap-cache",
+            "composer optimize-clear",
+            "composer optimize",
+            "composer dump-autoload -o"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
