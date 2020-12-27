@@ -78,9 +78,7 @@
         ],
         "post-install-cmd": [
             "composer remove-bootstrap-cache",
-            "composer optimize-clear",
-            "composer optimize",
-            "composer dump-autoload -o"
+            "composer optimize-clear"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
