@@ -95,8 +95,8 @@
             "@php artisan debugbar:clear",
             "@php artisan view:clear",
             "@php artisan event:clear",
-            "@php artisan optimize:clear",
-        ]
+            "@php artisan optimize:clear"
+        ],
         "optimize": [
             "@php artisan view:cache",
             "@php artisan event:cache",
