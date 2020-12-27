@@ -3,63 +3,79 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\GetLastNewsRequest;
 use App\Http\Resources\ApiGetNewsResource;
 use App\Models\ForumTopic;
-use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
 
-
-    public function index()
-    {
-        return \Response::json([], 200);
-    }
-
-
-    public function store(Request $request)
-    {
-        return \Response::json([], 200);
-    }
-
-
-    public function show($id)
-    {
-        return \Response::json([], 200);
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        return \Response::json([], 200);
-    }
-
-
-    public function destroy($id)
-    {
-        return \Response::json([], 200);
-    }
-
-
-    public function last(GetLastNewsRequest $request)
-    {
-        $response = ApiGetNewsResource::collection($this->getNews());
-
-        return \Response::json($response, 200);
-    }
-
+    /**
+     * GET
+     *
+     * @OA\GET(
+     *     summary="INDEX",
+     *     path=GET_NEWS_LAST,
+     *     description="List of last 10 News in BBCODE",
+     *     tags={"News"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful request!",
+     *     @OA\MediaType(
+     *             mediaType="application/json",
+     *              @OA\Schema(ref="#/components/schemas/NewsGlobalData",)
+     *         )
+     *     )
+     * )
+     */
 
     /**
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     * @OA\Schema(
+     *      schema="NewsGlobalData",
+     *      type="object",
+     *      allOf={
+     *          @OA\Schema(
+     *          @OA\Property(property="news", type="array",@OA\Items(ref="#/components/schemas/LastNewsData")),
+     *                )
+     *      }
+     *  )
      */
-    private function getNews()
+
+    /**
+     * @OA\Schema(
+     *      schema="LastNewsData",
+     *      type="object",
+     *      allOf={
+     *          @OA\Schema(
+     *          @OA\Property(property="id", type="int",example="42877",),
+     *          @OA\Property(property="title", type="string",example="Defiler Tour #88 - Анонс!",),
+     *          @OA\Property(property="content", type="string",example="...content...",),
+     *          @OA\Property(property="previewImg", type="storage/images/topics/December2020/332746b6e02742c436ace3ca47800cf5.png",),
+     *          @OA\Property(property="previewImgFull", type="https://reps.ru/storage/images/topics/December2020/332746b6e02742c436ace3ca47800cf5.png",),
+     *          @OA\Property(property="previewContent", type="...previewContent...",),
+     *          @OA\Property(property="createdAt", type="timestamp",example="2020-12-21T14:55:14.000000Z",),
+     *                )
+     *      }
+     *  )
+     *
+     *
+     */
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function last()
     {
-        return ForumTopic::query()->latest()
+        $forumTopics = ForumTopic::query()->latest()
             ->where('hide', false)
             ->where('news', true)
             ->limit(10)
             ->get();
+
+        return response()->json([
+            'news' => ApiGetNewsResource::collection($forumTopics),
+        ], 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
+
 
 }
