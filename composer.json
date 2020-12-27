@@ -73,11 +73,11 @@
             "@php -r \"array_map('unlink', array_filter((array) glob('bootstrap/cache/*')));\""
         ],
         "post-update-cmd": [
-            "composer optimize",
+            "composer optimize-clear",
             "composer dump-autoload -o"
         ],
         "post-install-cmd": [
-            "composer optimize",
+            "composer remove-bootstrap-cache",
             "composer dump-autoload -o"
         ],
         "post-autoload-dump": [
