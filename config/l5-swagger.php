@@ -231,11 +231,10 @@ return [
     | Uncomment to add constants which can be used in annotations
     |--------------------------------------------------------------------------
      */
-    $L5_SWAGGER_CONST_HOST = env('L5_SWAGGER_CONST_HOST', 'http://my-default-host.com/api'),
-    $L5_SWAGGER_CONST_VERSION = env('L5_SWAGGER_CONST_VERSION', 'v0'),
+
     'constants'     => [
-        'L5_SWAGGER_CONST_HOST'             => "$L5_SWAGGER_CONST_HOST/$L5_SWAGGER_CONST_VERSION",
-        'L5_SWAGGER_CONST_VERSION'          => $L5_SWAGGER_CONST_VERSION,
+        'L5_SWAGGER_CONST_HOST'             => env('L5_SWAGGER_CONST_HOST', 'http://my-default-host.com/api/v0'),
+        'L5_SWAGGER_CONST_VERSION'          => env('L5_SWAGGER_CONST_VERSION', 'v0'),
         'L5_SWAGGER_CONST_TITLE'            => env('L5_SWAGGER_CONST_TITLE', 'App reps.ru API'),
         'L5_SWAGGER_CONST_HOST_DESCRIPTION' => env('L5_SWAGGER_CONST_HOST_DESCRIPTION', 'Host Server'),
         'GET_NEWS_LAST'                     => '/news/last',
