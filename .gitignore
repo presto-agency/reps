@@ -31,3 +31,4 @@ yarn-error.log
 laravel-echo-server.json
 laravel-echo-server.lock
 /storage/api-docs/api-docs.json
+/public/api-docs/api-docs.json
