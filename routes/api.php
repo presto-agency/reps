@@ -15,7 +15,7 @@
 //    return $request->user();
 //});
 
-
-Route::group(['prefix' => 'v0'], function () {
-    Route::get('news/last', 'Api\NewsController@last')->name('api.get.last.news');
+Route::group(['prefix' => config('l5-swagger.constants.L5_SWAGGER_CONST_VERSION')], function () {
+    Route::get('news/last', 'Api\NewsController@last')->name('api.get.news.last');
+    Route::get('stream/online', 'Api\StreamController@online')->name('api.get.stream.online.index');
 });

@@ -13,7 +13,8 @@
 /storage/base.zip
 /storage/wget-log
 /vendor
-/.idea
+.idea
+.vscode
 /v8-compile-cache-0
 /npm
 _ide_helper.php
@@ -21,6 +22,7 @@ _ide_helper_models.php
 .env
 .env.backup
 .phpunit.result.cache
+.phpstorm.meta.php
 install.sh
 Homestead.json
 Homestead.yaml

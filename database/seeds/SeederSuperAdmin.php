@@ -14,11 +14,11 @@ class SeederSuperAdmin extends Seeder
     public function run()
     {
         User::query()->create([
-            'role_id'  => 1,
-            'name'     => 'super-admin',
-            'email'    => 'super-admin@reps.com',
-            'email_verified_at'    => \Carbon\Carbon::now(),
-            'password' => \Hash::make('12345678')
+            'role_id'           => 1,
+            'name'              => config('auth.admin.name'),
+            'email'             => config('auth.admin.email'),
+            'email_verified_at' => \Carbon\Carbon::now(),
+            'password'          => \Hash::make(config('auth.admin.password'))
         ]);
     }
 }
