@@ -77,7 +77,7 @@
             "composer dump-autoload -o"
         ],
         "post-install-cmd": [
-            "composer optimize-clear",
+            "composer remove-bootstrap-cache",
             "composer dump-autoload -o"
         ],
         "post-autoload-dump": [
