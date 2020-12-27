@@ -79,11 +79,11 @@ class Stream extends Section implements Initializable
             $service = AdminColumn::custom('Service', function ($model) {
                 $parts = $this->parse_stream_url($model->stream_url);
 
-                return ! empty($parts['host']) === true ? $parts['host'] : 'Поле stream_url пустое';
+                return !empty($parts['host']) === true ? $parts['host'] : 'Поле stream_url пустое';
             })->setWidth('150px'),
         ]);
 
-        $control    = $display->getColumns()->getControlColumn();
+        $control = $display->getColumns()->getControlColumn();
         $buttonShow = $this->show($display);
         $control->addButton($buttonShow);
 
@@ -137,6 +137,20 @@ class Stream extends Section implements Initializable
                     'url',
                 ]),
         ]);
+
+//        $model = $this->getModel()->find($id);
+//        AdminFormElement::html(function ($model) {
+//                    $htmStart = '<h5>Defiler Data</h5><ul class="list-group small">';
+//                    $htmlList = '';
+//                    $dataDefiler = json_decode($model->data, true);
+//                    if (isset($dataDefiler['defiler'])) {
+//                        foreach ($dataDefiler['defiler'] as $key => $value) {
+//                            $htmlList .= "<li class='list-group-item'><strong>$key</strong>:$value</li>";
+//                        }
+//                    }
+//                    $htmlEnd = '</ul>';
+//                    return "$htmStart$htmlList$htmlEnd";
+//                }),
 
         $display->setItems([AdminFormElement::view('admin.stream.iframeInput', [], null),]);
 
