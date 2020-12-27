@@ -67,10 +67,14 @@
     "prefer-stable": true,
     "scripts": {
         "post-update-cmd": [
-            "@composer optimize"
+            "composer optimize-clear",
+            "composer optimize",
+            "composer dump-autoload -o"
         ],
         "post-install-cmd": [
-            "@composer optimize"
+            "composer optimize-clear",
+            "composer optimize",
+            "composer dump-autoload -o"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -87,8 +91,13 @@
             "@php artisan ide-helper:meta",
             "@php artisan ide-helper:models -N"
         ],
-        "optimize": [
+        "optimize-clear": [
             "@php artisan debugbar:clear",
+            "@php artisan view:clear",
+            "@php artisan event:clear",
+            "@php artisan optimize:clear",
+        ]
+        "optimize": [
             "@php artisan view:cache",
             "@php artisan event:cache",
             "@php artisan optimize"
