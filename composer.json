@@ -67,12 +67,10 @@
     "prefer-stable": true,
     "scripts": {
         "post-update-cmd": [
-            "composer optimize-clear",
             "composer optimize",
             "composer dump-autoload -o"
         ],
         "post-install-cmd": [
-            "composer optimize-clear",
             "composer optimize",
             "composer dump-autoload -o"
         ],
