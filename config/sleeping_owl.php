@@ -10,8 +10,7 @@ return [
     |
     */
 
-    //    'title' => 'Sleeping Owl',
-    'title' => '',
+    'title' => 'Admin Panel',
 
     /*
     |--------------------------------------------------------------------------
@@ -141,7 +140,6 @@ return [
     'datetimeFormat' => 'd-m-Y H:i',
     'dateFormat'     => 'd-m-Y',
     'timeFormat'     => 'H:i',
-    //    'timezone'       => 'UTC',
     'timezone'       => config('app.timezone'),
 
     /*
