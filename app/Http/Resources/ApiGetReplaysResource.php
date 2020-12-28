@@ -23,8 +23,8 @@ class ApiGetReplaysResource extends JsonResource
             'mapUrl'        => optional($this->maps)->url,
             'mapUrlFull'    => optional($this->maps)->url ? asset(optional($this->maps)->url) : null,
             'type'          => !empty($this->file) ? 'Replay' : 'VOD',
+            'status'        => optional($this->types)->title,
             'link'          => route('replay.show', ['replay' => $this->id, 'type' => $type]),
-            'createdAt'     => $this->created_at,
         ];
     }
 }
