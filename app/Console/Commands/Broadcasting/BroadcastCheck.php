@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands\Broadcasting;
 
-use App\Models\Stream;
 use App\Services\Broadcasting\{AfreecaTV, GoodGame, Twitch};
 use DB;
 use Exception;
@@ -41,37 +40,42 @@ class BroadcastCheck extends Command
      */
     public function handle()
     {
-        $getStreams = Stream::query()
-            /*->select(['stream_url', 'id', 'approved'])*/
-            ->where('approved', 1)
-            ->get();
+//        $getStreams = Stream::query()
+//            /*->select(['stream_url', 'id', 'approved'])*/
+//            ->where('approved', 1)
+//            ->get();
         /**
          * Get and Insert data
          */
-        DB::table("streams")->select(['stream_url', 'id', 'approved'])
-            ->where('approved', 1)
-            ->chunkById(100, function ($getStreams) {
-                $data = collect($getStreams);
-                Log::info('streams: ');
-                Log::info($data);
-                if ($data->isNotEmpty()) {
-                    foreach ($data as $item) {
-                        try {
-                            if ( ! empty($item->stream_url)) {
-                                $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
-                                Log::info('getResult: ');
-                                Log::info($getResult);
-                                DB::table("streams")->where('id', $item->id)
-                                    ->update(['active' => self::getActive($getResult['status'])]);
-                            } else {
-                                DB::table("streams")->where('id', $item->id)->update(['active' => false]);
+        try {
+
+            DB::table("streams")->select(['stream_url', 'id', 'approved'])
+                ->where('approved', 1)
+                ->chunkById(100, function ($getStreams) {
+                    $data = collect($getStreams);
+//                Log::info('streams: ');
+//                Log::info($data);
+                    if ($data->isNotEmpty()) {
+                        foreach ($data as $item) {
+                            try {
+                                if (!empty($item->stream_url)) {
+                                    $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
+//                                Log::info('getResult: ');
+//                                Log::info($getResult);
+                                    DB::table("streams")->where('id', $item->id)
+                                        ->update(['active' => self::getActive($getResult['status'])]);
+                                } else {
+                                    DB::table("streams")->where('id', $item->id)->update(['active' => false]);
+                                }
+                            } catch (Exception $e) {
+                                Log::error($e->getMessage());
                             }
-                        } catch (Exception $e) {
-                            Log::error($e->getMessage());
                         }
                     }
-                }
-            });
+                });
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
     }
 
     /**
@@ -99,7 +103,7 @@ class BroadcastCheck extends Command
     public function liveStreamCheck($stream_url, $id)
     {
         $parts = $this->parse_stream_url($stream_url);
-        $host  = $parts['host'];
+        $host = $parts['host'];
 
         if ($host == config('streams.goodgame.host')) {
             $chanelName = explode('/', $parts['path'])[2];
