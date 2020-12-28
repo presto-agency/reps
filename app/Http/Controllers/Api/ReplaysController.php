@@ -16,25 +16,25 @@ class ReplaysController extends Controller
      * @OA\GET(
      *     summary="INDEX",
      *     path=GET_REPLAY_INDEX,
-     *     description="Get replays this route have next param exemple:<br>/candidates?limit=0&offset=25&type=pro",
+     *     description="Get replays this route have next param exemple:<br>/candidates?skip=0&take=10&type=pro",
      *     tags={"Replays"},
      *       @OA\Parameter(
-     *         name="offset",
+     *         name="skip",
      *         in="query",
-     *         description="`offset` exemple: `0`",
+     *         description="`skip` exemple: `0`",
      *         @OA\Schema(
      *          type="integer",
-     *          @OA\Property(property="offset"),
+     *          @OA\Property(property="skip"),
      *         ),
      *         style="form"
      *     ),
      *       @OA\Parameter(
-     *         name="limit",
+     *         name="take",
      *         in="query",
-     *         description="`limit` exemple: `10`",
+     *         description="`take` exemple: `10`; max:`100`",
      *         @OA\Schema(
      *          type="integer",
-     *          @OA\Property(property="limit"),
+     *          @OA\Property(property="take"),
      *         ),
      *         style="form"
      *     ),
@@ -90,9 +90,9 @@ class ReplaysController extends Controller
      *          @OA\Property(property="map", type="string", example="null",),
      *          @OA\Property(property="mapUrl", type="string", example="storage/images/replays/maps/c43c776d8bb43626270f7f6a0ae405a6.png",),
      *          @OA\Property(property="mapUrlFull", type="string", example="https://reps.ru/storage/images/replays/maps/c43c776d8bb43626270f7f6a0ae405a6.png",),
-     *          @OA\Property(property="type", type="VOD",),
+     *          @OA\Property(property="type", type="string", example="VOD",),
+     *          @OA\Property(property="status", type="string", example="Game of the Week",),
      *          @OA\Property(property="link", type="https://reps.ru/replay/5?type=pro",),
-     *          @OA\Property(property="createdAt", type="timestamp",example="2020-12-21T14:55:14.000000Z",),
      *                )
      *      }
      *  )
@@ -106,14 +106,17 @@ class ReplaysController extends Controller
      */
     public function index(Request $request)
     {
-        $offset = $request->filled('offset') ? (int) $request->get('offset') : 0;
-        $limit = $request->filled('limit') ? (int) $request->get('limit') : 10;
+        $skip = $request->filled('skip') ? (int) $request->get('skip') : 0;
+        $take = $request->filled('take') ? (int) $request->get('take') : 10;
 
-
+        if ($take > 100) {
+            $take = 100;
+        }
         $replays = Replay::ofUserReplay(self::getTypeId($request))
-            ->with(['maps', 'firstCountries', 'secondCountries', 'firstRaces', 'secondRaces'])
+            ->with(['maps', 'firstCountries', 'secondCountries', 'firstRaces', 'secondRaces', 'types'])
             ->where('approved', 1)
-            ->offset($offset)->limit($limit)
+            ->skip($skip)->take($take)
+            ->orderByDesc('id')
             ->get();
 
         return response()->json([
