@@ -55,7 +55,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
             InterviewQuestion::class => 'App\Http\Sections\InterviewQuestion',
             Headline::class          => 'App\Http\Sections\Headline',
 
-            User::class                   => 'App\Http\Sections\User',
+            User::class            => 'App\Http\Sections\User',
             UserGallery::class     => 'App\Http\Sections\UserGallery',
             UserActivityLog::class => 'App\Http\Sections\UserActivityLog',
 

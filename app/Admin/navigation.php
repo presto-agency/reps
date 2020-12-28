@@ -33,4 +33,14 @@ return [
         ->setTitle('MetaTag')
         ->setPriority(9)
         ->setIcon('fas fa-hashtag'),
+    [
+        'title' => 'PhP info',
+        'icon'  => 'fab fa-php',
+        'url'   => url('admin/phpinfo'),
+    ],
+    [
+        'title' => 'Logs',
+        'icon'  => 'fas fa-info-circle',
+        'url'   => url('admin/logs'),
+    ],
 ];
