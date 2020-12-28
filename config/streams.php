@@ -6,7 +6,7 @@
 return [
 
     "twitch" => [
-        "host_i"          => "player.twitch.tv",
+        "host_i"        => "player.twitch.tv",
         "host"          => env("TWITCH_HOST", "www.twitch.tv"),
         "client_id"     => env("TWITCH_CLIENT_ID"),
         "client_secret" => env("TWITCH_CLIENT_SECRET"),
@@ -21,4 +21,10 @@ return [
         "base_uri" => env("AFREECATV_BASE_URI", "https://live.afreecatv.com/afreeca/"),
     ],
     'status'    => "live",
+
+    'watcher' => [
+        'endpoints' => [
+            'defiler' => 'https://api.defiler.ru/api/v0/observer/online'
+        ]
+    ]
 ];

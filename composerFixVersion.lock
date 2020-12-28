@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "f8837830fb12173510c5c4d325e14fbd",
@@ -71,12 +71,6 @@
                 "laravel",
                 "profiler",
                 "webprofiler"
-            ],
-            "funding": [
-                {
-                    "url": "https://github.com/barryvdh",
-                    "type": "github"
-                }
             ],
             "time": "2020-05-05T10:53:32+00:00"
         },
@@ -3625,16 +3619,6 @@
                 "predis",
                 "redis"
             ],
-            "funding": [
-                {
-                    "url": "https://www.paypal.me/tillkruss",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/tillkruss",
-                    "type": "github"
-                }
-            ],
             "time": "2016-06-16T16:22:20+00:00"
         },
         {
@@ -5565,20 +5549,6 @@
                 "polyfill",
                 "portable",
                 "shim"
-            ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-05-12T16:47:27+00:00"
         },
@@ -7831,30 +7801,20 @@
                 "testing",
                 "xunit"
             ],
-            "funding": [
-                {
-                    "url": "https://phpunit.de/donate.html",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/sebastianbergmann",
-                    "type": "github"
-                }
-            ],
             "time": "2020-05-22T13:51:52+00:00"
         },
         {
             "name": "scrivo/highlight.php",
-            "version": "v9.18.1.6",
+            "version": "v9.18.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scrivo/highlight.php.git",
-                "reference": "44a3d4136edb5ad8551590bf90f437db80b2d466"
+                "reference": "fa75a865928a4a5d49e5e77faca6bd2f2410baaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/44a3d4136edb5ad8551590bf90f437db80b2d466",
-                "reference": "44a3d4136edb5ad8551590bf90f437db80b2d466",
+                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/fa75a865928a4a5d49e5e77faca6bd2f2410baaf",
+                "reference": "fa75a865928a4a5d49e5e77faca6bd2f2410baaf",
                 "shasum": ""
             },
             "require": {
@@ -7867,6 +7827,9 @@
                 "sabberworm/php-css-parser": "^8.3",
                 "symfony/finder": "^2.8|^3.4",
                 "symfony/var-dumper": "^2.8|^3.4"
+            },
+            "suggest": {
+                "ext-dom": "Needed to make use of the features in the utilities namespace"
             },
             "type": "library",
             "autoload": {
@@ -7913,7 +7876,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-22T19:20:29+00:00"
+            "time": "2020-11-22T06:07:40+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

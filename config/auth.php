@@ -100,4 +100,9 @@ return [
         ],
     ],
 
+    'admin' => [
+        'name'     => env('ADMIN_NAME', 'super-admin'),
+        'email'    => env('ADMIN_EMAIL', 'super-admin@reps.com'),
+        'password' => env('ADMIN_PASSWORD', '1234578'),
+    ]
 ];

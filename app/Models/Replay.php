@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Traits\ModelRelations\ReplayRelationTrait;
 use Eloquent;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\{Builder, Model};
 
 /**
  * Class Replay
@@ -90,6 +90,26 @@ class Replay extends Model
             ->where('type_id', $type_id)
             ->take($take)
             ->get();
+    }
+
+    /**
+     * @param  Builder  $query
+     * @param $user_replay
+     * @return Builder
+     */
+    public function scopeOfUserReplay(Builder $query, $user_replay): Builder
+    {
+        if (is_null($user_replay)) {
+            return $query;
+        }
+
+        if (is_array($user_replay)) {
+            return $query->whereIn('user_replay', $user_replay);
+        }
+
+        return $query->where('user_replay', $user_replay);
+
+
     }
 
 }

@@ -18,7 +18,8 @@ class ParserToHTML
      */
     public static function toHTML($text, $ignoreTag = null)
     {
-        $bbCode           = new ChrisKonnertzBBCode();
+
+        $bbCode = new ChrisKonnertzBBCode();
         $first_conversion = PheRumBBCode::parse($text);
 
         $bbCode->addTag('quote-shell', function ($tag, &$html, $openingTag) {
@@ -41,10 +42,9 @@ class ParserToHTML
 
         $second_conversion = $bbCode->render($first_conversion);
 
+        $second_conversion = str_replace(array ("\r\n", "\r", "\n", "\\r", "\\n", "\\r\\n"), "<br/>", $second_conversion);
 
-        $third_transformation = html_entity_decode($second_conversion);
-
-        return $third_transformation;
+        return html_entity_decode($second_conversion);
     }
 
 }
