@@ -114,7 +114,7 @@ class ReplaysController extends Controller
         }
         $replays = Replay::ofUserReplay(self::getTypeId($request))
             ->with(['maps', 'firstCountries', 'secondCountries', 'firstRaces', 'secondRaces', 'types'])
-            ->where('approved', 1)->orderByDesc('id')
+            ->where('approved', 1)
             ->skip($skip)->take($take)
             ->get();
 
