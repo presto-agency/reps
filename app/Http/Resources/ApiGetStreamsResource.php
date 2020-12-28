@@ -24,7 +24,7 @@ class ApiGetStreamsResource extends JsonResource
             'id'               => $this->id,
             'race'             => optional($this->races)->title,
             'country'          => optional($this->countries)->name,
-            'title'            => $this->title,
+            'title'            => clean($this->title),
             'content'          => $this->content,
             'streamUrl'        => $this->stream_url,
             'streamUrlIframe ' => $this->stream_url_iframe,
