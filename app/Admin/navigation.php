@@ -33,14 +33,18 @@ return [
         ->setTitle('MetaTag')
         ->setPriority(9)
         ->setIcon('fas fa-hashtag'),
-    [
-        'title' => 'PhP info',
-        'icon'  => 'fab fa-php',
-        'url'   => url('admin/phpinfo'),
-    ],
-    [
-        'title' => 'Logs',
-        'icon'  => 'fas fa-info-circle',
-        'url'   => url('admin/logs'),
-    ],
+    (new Page())
+        ->setTitle('PhP info')
+        ->setIcon('fab fa-php')
+        ->setUrl('admin/phpinfo')
+        ->setAccessLogic(function () {
+            return auth()->user()->superAdminRole();
+        }),
+    (new Page())
+        ->setTitle('Logs')
+        ->setIcon('fas fa-info-circle')
+        ->setUrl('admin/logs')
+        ->setAccessLogic(function () {
+            return auth()->user()->superAdminRole();
+        }),
 ];
