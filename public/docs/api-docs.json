@@ -1,0 +1,324 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "App reps.ru API",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "https://reps.ru/api/v0",
+            "description": "Resp.ru open api"
+        }
+    ],
+    "paths": {
+        "/api": {},
+        "/news/last": {
+            "get": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "INDEX",
+                "description": "List of last 10 News in BBCODE",
+                "responses": {
+                    "200": {
+                        "description": "Successful request!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewsGlobalData"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/replay": {
+            "get": {
+                "tags": [
+                    "Replays"
+                ],
+                "summary": "INDEX",
+                "description": "Get replays this route have next param exemple:<br>/candidates?skip=0&take=10&type=pro",
+                "parameters": [
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "`skip` exemple: `0`",
+                        "style": "form",
+                        "schema": {
+                            "properties": {
+                                "skip": {
+                                    "description": "GET"
+                                }
+                            },
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "take",
+                        "in": "query",
+                        "description": "`take` exemple: `10`; max:`100`",
+                        "style": "form",
+                        "schema": {
+                            "properties": {
+                                "take": {
+                                    "description": "GET"
+                                }
+                            },
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Lis of types to `type by.` exemple: `pro`",
+                        "style": "form",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "pro",
+                                    "user",
+                                    "all"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful request!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReplaysGlobalData"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stream/online": {
+            "get": {
+                "tags": [
+                    "Stream"
+                ],
+                "summary": "INDEX",
+                "description": "List of approved & online streams",
+                "responses": {
+                    "200": {
+                        "description": "Successful request!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StreamGlobalData"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "NewsGlobalData": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "properties": {
+                            "news": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/LastNewsData"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "LastNewsData": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "properties": {
+                            "id": {
+                                "type": "int",
+                                "example": "42877"
+                            },
+                            "title": {
+                                "type": "string",
+                                "example": "Defiler Tour #88 - Анонс!"
+                            },
+                            "content": {
+                                "type": "string",
+                                "example": "...content..."
+                            },
+                            "previewImg": {
+                                "type": "storage/images/topics/December2020/332746b6e02742c436ace3ca47800cf5.png"
+                            },
+                            "previewImgFull": {
+                                "type": "https://reps.ru/storage/images/topics/December2020/332746b6e02742c436ace3ca47800cf5.png"
+                            },
+                            "previewContent": {
+                                "type": "...previewContent..."
+                            },
+                            "createdAt": {
+                                "type": "timestamp",
+                                "example": "2020-12-21T14:55:14.000000Z"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "ReplaysGlobalData": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "properties": {
+                            "total": {
+                                "type": "int",
+                                "example": "16025"
+                            },
+                            "replays": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ReplayData"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "ReplayData": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "properties": {
+                            "id": {
+                                "type": "int",
+                                "example": "5"
+                            },
+                            "title": {
+                                "type": "string",
+                                "example": "Jeez Weekly 100 (27.12.2020) full replay pack"
+                            },
+                            "firstCountry": {
+                                "type": "string",
+                                "example": "Austria"
+                            },
+                            "secondCountry": {
+                                "type": "string",
+                                "example": "African Rep."
+                            },
+                            "firstRace": {
+                                "type": "string",
+                                "example": "Zerg"
+                            },
+                            "secondRace": {
+                                "type": "string",
+                                "example": "Terran"
+                            },
+                            "map": {
+                                "type": "string",
+                                "example": "null"
+                            },
+                            "mapUrl": {
+                                "type": "string",
+                                "example": "storage/images/replays/maps/c43c776d8bb43626270f7f6a0ae405a6.png"
+                            },
+                            "mapUrlFull": {
+                                "type": "string",
+                                "example": "https://reps.ru/storage/images/replays/maps/c43c776d8bb43626270f7f6a0ae405a6.png"
+                            },
+                            "type": {
+                                "type": "string",
+                                "example": "VOD"
+                            },
+                            "status": {
+                                "type": "string",
+                                "example": "Game of the Week"
+                            },
+                            "link": {
+                                "type": "https://reps.ru/replay/5?type=pro"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "StreamGlobalData": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "properties": {
+                            "streams": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/StreamOnlineNewsData"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "StreamOnlineNewsData": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "properties": {
+                            "id": {
+                                "type": "int",
+                                "example": "12"
+                            },
+                            "race": {
+                                "type": "string",
+                                "example": "Zerg"
+                            },
+                            "country": {
+                                "type": "string",
+                                "example": "Korea (South)"
+                            },
+                            "title": {
+                                "type": "string",
+                                "example": "ggaemo"
+                            },
+                            "content": {
+                                "type": "string",
+                                "example": "Ex KT B-teamer"
+                            },
+                            "streamUrl": {
+                                "type": "string",
+                                "example": "https://play.afreecatv.com/kkmkhh1234"
+                            },
+                            "streamUrlIframe": {
+                                "type": "string",
+                                "example": "https://play.afreecatv.com/kkmkhh1234/embed"
+                            },
+                            "approved": {
+                                "type": "bool",
+                                "example": "true"
+                            },
+                            "source": {
+                                "type": "string",
+                                "example": "play.afreecatv.com"
+                            },
+                            "channel": {
+                                "type": "string",
+                                "example": "kkmkhh1234"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            }
+        }
+    }
+}
