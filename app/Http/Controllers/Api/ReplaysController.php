@@ -116,6 +116,7 @@ class ReplaysController extends Controller
             ->with(['maps', 'firstCountries', 'secondCountries', 'firstRaces', 'secondRaces', 'types'])
             ->where('approved', 1)
             ->skip($skip)->take($take)
+            ->orderByDesc('id')
             ->get();
 
         return response()->json([
