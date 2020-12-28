@@ -18,6 +18,9 @@
                             @if(!is_null($item->races))
                                 <img class="margin-left-5" alt="race" title="{{$item->races->title}}"
                                      src="{{asset('images/default/game-races/'.$item->races->title.'.png')}}">
+                            @else
+                                <img class="margin-left-5" alt="race" title="All"
+                                     src="{{asset('images/default/game-races/All.png')}}">
                             @endif
                             <span class="color-blue night_text" title="{{$item->title}}">{{$item->title}}</span>
                         </button>
