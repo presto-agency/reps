@@ -56,7 +56,7 @@ return [
         |--------------------------------------------------------------------------
         */
 
-        'docs' => public_path('api-docs'),
+        'docs' => storage_path('api-docs'),
 
         /*
         |--------------------------------------------------------------------------
@@ -232,13 +232,13 @@ return [
     |--------------------------------------------------------------------------
      */
 
-    'constants'     => [
+    'constants' => [
         'L5_SWAGGER_CONST_HOST'             => env('L5_SWAGGER_CONST_HOST', 'http://my-default-host.com/api/v0'),
         'L5_SWAGGER_CONST_VERSION'          => env('L5_SWAGGER_CONST_VERSION', 'v0'),
         'L5_SWAGGER_CONST_TITLE'            => env('L5_SWAGGER_CONST_TITLE', 'App reps.ru API'),
         'L5_SWAGGER_CONST_HOST_DESCRIPTION' => env('L5_SWAGGER_CONST_HOST_DESCRIPTION', 'Host Server'),
         'GET_NEWS_LAST'                     => '/news/last',
         'GET_STREAM_ONLINE'                 => '/stream/online',
-        'GET_REPLAY_INDEX'                 => '/replay',
+        'GET_REPLAY_INDEX'                  => '/replay',
     ],
 ];

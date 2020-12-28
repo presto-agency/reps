@@ -39,9 +39,14 @@ class BroadcastWatcher extends Command
      */
     public function handle(Watcher $watcher)
     {
-        $defiler = $watcher->getData('defiler');
-        if (!is_null($defiler)) {
-            Stream::createFromBroadcastWatch($defiler);
+        try {
+            $defiler = $watcher->getData('defiler');
+            if (!is_null($defiler)) {
+                Stream::createFromBroadcastWatch($defiler);
+            }
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
         }
+
     }
 }
