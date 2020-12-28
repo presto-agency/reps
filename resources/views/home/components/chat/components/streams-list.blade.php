@@ -8,7 +8,7 @@
                                 data-src="{{$item->getSrcIframe()}}"
                                 data-img-flag="@if(!is_null($item->countries)){{asset($item->countries->flagOrDefault())}} @endif"
                                 data-name-flag="@if(!is_null($item->countries)){{$item->countries->name}} @endif"
-                                data-img-race="@if(!is_null($item->races)){{asset('images/default/game-races/'.$item->races->title.'.png')}}@endif"
+                                data-img-race="{{!is_null($item->races) ? asset('images/default/game-races/'.$item->races->title.'.png') : asset('images/default/game-races/All.png') }}"
                                 data-title-race="@if(!is_null($item->races)){{$item->races->title}}@endif"
                                 data-stream-title="{{$item->title}}">
                             @if(!is_null($item->countries))

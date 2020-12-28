@@ -63,6 +63,9 @@ class Stream extends Model
                     return trim(mb_strtolower($value->title)) === $element['race'];
                 });
                 $race_id = optional($race)->id;
+                if (!$race_id) {
+                    $race_id = $races->where('title', 'All')->first()->id;
+                }
 
                 $dataForInsert[] = [
                     'race_id'           => $race_id,
