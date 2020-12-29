@@ -19,7 +19,6 @@ class ApiGetStreamsResource extends JsonResource
     {
         $parts = self::parseUrl($this->stream_url);
         $source = self::getSource($parts);
-        $channel = self::getChannel($parts, $source);
         return [
             'id'               => $this->id,
             'race'             => optional($this->races)->title,
@@ -30,7 +29,7 @@ class ApiGetStreamsResource extends JsonResource
             'streamUrlIframe ' => $this->stream_url_iframe,
             'approved'         => (boolean) $this->approved,
             'source'           => $source,
-            'channel'          => $channel,
+            'channel'          => $this->channel,
         ];
     }
 
@@ -53,29 +52,5 @@ class ApiGetStreamsResource extends JsonResource
             return null;
         }
         return $parts['host'];
-    }
-
-    /**
-     * @param $parts
-     * @param $source
-     * @return mixed|string|null
-     */
-    private static function getChannel($parts, $source)
-    {
-        try {
-            switch ($source) {
-                case config('streams.goodgame.host'):
-                    return explode('/', $parts['path'])[2];
-                case config('streams.afreecatv.host'):
-                case config('streams.twitch.host'):
-                    return explode('/', $parts['path'])[1];
-                default:
-                    return null;
-            }
-        } catch (\Exception $e) {
-            \Log::error($e->getMessage());
-            return null;
-        }
-
     }
 }
