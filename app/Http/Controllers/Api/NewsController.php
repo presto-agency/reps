@@ -71,7 +71,7 @@ class NewsController extends Controller
             ->where('hide', false)
             ->where('fixing', true)
             ->where('news', true)
-            ->take(100)
+            ->take(50)
             ->get();
 
         $fixNews2 = $fixNews->take(5);
@@ -81,7 +81,7 @@ class NewsController extends Controller
             ->where('hide', false)
             ->where('fixing', false)
             ->where('news', true)
-            ->take(5)
+            ->take(50)
             ->get();
 
         $merge = $fixNews2->merge($news);
