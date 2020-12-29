@@ -83,9 +83,9 @@ class NewsController extends Controller
             ->get();
 
         $merge = $fixNews->merge($news);
-
+        $newsAll = ApiGetNewsResource::collection($merge);
         return response()->json([
-            'news' => ApiGetNewsResource::collection($merge),
+            'news' => $newsAll,
         ], 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
