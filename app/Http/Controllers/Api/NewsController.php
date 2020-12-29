@@ -84,7 +84,9 @@ class NewsController extends Controller
             ->take(50)
             ->get();
 
-        $merge = $fixNews2->merge($news);
+        $news2 = $news->take(5);
+        
+        $merge = $fixNews2->merge($news2);
 
         $newsAll = ApiGetNewsResource::collection($merge);
         return response()->json([
