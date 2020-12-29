@@ -66,7 +66,9 @@ class NewsController extends Controller
     public function last()
     {
         $newsFix = self::getLastNews(false, true, true, 3);
-        $newsNormal = self::getLastNews(false, false, true, 3);
+        $newsFixCount = abs($newsFix->count() - 5);
+
+        $newsNormal = self::getLastNews(false, false, true, 3 + $newsFixCount);
 
         $newsAll = $newsFix->merge($newsNormal);
 
@@ -100,7 +102,8 @@ class NewsController extends Controller
 
         $data->push($item);
 
-        do {
+        while ($extra <= $extraLimit) {
+
             $item = ForumTopic::query()
                 ->orderByDesc('id')
                 ->where('id', '<', $lastId)
@@ -113,9 +116,8 @@ class NewsController extends Controller
                 $lastId = $item->id;
                 $data->push($item);
             }
-
             $extra++;
-        } while ($extra <= $extraLimit);
+        }
 
         return $data;
     }
