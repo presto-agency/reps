@@ -17,6 +17,8 @@ class ApiGetStreamsResource extends JsonResource
      */
     public function toArray($request): array
     {
+        $parts = self::parseUrl($this->stream_url);
+        $source = self::getSource($parts);
         return [
             'id'               => $this->id,
             'race'             => optional($this->races)->title,
@@ -26,8 +28,29 @@ class ApiGetStreamsResource extends JsonResource
             'streamUrl'        => $this->stream_url,
             'streamUrlIframe ' => $this->stream_url_iframe,
             'approved'         => (boolean) $this->approved,
-            'source'           => $this->resource,
+            'source'           => $source,
             'channel'          => $this->channel,
         ];
+    }
+
+    /**
+     * @param $stream_url
+     * @return array|false|int|string|null
+     */
+    private static function parseUrl($stream_url)
+    {
+        return parse_url(htmlspecialchars_decode($stream_url));
+    }
+
+    /**
+     * @param $parts
+     * @return |null
+     */
+    private static function getSource($parts)
+    {
+        if (empty($parts['host'])) {
+            return null;
+        }
+        return $parts['host'];
     }
 }
