@@ -169,9 +169,10 @@ class ForumTopic extends Model
             ->where('news', $news)
             ->first();
 
-        $lastId = is_null($item) ? $item->id : 1;
-
-        $data->push($item);
+        if (!is_null($item)) {
+            $lastId = $item->id;
+            $data->push($item);
+        }
 
         while ($extra <= $extraLimit) {
 
