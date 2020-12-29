@@ -71,8 +71,10 @@ class NewsController extends Controller
             ->where('hide', false)
             ->where('fixing', true)
             ->where('news', true)
-            ->take(5)
+            ->take(100)
             ->get();
+
+        $fixNews2 = $fixNews->take(5);
 
         $news = ForumTopic::query()
             ->orderByDesc('id')
@@ -82,12 +84,8 @@ class NewsController extends Controller
             ->take(5)
             ->get();
 
+        $merge = $fixNews2->merge($news);
 
-        $merge = $fixNews->merge($news);
-
-        dump($fixNews);
-        dump($news);
-        dump($merge);
         $newsAll = ApiGetNewsResource::collection($merge);
         return response()->json([
             'news' => $newsAll,
