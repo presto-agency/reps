@@ -136,11 +136,8 @@ class Stream extends Model
      * @param $channel
      * @return string|null
      */
-    private
-    static function setStreamUrlIframeDefiler(
-        $source,
-        $channel
-    ) {
+    private static function setStreamUrlIframeDefiler($source, $channel)
+    {
         switch ($source) {
             case 'twitch':
                 return "https://player.twitch.tv/?volume=0.5&!muted&channel=$channel";
@@ -151,5 +148,19 @@ class Stream extends Model
             default:
                 return null;
         }
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
+     */
+    public static function getStreamApiIndex()
+    {
+        return self::with(['races', 'countries'])
+            ->whereNotNull('stream_url')
+            ->where('stream_url', '!=', ' ')
+            ->where('stream_url', '!=', '')
+            ->where('active', true)
+            ->where('approved', true)
+            ->get();
     }
 }
