@@ -46,13 +46,13 @@ class ReplayController extends Controller
     }
 
     /**
-     * @param  int  $id
+     * @param  $id
      * @param  null  $type
      * @param  null  $subtype
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(int $id, $type = null, $subtype = null)
+    public function show($id, $type = null, $subtype = null)
     {
         $replayShow = Replay::with([
             'users',
