@@ -30,11 +30,11 @@ class ForumTopic extends Model
     public static function getSeoIconData(ForumTopic $model): array
     {
         $img = 'images/logo.png';
-        if ( ! empty($model->preview_img) && checkFile::checkFileExists($model->preview_img)) {
+        if (!empty($model->preview_img) && checkFile::checkFileExists($model->preview_img)) {
             $img = $model->preview_img;
         }
         $icon = $img;
-        if ( ! empty($model->seo_og_image) && checkFile::checkFileExists($model->seo_og_image)) {
+        if (!empty($model->seo_og_image) && checkFile::checkFileExists($model->seo_og_image)) {
             $icon = $model->seo_og_image;
         }
 
@@ -51,11 +51,11 @@ class ForumTopic extends Model
     public static function getOgIconPath($path): string
     {
         $filePath = '';
-        if ( ! empty($path) && \File::exists($path)) {
+        if (!empty($path) && \File::exists($path)) {
             try {
-                $file     = new File($path);
-                $now      = Carbon::now();
-                $pathC    = $now->format('F').$now->year;
+                $file = new File($path);
+                $now = Carbon::now();
+                $pathC = $now->format('F').$now->year;
                 $filePath = ResizeImage::resizeImg($file, 400, 300, true, "images/topics/og/{$pathC}/", true);
             } catch (Exception $e) {
                 Log::error($e->getMessage());
@@ -108,7 +108,7 @@ class ForumTopic extends Model
      */
     public function getSeoTitle(): string
     {
-        return ! empty($this->seo_title) ? $this->seo_title : $this->getTitle();
+        return !empty($this->seo_title) ? $this->seo_title : $this->getTitle();
     }
 
     /**
@@ -124,7 +124,7 @@ class ForumTopic extends Model
      */
     public function getSeoKeywords(): string
     {
-        return ! empty($this->seo_keywords) ? $this->seo_keywords : $this->getTitle();
+        return !empty($this->seo_keywords) ? $this->seo_keywords : $this->getTitle();
     }
 
     /**
@@ -132,7 +132,7 @@ class ForumTopic extends Model
      */
     public function getSeoDescription(): string
     {
-        return ! empty($this->seo_description) ? $this->seo_description : $this->getTitle();
+        return !empty($this->seo_description) ? $this->seo_description : $this->getTitle();
     }
 
     /**
@@ -169,7 +169,7 @@ class ForumTopic extends Model
             ->where('news', $news)
             ->first();
 
-        $lastId = optional($item)->id;
+        $lastId = is_null($item) ? $item->id : 1;
 
         $data->push($item);
 
