@@ -15,8 +15,8 @@ class AddCheckInStreamsTable extends Migration
     {
         Schema::table('streams', function (Blueprint $table) {
             $table->string('channel')->nullable()->index()->after('data');
-            $table->string('resource')->nullable()->index()->after('chanel');
-            $table->index(['chanel', 'resource']);
+            $table->string('resource')->nullable()->index()->after('channel');
+            $table->index(['channel', 'resource']);
         });
     }
 
