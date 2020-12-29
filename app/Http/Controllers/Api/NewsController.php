@@ -65,11 +65,11 @@ class NewsController extends Controller
      */
     public function last()
     {
-        $newsFix = self::getLastNews(false, true, true);
-        $newsNormal = self::getLastNews(false, false, true);
+        $newsFix = self::getLastNews(false, true, true, 3);
+        $newsNormal = self::getLastNews(false, false, true, 3);
 
         $newsAll = $newsFix->merge($newsNormal);
-        
+
         $news = ApiGetNewsResource::collection($newsAll);
 
         return response()->json(['news' => $news,], 200,
@@ -81,9 +81,10 @@ class NewsController extends Controller
      * @param $hide
      * @param $fixing
      * @param $news
+     * @param $extraLimit
      * @return \Illuminate\Support\Collection
      */
-    public static function getLastNews($hide, $fixing, $news)
+    public static function getLastNews($hide, $fixing, $news, $extraLimit)
     {
         $data = collect();
         $extra = 0;
@@ -114,7 +115,7 @@ class NewsController extends Controller
             }
 
             $extra++;
-        } while ($extra <= 3);
+        } while ($extra <= $extraLimit);
 
         return $data;
     }
