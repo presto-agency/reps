@@ -65,14 +65,27 @@ class NewsController extends Controller
      */
     public function last()
     {
-        $forumTopics = ForumTopic::query()->latest()
+
+        $news = ForumTopic::query()
+            ->orderByDesc('id')
             ->where('hide', false)
+            ->where('fixing', false)
             ->where('news', true)
-            ->limit(10)
+            ->take(5)
             ->get();
 
+        $fixNews = ForumTopic::query()
+            ->orderByDesc('id')
+            ->where('hide', 0)
+            ->where('fixing', 1)
+            ->where('news', 1)
+            ->take(5)
+            ->get();
+
+        $merge = $fixNews->merge($news);
+
         return response()->json([
-            'news' => ApiGetNewsResource::collection($forumTopics),
+            'news' => ApiGetNewsResource::collection($merge),
         ], 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
