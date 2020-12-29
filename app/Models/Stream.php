@@ -30,9 +30,9 @@ class Stream extends Model
         ];
 
     /**
-     * @return string
+     * @return mixed|string|null
      */
-    public function getSrcIframe(): string
+    public function getSrcIframe()
     {
         $src = $this->stream_url_iframe;
         if (!empty($src)) {
@@ -41,7 +41,7 @@ class Stream extends Model
                 return $src.'&parent='.request()->getHttpHost();
             }
         }
-        return '';
+        return $src;
     }
 
     /**
