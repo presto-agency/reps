@@ -70,19 +70,8 @@ class StreamController extends Controller
      */
     protected function online()
     {
-
-        $streams = Stream::with([
-            'races',
-            'countries'
-        ])->where('approved', 1)
-            ->whereNotNull('stream_url')
-            ->where('stream_url', '!=', ' ')
-            ->where('stream_url', '!=', '')
-            ->where('active', 1)
-            ->get();
-        $data = ApiGetStreamsResource::collection($streams);
         return response()->json([
-            'streams' => $data,
+            'streams' => ApiGetStreamsResource::collection(Stream::getStreamApiIndex()),
         ], 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }

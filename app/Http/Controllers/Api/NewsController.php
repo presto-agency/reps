@@ -65,62 +65,11 @@ class NewsController extends Controller
      */
     public function last()
     {
-        $newsFix = self::getLastNews(false, true, true, 3);
-        $newsFixCount = abs($newsFix->count() - 5);
-
-        $newsNormal = self::getLastNews(false, false, true, 3 + $newsFixCount);
-
-        $newsAll = $newsFix->merge($newsNormal);
-
-        $news = ApiGetNewsResource::collection($newsAll);
-
-        return response()->json(['news' => $news,], 200,
+        return response()->json(['news' => ApiGetNewsResource::collection(ForumTopic::getLastFixNewsWithNews())], 200,
             ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
-    /**
-     * @param $hide
-     * @param $fixing
-     * @param $news
-     * @param $extraLimit
-     * @return \Illuminate\Support\Collection
-     */
-    public static function getLastNews($hide, $fixing, $news, $extraLimit)
-    {
-        $data = collect();
-        $extra = 0;
-
-        $item = ForumTopic::query()
-            ->orderByDesc('id')
-            ->where('hide', $hide)
-            ->where('fixing', $fixing)
-            ->where('news', $news)
-            ->first();
-
-        $lastId = $item->id;
-
-        $data->push($item);
-
-        while ($extra <= $extraLimit) {
-
-            $item = ForumTopic::query()
-                ->orderByDesc('id')
-                ->where('id', '<', $lastId)
-                ->where('hide', $hide)
-                ->where('fixing', $fixing)
-                ->where('news', $news)
-                ->first();
-
-            if (!is_null($item)) {
-                $lastId = $item->id;
-                $data->push($item);
-            }
-            $extra++;
-        }
-
-        return $data;
-    }
 
 }
 

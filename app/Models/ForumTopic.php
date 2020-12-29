@@ -135,4 +135,61 @@ class ForumTopic extends Model
         return ! empty($this->seo_description) ? $this->seo_description : $this->getTitle();
     }
 
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getLastFixNewsWithNews()
+    {
+        $newsFix = self::getLastWithParamsNews(false, true, true, 3);
+        $newsFixCount = abs($newsFix->count() - 5);
+
+        $newsNormal = self::getLastWithParamsNews(false, false, true, 3 + $newsFixCount);
+
+        return $newsFix->merge($newsNormal);
+
+    }
+
+
+    /**
+     * @param $hide
+     * @param $fixing
+     * @param $news
+     * @param $extraLimit
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getLastWithParamsNews($hide, $fixing, $news, $extraLimit)
+    {
+        $data = collect();
+        $extra = 0;
+
+        $item = self::query()
+            ->orderByDesc('id')
+            ->where('hide', $hide)
+            ->where('fixing', $fixing)
+            ->where('news', $news)
+            ->first();
+
+        $lastId = $item->id;
+
+        $data->push($item);
+
+        while ($extra <= $extraLimit) {
+
+            $item = self::query()
+                ->orderByDesc('id')
+                ->where('id', '<', $lastId)
+                ->where('hide', $hide)
+                ->where('fixing', $fixing)
+                ->where('news', $news)
+                ->first();
+
+            if (!is_null($item)) {
+                $lastId = $item->id;
+                $data->push($item);
+            }
+            $extra++;
+        }
+
+        return $data;
+    }
 }
