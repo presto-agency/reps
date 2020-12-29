@@ -140,10 +140,10 @@ class ForumTopic extends Model
      */
     public static function getLastFixNewsWithNews()
     {
-        $newsFix = self::getLastWithParamsNews(false, true, true, 3);
+        $newsFix = ForumTopic::getLastWithParamsNews(false, true, true, 3);
         $newsFixCount = abs($newsFix->count() - 5);
 
-        $newsNormal = self::getLastWithParamsNews(false, false, true, 3 + $newsFixCount);
+        $newsNormal = ForumTopic::getLastWithParamsNews(false, false, true, 3 + $newsFixCount);
 
         return $newsFix->merge($newsNormal);
 
@@ -162,20 +162,20 @@ class ForumTopic extends Model
         $data = collect();
         $extra = 0;
 
-        $item = self::query()
+        $item = ForumTopic::query()
             ->orderByDesc('id')
             ->where('hide', $hide)
             ->where('fixing', $fixing)
             ->where('news', $news)
             ->first();
 
-        $lastId = $item->id;
+        $lastId = optional($item)->id;
 
         $data->push($item);
 
         while ($extra <= $extraLimit) {
 
-            $item = self::query()
+            $item = ForumTopic::query()
                 ->orderByDesc('id')
                 ->where('id', '<', $lastId)
                 ->where('hide', $hide)
