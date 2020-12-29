@@ -161,6 +161,7 @@ class ForumTopic extends Model
     {
         $data = collect();
         $extra = 0;
+        $lastId = null;
 
         $item = ForumTopic::query()
             ->orderByDesc('id')
@@ -168,28 +169,30 @@ class ForumTopic extends Model
             ->where('fixing', $fixing)
             ->where('news', $news)
             ->first();
-
         if (!is_null($item)) {
             $lastId = $item->id;
             $data->push($item);
         }
 
-        while ($extra <= $extraLimit) {
+        if (!is_null($lastId)) {
+            while ($extra <= $extraLimit) {
 
-            $item = ForumTopic::query()
-                ->orderByDesc('id')
-                ->where('id', '<', $lastId)
-                ->where('hide', $hide)
-                ->where('fixing', $fixing)
-                ->where('news', $news)
-                ->first();
+                $item = ForumTopic::query()
+                    ->orderByDesc('id')
+                    ->where('id', '<', $lastId)
+                    ->where('hide', $hide)
+                    ->where('fixing', $fixing)
+                    ->where('news', $news)
+                    ->first();
 
-            if (!is_null($item)) {
-                $lastId = $item->id;
-                $data->push($item);
+                if (!is_null($item)) {
+                    $lastId = $item->id;
+                    $data->push($item);
+                }
+                $extra++;
             }
-            $extra++;
         }
+
 
         return $data;
     }
