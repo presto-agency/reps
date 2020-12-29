@@ -91,7 +91,7 @@ class StreamObserver
     {
         self::liveStreamCheck($stream->getAttribute('stream_url'), $stream);
 
-        $this->setUserIdAttribute($stream);
+//        $this->setUserIdAttribute($stream);
     }
 
     /**
