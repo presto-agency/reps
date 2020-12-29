@@ -65,35 +65,59 @@ class NewsController extends Controller
      */
     public function last()
     {
+        $newsFix = self::getLastNews(false, true, true);
+        $newsNormal = self::getLastNews(false, false, true);
 
-        $fixNews = ForumTopic::query()
-            ->orderByDesc('id')
-            ->where('hide', false)
-            ->where('fixing', true)
-            ->where('news', true)
-            ->take(50)
-            ->get();
-
-        $fixNews2 = $fixNews->take(5);
-
-        $news = ForumTopic::query()
-            ->orderByDesc('id')
-            ->where('hide', false)
-            ->where('fixing', false)
-            ->where('news', true)
-            ->take(50)
-            ->get();
-
-        $news2 = $news->take(5);
+        $newsAll = $newsFix->merge($newsNormal);
         
-        $merge = $fixNews2->merge($news2);
+        $news = ApiGetNewsResource::collection($newsAll);
 
-        $newsAll = ApiGetNewsResource::collection($merge);
-        return response()->json([
-            'news' => $newsAll,
-        ], 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+        return response()->json(['news' => $news,], 200,
+            ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
+    /**
+     * @param $hide
+     * @param $fixing
+     * @param $news
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getLastNews($hide, $fixing, $news)
+    {
+        $data = collect();
+        $extra = 0;
+
+        $item = ForumTopic::query()
+            ->orderByDesc('id')
+            ->where('hide', $hide)
+            ->where('fixing', $fixing)
+            ->where('news', $news)
+            ->first();
+
+        $lastId = $item->id;
+
+        $data->push($item);
+
+        do {
+            $item = ForumTopic::query()
+                ->orderByDesc('id')
+                ->where('id', '<', $lastId)
+                ->where('hide', $hide)
+                ->where('fixing', $fixing)
+                ->where('news', $news)
+                ->first();
+
+            if (!is_null($item)) {
+                $lastId = $item->id;
+                $data->push($item);
+            }
+
+            $extra++;
+        } while ($extra <= 3);
+
+        return $data;
+    }
 
 }
+
