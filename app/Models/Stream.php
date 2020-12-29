@@ -41,7 +41,7 @@ class Stream extends Model
                 return $src.'&parent='.request()->getHttpHost();
             }
         }
-        return $src;
+        return '';
     }
 
     /**
