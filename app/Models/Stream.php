@@ -56,15 +56,10 @@ class Stream extends Model
                 $channel = optional($element)['channel'];
                 $stream_url = self::setStreamUrlDefiler($source, $channel);
 
-                if ($source === 'afreeca') {
-                    $check = self::query()->where('stream_url', "https://play.afreecatv.com/$channel")->exists();
-                    if ($check) {
-                        continue;
-                    }
-                }
-                if (self::query()->where('stream_url', $stream_url)->exists()) {
+                if (self::query()->where('stream_url', "%${$channel}%")->exists()) {
                     continue;
                 }
+
                 $race = $races->first(function ($value, $key) use ($element) {
                     return trim(mb_strtolower($value->title)) === $element['race'];
                 });
