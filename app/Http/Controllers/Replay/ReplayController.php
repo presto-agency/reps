@@ -14,7 +14,7 @@ class ReplayController extends Controller
 
     public function index()
     {
-        $type    = request('type');
+        $type = request('type');
         $subtype = request('subtype');
 
         return view('replay.index', compact('type', 'subtype'));
@@ -114,7 +114,7 @@ class ReplayController extends Controller
     }
 
 
-    private static function getReplayWithTypeAjaxId(string $type, string $subtype, int $id)
+    private static function getReplayWithTypeAjaxId($type, string $subtype, int $id)
     {
         return Replay::with([
             'users:id,name,avatar',
@@ -141,7 +141,7 @@ class ReplayController extends Controller
      *
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    private static function getReplayWithTypeAjax(string $type, string $subtype)
+    private static function getReplayWithTypeAjax($type, string $subtype)
     {
         return Replay::with([
             'users:id,name,avatar',
@@ -161,7 +161,7 @@ class ReplayController extends Controller
             ->get();
     }
 
-    private static function getReplayAjaxId(string $type, int $id)
+    private static function getReplayAjaxId($type, int $id)
     {
         return Replay::with([
             'users:id,name,avatar',
@@ -181,11 +181,11 @@ class ReplayController extends Controller
 
 
     /**
-     * @param  string  $type
+     * @param  $type
      *
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    private static function getReplayAjax(string $type)
+    private static function getReplayAjax($type)
     {
         return Replay::with([
             'users:id,name,avatar',
@@ -211,7 +211,7 @@ class ReplayController extends Controller
      */
     public static function download(int $id)
     {
-        $replay   = Replay::findOrFail($id);
+        $replay = Replay::findOrFail($id);
         $filePath = null;
 
         if (empty($replay->file)) {
@@ -247,7 +247,7 @@ class ReplayController extends Controller
     {
         $request = request();
         if ($request->ajax()) {
-            $replay   = Replay::findOrFail($id);
+            $replay = Replay::findOrFail($id);
             $filePath = null;
             if (empty($replay->file)) {
                 return \Response::json([], 404);
@@ -286,7 +286,7 @@ class ReplayController extends Controller
         if (empty($content)) {
             return redirect()->back();
         }
-        $model   = Replay::findOrFail($request->get('id'));
+        $model = Replay::findOrFail($request->get('id'));
         $comment = new Comment([
             'user_id' => auth()->id(),
             'content' => $content,
