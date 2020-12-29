@@ -4,6 +4,7 @@ namespace App\Http\Sections;
 
 use AdminColumn;
 use AdminColumnEditable;
+use AdminColumnFilter;
 use AdminDisplay;
 use AdminDisplayFilter;
 use AdminForm;
@@ -12,6 +13,7 @@ use App\Http\ViewComposers\StreamIframeComposer;
 use App\Models\{Country, Race};
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Display\ControlLink;
 use SleepingOwl\Admin\Display\DisplayDatatablesAsync;
@@ -86,6 +88,19 @@ class Stream extends Section implements Initializable
         $control = $display->getColumns()->getControlColumn();
         $buttonShow = $this->show($display);
         $control->addButton($buttonShow);
+
+
+        $display->setColumnFilters(
+            [
+                null,
+                null,
+                AdminColumnFilter::text()
+                    ->setOperator(FilterInterface::CONTAINS)
+                    ->setPlaceholder('Название')
+                    ->setHtmlAttributes(['style' => 'width: 100%']),
+            ]
+        );
+        $display->getColumnFilters()->setPlacement('table.header');
 
         return $display;
     }
