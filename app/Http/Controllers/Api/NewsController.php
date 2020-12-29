@@ -66,23 +66,28 @@ class NewsController extends Controller
     public function last()
     {
 
-        $news = ForumTopic::query()
-            ->orderByDesc('id')
-            ->where('hide', 0)
-            ->where('fixing', 0)
-            ->where('news', 1)
-            ->take(5)
-            ->get();
-
         $fixNews = ForumTopic::query()
             ->orderByDesc('id')
-            ->where('hide', 0)
-            ->where('fixing', 1)
-            ->where('news', 1)
+            ->where('hide', false)
+            ->where('fixing', true)
+            ->where('news', true)
             ->take(5)
             ->get();
 
+        $news = ForumTopic::query()
+            ->orderByDesc('id')
+            ->where('hide', false)
+            ->where('fixing', false)
+            ->where('news', true)
+            ->take(5)
+            ->get();
+
+
         $merge = $fixNews->merge($news);
+
+        dump($fixNews);
+        dump($news);
+        dump($merge);
         $newsAll = ApiGetNewsResource::collection($merge);
         return response()->json([
             'news' => $newsAll,
