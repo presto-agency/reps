@@ -36,7 +36,8 @@ class Stream extends Model
     {
         $src = $this->stream_url_iframe;
         if (!empty($src)) {
-            $host = parse_url(htmlspecialchars_decode($src))['host'];
+            $host = parse_url(htmlspecialchars_decode($src));
+            $host = !empty($host['host']) ? $host['host'] : null;
             if ($host === config('streams.twitch.host_i')) {
                 return $src.'&parent='.request()->getHttpHost();
             }
