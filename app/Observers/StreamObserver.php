@@ -34,34 +34,36 @@ class StreamObserver
      */
     public static function liveStreamCheck($stream_url, $stream)
     {
-        $parseUrl = self::parse_stream_url($stream_url);
-        $getHost = $parseUrl['host'];
+        if (!empty($stream_url)) {
 
-        if ($getHost == config('streams.twitch.host')) {
-            $parsePath = explode('/', $parseUrl['path']);
-            $getChannelName = end($parsePath);
-            $setNewTwitchUrl = "https://player.twitch.tv/?volume=0.5&!muted&channel={$getChannelName}";
-            $stream->setAttribute('stream_url_iframe', $setNewTwitchUrl);
-            $stream->setAttribute('channel', mb_strtolower($getChannelName));
-            $stream->setAttribute('resource', $getHost);
-        }
-        if ($getHost == config('streams.goodgame.host')) {
-            $parsePath = explode('/', $parseUrl['path']);
-            $getChannelName = $parsePath[2];
-            $setNewTwitchUrl = "https://goodgame.ru/channel/{$getChannelName}/#autoplay";
-            $stream->setAttribute('stream_url_iframe', $setNewTwitchUrl);
-            $stream->setAttribute('channel', mb_strtolower($getChannelName));
-            $stream->setAttribute('resource', $getHost);
-        }
-        if ($getHost == config('streams.afreecatv.host')) {
-            $parsePath = explode('/', $parseUrl['path']);
-            $getChannelName = $parsePath[1];
-            $setNewTwitchUrl = "https://play.afreecatv.com/{$getChannelName}/embed";
-            $stream->setAttribute('stream_url_iframe', $setNewTwitchUrl);
-            $stream->setAttribute('channel', mb_strtolower($getChannelName));
-            $stream->setAttribute('resource', $getHost);
-        }
+            $parseUrl = self::parse_stream_url($stream_url);
+            $getHost = !empty($parseUrl['host']) ? $parseUrl['host'] : null;
 
+            if ($getHost == config('streams.twitch.host')) {
+                $parsePath = explode('/', $parseUrl['path']);
+                $getChannelName = end($parsePath);
+                $setNewTwitchUrl = "https://player.twitch.tv/?volume=0.5&!muted&channel={$getChannelName}";
+                $stream->setAttribute('stream_url_iframe', $setNewTwitchUrl);
+                $stream->setAttribute('channel', mb_strtolower($getChannelName));
+                $stream->setAttribute('resource', $getHost);
+            }
+            if ($getHost == config('streams.goodgame.host')) {
+                $parsePath = explode('/', $parseUrl['path']);
+                $getChannelName = $parsePath[2];
+                $setNewTwitchUrl = "https://goodgame.ru/channel/{$getChannelName}/#autoplay";
+                $stream->setAttribute('stream_url_iframe', $setNewTwitchUrl);
+                $stream->setAttribute('channel', mb_strtolower($getChannelName));
+                $stream->setAttribute('resource', $getHost);
+            }
+            if ($getHost == config('streams.afreecatv.host')) {
+                $parsePath = explode('/', $parseUrl['path']);
+                $getChannelName = $parsePath[1];
+                $setNewTwitchUrl = "https://play.afreecatv.com/{$getChannelName}/embed";
+                $stream->setAttribute('stream_url_iframe', $setNewTwitchUrl);
+                $stream->setAttribute('channel', mb_strtolower($getChannelName));
+                $stream->setAttribute('resource', $getHost);
+            }
+        }
     }
 
     private static function parse_stream_url($url)
