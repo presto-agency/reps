@@ -100,7 +100,7 @@ class Stream extends Model
             case 'twitch':
                 return "https://www.twitch.tv/$channel";
             case 'afreeca':
-                return "https://play.afreecatv.com/$channel";
+                return "http://play.afreecatv.com/$channel";
             case 'goodgame':
                 return "https://goodgame.ru/channel/$channel/#autoplay";
             default:
