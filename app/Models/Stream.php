@@ -23,6 +23,9 @@ class Stream extends Model
             'stream_url_iframe',
             'approved',
             'active',
+            'channel',
+            'resource',
+            'data',
 
         ];
 
@@ -56,10 +59,12 @@ class Stream extends Model
                 $channel = optional($element)['channel'];
                 $stream_url = self::setStreamUrlDefiler($source, $channel);
 
-                if (self::query()->where('stream_url', "%${$channel}%")->exists()) {
+                $resource = self::checkSourceDif($source);
+                $channelLow = mb_strtolower($channel);
+                if (self::query()->where('resource', $resource)
+                    ->where('channel', 'like', '%'.$channelLow.'%')->exists()) {
                     continue;
                 }
-
                 $race = $races->first(function ($value, $key) use ($element) {
                     return trim(mb_strtolower($value->title)) === $element['race'];
                 });
@@ -77,6 +82,8 @@ class Stream extends Model
                     'active'            => 1,
                     'approved'          => 1,
                     'data'              => json_encode(['defiler' => $element]),
+                    'resource'          => $resource,
+                    'channel'           => $channelLow,
                     'created_at'        => Carbon::now()->toDateTimeString(),
                 ];
 
@@ -109,13 +116,30 @@ class Stream extends Model
         }
     }
 
+    private static function checkSourceDif($source)
+    {
+        switch ($source) {
+            case 'twitch':
+                return config('streams.twitch.host');
+            case 'afreeca':
+                return config('streams.afreecatv.host');
+            case 'goodgame':
+                return config('streams.goodgame.host');
+            default:
+                return null;
+        }
+    }
+
     /**
      * @param $source
      * @param $channel
      * @return string|null
      */
-    private static function setStreamUrlIframeDefiler($source, $channel)
-    {
+    private
+    static function setStreamUrlIframeDefiler(
+        $source,
+        $channel
+    ) {
         switch ($source) {
             case 'twitch':
                 return "https://player.twitch.tv/?volume=0.5&!muted&channel=$channel";

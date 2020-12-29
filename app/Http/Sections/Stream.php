@@ -78,17 +78,18 @@ class Stream extends Section implements Initializable
             $online = AdminColumn::custom('Online', function ($model) {
                 return $model->active == 1 ? '<i class="fa fa-check"></i>' : '<i class="fa fa-minus"></i>';
             }),
-            $service = AdminColumn::custom('Service', function ($model) {
-                $parts = $this->parse_stream_url($model->stream_url);
+            $resource = AdminColumn::text('resource', 'Ресурс')
+                ->setHtmlAttribute('class', 'text-left')
+                ->setWidth('150px'),
+            $chanel = AdminColumn::text('channel', 'Канал')
+                ->setHtmlAttribute('class', 'text-left')
+                ->setWidth('150px'),
 
-                return !empty($parts['host']) === true ? $parts['host'] : 'Поле stream_url пустое';
-            })->setWidth('150px'),
         ]);
 
         $control = $display->getColumns()->getControlColumn();
         $buttonShow = $this->show($display);
         $control->addButton($buttonShow);
-
 
         $display->setColumnFilters(
             [
@@ -97,6 +98,16 @@ class Stream extends Section implements Initializable
                 AdminColumnFilter::text()
                     ->setOperator(FilterInterface::CONTAINS)
                     ->setPlaceholder('Название')
+                    ->setHtmlAttributes(['style' => 'width: 100%']),
+                null,
+                null,
+                AdminColumnFilter::text()
+                    ->setOperator(FilterInterface::CONTAINS)
+                    ->setPlaceholder('Ресурс')
+                    ->setHtmlAttributes(['style' => 'width: 100%']),
+                AdminColumnFilter::text()
+                    ->setOperator(FilterInterface::CONTAINS)
+                    ->setPlaceholder('Канал')
                     ->setHtmlAttributes(['style' => 'width: 100%']),
             ]
         );

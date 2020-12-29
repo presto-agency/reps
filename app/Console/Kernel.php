@@ -2,8 +2,9 @@
 
 namespace App\Console;
 
-use App\Console\Commands\Broadcasting\BroadcastWatcher;
 use App\Console\Commands\Broadcasting\BroadcastCheck;
+use App\Console\Commands\Broadcasting\BroadcastUpdate;
+use App\Console\Commands\Broadcasting\BroadcastWatcher;
 use App\Console\Commands\Tournaments\CheckStatus;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -18,6 +19,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands
         = [
+            BroadcastUpdate::class,
             BroadcastWatcher::class,
             BroadcastCheck::class,
             CheckStatus::class,
@@ -36,7 +38,7 @@ class Kernel extends ConsoleKernel
         /*** Check Stream ***/
         $schedule->command('broadcast:check')->everyFiveMinutes();
         /*** Watch Stream ***/
-//        $schedule->command('broadcast:watch')->hourly();
+        $schedule->command('broadcast:watch')->hourly();
         /*** Check Tourney ***/
         $schedule->command('tourney:check')->everyMinute();
     }
