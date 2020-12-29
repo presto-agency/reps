@@ -68,9 +68,9 @@ class NewsController extends Controller
 
         $news = ForumTopic::query()
             ->orderByDesc('id')
-            ->where('hide', false)
-            ->where('fixing', false)
-            ->where('news', true)
+            ->where('hide', 0)
+            ->where('fixing', 0)
+            ->where('news', 1)
             ->take(5)
             ->get();
 
