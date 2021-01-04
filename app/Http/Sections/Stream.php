@@ -60,7 +60,7 @@ class Stream extends Section implements Initializable
         $display = AdminDisplay::datatablesAsync()
             ->setDatatableAttributes(['bInfo' => false])
             ->setHtmlAttribute('class', 'table-info text-center ')
-            ->with(['users'])
+            ->with((array) ['users'])
             ->setOrder([[0, 'desc']])
             ->paginate(25);
         $display->setFilters(AdminDisplayFilter::related('approved')->setModel(\App\Models\Stream::class));
@@ -83,6 +83,10 @@ class Stream extends Section implements Initializable
                 ->setWidth('150px'),
             $chanel = AdminColumn::text('channel', 'Канал')
                 ->setHtmlAttribute('class', 'text-left')
+                ->setWidth('150px'),
+            AdminColumn::datetime('created_at', 'Создание,<br>обновление', 'updated_at')
+                ->setHtmlAttribute('class', 'text-right')
+                ->setFormat('d-m-Y H:i:s')
                 ->setWidth('150px'),
 
         ]);
