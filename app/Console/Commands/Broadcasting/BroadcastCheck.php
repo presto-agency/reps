@@ -199,11 +199,11 @@ class BroadcastCheck extends Command
      */
     public function twitch($chanelName, $id)
     {
-        if (is_null(config('streams.twitch.client_id'))) {
+        if (empty(config('streams.twitch.client_id'))) {
             Log::info('Stream .env miss client_id');
             return null;
         }
-        if (is_null(config('streams.twitch.client_secret'))) {
+        if (empty(config('streams.twitch.client_secret'))) {
             Log::info('Stream .env miss client_secret');
             return null;
         }
