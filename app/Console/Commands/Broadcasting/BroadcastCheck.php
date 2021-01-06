@@ -36,37 +36,50 @@ class BroadcastCheck extends Command
     }
 
     /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * Get and Insert data
      */
     public function handle()
     {
-//        $getStreams = Stream::query()
-//            /*->select(['stream_url', 'id', 'approved'])*/
-//            ->where('approved', 1)
-//            ->get();
-        /**
-         * Get and Insert data
-         */
         try {
 
-            DB::table("streams")->select(['stream_url', 'id', 'approved'])
-                ->where('approved', 1)
-                ->chunkById(100, function ($getStreams) {
-                    $data = collect($getStreams);
-//                Log::info('streams: ');
-//                Log::info($data);
+            DB::table('streams')->where('approved', 1)
+                ->whereNotNull('channel')
+                ->whereNotNull('resource')
+                ->whereNotNull('stream_url')
+                ->chunkById(100, function ($data) {
                     if ($data->isNotEmpty()) {
+                        $activeIds = [];
+                        $notActiveIds = [];
                         foreach ($data as $item) {
                             try {
-                                if (!empty($item->stream_url)) {
-                                    $getResult = $this->liveStreamCheck($item->stream_url, $item->id);
-//                                Log::info('getResult: ');
-//                                Log::info($getResult);
-                                    DB::table("streams")->where('id', $item->id)
-                                        ->update(['active' => self::getActive($getResult['status'])]);
+                                if (!empty($item->channel) && !empty($item->resource) && !empty($item->stream_url)) {
+                                    $result = $this->liveStreamCheck2($item->channel, $item->resource, $item->id);
+                                    if (!is_null($result) && self::getActive($result['status'])) {
+                                        $activeIds[$item->id] = $item->id;
+                                    } else {
+                                        $notActiveIds[$item->id] = $item->id;
+                                    }
                                 } else {
-                                    DB::table("streams")->where('id', $item->id)->update(['active' => false]);
+                                    $notActiveIds[$item->id] = $item->id;
                                 }
+
+                            } catch (Exception $e) {
+                                Log::error($e->getMessage());
+                                continue;
+                            }
+
+                            sleep(1);
+                        }
+                        if (!empty($activeIds)) {
+                            try {
+                                DB::table('streams')->whereIn('id', $activeIds)->update(['active' => true]);
+                            } catch (Exception $e) {
+                                Log::error($e->getMessage());
+                            }
+                        }
+                        if (!empty($notActiveIds)) {
+                            try {
+                                DB::table('streams')->whereIn('id', $notActiveIds)->update(['active' => false]);
                             } catch (Exception $e) {
                                 Log::error($e->getMessage());
                             }
@@ -75,6 +88,32 @@ class BroadcastCheck extends Command
                 });
         } catch (Exception $e) {
             Log::error($e->getMessage());
+        }
+    }
+
+    /**
+     * @param $channel
+     * @param $resource
+     * @param $id
+     * @return array|null
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function liveStreamCheck2($channel, $resource, $id)
+    {
+        try {
+            switch ($resource) {
+                case config('streams.goodgame.host'):
+                    return $this->goodGame($channel, $id);
+                case config('streams.twitch.host'):
+                    return $this->twitch($channel, $id);
+                case config('streams.afreecatv.host'):
+                    return $this->afreecaTv($channel, $id);
+                default:
+                    return null;
+            }
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return null;
         }
     }
 
