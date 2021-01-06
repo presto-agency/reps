@@ -80,8 +80,14 @@ class NewsController extends Controller
             if ($request->id > 0) {
                 $news = $this->newsWithId($request);
             } else {
-                $news = $this->news();
-                $fixingNews = $this->fixingNews();
+                // get last 5 fix news
+                $fixingNews = ForumTopic::getLastWithParamsNewsIndex(false, true, true, 3);
+
+                $newsFixCount = abs($fixingNews->count() - 5);
+                // get last 10 fix news
+                $news = ForumTopic::getLastWithParamsNewsIndex(false, false, true, 3);
+//                $news = $this->news();
+//                $fixingNews = $this->fixingNews();
                 /*if ($fixingNews->isNotEmpty() && $news->isNotEmpty()) {
                     foreach ($news as $items) {
                         $id         = $items->id;
@@ -109,25 +115,7 @@ class NewsController extends Controller
             ->where('hide', false)
             ->where('news', true)
             ->where('fixing', false)
-            ->withCount('comments')
-            ->orderByDesc('id')
-            ->limit(5)
-            ->get();
-    }
-
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
-    private function newsWithId(Request $request)
-    {
-        return ForumTopic::with('author:id,name,avatar')
-            ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
-            ->where('id', '<', $request->id)
-            ->where('hide', false)
-            ->where('fixing', false)
-            ->where('news', true)
+            ->where('important', false)
             ->withCount('comments')
             ->orderByDesc('id')
             ->limit(5)
@@ -145,10 +133,32 @@ class NewsController extends Controller
             ->where('hide', false)
             ->where('fixing', true)
             ->where('news', true)
+            ->where('important', false)
             ->withCount('comments')
             ->orderByDesc('id')
             ->limit(100)
             ->get();
     }
+
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     *
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    private function newsWithId(Request $request)
+    {
+        return ForumTopic::with('author:id,name,avatar')
+            ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
+            ->where('id', '<', $request->id)
+            ->where('hide', false)
+            ->where('fixing', false)
+            ->where('news', true)
+            ->where('important', false)
+            ->withCount('comments')
+            ->orderByDesc('id')
+            ->limit(5)
+            ->get();
+    }
+
 
 }

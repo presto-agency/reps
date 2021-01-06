@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ForumTopic;
 use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
@@ -15,7 +16,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
+        return view('home.index')->with([
+            'importantNews' => ForumTopic::getLastImportantNews()
+        ]);
     }
 
 }

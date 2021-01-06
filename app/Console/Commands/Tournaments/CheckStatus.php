@@ -35,11 +35,6 @@ class CheckStatus extends Command
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
     public function handle()
     {
         try {
@@ -49,8 +44,6 @@ class CheckStatus extends Command
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
-
-        return null;
     }
 
 
