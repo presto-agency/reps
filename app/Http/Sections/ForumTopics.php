@@ -16,7 +16,6 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
-use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Display\Extension\FilterInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Display\ControlLink;
@@ -64,18 +63,13 @@ class ForumTopics extends Section
     public function onDisplay()
     {
         $display = AdminDisplay::datatablesAsync()
-            ->with([
-                'forumSection',
-                'author',
-                'comments',
-            ])
+            ->with((array) ['forumSection', 'author', 'comments',])
             ->setDatatableAttributes(['bInfo' => true])
             ->setHtmlAttribute('class', 'table-info text-center')
             ->setOrder([[0, 'desc']])
             ->paginate(10);
         $display->setFilters(
-            AdminDisplayFilter::related('forum_section_id')
-                ->setModel(ForumSection::class),
+            AdminDisplayFilter::related('forum_section_id')->setModel(ForumSection::class),
             AdminDisplayFilter::related('user_id')->setModel(User::class)
         );
 
@@ -115,10 +109,11 @@ class ForumTopics extends Section
             $fixing = AdminColumnEditable::checkbox('fixing', 'Да', 'Нет')
                 ->setWidth('150px')->setLabel('Зафиксировать<br>на главной'),
             $hide = AdminColumnEditable::checkbox('hide', 'Да', 'Нет')->setLabel('Скрыть'),
+            $important = AdminColumnEditable::checkbox('important', 'Да', 'Нет')->setLabel('Важные'),
 
         ]);
 
-        $control    = $display->getColumns()->getControlColumn();
+        $control = $display->getColumns()->getControlColumn();
         $buttonShow = $this->show($display);
         $control->addButton($buttonShow);
 
@@ -139,6 +134,7 @@ class ForumTopics extends Section
                 ->setOperator(FilterInterface::CONTAINS)
                 ->setPlaceholder('Автор')
                 ->setHtmlAttributes(['style' => 'width: 100%']),
+            null,
             null,
             null,
             null,
@@ -188,8 +184,8 @@ class ForumTopics extends Section
                 ]),
             $preview_img = AdminFormElement::image('preview_img', 'Загрузить картинку превью')
                 ->setUploadPath(function (UploadedFile $file) {
-                    $now      = \Carbon\Carbon::now();
-                    $pathC    = $now->format('F').$now->year;
+                    $now = \Carbon\Carbon::now();
+                    $pathC = $now->format('F').$now->year;
                     return 'storage'.PathHelper::checkUploadsFileAndPath("/images/topics/{$pathC}", $this->imageOldPath);
                 })
                 ->setValidationRules([
@@ -248,8 +244,8 @@ class ForumTopics extends Section
             AdminFormElement::image('seo_og_image', 'OG:Icon')
                 ->setReadonly(true)
                 ->setUploadPath(function (UploadedFile $file) {
-                    $now      = \Carbon\Carbon::now();
-                    $pathC    = $now->format('F').$now->year;
+                    $now = \Carbon\Carbon::now();
+                    $pathC = $now->format('F').$now->year;
                     return 'storage'.PathHelper::checkUploadsFileAndPath("/images/topics/icons/{$pathC}/");
                 })
                 ->setHtmlAttribute('placeholder', 'OG:Icon')

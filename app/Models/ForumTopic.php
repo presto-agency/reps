@@ -25,7 +25,7 @@ class ForumTopic extends Model
             'seo_description',
             'seo_og_image',
         ];
-    protected $guarded = ['user_id', 'commented_at', 'hide', 'news', 'start_on', 'fixing'];
+    protected $guarded = ['user_id', 'commented_at', 'hide', 'news', 'start_on', 'fixing', 'important'];
 
     public static function getSeoIconData(ForumTopic $model): array
     {
@@ -168,6 +168,7 @@ class ForumTopic extends Model
             ->where('hide', $hide)
             ->where('fixing', $fixing)
             ->where('news', $news)
+            ->where('important', false)
             ->first();
         if (!is_null($item)) {
             $lastId = $item->id;
@@ -183,6 +184,7 @@ class ForumTopic extends Model
                     ->where('hide', $hide)
                     ->where('fixing', $fixing)
                     ->where('news', $news)
+                    ->where('important', false)
                     ->first();
 
                 if (!is_null($item)) {
@@ -195,5 +197,65 @@ class ForumTopic extends Model
 
 
         return $data;
+    }
+
+    public static function getLastWithParamsNewsIndex($hide, $fixing, $news, $extraLimit)
+    {
+        $data = collect();
+        $extra = 0;
+        $lastId = null;
+
+        $item = ForumTopic::with('author:id,name,avatar')
+            ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
+            ->where('hide', $hide)
+            ->where('fixing', $fixing)
+            ->where('news', $news)
+            ->where('important', false)
+            ->withCount('comments')
+            ->orderByDesc('id')
+            ->first();
+        if (!is_null($item)) {
+            $lastId = $item->id;
+            $data->push($item);
+        }
+
+        if (!is_null($lastId)) {
+            while ($extra <= $extraLimit) {
+
+                $item = ForumTopic::with('author:id,name,avatar')
+                    ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
+                    ->where('id', '<', $lastId)
+                    ->where('hide', $hide)
+                    ->where('fixing', $fixing)
+                    ->where('news', $news)
+                    ->where('important', false)
+                    ->withCount('comments')
+                    ->orderByDesc('id')
+                    ->first();
+
+                if (!is_null($item)) {
+                    $lastId = $item->id;
+                    $data->push($item);
+                }
+                $extra++;
+            }
+        }
+
+
+        return $data;
+    }
+
+    public static function getLastImportantNews($take = 5)
+    {
+        return self::with('author:id,name,avatar')
+            ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
+            ->where('hide', false)
+            ->where('news', true)
+            ->where('fixing', false)
+            ->where('important', true)
+            ->withCount('comments')
+            ->orderByDesc('id')
+            ->take($take)
+            ->get();
     }
 }

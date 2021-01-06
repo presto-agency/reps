@@ -238,6 +238,7 @@ return [
         'L5_SWAGGER_CONST_TITLE'            => env('L5_SWAGGER_CONST_TITLE', 'App reps.ru API'),
         'L5_SWAGGER_CONST_HOST_DESCRIPTION' => env('L5_SWAGGER_CONST_HOST_DESCRIPTION', 'Host Server'),
         'GET_NEWS_LAST'                     => '/news/last',
+        'GET_CHAT_LAST'                     => '/chat/messages/last',
         'GET_STREAM_ONLINE'                 => '/stream/online',
         'GET_REPLAY_INDEX'                  => '/replay',
     ],

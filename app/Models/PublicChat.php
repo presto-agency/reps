@@ -40,4 +40,8 @@ class PublicChat extends Model
         return $this->belongsTo('App\Models\Country', 'country_id');
     }
 
+    public static function getLast100Messages()
+    {
+        return self::query()->orderByDesc('id')->where('is_hidden', 0)->take(100)->get();
+    }
 }
