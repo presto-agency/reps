@@ -245,7 +245,7 @@ class ForumTopic extends Model
         return $data;
     }
 
-    public static function getLastImportantNews($take = 5)
+    public static function getLastImportantNews($take = 50)
     {
         return self::with('author:id,name,avatar')
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
