@@ -12,6 +12,7 @@ class ApiGetReplaysResource extends JsonResource
     public function toArray($request): array
     {
         $type = $this->user_replay === Replay::REPLAY_PRO ? 'pro' : 'user';
+        $mapUrl = optional($this->maps)->url;
         return [
             'id'            => $this->id,
             'title'         => $this->title,
@@ -19,9 +20,11 @@ class ApiGetReplaysResource extends JsonResource
             'secondCountry' => optional($this->secondCountries)->name,
             'firstRace'     => optional($this->firstRaces)->title,
             'secondRace'    => optional($this->secondRaces)->title,
+            'firstName'     => $this->first_name,
+            'secondName'    => $this->second_name,
             'map'           => optional($this->maps)->name,
-            'mapUrl'        => optional($this->maps)->url,
-            'mapUrlFull'    => optional($this->maps)->url ? asset(optional($this->maps)->url) : null,
+            'mapUrl'        => $mapUrl,
+            'mapUrlFull'    => !is_null($mapUrl) ? asset($mapUrl) : $mapUrl,
             'type'          => !empty($this->file) ? 'Replay' : 'VOD',
             'status'        => optional($this->types)->title,
             'link'          => route('replay.show', ['replay' => $this->id, 'type' => $type]),

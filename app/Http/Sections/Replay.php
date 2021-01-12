@@ -73,7 +73,7 @@ class Replay extends Section
         }
 
         $display = AdminDisplay::datatablesAsync()
-            ->with([
+            ->with((array) [
                 'users',
                 'maps',
                 'comments',
@@ -196,10 +196,10 @@ class Replay extends Section
             $rating = AdminColumn::custom('<small>Рейтинг</small>',
                 function ($model) {
                     $thumbsUp
-                            = '<span style="font-size: 1em; color: green;"><i class="far fa-thumbs-up"></i></span>';
+                        = '<span style="font-size: 1em; color: green;"><i class="far fa-thumbs-up"></i></span>';
                     $equals = '<i class="fas fa-equals"></i>';
                     $thumbsDown
-                            = '<span style="font-size: 1em; color: red;"><i class="far fa-thumbs-down"></i></span>';
+                        = '<span style="font-size: 1em; color: red;"><i class="far fa-thumbs-down"></i></span>';
 
                     return $thumbsUp.$model->positive_count.'<br/>'.$equals
                         .$model->rating
@@ -270,7 +270,7 @@ class Replay extends Section
                 ->setHtmlAttributes(['style' => 'width: 100%']),
 
         ]);
-        $control    = $display->getColumns()->getControlColumn();
+        $control = $display->getColumns()->getControlColumn();
         $buttonShow = $this->show();
         $control->addButton($buttonShow);
 
@@ -294,7 +294,7 @@ class Replay extends Section
         $getData = $this->getModel()->select(['file', 'src_iframe'])->find($id);
         if ($getData) {
             $this->fileOldPath = $getData->file;
-            $this->srcIframe   = $getData->src_iframe;
+            $this->srcIframe = $getData->src_iframe;
         }
         $form = AdminForm::panel();
         $form->addHeader([

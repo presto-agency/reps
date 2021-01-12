@@ -117,7 +117,7 @@ class ReplayController extends Controller
     private static function getReplayWithTypeAjaxId($type, string $subtype, int $id)
     {
         return Replay::with([
-            'users:id,name,avatar',
+                'users:id,name,avatar',
             'maps:id,name',
             'firstCountries:id,flag,name',
             'secondCountries:id,flag,name',

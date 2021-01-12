@@ -87,6 +87,8 @@ class ReplaysController extends Controller
      *          @OA\Property(property="secondCountry",type="string", example="African Rep.",),
      *          @OA\Property(property="firstRace",type="string", example="Zerg",),
      *          @OA\Property(property="secondRace",type="string", example="Terran",),
+     *          @OA\Property(property="firstName",type="string", example="Y33PPP",),
+     *          @OA\Property(property="secondName",type="string", example="94khala",),
      *          @OA\Property(property="map", type="string", example="null",),
      *          @OA\Property(property="mapUrl", type="string", example="storage/images/replays/maps/c43c776d8bb43626270f7f6a0ae405a6.png",),
      *          @OA\Property(property="mapUrlFull", type="string", example="https://reps.ru/storage/images/replays/maps/c43c776d8bb43626270f7f6a0ae405a6.png",),

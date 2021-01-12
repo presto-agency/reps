@@ -204,14 +204,12 @@
          * Spoiler
          */
         function xbbSpoiler(obj) {
-            console.log("OBJ", obj);
             // var obj_content = obj.parentNode.parentNode.getElementsByTagName('div')[1];
-            var obj_content = obj.parentNode.getElementsByClassName('spoiler')[0];
-            console.log("obj_content", obj_content);
-            var obj_text_show = obj.getElementsByTagName('strong')[1];
-            var obj_text_hide = obj.getElementsByTagName('strong')[0];
+            const obj_content = obj.parentNode.getElementsByClassName('spoiler')[0];
+            const obj_text_show = obj.getElementsByTagName('strong')[1];
+            const obj_text_hide = obj.getElementsByTagName('strong')[0];
 
-            if (obj_content.style.display != '') {
+            if (obj_content.style.display !== '') {
                 obj_content.style.display = '';
                 obj_text_show.style.display = '';
                 obj_text_hide.style.display = 'none';
