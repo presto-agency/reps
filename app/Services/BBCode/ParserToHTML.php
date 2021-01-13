@@ -32,17 +32,13 @@ class ParserToHTML
         });
         $bbCode->addTag('spoiler-shell', function ($tag, &$html, $openingTag) {
             if ($tag->opening) {
-                return '<div class="bbSpoiler">'
-                    .'<button type="button" class="btn btn-primary btn-sm" onclick="xbbSpoiler(this)">'
-                    .'<strong>Show Spoiler</strong>'
-                    .'<strong style="display:none">Hide Spoiler</strong>'
-                    .'</button>'
+                return '<div class="bbSpoiler">'.'<a href="#" onclick="return xbbSpoiler(this)">'
+                    .'<strong>Show Spoiler</strong>'.'<strong style="display:none">Hide Spoiler</strong>'.'</a>'
                     .'<div class="spoiler" style="display:none">';
             } else {
                 return '</div>'.'</div>';
             }
         });
-
 
         $second_conversion = $bbCode->render($first_conversion);
 
