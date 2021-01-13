@@ -115,3 +115,38 @@ cd /var/www/
 chmod -R 755 reps/
 chown -R www-data:www-data reps/
 ```
+
+.Server Supervisor:
+```
+#laravel-worker
+1)sudo apt-get install supervisor 
+2)sudo -i
+3)mc got to path /etc/supervisor/conf.d
+4)and create file "reps-echo-server.conf" 
+5)add content in file.
+[program:reps-echo-server]
+#process_name=%(program_name)s_%(process_num)02d
+directory=/var/www/reps/
+command=laravel-echo-server start
+autostart=true
+autorestart=true
+user=root #ubunto-user
+redirect_stderr=true
+numprocs=1
+stdout_logfile=/var/www/reps/storage/logs/echoserver.log
+
+6)run next commands:
+
+sudo supervisorctl reread
+sudo supervisorctl update
+.hellper:
+ps as | grep artisan
+sudo supervisorctl status 
+sudo supervisorctl stop reps-echo-server
+sudo supervisorctl start reps-echo-server
+```
+
+.Server Starting The Scheduler:
+```
+* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+```
