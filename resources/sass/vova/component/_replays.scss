@@ -109,7 +109,7 @@
                         .subtopic__wrap {
                             display: flex;
                             justify-content: space-between;
-                            align-items: start;
+                            align-items: flex-start;
                             margin-bottom: 25px;
 
                             .body__title {
@@ -130,7 +130,7 @@
                     .body__wrap {
                         display: flex;
                         justify-content: space-between;
-                        align-items: start;
+                        align-items: flex-start;
                         margin-bottom: 25px;
 
                         .body__title {
