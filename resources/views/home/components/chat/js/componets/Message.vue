@@ -4,7 +4,7 @@
             <div class="oaerror danger" v-show="isErrorShow">
                 <strong>Ошибка</strong><span class="error_message">{{errorMessage}}</span>
             </div>
-            <div class="row_contentChat" :class="{'mine-message': item.message.search(`@${auth.name}`) > -1}" v-for="(item,index) in messagearray" :key="index">
+            <div class="row_contentChat" :class="{'mine-message': parseInt(item.user_id,10) === parseInt(auth.id,10) }" v-for="(item,index) in messagearray" :key="index">
                 <div class=" block_user_akk">
                     <div class="user" >
                         <img class="icon_bars" :src="item.flag">
