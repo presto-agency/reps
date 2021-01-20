@@ -18,13 +18,13 @@ class LastReplaysComposer
 
     public function __construct()
     {
-        $this->proReplay  = collect();
+        $this->proReplay = collect();
         $this->userReplay = collect();
 
-        $proReplay  = $this->getCacheProReplays('replaysProLsHome');
+        $proReplay = $this->getCacheProReplays('replaysProLsHome');
         $userReplay = $this->getCacheUserReplays('replaysUserLsHome');
 
-        $this->proReplay  = $proReplay;
+        $this->proReplay = $proReplay;
         $this->userReplay = $userReplay;
     }
 
@@ -46,7 +46,7 @@ class LastReplaysComposer
      */
     public function getCacheProReplays(string $cache_name)
     {
-        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
             $data_cache = \Cache::get($cache_name);
         } else {
             $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
@@ -64,7 +64,7 @@ class LastReplaysComposer
      */
     public function getCacheUserReplays(string $cache_name)
     {
-        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
             $data_cache = \Cache::get($cache_name);
         } else {
             $data_cache = \Cache::remember($cache_name, $this->ttl, function () {

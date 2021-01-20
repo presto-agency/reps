@@ -80,7 +80,7 @@ class GlobalComposer
      */
     private function getCacheRaces(string $cache_name)
     {
-        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
             $data_cache = \Cache::get($cache_name);
         } else {
             $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
@@ -98,7 +98,7 @@ class GlobalComposer
      */
     private function getCacheMaps(string $cache_name)
     {
-        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
             $data_cache = \Cache::get($cache_name);
         } else {
             $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
@@ -116,7 +116,7 @@ class GlobalComposer
      */
     private function getCacheCountries(string $cache_name)
     {
-        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
             $data_cache = \Cache::get($cache_name);
         } else {
             $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
@@ -134,7 +134,7 @@ class GlobalComposer
      */
     private function getCacheReplayTypes(string $cache_name)
     {
-        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
             $data_cache = \Cache::get($cache_name);
         } else {
             $data_cache = \Cache::remember($cache_name, $this->ttl, function () {
@@ -152,7 +152,7 @@ class GlobalComposer
      */
     private function getCacheReplayTypes2(string $cache_name)
     {
-        if (\Cache::has($cache_name) && \Cache::get($cache_name)->isNotEmpty()) {
+        if (\Cache::has($cache_name) && !empty(\Cache::get($cache_name))) {
             $data_cache = \Cache::get($cache_name);
         } else {
             $data_cache = \Cache::remember($cache_name, $this->ttl, function () {

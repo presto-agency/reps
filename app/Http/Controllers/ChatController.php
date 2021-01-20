@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Broadcasting\CheckChatMessage;
 use App\Events\BanUserChat;
 use App\Events\ChangeNameUser;
+use App\Events\CheckNewMessage;
 use App\Events\NewChatMessageAdded;
 use App\Events\UnBanUserChat;
 use App\Models\Bet;
@@ -15,6 +17,7 @@ use App\Models\Help;
 use App\Models\PublicChat;
 use App\Services\GeneralViewHelper;
 use App\User;
+use Broadcast;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -999,6 +1002,7 @@ class ChatController extends Controller
             $model->load('user');
             $resultModel = $this->setFullMessage($model);
             event(new NewChatMessageAdded($resultModel));
+            event(new CheckNewMessage());
             return $resultModel;
         }
         return false;
