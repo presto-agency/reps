@@ -133,13 +133,17 @@ autorestart=true
 user=root #ubunto-user
 redirect_stderr=true
 numprocs=1
+
 stdout_logfile=/var/www/reps/storage/logs/echoserver.log
+.run:
+sudo supervisorctl status 
+sudo supervisorctl stop reps-echo-server
+sudo supervisorctl start reps-echo-server
 
-6)run next commands:
 
+.hellper:
 sudo supervisorctl reread
 sudo supervisorctl update
-.hellper:
 ps as | grep artisan
 sudo supervisorctl status 
 sudo supervisorctl stop reps-echo-server

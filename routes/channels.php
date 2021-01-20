@@ -11,10 +11,6 @@
 |
 */
 
-/*Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
-});*/
-
 Broadcast::channel('dialogue.{id}', function ($user, $id) {
 
     //делаем проверку может ли пользователь входить в комнату
