@@ -39,9 +39,7 @@ if (token) {
 }
 
 /**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
+ * Echo
  */
 
 import Echo from 'laravel-echo'
@@ -50,9 +48,27 @@ window.io = require('socket.io-client');
 
 
 if (typeof io !== 'undefined') {
+    // init
     window.Echo = new Echo({
         broadcaster: 'socket.io',
-        host: window.location.hostname + ':6001',
+        host: 'https://reps.ru:6001',
         encrypted: true
     });
+    // try {
+    //     //bind our events
+    //     window.Echo.connector.socket.on('connect', function () {
+    //         try {
+    //             //start our events
+    //             window.Echo.channel('repsChatCheckMessage').listen('CheckNewMessage', (e) => {
+    //                 console.log(e);
+    //             });
+    //         } catch (error) {
+    //             console.error('Echo channel - error');
+    //         }
+    //
+    //     });
+    // } catch (error) {
+    //     console.error('Echo connector - error');
+    // }
+
 }

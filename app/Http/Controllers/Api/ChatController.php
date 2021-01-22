@@ -15,7 +15,8 @@ class ChatController extends Controller
      * @OA\GET(
      *     summary="INDEX",
      *     path=GET_CHAT_LAST,
-     *     description="List of last 100 Chat messages",
+     *     description="List of last 100 Chat messages Listen channel with echo <br>
+          <img width='100%' height='800' src='/images/api/echo.png'>",
      *     tags={"Chat"},
      *     @OA\Response(
      *         response=200,
