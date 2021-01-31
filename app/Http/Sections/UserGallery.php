@@ -128,6 +128,7 @@ class UserGallery extends Section
                     return 'storage'.PathHelper::checkUploadsFileAndPath('/images/users/galleries');
                 })->setValidationRules([
                     'required',
+                    'mimes:jpeg,png,jpg,gif,svg',
                     'max:2048',
                 ]),
             $sign = AdminFormElement::text('sign', 'Подпись')

@@ -107,7 +107,7 @@ class Banner extends Section implements Initializable
                 })
                 ->setValidationRules([
                     'required',
-                    'image',
+                    'mimes:jpeg,png,jpg',
                     'max:5120',
                 ]),
             $title = AdminFormElement::text('title', 'Title')->required(),

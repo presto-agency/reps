@@ -173,8 +173,8 @@ class UserTopicsController extends Controller
              */
             $now   = Carbon::now();
             $pathC = $now->format('F').$now->year;
-            PathHelper::checkUploadsFileAndPath("/topics/images/{$pathC}", $topic->preview_img);
-            $topic->preview_img = 'storage/'.$request->file('preview_img')->store("topics/images/{$pathC}", 'public');
+            PathHelper::checkUploadsFileAndPath("/images/topics/{$pathC}", $topic->preview_img);
+            $topic->preview_img = 'storage/'.$request->file('preview_img')->store("images/topics/{$pathC}", 'public');
         }
     }
 

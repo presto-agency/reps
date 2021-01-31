@@ -189,7 +189,7 @@ class ForumTopics extends Section
                     return 'storage'.PathHelper::checkUploadsFileAndPath("/images/topics/{$pathC}", $this->imageOldPath);
                 })
                 ->setValidationRules([
-                    'image',
+                    'mimes:jpeg,png,jpg',
                     'nullable',
                     'max:2048',
                 ]),
@@ -217,6 +217,8 @@ class ForumTopics extends Section
             $news = AdminFormElement::checkbox('news', 'Отображать в новостях')
                 ->setValidationRules(['boolean']),
             $fixing = AdminFormElement::checkbox('fixing', 'Зафиксировать на главной')
+                ->setValidationRules(['boolean']),
+            $important = AdminFormElement::checkbox('important', 'Зафиксироварть в важные')
                 ->setValidationRules(['boolean']),
             $hide = AdminFormElement::checkbox('hide', 'Скрыть')
                 ->setValidationRules(['boolean']),
