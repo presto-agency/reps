@@ -108,7 +108,7 @@ class Country extends Section
                                     .PathHelper::checkUploadsFileAndPath("/images/countries/flags",
                                         $this->imageOldPath);
                             })
-                            ->setValidationRules(['required', 'max:2048'])
+                            ->setValidationRules(['required','mimes:jpeg,png,jpg', 'max:2048'])
                             ->setUploadSettings([
                                 'orientate' => [],
                                 'resize'    => [

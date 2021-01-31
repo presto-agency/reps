@@ -73,7 +73,7 @@ class ForumTopic extends Model
                 $file = new File($path);
                 $now = Carbon::now();
                 $pathC = $now->format('F').$now->year;
-                $filePath = ResizeImage::resizeImg($file, 500, null, true, "topics/images/{$pathC}/preview/", true);
+                $filePath = ResizeImage::resizeImg($file, 500, null, true, "images/topics/{$pathC}/preview/", true);
             } catch (Exception $e) {
                 Log::error($e->getMessage());
             }

@@ -123,6 +123,7 @@ class ReplayMap extends Section
                 })
                 ->setValidationRules([
                     'required',
+                    'mimes:jpeg,png,jpg',
                     'max:2048',
                 ])->setUploadSettings([
                     'orientate' => [],
