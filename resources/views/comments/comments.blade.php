@@ -134,14 +134,13 @@
 @endisset
 @section('custom-script')
     @parent
-    <script type="text/javascript" defer>
+    <script type="text/javascript">
         function quote(id) {
             $.ajax({
                 url: "{{ route('quote') }}",
                 method: "POST",
                 data: {
                     id: id,
-                    _token: '{{csrf_token()}}',
                 },
                 success: function (data) {
                     if (data.quote) {

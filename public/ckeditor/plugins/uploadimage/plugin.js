@@ -6,18 +6,11 @@
 'use strict';
 
 ( function() {
-<<<<<<< HEAD
+
 	var uniqueNameCounter = 0,
 		// Black rectangle which is shown before the image is loaded.
 		loadingImage = 'data:image/gif;base64,R0lGODlhDgAOAIAAAAAAAP///yH5BAAAAAAALAAAAAAOAA4AAAIMhI+py+0Po5y02qsKADs=';
 
-=======
-    console.log('iuuuuuuuuuuu');
-	var uniqueNameCounter = 0,
-		// Black rectangle which is shown before the image is loaded.
-		loadingImage = 'data:image/gif;base64,R0lGODlhDgAOAIAAAAAAAP///yH5BAAAAAAALAAAAAAOAA4AAAIMhI+py+0Po5y02qsKADs=';
-        console.log('upload');
->>>>>>> bc55a01f50381067a0ecf8ad0ad9ca156b3bf3aa
 	// Returns number as a string. If a number has 1 digit only it returns it prefixed with an extra 0.
 	function padNumber( input ) {
 		if ( input <= 9 ) {

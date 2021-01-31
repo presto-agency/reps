@@ -65,9 +65,6 @@
                 <label for="preview_content" class="night_text">{{__('Краткое описание')}}</label>
                 <textarea type="text" class="form-control create-topic__name night_input" id="preview_content"
                           name="preview_content">{{ clean(old('preview_content',$topic->preview_content)) }}</textarea>
-                <script>
-                    CKEDITOR.replace('preview_content', {});
-                </script>
             </div>
             @error('preview_content')
             <div class="alert alert-danger" role="alert">
@@ -78,9 +75,6 @@
                 <label for="main_content" class="night_text">{{__('*Содержание')}}</label>
                 <textarea type="text" class="form-control create-topic__name night_input" id="main_content"
                           name="content">{{ clean(old('content',$topic->content)) }}</textarea>
-                <script>
-                    CKEDITOR.replace('main_content', {});
-                </script>
             </div>
             @error('content')
             <div class="alert alert-danger" role="alert">
@@ -95,3 +89,13 @@
         </form>
     </div>
 @endif
+@section('custom-script')
+    @parent
+    <script type="text/javascript" src="{{ asset('ckeditor\ckeditor.js') }}" defer></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            CKEDITOR.replace('preview_content', {});
+            CKEDITOR.replace('main_content', {});
+        });
+    </script>
+@endsection

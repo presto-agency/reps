@@ -18,23 +18,14 @@
         <div class="bottom_menu">
             @guest
                 <button type="button" data-toggle="modal"
-                        data-target="#authorizationModal"><p>{{ __('Вход') }}</p></button>
+                        data-target="#authorizationModal"><span>{{ __('Вход') }}</span></button>
                 <button class="registration" type="button" data-toggle="modal"
-                        data-target="#registrationModal"><p>{{ __('Регистрация') }}</p></button>
+                        data-target="#registrationModal"><span>{{ __('Регистрация') }}</span></button>
             @else
                 @include('components.user_panel_mobile')
             @endguest
-            {{--            <button>--}}
-            {{--                <p>registration</p>--}}
-            {{--            </button>--}}
-            {{--            <button>--}}
-            {{--                <p>login</p>--}}
-            {{--            </button>--}}
+
         </div>
     </nav>
 </section>
-
-
-{{--        <label for="nav" class="nav-btn">--}}
-{{--            <span>X</span>--}}
 

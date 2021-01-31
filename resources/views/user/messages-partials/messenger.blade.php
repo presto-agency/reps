@@ -50,11 +50,6 @@
         <form>
                  <textarea name="editor_messenger" class="form-control night_input"
                            id="editor_messenger"></textarea>
-            <script>
-
-                CKEDITOR.replace('editor_messenger', {
-                });
-            </script>
             <div class="messenger__button">
                 <button class="button button__download-more">
                     Создать
@@ -64,3 +59,12 @@
 
     </div>
 </div>
+@section('custom-script')
+    @parent
+    <script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js') }}" defer></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            CKEDITOR.replace('editor_messenger', {});
+        });
+    </script>
+@endsection

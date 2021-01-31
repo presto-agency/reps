@@ -56,7 +56,24 @@ class ForumTopic extends Model
                 $file = new File($path);
                 $now = Carbon::now();
                 $pathC = $now->format('F').$now->year;
-                $filePath = ResizeImage::resizeImg($file, 400, 300, true, "images/topics/og/{$pathC}/", true);
+                $filePath = ResizeImage::resizeImg($file, 400, 300, true, "images/topics/og/{$pathC}/");
+            } catch (Exception $e) {
+                Log::error($e->getMessage());
+            }
+        }
+
+        return $filePath;
+    }
+
+    public static function setPreviewImgForList($path): string
+    {
+        $filePath = '';
+        if (!empty($path) && \File::exists($path)) {
+            try {
+                $file = new File($path);
+                $now = Carbon::now();
+                $pathC = $now->format('F').$now->year;
+                $filePath = ResizeImage::resizeImg($file, 500, null, true, "topics/images/{$pathC}/preview/", true);
             } catch (Exception $e) {
                 Log::error($e->getMessage());
             }

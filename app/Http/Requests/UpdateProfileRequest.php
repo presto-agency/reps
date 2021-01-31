@@ -49,7 +49,7 @@ class UpdateProfileRequest extends FormRequest
             'isq'          => 'nullable|string|max:255',
             'signature'    => 'nullable|string|max:255',
             'birthday'     => 'nullable|date',
-            'avatar'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'avatar'       => 'nullable|mimes:jpeg,png,jpg,gif|max:2048',
             'view_avatars' => 'boolean',
         ];
     }

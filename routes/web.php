@@ -77,9 +77,6 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'ban', 'verified'],],
     Route::post('{id}/load-more-user-images', 'User\UserGalleryController@loadUserImages')->name('load.more.user.images');
     /***---User Topics---***/
     Route::resource("{id}/user-topics", 'User\UserTopicsController');
-    /*** Ajax pagination user-sections(topics) ***/
-    //    Route::post('{id}/user-topics/load_sections', 'User\UserTopicsController@forumSectionsAjaxLoad')
-    //        ->name('user.topics.load.sections');
     /*** Ajax pagination user-sections-topics ***/
     Route::post('{id}/user-topics/load_sections_topics', 'User\UserTopicsController@forumSectionsTopicsAjaxLoad')
         ->name('user.topics.load.sections.topics');
@@ -118,7 +115,7 @@ Route::group(['prefix' => 'chat'], function () {
     Route::get('/get_messages', 'ChatController@get_messages')->name('chat.get_messages');
     Route::get('/get_externalsmiles', 'ChatController@get_externalsmiles')->name('chat.get_smiles');
     Route::get('/get_externalimages', 'ChatController@get_externalimages')->name('chat.get_images');
-    Route::get('/helps', 'ChatController@get_helps')->name('chat.get_helps');
+    Route::get('/helps', 'ChatController@getHelps')->name('chat.get_helps');
 });
 /***---Galleries---***/
 Route::resource('galleries', 'Gallery\GalleriesController');

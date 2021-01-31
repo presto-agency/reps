@@ -6,7 +6,6 @@
 
 
 
-// console.log(imgs);
 CKEDITOR.plugins.add( 'hkemoji', {
     icons: 'hkemoji',
     requires: 'dialog',
@@ -20,7 +19,7 @@ CKEDITOR.plugins.add( 'hkemoji', {
             command: 'hkemoji',
             toolbar: 'insert'
         });
-        console.log('path',this.path);
+
         CKEDITOR.dialog.add( 'hkemojiDialog', this.path + 'dialogs/hkemoji.js' );
     }
 });

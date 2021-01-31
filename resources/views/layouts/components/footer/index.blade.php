@@ -49,8 +49,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <p class="copyright__text">{{__('2002-2019 Replay Cafe | 2018-2019 Reps2 | 1998-2019 StarCraft: Brood War by
-                    Blizzard Entertainment')}}</p>
+                <p class="copyright__text">2002-{{date("Y")}} Replay Cafe | 2018-{{date("Y")}} Reps2 | 1998-{{date("Y")}} StarCraft: Brood War by Blizzard Entertainment</p>
             </div>
         </div>
     </div>

@@ -11,12 +11,16 @@
     <meta property="og:url" content="{{Request::url()}}"/>
     <meta property="og:site_name" content="{{config('app.name', 'Reps.ru')}}"/>
     <meta property="og:title" content="@section('meta-og-title'){{$metaTags ? $metaTags->getMetaTitle() : '' }}@show"/>
-    <meta property="og:keywords" content="@section('meta-og-keywords'){{$metaTags ? $metaTags->getMetaKeywords() : '' }}@show">
-    <meta property="og:description" content="@section('meta-og-description'){{$metaTags ? $metaTags->getMetaDescription() : '' }}@show"/>
+    <meta property="og:keywords"
+          content="@section('meta-og-keywords'){{$metaTags ? $metaTags->getMetaKeywords() : '' }}@show">
+    <meta property="og:description"
+          content="@section('meta-og-description'){{$metaTags ? $metaTags->getMetaDescription() : '' }}@show"/>
 
     <meta property="og:image" content="@section('meta-og-image'){{$metaTags ? $metaTags->getMetaIcon() : '' }}@show"/>
-    <meta property="og:image:alt" content="@section('meta-og-image-alt'){{$metaTags ? $metaTags->getMetaTitle() : '' }}@show"/>
-    <meta property="og:image:type" content="@section('meta-og-image-type'){{$metaTags ? $metaTags->getMetaIconType() : '' }}@show"/>
+    <meta property="og:image:alt"
+          content="@section('meta-og-image-alt'){{$metaTags ? $metaTags->getMetaTitle() : '' }}@show"/>
+    <meta property="og:image:type"
+          content="@section('meta-og-image-type'){{$metaTags ? $metaTags->getMetaIconType() : '' }}@show"/>
     <meta property="og:image:width" content="400"/>
     <meta property="og:image:height" content="300"/>
     <meta name="google-site-verification" content="{{config('services.google.site_verification')}}"/>
@@ -24,19 +28,13 @@
     {{--META TAGS--}}
     <meta name="title" content="@section('meta-title'){{$metaTags ? $metaTags->getMetaTitle() : '' }}@show">
     <meta name="keywords" content="@section('meta-keywords'){{$metaTags ? $metaTags->getMetaKeywords() : '' }}@show">
-    <meta name="description" content="@section('meta-description'){{$metaTags ? $metaTags->getMetaDescription() : '' }}@show">
+    <meta name="description"
+          content="@section('meta-description'){{$metaTags ? $metaTags->getMetaDescription() : '' }}@show">
 
-    {{--csrf_token--}}
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Site Icons -->
     <link rel="shortcut icon" href="{{asset('favicon.png')}}" type="image/png" sizes="32x32"/>
     {{--    CSRF Token  --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    {{--Script--}}
-    <script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ asset('ckeditor\ckeditor.js') }}"></script>
     {{--    Fonts   --}}
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
     {{--    Styles   --}}
@@ -89,7 +87,7 @@
 <footer>
     @include('layouts.components.footer.index')
 </footer>
-{{-- ========ALL MODAL WINDOWS ============== --}}
+
 <div class="modal fade modal_like-diselike" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="likeModal"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -113,16 +111,11 @@
         </div>
     </div>
 </div>
-{{--========== END ALL MODAL WINDOWS ============--}}
-{{--MAIN--}}
-<script type="text/javascript" src="{{ mix('js/app.js') }}" defer></script>
-{{--SCEditor--}}
-<script type="text/javascript" src="{{ asset('sceditor\minified\sceditor.min.js') }}" defer></script>
-{{-- SCEditor Include the BBCode or XHTML formats  --}}
-<script type="text/javascript" src="{{ asset('sceditor\minified\formats\bbcode.js') }}" defer></script>
-<script type="text/javascript" src="{{ asset('sceditor\minified\formats\xhtml.js') }}" defer></script>
+
+<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+
 @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())
-    <script type="text/javascript" defer>
+    <script type="text/javascript">
         /**
          * SCEditor
          * Path to files.
@@ -132,32 +125,61 @@
          * countriesPath: /storage/images/countries/flags/{$fileName}
          *
          */
-        const smiles = JSON.parse('{!! $smilesJson !!}');
-        const images = JSON.parse('{!! $imagesJson !!}');
-        const races = JSON.parse('{!! $raceJson !!}');
-        const countries = JSON.parse('{!! $countriesJson !!}');
+        const smilesJson = '{!! $smilesJson  !!}';
+        const imagesJson = '{!! $imagesJson  !!}';
+        const racesJson = '{!! $raceJson !!}';
+        const countriesJson = '{!! $countriesJson  !!}';
 
-        const getSmiles = smiles.map(function (item) {
-            return item.filename;
+        const smiles = smilesJson ? JSON.parse(smilesJson) : [];
+        const images = imagesJson ? JSON.parse(imagesJson) : [];
+        const races = racesJson ? JSON.parse(racesJson) : [];
+        const countries = countriesJson ? JSON.parse(countriesJson) : [];
+
+        const smiles1 =  smiles.map(function (item) {
+            if (item.filename !== ""){
+                return item.filename;
+            }
+            return  null;
         });
-        const getImages = images.map(function (item) {
-            return item.filename;
+        const getSmiles = smiles1.filter(function (el) {
+            return el != null;
         });
-        const getRaces = races.map(function (item) {
-            return item.filename;
+
+        const images1 =  images.map(function (item) {
+            if (item.filename !== ""){
+                return item.filename;
+            }
+            return  null;
         });
-        const getCountries = countries.map(function (item) {
-            return item.filename;
+        const getImages = images1.filter(function (el) {
+            return el != null;
+        });
+
+        const races1 =  races.map(function (item) {
+            if (item.filename !== ""){
+                return item.filename;
+            }
+            return  null;
+        });
+        const getRaces = races1.filter(function (el) {
+            return el != null;
+        });
+
+        const countries1 =  countries.map(function (item) {
+            if (item.filename !== ""){
+                return item.filename;
+            }
+            return  null;
+        });
+        const getCountries = countries1.filter(function (el) {
+            return el != null;
         });
     </script>
 @endif
-<script type="text/javascript" src="{{ asset('js/sceditor/sceditor.min.js') }}" defer></script>
-<script type="text/javascript" src="{{ asset('js/sceditor/formats/bbcode.js') }}" defer></script>
 <script type="text/javascript" src="https://kit.fontawesome.com/75f3a42e45.js" defer></script>
 
-
 @section('custom-script')
-    <script type="text/javascript" defer>
+    <script type="text/javascript">
         $(document).ready(function () {
             @if(Request::route()->getName() ==  'home.index' || Request::route()->getName() == 'news.index')
             /**
@@ -287,5 +309,6 @@
     </script>
 @show
 @yield('java-script')
+@stack('scripts')
 </body>
 </html>
