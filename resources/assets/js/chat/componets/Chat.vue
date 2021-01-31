@@ -23,9 +23,9 @@
 </template>
 
 <script>
-    import moment from 'moment'
+    // import moment from 'moment'
     import * as chatHelper from '../helper/chatHelper';
-    import * as utilsHelper from '../helper/utilsHelper';
+    // import * as utilsHelper from '../helper/utilsHelper';
     import {bus} from "../chat";
     export default {
         name: "Chat",

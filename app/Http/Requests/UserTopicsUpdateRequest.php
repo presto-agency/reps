@@ -27,7 +27,7 @@ class UserTopicsUpdateRequest extends FormRequest
         return [
             'forum_section'   => 'exists:forum_sections,id',
             'title'           => 'string|between:5,255',
-            'preview_img'     => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'preview_img'     => 'nullable|mimes:jpeg,png,jpg|max:2048',
             'preview_content' => 'nullable|string|between:10,10000',
             'content'         => 'string|between:10,50000',
         ];

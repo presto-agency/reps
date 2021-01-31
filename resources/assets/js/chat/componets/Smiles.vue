@@ -1,7 +1,7 @@
 <template>
     <transition name="fade">
         <div v-if="status" class="component_smiles">
-            <img class="close-smiles" src="../../icons/cancel.png" alt="close" @click="CloseSmiles">
+            <img class="close-smiles" src="/images/chat/icons/cancel.png" alt="close" @click="CloseSmiles">
             <div class="smiles-list">
                 <img class="smiles-list-item" v-for="(smile, index) in smiles" :key="`smile-${index}`"
                      :src="`storage/chat/smiles/${smile.src}`"

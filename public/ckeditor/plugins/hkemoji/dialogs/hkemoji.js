@@ -134,9 +134,7 @@ CKEDITOR.dialog.add( 'hkemojiDialog', function( editor ) {
 			if(group === 'game_races') config.smiley_path='/images/default/';
             if(group === 'flags') config.smiley_path='/storage/images/countries/';
             var urlimage = config.smiley_path+group+'/'+shortcode;
-			console.log('path',config.smiley_path);
-            console.log('group',group);
-            console.log('shortcode',shortcode);
+
 			html.push(
 				'<td class="cke_centered" style="vertical-align: middle;" role="presentation">' +
 				'<img class="hkemoji" cke_src="'+ CKEDITOR.tools.htmlEncode(urlimage) + '" src="'+ urlimage + '" href="javascript:void(0)" onkeydown="CKEDITOR.tools.callFunction( ', onKeydown, ', event, this );"/>', '</td>'

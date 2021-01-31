@@ -14,6 +14,7 @@ class ForumTopicObserver
         $forumTopic->setAttribute('user_id', auth()->id());
         $forumTopic->setAttribute('commented_at', Carbon::now());
         $path = $forumTopic::getOgIconPath($forumTopic->getAttribute('preview_img'));
+        $forumTopic::setPreviewImgForList($forumTopic->getAttribute('preview_img'));
         if ( ! is_null($path)) {
             $forumTopic->setAttribute('seo_og_image', $path);
         }
@@ -29,6 +30,7 @@ class ForumTopicObserver
     public function created(ForumTopic $forumTopic)
     {
         event(new UserUploadForumTopic($forumTopic));
+        $forumTopic::setPreviewImgForList($forumTopic->getAttribute('preview_img'));
     }
 
     public function updating(ForumTopic $forumTopic)
@@ -48,6 +50,7 @@ class ForumTopicObserver
      */
     public function updated(ForumTopic $forumTopic)
     {
+        $forumTopic::setPreviewImgForList($forumTopic->getAttribute('preview_img'));
     }
 
     /**

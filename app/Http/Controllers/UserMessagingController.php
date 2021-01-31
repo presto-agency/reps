@@ -14,11 +14,8 @@ class UserMessagingController extends Controller
 {
 
     /**
-     * Get message list for user
-     *
-     * @param $id
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param  bool  $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function getUser($id = false)
     {
@@ -93,6 +90,7 @@ class UserMessagingController extends Controller
                 }
             }
         }
+
     }
 
     public function loadMoreMessages(Request $request, $dialogue_id)

@@ -1,8 +1,8 @@
 <template>
     <transition name="fade">
         <div v-if="status" class="component_image">
-            <div class="categories ">
-                <img class="close-images" src="../../icons/cancel.png" alt="close" @click="CloseImages">
+            <div class="categories ">..
+                <img class="close-images" src="/images/chat/icons/cancel.png" alt="close" @click="CloseImages">
                 <p class="category__item" :class="{active: category.active}" v-for="(category,index) in all_images" @click="change_Category(index)">{{category.category}}</p>
             </div>
             <div class=" row images">

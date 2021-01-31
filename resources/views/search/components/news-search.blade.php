@@ -14,10 +14,28 @@
     @if(isset($news) && $news->isNotEmpty())
         @foreach($news as $item)
             <div class="breaking-news__news-card card night_modal">
-                @if(!empty($item->preview_img) && checkFile::checkFileExists($item->preview_img))
-                    <a href="{{ route('news.show', $item->id) }}">
-                        <img src="{{ asset($item->preview_img) }}" class="card-img-top" alt="news">
-                    </a>
+                @if(!empty($item->preview_img))
+                    @php
+                        $previewCropPath = null;
+                       try {
+                              $pieces = explode("/", $item->preview_img);
+                              $p1 = "$pieces[0]/$pieces[1]/$pieces[2]/$pieces[3]/preview/$pieces[4]";
+                              if (checkFile::checkFileExists($p1)){
+                                $previewCropPath = $p1;
+                              }else {
+                                  if (checkFile::checkFileExists($item->preview_img)){
+                                    $previewCropPath = $item->preview_img;
+                                  }
+                              }
+                        }catch (\Exception $e){
+
+                        }
+                    @endphp
+                    @if(!empty($previewCropPath))
+                        <a href="{{ route('news.show', $item->id) }}">
+                            <img src="{{ asset($previewCropPath) }}" class="card-img-top" alt="news">
+                        </a>
+                    @endif
                 @endif
                 <div class="card-body night_text">
                     <div class="card-body__author">

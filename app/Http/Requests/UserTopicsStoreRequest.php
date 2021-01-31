@@ -27,7 +27,7 @@ class UserTopicsStoreRequest extends FormRequest
         return [
             'forum_section'   => 'required|exists:forum_sections,id',
             'title'           => 'required|string|between:5,255',
-            'preview_img'     => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'preview_img'     => 'nullable|mimes:jpeg,png,jpg|max:2048',
             'preview_content' => 'nullable|between:10,10000',
             'content'         => 'required|string|between:10,50000',
         ];

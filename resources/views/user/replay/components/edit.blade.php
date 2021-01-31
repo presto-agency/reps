@@ -216,9 +216,6 @@
                 <label for="preview_content" class="night_text">{{__('Краткое описание')}}</label>
                 <textarea name="short_description" class="form-control night_input"
                           id="preview_content">{{ clean(old('short_description',$userReplayEdit->content)) }}</textarea>
-                <script>
-                    CKEDITOR.replace('preview_content', {});
-                </script>
             </div>
             @error('short_description')
             <div class="alert alert-danger" role="alert">
@@ -277,8 +274,14 @@
     </div>
 </div>
 @section('custom-script')
-        @parent
+    @parent
     <script type="text/javascript" src="{{mix('js/assets/replay_iframe.js')}}" defer></script>
+    <script type="text/javascript" src="{{asset('ckeditor/ckeditor.js')}}" defer></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            CKEDITOR.replace('preview_content', {});
+        });
+    </script>
 @endsection
 
 

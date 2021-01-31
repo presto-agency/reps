@@ -13,7 +13,6 @@
             </ul>
         </div>
     @endif
-    {{--@include('user.messages-partials.messenger')--}}
     <div class="messenger border_shadow">
         <div class="messenger__title">
             <p class="title__text">{{__('Мои сообщения')}}</p>
@@ -42,9 +41,7 @@
                     <label for="editor_messenger" class="night_text"></label>
 
                     <textarea name="message" class="form-control night_input" id="editor_messenger"></textarea>
-                    <script>
-                        CKEDITOR.replace('editor_messenger', {});
-                    </script>
+
                     <div class="messenger__button">
                         <button class="button button__download-more">
                             {{__('Отправить')}}
@@ -57,9 +54,14 @@
         @endif
     </div>
 @endsection
-@section('java-script')
+
+@section('custom-script')
+    @parent
+    <script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js') }}" defer></script>
     <script type="text/javascript">
-        $(function () {
+        $(document).ready(function () {
+            CKEDITOR.replace('editor_messenger', {});
+
             function appendMyMessage(data) {
                 var contentText = $('<div class="content__text"></div>')
                     .append(data.message);

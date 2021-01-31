@@ -39,15 +39,15 @@
             <Color :textareaId="textareaId" :status="chat_action.color"  @turnOffStatus="turnOffStatus" @textarealistener="textareafoo($event)" :selection="selection" ></Color>
             <Question v-show="questionShow"/>
             <div class="form-group-toolbar">
-                <img src="../../icons/bold.svg" alt="" class="toolbar_item" @click="bold(textareaId)">
-                <img src="../../icons/italic.svg" alt="" class="toolbar_item" @click="italic(textareaId)">
-                <img src="../../icons/underline.svg" alt="" class="toolbar_item" @click="underline(textareaId)">
-                <img src="../../icons/font.svg" alt="" class="toolbar_item" @click="selectItem('color',textareaId)">
-                <img src="../../icons/link.svg" alt="" class="toolbar_item" @click="link(textareaId)">
-                <img src="../../icons/picture.svg" alt="" class="toolbar_item" @click="img(textareaId)">
-                <img src="../../icons/smile.svg" alt="" class="toolbar_item" @click="selectItem('smile')">
-                <img src="../../icons/folder.svg" alt="" class="toolbar_item" @click="selectItem('image')">
-                <img src="../../icons/question.png" alt="" class="toolbar_item" @click="questionShow=!questionShow">
+                <img src="/images/chat/icons/bold.svg" alt="bold" class="toolbar_item" @click="bold(textareaId)">
+                <img src="/images/chat/icons/italic.svg" alt="italic" class="toolbar_item" @click="italic(textareaId)">
+                <img src="/images/chat/icons/underline.svg" alt="underline" class="toolbar_item" @click="underline(textareaId)">
+                <img src="/images/chat/icons/font.svg" alt="font" class="toolbar_item" @click="selectItem('color',textareaId)">
+                <img src="/images/chat/icons/link.svg" alt="link" class="toolbar_item" @click="link(textareaId)">
+                <img src="/images/chat/icons/picture.svg" alt="picture" class="toolbar_item" @click="img(textareaId)">
+                <img src="/images/chat/icons/smile.svg" alt="smile" class="toolbar_item" @click="selectItem('smile')">
+                <img src="/images/chat/icons/folder.svg" alt="folder" class="toolbar_item" @click="selectItem('image')">
+                <img src="/images/chat/icons/question.png" alt="question" class="toolbar_item" @click="questionShow=!questionShow">
             </div>
             <textarea v-model="textMessage" @keyup.enter="sendMessage" class="form-control night_input" :id="textareaId">
            </textarea>

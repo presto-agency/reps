@@ -221,9 +221,6 @@
                 <label for="preview_content" class="night_text">{{__('Краткое описание')}}</label>
                 <textarea name="content" class="form-control night_input"
                           id="preview_content">{{clean(old("content"))}}</textarea>
-                <script type="text/javascript" defer>
-                    CKEDITOR.replace('preview_content', {});
-                </script>
             </div>
             @error('content')
             <div class="alert alert-danger" role="alert">
@@ -276,4 +273,10 @@
 @section('custom-script')
     @parent
     <script type="text/javascript" src="{{mix('js/assets/replay_iframe.js')}}" defer></script>
+    <script type="text/javascript" src="{{ asset('ckeditor\ckeditor.js') }}" defer></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            CKEDITOR.replace('preview_content', {});
+        });
+    </script>
 @endsection

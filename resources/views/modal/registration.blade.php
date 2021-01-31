@@ -72,9 +72,10 @@
                         <input type="password" class="form-control night_input" id="registration-rePassword"
                                name="password_confirmation" autocomplete="new-password" required
                                placeholder="{{ __('Confirm Password') }}">
-
-                        <div class="g-recaptcha" name="g-recaptcha-response"
-                             data-sitekey="{{ config('recaptcha.CAPTCHA_SITE_KEY') }}"></div>
+                        @if(!empty(config('recaptcha.CAPTCHA_SITE_KEY')))
+                            <div class="g-recaptcha" name="g-recaptcha-response"
+                                 data-sitekey="{{ config('recaptcha.CAPTCHA_SITE_KEY') }}"></div>
+                        @endif
                         @error('g-recaptcha-response')
                         <div class="alert alert-danger" role="alert">
                             <strong>{{ $message }}</strong>
@@ -92,4 +93,6 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src='https://www.google.com/recaptcha/api.js' defer async></script>
 

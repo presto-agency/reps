@@ -14,10 +14,28 @@
     @if(isset($fixingNews) && $fixingNews->isNotEmpty())
         @foreach($fixingNews as $single_news)
             <div class="breaking-news__news-card card night_modal">
-                @if(!empty($single_news->preview_img) && checkFile::checkFileExists($single_news->preview_img))
-                    <a href="{{ route('news.show', $single_news->id) }}">
-                        <img src="{{ asset($single_news->preview_img) }}" class="card-img-top" alt="news">
-                    </a>
+                @if(!empty($single_news->preview_img))
+                    @php
+                        $previewCropPath = null;
+                       try {
+                              $pieces = explode("/", $single_news->preview_img);
+                              $p1 = "$pieces[0]/$pieces[1]/$pieces[2]/$pieces[3]/preview/$pieces[4]";
+                              if (checkFile::checkFileExists($p1)){
+                                $previewCropPath = $p1;
+                              }else{
+                                  if (checkFile::checkFileExists($single_news->preview_img)){
+                                      $previewCropPath = $single_news->preview_img;
+                                  }
+                              }
+                        }catch (\Exception $e){
+
+                        }
+                    @endphp
+                    @if(!empty($previewCropPath))
+                        <a href="{{ route('news.show', $single_news->id) }}">
+                            <img src="{{ asset($previewCropPath) }}" class="card-img-top" alt="news">
+                        </a>
+                    @endif
                 @endif
                 <div class="card-body night_text">
                     <div class="card-body__author">
@@ -93,10 +111,28 @@
     @if(isset($news) && $news->isNotEmpty())
         @foreach($news as $single_news)
             <div class="breaking-news__news-card card night_modal">
-                @if(!empty($single_news->preview_img) && checkFile::checkFileExists($single_news->preview_img))
-                    <a href="{{ route('news.show', $single_news->id) }}">
-                        <img src="{{ asset($single_news->preview_img) }}" class="card-img-top" alt="news">
-                    </a>
+                @if(!empty($single_news->preview_img))
+                    @php
+                        $previewCropPath = null;
+                       try {
+                              $pieces = explode("/", $single_news->preview_img);
+                              $p1 = "$pieces[0]/$pieces[1]/$pieces[2]/$pieces[3]/preview/$pieces[4]";
+                              if (checkFile::checkFileExists($p1)){
+                                $previewCropPath = $p1;
+                              }else{
+                                  if (checkFile::checkFileExists($single_news->preview_img)){
+                                      $previewCropPath = $single_news->preview_img;
+                                  }
+                              }
+                        }catch (\Exception $e){
+
+                        }
+                    @endphp
+                    @if(!empty($previewCropPath))
+                        <a href="{{ route('news.show', $single_news->id) }}">
+                            <img src="{{ asset($previewCropPath) }}" class="card-img-top" alt="news">
+                        </a>
+                    @endif
                 @endif
                 <div class="card-body night_text">
                     <div class="card-body__author">

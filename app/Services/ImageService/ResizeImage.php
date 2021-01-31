@@ -17,18 +17,12 @@ class ResizeImage
      * @param $height
      * @param $aspectRatio
      * @param $path
-     * @param  bool  $encode
+     * @param  bool  $saveName
      *
      * @return string
      */
-    public static function resizeImg($imageFile, $width, $height, $aspectRatio, $path, $encode = false)
+    public static function resizeImg($imageFile, $width, $height, $aspectRatio, $path, $saveName = false)
     {
-        if (method_exists($imageFile, 'getClientOriginalExtension')) {
-            $ext = $imageFile->getClientOriginalExtension();
-        } elseif (method_exists($imageFile, 'getExtension')) {
-            $ext = $imageFile->getExtension();
-        }
-
 
         self::checkPath($path);
 
@@ -44,14 +38,15 @@ class ResizeImage
         $openImage = Image::make($imageFile);
         $openImage->resize($width, $height, $aspectRatio);
 
-        if ($encode) {
-            $openImage->encode('png', 100);
-            $ext = 'png';
+
+        if ($saveName) {
+            $fullPath = "storage/$path".$imageFile->getFileName();
+        } else {
+            $fullPath = "storage/$path".Str::random(32).'.png';
         }
+        $openImage->encode('png', 100);
 
-        $fullPath = "storage/{$path}".Str::random(32).".{$ext}";
-
-        $openImage->save($fullPath, 100);
+        $openImage->save($fullPath);
 
 
         return $fullPath;

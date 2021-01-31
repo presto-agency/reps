@@ -32,15 +32,6 @@
                     <strong>{{ $message }}</strong>
                 </div>
                 @enderror
-                <script type="text/javascript" defer>
-                    {{--let areas = Array('content-comment');--}}
-                    {{--$.each(areas, function (i, area) {--}}
-                    {{--    CKEDITOR.replace(area, {--}}
-                    {{--        customConfig: '{{asset('/ckeditor/commentsConfig.js')}}'--}}
-                    {{--    });--}}
-                    {{--});--}}
-                    CKEDITOR.replace('content-comment', {});
-                </script>
                 <div class="messenger__button add-comment__btn">
                     <button class="button button__download-more">
                         {{__('Отправить')}}
@@ -52,3 +43,18 @@
         <p class="none_text night_text">{{__('Авторизуйтесь чтобы отправить комментарий')}}</p>
     @endif
 </div>
+
+
+
+@section('custom-script')
+    @parent
+    @if(auth()->check() && auth()->user()->isNotBan() && auth()->user()->isVerified())
+        <script type="text/javascript" src="{{ asset('ckeditor\ckeditor.js') }}" defer></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                CKEDITOR.replace('content-comment', {});
+            });
+        </script>
+    @endif
+@endsection
+

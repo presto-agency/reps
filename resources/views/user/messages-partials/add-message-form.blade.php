@@ -8,5 +8,14 @@
             </button>
         </div>
     </form>
-
 </div>
+
+@section('custom-script')
+    @parent
+    <script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js') }}" defer></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            CKEDITOR.replace('editor_messenger', {});
+        });
+    </script>
+@endsection

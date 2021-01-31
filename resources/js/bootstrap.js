@@ -7,11 +7,14 @@ window._ = require('lodash');
  */
 
 try {
-    window.Popper = require('popper.js').default;
+    const {default: popperDefault} = require('popper.js');
+
+    window.Popper = popperDefault
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
 } catch (e) {
+    console.error(e);
 }
 
 /**
@@ -29,13 +32,27 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * all outgoing HTTP requests automatically have it attached. This is just
  * a simple convenience so we don't have to attach every token manually.
  */
+const metaCsrfToken = document.head.querySelector('meta[name="csrf-token"]');
 
-let token = document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+if (typeof axios !== 'undefined') {
+    let {content} = metaCsrfToken || {}
+    if (content) {
+        window.axios.defaults.headers.common['X-CSRF-TOKEN'] = content;
+    } else {
+        console.error('CSRF token not found');
+    }
+}
+if (typeof $ !== 'undefined') {
+    let {content} = metaCsrfToken || {}
+    if (content) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': content
+            },
+        });
+    } else {
+        console.error('CSRF token not found');
+    }
 }
 
 /**
@@ -46,29 +63,10 @@ import Echo from 'laravel-echo'
 
 window.io = require('socket.io-client');
 
-
 if (typeof io !== 'undefined') {
-    // init
     window.Echo = new Echo({
         broadcaster: 'socket.io',
-        host: 'https://reps.ru:6001',
+        host: window.location.hostname + ':6001',
         encrypted: true
     });
-    // try {
-    //     //bind our events
-    //     window.Echo.connector.socket.on('connect', function () {
-    //         try {
-    //             //start our events
-    //             window.Echo.channel('repsChatCheckMessage').listen('CheckNewMessage', (e) => {
-    //                 console.log(e);
-    //             });
-    //         } catch (error) {
-    //             console.error('Echo channel - error');
-    //         }
-    //
-    //     });
-    // } catch (error) {
-    //     console.error('Echo connector - error');
-    // }
-
 }
