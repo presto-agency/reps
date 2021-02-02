@@ -16,7 +16,7 @@ class ReplaysController extends Controller
      * @OA\GET(
      *     summary="INDEX",
      *     path=GET_REPLAY_INDEX,
-     *     description="Get replays this route have next param exemple:<br>/candidates?skip=0&take=10&type=pro",
+     *     description="Get pro replays",
      *     tags={"Replays"},
      *       @OA\Parameter(
      *         name="skip",
@@ -35,19 +35,6 @@ class ReplaysController extends Controller
      *         @OA\Schema(
      *          type="integer",
      *          @OA\Property(property="take"),
-     *         ),
-     *         style="form"
-     *     ),
-     *      @OA\Parameter(
-     *         name="type",
-     *         in="query",
-     *         description="Lis of types to `type by.` exemple: `pro`",
-     *         @OA\Schema(
-     *         type="array",
-     *           @OA\Items(
-     *               type="string",
-     *               enum={"pro", "user", "all"},
-     *           ),
      *         ),
      *         style="form"
      *     ),
@@ -114,32 +101,18 @@ class ReplaysController extends Controller
         if ($take > 100) {
             $take = 100;
         }
-        $replays = Replay::ofUserReplay(self::getTypeId($request))
-            ->with(['maps', 'firstCountries', 'secondCountries', 'firstRaces', 'secondRaces', 'types'])
+        $replays = Replay::with(['maps', 'firstCountries', 'secondCountries', 'firstRaces', 'secondRaces', 'types'])
+            ->where('user_replay', Replay::REPLAY_PRO)
             ->where('approved', 1)
-            ->skip($skip)->take($take)
             ->orderByDesc('id')
+            ->skip($skip)->take($take)
             ->get();
 
         return response()->json([
-            'total'   => Replay::ofUserReplay(self::getTypeId($request))->where('approved', 1)->count(),
+            'total'   => Replay::query()->where('user_replay', Replay::REPLAY_PRO)->where('approved', 1)->count(),
             'replays' => ApiGetReplaysResource::collection($replays),
         ], 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-    }
-
-    private static function getTypeId(Request $request)
-    {
-        switch ($request->get('type')) {
-            case  Replay::$type[Replay::REPLAY_PRO]:
-                return Replay::REPLAY_PRO;
-            case  Replay::$type[Replay::REPLAY_USER]:
-                return Replay::REPLAY_USER;
-            case 'all':
-                return [Replay::REPLAY_PRO, Replay::REPLAY_USER];
-            default :
-                return null;
-        }
     }
 
 }

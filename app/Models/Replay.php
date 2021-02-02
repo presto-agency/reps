@@ -92,24 +92,4 @@ class Replay extends Model
             ->get();
     }
 
-    /**
-     * @param  Builder  $query
-     * @param $user_replay
-     * @return Builder
-     */
-    public function scopeOfUserReplay(Builder $query, $user_replay): Builder
-    {
-        if (is_null($user_replay)) {
-            return $query;
-        }
-
-        if (is_array($user_replay)) {
-            return $query->whereIn('user_replay', $user_replay);
-        }
-
-        return $query->where('user_replay', $user_replay);
-
-
-    }
-
 }
