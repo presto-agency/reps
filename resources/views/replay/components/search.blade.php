@@ -62,6 +62,7 @@
                             <span class="comment-author__replay-item night_text">{{__('VOD')}}</span>
                         @endif
                     </div>
+                    @if(!empty($item->file) && checkFile::checkFileExists($item->file))
                     <div class="subtitle__icons">
                         <svg version="1.1" id="Capa_1"
                              xmlns="http://www.w3.org/2000/svg"
@@ -98,6 +99,7 @@
                             <span class="night_text" id="downloaded_{{$item->id}}">{{$item->downloaded}}</span>
                         </a>
                     </div>
+                    @endif
                 </div>
                 <p class="match__comment night_text">{!!ParserToHTML::toHTML($item->content,'size')!!}</p>
                 <div class="match__info">
@@ -169,24 +171,3 @@
         </div>
     @endif
 </div>
-<script type="text/javascript" defer>
-    /**
-     * Replay File download
-     */
-    $('.downloaded').click(function () {
-        let id = $(this).data('id');
-        $.ajax({
-            method: 'POST',
-            url: $(this).data('url'),
-            data: {
-                _token: '{{csrf_token()}}',
-                id: id,
-            },
-            success: function (data) {
-                $('#downloaded_' + id).html(data.downloaded);
-            },
-            error: function (data) {
-            }
-        });
-    });
-</script>

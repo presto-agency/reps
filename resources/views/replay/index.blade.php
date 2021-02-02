@@ -15,8 +15,9 @@
 
 @section('custom-script')
     @parent
-    <script type="text/javascript" defer>
+    <script type="text/javascript">
         $(document).ready(function () {
+
             loadReplays('',);
 
             function loadReplays(id = '',) {
@@ -32,6 +33,22 @@
                     success: function (data) {
                         $('#load_more-replay').remove();
                         $('#load_replays-list').append(data);
+                        $('.downloaded').on('click', function () {
+                            let id = $(this).data('id');
+                            $.ajax({
+                                method: 'POST',
+                                url: $(this).data('url'),
+                                data: {
+                                    _token: '{{csrf_token()}}',
+                                    id: id,
+                                },
+                                success: function (data) {
+                                    $('#downloaded_' + id).html(data.downloaded);
+                                },
+                                error: function (data) {
+                                }
+                            });
+                        });
                     }
                 })
             }
