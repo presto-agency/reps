@@ -38,6 +38,22 @@
                     success: function (data) {
                         $('#load_replays_search').remove();
                         $('#set_found_replays').append(data);
+                        $('.downloaded').on('click',function () {
+                            let id = $(this).data('id');
+                            $.ajax({
+                                method: 'POST',
+                                url: $(this).data('url'),
+                                data: {
+                                    _token: '{{csrf_token()}}',
+                                    id: id,
+                                },
+                                success: function (data) {
+                                    $('#downloaded_' + id).html(data.downloaded);
+                                },
+                                error: function (data) {
+                                }
+                            });
+                        });
                     }
                 })
             }

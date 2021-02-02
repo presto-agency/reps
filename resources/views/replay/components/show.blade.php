@@ -25,19 +25,6 @@
                         <img class="icon_bars" src="{{asset($replayShow->users->avatarOrDefault())}}"
                              alt="avatar"/>
                     @endauth
-{{--                    <div class="block_minerals_icons text_pts">--}}
-{{--                        <p class="title__text info__text" title="{{$replayShow->users->comments_count}}">{{$replayShow->users->comments_count}}</p>--}}
-{{--                        <img class="minerals_icons" title="minerals" alt="min"--}}
-{{--                             src="{{asset('images/minerals_icons/min.png') }}">--}}
-{{--                        <p class="title__text text_special info__text">|</p>--}}
-{{--                        <p class="title__text info__text" title="{{$replayShow->users->rating}}">{{$replayShow->users->rating}}</p>--}}
-{{--                        <img class="minerals_icons" title="supply" alt="sup"--}}
-{{--                             src="{{asset('images/minerals_icons/supp.png') }}">--}}
-{{--                        <p class="title__text text_special info__text">|</p>--}}
-{{--                        <p class="title__text info__text" title="{{ $replayShow->users->gas_balance }}">{{ $replayShow->users->gas_balance }}</p>--}}
-{{--                        <img class="minerals_icons" title="gas" alt="gas"--}}
-{{--                             src="{{asset('images/minerals_icons/gaz.png') }}">--}}
-{{--                    </div>--}}
                 @endif
             </div>
         </div>
@@ -180,36 +167,38 @@
                         <span>{{$replayShow->negative_count}}</span>
                     </a>
                 </div>
-                <div class="replay-download">
-                    <svg class="night_svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                         xmlns:xlink="http://www.w3.org/1999/xlink"
-                         x="0px" y="0px" viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;"
-                         xml:space="preserve">
+                @if(!empty($replayShow->file) && checkFile::checkFileExists($replayShow->file))
+                    <div class="replay-download">
+                        <svg class="night_svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                             x="0px" y="0px" viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;"
+                             xml:space="preserve">
                             <path d="M457.7,230.1c-7.5,0-13.5,6-13.5,13.5v122.8c0,33.4-27.2,60.5-60.5,60.5H87.5C54.1,427,27,399.8,27,366.5V241.7
                                 c0-7.5-6-13.5-13.5-13.5S0,234.2,0,241.7v124.8C0,414.8,39.3,454,87.5,454h296.2c48.3,0,87.5-39.3,87.5-87.5V243.7
                                 C471.2,236.2,465.2,230.1,457.7,230.1z"></path>
-                        <path d="M226.1,346.8c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-62.7,62.8V30.8
+                            <path d="M226.1,346.8c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-62.7,62.8V30.8
                                 c0-7.5-6-13.5-13.5-13.5s-13.5,6-13.5,13.5v273.9l-62.8-62.8c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1L226.1,346.8z"></path>
                             </svg>
-                    <a class="downloaded" data-id="{{$replayShow->id}}"
-                       href="{{route('replay.download',['id' =>$replayShow->id])}}"
-                       data-url="{{route('replay.increment.downloaded',['id'=>$replayShow->id])}}">
-                        <span>{{__('Скачать')}}</span>
-                        <span id="downloaded_{{$replayShow->id}}">{{$replayShow->downloaded}}</span>
-                    </a>
-                </div>
+                        <a class="downloaded" data-id="{{$replayShow->id}}"
+                           href="{{route('replay.download',['id' =>$replayShow->id])}}"
+                           data-url="{{route('replay.increment.downloaded',['id'=>$replayShow->id])}}">
+                            <span>{{__('Скачать')}}</span>
+                            <span id="downloaded_{{$replayShow->id}}">{{$replayShow->downloaded}}</span>
+                        </a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
 </section>
 @if(!empty($replayShow->src_iframe))
-    <iframe
-        {{--        class="replay_video border_shadow"--}}
-        src="{{$replayShow->src_iframe}}"
-        width="100%" height="340" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    <iframe src="{{$replayShow->src_iframe}}" width="100%" height="340" frameborder="0" scrolling="no"
+            allowfullscreen></iframe>
 @endif
 
-<script type="text/javascript" defer>
+@section('custom-script')
+    @parent
+<script type="text/javascript">
     /**
      * Replay File download
      */
@@ -230,3 +219,4 @@
         });
     });
 </script>
+@endsection
