@@ -219,6 +219,8 @@
             @endif
             @if(!empty(Session::get('showModal')) && Session::get('showModal') == 'ban')
             $('#userInBanModal').modal('show');
+            @endif @if(!empty(Session::get('showModal')) && Session::get('showModal') == 'no_email_confirm')
+            $('#noEmailConfirm').modal('show');
             @endif
         });
 

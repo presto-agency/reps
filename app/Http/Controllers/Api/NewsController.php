@@ -65,7 +65,10 @@ class NewsController extends Controller
      */
     public function last()
     {
-        return response()->json(['news' => ApiGetNewsResource::collection(ForumTopic::getLastFixNewsWithNews())], 200,
+        $importantNews = ForumTopic::getLastImportantNews();
+        $newsAndFixNews = ForumTopic::getLastFixNewsWithNews();
+        $all = $importantNews->merge($newsAndFixNews);
+        return response()->json(['news' => ApiGetNewsResource::collection($all)], 200,
             ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }

@@ -81,9 +81,10 @@ class NewsController extends Controller
                 $news = $this->newsWithId($request);
             } else {
                 // get last 5 fix news
+                $importantNews = ForumTopic::getLastImportantNews();
                 $fixingNews = ForumTopic::getLastWithParamsNewsIndex(false, true, true, 3);
 
-                $newsFixCount = abs($fixingNews->count() - 5);
+//                $newsFixCount = abs($fixingNews->count() - 5);
                 // get last 10 fix news
                 $news = ForumTopic::getLastWithParamsNewsIndex(false, false, true, 3);
 //                $news = $this->news();
@@ -99,7 +100,7 @@ class NewsController extends Controller
                 $visible_title = true;
             }
 
-            return view('news.components.index', compact('news', 'fixingNews', 'visible_title'));
+            return view('news.components.index', compact('importantNews','fixingNews', 'news', 'visible_title'));
         }
 
         return \Response::json([], 404);
