@@ -18,13 +18,20 @@ class LoginAccess
      */
     public function handle($request, Closure $next)
     {
-        $user = User::where('email', $request->email)->value('ban');
+        $user = null;
+        if ($request->email) {
+            $user = User::where('email', $request->email)->first();
+        }
 
-        if ($user == 1) {
+        if ($user && $user->ban) {
             \Session::flash('showModal', 'ban');
             return back();
         }
-        if (auth()->check() && auth()->user()->ban == 1){
+        if ($user && is_null($user->email_verified_at)) {
+            \Session::flash('showModal', 'no_email_confirm');
+            return back();
+        }
+        if (auth()->check() && auth()->user()->ban) {
             auth()->logout();
             \Session::flash('showModal', 'ban');
             return back();

@@ -7,3 +7,4 @@
 @endguest
 
 @include('modal.ban_message')
+@include('modal.no_email_confirm_message')

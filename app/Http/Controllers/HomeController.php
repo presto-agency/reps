@@ -16,9 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index')->with([
-            'importantNews' => ForumTopic::getLastImportantNews()
-        ]);
+        return view('home.index');
     }
 
 }
