@@ -52,6 +52,10 @@ Route::post('tourney_lists/match_generator_losers',
     '\App\Http\Controllers\Admin\Tournament\MatchGeneratorController@matchGeneratorLosers')
     ->name('admin.tourney.match.generator.losers');
 
+Route::get('settings', '\App\Http\Controllers\Admin\SettingController@show')
+    ->name('admin.settings.show');
+Route::post('settings', '\App\Http\Controllers\Admin\SettingController@save')
+    ->name('admin.settings.save');
 /**
  * Logs
  */

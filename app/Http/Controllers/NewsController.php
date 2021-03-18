@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Admin\SettingController;
 use App\Models\ForumTopic;
 use Illuminate\Http\Request;
 
@@ -100,7 +101,7 @@ class NewsController extends Controller
                 $visible_title = true;
             }
 
-            return view('news.components.index', compact('importantNews','fixingNews', 'news', 'visible_title'));
+            return view('news.components.index', compact('importantNews', 'fixingNews', 'news', 'visible_title'));
         }
 
         return \Response::json([], 404);
@@ -157,7 +158,7 @@ class NewsController extends Controller
             ->where('important', false)
             ->withCount('comments')
             ->orderByDesc('id')
-            ->limit(5)
+            ->limit(SettingController::countLoadNews())
             ->get();
     }
 
