@@ -219,9 +219,13 @@ class ForumTopic extends Model
     public static function getLastWithParamsNewsIndex($hide, $fixing, $news, $extraLimit)
     {
         $data = collect();
+
+        if ($extraLimit === 0) {
+            return $data;
+        }
+
         $extra = 0;
         $lastId = null;
-
         $item = ForumTopic::with('author:id,name,avatar')
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
             ->where('hide', $hide)
@@ -264,18 +268,20 @@ class ForumTopic extends Model
 
     public static function getLastImportantNews($take)
     {
-        if ($take > 0) {
-            return self::with('author:id,name,avatar')
-                ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
-                ->where('hide', false)
-                ->where('news', true)
-                ->where('fixing', false)
-                ->where('important', true)
-                ->withCount('comments')
-                ->orderByDesc('id')
-                ->take($take)
-                ->get();
+        if ($take === 0) {
+            return collect();
         }
-        return collect();
+
+        return self::with('author:id,name,avatar')
+            ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
+            ->where('hide', false)
+            ->where('news', true)
+            ->where('fixing', false)
+            ->where('important', true)
+            ->withCount('comments')
+            ->orderByDesc('id')
+            ->take($take)
+            ->get();
+
     }
 }
