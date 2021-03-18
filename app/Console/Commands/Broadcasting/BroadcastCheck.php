@@ -98,9 +98,6 @@ class BroadcastCheck extends Command
                     return null;
             }
         } catch (\GuzzleHttp\Exception\GuzzleException $e) {
-            if ($e->status !== 401) {
-                Log::error($e->getMessage());
-            }
             return null;
         } catch (Exception $e) {
             Log::error($e->getMessage());
