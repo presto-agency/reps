@@ -303,7 +303,8 @@
                     },
                     error: function (response) {
                         $('#vote-modal').find('.unregistered-info-wrapper').removeClass('d-none');
-                        $('#vote-modal').find('.unregistered-info-wrapper .notice').html(response.responseJSON.message || '');
+                        $('#vote-modal').find('.unregistered-info-wrapper .notice').html(response.responseJSON.message ||
+                            'Erroir');
                     }
                 });
             });
