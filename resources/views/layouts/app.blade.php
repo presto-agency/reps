@@ -135,41 +135,41 @@
         const races = racesJson ? JSON.parse(racesJson) : [];
         const countries = countriesJson ? JSON.parse(countriesJson) : [];
 
-        const smiles1 =  smiles.map(function (item) {
-            if (item.filename !== ""){
+        const smiles1 = smiles.map(function (item) {
+            if (item.filename !== "") {
                 return item.filename;
             }
-            return  null;
+            return null;
         });
         const getSmiles = smiles1.filter(function (el) {
             return el != null;
         });
 
-        const images1 =  images.map(function (item) {
-            if (item.filename !== ""){
+        const images1 = images.map(function (item) {
+            if (item.filename !== "") {
                 return item.filename;
             }
-            return  null;
+            return null;
         });
         const getImages = images1.filter(function (el) {
             return el != null;
         });
 
-        const races1 =  races.map(function (item) {
-            if (item.filename !== ""){
+        const races1 = races.map(function (item) {
+            if (item.filename !== "") {
                 return item.filename;
             }
-            return  null;
+            return null;
         });
         const getRaces = races1.filter(function (el) {
             return el != null;
         });
 
-        const countries1 =  countries.map(function (item) {
-            if (item.filename !== ""){
+        const countries1 = countries.map(function (item) {
+            if (item.filename !== "") {
                 return item.filename;
             }
-            return  null;
+            return null;
         });
         const getCountries = countries1.filter(function (el) {
             return el != null;
@@ -301,9 +301,10 @@
                             location.reload();
                         }
                     },
-                    error: function (error) {
+                    error: function (response) {
                         $('#vote-modal').find('.unregistered-info-wrapper').removeClass('d-none');
-                        $('#vote-modal').find('.unregistered-info-wrapper .notice').html('ошибка' + error);
+                        $('#vote-modal').find('.unregistered-info-wrapper .notice').html(response.responseJSON.message ||
+                            'Erroir');
                     }
                 });
             });
