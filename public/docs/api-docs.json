@@ -12,6 +12,27 @@
     ],
     "paths": {
         "/api": {},
+        "/chat/messages/last": {
+            "get": {
+                "tags": [
+                    "Chat"
+                ],
+                "summary": "INDEX",
+                "description": "List of last 100 Chat messages<br>\n     <a target='_blank' href='https://docs.google.com/document/d/10cmWwCM23RIVUMf50LHjomIti2TVwtujt9IZLKoeoQA'>Listen channel with echo</a>",
+                "responses": {
+                    "200": {
+                        "description": "Successful request!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChatGlobalData"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/news/last": {
             "get": {
                 "tags": [
@@ -39,7 +60,7 @@
                     "Replays"
                 ],
                 "summary": "INDEX",
-                "description": "Get replays this route have next param exemple:<br>/candidates?skip=0&take=10&type=pro",
+                "description": "Get pro replays",
                 "parameters": [
                     {
                         "name": "skip",
@@ -67,23 +88,6 @@
                                 }
                             },
                             "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "type",
-                        "in": "query",
-                        "description": "Lis of types to `type by.` exemple: `pro`",
-                        "style": "form",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "enum": [
-                                    "pro",
-                                    "user",
-                                    "all"
-                                ]
-                            }
                         }
                     }
                 ],
@@ -125,6 +129,48 @@
     },
     "components": {
         "schemas": {
+            "ChatGlobalData": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "properties": {
+                            "messages": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/LastChatMessagesData"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "LastChatMessagesData": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "properties": {
+                            "id": {
+                                "type": "int",
+                                "example": "1"
+                            },
+                            "userName": {
+                                "type": "string",
+                                "example": "User"
+                            },
+                            "message": {
+                                "type": "string",
+                                "example": "...message..."
+                            },
+                            "createdAt": {
+                                "type": "timestamp",
+                                "example": "2020-12-21T14:55:14.000000Z"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
             "NewsGlobalData": {
                 "type": "object",
                 "allOf": [
@@ -224,6 +270,14 @@
                             "secondRace": {
                                 "type": "string",
                                 "example": "Terran"
+                            },
+                            "firstName": {
+                                "type": "string",
+                                "example": "Y33PPP"
+                            },
+                            "secondName": {
+                                "type": "string",
+                                "example": "94khala"
                             },
                             "map": {
                                 "type": "string",
