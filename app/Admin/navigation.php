@@ -47,4 +47,11 @@ return [
         ->setAccessLogic(function () {
             return auth()->user()->superAdminRole();
         }),
+    (new Page())
+        ->setTitle('Settings')
+        ->setIcon('fas fa-info-circle')
+        ->setUrl('admin/settings')
+        ->setAccessLogic(function () {
+            return auth()->user()->superAdminRole();
+        }),
 ];

@@ -40,55 +40,42 @@ class BroadcastCheck extends Command
      */
     public function handle()
     {
-        try {
+        DB::table('streams')->where('approved', 1)
+            ->whereNotNull('channel')
+            ->whereNotNull('resource')
+            ->whereNotNull('stream_url')
+            ->chunkById(100, function ($data) {
+                try {
+                    $activeIds = [];
+                    $notActiveIds = [];
+                    foreach ($data as $item) {
+                        try {
+                            if (!empty($item->channel) && !empty($item->resource) && !empty($item->stream_url)) {
+                                $result = $this->liveStreamCheck2($item->channel, $item->resource, $item->id);
+                                sleep(1);
 
-            DB::table('streams')->where('approved', 1)
-                ->whereNotNull('channel')
-                ->whereNotNull('resource')
-                ->whereNotNull('stream_url')
-                ->chunkById(100, function ($data) {
-                    if ($data->isNotEmpty()) {
-                        $activeIds = [];
-                        $notActiveIds = [];
-                        foreach ($data as $item) {
-                            try {
-                                if (!empty($item->channel) && !empty($item->resource) && !empty($item->stream_url)) {
-                                    $result = $this->liveStreamCheck2($item->channel, $item->resource, $item->id);
-                                    if (!is_null($result) && self::getActive($result['status'])) {
-                                        $activeIds[$item->id] = $item->id;
-                                    } else {
-                                        $notActiveIds[$item->id] = $item->id;
-                                    }
+                                if (!is_null($result) && self::getActive($result['status'])) {
+                                    $activeIds[$item->id] = $item->id;
                                 } else {
                                     $notActiveIds[$item->id] = $item->id;
                                 }
-
-                            } catch (Exception $e) {
-                                Log::error($e->getMessage());
-                                continue;
+                            } else {
+                                $notActiveIds[$item->id] = $item->id;
                             }
-
-                            sleep(1);
-                        }
-                        if (!empty($activeIds)) {
-                            try {
-                                DB::table('streams')->whereIn('id', $activeIds)->update(['active' => true]);
-                            } catch (Exception $e) {
-                                Log::error($e->getMessage());
-                            }
-                        }
-                        if (!empty($notActiveIds)) {
-                            try {
-                                DB::table('streams')->whereIn('id', $notActiveIds)->update(['active' => false]);
-                            } catch (Exception $e) {
-                                Log::error($e->getMessage());
-                            }
+                        } catch (Exception $e) {
+                            continue;
                         }
                     }
-                });
-        } catch (Exception $e) {
-            Log::error($e->getMessage());
-        }
+                    if (!empty($activeIds)) {
+                        DB::table('streams')->whereIn('id', $activeIds)->update(['active' => true]);
+                    }
+                    if (!empty($notActiveIds)) {
+                        DB::table('streams')->whereIn('id', $notActiveIds)->update(['active' => false]);
+                    }
+                } catch (Exception $e) {
+                    Log::error($e->getMessage());
+                }
+            });
     }
 
     /**
@@ -96,7 +83,6 @@ class BroadcastCheck extends Command
      * @param $resource
      * @param $id
      * @return array|null
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function liveStreamCheck2($channel, $resource, $id)
     {
@@ -111,6 +97,11 @@ class BroadcastCheck extends Command
                 default:
                     return null;
             }
+        } catch (\GuzzleHttp\Exception\GuzzleException $e) {
+            if ($e->status !== 401) {
+                Log::error($e->getMessage());
+            }
+            return null;
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return null;
@@ -118,18 +109,17 @@ class BroadcastCheck extends Command
     }
 
     /**
-     * @param $data
+     * @param $status
      *
      * @return bool
      */
-    private static function getActive($data): bool
+    private static function getActive($status): bool
     {
-        $active = false;
-        if ($data === config('streams.status')) {
-            $active = true;
+        if ($status === config('streams.status')) {
+            return true;
         }
 
-        return $active;
+        return false;
     }
 
     /**
