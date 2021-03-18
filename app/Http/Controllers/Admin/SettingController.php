@@ -38,7 +38,7 @@ class SettingController extends Controller
             return (int) Cache::get('count_load_news');
         }
 
-        return 3;
+        return 0;
     }
 
     public static function countLoadImportantNews()
@@ -47,7 +47,7 @@ class SettingController extends Controller
             return (int) Cache::get('count_load_important_news');
         }
 
-        return 3;
+        return 0;
     }
 
     public static function countLoadFixNews()
@@ -56,7 +56,7 @@ class SettingController extends Controller
             return (int) Cache::get('count_load_fix_news');
         }
 
-        return 50;
+        return 0;
     }
 
     public function save(Request $request)
