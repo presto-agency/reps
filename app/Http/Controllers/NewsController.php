@@ -83,8 +83,7 @@ class NewsController extends Controller
             } else {
                 // get last 5 fix news
                 $importantNews = ForumTopic::getLastImportantNews(SettingController::countLoadImportantNews());
-                $fixingNews = ForumTopic::getLastWithParamsNewsIndex(false, true, true,
-                    SettingController::countLoadFixNews());
+                $fixingNews = ForumTopic::getLastWithParamsNewsIndex(false, true, true, SettingController::countLoadFixNews());
 
 //                $newsFixCount = abs($fixingNews->count() - 5);
 

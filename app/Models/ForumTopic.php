@@ -224,7 +224,7 @@ class ForumTopic extends Model
             return $data;
         }
 
-        $extra = 0;
+        $extra = 1;
         $lastId = null;
         $item = ForumTopic::with('author:id,name,avatar')
             ->select(['id', 'title', 'preview_img', 'preview_content', 'reviews', 'user_id', 'news', 'created_at',])
@@ -240,7 +240,8 @@ class ForumTopic extends Model
             $data->push($item);
         }
 
-        if (!is_null($lastId)) {
+        if (!is_null($lastId) && ($extraLimit > 1)) {
+            $extraLimit = $extraLimit - 1;
             while ($extra <= $extraLimit) {
 
                 $item = ForumTopic::with('author:id,name,avatar')
