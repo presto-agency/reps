@@ -3,7 +3,30 @@
     <div class="row">
         <div class="col-6">
             <div class="form-group">
-                <label for="count_load_news">Count load new</label>
+                <label for="count_load_important_news">Count load important news</label>
+                <input type="number" class="form-control" id="count_load_important_news"
+                       name="count_load_important_news"
+                       value="{{old('count_load_important_news',$count_load_important_news)}}"
+                       min="1" step="1" required>
+            </div>
+            @error('count_load_important_news')
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ $message }}</strong>
+            </div>
+            @enderror
+            <div class="form-group">
+                <label for="count_load_fix_news">Count load fix news</label>
+                <input type="number" class="form-control" id="count_load_fix_news"
+                       name="count_load_fix_news" value="{{old('count_load_fix_news',$count_load_fix_news)}}"
+                       min="1" step="1" required>
+            </div>
+            @error('count_load_fix_news')
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ $message }}</strong>
+            </div>
+            @enderror
+            <div class="form-group">
+                <label for="count_load_news">Count load news</label>
                 <input type="number" class="form-control" id="count_load_news"
                        name="count_load_news" value="{{old('count_load_news',$count_load_news)}}"
                        min="1" step="1" required>

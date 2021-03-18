@@ -82,22 +82,15 @@ class NewsController extends Controller
                 $news = $this->newsWithId($request);
             } else {
                 // get last 5 fix news
-                $importantNews = ForumTopic::getLastImportantNews();
-                $fixingNews = ForumTopic::getLastWithParamsNewsIndex(false, true, true, 3);
+                $importantNews = ForumTopic::getLastImportantNews(SettingController::countLoadImportantNews());
+                $fixingNews = ForumTopic::getLastWithParamsNewsIndex(false, true, true,
+                    SettingController::countLoadFixNews());
 
 //                $newsFixCount = abs($fixingNews->count() - 5);
+
                 // get last 10 fix news
-                $news = ForumTopic::getLastWithParamsNewsIndex(false, false, true, 3);
-//                $news = $this->news();
-//                $fixingNews = $this->fixingNews();
-                /*if ($fixingNews->isNotEmpty() && $news->isNotEmpty()) {
-                    foreach ($news as $items) {
-                        $id         = $items->id;
-                        $fixingNews = $fixingNews->filter(function ($item) use ($id) {
-                            return $item->id != $id;
-                        });
-                    }
-                }*/
+                $news = ForumTopic::getLastWithParamsNewsIndex(false, false, true, SettingController::countLoadNews());
+
                 $visible_title = true;
             }
 
@@ -158,7 +151,7 @@ class NewsController extends Controller
             ->where('important', false)
             ->withCount('comments')
             ->orderByDesc('id')
-            ->limit(SettingController::countLoadNews())
+            ->limit(5)
             ->get();
     }
 
