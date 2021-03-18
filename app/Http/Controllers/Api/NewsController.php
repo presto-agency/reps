@@ -65,7 +65,7 @@ class NewsController extends Controller
      */
     public function last()
     {
-        $importantNews = ForumTopic::getLastImportantNews();
+        $importantNews = ForumTopic::getLastImportantNews(50);
         $newsAndFixNews = ForumTopic::getLastFixNewsWithNews();
         $all = $importantNews->merge($newsAndFixNews);
         return response()->json(['news' => ApiGetNewsResource::collection($all)], 200,
