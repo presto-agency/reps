@@ -156,13 +156,11 @@ class RatingService
     }
 
     /**
-     * Set rating
-     *
-     * @param  SetRatingRequest  $request
+     * @param  Request  $request
      * @param $id
      * @param $relation
-     *
-     * @return array
+     * @param $model
+     * @return array|void
      */
     public static function set(Request $request, $id, $relation, $model)
     {

@@ -303,7 +303,7 @@
                     },
                     error: function (response) {
                         $('#vote-modal').find('.unregistered-info-wrapper').removeClass('d-none');
-                        $('#vote-modal').find('.unregistered-info-wrapper .notice').html('Error' + response.message || '');
+                        $('#vote-modal').find('.unregistered-info-wrapper .notice').html(response.responseJSON.message || '');
                     }
                 });
             });
