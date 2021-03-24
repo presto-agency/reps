@@ -135,9 +135,7 @@ Route::group(['prefix' => 'search'], function () {
     Route::post('load-more-comments', 'Search\SearchController@loadComments')->name('load.more.search.comments');
 });
 
-Route::middleware(['ban'])->group(function () {
-    Auth::routes();
-});
+Auth::routes();
 
 /**
  * Quote
