@@ -132,7 +132,9 @@ class RegisterController extends Controller
             \Log::error($e);
         }
 
-        Session::flash('showModal', 'login');
+//        Session::flash('showModal', 'login');
+
+        $this->guard()->login($user);
 
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
