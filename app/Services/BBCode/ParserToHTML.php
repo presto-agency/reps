@@ -42,7 +42,7 @@ class ParserToHTML
 
         $second_conversion = $bbCode->render($first_conversion);
 
-        $second_conversion = str_replace(array ("\r\n", "\r", "\n", "\\r", "\\n", "\\r\\n"), "<br/>", $second_conversion);
+//        $second_conversion = str_replace(array ("\r\n", "\r", "\n", "\\r", "\\n", "\\r\\n"), "<br/>", $second_conversion);
 
         return html_entity_decode($second_conversion);
     }

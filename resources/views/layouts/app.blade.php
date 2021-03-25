@@ -2,7 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <title>{{config('app.name', 'Reps.ru').' | '}}@section('meta-title'){{$metaTags ? $metaTags->getMetaTitle() : '' }}@show</title>
+    <title>@section('meta-title'){{$metaTags ? $metaTags->getMetaTitle().' | ' : '' }} @show {{ config('app.name', 'Reps
+    .ru')}}</title>
     <base href="{{config('app.url')}}">
     {{--META OG:TAGS--}}
 
@@ -43,6 +44,7 @@
 
 </head>
 <body>
+
 <a href="javascript:" id="return-to-top">
     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up"
          class="svg-inline--fa fa-chevron-up fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -207,19 +209,21 @@
                 loadNewsMainPage($(this).data('id'));
             });
             @endif
+
             /**
              * Modal If validation Error Redirect and open modal
              */
-            @if (count($errors) > 0)
-            @if(!empty(Session::get('showModal')) && Session::get('showModal') == 'registration')
+
+            @if(Session::get('showModal')  === 'registration')
             $('#registrationModal').modal('show');
-            @elseif(!empty(Session::get('showModal')) && Session::get('showModal') == 'login')
+            @endif
+            @if(Session::get('showModal') === 'login')
             $('#authorizationModal').modal('show');
             @endif
-            @endif
-            @if(!empty(Session::get('showModal')) && Session::get('showModal') == 'ban')
+            @if(Session::get('showModal') === 'ban')
             $('#userInBanModal').modal('show');
-            @endif @if(!empty(Session::get('showModal')) && Session::get('showModal') == 'no_email_confirm')
+            @endif
+            @if(Session::get('showModal') === 'no_email_confirm')
             $('#noEmailConfirm').modal('show');
             @endif
         });

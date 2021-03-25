@@ -115,9 +115,13 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        Session::flash('showModal', 'registration');
 
-        $this->validator($request->all())->validate();
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            Session::flash('showModal', 'registration');
+            $this->validator($request->all())->validate();
+        }
 
         try {
             /**
@@ -128,8 +132,7 @@ class RegisterController extends Controller
             \Log::error($e);
         }
 
-        $this->guard()->login($user);
-
+        Session::flash('showModal', 'login');
 
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());

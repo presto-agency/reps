@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('meta-title'){{$news->getSeoTitle()}}@endsection
+@section('meta-title'){{$news->getSeoTitle().' | '}}@endsection
 @section('meta-og-title'){{$news->getSeoTitle()}}@endsection
 @section('meta-keywords'){{$news->getSeoKeywords()}}@endsection
 @section('meta-og-keywords'){{$news->getSeoKeywords()}}@endsection
