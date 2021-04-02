@@ -32,7 +32,7 @@
         "rap2hpoutre/laravel-log-viewer": "1.6.0"
     },
     "require-dev": {
-        "facade/ignition": "1.16.1",
+        "facade/ignition": "1.16.15",
         "fzaninotto/faker": "1.9.1",
         "laravel/ui": "1.2.0",
         "mockery/mockery": "1.3.*",
