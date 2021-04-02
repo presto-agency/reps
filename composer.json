@@ -23,7 +23,7 @@
         "genert/bbcode": "1.1.2",
         "guzzlehttp/guzzle": "6.5.4",
         "intervention/image": "2.5.1",
-        "laravel/framework": "6.5.2",
+        "laravel/framework": "6.20.14",
         "laravel/tinker": "1.0.10",
         "laravelrus/sleepingowl": "dev-bs4",
         "mews/purifier": "3.2.2",
