@@ -13,7 +13,7 @@
         "ext-gd": "*",
         "ext-json": "*",
         "barryvdh/laravel-debugbar": "3.3.3",
-        "barryvdh/laravel-translation-manager": "0.5.8",
+        "barryvdh/laravel-translation-manager": "0.6.2",
         "caouecs/laravel-lang": "4.0.11",
         "chriskonnertz/bbcode": "1.1.2",
         "darkaonline/l5-swagger": "6.0.5",
