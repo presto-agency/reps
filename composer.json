@@ -21,7 +21,7 @@
         "embed/embed": "3.4.4",
         "fideloper/proxy": "4.3.0",
         "genert/bbcode": "1.1.2",
-        "guzzlehttp/guzzle": "6.5.4",
+        "guzzlehttp/guzzle": "6.5.8",
         "intervention/image": "2.5.1",
         "laravel/framework": "6.5.2",
         "laravel/tinker": "1.0.10",
